@@ -30,7 +30,6 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.ui_utils import (
     add_dialog_xml_filter,
-    iter_tree_model,
     data_dir,
     safe_destroy,
 )
@@ -185,6 +184,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self.dma: DmaProtocol = module.get_dma(item_data)
         self.dpl: DplProtocol = module.get_dpl(item_data)
         self.dpla: DplaProtocol = module.get_dpla(item_data)
@@ -210,6 +210,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         self.on_editor_root_switch_page(None, None, self.__class__._last_open_tab_id)
         self.label_tileset_name.set_text(f(_("Dungeon Tileset {self.item_data} Rules")))
         self.label_tileset_name2.set_text(f(_("Dungeon Tileset {self.item_data}")))
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -381,7 +382,8 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_rules_active_type_changed(self, widget, *area):
-        self.update_chunks_from_current_rules()
+        if not self._suppress_signals:
+            self.update_chunks_from_current_rules()
 
     @Gtk.Template.Callback()
     def on_rules_a0_toggled(self, widget: Gtk.CheckButton, *area):
@@ -425,60 +427,67 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_secondary_terrain_type_changed(self, w: Gtk.ComboBox):
-        idx = w.get_active()
-        static = self.module.project.get_rom_module().get_static_data()
-        secondary_terrains = HardcodedDungeons.get_secondary_terrains(
-            self.module.project.get_binary(BinaryName.ARM9), static
-        )
-        secondary_terrains[self.item_data] = SecondaryTerrainTableEntry(idx)
+        if not self._suppress_signals:
+            idx = w.get_active()
+            static = self.module.project.get_rom_module().get_static_data()
+            secondary_terrains = HardcodedDungeons.get_secondary_terrains(
+                self.module.project.get_binary(BinaryName.ARM9), static
+            )
+            secondary_terrains[self.item_data] = SecondaryTerrainTableEntry(idx)
 
-        def update(arm9):
-            HardcodedDungeons.set_secondary_terrains(secondary_terrains, arm9, static)
+            def update(arm9):
+                HardcodedDungeons.set_secondary_terrains(
+                    secondary_terrains, arm9, static
+                )
 
-        self.module.project.modify_binary(BinaryName.ARM9, update)
-        self.mark_as_modified()
+            self.module.project.modify_binary(BinaryName.ARM9, update)
+            self.mark_as_modified()
 
     @Gtk.Template.Callback()
     def on_rules_main_1_selection_changed(self, icon_view):
-        model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
-        if model is not None and treeiter is not None and (treeiter != []):
-            self._rule_updated(model[treeiter][0], 0)
+        if not self._suppress_signals:
+            model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
+            if model is not None and treeiter is not None and (treeiter != []):
+                self._rule_updated(model[treeiter][0], 0)
 
     @Gtk.Template.Callback()
     def on_rules_main_2_selection_changed(self, icon_view):
-        model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
-        if model is not None and treeiter is not None and (treeiter != []):
-            self._rule_updated(model[treeiter][0], 1)
+        if not self._suppress_signals:
+            model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
+            if model is not None and treeiter is not None and (treeiter != []):
+                self._rule_updated(model[treeiter][0], 1)
 
     @Gtk.Template.Callback()
     def on_rules_main_3_selection_changed(self, icon_view):
-        model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
-        if model is not None and treeiter is not None and (treeiter != []):
-            self._rule_updated(model[treeiter][0], 2)
+        if not self._suppress_signals:
+            model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
+            if model is not None and treeiter is not None and (treeiter != []):
+                self._rule_updated(model[treeiter][0], 2)
 
     @Gtk.Template.Callback()
     def on_rules_extra_selection_changed(self, icon_view_extra):
-        model, treeiter = (
-            icon_view_extra.get_model(),
-            icon_view_extra.get_selected_items(),
-        )
-        if model is not None and treeiter is not None and (treeiter != []):
-            i = model[treeiter][0]
-            icon_view_picker = self.rules_chunk_picker
+        if not self._suppress_signals:
             model, treeiter = (
-                icon_view_picker.get_model(),
-                icon_view_picker.get_selected_items(),
+                icon_view_extra.get_model(),
+                icon_view_extra.get_selected_items(),
             )
             if model is not None and treeiter is not None and (treeiter != []):
-                edited_value = model[treeiter[0]][1]
-                extra_type = DmaExtraType.FLOOR1
-                if i > 15:
-                    extra_type = DmaExtraType.WALL_OR_VOID
-                if i > 31:
-                    extra_type = DmaExtraType.FLOOR2
-                self.dma.set_extra(extra_type, i % 16, edited_value)
-                self.update_chunks_extra()
-                self.mark_as_modified()
+                i = model[treeiter][0]
+                icon_view_picker = self.rules_chunk_picker
+                model, treeiter = (
+                    icon_view_picker.get_model(),
+                    icon_view_picker.get_selected_items(),
+                )
+                if model is not None and treeiter is not None and (treeiter != []):
+                    edited_value = model[treeiter[0]][1]
+                    extra_type = DmaExtraType.FLOOR1
+                    if i > 15:
+                        extra_type = DmaExtraType.WALL_OR_VOID
+                    if i > 31:
+                        extra_type = DmaExtraType.FLOOR2
+                    self.dma.set_extra(extra_type, i % 16, edited_value)
+                    self.update_chunks_extra()
+                    self.mark_as_modified()
 
     def mark_as_modified(self):
         self.module.mark_as_modified(self.item_data, False)

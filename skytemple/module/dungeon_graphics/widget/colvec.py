@@ -68,6 +68,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._string_provider = module.project.get_string_provider()
         self.colvec: Colvec = self.module.get_colvec()
         self.dma: DmaProtocol
@@ -79,6 +80,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
         self._reinit_image()
         self.draw_tileset.connect("draw", self.exec_draw_tileset)
         self.draw_colormap.connect("draw", self.exec_draw_colormap)
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, *args):
@@ -151,17 +153,19 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
 
     @Gtk.Template.Callback()
     def on_tileset_changed(self, widget):
-        cb_store = self.cb_tileset_store
-        cb = self.cb_tileset
-        it = cb.get_active_iter()
-        assert it is not None
-        v: int = cb_store[it][0]
-        self._load_tileset(v)
-        self._reinit_image()
+        if not self._suppress_signals:
+            cb_store = self.cb_tileset_store
+            cb = self.cb_tileset
+            it = cb.get_active_iter()
+            assert it is not None
+            v: int = cb_store[it][0]
+            self._load_tileset(v)
+            self._reinit_image()
 
     @Gtk.Template.Callback()
     def on_weather_changed(self, widget):
-        self._reinit_image()
+        if not self._suppress_signals:
+            self._reinit_image()
 
     def _init_colvec(self):
         # Init available weathers

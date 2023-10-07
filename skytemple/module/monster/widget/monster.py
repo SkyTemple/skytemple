@@ -1146,7 +1146,8 @@ class StMonsterMonsterPage(Gtk.Box):
             )
             for entry in entry_list:
                 entry_main_tree = self.module.generate_entry__entry(
-                    entry.md_index, Gender(entry.gender)  # type: ignore
+                    entry.md_index,
+                    Gender(entry.gender),  # type: ignore
                 )
                 store.append(
                     ent_root,
@@ -1792,9 +1793,9 @@ class StMonsterMonsterPage(Gtk.Box):
             name = self.module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES, sidx
             )
-            self._ent_names[
-                idx
-            ] = f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
+            self._ent_names[idx] = (
+                f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
+            )
             monster_store.append([self._ent_names[idx]])
 
     @Gtk.Template.Callback()

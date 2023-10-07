@@ -21,7 +21,7 @@ import itertools
 import logging
 import sys
 from collections import OrderedDict
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Union, cast
 
 from range_typed_integers import u16_checked, u16
 
@@ -42,7 +42,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
+from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple.module.tiled_img.dialog_controller.chunk_editor import (
     ChunkEditorController,
 )
@@ -54,19 +54,23 @@ if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.widget.dungeon_bg import (
         StDungeonGraphicsDungeonBgPage,
     )
-    from skytemple.module.dungeon_graphics.widget.tileset import StDungeonGraphicsTilesetPage
+    from skytemple.module.dungeon_graphics.widget.tileset import (
+        StDungeonGraphicsTilesetPage,
+    )
 
 logger = logging.getLogger(__name__)
 
 
 class BgMenuController:
-    def __init__(self, bg: Union[StDungeonGraphicsTilesetPage, StDungeonGraphicsDungeonBgPage]):
+    def __init__(
+        self, bg: Union[StDungeonGraphicsTilesetPage, StDungeonGraphicsDungeonBgPage]
+    ):
         self.parent = bg
 
     def on_men_map_export_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_map_export"
-        )
+        if TYPE_CHECKING:
+            assert isinstance(self.parent, StDungeonGraphicsDungeonBgPage)
+        dialog: Gtk.Dialog = self.parent.dialog_map_export
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
@@ -96,16 +100,14 @@ class BgMenuController:
                 img.save(fn)
 
     def on_men_map_import_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_map_import"
-        )
+        if TYPE_CHECKING:
+            assert isinstance(self.parent, StDungeonGraphicsDungeonBgPage)
+        dialog: Gtk.Dialog = self.parent.dialog_map_import
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        bg_import_file = builder_get_assert(
-            self.parent.builder, Gtk.FileChooserButton, "map_import_layer1_file"
-        )
+        bg_import_file: Gtk.FileChooserButton = self.parent.map_import_layer1_file
         bg_import_file.unselect_all()
 
         resp = dialog.run()
@@ -150,9 +152,7 @@ class BgMenuController:
         del cntrl
 
     def on_men_chunks_layer1_export_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_chunks_export"
-        )
+        dialog: Gtk.Dialog = self.parent.dialog_chunks_export
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
@@ -185,19 +185,13 @@ class BgMenuController:
                     )
 
     def on_men_chunks_layer1_import_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_chunks_import"
-        )
+        dialog: Gtk.Dialog = self.parent.dialog_chunks_import
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        chunks_import_file = builder_get_assert(
-            self.parent.builder, Gtk.FileChooserButton, "chunks_import_file"
-        )
-        chunks_import_palettes = builder_get_assert(
-            self.parent.builder, Gtk.Switch, "chunks_import_palettes"
-        )
+        chunks_import_file: Gtk.FileChooserButton = self.parent.chunks_import_file
+        chunks_import_palettes: Gtk.Switch = self.parent.chunks_import_palettes
         chunks_import_file.unselect_all()
 
         resp = dialog.run()
@@ -231,9 +225,7 @@ class BgMenuController:
             self.parent.mark_as_modified()
 
     def on_men_tiles_layer1_export_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_tiles_export"
-        )
+        dialog: Gtk.Dialog = self.parent.dialog_tiles_export
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
@@ -265,16 +257,12 @@ class BgMenuController:
                     )
 
     def on_men_tiles_layer1_import_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_tiles_import"
-        )
+        dialog: Gtk.Dialog = self.parent.dialog_tiles_import
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        tiles_import_file = builder_get_assert(
-            self.parent.builder, Gtk.FileChooserButton, "tiles_import_file"
-        )
+        tiles_import_file: Gtk.FileChooserButton = self.parent.tiles_import_file
         tiles_import_file.unselect_all()
 
         resp = dialog.run()
@@ -318,25 +306,22 @@ class BgMenuController:
         del cntrl
 
     def on_men_palettes_ani_settings_activate(self):
-        dialog = builder_get_assert(
-            self.parent.builder, Gtk.Dialog, "dialog_palettes_animated_settings"
-        )
+        dialog: Gtk.Dialog = self.parent.dialog_palettes_animated_settings
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
-        builder_get_assert(
-            self.parent.builder, Gtk.Switch, "palette_animation11_enabled"
-        ).set_active(self.parent.dpla.has_for_palette(0))
-        builder_get_assert(
-            self.parent.builder, Gtk.Switch, "palette_animation12_enabled"
-        ).set_active(self.parent.dpla.has_for_palette(1))
+        self.parent.palette_animation11_enabled.set_active(
+            self.parent.dpla.has_for_palette(0)
+        )
+        self.parent.palette_animation12_enabled.set_active(
+            self.parent.dpla.has_for_palette(1)
+        )
 
         for aidx, offset in (11, 0), (12, 16):
             for cidx in range(0, 16):
-                builder_get_assert(
-                    self.parent.builder,
+                cast(
                     Gtk.Entry,
-                    f"palette_animation{aidx}_frame_time{cidx}",
+                    getattr(self.parent, f"palette_animation{aidx}_frame_time{cidx}"),
                 ).set_text(
                     str(self.parent.dpla.durations_per_frame_for_colors[offset + cidx])
                 )
@@ -350,8 +335,8 @@ class BgMenuController:
                 self.parent.dpla.durations_per_frame_for_colors
             )
             for palid, aidx, offset in ((0, 11, 0), (1, 12, 16)):
-                if builder_get_assert(
-                    self.parent.builder, Gtk.Switch, f"palette_animation{aidx}_enabled"
+                if cast(
+                    Gtk.Switch, getattr(self.parent, f"palette_animation{aidx}_enabled")
                 ).get_active():
                     # Has palette animations!
                     self.parent.dpla.enable_for_palette(palid)
@@ -362,10 +347,12 @@ class BgMenuController:
                     try:
                         time = u16_checked(
                             int(
-                                builder_get_assert(
-                                    self.parent.builder,
+                                cast(
                                     Gtk.Entry,
-                                    f"palette_animation{aidx}_frame_time{cidx}",
+                                    getattr(
+                                        self.parent,
+                                        f"palette_animation{aidx}_frame_time{cidx}",
+                                    ),
                                 ).get_text()
                             )
                         )

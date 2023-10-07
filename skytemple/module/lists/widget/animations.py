@@ -375,9 +375,7 @@ class StListsAnimationsPage(Gtk.Stack):
         store_spec[treepath][6] = store_type[treeiter][1]
         self.animations.special_move_table[
             store_spec[treepath][0]
-        ].point = AnimPointType(
-            store_type[treeiter][0]
-        )  # type: ignore
+        ].point = AnimPointType(store_type[treeiter][0])  # type: ignore
         self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()

@@ -121,10 +121,12 @@ class StMonsterMainPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._string_provider = module.project.get_string_provider()
         self._init_combos()
         self._init_groups()
         self._init_spec_personalities()
+        self._suppress_signals = False
         self.on_lang_changed()
 
     @Gtk.Template.Callback()
@@ -158,12 +160,13 @@ class StMonsterMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_lang_changed(self, *args):
-        cb_store = self.cb_store_lang
-        cb = self.cb_lang
-        active_iter = cb.get_active_iter()
-        assert active_iter is not None
-        self._current_lang = cb_store[active_iter][0]
-        self._refresh_list()
+        if not self._suppress_signals:
+            cb_store = self.cb_store_lang
+            cb = self.cb_lang
+            active_iter = cb.get_active_iter()
+            assert active_iter is not None
+            self._current_lang = cb_store[active_iter][0]
+            self._refresh_list()
 
     def _init_spec_personalities(self):
         tree_store = self.special_personalities_tree_store
@@ -175,7 +178,8 @@ class StMonsterMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_value_changed(self, *args):
-        self._refresh_list()
+        if not self._suppress_signals:
+            self._refresh_list()
 
     def _get_current_settings(self) -> tuple[int, TalkType]:
         cb_store = self.cb_store_types

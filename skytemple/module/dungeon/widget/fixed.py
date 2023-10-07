@@ -187,6 +187,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self.tileset_id = 0
         if self.__class__._last_scale_factor is not None:
             self._scale_factor = self.__class__._last_scale_factor
@@ -240,6 +241,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         tool_fullmap.set_active(self._last_show_full_map)
         self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
         self._update_scales()
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -380,11 +382,13 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     @Gtk.Template.Callback()
     def on_utility_entity_direction_changed(self, *args):
-        self._reapply_selected_entity()
+        if not self._suppress_signals:
+            self._reapply_selected_entity()
 
     @Gtk.Template.Callback()
     def on_utility_entity_type_changed(self, *args):
-        self._reapply_selected_entity()
+        if not self._suppress_signals:
+            self._reapply_selected_entity()
 
     @Gtk.Template.Callback()
     def on_btn_goto_entity_editor_clicked(self, *args):
@@ -395,11 +399,13 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     @Gtk.Template.Callback()
     def on_utility_tile_direction_changed(self, *args):
-        self._reapply_selected_tile()
+        if not self._suppress_signals:
+            self._reapply_selected_tile()
 
     @Gtk.Template.Callback()
     def on_utility_tile_type_changed(self, *args):
-        self._reapply_selected_tile()
+        if not self._suppress_signals:
+            self._reapply_selected_tile()
 
     @Gtk.Template.Callback()
     def on_tool_scene_goto_tileset_clicked(self, *args):
@@ -409,9 +415,10 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     @Gtk.Template.Callback()
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
-        idx = w.get_active()
-        self.tileset_id = idx
-        self.on_tool_fullmap_toggled(self.tool_fullmap, ignore_scaling=True)
+        if not self._suppress_signals:
+            idx = w.get_active()
+            self.tileset_id = idx
+            self.on_tool_fullmap_toggled(self.tool_fullmap, ignore_scaling=True)
 
     @Gtk.Template.Callback()
     def on_tool_scene_copy_toggled(self, *args):
@@ -520,75 +527,87 @@ class StDungeonFixedPage(Gtk.Notebook):
     @Gtk.Template.Callback()
     @catch_overflow(u32)
     def on_settings_music_changed(self, w):
-        try:
-            self.properties.music_track = u32_checked(int(w.get_text()))
-        except ValueError:
-            return
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            try:
+                self.properties.music_track = u32_checked(int(w.get_text()))
+            except ValueError:
+                return
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_complete_state_set(self, w: Gtk.Switch, state: bool, *args):
-        if state:
-            self.properties.null |= 1  # type: ignore
-        else:
-            self.properties.null &= ~1  # type: ignore
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            if state:
+                self.properties.null |= 1  # type: ignore
+            else:
+                self.properties.null &= ~1  # type: ignore
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_boss_state_set(self, w: Gtk.Switch, state: bool, *args):
-        if state:
-            self.properties.null |= 2  # type: ignore
-        else:
-            self.properties.null &= ~2  # type: ignore
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            if state:
+                self.properties.null |= 2  # type: ignore
+            else:
+                self.properties.null &= ~2  # type: ignore
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_free_state_set(self, w: Gtk.Switch, state: bool, *args):
-        if state:
-            self.properties.null |= 4  # type: ignore
-        else:
-            self.properties.null &= ~4  # type: ignore
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            if state:
+                self.properties.null |= 4  # type: ignore
+            else:
+                self.properties.null &= ~4  # type: ignore
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_moves_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.moves_enabled = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.moves_enabled = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_orbs_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.orbs_enabled = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.orbs_enabled = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_defeat_enemies_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.exit_floor_when_defeating_enemies = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.exit_floor_when_defeating_enemies = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk4_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.unk4 = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.unk4 = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk5_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.unk5 = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.unk5 = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk8_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.unk8 = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.unk8 = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk9_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.properties.unk9 = state
-        self.module.save_fixed_floor_properties(self.item_data, self.properties)
+        if not self._suppress_signals:
+            self.properties.unk9 = state
+            self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_override_changed(self, w: Gtk.ComboBox, *args):
-        self.override_id = u8(w.get_active())
-        self.module.save_fixed_floor_override(self.item_data, self.override_id)
+        if not self._suppress_signals:
+            self.override_id = u8(w.get_active())
+            self.module.save_fixed_floor_override(self.item_data, self.override_id)
 
     @Gtk.Template.Callback()
     def on_btn_apply_size_clicked(self, *args):
