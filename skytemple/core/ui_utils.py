@@ -173,12 +173,6 @@ def make_builder(gui_file) -> Gtk.Builder:
         builder.set_translation_domain(APP)
         builder.add_from_file(gui_file)
 
-    # TODO: A bit of a dirty quickfix to make all switches look better
-    for object in builder.get_objects():
-        if isinstance(object, Gtk.Switch):
-            object.set_halign(Gtk.Align.CENTER)
-            object.set_valign(Gtk.Align.CENTER)
-
     return builder
 
 

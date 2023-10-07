@@ -479,6 +479,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_level_reset_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
@@ -490,6 +492,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_iq_skills_disabled_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
@@ -582,6 +586,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_recruiting_allowed_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">9</property>
@@ -593,6 +599,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_dont_save_before_entering_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">9</property>
@@ -657,6 +665,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_enemies_grant_exp_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">7</property>
@@ -668,6 +678,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_leader_can_be_changed_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">7</property>
@@ -679,6 +691,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_enemies_can_drop_chests_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">7</property>
@@ -756,6 +770,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_enemies_evolve_when_team_member_koed_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">4</property>
@@ -767,6 +783,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_money_allowed_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">4</property>
@@ -778,6 +796,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_switch_traps_remain_invisible_on_attack_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">4</property>

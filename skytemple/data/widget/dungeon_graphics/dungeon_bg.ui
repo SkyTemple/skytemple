@@ -89,6 +89,8 @@
                   <object class="GtkSwitch" id="palette_animation11_enabled">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -580,6 +582,8 @@
                   <object class="GtkSwitch" id="palette_animation12_enabled">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -2103,6 +2107,8 @@ before you can use it. See the "Format Details".</property>
                   <object class="GtkSwitch" id="chunks_import_palettes">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>

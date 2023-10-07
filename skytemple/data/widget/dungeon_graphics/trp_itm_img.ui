@@ -64,6 +64,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="active">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -87,6 +89,8 @@ Note that this will affect all images.</property>
               <object class="GtkSwitch" id="switch_import_new">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>

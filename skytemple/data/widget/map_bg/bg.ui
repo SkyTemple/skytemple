@@ -271,6 +271,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="state-set" handler="on_collison_switch_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -492,6 +494,8 @@
                     <property name="can-focus">True</property>
                     <property name="margin-left">10</property>
                     <signal name="state-set" handler="on_palette_animation_enabled_state_set" swapped="no" />
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -2609,6 +2613,8 @@ map must match.</property>
                       <object class="GtkSwitch" id="settings_has_data_layer">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -3042,6 +3048,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable1">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3159,6 +3167,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable2">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3280,6 +3290,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable3">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3401,6 +3413,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable4">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3522,6 +3536,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable5">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3643,6 +3659,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable6">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3764,6 +3782,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable7">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -3885,6 +3905,8 @@ If the map has two layers:
                           <object class="GtkSwitch" id="bpa_enable8">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -4163,6 +4185,7 @@ If the map has two layers:
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="halign">start</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -5945,6 +5968,8 @@ before you can use it. See the "Format Details".</property>
                   <object class="GtkSwitch" id="chunks_import_palettes">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>

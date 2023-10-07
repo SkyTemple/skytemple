@@ -118,6 +118,8 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -129,6 +131,8 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -140,6 +144,8 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -151,6 +157,8 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -162,6 +170,8 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -303,6 +313,8 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -314,6 +326,8 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -339,6 +353,8 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="active">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -392,6 +408,8 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="export_file_switch">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3183,6 +3201,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_bitfield1_0_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3194,6 +3214,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_bitfield1_1_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3205,6 +3227,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_bitfield1_2_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3216,6 +3240,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_bitfield1_3_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3227,6 +3253,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_can_move_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3238,6 +3266,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_bitfield1_5_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3249,6 +3279,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_can_evolve_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3260,6 +3292,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <signal name="state-set" handler="on_switch_item_required_for_spawning_state_set" swapped="no" />
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
