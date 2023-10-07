@@ -116,17 +116,17 @@ class StListsDungeonMusicPage(Gtk.Box):
     @Gtk.Template.Callback()
     @glib_async
     def on_cr_random_track3_changed(self, widget, path, new_iter, *args):
-            track_store = self.store_random_tracks
-            cb_store = self.store_track_name_single
-            track_store[path][3] = cb_store[new_iter][1]
-            t = self._random_list[int(track_store[path][0])]
-            self._random_list[int(track_store[path][0])] = (
-                t[0],
-                t[1],
-                cb_store[new_iter][0],
-                t[3],
-            )
-            self.module.set_dungeon_music(self._music_list, self._random_list)
+        track_store = self.store_random_tracks
+        cb_store = self.store_track_name_single
+        track_store[path][3] = cb_store[new_iter][1]
+        t = self._random_list[int(track_store[path][0])]
+        self._random_list[int(track_store[path][0])] = (
+            t[0],
+            t[1],
+            cb_store[new_iter][0],
+            t[3],
+        )
+        self.module.set_dungeon_music(self._music_list, self._random_list)
 
     @Gtk.Template.Callback()
     @glib_async

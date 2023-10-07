@@ -95,8 +95,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         self._rendered_frame_info: list[
             tuple[int, tuple[cairo.Surface, int, int, int, int]]
         ] = []
-        if not self.module.is_idx_supported(self.item_data):
-            return Gtk.Label.new(_("Invalid Sprite ID."))
+        assert self.module.is_idx_supported(self.item_data)
         self._draw_area = self.draw_sprite
         if self.module.get_gfxcrunch().is_available():
             self.explanation_text2.set_markup(

@@ -879,9 +879,7 @@ class BgMenuController:
                         duration_per_frame = int(
                             cast(
                                 Gtk.Entry,
-                                getattr(
-                                    self.parent, f"pallete_anim_setting_unk3_p{i}"
-                                ),
+                                getattr(self.parent, f"pallete_anim_setting_unk3_p{i}"),
                             ).get_text()
                         )
                     except ValueError:
@@ -891,9 +889,7 @@ class BgMenuController:
                         number_of_frames = int(
                             cast(
                                 Gtk.Entry,
-                                getattr(
-                                    self.parent, f"pallete_anim_setting_unk4_p{i}"
-                                ),
+                                getattr(self.parent, f"pallete_anim_setting_unk4_p{i}"),
                             ).get_text()
                         )
                     except ValueError:
