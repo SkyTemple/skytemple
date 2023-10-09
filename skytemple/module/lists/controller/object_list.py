@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u8, u16_checked
+from skytemple_files.user_error import UserValueError
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -98,9 +99,9 @@ class ObjectListController(ListBaseController):
     def on_cr_name_edited(self, widget, path, text):
         try:
             if len(text) > 10:
-                raise ValueError("Object name has more than 10 characters.")
+                raise UserValueError("Object name has more than 10 characters.")
             if max([ord(c) for c in text]) >= 256:
-                raise ValueError("Object name has non-ASCII characters.")
+                raise UserValueError("Object name has non-ASCII characters.")
             self._list_store[path][1] = text
         except ValueError as err:
             display_error(sys.exc_info(), str(err), _("Invalid object name"))
