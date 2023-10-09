@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-10-05 20:29+0000\n"
-"PO-Revision-Date: 2023-10-05 22:13\n"
+"POT-Creation-Date: 2023-10-09 20:34+0000\n"
+"PO-Revision-Date: 2023-10-09 20:46\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1059,7 +1059,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:688
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:557
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:566
-#: skytemple/skytemple/module/map_bg/controller/bg.py:809
+#: skytemple/skytemple/module/map_bg/controller/bg.py:810
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:228
 #: skytemple/skytemple/module/script/controller/main.py:295
 #: skytemple/skytemple/module/script/controller/main.py:296
@@ -5177,7 +5177,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:198
 #: skytemple/skytemple/core/ssb_debugger/context.py:217
-#: skytemple/skytemple/module/map_bg/controller/bg.py:443
+#: skytemple/skytemple/module/map_bg/controller/bg.py:444
 msgid "No Scenes Found"
 msgstr ""
 
@@ -7841,7 +7841,7 @@ msgid "By changing the 'Pokémon' entry for these actors, you will only change w
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.py:76
-#: skytemple/skytemple/module/lists/controller/object_list.py:80
+#: skytemple/skytemple/module/lists/controller/object_list.py:81
 #: skytemple/skytemple/module/script/controller/ssa.py:932
 msgid "Not implemented."
 msgstr ""
@@ -8391,7 +8391,7 @@ msgid "The Name is used by the game to determine if a ground sprite should be us
 "To create a new object sprite, go to the Object Sprites section."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/object_list.py:106
+#: skytemple/skytemple/module/lists/controller/object_list.py:107
 msgid "Invalid object name"
 msgstr ""
 
@@ -8753,31 +8753,31 @@ msgstr ""
 msgid "SkyTemple - Notice"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:440
+#: skytemple/skytemple/module/map_bg/controller/bg.py:441
 msgid "A script map with the same name as this background does not exist."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:847
+#: skytemple/skytemple/module/map_bg/controller/bg.py:848
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:874
+#: skytemple/skytemple/module/map_bg/controller/bg.py:875
 msgid "This map has no collision.\n"
 "You can add collision at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:885
+#: skytemple/skytemple/module/map_bg/controller/bg.py:886
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:911
+#: skytemple/skytemple/module/map_bg/controller/bg.py:912
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:1110
+#: skytemple/skytemple/module/map_bg/controller/bg.py:1111
 msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
@@ -8785,7 +8785,7 @@ msgid "Map backgrounds can be used as primary or secondary.\n"
 "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:1116
+#: skytemple/skytemple/module/map_bg/controller/bg.py:1117
 msgid "Background Palettes"
 msgstr ""
 
