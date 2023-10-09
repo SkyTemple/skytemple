@@ -36,7 +36,9 @@ async def load_view(
     item_data: Any,
     main_controller: MainController,
 ):
-    with record_transaction(f"{module.__class__.__name__}/{view.__name__}", tags={"item-data": item_data}):
+    with record_transaction(
+        f"{module.__class__.__name__}/{view.__name__}", tags={"item-data": item_data}
+    ):
         if issubclass(view, Gtk.Widget):
             try:
                 # We use type: ignore here because there is an implicit contract that widgets used
