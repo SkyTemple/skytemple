@@ -32,6 +32,7 @@ from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant_dialog import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
+from skytemple.core.profiling import record_span
 from skytemple.core.view_loader import load_view
 from skytemple.core.error_handler import display_error, capture_error
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
@@ -355,66 +356,73 @@ class MainController:
     def on_file_opened(self):
         """Update the UI after a ROM file has been opened."""
         assert current_thread() == main_thread
-        logger.debug("File opened.")
-        # Init the sprite provider
-        project = RomProject.get_current()
-        assert project is not None
-        project.get_sprite_provider().init_loader(self._window.get_screen())
+        with record_span("sys", "on-file-loaded"):
+            logger.debug("File opened.")
+            # Init the sprite provider
+            project = RomProject.get_current()
+            assert project is not None
+            with record_span("ui", "init-sprite-loader"):
+                project.get_sprite_provider().init_loader(self._window.get_screen())
 
-        self._init_window_after_rom_load(os.path.basename(project.filename))
-        try:
-            # Load root node, ROM
-            rom_module = project.get_rom_module()
-            rom_module.load_rom_data()
+            with record_span("ui", "init-window-after-file-load"):
+                self._init_window_after_rom_load(os.path.basename(project.filename))
+            try:
+                # Load root node, ROM
+                rom_module = project.get_rom_module()
+                rom_module.load_rom_data()
 
-            # Initialize patch-specific properties for this rom project
-            project.init_patch_properties()
+                # Initialize patch-specific properties for this rom project
+                project.init_patch_properties()
 
-            logger.info(
-                f"Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})"
-            )
-            logger.debug(f"Loading ROM module tree items...")
-            rom_module.load_tree_items(self._tree_repr)
-            root_node = rom_module.get_root_node()
-
-            # Tell the debugger
-            self._debugger_manager.handle_project_change()
-
-            # Load item tree items
-            for module in sorted(
-                project.get_modules(False), key=lambda m: m.sort_order()
-            ):
-                logger.debug(
-                    f"Loading {module.__class__.__name__} module tree items..."
+                logger.info(
+                    f"Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})"
                 )
-                module.load_tree_items(self._tree_repr)
-                if module.__class__.__name__ == "MapBgModule":
-                    self._loaded_map_bg_module = module  # type: ignore
-            # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
-            logger.debug(f"Loaded all modules.")
+                logger.debug(f"Loading ROM module tree items...")
+                with record_span("load-tree-items", rom_module.__class__.__name__):
+                    rom_module.load_tree_items(self._tree_repr)
+                root_node = rom_module.get_root_node()
 
-            # Generate all labels.
-            self._tree_repr.finalize()
+                # Tell the debugger
+                self._debugger_manager.handle_project_change()
 
-            # Trigger event
-            EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
+                # Load item tree items
+                for module in sorted(
+                    project.get_modules(False), key=lambda m: m.sort_order()
+                ):
+                    with record_span("load-tree-items", module.__class__.__name__):
+                        logger.debug(
+                            f"Loading {module.__class__.__name__} module tree items..."
+                        )
+                        module.load_tree_items(self._tree_repr)
+                        if module.__class__.__name__ == "MapBgModule":
+                            self._loaded_map_bg_module = module  # type: ignore
+                # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
+                logger.debug(f"Loaded all modules.")
 
-            # Select & load main ROM item by default
-            assert self._main_item_list is not None
-            selection: Gtk.TreeSelection = self._main_item_list.get_selection()
-            selection.select_path(self._item_store.get_path(root_node._self))
+                # Generate all labels.
+                with record_span("ui", "finalize-tree"):
+                    self._tree_repr.finalize()
+
+                # Trigger event
+                EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
+
+                # Select & load main ROM item by default
+                assert self._main_item_list is not None
+                selection: Gtk.TreeSelection = self._main_item_list.get_selection()
+                selection.select_path(self._item_store.get_path(root_node._self))
+            except BaseException as ex:
+                self.on_file_opened_error(sys.exc_info(), ex)
+                return
+
             self.load_view(self._item_store, root_node._self, self._main_item_list)
-        except BaseException as ex:
-            self.on_file_opened_error(sys.exc_info(), ex)
-            return
 
-        if self._loading_dialog is not None:
-            self._loading_dialog.hide()
-            self._loading_dialog = None
+            if self._loading_dialog is not None:
+                self._loading_dialog.hide()
+                self._loading_dialog = None
 
-        # Show the initial assistant window
-        if not self.settings.get_assistant_shown():
-            self.on_settings_show_assistant_clicked()
+            # Show the initial assistant window
+            if not self.settings.get_assistant_shown():
+                self.on_settings_show_assistant_clicked()
 
     def on_file_opened_error(self, exc_info, exception):
         """Handle errors during file openings."""
@@ -510,19 +518,39 @@ class MainController:
     ):
         """A new module view was loaded! Present it!"""
         assert current_thread() == main_thread
-        # Check if current view still matches expected
-        logger.debug("View loaded.")
-        # Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
-        old_view = self._editor_stack.get_child_by_name("es__loaded_view")
-        view: Gtk.Widget
-        try:
-            if isinstance(in_view, Gtk.Widget):
-                view = in_view
-            else:
-                view = in_view.get_view()
-        except Exception as err:
-            logger.debug("Error retreiving the loaded view")
-            self.on_view_loaded_error(err)
+        with record_span("ui", "on-view-loaded"):
+            # Check if current view still matches expected
+            logger.debug("View loaded.")
+            # Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
+            old_view = self._editor_stack.get_child_by_name("es__loaded_view")
+            view: Gtk.Widget
+            try:
+                if isinstance(in_view, Gtk.Widget):
+                    view = in_view
+                else:
+                    view = in_view.get_view()
+            except Exception as err:
+                logger.debug("Error retreiving the loaded view")
+                self.on_view_loaded_error(err)
+                if old_view:
+                    logger.debug("Destroying old view...")
+                    self._editor_stack.remove(old_view)
+                    old_view.destroy()
+                if self._current_view is not None and isinstance(
+                    self._current_view, AbstractController
+                ):
+                    self._current_view.unload()
+                if isinstance(in_view, AbstractController):
+                    in_view.unload()
+                return
+            if (
+                self._current_view_module != module
+                or self._current_view_controller_class != in_view.__class__
+                or self._current_view_item_id != item_id
+            ):
+                logger.warning("Loaded view not matching selection.")
+                view.destroy()
+                return
             if old_view:
                 logger.debug("Destroying old view...")
                 self._editor_stack.remove(old_view)
@@ -531,38 +559,19 @@ class MainController:
                 self._current_view, AbstractController
             ):
                 self._current_view.unload()
-            if isinstance(in_view, AbstractController):
-                in_view.unload()
-            return
-        if (
-            self._current_view_module != module
-            or self._current_view_controller_class != in_view.__class__
-            or self._current_view_item_id != item_id
-        ):
-            logger.warning("Loaded view not matching selection.")
-            view.destroy()
-            return
-        if old_view:
-            logger.debug("Destroying old view...")
-            self._editor_stack.remove(old_view)
-            old_view.destroy()
-        if self._current_view is not None and isinstance(
-            self._current_view, AbstractController
-        ):
-            self._current_view.unload()
-        self._current_view = in_view
-        logger.debug("Adding and showing new view...")
-        self._editor_stack.add_named(view, "es__loaded_view")
-        view.show_all()
-        self._editor_stack.set_visible_child(view)
-        logger.debug("Unlocking view trees.")
-        self._unlock_trees()
-        EventManager.instance().trigger(
-            EVT_VIEW_SWITCH,
-            module=module,
-            controller=in_view,
-            breadcrumbs=self._current_breadcrumbs,
-        )
+            self._current_view = in_view
+            logger.debug("Adding and showing new view...")
+            self._editor_stack.add_named(view, "es__loaded_view")
+            view.show_all()
+            self._editor_stack.set_visible_child(view)
+            logger.debug("Unlocking view trees.")
+            self._unlock_trees()
+            EventManager.instance().trigger(
+                EVT_VIEW_SWITCH,
+                module=module,
+                controller=in_view,
+                breadcrumbs=self._current_breadcrumbs,
+            )
 
     def on_view_loaded_error(self, ex: BaseException):
         """An error during module view load happened :("""

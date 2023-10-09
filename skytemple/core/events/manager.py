@@ -26,6 +26,7 @@ from skytemple.core.events.events import (
     EVT_MAIN_WINDOW_FOCUS,
     EVT_DEBUGGER_WINDOW_FOCUS,
 )
+from skytemple.core.profiling import record_span
 
 logger = logging.getLogger(__name__)
 
@@ -51,15 +52,16 @@ class EventManager:
 
     def trigger(self, event_name: str, *args, **kwargs):
         """Triggers the specified UI event with the provided arguments."""
-        logger.debug(f"Event {event_name} triggered.")
-        for listener in self._listeners:
-            try:
-                listener.on(event_name, *args, **kwargs)
-            except BaseException as ex:
-                logger.error(
-                    f"Error while handling event {event_name} with handler {listener}: {str(ex)}",
-                    exc_info=ex,
-                )
+        with record_span("trigger-event", event_name):
+            logger.debug(f"Event {event_name} triggered.")
+            for listener in self._listeners:
+                try:
+                    listener.on(event_name, *args, **kwargs)
+                except BaseException as ex:
+                    logger.error(
+                        f"Error while handling event {event_name} with handler {listener}: {str(ex)}",
+                        exc_info=ex,
+                    )
 
     def register_listener(self, listener_instance: AbstractListener):
         """Registers a listener to trigger events on."""
