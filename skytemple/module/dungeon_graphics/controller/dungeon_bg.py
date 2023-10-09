@@ -174,6 +174,7 @@ class DungeonBgController(AbstractController):
                 self.dbg.place_chunk(
                     chunk_x, chunk_y, self.drawer.get_selected_chunk_id()
                 )
+                self.drawer.mappings = self.dbg.mappings
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
