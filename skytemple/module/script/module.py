@@ -412,14 +412,14 @@ class ScriptModule(AbstractModule):
                 if actor.actor.id < first_actor.id or actor.actor.id > last_actor.id:
                     actor.actor = first_actor
                     warning = True
-                if actor.script_id < 0 or actor.script_id >= count_scripts:
+                if actor.script_id < -1 or actor.script_id >= count_scripts:
                     actor.script_id = -1
                     warning = True
             for obj in layer.objects:
                 if obj.object.id < first_object.id or obj.object.id > last_object.id:
                     obj.object = first_object
                     warning = True
-                if obj.script_id < 0 or obj.script_id >= count_scripts:
+                if obj.script_id < -1 or obj.script_id >= count_scripts:
                     obj.script_id = -1
                     warning = True
         for event in ssa.triggers:
