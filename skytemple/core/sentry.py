@@ -76,7 +76,9 @@ def init(skytemple_settings: SkyTempleSettingsStore):
     global already_init
     if not already_init:
         try:
-            is_dev = version() == "dev"
+            pub_version = version()
+            is_dev = pub_version == "dev"
+            is_pre_release = ".dev0+" in pub_version
             if is_dev:
                 if "SKYTEMPLE_DEV_ENABLE_SENTRY" not in os.environ:
                     logger.warning(
@@ -85,6 +87,8 @@ def init(skytemple_settings: SkyTempleSettingsStore):
                     already_init = True
                     return
                 settings = {"debug": True, "environment": "development"}
+            elif is_pre_release:
+                settings = {"debug": False, "environment": "development"}
             else:
                 settings = {"debug": False, "environment": "production"}
             sentry_sdk_logger.setLevel(SKYTEMPLE_LOGLEVEL)
