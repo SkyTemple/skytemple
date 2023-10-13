@@ -22,6 +22,7 @@ from gi.repository import Gtk, Gdk, GLib
 from skytemple.controller.main import MainController
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
+from skytemple.core.profiling import record_transaction, record_span
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ui_utils import data_dir, builder_get_assert, make_builder
 from skytemple_icons import icons
@@ -30,68 +31,83 @@ from skytemple_ssb_debugger.main import get_debugger_data_dir
 
 class SkyTempleApplication(Gtk.Application):
     def __init__(self, path: str, settings: SkyTempleSettingsStore):
-        if sys.platform.startswith("win"):
-            # Load theming under Windows
-            _load_theme(settings)
-            # Solve issue #12
-            try:
-                from skytemple_files.common.platform_utils.win import win_set_error_mode
+        with record_transaction("__start"):
+            with record_span("sys", "load-theme"):
+                if sys.platform.startswith("win"):
+                    # Load theming under Windows
+                    _load_theme(settings)
+                    # Solve issue #12
+                    try:
+                        from skytemple_files.common.platform_utils.win import (
+                            win_set_error_mode,
+                        )
 
-                win_set_error_mode()
-            except BaseException:
-                # This really shouldn't fail, but it's not important enough to crash over
-                pass
+                        win_set_error_mode()
+                    except BaseException:
+                        # This really shouldn't fail, but it's not important enough to crash over
+                        pass
 
-        if sys.platform.startswith("darwin"):
-            # Load theming under macOS
-            _load_theme(settings)
+                if sys.platform.startswith("darwin"):
+                    # Load theming under macOS
+                    _load_theme(settings)
 
-            # The search path is wrong if SkyTemple is executed as an .app bundle
-            if getattr(sys, "frozen", False):
-                path = os.path.dirname(sys.executable)
+                    # The search path is wrong if SkyTemple is executed as an .app bundle
+                    if getattr(sys, "frozen", False):
+                        path = os.path.dirname(sys.executable)
 
-        itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
-        itheme.append_search_path(os.path.abspath(icons()))  # type: ignore
-        itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
-        itheme.append_search_path(
-            os.path.abspath(os.path.join(get_debugger_data_dir(), "icons"))
-        )
-        itheme.rescan_if_needed()
+                itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
+                itheme.append_search_path(os.path.abspath(icons()))  # type: ignore
+                itheme.append_search_path(
+                    os.path.abspath(os.path.join(data_dir(), "icons"))
+                )
+                itheme.append_search_path(
+                    os.path.abspath(os.path.join(get_debugger_data_dir(), "icons"))
+                )
+                itheme.rescan_if_needed()
 
-        # Load Builder and Window
-        builder = make_builder(os.path.join(path, "skytemple.glade"))
-        self.main_window = builder_get_assert(
-            builder, Gtk.ApplicationWindow, "main_window"
-        )
-        GLib.set_application_name("SkyTemple")
+            with record_span("sys", "load-builder"):
+                # Load Builder and Window
+                builder = make_builder(os.path.join(path, "skytemple.glade"))
+                self.main_window = builder_get_assert(
+                    builder, Gtk.ApplicationWindow, "main_window"
+                )
+                GLib.set_application_name("SkyTemple")
 
-        # Load CSS
-        style_provider = Gtk.CssProvider()
-        with open(os.path.join(path, "skytemple.css"), "rb") as f:
-            css = f.read()
-        style_provider.load_from_data(css)
-        default_screen = Gdk.Screen.get_default()
-        if default_screen is not None:
-            Gtk.StyleContext.add_provider_for_screen(
-                default_screen, style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            )
+            with record_span("sys", "load-css"):
+                # Load CSS
+                style_provider = Gtk.CssProvider()
+                with open(os.path.join(path, "skytemple.css"), "rb") as f:
+                    css = f.read()
+                style_provider.load_from_data(css)
+                default_screen = Gdk.Screen.get_default()
+                if default_screen is not None:
+                    Gtk.StyleContext.add_provider_for_screen(
+                        default_screen,
+                        style_provider,
+                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+                    )
 
-        # Init. core events
-        event_manager = EventManager.instance()
-        if settings.get_integration_discord_enabled():
-            try:
-                from skytemple.core.events.impl.discord import DiscordPresence
+            with record_span("sys", "init-events"):
+                # Init. core events
+                event_manager = EventManager.instance()
+                if settings.get_integration_discord_enabled():
+                    try:
+                        from skytemple.core.events.impl.discord import DiscordPresence
 
-                discord_listener = DiscordPresence()
-                event_manager.register_listener(discord_listener)
-            except BaseException as exc:
-                logging.warning("Error setting up Discord integration:", exc_info=exc)
+                        discord_listener = DiscordPresence()
+                        event_manager.register_listener(discord_listener)
+                    except BaseException as exc:
+                        logging.warning(
+                            "Error setting up Discord integration:", exc_info=exc
+                        )
 
-        # Load modules
-        Modules.load(settings)
+            with record_span("sys", "load-modules"):
+                # Load modules
+                Modules.load(settings)
 
-        # Load main window + controller
-        MainController(builder, self.main_window, settings)
+            with record_span("sys", "load-main-controller"):
+                # Load main window + controller
+                MainController(builder, self.main_window, settings)
         super().__init__(application_id="org.skytemple.SkyTemple")
 
     def do_activate(self) -> None:

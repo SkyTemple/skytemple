@@ -42,6 +42,7 @@ from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
 
 from skytemple.core.item_tree import ItemTreeEntryRef
+from skytemple.core.profiling import record_transaction, record_span, TaggableContext
 from skytemple.core.ui_utils import assert_not_none
 from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 
@@ -138,18 +139,19 @@ class RomProject:
 
     @classmethod
     async def _open_impl(cls, filename, main_controller: "MainController"):
-        cls._current = RomProject(filename, main_controller.load_view_main_list)
-        try:
-            await cls._current.load()
-            if main_controller:
-                GLib.idle_add(lambda: main_controller.on_file_opened())
-        except BaseException as ex:
-            exc_info = sys.exc_info()
-            cls._current = None
-            if main_controller:
-                GLib.idle_add(
-                    lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex)
-                )
+        with record_transaction("__open-rom") as transaction:
+            cls._current = RomProject(filename, main_controller.load_view_main_list)
+            try:
+                await cls._current.load(transaction)
+                if main_controller:
+                    GLib.idle_add(lambda: main_controller.on_file_opened())
+            except BaseException as ex:
+                exc_info = sys.exc_info()
+                cls._current = None
+                if main_controller:
+                    GLib.idle_add(
+                        lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex)
+                    )
 
     @classmethod
     def handle_backup_restore(
@@ -221,27 +223,38 @@ class RomProject:
         # Lazy
         self._patcher: Optional[Patcher] = None
 
-    async def load(self):
+    async def load(self, transaction: Optional[TaggableContext] = None):
         """Load the ROM into memory and initialize all modules"""
-        self._rom = NintendoDSRom.fromFile(self.filename)
-        await AsyncTaskDelegator.buffer()
-        self._loaded_modules = {}
-
-        self._rom_module = Modules.get_rom_module()(self)
-        self._rom_module.load_rom_data()
-        for name, module in Modules.all().items():
-            logger.debug(f"Loading module {name} for ROM...")
-            if name == "rom":
-                continue
-            else:
-                self._loaded_modules[name] = module(self)
+        with record_span("rom", "load"):
+            with record_span("rom", "open-file"):
+                self._rom = NintendoDSRom.fromFile(self.filename)
             await AsyncTaskDelegator.buffer()
+            self._loaded_modules = {}
 
-        self._sprite_renderer = SpriteProvider(self)
-        await AsyncTaskDelegator.buffer()
-        self._string_provider = StringProvider(self)
-        await AsyncTaskDelegator.buffer()
-        self._icon_banner = IconBanner(self._rom)
+            with record_span("rom", "load-static-data"):
+                self._rom_module = Modules.get_rom_module()(self)
+                self._rom_module.load_rom_data()
+                if transaction is not None:
+                    transaction.set_tag(
+                        "rom-edition", self._rom_module.get_static_data().game_edition
+                    )
+            with record_span("sys", "init-modules"):
+                for name, module in Modules.all().items():
+                    logger.debug(f"Loading module {name} for ROM...")
+                    if name == "rom":
+                        continue
+                    else:
+                        with record_span("init-module", module.__name__):
+                            self._loaded_modules[name] = module(self)
+                    await AsyncTaskDelegator.buffer()
+
+            with record_span("ui", "load-sprite-provider"):
+                self._sprite_renderer = SpriteProvider(self)
+            await AsyncTaskDelegator.buffer()
+            with record_span("ui", "load-string-provider"):
+                self._string_provider = StringProvider(self)
+            await AsyncTaskDelegator.buffer()
+            self._icon_banner = IconBanner(self._rom)
 
     def get_rom_module(self) -> "RomModule":
         assert self._rom_module is not None
@@ -408,13 +421,14 @@ class RomProject:
         The keyword arguments will also be used for serializing again.
         """
         if file_path_in_rom not in self._opened_files:
-            assert self._rom is not None
-            bin = self._rom.getFileByName(file_path_in_rom)
-            self._opened_files[file_path_in_rom] = file_handler_class.deserialize(
-                bin, **kwargs
-            )
-            self._file_handlers[file_path_in_rom] = file_handler_class
-            self._file_handler_kwargs[file_path_in_rom] = kwargs
+            with record_span("open-rom-file", file_handler_class.__name__):
+                assert self._rom is not None
+                bin = self._rom.getFileByName(file_path_in_rom)
+                self._opened_files[file_path_in_rom] = file_handler_class.deserialize(
+                    bin, **kwargs
+                )
+                self._file_handlers[file_path_in_rom] = file_handler_class
+                self._file_handler_kwargs[file_path_in_rom] = kwargs
         return self._open_common(file_path_in_rom, threadsafe)
 
     def open_sir0_file_in_rom(
@@ -434,14 +448,15 @@ class RomProject:
         If ``threadsafe`` is True, instead of returning the model, a ModelContext[T] is returned.
         """
         if file_path_in_rom not in self._opened_files:
-            assert self._rom is not None
-            bin = self._rom.getFileByName(file_path_in_rom)
-            sir0 = FileType.SIR0.deserialize(bin)
-            self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(
-                sir0, sir0_serializable_type
-            )
-            self._file_handlers[file_path_in_rom] = FileType.SIR0
-            self._file_handler_kwargs[file_path_in_rom] = {}
+            with record_span("open-sir0-rom-file", sir0_serializable_type.__name__):
+                assert self._rom is not None
+                bin = self._rom.getFileByName(file_path_in_rom)
+                sir0 = FileType.SIR0.deserialize(bin)
+                self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(
+                    sir0, sir0_serializable_type
+                )
+                self._file_handlers[file_path_in_rom] = FileType.SIR0
+                self._file_handler_kwargs[file_path_in_rom] = {}
         return self._open_common(file_path_in_rom, threadsafe)
 
     def open_sprconf(self, threadsafe=False):
@@ -524,29 +539,36 @@ class RomProject:
         self.force_mark_as_modified()
 
     async def _save_impl(self, main_controller: Optional["MainController"]):
-        try:
-            for name in self._modified_files:
-                self.prepare_save_model(name)
+        with record_transaction("__save-rom"):
+            try:
+                with record_span("rom", "serialize-open"):
+                    for name in self._modified_files:
+                        self.prepare_save_model(name)
+                        await AsyncTaskDelegator.buffer()
+                self._modified_files = []
+                with record_span("rom", "save-banner"):
+                    if self._icon_banner:
+                        self._icon_banner.save_to_rom()
+                    self._forced_modified = False
+                logger.debug(f"Saving ROM to {self.filename}")
                 await AsyncTaskDelegator.buffer()
-            self._modified_files = []
-            if self._icon_banner:
-                self._icon_banner.save_to_rom()
-            self._forced_modified = False
-            logger.debug(f"Saving ROM to {self.filename}")
-            await AsyncTaskDelegator.buffer()
-            self.save_as_is()
-            await AsyncTaskDelegator.buffer()
-            if main_controller:
-                GLib.idle_add(lambda: assert_not_none(main_controller).on_file_saved())
+                with record_span("rom", "save"):
+                    self.save_as_is()
+                await AsyncTaskDelegator.buffer()
+                if main_controller:
+                    with record_span("ui", "on-saved"):
+                        GLib.idle_add(
+                            lambda: assert_not_none(main_controller).on_file_saved()
+                        )
 
-        except Exception as err:
-            if main_controller:
-                exc_info = sys.exc_info()
-                GLib.idle_add(
-                    lambda err=err: assert_not_none(
-                        main_controller
-                    ).on_file_saved_error(exc_info, err)
-                )
+            except Exception as err:
+                if main_controller:
+                    exc_info = sys.exc_info()
+                    GLib.idle_add(
+                        lambda err=err: assert_not_none(
+                            main_controller
+                        ).on_file_saved_error(exc_info, err)
+                    )
 
     def prepare_save_model(self, name, assert_that=None):
         """
@@ -561,14 +583,21 @@ class RomProject:
         )
         with context as model:
             handler = self._file_handlers[name]
-            logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
-            if handler == FileType.SIR0:
-                logger.debug(f"> Saving as Sir0 wrapped data.")
-                model = FileType.SIR0.wrap_obj(model)
-            if assert_that is not None:
-                assert assert_that is model, "The model that is being saved must match!"
-            binary_data = handler.serialize(model, **self._file_handler_kwargs[name])
-            self._rom.setFileByName(name, binary_data)
+            with record_span("prepare-save-model", handler.__name__):
+                logger.debug(
+                    f"Saving {name} in ROM. Model: {model}, Handler: {handler}"
+                )
+                if handler == FileType.SIR0:
+                    logger.debug(f"> Saving as Sir0 wrapped data.")
+                    model = FileType.SIR0.wrap_obj(model)
+                if assert_that is not None:
+                    assert (
+                        assert_that is model
+                    ), "The model that is being saved must match!"
+                binary_data = handler.serialize(
+                    model, **self._file_handler_kwargs[name]
+                )
+                self._rom.setFileByName(name, binary_data)
 
     def save_as_is(self):
         """Simply save the current ROM to disk."""
@@ -626,7 +655,8 @@ class RomProject:
 
     def load_rom_data(self):
         assert self._rom is not None
-        return get_ppmdu_config_for_rom(self._rom)
+        with record_span("rom", "load-static-data"):
+            return get_ppmdu_config_for_rom(self._rom)
 
     def request_open(self, request: OpenRequest, raise_exception=False):
         """
@@ -678,10 +708,11 @@ class RomProject:
             )
         else:
             the_binary = binary
-        data = bytearray(self.get_binary(the_binary))
-        modify_cb(data)
-        set_binary_in_rom(self._rom, the_binary, data)
-        self.force_mark_as_modified()
+        with record_span("modify-binary", the_binary.name):
+            data = bytearray(self.get_binary(the_binary))
+            modify_cb(data)
+            set_binary_in_rom(self._rom, the_binary, data)
+            self.force_mark_as_modified()
 
     def is_patch_applied(self, patch_name):
         patcher = self.create_patcher()

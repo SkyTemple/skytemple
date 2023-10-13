@@ -28,6 +28,8 @@ from typing import Union, Type, Tuple, Any, Optional, Dict, cast
 from skytemple_files.common.util import Capturable
 from skytemple_files.user_error import USER_ERROR_MARK
 
+from skytemple.core.widget.user_feedback import StUserFeedbackWindow
+
 try:
     from types import TracebackType
 except ImportError:
@@ -127,8 +129,9 @@ def display_error(
         logger.error(error_message, exc_info=exc_info)
     if context is None:
         context = {}
+    sentry_event_id = None
     if should_report and should_be_reported(exc_info):
-        capture_error(exc_info, message=error_message, **context)
+        sentry_event_id = capture_error(exc_info, message=error_message, **context)
     md = SkyTempleMessageDialog(
         window,
         Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -137,11 +140,20 @@ def display_error(
         error_message,
         title=error_title,
     )
-    if exc_info is not None:
-        button: Gtk.Button = Gtk.Button.new_with_label("Error Details")
-        button.connect("clicked", lambda *args: show_error_web(exc_info))
-        button_box: Gtk.ButtonBox = Gtk.ButtonBox.new(Gtk.Orientation.VERTICAL)
-        button_box.pack_start(button, False, True, 0)
+    if sentry_event_id is not None or exc_info is not None:
+        button_box: Gtk.Box = Gtk.Box.new(
+            orientation=Gtk.Orientation.HORIZONTAL, spacing=10
+        )
+        if exc_info is not None:
+            button = Gtk.Button.new_with_label(_("Error Details"))
+            button.connect("clicked", lambda *args: show_error_web(exc_info))
+            button_box.pack_start(button, False, True, 0)
+        if sentry_event_id is not None:
+            button = Gtk.Button.new_with_label(_("Report Error"))
+            button.connect(
+                "clicked", lambda *args: ask_user_report(cast(str, sentry_event_id))
+            )
+            button_box.pack_start(button, False, True, 0)
         button_box.set_halign(Gtk.Align.START)
         button_box.show_all()
         cast(Gtk.Box, md.get_message_area()).pack_start(button_box, False, True, 10)
@@ -151,7 +163,9 @@ def display_error(
     md.destroy()
 
 
-def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable):
+def capture_error(
+    exc_info: Optional[ExceptionInfo], **error_context: Capturable
+) -> Optional[str]:
     from skytemple.core.settings import SkyTempleSettingsStore
 
     try:
@@ -159,9 +173,10 @@ def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable
         if settings.get_allow_sentry():
             from skytemple.core import sentry
 
-            sentry.capture(settings, exc_info, **error_context)
+            return sentry.capture(settings, exc_info, **error_context)
     except Exception as ex:
         logger.error("Failed capturing error", exc_info=ex)
+    return None
 
 
 def should_be_reported(exc_info: Optional[ExceptionInfo]):
@@ -173,3 +188,10 @@ def should_be_reported(exc_info: Optional[ExceptionInfo]):
         exc = exc_info
 
     return not hasattr(exc, USER_ERROR_MARK)
+
+
+def ask_user_report(sentry_event_id: str):
+    from skytemple.controller.main import MainController
+
+    window = StUserFeedbackWindow(sentry_event_id, MainController.window())
+    window.present()

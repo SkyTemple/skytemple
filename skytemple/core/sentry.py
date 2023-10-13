@@ -31,6 +31,7 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.sessions import auto_session_tracking
 from sentry_sdk.utils import logger as sentry_sdk_logger
 
+from skytemple.core import profiling
 from skytemple.core.logger import SKYTEMPLE_LOGLEVEL, current_log_level
 from skytemple.core.ui_utils import version, assert_not_none
 
@@ -44,10 +45,16 @@ if TYPE_CHECKING:
 SENTRY_ENDPOINT = (
     "https://d4fa0c44839145a39bd6014ca7407ab3@o1155044.ingest.sentry.io/6235225"
 )
-already_init = False
+sentry_is_init = False
+ran_init = False
 logger = logging.getLogger(__name__)
 T = TypeVar("T")
 APP_START_TIME = datetime.utcnow()
+
+
+def is_enabled() -> bool:
+    global sentry_is_init
+    return sentry_is_init
 
 
 def release_version(is_dev_version: bool):
@@ -73,8 +80,8 @@ def release_version(is_dev_version: bool):
 
 
 def init(skytemple_settings: SkyTempleSettingsStore):
-    global already_init
-    if not already_init:
+    global sentry_is_init, ran_init
+    if not ran_init:
         try:
             pub_version = version()
             is_dev = pub_version == "dev"
@@ -84,14 +91,14 @@ def init(skytemple_settings: SkyTempleSettingsStore):
                     logger.warning(
                         "Skipped enabling Sentry for development setup. Set env variable 'SKYTEMPLE_DEV_ENABLE_SENTRY' to enable."
                     )
-                    already_init = True
+                    ran_init = True
                     return
                 settings = {"debug": True, "environment": "development"}
             elif is_pre_release:
                 settings = {"debug": False, "environment": "development"}
             else:
                 settings = {"debug": False, "environment": "production"}
-            sentry_sdk_logger.setLevel(SKYTEMPLE_LOGLEVEL)
+            sentry_sdk_logger.setLevel("WARNING")
             logger.setLevel(SKYTEMPLE_LOGLEVEL)
             sentry_logging = LoggingIntegration(
                 level=current_log_level(),  # Capture as breadcrumbs
@@ -99,7 +106,8 @@ def init(skytemple_settings: SkyTempleSettingsStore):
             )
             sentry_sdk.init(
                 SENTRY_ENDPOINT,
-                traces_sample_rate=0.2,
+                traces_sample_rate=1.0 if is_dev else 0.7,
+                profiles_sample_rate=1.0 if is_dev else 0.1,
                 release=release_version(is_dev),
                 integrations=[sentry_logging],
                 server_name="n/a",
@@ -111,9 +119,11 @@ def init(skytemple_settings: SkyTempleSettingsStore):
             atexit.register(session_ctx.close)
             session_ctx.enter_context(auto_session_tracking(hub))  # type: ignore
             sentry_sdk.set_user({"id": skytemple_settings.getset_sentry_user_id()})
+            sentry_is_init = True
+            profiling.reset_impls_cache()
         except Exception as ex:
             logger.error("Failed setting up Sentry", exc_info=ex)
-        already_init = True
+        ran_init = True
 
 
 # noinspection PyBroadException
@@ -391,7 +401,7 @@ def capture(
     settings: SkyTempleSettingsStore,
     exc_info: Optional[ExceptionInfo],
     **error_context_in: Capturable,
-):
+) -> Optional[str]:
     from skytemple_files.common.util import capture_capturable
 
     error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context_in.items()}  # type: ignore
@@ -412,11 +422,11 @@ def capture(
     )
     sentry_sdk.set_context("error", error_context)
     if exc_info:
-        sentry_sdk.capture_exception(exc_info)
+        return sentry_sdk.capture_exception(exc_info)
     else:
         if "message" in error_context:
-            sentry_sdk.capture_message(
+            return sentry_sdk.capture_message(
                 f"Error without exception: {error_context['message']}"
             )
         else:
-            sentry_sdk.capture_message("Unknown event. See context.")
+            return sentry_sdk.capture_message("Unknown event. See context.")

@@ -28,6 +28,7 @@ from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.project_file_manager import ProjectFileManager
 
 from skytemple.core.plugin_loader import load_plugins
+from skytemple.core.profiling import record_span
 from skytemple.core.settings import SkyTempleSettingsStore
 from gi.repository import Gtk
 
@@ -48,36 +49,46 @@ class Modules:
 
     @classmethod
     def load(cls, settings: SkyTempleSettingsStore):
-        # Load plugins
-        plugin_dir = os.path.join(ProjectFileManager.shared_config_dir(), "plugins")
-        os.makedirs(plugin_dir, exist_ok=True)
-        load_plugins(cls.confirm_plugin_load, settings, plugin_dir)
-
-        # Look up package entrypoints for modules
-        cls._modules = {}
-        try:
-            cls._modules = {
-                entry_point.name: entry_point.load()
-                for entry_point in importlib_metadata.entry_points().select(
-                    group=MODULE_ENTRYPOINT_KEY
+        with record_span("sys", "mod-load"):
+            with record_span("sys", "mod-load/load-plugins"):
+                # Load plugins
+                plugin_dir = os.path.join(
+                    ProjectFileManager.shared_config_dir(), "plugins"
                 )
-            }
-        except Exception as ex:
-            logger.error("Failed loading modules.", exc_info=ex)
-            raise ex
+                os.makedirs(plugin_dir, exist_ok=True)
+                load_plugins(cls.confirm_plugin_load, settings, plugin_dir)
 
-        if len(cls._modules) < 1:
-            logger.error("No modules found.")
-            raise ValueError("No modules found.")
-        dependencies = {}
-        for k, module in cls._modules.items():
-            dependencies[k] = module.depends_on()
-        resolved_deps = dep(dependencies)
-        cls._modules = dict(
-            sorted(cls._modules.items(), key=lambda x: resolved_deps.index(x[0]))
-        )
-        for module in cls._modules.values():
-            module.load()
+            with record_span("sys", "mod-load/construct-modules"):
+                # Look up package entrypoints for modules
+                cls._modules = {}
+                try:
+                    cls._modules = {
+                        entry_point.name: entry_point.load()
+                        for entry_point in importlib_metadata.entry_points().select(
+                            group=MODULE_ENTRYPOINT_KEY
+                        )
+                    }
+                except Exception as ex:
+                    logger.error("Failed loading modules.", exc_info=ex)
+                    raise ex
+
+            if len(cls._modules) < 1:
+                logger.error("No modules found.")
+                raise ValueError("No modules found.")
+            with record_span("sys", "mod-load/resolve-dependencies"):
+                dependencies = {}
+                for k, module in cls._modules.items():
+                    dependencies[k] = module.depends_on()
+                resolved_deps = dep(dependencies)
+            with record_span("sys", "mod-load/load-modules"):
+                cls._modules = dict(
+                    sorted(
+                        cls._modules.items(), key=lambda x: resolved_deps.index(x[0])
+                    )
+                )
+                for module in cls._modules.values():
+                    with record_span("module-load", module.__class__.__name__):
+                        module.load()
 
     # noinspection PyUnusedLocal
     @classmethod
