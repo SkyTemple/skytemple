@@ -237,6 +237,7 @@ def catch_overflow(typ_or_range_start, range_end=None):
                             ).format(rmin, rmax),
                             _("SkyTemple - Value out of range"),
                             log=False,
+                            should_report=False,
                         )
                     )
                 else:

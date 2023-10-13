@@ -34,7 +34,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
 from skytemple.core.profiling import record_span
 from skytemple.core.view_loader import load_view
-from skytemple.core.error_handler import display_error, capture_error
+from skytemple.core.error_handler import display_error, capture_error, ask_user_report
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
 from skytemple.core.events.manager import EventManager
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -173,6 +173,7 @@ class MainController:
         self._loaded_map_bg_module: Optional["MapBgModule"] = None
         self._current_breadcrumbs: List[str] = []
         self._after_save_action = None
+        self._view_load_sentry_event_id: Optional[str] = None
         self.csd_enabled = self.settings.csd_enabled()
 
         if not sys.platform.startswith("darwin"):
@@ -586,11 +587,22 @@ class MainController:
         controller = "<<unknown>>"
         if self._current_view_controller_class is not None:
             controller = self._current_view_controller_class.__qualname__
-        capture_error(ex, event="View load error.", controller=controller)
+        self._view_load_sentry_event_id = capture_error(
+            ex, event="View load error.", controller=controller
+        )
         self._editor_stack.set_visible_child(
             builder_get_assert(self.builder, Gtk.Box, "es_error")
         )
+        report_button = builder_get_assert(self.builder, Gtk.Button, "button_report")
+        if self._view_load_sentry_event_id:
+            report_button.show()
+        else:
+            report_button.hide()
         self._unlock_trees()
+
+    def on_button_report_clicked(self, *args):
+        if self._view_load_sentry_event_id is not None:
+            ask_user_report(self._view_load_sentry_event_id)
 
     def on_item_store_row_changed(self, model, path, iter):
         """Update the window title for the current selected tree model row if it changed"""

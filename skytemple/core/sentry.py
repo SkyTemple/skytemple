@@ -397,7 +397,7 @@ def capture(
     settings: SkyTempleSettingsStore,
     exc_info: Optional[ExceptionInfo],
     **error_context_in: Capturable,
-):
+) -> Optional[str]:
     from skytemple_files.common.util import capture_capturable
 
     error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context_in.items()}  # type: ignore
@@ -418,11 +418,11 @@ def capture(
     )
     sentry_sdk.set_context("error", error_context)
     if exc_info:
-        sentry_sdk.capture_exception(exc_info)
+        return sentry_sdk.capture_exception(exc_info)
     else:
         if "message" in error_context:
-            sentry_sdk.capture_message(
+            return sentry_sdk.capture_message(
                 f"Error without exception: {error_context['message']}"
             )
         else:
-            sentry_sdk.capture_message("Unknown event. See context.")
+            return sentry_sdk.capture_message("Unknown event. See context.")
