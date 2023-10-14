@@ -306,7 +306,10 @@ class FloorController(AbstractController):
     def unload(self):
         # We need to destroy this first.
         # GTK is an enigma sometimes.
-        builder_get_assert(self.builder, Gtk.Dialog, "export_dialog").destroy()
+        try:
+            builder_get_assert(self.builder, Gtk.Dialog, "export_dialog").destroy()
+        except AssertionError:
+            pass
         super().unload()
         if self.drawer:
             self.drawer.unload()
@@ -2327,7 +2330,13 @@ class FloorController(AbstractController):
         )
 
     def _reload_icon(self, entid, idx, was_loading):
-        store = builder_get_assert(self.builder, Gtk.ListStore, "monster_spawns_store")
+        try:
+            store = builder_get_assert(
+                self.builder, Gtk.ListStore, "monster_spawns_store"
+            )
+        except AssertionError:
+            # if this happens then the controller was unloaded before this fired.
+            return
         if not self._loading and not was_loading:
             row = store[idx]
             row[1] = self._get_icon(entid, idx)
