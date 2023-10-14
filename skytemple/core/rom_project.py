@@ -40,6 +40,7 @@ from datetime import datetime
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
+from skytemple_files.user_error import mark_as_user_err
 
 from skytemple.core.item_tree import ItemTreeEntryRef
 from skytemple.core.profiling import record_transaction, record_span, TaggableContext
@@ -227,7 +228,11 @@ class RomProject:
         """Load the ROM into memory and initialize all modules"""
         with record_span("rom", "load"):
             with record_span("rom", "open-file"):
-                self._rom = NintendoDSRom.fromFile(self.filename)
+                try:
+                    self._rom = NintendoDSRom.fromFile(self.filename)
+                except OSError as e:
+                    mark_as_user_err(e)
+                    raise e
             await AsyncTaskDelegator.buffer()
             self._loaded_modules = {}
 

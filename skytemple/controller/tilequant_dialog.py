@@ -24,7 +24,7 @@ from typing import Optional, cast
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
-from skytemple_files.user_error import USER_ERROR_MARK
+from skytemple_files.user_error import mark_as_user_err
 from tilequant import Tilequant, DitheringMode
 from skytemple_files.common.i18n_util import _
 
@@ -165,7 +165,7 @@ class TilequantController:
             return
         mode = ImageConversionMode(mode_cb.get_model()[active_iter][0])
         dither_level = builder_get_assert(
-            self.builder, Gtk.Adjustment, "tq_dither_level"
+            self.builder, Gtk.Scale, "tq_dither_level"
         ).get_value()
         has_first_image = (
             builder_get_assert(
@@ -389,22 +389,22 @@ class TilequantController:
         num_color_cluster_passes,
         num_tile_cluster_passes,
     ):
-        converter = Tilequant(image, transparent_color)
-        if mode == ImageConversionMode.JUST_REORGANIZE:
-            try:
+        try:
+            converter = Tilequant(image, transparent_color)
+            if mode == ImageConversionMode.JUST_REORGANIZE:
                 return converter.simple_convert(num_pals, 16)
-            except ValueError as e:
-                setattr(e, USER_ERROR_MARK, True)
-                raise e
-        dither_mode = DitheringMode.NONE
-        if mode == ImageConversionMode.DITHERING_ORDERED:
-            dither_mode = DitheringMode.ORDERED
-        elif mode == ImageConversionMode.DITHERING_FLOYDSTEINBERG:
-            dither_mode = DitheringMode.FLOYDSTEINBERG
-        return converter.convert(
-            num_pals,
-            dithering_mode=dither_mode,
-            dithering_level=dither_level,
-            num_color_cluster_passes=num_color_cluster_passes,
-            num_tile_cluster_passes=num_tile_cluster_passes,
-        )
+            dither_mode = DitheringMode.NONE
+            if mode == ImageConversionMode.DITHERING_ORDERED:
+                dither_mode = DitheringMode.ORDERED
+            elif mode == ImageConversionMode.DITHERING_FLOYDSTEINBERG:
+                dither_mode = DitheringMode.FLOYDSTEINBERG
+            return converter.convert(
+                num_pals,
+                dithering_mode=dither_mode,
+                dithering_level=dither_level,
+                num_color_cluster_passes=num_color_cluster_passes,
+                num_tile_cluster_passes=num_tile_cluster_passes,
+            )
+        except (AssertionError, ValueError) as e:
+            mark_as_user_err(e)
+            raise e
