@@ -74,7 +74,6 @@ main_thread = current_thread()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 COL_VISIBLE = 7
-DISCORD_INVITE_LINK = "https://discord.gg/skytemple"
 
 
 class MainController:
@@ -225,51 +224,6 @@ class MainController:
     def on_intro_dialog_close(self, assistant: Gtk.Assistant, *args):
         self.settings.set_assistant_shown(True)
         assistant.hide()
-
-    def on__enter_notify_event__pointer(self, w: Gtk.Widget, evt: Gdk.EventCrossing):
-        window = w.get_window()
-        if window:
-            window.set_cursor(Gdk.Cursor.new_from_name(w.get_display(), "pointer"))
-
-    def on__leave_notify_event__pointer(self, w: Gtk.Widget, evt: Gdk.EventCrossing):
-        window = w.get_window()
-        if window:
-            window.set_cursor(Gdk.Cursor.new_from_name(w.get_display(), "default"))
-
-    def on_discord_icon_container_button_release_event(
-        self, w: Gtk.Widget, evt: Gdk.Event
-    ):
-        if evt.button == 1:
-            webbrowser.open(DISCORD_INVITE_LINK)
-
-    def on_button_support_us_clicked(self, *args):
-        diag = builder_get_assert(self.builder, Gtk.Dialog, "support_us_dialog")
-        diag.run()
-        diag.hide()
-
-    def on_suppot_us_discord_container_button_release_event(
-        self, w: Gtk.Widget, evt: Gdk.Event
-    ):
-        if evt.button == 1:
-            webbrowser.open(DISCORD_INVITE_LINK)
-
-    def on_suppot_us_github_container_button_release_event(
-        self, w: Gtk.Widget, evt: Gdk.Event
-    ):
-        if evt.button == 1:
-            webbrowser.open("https://github.com/SkyTemple")
-
-    def on_suppot_us_kofi_parakoopa_container_button_release_event(
-        self, w: Gtk.Widget, evt: Gdk.Event
-    ):
-        if evt.button == 1:
-            webbrowser.open("https://ko-fi.com/parakoopa")
-
-    def on_suppot_us_kofi_psy_container_button_release_event(
-        self, w: Gtk.Widget, evt: Gdk.Event
-    ):
-        if evt.button == 1:
-            webbrowser.open("https://ko-fi.com/psycomm")
 
     def on_key_press_event(self, wdg, event):
         ctrl = event.state & Gdk.ModifierType.CONTROL_MASK
