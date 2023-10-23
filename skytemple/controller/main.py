@@ -147,8 +147,6 @@ class MainController:
         self.settings = settings
         self.recent_files = self.settings.get_recent_files()
 
-        self._load_support_images()
-
         # Created on demand
         self._loading_dialog: Optional[Gtk.Dialog] = None
         self._main_item_list: Optional[Gtk.TreeView] = None
@@ -996,41 +994,6 @@ class MainController:
         response = dialog.run()
         dialog.destroy()
         return response
-
-    def _load_support_images(self):
-        # Load the support us images
-        try:
-            # Discord
-            image = Gtk.Image()
-            image.show()
-            image.set_from_file(os.path.join(data_dir(), "discord.png"))
-            builder_get_assert(
-                self.builder, Gtk.EventBox, "suppot_us_discord_container"
-            ).add(image)
-            # Github
-            image = Gtk.Image()
-            image.show()
-            image.set_from_file(os.path.join(data_dir(), "github.png"))
-            builder_get_assert(
-                self.builder, Gtk.EventBox, "suppot_us_github_container"
-            ).add(image)
-            # Kofi
-            image = Gtk.Image()
-            image.show()
-            image.set_from_file(os.path.join(data_dir(), "kofi.png"))
-            builder_get_assert(
-                self.builder, Gtk.EventBox, "suppot_us_kofi_parakoopa_container"
-            ).add(image)
-            # Kofi 2
-            image = Gtk.Image()
-            image.show()
-            image.set_from_file(os.path.join(data_dir(), "kofi.png"))
-            builder_get_assert(
-                self.builder, Gtk.EventBox, "suppot_us_kofi_psy_container"
-            ).add(image)
-        except BaseException:
-            # We are not crashing over some images...
-            pass
 
     def _update_recent_files(self, fn):
         new_recent_files = []
