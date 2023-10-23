@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-10-23 18:48+0000\n"
-"PO-Revision-Date: 2023-10-23 18:48\n"
+"POT-Creation-Date: 2023-10-23 22:20+0000\n"
+"PO-Revision-Date: 2023-10-23 22:23\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1166,7 +1166,7 @@ msgstr "Pokémon"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:38
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:72
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2303
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2312
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:946
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:200
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:311
@@ -3483,7 +3483,7 @@ msgstr "Select"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:25
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2336
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2345
 msgid "Start"
 msgstr "Start"
 
@@ -3541,7 +3541,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "¿Quieres guardar los cambios en {filename}?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:328
-#: skytemple/skytemple/controller/main.py:991
+#: skytemple/skytemple/controller/main.py:989
 msgid "Don't Save"
 msgstr "No guardar"
 
@@ -3551,7 +3551,7 @@ msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:331
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:989
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:993
 #: skytemple/skytemple/_i18n.py:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:98
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:303
@@ -3569,7 +3569,7 @@ msgid "_Save"
 msgstr "_Guardar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:332
-#: skytemple/skytemple/controller/main.py:995
+#: skytemple/skytemple/controller/main.py:993
 msgid "If you don't save, your changes will be lost."
 msgstr "Si no guardas, se perderán los cambios."
 
@@ -3582,7 +3582,7 @@ msgstr "El archivo sigue cargado en la memoria RAM. Todavía puede depurarse uti
 "¿Quieres cerrar el archivo?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:346
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1651
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1655
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:530
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:396
@@ -3620,7 +3620,7 @@ msgstr "Subtabla"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:33
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:92
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1895
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1904
 msgid "Script"
 msgstr "Script"
 
@@ -3751,7 +3751,7 @@ msgstr "Marcas de pos."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:49
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:53
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:224
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:225
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/animations.glade:591
@@ -3784,174 +3784,174 @@ msgstr "Nombre"
 msgid "Value"
 msgstr "Valor"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:154
 #: skytemple/skytemple/core/ui_utils.py:79
 msgid "Nintendo DS ROMs (*.nds)"
 msgstr "ROMs de Nintendo DS (*.nds)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:157
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:158
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
 msgstr "ROMs de Nintendo DS con cargador binario (*.ds.gba)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:161
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:162
 msgid "All files"
 msgstr "Todos los archivos"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:312
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:313
 #, python-brace-format
 msgid "The emulator couldn't be loaded. Debugging functionality will not be available:\n\n"
 "{ex}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:315
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:316
 msgid "Error loading the emulator!"
 msgstr "¡Error al cargar el emulador!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:337
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:338
 #, python-brace-format
 msgid "The emulator reported an error:\n\n"
 "{errs_as_str}"
 msgstr "El emulador ha reportado el siguiente error:\n\n"
 "{errs_as_str}"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:338
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:344
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:339
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:345
 msgid "Emulator Error"
 msgstr "Error de emulador"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:343
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:344
 msgid "The emulator reported an internal error:\n\n"
 msgstr "El emulador ha reportado un error interno:\n\n"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:488
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:489
 msgid "Open..."
 msgstr "Abrir..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:496
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:497
 #, python-brace-format
 msgid "Unable to load: {fn}\n"
 "{ex}"
 msgstr "No se puede cargar: {fn}\n"
 "{ex}"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:595
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:596
 msgid "Joypads are not supported on macOS. Sorry!"
 msgstr "Los joypads no están soportados en macOS. ¡Lo sentimos!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:654
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:655
 msgid "PNG Image (*.png)"
 msgstr "Imagen PNG (*.png)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:657
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:658
 msgid "Save Screenshot..."
 msgstr "Guardar captura de pantalla..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:808
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:812
 msgid "Open Scenes..."
 msgstr "Abrir escenas..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:815
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:819
 msgid "Open Scene..."
 msgstr "Abrir escena..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:824
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:828
 msgid "Create directory..."
 msgstr "Crear directorio..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:826
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:830
 msgid "Create new script file..."
 msgstr "Crear nuevo script..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:831
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:903
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:835
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:907
 msgid "Macros"
 msgstr "Macros"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:834
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:838
 msgid "Delete directory..."
 msgstr "Eliminar directorio..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:842
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:846
 msgid "Delete script file..."
 msgstr "Eliminar script..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:851
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:855
 msgid "Create Directory"
 msgstr "Crear directorio"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:851
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:855
 msgid "Name of the directory:"
 msgstr "Nombre del directorio:"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:859
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:863
 msgid "Create File"
 msgstr "Crear archivo"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:859
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:863
 msgid "Name of the new script file:"
 msgstr "Nombre del nuevo script:"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:871
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:875
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
 msgstr "¿Quieres eliminar el directorio {row[1]} con todo su contenido?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:879
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:883
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
 msgstr "¿Quieres eliminar el archivo de script {row[1]}?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:917
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:921
 msgid "Common"
 msgstr "Común"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:928
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1423
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:932
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1427
 #: skytemple/skytemple/module/script/module.py:253
 #: skytemple/skytemple/module/script/module.py:622
 msgid "Enter (sse)"
 msgstr "Entrada (sse)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:939
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1426
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:943
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1430
 #: skytemple/skytemple/module/script/module.py:270
 #: skytemple/skytemple/module/script/module.py:565
 msgid "Acting (ssa)"
 msgstr "Acciones (ssa)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:949
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1430
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:953
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1434
 #: skytemple/skytemple/module/script/module.py:302
 #: skytemple/skytemple/module/script/module.py:576
 msgid "Sub (sss)"
 msgstr "Sub (sss)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:986
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:990
 msgid "Save dumped block..."
 msgstr "Guardar bloque volcado..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1222
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1226
 msgid "Unable to save savestate!"
 msgstr "¡Error al guardar el archivo de guardado!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1258
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1262
 msgid "Unable to load savestate!"
 msgstr "¡Error al cargar el archivo guardado!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1371
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1375
 msgid "The game is stopped."
 msgstr "El juego está detenido."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1380
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1384
 msgid "The game is paused."
 msgstr "El juego está en pausa."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1485
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1489
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr "El depurador se ha detenido en {ssb.file_name}."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1647
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1651
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
@@ -3961,13 +3961,13 @@ msgstr "Tienes cambios no guardados en las variables.\n"
 "Tienes que guardar las variables y cargarlas después del reinicio.\n\n"
 "¿Quieres continuar?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1710
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1714
 msgid "Delete"
 msgstr "Eliminar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1712
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1723
-#: skytemple/skytemple/controller/main.py:993
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1716
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1727
+#: skytemple/skytemple/controller/main.py:991
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/controller/main.py:126
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
@@ -3979,7 +3979,7 @@ msgstr "Eliminar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1713
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1717
 msgid "You will not be able to restore it."
 msgstr "No podrás restaurarlo."
 
@@ -4121,7 +4121,7 @@ msgid "Go to Scene"
 msgstr "Ir a escena"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:738
 msgid "Textbox Preview Tool"
 msgstr "Vista previa de textos"
 
@@ -4222,7 +4222,7 @@ msgid "Mode"
 msgstr "Modo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:72
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2055
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2064
 msgid "Backup"
 msgstr "Copia de seguridad"
 
@@ -4362,84 +4362,88 @@ msgid "_Help"
 msgstr "_Ayuda"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
+msgid "Wiki"
+msgstr ""
+
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "ExplorerScript documentation"
 msgstr "Documentación de ExplorerScript"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:849
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:858
 msgid "Script Browser"
 msgstr "Navegador de scripts"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:866
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:875
 #: skytemple/skytemple/data/widget/script/ssb_page.ui:40
 #: skytemple/skytemple/module/script/controller/ssa.glade:1171
 #: skytemple/skytemple/module/script/module.py:135
 msgid "Scripts"
 msgstr "Scripts"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:925
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:934
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:967
 msgid "Ground Engine\n"
 "not running."
 msgstr "El motor de territorios\n"
 "no se está ejecutando."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:947
 msgid "Active Files"
 msgstr "Archivos activos"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:974
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:983
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:538
 msgid "Entities"
 msgstr "Entidades"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:990
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:999
 msgid "Ground Engine State"
 msgstr "Estado del motor de territorios"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1010
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1019
 msgid "Ground State"
 msgstr "Estado del terreno"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2798
-#: skytemple/skytemple/controller/main.py:994
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1098
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2807
+#: skytemple/skytemple/controller/main.py:992
 #: skytemple/skytemple/skytemple.glade:1343
 msgid "Save"
 msgstr "Guardar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1104
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1187
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2813
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2896
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1113
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1196
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2822
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2905
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:18
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:18
 msgid "1"
 msgstr "1"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1119
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1202
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2828
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2911
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1128
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1211
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2837
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2920
 msgid "2"
 msgstr "2"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1134
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1217
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2843
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2926
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1143
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1226
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2852
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2935
 msgid "3"
 msgstr "3"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1172
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2881
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1181
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2890
 msgid "Load"
 msgstr "Cargar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1253
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1262
 msgid "Reload current variables"
 msgstr "Recargar variables actuales"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1257
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1266
 msgid "Sometimes the values get out\n"
 "of sync with the game.\n"
 "This forces a reload."
@@ -4447,209 +4451,209 @@ msgstr "A veces los valores se\n"
 "desincronizan con el juego.\n"
 "Esto fuerza un reinicio."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1278
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1298
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1287
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1307
 msgid "Global Variables"
 msgstr "Variables globales"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1358
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1408
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1367
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1417
 msgid "Debugger is \n"
 "not halting."
 msgstr "El depurador no \n"
 "se detiene."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1374
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1451
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1383
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1460
 msgid "Local Variables"
 msgstr "Variables locales"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1424
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1433
 msgid "Macro Variables"
 msgstr "Variables de macro"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1518
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1527
 msgid "General Debug"
 msgstr "Depuración general"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1533
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1542
 msgid "Draw Entity Debug Overlay"
 msgstr "Trazar superposición de depuración de entidades"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1548
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1557
 msgid "Enable Debugging Mode"
 msgstr "Activar modo de Depuración"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1552
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1569
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1561
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1578
 msgid "branch_Debug (if debug) commands will activate."
 msgstr "Los comandos de 'branch_Debug' se activarán (si se está depurando)."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1565
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1574
 msgid "Dungeons: Auto Next Floor"
 msgstr "Territorios: Avanzar automáticamente al siguiente piso"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2134
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1602
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2143
 msgid "Debug Flags"
 msgstr "Marcas de depuración"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1608
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1617
 msgid "Message Speed Up"
 msgstr "Acelerador de mensajes"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1624
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1633
 msgid "Disable Screen Fade"
 msgstr "Desactivar el atenuamiento de pantalla"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1640
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1649
 msgid "Disable Sound"
 msgstr "Desactivar sonido"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1656
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1665
 msgid "Disable Background Music"
 msgstr "Desactivar música de fondo"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1672
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1681
 msgid "Disable Sound Effects"
 msgstr "Desactivar efectos de sonido"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1698
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1707
 msgid "Stage NPC Dummy (?)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1713
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1722
 msgid "Text Overflow Check (does nothing)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1739
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1748
 msgid "No cheat-check (?)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1764
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1773
 msgid "No plunge-check (?)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1789
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1798
 msgid "Dungeon Infinite Comeback (?)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1804
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1813
 msgid "Enable Debug Menus (does nothing)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1820
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1829
 msgid "Override Dungeon Result"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1848
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1857
 msgid "Debug Log Flags"
 msgstr "Registro de depuración"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1863
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1872
 #: skytemple/skytemple/module/dungeon/controller/main.glade:248
 #: skytemple/skytemple/module/dungeon/controller/main.glade:428
 #: skytemple/skytemple/module/script/controller/main.glade:540
 msgid "Dungeon"
 msgstr "Territorio"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1879
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1888
 msgid "Ground"
 msgstr "Tierra"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1911
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3143
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1920
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3152
 msgid "Script Debug"
 msgstr "Script de depuración"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1927
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1936
 msgid "Script Supervision"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1943
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1952
 msgid "Script command"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1959
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1968
 msgid "Sound"
 msgstr "Sonido"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1975
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1984
 msgid "BGM"
 msgstr "Música de fondo"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1991
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2000
 msgid "SE"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2007
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2016
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
 msgid "Flag"
 msgstr "Marca"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2023
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2032
 msgid "File"
 msgstr "Archivo"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2039
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2048
 msgid "Memory"
 msgstr "Memoria"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2071
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2080
 msgid "Thread"
 msgstr "Hilo"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2087
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2096
 msgid "Kernel"
 msgstr "Kernel"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2103
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2112
 msgid "Performance"
 msgstr "Rendimiento"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2155
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2164
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:302
 msgid "Table: "
 msgstr "Tabla: "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2189
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2198
 msgid "Parent Table: "
 msgstr "Tabla padre: "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2201
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2210
 msgid "Entries: "
 msgstr "Entradas: "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2235
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2244
 msgid "Header: "
 msgstr "Encabezado: "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2247
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2256
 msgid "Data: "
 msgstr "Datos: "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2314
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2323
 msgid "Unk1"
 msgstr "Desc. 1"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2325
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2334
 #: skytemple/skytemple/module/script/controller/ssa.py:1687
 msgid "Unk2"
 msgstr "Desc. 2"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2347
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 msgid "Available"
 msgstr "Disponible"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2358
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2367
 msgid "Used"
 msgstr "Usado"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2378
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2387
 msgid "Dump Selected Block"
 msgstr "Volcar bloque seleccionado"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2392
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2401
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
 #: skytemple/skytemple/module/lists/controller/animations.glade:495
@@ -4685,16 +4689,16 @@ msgstr "Volcar bloque seleccionado"
 msgid "Reload"
 msgstr "Recargar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2413
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2422
 msgid "Allocated Memory"
 msgstr "Memoria asignada"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2428
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2448
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2437
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2457
 msgid "State / Debugging"
 msgstr "Estado / Depuración"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2499
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2508
 msgid "Welcome to \n"
 "SkyTemple\n"
 "Script Engine Debugger.\n\n"
@@ -4706,31 +4710,31 @@ msgstr "Bienvenido al \n"
 "Por favor, carga una ROM del juego\n"
 "a través del menú Archivo."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2549
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2558
 msgid "The Script Engine is currently not running."
 msgstr "El motor de scripts no se está ejecutando."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2681
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Run the game from the start or stop the emulator."
 msgstr "Ejecuta el juego desde el principio o detiene el emulador."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2709
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2718
 msgid "Pause the emulator."
 msgstr "Pausar el emulador."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2726
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2735
 msgid "Reset the emulator."
 msgstr "Reiniciar el emulador."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2962
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2971
 msgid "Savestate"
 msgstr "Archivo de guardado"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3014
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3023
 msgid "Emulator"
 msgstr "Emulador"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3028
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3037
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:653
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:883
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:977
@@ -4755,23 +4759,23 @@ msgstr "Emulador"
 msgid "page0"
 msgstr "page0"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3113
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3122
 msgid "Game Internal"
 msgstr "Juego base"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3128
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3137
 msgid "OpCodes"
 msgstr "Códigos de operación"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3159
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3168
 msgid "Engine Events"
 msgstr "Eventos del motor"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3219
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3228
 msgid "Debug Log"
 msgstr "Registro de depuración"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3246
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3255
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
 "Originally licensed under GPLv2. See https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS for a list of authors!\n"
 "Thanks for making this great emulator!"
@@ -4779,23 +4783,23 @@ msgstr "Impulsado por DeSmuME, el emulador de Nintendo DS:\n"
 "Originalmente licenciado bajo GPLv2. Consulta https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS para ver la lista de autores.\n"
 "¡Gracias por hacer este gran emulador!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3249
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3258
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
 msgstr "Depurador interactivo para el motor de scripts de Pokémon Mundo Misterioso: Exploradores del Cielo (UE/US)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3251
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3260
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
 msgstr ""
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3288
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3297
 #: skytemple/skytemple/skytemple.glade:1454
 msgid "translator-credits"
 msgstr "Apuapua#5983\n"
 "Wolf Igmc4#6479\n"
 "Nostale#2536"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3360
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3369
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3085
 #: skytemple/skytemple/module/map_bg/controller/main.glade:163
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:391
@@ -5010,57 +5014,57 @@ msgstr "Ampliar"
 msgid "Zoom _Out"
 msgstr "Alejar"
 
-#: skytemple/skytemple/controller/main.py:249
+#: skytemple/skytemple/controller/main.py:247
 msgid "Save As..."
 msgstr "Guardar como..."
 
-#: skytemple/skytemple/controller/main.py:269
+#: skytemple/skytemple/controller/main.py:267
 msgid "Open ROM..."
 msgstr "Abrir ROM..."
 
-#: skytemple/skytemple/controller/main.py:389
+#: skytemple/skytemple/controller/main.py:387
 msgid "Error opening the ROM"
 msgstr "Error al abrir la ROM"
 
-#: skytemple/skytemple/controller/main.py:411
+#: skytemple/skytemple/controller/main.py:409
 msgid "Error saving the ROM"
 msgstr "Error al guardar la ROM"
 
-#: skytemple/skytemple/controller/main.py:597
-#: skytemple/skytemple/controller/main.py:655
+#: skytemple/skytemple/controller/main.py:595
+#: skytemple/skytemple/controller/main.py:653
 msgid "A project must be opened to use this."
 msgstr "Debe abrirse un proyecto para utilizarlo."
 
-#: skytemple/skytemple/controller/main.py:669
+#: skytemple/skytemple/controller/main.py:667
 msgid "'spritecollab' module must be installed to use this."
 msgstr "El módulo 'spritecollab' debe estar instalado para usar esto."
 
-#: skytemple/skytemple/controller/main.py:736
-#: skytemple/skytemple/controller/main.py:739
+#: skytemple/skytemple/controller/main.py:734
+#: skytemple/skytemple/controller/main.py:737
 msgid "Open a ROM"
 msgstr "Abrir una ROM"
 
-#: skytemple/skytemple/controller/main.py:772
+#: skytemple/skytemple/controller/main.py:770
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Cargando ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:773
+#: skytemple/skytemple/controller/main.py:771
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Abriendo {filename}."
 
-#: skytemple/skytemple/controller/main.py:974
+#: skytemple/skytemple/controller/main.py:972
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Guardando ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:975
+#: skytemple/skytemple/controller/main.py:973
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Guardando {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:989
+#: skytemple/skytemple/controller/main.py:987
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "¿Quieres guardar los cambios en {rom_name}?"
