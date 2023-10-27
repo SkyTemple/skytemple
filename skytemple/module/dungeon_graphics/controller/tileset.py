@@ -35,6 +35,7 @@ from typing import (
 )
 
 import cairo
+from skytemple_files.user_error import mark_as_user_err
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
@@ -195,7 +196,11 @@ class TilesetController(AbstractController):
                 dtef_importer = ExplorersDtefImporter(
                     self.dma, self.dpc, self.dpci, self.dpl, self.dpla
                 )
-                dtef_importer.do_import(dirname, fn_xml, fn_var0, fn_var1, fn_var2)
+                try:
+                    dtef_importer.do_import(dirname, fn_xml, fn_var0, fn_var1, fn_var2)
+                except ValueError as e:
+                    mark_as_user_err(e)
+                    raise e
 
                 md = SkyTempleMessageDialog(
                     MainController.window(),
