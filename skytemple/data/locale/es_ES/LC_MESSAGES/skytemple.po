@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-10-27 16:55+0000\n"
-"PO-Revision-Date: 2023-10-27 19:45\n"
+"PO-Revision-Date: 2023-10-27 20:58\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2558,7 +2558,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:557
 msgid "Unknown direction value."
-msgstr ""
+msgstr "Valor de dirección desconocido."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/writer.py:57
 msgid "Can not save a scene event without a defined triggered script."
@@ -2788,15 +2788,15 @@ msgstr "el nuevo mapeo de tiles para este chunk debe contener {} tiles."
 
 #: skytemple-rust/src/st_dbg.rs:129
 msgid "Can not import map background: Width of image must match the expected width: {}px"
-msgstr ""
+msgstr "No se puede importar el fondo del mapa: la anchura de la imagen debe coincidir con el ancho esperado: {}px"
 
 #: skytemple-rust/src/st_dbg.rs:135
 msgid "Can not import map background: Height of image must match the expected height: {}px"
-msgstr ""
+msgstr "No se puede importar el fondo del mapa: la altura de la imagen debe coincidir con la altura esperada: {}px"
 
 #: skytemple-rust/src/st_dpc.rs:150
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
-msgstr ""
+msgstr "La imagen a importar solo puede usar las 12 primeras paletas. Se ha intentado usar la paleta {}"
 
 #: skytemple-rust/src/st_dpla.rs:100
 msgid "Palette is invalid."
@@ -2809,7 +2809,7 @@ msgstr "Índice de paleta fuera de rango."
 
 #: skytemple-rust/src/st_dpla.rs:258
 msgid "Frame durations out of range while trying to build color."
-msgstr ""
+msgstr "La duración de los fotogramas está fuera del rango al intentar crear color."
 
 #: skytemple-rust/src/st_kao.rs:96
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
@@ -3282,7 +3282,8 @@ msgstr "Todos los archivos"
 #, python-brace-format
 msgid "The emulator couldn't be loaded. Debugging functionality will not be available:\n\n"
 "{ex}"
-msgstr ""
+msgstr "No se ha podido cargar el emulador. No se podrá depurar:\n\n"
+"{ex}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:316
 msgid "Error loading the emulator!"
@@ -4077,7 +4078,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1952
 msgid "Script command"
-msgstr ""
+msgstr "Comando de script"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1968
 msgid "Sound"
@@ -4089,7 +4090,7 @@ msgstr "Música de fondo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2000
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2016
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
@@ -4708,13 +4709,13 @@ msgstr "SkyTemple - ¡Error!"
 
 #: skytemple/skytemple/core/error_handler.py:148
 msgid "Error Details"
-msgstr ""
+msgstr "Detalles del error"
 
 #: skytemple/skytemple/core/error_handler.py:152
 #: skytemple/skytemple/core/widget/user_feedback.py:51
 #: skytemple/skytemple/skytemple.glade:1199
 msgid "Report Error"
-msgstr ""
+msgstr "Reportar error"
 
 #: skytemple/skytemple/core/logger.py:94
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
