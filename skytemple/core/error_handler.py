@@ -186,6 +186,9 @@ def should_be_reported(exc_info: Optional[ExceptionInfo]):
         exc = exc_info[1]
     else:
         exc = exc_info
+    # Don't collect OSErrors, these are almost always user-specific errors, not application errors.
+    if isinstance(exc, OSError):
+        return False
 
     return not hasattr(exc, USER_ERROR_MARK)
 
