@@ -20,6 +20,7 @@ import sys
 from typing import TYPE_CHECKING, Optional, Dict
 
 import cairo
+from skytemple_files.user_error import mark_as_user_err
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
@@ -99,6 +100,8 @@ class ChrController(AbstractController):
                 img = Image.open(fn, "r")
                 self.chr.from_pil(img)
             except Exception as err:
+                if isinstance(err, AttributeError):
+                    mark_as_user_err(err)
                 display_error(sys.exc_info(), str(err), _("Error importing chr image."))
             self.module.mark_chr_as_modified(self.filename)
             self._reinit_image()
