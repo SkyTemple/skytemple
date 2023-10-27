@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-10-27 16:55+0000\n"
-"PO-Revision-Date: 2023-10-27 17:08\n"
+"PO-Revision-Date: 2023-10-27 19:45\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2390,7 +2390,7 @@ msgstr "Corrige el fallo de evolución que congela el juego cuando se intenta ev
 
 #: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:47
 msgid "If the game runs out of memory trying to load a sprite, a default one will be used instead, preventing the crash."
-msgstr ""
+msgstr "Si el juego se queda sin memoria al intentar cargar un sprite, se utilizará uno por defecto en su lugar para evitar un bloqueo."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:49
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator. Warning: Causes saving to fail on the MelonDS emulator instead."
@@ -3868,7 +3868,7 @@ msgstr "_Ayuda"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "ExplorerScript documentation"
@@ -4818,7 +4818,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:54
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:93
 msgid "Your name\n"
@@ -12302,7 +12302,7 @@ msgstr "Error al importar la escena."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:464
 msgid "Export scene as..."
-msgstr ""
+msgstr "Exportar escena como..."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:677
 #, python-brace-format
