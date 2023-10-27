@@ -195,7 +195,8 @@ class MonsterController(AbstractController):
     def unload(self):
         # We need to destroy this first.
         # GTK is an enigma sometimes.
-        builder_get_assert(self.builder, Gtk.Widget, "export_dialog").destroy()
+        if self.builder is not None:
+            builder_get_assert(self.builder, Gtk.Widget, "export_dialog").destroy()
         super().unload()
         self.module = None
         self.item_id = None
