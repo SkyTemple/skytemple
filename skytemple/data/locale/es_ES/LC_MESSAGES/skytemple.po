@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-10-27 16:55+0000\n"
-"PO-Revision-Date: 2023-11-03 00:14\n"
+"PO-Revision-Date: 2023-11-07 14:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2175,7 +2175,8 @@ msgstr "Otros"
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
 "Extracts both files on applying the patch."
-msgstr ""
+msgstr "Le dice al juego que cargue el actor y las listas de niveles de archivos separados.\n"
+"Extrae ambos archivos al aplicar el parche."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:109
 msgid "This patch can not be re-applied."
@@ -4050,7 +4051,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1829
 msgid "Override Dungeon Result"
-msgstr ""
+msgstr "Anular el resultado del territorio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1857
 msgid "Debug Log Flags"
@@ -4074,7 +4075,7 @@ msgstr "Script de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1936
 msgid "Script Supervision"
-msgstr ""
+msgstr "Supervisión del script"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1952
 msgid "Script command"
@@ -4731,7 +4732,10 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Do you want to continue with these plugins? These plugins contain code which will run on your computer once you accept this dialog with 'Yes'.\n"
 "Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
-msgstr ""
+msgstr "SkyTemple encontró los siguientes complementos en tu directorio de complementos ({plugin_dir}).\n\n"
+"¿Quieres cargarlos? Si lo haces, su código se ejecutará cuando selecciones «Sí».\n"
+"Solo deberías hacerlo si confías en autores de los parches. De lo contrario, puedes poner en riesgo tus datos.\n\n"
+"Al hacer clic en «Sí», se recordará la configuración de este complemento y no se lo volverá a preguntar la próxima vez."
 
 #: skytemple/skytemple/core/rom_project.py:167
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
@@ -9492,7 +9496,7 @@ msgstr "Logo añadido correctamente. ¡Gracias!"
 
 #: skytemple/skytemple/module/map_bg/module.py:419
 msgid "Map Background category \"{}\""
-msgstr ""
+msgstr "Categoría de fondo del mapa \"{}\""
 
 #: skytemple/skytemple/module/map_bg/module.py:421
 msgid "This section contains all the map backgrounds, that start with the letter {}."
