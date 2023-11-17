@@ -48,7 +48,7 @@ elif sys.platform.startswith("win"):
 
     failed_to_set_locale = False
     if os.getenv("LANG") is None:
-        lang, enc = locale.getdefaultlocale()
+        lang, enc = locale.getlocale()
         os.environ["LANG"] = f"{lang}.{enc}"
         ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
         try:
@@ -64,7 +64,7 @@ elif sys.platform.startswith("win"):
     if failed_to_set_locale:
         failed_to_set_locale = False
 
-        lang, env = locale.getdefaultlocale()
+        lang, env = locale.getlocale()
         print(
             f"WARNING: Failed processing current locale {lang}.{env}. Falling back to {lang}"
         )
@@ -113,13 +113,14 @@ try:
     libintl.libintl_setlocale(0, settings.get_locale())  # type: ignore
 except:
     pass
+libintl.textdomain(APP)
 gettext.bindtextdomain(APP, LOCALE_DIR)
 gettext.textdomain(APP)
 try:
     if os.environ["LC_ALL"] != "C":
         loc = os.environ["LC_ALL"]
         if loc == "":
-            loc = locale.getdefaultlocale()[0]  # type: ignore
+            loc = locale.getlocale()[0]  # type: ignore
         from skytemple_files.common.i18n_util import reload_locale
 
         base_loc = loc.split("_")[0]
