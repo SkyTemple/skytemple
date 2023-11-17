@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-11-17 10:49+0000\n"
+"POT-Creation-Date: 2023-11-17 21:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4789,6 +4789,24 @@ msgstr ""
 msgid "SkyTemple - Value out of range"
 msgstr ""
 
+#: skytemple/skytemple/data/widget/music/main.ui:40
+#: skytemple/skytemple/module/dungeon/controller/floor.glade:1187
+#: skytemple/skytemple/module/music/module.py:45
+msgid "Music"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/music/main.ui:59
+msgid ""
+"SkyTemple can not edit music.\n"
+"However you can use the tool SkySongBuilder to insert your custom music into the game.\n"
+"\n"
+"Warning: Make sure to close SkyTemple before modifying the ROM with any other tool."
+msgstr ""
+
+#: skytemple/skytemple/data/widget/music/main.ui:74
+msgid "More information about SkySongBuilder"
+msgstr ""
+
 #: skytemple/skytemple/data/widget/script/ssb_page.ui:76
 msgid ""
 "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
@@ -5909,10 +5927,6 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1176
 msgid "Tileset"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/floor.glade:1187
-msgid "Music"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1198
