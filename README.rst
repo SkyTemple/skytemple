@@ -90,7 +90,7 @@ Manual
 ------
 The Linux version can be installed manually/"natively" via Pip.
 
-For this Python 3.8+ must be installed and GTK+ 3
+For this Python 3.9+ must be installed and GTK+ 3
 (which you most likely both have). Additionally GtkSourceView 4 is required
 (package ``gtksourceview4`` on Arch and ``libgtksourceview-4-dev`` on Ubuntu).
 

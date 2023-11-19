@@ -15,7 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC, abstractmethod
-from typing import List, Sequence
+from typing import List
+from collections.abc import Sequence
 
 
 class AbstractTilePalettesProvider(ABC):
@@ -34,7 +35,7 @@ class AbstractTilePalettesProvider(ABC):
         """Returns the length of the animation sequence in the palette, or 0 if no animation exists."""
 
     @abstractmethod
-    def apply_palette_animations(self, frame: int) -> List[List[int]]:
+    def apply_palette_animations(self, frame: int) -> list[list[int]]:
         """Applies palette animations and returns the resulting palettes."""
 
     @abstractmethod

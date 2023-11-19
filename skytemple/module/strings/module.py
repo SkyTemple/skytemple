@@ -61,7 +61,7 @@ class StringsModule(AbstractModule):
         self.project = rom_project
 
         self._item_tree: Optional[ItemTree] = None
-        self._tree_iters: Dict[str, ItemTreeEntryRef] = {}
+        self._tree_iters: dict[str, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
         root = item_tree.add_entry(

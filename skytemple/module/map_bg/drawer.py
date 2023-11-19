@@ -17,7 +17,8 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import typing
 from enum import Enum, auto
-from typing import List, Union, Iterable, Optional, Sequence
+from typing import List, Union, Optional
+from collections.abc import Iterable, Sequence
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
@@ -103,7 +104,7 @@ class Drawer:
         if isinstance(bma, BmaProtocol):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
-            self.mappings: List[Sequence[int]] = [bma.layer0, bma.layer1]  # type: ignore
+            self.mappings: list[Sequence[int]] = [bma.layer0, bma.layer1]  # type: ignore
             self.width_in_chunks = bma.map_width_chunks
             self.height_in_chunks = bma.map_height_chunks
             self.width_in_tiles: Optional[u8] = bma.map_width_camera

@@ -16,7 +16,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import List, Union, Iterable
+from typing import List, Union
+from collections.abc import Iterable
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
@@ -42,7 +43,7 @@ class Drawer:
         dbg: Union[DbgProtocol, None],
         pal_ani_durations: int,
         # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
-        chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]],
+        chunks_surfaces: Iterable[Iterable[list[cairo.Surface]]],
     ):
         """
         Initialize a drawer...
@@ -219,7 +220,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
         self,
         icon_view,
         pal_ani_durations: int,
-        chunks_surfaces: List[List[List[cairo.Surface]]],
+        chunks_surfaces: list[list[list[cairo.Surface]]],
     ):
         super().__init__(icon_view, None, pal_ani_durations, chunks_surfaces)
         super(Gtk.CellRenderer, self).__init__()

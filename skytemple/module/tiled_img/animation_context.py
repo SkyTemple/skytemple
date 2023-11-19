@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Iterable, Optional, Tuple
+from typing import List, Optional, Tuple
+from collections.abc import Iterable
 
 import cairo
 
@@ -29,7 +30,7 @@ class AnimationContext:
     def __init__(
         self,
         # [collection_idx][tile_or_chunk_idx][palette_animation_frame][frame]
-        surfaces: List[List[List[List[cairo.Surface]]]],
+        surfaces: list[list[list[list[cairo.Surface]]]],
         bpa_durations: int,
         pal_ani_durations: int,
     ):
@@ -45,9 +46,9 @@ class AnimationContext:
         self._pal_counter = 0
 
         # The current pal_ani/bpa_ani frame numbers as tuple. This is the current cache "hash"!
-        self._current_cache_hash: Tuple[Optional[int], Optional[int]] = (None, None)
+        self._current_cache_hash: tuple[Optional[int], Optional[int]] = (None, None)
         # The current cached surfaces for each collection:
-        self._current_cache: List[List[cairo.Surface]] = []
+        self._current_cache: list[list[cairo.Surface]] = []
 
         self.frame_counter = 0
 
@@ -55,7 +56,7 @@ class AnimationContext:
     def num_layers(self) -> int:
         return len(self.surfaces)
 
-    def current(self) -> List[List[cairo.Surface]]:
+    def current(self) -> list[list[cairo.Surface]]:
         """Returns the surfaces for this frame"""
         if (self._pal_counter, self._bpa_counter) == self._current_cache_hash:
             return self._current_cache
@@ -63,7 +64,7 @@ class AnimationContext:
         self._current_cache = []
         for collection_idx, collection in enumerate(self.surfaces):
             # The surfaces for this collection, for this frame:
-            collection_surfaces: List[cairo.Surface] = []
+            collection_surfaces: list[cairo.Surface] = []
             for tile_idx, pal_ani_frames in enumerate(collection):
                 bpa_ani_frames = pal_ani_frames[self._pal_counter % len(pal_ani_frames)]
                 surf = bpa_ani_frames[self._bpa_counter % len(bpa_ani_frames)]

@@ -35,7 +35,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
     def __init__(
         self, dma: DmaProtocol, dpci: DpciProtocol, dpc: DpcProtocol, dpl: DplProtocol
     ):
-        self._cached_rules: Optional[List[List[int]]] = None
+        self._cached_rules: Optional[list[list[int]]] = None
         self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.dma = dma
         self.dpci = dpci
@@ -52,7 +52,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
     def get_background(self) -> Optional[cairo.Surface]:
         return None
 
-    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
+    def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
             mappings = self.dma_drawer.get_mappings_for_rules(

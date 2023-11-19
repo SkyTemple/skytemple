@@ -111,7 +111,7 @@ class DiscordPresence(AbstractListener):
         self,
         module: AbstractModule,
         controller: AbstractController,
-        breadcrumbs: List[str],
+        breadcrumbs: list[str],
     ):
         mod_handler = getattr(
             self, f"on_view_switch__{module.__class__.__name__}", None
@@ -124,7 +124,7 @@ class DiscordPresence(AbstractListener):
         self._update_current_presence()
 
     def on_view_switch__MiscGraphicsModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.misc_graphics.module import MiscGraphicsModule
         from skytemple.module.misc_graphics.controller.w16 import W16Controller
@@ -138,7 +138,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = controller.item.wte_filename
 
     def on_view_switch__DungeonGraphicsModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.dungeon_graphics.module import (
             DungeonGraphicsModule,
@@ -159,7 +159,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = f"Background {NUMBER_OF_TILESETS + controller.item_id}"
 
     def on_view_switch__BgpModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.bgp.module import BgpModule
         from skytemple.module.bgp.controller.bgp import BgpController
@@ -170,13 +170,13 @@ class DiscordPresence(AbstractListener):
             self.module_state = module.list_of_bgps[controller.item_id]
 
     def on_view_switch__RomModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         self.module_info = "Editing the ROM"
         self.module_state = self.rom_name
 
     def on_view_switch__ListsModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.lists.module import ListsModule
         from skytemple.module.lists.controller.actor_list import ActorListController
@@ -203,7 +203,7 @@ class DiscordPresence(AbstractListener):
         self,
         module: AbstractModule,
         controller: AbstractController,
-        breadcrumbs: List[str],
+        breadcrumbs: list[str],
     ):
         from skytemple.module.patch.controller.item_effects import ItemEffectsController
         from skytemple.module.patch.controller.move_effects import MoveEffectsController
@@ -223,7 +223,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = self.rom_name
 
     def on_view_switch__MapBgModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.map_bg.module import MapBgModule
         from skytemple.module.map_bg.controller.bg import BgController
@@ -234,7 +234,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = breadcrumbs[0]
 
     def on_view_switch__ScriptModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.script.module import ScriptModule
         from skytemple.module.script.controller.ssa import SsaController
@@ -248,7 +248,7 @@ class DiscordPresence(AbstractListener):
                 self.module_state = f"{breadcrumbs[2]} / {breadcrumbs[0]}"
 
     def on_view_switch__DungeonModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.dungeon.module import DungeonModule
         from skytemple.module.dungeon.controller.dungeon import DungeonController
@@ -273,7 +273,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = f"Fixed Room {controller.floor_id}"
 
     def on_view_switch__MonsterModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.monster.module import MonsterModule
         from skytemple.module.monster.controller.monster import MonsterController
@@ -287,7 +287,7 @@ class DiscordPresence(AbstractListener):
             )
 
     def on_view_switch__StringsModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.strings.module import StringsModule
         from skytemple.module.strings.controller.strings import StringsController
@@ -298,7 +298,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = controller.langname
 
     def on_view_switch__SpriteModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.sprite.controller.object import ObjectController
 
@@ -308,7 +308,7 @@ class DiscordPresence(AbstractListener):
             self.module_state = breadcrumbs[0]
 
     def on_view_switch__MovesItemsModule(
-        self, module, controller: AbstractController, breadcrumbs: List[str]
+        self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.moves_items.controller.item import ItemController
         from skytemple.module.moves_items.controller.item_lists import (

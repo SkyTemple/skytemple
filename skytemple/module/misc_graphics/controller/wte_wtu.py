@@ -182,7 +182,7 @@ class WteWtuController(AbstractController):
             self.builder, Gtk.SpinButton, "wte_palette_variant"
         ).set_range(0, self.wte.nb_palette_variants() - 1)
 
-        dimensions: Tuple[int, int] = self.wte.actual_dimensions()
+        dimensions: tuple[int, int] = self.wte.actual_dimensions()
         if self.wte.has_image():
             builder_get_assert(self.builder, Gtk.Label, "lbl_canvas_size").set_text(
                 f"{self.wte.width}x{self.wte.height} [{dimensions[0]}x{dimensions[1]}]"
@@ -285,7 +285,7 @@ class WteWtuController(AbstractController):
     def on_btn_remove_clicked(self, *args):
         # Deletes all selected WTU entries
         # Allows multiple deletions
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "wtu_tree")
             .get_selection()
             .get_selected_rows()[1]
@@ -333,7 +333,7 @@ class WteWtuController(AbstractController):
             ctx.paint()
             # Draw rectangles on the WTE image representing the selected WTU entries
             # Allows multiple selections
-            active_rows: List[Gtk.TreePath] = (
+            active_rows: list[Gtk.TreePath] = (
                 builder_get_assert(self.builder, Gtk.TreeView, "wtu_tree")
                 .get_selection()
                 .get_selected_rows()[1]

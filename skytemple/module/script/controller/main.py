@@ -54,12 +54,12 @@ class MainController(AbstractController):
         self.module = module
         self.builder: Gtk.Builder = None  # type: ignore
         self._list: LevelListBin
-        self._dungeon_tilesets: List[GroundTilesetMapping]
-        self._labels_mapid: Dict[int, str] = {}
-        self._labels_maptype: Dict[int, str] = {}
-        self._labels_overworld_strings: Dict[int, str] = {}
-        self._labels_td_level: Dict[int, str] = {}
-        self._labels_td_dungeon: Dict[int, str] = {}
+        self._dungeon_tilesets: list[GroundTilesetMapping]
+        self._labels_mapid: dict[int, str] = {}
+        self._labels_maptype: dict[int, str] = {}
+        self._labels_overworld_strings: dict[int, str] = {}
+        self._labels_td_level: dict[int, str] = {}
+        self._labels_td_dungeon: dict[int, str] = {}
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, "main.glade")

@@ -75,8 +75,8 @@ class MapBgModule(AbstractModule):
         )
 
         self._item_tree: ItemTree
-        self._tree_level_iter: List[ItemTreeEntryRef] = []
-        self._sub_nodes: Dict[str, ItemTreeEntryRef]
+        self._tree_level_iter: list[ItemTreeEntryRef] = []
+        self._sub_nodes: dict[str, ItemTreeEntryRef]
         self._other_node: ItemTreeEntryRef
 
     def load_tree_items(self, item_tree: ItemTree):
@@ -238,9 +238,9 @@ class MapBgModule(AbstractModule):
             f"{MAP_BG_PATH}{l.bpl_name.lower()}.bpl", FileType.BPL
         )
 
-    def get_bpas(self, item_id) -> List[Optional[BpaProtocol]]:
+    def get_bpas(self, item_id) -> list[Optional[BpaProtocol]]:
         l = self.bgs.level[item_id]
-        bpas: List[Optional[BpaProtocol]] = []
+        bpas: list[Optional[BpaProtocol]] = []
         for bpa in l.bpa_names:
             if bpa is None:
                 bpas.append(None)
@@ -371,12 +371,12 @@ class MapBgModule(AbstractModule):
 
     def get_mapping_dungeon_assets(
         self,
-    ) -> Tuple[
-        List[GroundTilesetMapping],
+    ) -> tuple[
+        list[GroundTilesetMapping],
         MappaBinProtocol,
         FixedBin,
         ModelContext[DungeonBinPack],
-        List[DungeonDefinition],
+        list[DungeonDefinition],
     ]:
         static_data = self.project.get_rom_module().get_static_data()
         config = self.project.get_rom_module().get_static_data()

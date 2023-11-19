@@ -17,7 +17,8 @@
 import sys
 import textwrap
 from itertools import chain
-from typing import TYPE_CHECKING, Optional, List, Union, Sequence, cast
+from typing import TYPE_CHECKING, Optional, List, Union, cast
+from collections.abc import Sequence
 
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u8, u8_checked
@@ -170,7 +171,7 @@ class MainController(AbstractController):
         if resp == Gtk.ResponseType.APPLY:
             try:
                 # Collect new dungeon groupings and tell module to re-group dungeons
-                new_groups: List[Union["DungeonGroup", int]] = sorted(
+                new_groups: list[Union["DungeonGroup", int]] = sorted(
                     self._collect_new_groups_from_dialog(), key=int
                 )
                 dungeon_ids_from_dialog = set(
@@ -511,7 +512,7 @@ class MainController(AbstractController):
         return dungeons
 
     def _get_solution_text(
-        self, dungeons: List[DungeonDefinition], e: DungeonValidatorError
+        self, dungeons: list[DungeonDefinition], e: DungeonValidatorError
     ):
         if isinstance(e, InvalidFloorListReferencedError):
             return _("Create a new floor list with one empty floor for this dungeon.")
@@ -536,7 +537,7 @@ class MainController(AbstractController):
             and e.floors_in_mappa_not_referenced == [19]
         )
 
-    def _fix_error(self, dungeons: List[DungeonDefinition], e: DungeonValidatorError):
+    def _fix_error(self, dungeons: list[DungeonDefinition], e: DungeonValidatorError):
         mappa = self.module.get_mappa()
         if isinstance(e, DungeonTotalFloorCountInvalidError):
             dungeons[

@@ -38,7 +38,7 @@ class TacticsController(AbstractController):
     def __init__(self, module: "ListsModule", item_id):
         super().__init__(module, item_id)
         self.module = module
-        self._list: List[i16]
+        self._list: list[i16]
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:

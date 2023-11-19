@@ -78,7 +78,7 @@ class SPEffectsController(AbstractController):
 
     def _get_current_sp_effect(self) -> Optional[int]:
         tree_store = builder_get_assert(self.builder, Gtk.ListStore, "sp_effects_store")
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "sps_tree")
             .get_selection()
             .get_selected_rows()[1]

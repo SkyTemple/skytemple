@@ -19,7 +19,8 @@ import os
 import sys
 from functools import reduce
 from math import gcd
-from typing import Optional, List, Union, Iterable, Tuple, Dict, Literal, Sequence
+from typing import Optional, List, Union, Tuple, Dict, Literal
+from collections.abc import Iterable, Sequence
 from xml.etree.ElementTree import Element
 
 from PIL import Image
@@ -164,19 +165,19 @@ class DungeonModule(AbstractModule):
         return 210
 
     def __init__(self, rom_project: RomProject):
-        self._errored: Union[Literal[False], Tuple] = False
+        self._errored: Union[Literal[False], tuple] = False
         try:
             self.project = rom_project
 
             self._item_tree: ItemTree
             self._root_iter: Optional[ItemTreeEntryRef] = None
-            self._dungeon_iters: Dict[DungeonDefinition, ItemTreeEntryRef] = {}
-            self._dungeon_floor_iters: Dict[int, Dict[int, ItemTreeEntryRef]] = {}
-            self._fixed_floor_iters: List[ItemTreeEntryRef] = []
+            self._dungeon_iters: dict[DungeonDefinition, ItemTreeEntryRef] = {}
+            self._dungeon_floor_iters: dict[int, dict[int, ItemTreeEntryRef]] = {}
+            self._fixed_floor_iters: list[ItemTreeEntryRef] = []
             self._fixed_floor_root_iter: ItemTreeEntryRef
             self._fixed_floor_data: FixedBin
             self._dungeon_bin_context: ModelContext[DungeonBinPack]
-            self._cached_dungeon_list: Optional[List[DungeonDefinition]] = None
+            self._cached_dungeon_list: Optional[list[DungeonDefinition]] = None
 
             # Preload mappa
             logger.debug("Preloading Mappa...")
@@ -339,7 +340,7 @@ class DungeonModule(AbstractModule):
             RecursionType.UP,
         )
 
-    def get_dungeon_list(self) -> List[DungeonDefinition]:
+    def get_dungeon_list(self) -> list[DungeonDefinition]:
         if self._cached_dungeon_list is None:
             self._cached_dungeon_list = HardcodedDungeons.get_dungeon_list(
                 self.project.get_binary(BinaryName.ARM9),
@@ -347,7 +348,7 @@ class DungeonModule(AbstractModule):
             )
         return self._cached_dungeon_list
 
-    def get_dungeon_restrictions(self) -> List[DungeonRestriction]:
+    def get_dungeon_restrictions(self) -> list[DungeonRestriction]:
         # TODO: Cache?
         return HardcodedDungeons.get_dungeon_restrictions(
             self.project.get_binary(BinaryName.ARM9),
@@ -369,7 +370,7 @@ class DungeonModule(AbstractModule):
         if self._root_iter:
             self._item_tree.mark_as_modified(self._root_iter, RecursionType.UP)
 
-    def save_dungeon_list(self, dungeons: List[DungeonDefinition]):
+    def save_dungeon_list(self, dungeons: list[DungeonDefinition]):
         self.project.modify_binary(
             BinaryName.ARM9,
             lambda binary: HardcodedDungeons.set_dungeon_list(
@@ -385,7 +386,7 @@ class DungeonModule(AbstractModule):
         all_restrictions[dungeon_id] = restrictions
         self.save_dungeon_restrictions(all_restrictions)
 
-    def save_dungeon_restrictions(self, restrictions: List[DungeonRestriction]):
+    def save_dungeon_restrictions(self, restrictions: list[DungeonRestriction]):
         self.project.modify_binary(
             BinaryName.ARM9,
             lambda binary: HardcodedDungeons.set_dungeon_restrictions(
@@ -488,7 +489,7 @@ class DungeonModule(AbstractModule):
         by their IDs.
         """
         lst = self.get_dungeon_list()
-        groups: Dict[int, List[int]] = {}
+        groups: dict[int, list[int]] = {}
         yielded = set()
         for idx, dungeon in enumerate(lst):
             if dungeon.mappa_index not in groups:
@@ -537,12 +538,12 @@ class DungeonModule(AbstractModule):
         """
         mappa = self.get_mappa()
         old_floor_lists = mappa.floor_lists
-        reorder_list: List[List[Tuple[int, Optional[int], Optional[int]]]] = []
+        reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]] = []
         dojo_floors = list(old_floor_lists[DOJO_MAPPA_ENTRY])
-        new_floor_lists: List[List[MappaFloorProtocol]] = []
+        new_floor_lists: list[list[MappaFloorProtocol]] = []
         dungeons = self.get_dungeon_list()
         # Sanity check list.
-        dungeons_not_visited = set((i for i in range(0, len(dungeons))))
+        dungeons_not_visited = {i for i in range(0, len(dungeons))}
 
         # TODO Build new floor lists and update dungeon entries. Insert dojo dungeons at DOJO_MAPPA_ENTRY
         for group_or_dungeon in new_groups:
@@ -553,7 +554,7 @@ class DungeonModule(AbstractModule):
             reorder_list.append([])
             # Process this entry
             next_index = len(new_floor_lists)
-            new_floor_list: List[MappaFloorProtocol] = []
+            new_floor_list: list[MappaFloorProtocol] = []
             if isinstance(group_or_dungeon, DungeonGroup):
                 group = group_or_dungeon.dungeon_ids
             else:
@@ -756,7 +757,7 @@ class DungeonModule(AbstractModule):
     def get_monster_md(self) -> MdProtocol:
         return self.project.get_module("monster").monster_md
 
-    def import_from_xml(self, selected_floors: List[Tuple[int, int]], xml: Element):
+    def import_from_xml(self, selected_floors: list[tuple[int, int]], xml: Element):
         for dungeon_id, floor_id in selected_floors:
             floor_info = FloorViewInfo(floor_id, DungeonViewInfo(dungeon_id, False))
             floor = self.get_mappa_floor(floor_info)
@@ -774,7 +775,7 @@ class DungeonModule(AbstractModule):
 
     def get_dungeon_tileset(
         self, tileset_id
-    ) -> Tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
+    ) -> tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
         with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f"dungeon{tileset_id}.dma"),
@@ -785,7 +786,7 @@ class DungeonModule(AbstractModule):
 
     def get_dungeon_background(
         self, background_id
-    ) -> Tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
+    ) -> tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
         with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f"dungeon_bg{background_id}.dbg"),
@@ -812,7 +813,7 @@ class DungeonModule(AbstractModule):
             f_ranks.extend_nb_floors(group_id, start_floor + 1, nb_floors, rank)
 
     def reorder_floors_ranks(
-        self, reorder_list: List[List[Tuple[int, Optional[int], Optional[int]]]]
+        self, reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]]
     ):  # (old_group_id, start_floor, end_floor)
         if self.has_floor_ranks():
             f_ranks = self.project.open_file_in_rom(FLOOR_RANKS, FloorAttributeHandler)
@@ -849,7 +850,7 @@ class DungeonModule(AbstractModule):
             f_mission.extend_nb_floors(group_id, start_floor + 1, nb_floors, forbidden)
 
     def reorder_floors_mf(
-        self, reorder_list: List[List[Tuple[int, Optional[int], Optional[int]]]]
+        self, reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]]
     ):  # (old_group_id, start_floor, end_floor)
         if self.has_floor_ranks():
             f_mission = self.project.open_file_in_rom(
@@ -885,12 +886,12 @@ class DungeonModule(AbstractModule):
 
     def get_fixed_floor_entity_lists(
         self,
-    ) -> Tuple[
-        List[EntitySpawnEntry],
-        List[ItemSpawn],
-        List[MonsterSpawn],
-        List[TileSpawn],
-        List[MonsterSpawnStats],
+    ) -> tuple[
+        list[EntitySpawnEntry],
+        list[ItemSpawn],
+        list[MonsterSpawn],
+        list[TileSpawn],
+        list[MonsterSpawnStats],
     ]:
         config = self.project.get_rom_module().get_static_data()
         ov29 = self.project.get_binary(BinaryName.OVERLAY_29)
@@ -921,7 +922,7 @@ class DungeonModule(AbstractModule):
         )
         self._item_tree.mark_as_modified(self._fixed_floor_root_iter, RecursionType.UP)
 
-    def get_dummy_tileset(self) -> Tuple[DmaProtocol, Image.Image]:
+    def get_dummy_tileset(self) -> tuple[DmaProtocol, Image.Image]:
         with open(os.path.join(data_dir(), "fixed_floor", "dummy.dma"), "rb") as f:
             dma = FileType.DMA.deserialize(f.read())
         return (dma, Image.open(os.path.join(data_dir(), "fixed_floor", "dummy.png")))
@@ -933,12 +934,12 @@ class DungeonModule(AbstractModule):
                     return floor.layout.tileset_id
         return 0
 
-    def get_fixed_floor_properties(self) -> List[FixedFloorProperties]:
+    def get_fixed_floor_properties(self) -> list[FixedFloorProperties]:
         ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
         config = self.project.get_rom_module().get_static_data()
         return HardcodedFixedFloorTables.get_fixed_floor_properties(ov10, config)
 
-    def get_fixed_floor_overrides(self) -> List[u8]:
+    def get_fixed_floor_overrides(self) -> list[u8]:
         ov29 = self.project.get_binary(BinaryName.OVERLAY_29)
         config = self.project.get_rom_module().get_static_data()
         return HardcodedFixedFloorTables.get_fixed_floor_overrides(ov29, config)
@@ -1033,7 +1034,7 @@ class DungeonModule(AbstractModule):
 
     def get_dungeon_music_spec(
         self,
-    ) -> Tuple[List[DungeonMusicEntry], List[Tuple[u16, u16, u16, u16]]]:
+    ) -> tuple[list[DungeonMusicEntry], list[tuple[u16, u16, u16, u16]]]:
         config = self.project.get_rom_module().get_static_data()
         ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
         return (
@@ -1071,7 +1072,7 @@ class DungeonModule(AbstractModule):
         return None
 
     @staticmethod
-    def calculate_relative_weights(list_of_weights: List[int]) -> List[int]:
+    def calculate_relative_weights(list_of_weights: list[int]) -> list[int]:
         """Given a list of absolute spawn weights, return the relative values."""
         weights = []
         if len(list_of_weights) < 1:

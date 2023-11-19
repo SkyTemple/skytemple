@@ -66,11 +66,11 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-ErrorsTuple = Tuple[
+ErrorsTuple = tuple[
     str,
     Union[
-        Tuple[Type[BaseException], BaseException, TracebackType],
-        Tuple[None, None, None],
+        tuple[type[BaseException], BaseException, TracebackType],
+        tuple[None, None, None],
     ],
 ]
 
@@ -82,12 +82,12 @@ class AsmController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
         self._patcher: Patcher = None  # type: ignore
         self._were_issues_activated = False
-        self._issues: Dict[str, List[warnings.WarningMessage]] = {}
+        self._issues: dict[str, list[warnings.WarningMessage]] = {}
         self._acknowledged_danger = False
         self._accepted_danger = False
 
-        self._category_tabs: Dict[PatchCategory, Gtk.Box] = {}  # category -> page
-        self._category_tabs_reverse: Dict[
+        self._category_tabs: dict[PatchCategory, Gtk.Box] = {}  # category -> page
+        self._category_tabs_reverse: dict[
             Gtk.Widget, PatchCategory
         ] = {}  # page -> category
         self._current_tab: Optional[PatchCategory] = None
@@ -164,7 +164,7 @@ class AsmController(AbstractController):
                     return
             some_skipped = False
             patch = "???"
-            issues: Dict[str, List[warnings.WarningMessage]] = {}
+            issues: dict[str, list[warnings.WarningMessage]] = {}
             try:
                 dependencies = self._get_dependencies(name)
                 if len(dependencies) > 0:
@@ -299,7 +299,7 @@ class AsmController(AbstractController):
         model.clear()
 
         self._patcher = self.module.project.create_patcher()
-        errors: List[ErrorsTuple] = []
+        errors: list[ErrorsTuple] = []
         self._issues = {}
 
         # Load zip patches
@@ -400,7 +400,7 @@ class AsmController(AbstractController):
 
     def _get_dependencies(self, name):
         to_check = [name]
-        collected_deps: List[str] = []
+        collected_deps: list[str] = []
         while len(to_check) > 0:
             patch = self._patcher.get(to_check.pop())
             if isinstance(patch, DependantPatch):
@@ -448,7 +448,7 @@ class AsmController(AbstractController):
         self,
         is_load: bool,
         is_error: Literal[True],
-        errors_or_issues: List[ErrorsTuple],
+        errors_or_issues: list[ErrorsTuple],
     ):
         ...
 
@@ -457,7 +457,7 @@ class AsmController(AbstractController):
         self,
         is_load: bool,
         is_error: Literal[False],
-        errors_or_issues: Dict[str, List[warnings.WarningMessage]],
+        errors_or_issues: dict[str, list[warnings.WarningMessage]],
     ):
         ...
 
@@ -501,7 +501,7 @@ class AsmController(AbstractController):
         ).get_buffer()
 
         if is_error:
-            errors: List[ErrorsTuple] = errors_or_issues
+            errors: list[ErrorsTuple] = errors_or_issues
 
             text = ""
             for error_str, exc_info in errors:
@@ -511,7 +511,7 @@ class AsmController(AbstractController):
 
             buffer.set_text(text)
         else:
-            issues: Dict[str, List[warnings.WarningMessage]] = errors_or_issues
+            issues: dict[str, list[warnings.WarningMessage]] = errors_or_issues
 
             text = ""
             for patch_name, patch_issues in issues.items():

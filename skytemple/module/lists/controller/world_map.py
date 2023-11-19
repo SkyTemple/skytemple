@@ -51,13 +51,13 @@ class WorldMapController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
-        self._location_names: Dict[int, str] = {}
-        self._markers: List[MapMarkerPlacement] = []
+        self._location_names: dict[int, str] = {}
+        self._markers: list[MapMarkerPlacement] = []
         self._config: Pmd2Data
-        self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
+        self._tree_iters_by_idx: dict[int, Gtk.TreeIter] = {}
         self._level_id: int
         self._edited_marker: Optional[MapMarkerPlacement] = None
-        self._edited_pos: Optional[Tuple[int, int]] = None
+        self._edited_pos: Optional[tuple[int, int]] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, "world_map.glade")

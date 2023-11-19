@@ -17,7 +17,8 @@
 
 import itertools
 import os
-from typing import Union, List, Optional, Sequence, cast
+from typing import Union, List, Optional, cast
+from collections.abc import Sequence
 
 import cairo
 from gi.repository import Gtk
@@ -96,7 +97,7 @@ class ChunkEditorController:
             all_bpc_tiles_for_current_pal = self.tile_graphics.get_pil(
                 self.palettes.get(), pal
             )
-            tiles_current_pal: List[List[List[cairo.Surface]]] = []
+            tiles_current_pal: list[list[list[cairo.Surface]]] = []
             self.tile_surfaces.append(tiles_current_pal)
 
             has_pal_ani = self.palettes.is_palette_affected_by_animation(pal)
@@ -106,7 +107,7 @@ class ChunkEditorController:
             # For each tile...
             for tile_idx in range(0, self.tile_graphics.count()):
                 # For each frame of palette animation...
-                pal_ani_tile: List[List[cairo.Surface]] = []
+                pal_ani_tile: list[list[cairo.Surface]] = []
                 tiles_current_pal.append(pal_ani_tile)
                 for pal_ani in range(0, len_pal_ani):
                     # Switch out the palette with that from the palette animation
@@ -143,7 +144,7 @@ class ChunkEditorController:
                             tiles_current_pal.append(pal_ani_tile)
                             # For each frame of palette animation...
                             for pal_ani in range(0, len_pal_ani):
-                                bpa_ani_tile: List[cairo.Surface] = []
+                                bpa_ani_tile: list[cairo.Surface] = []
                                 pal_ani_tile.append(bpa_ani_tile)
                                 # For each frame of BPA animation...
                                 for frame in all_bpa_tiles_for_current_pal:
@@ -186,7 +187,7 @@ class ChunkEditorController:
 
             if self.animated_tile_graphics:
                 self.bpa_starts_cursor = len(self.dummy_tile_map)
-                self.bpa_starts: List[Optional[int]] = [None, None, None, None]
+                self.bpa_starts: list[Optional[int]] = [None, None, None, None]
                 for i, ani_tile_g in enumerate(self.animated_tile_graphics):
                     if ani_tile_g is not None:
                         self.bpa_starts[i] = self.bpa_starts_cursor

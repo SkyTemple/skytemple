@@ -57,9 +57,9 @@ class StringsController(AbstractController):
 
         self.builder: Gtk.Builder = None  # type: ignore
         self._str: Str
-        self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
+        self._tree_iters_by_idx: dict[int, Gtk.TreeIter] = {}
         self._list_store: Gtk.ListStore
-        self._string_cats: Dict[str, Pmd2StringBlock]
+        self._string_cats: dict[str, Pmd2StringBlock]
         self._filter: TreeModelFilter
         self._active_category: Optional[Pmd2StringBlock] = None
         self._search_text = ""

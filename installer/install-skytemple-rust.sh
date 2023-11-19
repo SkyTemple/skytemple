@@ -4,27 +4,21 @@
 # which MUST point to the latest release.
 set -xe
 
-py_version=""
-
-platform="windows-2019"
-arch="x64"
-py_version="3.11"
-
 branch="master"
+wheel_name="skytemple_rust-*-cp311-cp311-win_amd64.whl"
 
 if [ -n "$IS_MACOS" ]; then
-  platform="macos-11"
-  py_version="3.11"
+  wheel_name="skytemple_rust-*-cp311-cp311-macosx_10_9_x86_64.whl"
 fi
 
-url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-$platform-py$py_version-$arch.zip"
+url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels.zip"
 
 rm -rf tmp_rust || true
 
 mkdir tmp_rust
 cd tmp_rust
 curl -LO $url
-unzip *.zip
-pip3 install *.whl
+unzip wheels.zip
+eval pip3 install $wheel_name
 
 rm -rf tmp_rust || true

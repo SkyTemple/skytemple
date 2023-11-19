@@ -39,7 +39,7 @@ class ListBaseController(AbstractController, ABC):
 
         self.builder: Gtk.Builder = None  # type: ignore
         self._sprite_provider = self.module.project.get_sprite_provider()
-        self._ent_names: Dict[int, str] = {}
+        self._ent_names: dict[int, str] = {}
         self._list_store: Optional[Gtk.ListStore] = None
         self.icon_renderer: Optional[ListIconRenderer] = None
         self._loading = False

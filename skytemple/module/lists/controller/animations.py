@@ -69,7 +69,7 @@ class AnimationsController(AbstractController):
             return stack
         self.animations = self.module.get_animations()
 
-        self._ent_names: Dict[int, str] = dict()
+        self._ent_names: dict[int, str] = dict()
         self._init_monster_store()
         self._init_combos()
         self._init_trees()
@@ -306,7 +306,7 @@ class AnimationsController(AbstractController):
         # Deletes all selected entries
         # Allows multiple deletion
         move_id = self._get_move_filter_id()
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "spec_tree")
             .get_selection()
             .get_selected_rows()[1]
@@ -419,7 +419,7 @@ class AnimationsController(AbstractController):
     def on_btn_remove_move_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "moves_tree")
             .get_selection()
             .get_selected_rows()[1]
@@ -507,7 +507,7 @@ class AnimationsController(AbstractController):
     def on_btn_remove_general_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "general_tree")
             .get_selection()
             .get_selected_rows()[1]

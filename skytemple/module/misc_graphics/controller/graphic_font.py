@@ -139,7 +139,7 @@ class GraphicFontController(AbstractController):
             dialog.hide()
             if resp == Gtk.ResponseType.OK and fn is not None:
                 try:
-                    lst_entries: List[Optional[Image.Image]] = []
+                    lst_entries: list[Optional[Image.Image]] = []
                     for i in range(
                         int(
                             builder_get_assert(

@@ -214,8 +214,8 @@ class FloorController(AbstractController):
 
         self._item_list_edit_active = self.__class__._last_open_tab_item_lists
 
-        self._ent_names: Dict[int, str] = {}
-        self._item_names: Dict[int, str] = {}
+        self._ent_names: dict[int, str] = {}
+        self._item_names: dict[int, str] = {}
         orig_cats = (
             module.project.get_rom_module()
             .get_static_data()
@@ -1412,7 +1412,7 @@ class FloorController(AbstractController):
                 )
 
             floor = typing.cast(
-                List[Tile],
+                list[Tile],
                 DungeonFloorGenerator(
                     unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied(
                         "UnusedDungeonChance"
@@ -1432,14 +1432,14 @@ class FloorController(AbstractController):
                 .get_static_data()
                 .dungeon_data.item_categories
             )
-            actions: List[FixedFloorActionRule] = []
+            actions: list[FixedFloorActionRule] = []
             warnings = set()
-            open_guaranteed_floor = set(
+            open_guaranteed_floor = {
                 x for x, y in self.entry.floor_items.items.items() if y == GUARANTEED
-            )
-            open_guaranteed_buried = set(
+            }
+            open_guaranteed_buried = {
                 x for x, y in self.entry.buried_items.items.items() if y == GUARANTEED
-            )
+            }
             for x in floor:
                 idx = None
                 if x.typ == TileType.PLAYER_SPAWN:
@@ -1755,7 +1755,7 @@ class FloorController(AbstractController):
                     return
 
             # 2. Import to selected floors
-            selected_floors: List[Tuple[int, int]] = []
+            selected_floors: list[tuple[int, int]] = []
 
             def collect_floors_recurse(titer: Optional[Gtk.TreeIter]):
                 for i in range(store.iter_n_children(titer)):
@@ -2218,9 +2218,9 @@ class FloorController(AbstractController):
         self._update_cr_item_cat_name_store()
 
     def _split_items_in_list_in_cats(
-        self, items: Dict[int, Probability]
-    ) -> Dict[int, Dict[int, Probability]]:
-        out_items: Dict[int, Dict[int, Probability]] = {}
+        self, items: dict[int, Probability]
+    ) -> dict[int, dict[int, Probability]]:
+        out_items: dict[int, dict[int, Probability]] = {}
         for cat in self.item_categories.values():
             out_items[cat.id] = {}
             for item, probability in items.items():
@@ -2370,7 +2370,7 @@ class FloorController(AbstractController):
                 original_kecleon_level = monster.level
                 break
         self.entry.monsters = []
-        rows: List[SpawnEntry] = []
+        rows: list[SpawnEntry] = []
         for row in iter_tree_model(store):
             rows.append(
                 SpawnEntry(
@@ -2384,8 +2384,8 @@ class FloorController(AbstractController):
         rows.append(SpawnEntry(DUMMY_MD_INDEX, u8(1), 0, 0))
         rows.sort(key=lambda e: e.entid)
 
-        sum_of_weights_main = sum((row.relative_weight_main for row in rows))
-        sum_of_weights_mh = sum((row.relative_weight_mh for row in rows))
+        sum_of_weights_main = sum(row.relative_weight_main for row in rows)
+        sum_of_weights_mh = sum(row.relative_weight_mh for row in rows)
 
         last_weight_main = 0
         last_weight_mh = 0
@@ -2429,7 +2429,7 @@ class FloorController(AbstractController):
             self.builder, Gtk.ListStore, "trap_spawns_store"
         )
 
-        sum_of_weights = sum((int(row[3]) for row in iter_tree_model(store)))
+        sum_of_weights = sum(int(row[3]) for row in iter_tree_model(store))
 
         last_weight = 0
         last_weight_set_idx = 0
@@ -2506,7 +2506,7 @@ class FloorController(AbstractController):
             rows.sort(key=lambda e: e[0])
 
             sum_of_weights = sum(
-                (int(row[4]) for row in iter_tree_model(store) if row[2] is False)
+                int(row[4]) for row in iter_tree_model(store) if row[2] is False
             )
 
             last_weight = 0
@@ -2564,7 +2564,7 @@ class FloorController(AbstractController):
         if not self._loading:
             self.module.mark_floor_as_modified(self.item, modified_mappag)
 
-    def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum]):
+    def _comboxbox_for_enum(self, names: list[str], enum: type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
@@ -2573,7 +2573,7 @@ class FloorController(AbstractController):
                 builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1
             )
 
-    def _comboxbox_for_boolean(self, names: List[str]):
+    def _comboxbox_for_boolean(self, names: list[str]):
         store = Gtk.ListStore(int, str)  # id, name
         store.append([0, _("No")])
         store.append([1, _("Yes")])
@@ -2582,7 +2582,7 @@ class FloorController(AbstractController):
                 builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1
             )
 
-    def _comboxbox_for_tileset_id(self, names: List[str]):
+    def _comboxbox_for_tileset_id(self, names: list[str]):
         store = Gtk.ListStore(int, str)  # id, name
         for i in range(0, COUNT_VALID_TILESETS):
             if i >= TILESET_FIRST_BG:
@@ -2594,7 +2594,7 @@ class FloorController(AbstractController):
                 builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1
             )
 
-    def _comboxbox_for_music_id(self, names: List[str]):
+    def _comboxbox_for_music_id(self, names: list[str]):
         store = Gtk.ListStore(int, str)  # id, name
         music_entries = (
             self.module.project.get_rom_module()
@@ -2621,7 +2621,7 @@ class FloorController(AbstractController):
                 builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1
             )
 
-    def _comboxbox_for_fixed_floor_id(self, names: List[str]):
+    def _comboxbox_for_fixed_floor_id(self, names: list[str]):
         store = Gtk.ListStore(int, str)  # id, name
         store.append([0, _("No fixed room")])
         for i in range(1, COUNT_VALID_FIXED_FLOORS):

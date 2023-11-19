@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Optional, Tuple, Generator
+from typing import List, Optional, Tuple
+from collections.abc import Generator
 
 from skytemple_files.hardcoded.fixed_floor import (
     EntitySpawnEntry,
@@ -28,11 +29,11 @@ from skytemple_files.hardcoded.fixed_floor import (
 class EntityRuleContainer:
     def __init__(
         self,
-        entities: List[EntitySpawnEntry],
-        items: List[ItemSpawn],
-        monsters: List[MonsterSpawn],
-        tiles: List[TileSpawn],
-        stats: List[MonsterSpawnStats],
+        entities: list[EntitySpawnEntry],
+        items: list[ItemSpawn],
+        monsters: list[MonsterSpawn],
+        tiles: list[TileSpawn],
+        stats: list[MonsterSpawnStats],
     ):
         self.entities = entities
         self.items = items
@@ -42,7 +43,7 @@ class EntityRuleContainer:
 
     def get(
         self, idx: int
-    ) -> Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats]:
+    ) -> tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats]:
         entity = self.entities[idx]
         return (
             self.items[entity.item_id],
@@ -57,7 +58,7 @@ class EntityRuleContainer:
     def __iter__(
         self,
     ) -> Generator[
-        Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None
+        tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None
     ]:
         for i in range(0, len(self)):
             yield self.get(i)

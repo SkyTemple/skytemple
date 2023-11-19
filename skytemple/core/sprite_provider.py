@@ -46,8 +46,8 @@ if TYPE_CHECKING:
     from skytemple.core.rom_project import RomProject
 
 
-SpriteAndOffsetAndDims = Tuple[cairo.ImageSurface, int, int, int, int]
-ActorSpriteKey = Tuple[Union[str, int], int]
+SpriteAndOffsetAndDims = tuple[cairo.ImageSurface, int, int, int, int]
+ActorSpriteKey = tuple[Union[str, int], int]
 sprite_provider_lock = threading.RLock()
 logger = logging.getLogger(__name__)
 
@@ -159,26 +159,26 @@ class SpriteProvider:
 
     def __init__(self, project: "RomProject"):
         self._project = project
-        self._loader_surface_dims: Optional[Tuple[int, int]] = None
+        self._loader_surface_dims: Optional[tuple[int, int]] = None
         self._loader_surface: Optional[cairo.ImageSurface] = None
 
-        self._loaded__monsters: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
-        self._loaded__monsters_outlines: Dict[
+        self._loaded__monsters: dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
+        self._loaded__monsters_outlines: dict[
             ActorSpriteKey, SpriteAndOffsetAndDims
         ] = {}
-        self._loaded__actor_placeholders: Dict[
+        self._loaded__actor_placeholders: dict[
             ActorSpriteKey, SpriteAndOffsetAndDims
         ] = {}
-        self._loaded__objects: Dict[str, SpriteAndOffsetAndDims] = {}
-        self._loaded__traps: Dict[int, SpriteAndOffsetAndDims] = {}
-        self._loaded__items: Dict[int, SpriteAndOffsetAndDims] = {}
+        self._loaded__objects: dict[str, SpriteAndOffsetAndDims] = {}
+        self._loaded__traps: dict[int, SpriteAndOffsetAndDims] = {}
+        self._loaded__items: dict[int, SpriteAndOffsetAndDims] = {}
 
-        self._requests__monsters: List[ActorSpriteKey] = []
-        self._requests__monsters_outlines: List[ActorSpriteKey] = []
-        self._requests__actor_placeholders: List[ActorSpriteKey] = []
-        self._requests__objects: List[str] = []
-        self._requests__traps: List[int] = []
-        self._requests__items: List[int] = []
+        self._requests__monsters: list[ActorSpriteKey] = []
+        self._requests__monsters_outlines: list[ActorSpriteKey] = []
+        self._requests__actor_placeholders: list[ActorSpriteKey] = []
+        self._requests__objects: list[str] = []
+        self._requests__traps: list[int] = []
+        self._requests__items: list[int] = []
 
         self._monster_md: ModelContext[MdProtocol] = self._project.open_file_in_rom(
             MONSTER_MD, FileType.MD, threadsafe=True
@@ -189,7 +189,7 @@ class SpriteProvider:
         self._dungeon_bin: Optional[ModelContext[DungeonBinPack]] = None
 
         self._stripes = Image.open(os.path.join(data_dir(), "stripes.png"))
-        self._loaded_standins: Optional[Dict[int, int]] = None
+        self._loaded_standins: Optional[dict[int, int]] = None
 
         # init_loader MUST be called next!
 
@@ -455,7 +455,7 @@ class SpriteProvider:
 
     def _retrieve_monster_sprite(
         self, md_index, direction_id: int
-    ) -> Tuple[Image.Image, int, int, int, int]:
+    ) -> tuple[Image.Image, int, int, int, int]:
         try:
             with self._monster_md as monster_md:
                 actor_sprite_id = monster_md[md_index].sprite_index

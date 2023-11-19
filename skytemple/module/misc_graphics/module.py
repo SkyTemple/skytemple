@@ -150,13 +150,13 @@ class MiscGraphicsModule(AbstractModule):
             list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES)
         )
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
-        self.list_of_wtes_dungeon_bin: List[Wte]
-        self.list_of_wtus_dungeon_bin: List[Wtu]
-        self.list_of_zmappats_dungeon_bin: List[ZMappaT]
+        self.list_of_wtes_dungeon_bin: list[Wte]
+        self.list_of_wtus_dungeon_bin: list[Wtu]
+        self.list_of_zmappats_dungeon_bin: list[ZMappaT]
 
         self._item_tree: ItemTree
-        self._tree_level_iter: Dict[str, ItemTreeEntryRef] = {}
-        self._tree_level_dungeon_iter: Dict[str, ItemTreeEntryRef] = {}
+        self._tree_level_iter: dict[str, ItemTreeEntryRef] = {}
+        self._tree_level_dungeon_iter: dict[str, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
         self.dungeon_bin_context = self.project.open_file_in_rom(

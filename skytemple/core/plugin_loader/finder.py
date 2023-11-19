@@ -23,7 +23,8 @@ from importlib.util import spec_from_loader
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import ModuleType
-from typing import Sequence, Optional, Union, Iterable, List, Dict
+from typing import Optional, Union, List, Dict
+from collections.abc import Sequence, Iterable
 from wheel.wheelfile import WheelFile
 
 from skytemple.core.plugin_loader.loader import SkyTemplePluginLoader
@@ -38,8 +39,8 @@ else:
 class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
     settings: SkyTempleSettingsStore
     plugin_dir: str
-    plugin_names: List[str]
-    packages: Dict[str, str]
+    plugin_names: list[str]
+    packages: dict[str, str]
 
     def __init__(self, settings: SkyTempleSettingsStore, plugin_dir: str):
         self.settings = settings
@@ -102,11 +103,11 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
             dists.append(dist)
             # TODO: Is this OK to do like this?
             if dist.files is not None:
-                packages_in_dist = set(
+                packages_in_dist = {
                     x.parts[0]
                     for x in dist.files
                     if not x.parts[0].endswith(".dist-info")
-                )
+                }
                 for package in packages_in_dist:
                     self.packages[package] = os.path.join(temp_dir, package)
 

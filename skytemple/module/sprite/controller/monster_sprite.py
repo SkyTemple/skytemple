@@ -17,7 +17,8 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, List, Tuple, Optional, Iterable
+from typing import TYPE_CHECKING, List, Tuple, Optional
+from collections.abc import Iterable
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
 from zipfile import ZipFile
@@ -71,8 +72,8 @@ class MonsterSpriteController(AbstractController):
         self._drawing_is_active = 0
         self._draw_area: Optional[Gtk.DrawingArea] = None
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
-        self._rendered_frame_info: List[
-            Tuple[int, Tuple[cairo.Surface, int, int, int, int]]
+        self._rendered_frame_info: list[
+            tuple[int, tuple[cairo.Surface, int, int, int, int]]
         ] = []
 
         self.builder: Gtk.Builder = None  # type: ignore

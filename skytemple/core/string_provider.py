@@ -122,7 +122,7 @@ class StringProvider:
 
     def get_all(
         self, string_type: StringType, language: Optional[LanguageLike] = None
-    ) -> List[str]:
+    ) -> list[str]:
         """
         Returns all strings of the given type.
         If language is not set, the default ROM language is used.
@@ -144,7 +144,7 @@ class StringProvider:
             .string_encoding,
         )
 
-    def get_languages(self) -> List[Pmd2Language]:
+    def get_languages(self) -> list[Pmd2Language]:
         """Returns all supported languages."""
         return self._static_data.string_index_data.languages
 

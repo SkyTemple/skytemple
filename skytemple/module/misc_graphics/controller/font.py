@@ -80,7 +80,7 @@ class FontController(AbstractController):
         tree_store = Gtk.ListStore(*([str] * len(self.entry_properties)))
         entry_tree = builder_get_assert(self.builder, Gtk.TreeView, "entry_tree")
         entry_tree.set_model(tree_store)
-        self._column_mapping: List[Tuple[Gtk.CellRendererText, str]] = []
+        self._column_mapping: list[tuple[Gtk.CellRendererText, str]] = []
         for i, p in enumerate(self.entry_properties):
             renderer = Gtk.CellRendererText(editable=(p != "char"))
             renderer.connect("edited", self.on_row_value_changed)
@@ -172,7 +172,7 @@ class FontController(AbstractController):
 
     def _add_property_row(self, store, entry):
         prop = entry.get_properties()
-        row: List[Optional[str]] = [None] * len(self.entry_properties)
+        row: list[Optional[str]] = [None] * len(self.entry_properties)
         for i, c in enumerate(self.entry_properties):
             if c in prop:
                 row[i] = str(prop[c])
@@ -269,7 +269,7 @@ class FontController(AbstractController):
         # Deletes all selected font entries
         # Allows multiple deletions
         entry_tree = builder_get_assert(self.builder, Gtk.TreeView, "entry_tree")
-        active_rows: List[
+        active_rows: list[
             Gtk.TreePath
         ] = entry_tree.get_selection().get_selected_rows()[1]
         store = assert_not_none(cast(Optional[Gtk.ListStore], entry_tree.get_model()))
@@ -320,7 +320,7 @@ class FontController(AbstractController):
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
             entry_tree = builder_get_assert(self.builder, Gtk.TreeView, "entry_tree")
-            active_rows: List[
+            active_rows: list[
                 Gtk.TreePath
             ] = entry_tree.get_selection().get_selected_rows()[1]
             for x in active_rows:

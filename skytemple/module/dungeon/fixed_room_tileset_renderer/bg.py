@@ -51,7 +51,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
         self.chunks = chunks
         self.dma_drawer = DmaDrawer(self.dma)
         self._cached_bg: Optional[cairo.ImageSurface] = None
-        self._cached_rules: List[List[int]] = []
+        self._cached_rules: list[list[int]] = []
         self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.single_tiles = {
             DmaType.FLOOR: self._single_tile(DmaType.FLOOR),
@@ -68,7 +68,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
             )
         return self._cached_bg
 
-    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
+    def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
             mappings = self.dma_drawer.get_mappings_for_rules(
@@ -94,7 +94,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
             self.chunks.crop((cx, cy, cx + chunk_dim, cy + chunk_dim))
         )
 
-    def _draw_dungeon(self, mappings: List[List[int]]) -> Image.Image:
+    def _draw_dungeon(self, mappings: list[list[int]]) -> Image.Image:
         chunk_dim = DPCI_TILE_DIM * DPC_TILING_DIM
         chunk_width = int(self.chunks.width / chunk_dim)
 

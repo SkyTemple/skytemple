@@ -568,7 +568,7 @@ class MoveController(AbstractController):
             self.module.mark_move_as_modified(self.move_id)
 
     def _comboxbox_for_enum(
-        self, names: List[str], enum: Type[Enum], sort_by_name=False
+        self, names: list[str], enum: type[Enum], sort_by_name=False
     ):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
@@ -581,7 +581,7 @@ class MoveController(AbstractController):
             )
 
     def _comboxbox_for_enum_with_strings(
-        self, names: List[str], enum: Type[Enum], string_type: StringType
+        self, names: list[str], enum: type[Enum], string_type: StringType
     ):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:

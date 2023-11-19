@@ -42,10 +42,10 @@ class PortraitProvider:
         self._loader_surface: Optional[cairo.ImageSurface] = None
         self._error_surface: Optional[cairo.ImageSurface] = None
 
-        self._loaded: Dict[Tuple[int, int], cairo.Surface] = {}
-        self._loaded__is_fallback: Dict[Tuple[int, int], bool] = {}
+        self._loaded: dict[tuple[int, int], cairo.Surface] = {}
+        self._loaded__is_fallback: dict[tuple[int, int], bool] = {}
 
-        self._requests: List[Tuple[int, int]] = []
+        self._requests: list[tuple[int, int]] = []
 
         # init_loader MUST be called next!
 

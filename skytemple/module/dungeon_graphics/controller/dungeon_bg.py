@@ -107,7 +107,7 @@ class DungeonBgController(AbstractController):
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[chunk_idx][palette_animation_frame]
-        self.chunks_surfaces: List[List[List[cairo.Surface]]] = []
+        self.chunks_surfaces: list[list[list[cairo.Surface]]] = []
 
         self.drawer: Optional[Drawer] = None
         self.current_icon_view_renderer: Optional[DrawerCellRenderer] = None
@@ -287,7 +287,7 @@ class DungeonBgController(AbstractController):
         # For each chunk...
         for chunk_idx in range(0, len(self.dpc.chunks)):
             # For each frame of palette animation... ( applicable for this chunk )
-            pal_ani_frames: List[List[cairo.Surface]] = []
+            pal_ani_frames: list[list[cairo.Surface]] = []
             self.chunks_surfaces.append(pal_ani_frames)
 
             chunk_data = self.dpc.chunks[chunk_idx]
@@ -314,7 +314,7 @@ class DungeonBgController(AbstractController):
 
             for pal_ani in range(0, len_pal_ani):
                 # We don't have animated tiles, so ani_frames just has one entry.
-                ani_frames: List[cairo.Surface] = []
+                ani_frames: list[cairo.Surface] = []
                 pal_ani_frames.append(ani_frames)
                 # Switch out the palette with that from the palette animation
                 if has_pal_ani:

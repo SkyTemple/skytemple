@@ -60,7 +60,7 @@ class GfxcrunchModule(AbstractModule):
 
         return True
 
-    def get_gfxcrunch_cmd(self) -> Tuple[str, List[str], bool]:
+    def get_gfxcrunch_cmd(self) -> tuple[str, list[str], bool]:
         """Returns the CMD for gfxcrunch and the base argument list and if shell=True"""
         if sys.platform.startswith("win"):
             return os.path.join(data_dir(), GFXCRUNCH_BIN), [], False

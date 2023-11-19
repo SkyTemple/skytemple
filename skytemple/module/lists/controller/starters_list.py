@@ -74,8 +74,8 @@ class StartersListController(ListBaseController):
             self._default_player,
             self._default_partner,
         ) = self.module.get_starter_default_ids()
-        self._player_iters: Dict[int, Gtk.TreeIter] = {}
-        self._partner_iters: Dict[int, Gtk.TreeIter] = {}
+        self._player_iters: dict[int, Gtk.TreeIter] = {}
+        self._partner_iters: dict[int, Gtk.TreeIter] = {}
         self.string_provider = self.module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:

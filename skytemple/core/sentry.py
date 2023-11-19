@@ -138,7 +138,7 @@ def try_ignore_err(source: Callable[[], T], sink: Callable[[T], None]):
 
 
 @typing.no_type_check
-def collect_device_context() -> Dict[str, "Captured"]:
+def collect_device_context() -> dict[str, Captured]:
     import platform
     import socket
     import psutil
@@ -180,7 +180,7 @@ def collect_device_context() -> Dict[str, "Captured"]:
     )
 
 
-def collect_os_context() -> Dict[str, "Captured"]:
+def collect_os_context() -> dict[str, Captured]:
     import platform
 
     uname = platform.uname()
@@ -191,7 +191,7 @@ def collect_os_context() -> Dict[str, "Captured"]:
     }
 
 
-def collect_runtime_context() -> Dict[str, "Captured"]:
+def collect_runtime_context() -> dict[str, Captured]:
     import platform
 
     return {
@@ -201,7 +201,7 @@ def collect_runtime_context() -> Dict[str, "Captured"]:
     }
 
 
-def collect_app_context() -> Dict[str, "Captured"]:
+def collect_app_context() -> dict[str, Captured]:
     return {"app_start_time": APP_START_TIME.isoformat(), "app_version": version()}
 
 
@@ -342,7 +342,7 @@ def debugger_emulator_state(manager: DebuggerManager):
 
 
 # noinspection PyProtectedMember
-def collect_state_context() -> Dict[str, "Captured"]:
+def collect_state_context() -> dict[str, Captured]:
     from skytemple.controller.main import MainController
     from skytemple.core.rom_project import RomProject
     from skytemple_files.common.util import capture_any
@@ -393,18 +393,18 @@ def collect_state_context() -> Dict[str, "Captured"]:
     }
 
 
-def collect_config_context(settings: SkyTempleSettingsStore) -> Dict[str, Captured]:
+def collect_config_context(settings: SkyTempleSettingsStore) -> dict[str, Captured]:
     return dict(settings.loaded_config.items())  # type: ignore
 
 
 def capture(
     settings: SkyTempleSettingsStore,
-    exc_info: Optional[ExceptionInfo],
+    exc_info: ExceptionInfo | None,
     **error_context_in: Capturable,
 ) -> Optional[str]:
     from skytemple_files.common.util import capture_capturable
 
-    error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context_in.items()}  # type: ignore
+    error_context: dict[str, str | int] = {k: capture_capturable(v) for k, v in error_context_in.items()}  # type: ignore
     try_ignore_err(
         collect_device_context, lambda c: sentry_sdk.set_context("device", c)
     )

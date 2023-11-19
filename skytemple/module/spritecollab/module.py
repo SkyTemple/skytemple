@@ -169,7 +169,7 @@ class SpritecollabModule(AbstractModule):
             Gtk.MessageType.ERROR,
         )
 
-    def _show_sprite_diag(self, window: Gtk.Window) -> Optional[Tuple[bool, bool]]:
+    def _show_sprite_diag(self, window: Gtk.Window) -> Optional[tuple[bool, bool]]:
         diag: Gtk.Dialog = Gtk.Dialog()
         diag.set_parent(window)
         diag.set_transient_for(window)
@@ -235,9 +235,9 @@ class SpritecollabModule(AbstractModule):
 
 async def get_sprites(
     client: SpriteCollabClient,
-    form: Tuple[int, str],
+    form: tuple[int, str],
     copy_to_event_sleep_if_missing: bool,
-) -> Optional[Tuple[WanFile, Pmd2Sprite, int]]:
+) -> Optional[tuple[WanFile, Pmd2Sprite, int]]:
     async with client as session:
         sprites = await session.fetch_sprites(
             [form],

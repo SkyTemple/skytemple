@@ -37,8 +37,8 @@ class PmdSkyDebugController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
         self._selected_binary: Optional[str] = None
         self._selected_symbol_type: Optional[str] = None
-        self._all_selected_binaries: List[str] = []
-        self._all_symbol_types: List[str] = ["data", "functions"]
+        self._all_selected_binaries: list[str] = []
+        self._all_symbol_types: list[str] = ["data", "functions"]
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, "pmdsky_debug.glade")

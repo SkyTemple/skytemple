@@ -30,21 +30,21 @@ RAD = 2
 COLOR_MARKERS = (1.0, 0.3, 0)
 COLOR_SELECT = (0.7, 0.7, 1, 0.7)
 Num = Union[int, float]
-Color = Tuple[Num, Num, Num]
+Color = tuple[Num, Num, Num]
 
 
 class WorldMapDrawer:
     def __init__(
         self,
         draw_area: Gtk.Widget,
-        markers: List[MapMarkerPlacement],
+        markers: list[MapMarkerPlacement],
         cb_dungeon_name: Callable[[int], str],
         scale: int,
     ):
         self.draw_area = draw_area
 
-        self.markers: List[MapMarkerPlacement] = markers
-        self.markers_at_pos: Dict[Tuple[int, int], List[MapMarkerPlacement]] = {}
+        self.markers: list[MapMarkerPlacement] = markers
+        self.markers_at_pos: dict[tuple[int, int], list[MapMarkerPlacement]] = {}
         self.map_bg = None
         self.level_id = None
 
@@ -57,7 +57,7 @@ class WorldMapDrawer:
         self.mouse_y = 99999
         self._selected: Optional[MapMarkerPlacement] = None
         self._editing: Optional[MapMarkerPlacement] = None
-        self._editing_pos: Optional[Tuple[int, int]] = None
+        self._editing_pos: Optional[tuple[int, int]] = None
         self._hide: Optional[MapMarkerPlacement] = None
 
         self.tile_grid_plugin = GridDrawerPlugin(
@@ -183,7 +183,7 @@ class WorldMapDrawer:
         ctx.rectangle(x, y, w, h)
         ctx.fill()
 
-    def _draw_name(self, ctx: cairo.Context, marker_ids: List[int], x: int, y: int):
+    def _draw_name(self, ctx: cairo.Context, marker_ids: list[int], x: int, y: int):
         ctx.set_source_rgb(*COLOR_MARKERS)
         ctx.select_font_face(
             "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
@@ -206,7 +206,7 @@ class WorldMapDrawer:
     def set_editing(
         self,
         entity: Optional[MapMarkerPlacement],
-        editing_pos: Optional[Tuple[int, int]] = None,
+        editing_pos: Optional[tuple[int, int]] = None,
         hide: Optional[MapMarkerPlacement] = None,
     ):
         self._editing = entity

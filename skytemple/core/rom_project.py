@@ -22,7 +22,6 @@ import sys
 from enum import Enum, auto
 from typing import (
     Union,
-    Iterator,
     TYPE_CHECKING,
     Optional,
     Dict,
@@ -35,6 +34,7 @@ from typing import (
     Literal,
     cast,
 )
+from collections.abc import Iterator
 from datetime import datetime
 
 from gi.repository import GLib, Gtk
@@ -200,20 +200,20 @@ class RomProject:
         self.filename = filename
         self._rom: Optional[NintendoDSRom] = None
         self._rom_module: Optional["RomModule"] = None
-        self._loaded_modules: Dict[str, AbstractModule] = {}
+        self._loaded_modules: dict[str, AbstractModule] = {}
         self._sprite_renderer: Optional[SpriteProvider] = None
         self._string_provider: Optional[StringProvider] = None
         # Dict of filenames -> models
-        self._opened_files: Dict[str, Any] = {}
-        self._opened_files_contexts: Dict[str, ModelContext] = {}
+        self._opened_files: dict[str, Any] = {}
+        self._opened_files_contexts: dict[str, ModelContext] = {}
         # List of filenames that were requested to be opened threadsafe.
-        self._files_threadsafe: List[str] = []
-        self._files_unsafe: List[str] = []
+        self._files_threadsafe: list[str] = []
+        self._files_unsafe: list[str] = []
         # Dict of filenames -> file handler object
-        self._file_handlers: Dict[str, Type[DataHandler]] = {}
-        self._file_handler_kwargs: Dict[str, Dict[str, Any]] = {}
+        self._file_handlers: dict[str, type[DataHandler]] = {}
+        self._file_handler_kwargs: dict[str, dict[str, Any]] = {}
         # List of modified filenames
-        self._modified_files: List[str] = []
+        self._modified_files: list[str] = []
         self._forced_modified = False
         # Callback for opening views using iterators from the main view list.
         self._cb_open_view: Callable[[ItemTreeEntryRef], None] = cb_open_view
@@ -389,7 +389,7 @@ class RomProject:
     def open_file_in_rom(
         self,
         file_path_in_rom: str,
-        file_handler_class: Type[DataHandler[T]],
+        file_handler_class: type[DataHandler[T]],
         threadsafe: Literal[False] = False,
         **kwargs,
     ) -> T:
@@ -399,7 +399,7 @@ class RomProject:
     def open_file_in_rom(
         self,
         file_path_in_rom: str,
-        file_handler_class: Type[DataHandler[T]],
+        file_handler_class: type[DataHandler[T]],
         threadsafe: Literal[True],
         **kwargs,
     ) -> ModelContext[T]:
@@ -408,7 +408,7 @@ class RomProject:
     def open_file_in_rom(
         self,
         file_path_in_rom: str,
-        file_handler_class: Type[DataHandler[T]],
+        file_handler_class: type[DataHandler[T]],
         threadsafe=False,
         **kwargs,
     ):
@@ -439,7 +439,7 @@ class RomProject:
     def open_sir0_file_in_rom(
         self,
         file_path_in_rom: str,
-        sir0_serializable_type: Type[Sir0Serializable],
+        sir0_serializable_type: type[Sir0Serializable],
         threadsafe=False,
     ):
         """
@@ -638,7 +638,7 @@ class RomProject:
         return path in self._rom.filenames
 
     def create_new_file(
-        self, new_filename, model, file_handler_class: Type[DataHandler[T]], **kwargs
+        self, new_filename, model, file_handler_class: type[DataHandler[T]], **kwargs
     ):
         """Creates a new file in the ROM and fills it with the model content provided and
         writes the serialized model data there"""

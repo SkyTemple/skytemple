@@ -4,28 +4,28 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "skytemple"
-version = "1.6.0rc1"
+version = "1.6.0"
 authors = [
     {name = 'Marco "Capypara" Köpcke', email = "hello@capypara.de"},
     # see About dialog or GitHub contributors list for additional people.
 ]
 description = "GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky"
 readme = "README.rst"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 keywords = ["rom-hacking", "game-modding", "skytemple", "gtk"]
 license = {text = "GPL-3.0-or-later"}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
     "ndspy >= 3.0.0",
-    "skytemple-files[spritecollab] >= 1.6.0rc1, < 1.7.0",
+    "skytemple-files[spritecollab] >= 1.6.0, < 1.7.0",
     "pmdsky-debug-py",  #  Whatever version skytemple-files requires.
     "skytemple-dtef >= 1.6.0, < 1.7.0",
     "skytemple-icons >= 1.3.2, < 1.7.0",
@@ -33,8 +33,8 @@ dependencies = [
     "pygobject >= 3.26.0",
     "pycairo >= 1.16.0",
     "natsort >= 7.0.0",
-    "tilequant >= 1.0.0",
-    "skytemple-ssb-debugger >= 1.6.0rc1, < 1.7.0",
+    "tilequant >= 1.1.0",
+    "skytemple-ssb-debugger >= 1.6.0, < 1.7.0",
     "pygal >= 2.4.0",
     "CairoSVG >= 2.4.2",
     "gbulb >= 0.6.2",

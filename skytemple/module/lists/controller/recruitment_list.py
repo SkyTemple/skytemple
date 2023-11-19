@@ -42,10 +42,10 @@ logger = logging.getLogger(__name__)
 class RecruitmentListController(ListBaseController):
     def __init__(self, module: "ListsModule", *args):
         super().__init__(module, *args)
-        self._species: List[u16]
-        self._levels: List[u16]
-        self._locations: List[u8]
-        self._location_names: Dict[int, str] = {}
+        self._species: list[u16]
+        self._levels: list[u16]
+        self._locations: list[u8]
+        self._location_names: dict[int, str] = {}
         self._list_store: Gtk.ListStore
 
     def get_view(self) -> Gtk.Widget:

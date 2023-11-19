@@ -42,9 +42,9 @@ logger = logging.getLogger(__name__)
 class SpecialPcsController(ListBaseController):
     def __init__(self, module: "ListsModule", *args):
         super().__init__(module, *args)
-        self._list: List[SpecialEpisodePc]
+        self._list: list[SpecialEpisodePc]
         self._list_store: Gtk.ListStore
-        self._location_names: Dict[int, str] = {}
+        self._location_names: dict[int, str] = {}
         self.move_entries = self.module.get_waza_p().moves
 
     def get_view(self) -> Gtk.Widget:

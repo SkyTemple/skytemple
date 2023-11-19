@@ -96,7 +96,7 @@ It contains the following minimal contents:
 
     [project]
     name = "name_of_your_package"
-    requires-python = ">=3.8"
+    requires-python = ">=3.9"
     keywords = ["skytemple", "skytemple-plugin"]
     license = {text = "GPL-3.0-or-later"}
     classifiers = [
@@ -264,7 +264,7 @@ using the manylinux_ Docker images in order to be distributable.
 Please provide wheels for all Python versions and platforms supported
 by SkyTemple. This is currently:
 
-- Python 3.8 - 3.11
+- Python 3.9 - 3.12
 - Architecture x86_64 for Windows 10+, MacOS 11+, Linux (``manylinux2014``).
 - Architecture aarch64: Linux (``manylinux2014``).
 

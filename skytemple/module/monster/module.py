@@ -103,8 +103,8 @@ class MonsterModule(AbstractModule):
         self._tbl_talk: Optional[TblTalk] = None
 
         self._item_tree: ItemTree
-        self._tree_iter__entity_roots: Dict[int, ItemTreeEntryRef] = {}
-        self._tree_iter__entries: Dict[int, ItemTreeEntryRef] = {}
+        self._tree_iter__entity_roots: dict[int, ItemTreeEntryRef] = {}
+        self._tree_iter__entries: dict[int, ItemTreeEntryRef] = {}
         self.effective_base_attr = "md_index_base"
 
     @property
@@ -134,7 +134,7 @@ class MonsterModule(AbstractModule):
             self.effective_base_attr = "entid"
         b_attr = self.effective_base_attr
 
-        monster_entries_by_base_id: Dict[int, List[MdEntryProtocol]] = {}
+        monster_entries_by_base_id: dict[int, list[MdEntryProtocol]] = {}
         for entry in self.monster_md.entries:
             if getattr(entry, b_attr) not in monster_entries_by_base_id:
                 monster_entries_by_base_id[getattr(entry, b_attr)] = []
@@ -204,7 +204,7 @@ class MonsterModule(AbstractModule):
 
     def get_entry_both(
         self, item_id
-    ) -> Tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
+    ) -> tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
         num_entites = FileType.MD.properties().num_entities
         if item_id + num_entites < len(self.monster_md):
             return self.monster_md[item_id], self.monster_md[item_id + num_entites]
@@ -283,13 +283,13 @@ class MonsterModule(AbstractModule):
 
     def get_portraits_for_export(
         self, item_id
-    ) -> Tuple[
-        Optional[List[Optional[KaoImageProtocol]]],
-        Optional[List[Optional[KaoImageProtocol]]],
+    ) -> tuple[
+        Optional[list[Optional[KaoImageProtocol]]],
+        Optional[list[Optional[KaoImageProtocol]]],
     ]:
         num_entities = FileType.MD.properties().num_entities
-        portraits: Optional[List[Optional[KaoImageProtocol]]] = None
-        portraits2: Optional[List[Optional[KaoImageProtocol]]] = None
+        portraits: Optional[list[Optional[KaoImageProtocol]]] = None
+        portraits2: Optional[list[Optional[KaoImageProtocol]]] = None
         portrait_module = self.project.get_module("portrait")
         kao: KaoProtocol = portrait_module.kao
         if -1 < item_id < kao.n_entries():
@@ -367,7 +367,7 @@ class MonsterModule(AbstractModule):
         return self.tbl_talk.get_dialogues(group, dialogue_types)
 
     def set_personality_dialogues(
-        self, group: int, dialogue_types: TalkType, dialogues: List[u16]
+        self, group: int, dialogue_types: TalkType, dialogues: list[u16]
     ):
         return self.tbl_talk.set_dialogues(group, dialogue_types, dialogues)
 
@@ -479,7 +479,7 @@ class MonsterModule(AbstractModule):
         n2m_model.set_list(sorted_list)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.n2m}")
 
-    def import_from_xml(self, selected_monsters: List[int], xml: Element):
+    def import_from_xml(self, selected_monsters: list[int], xml: Element):
         b_attr = "md_index_base"
         if self.project.is_patch_applied("ExpandPokeList"):
             b_attr = "md_index"

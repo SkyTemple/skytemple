@@ -298,7 +298,7 @@ class GuestPokemonController(ListBaseController):
             self.builder, Gtk.ListStore, "store_tree_extra_dungeon_data"
         )
         store.clear()
-        dungeons: List[Pmd2DungeonDungeon] = self.static_data.dungeon_data.dungeons
+        dungeons: list[Pmd2DungeonDungeon] = self.static_data.dungeon_data.dungeons
         for idx, item in enumerate(
             ExtraDungeonDataList.read(self.arm9, self.static_data)
         ):

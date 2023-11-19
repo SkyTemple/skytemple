@@ -52,7 +52,7 @@ class AbstractListener(ABC):
         self,
         module: AbstractModule,
         controller: AbstractController,
-        breadcrumbs: List[str],
+        breadcrumbs: list[str],
     ):
         """
         Triggered, when a view in the main UI was fully and successfully loaded.
