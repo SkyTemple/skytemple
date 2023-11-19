@@ -275,6 +275,11 @@ jobs:
 
       - name: Create installer
         run: |
+          # XXX:
+          # For some reasons SkyTemple fails to install graphicsmagick with the system Python, even though
+          # Randomizer can do it just fine. As a workaround, we force the installed brew Python version.
+          PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:$PATH
+          
           # See https://github.com/sindresorhus/create-dmg
           # create-dmg automatically generates an installer icon if imagemagick is installed
           brew install graphicsmagick imagemagick
