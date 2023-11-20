@@ -489,7 +489,7 @@ class StMapBgBgPage(Gtk.Box):
                     chunk_y,
                     self.drawer.get_selected_chunk_id(),
                 )
-                self.drawer.mappings = [self.bma.layer0, self.bma.layer1]
+                self.drawer.mappings = [self.bma.layer0, self.bma.layer1]  # type: ignore
 
     def _set_col_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
