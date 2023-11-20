@@ -2,7 +2,7 @@
 import os
 import sys
 from pathlib import PurePosixPath, Path
-from PyInstaller.utils.hooks import collect_entry_point
+from PyInstaller.utils.hooks import collect_entry_point, copy_metadata
 
 pkg_path = os.path.abspath(os.path.join("..", "skytemple"))
 site_packages = next(p for p in sys.path if "site-packages" in p)
@@ -82,6 +82,7 @@ additional_binaries = [
 block_cipher = None
 
 # SkyTemple entrypoints
+st_metadatas = copy_metadata("skytemple")
 st_datas, st_hiddenimports = collect_entry_point("skytemple")
 
 
@@ -89,7 +90,7 @@ a = Analysis(
     [os.path.join("..", "skytemple", "main.py")],
     pathex=[os.path.abspath(os.path.join("..", "skytemple"))],
     binaries=additional_binaries,
-    datas=additional_datas + st_datas,
+    datas=additional_datas + st_datas + st_metadatas,
     hiddenimports=[
         "packaging.version",
         "packaging.specifiers",
