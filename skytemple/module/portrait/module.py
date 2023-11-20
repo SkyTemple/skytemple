@@ -29,9 +29,10 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.item_tree import ItemTree
 from skytemple.core.rom_project import RomProject
 from skytemple.module.portrait.portrait_provider import PortraitProvider
-from skytemple.module.portrait.controller.portrait import PortraitController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.kao.protocol import KaoProtocol
+
+from skytemple.module.portrait.widget.portrait import StPortraitPortraitPage
 
 logger = logging.getLogger(__name__)
 PORTRAIT_FILE = "FONT/kaomado.kao"
@@ -63,8 +64,7 @@ class PortraitModule(AbstractModule):
 
     def get_editor(self, item_id: int, modified_callback) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = PortraitController(self, item_id, modified_callback)
-        return controller.get_view()
+        return StPortraitPortraitPage(self, item_id, modified_callback)
 
     def get_portrait_provider(self) -> PortraitProvider:
         if not self._portrait_provider__was_init:

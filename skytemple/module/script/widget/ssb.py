@@ -27,7 +27,7 @@ if TYPE_CHECKING:
     from skytemple.module.script.module import ScriptModule
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "ssb_page.ui"))
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "ssb.ui"))
 class StScriptSsbPage(Gtk.Box):
     __gtype_name__ = "StScriptSsbPage"
 
@@ -35,7 +35,7 @@ class StScriptSsbPage(Gtk.Box):
     item_data: None
 
     # noinspection PyUnusedLocal
-    def __init__(self, module: ScriptModule, item_data):
+    def __init__(self, module: ScriptModule, item_data: None):
         super().__init__()
 
         self.module = module

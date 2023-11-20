@@ -46,12 +46,9 @@ from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHan
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import (
     PosMarkEditorController,
 )
-from skytemple.module.script.controller.ssa import SsaController
-from skytemple.module.script.controller.main import MainController, SCRIPT_SCENES
 from skytemple_files.common.script_util import (
     load_script_files,
     SCRIPT_DIR,
@@ -74,6 +71,9 @@ from skytemple_files.list.level.model import LevelListBin
 from skytemple_files.script.lsd.model import Lsd
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple.module.script.widget.main import SCRIPT_SCENES, StScriptMainPage
+from skytemple.module.script.widget.map import StScriptMapPage
+from skytemple.module.script.widget.ssa import StScriptSsaPage
 from skytemple.module.script.widget.ssb import StScriptSsbPage
 
 LEVEL_LIST = "BALANCE/level_list.bin"
@@ -119,7 +119,7 @@ class ScriptModule(AbstractModule):
                 icon="skytemple-e-ground-symbolic",
                 name=SCRIPT_SCENES,
                 module=self,
-                view_class=MainController,
+                view_class=StScriptMainPage,
                 item_data=0,
             ),
         )
@@ -238,7 +238,7 @@ class ScriptModule(AbstractModule):
                     icon="skytemple-folder-symbolic",
                     name=map_obj["name"],
                     module=self,
-                    view_class=MapController,
+                    view_class=StScriptMapPage,
                     item_data=map_obj["name"],
                 ),
             )
@@ -252,7 +252,7 @@ class ScriptModule(AbstractModule):
                         icon="skytemple-e-ground-symbolic",
                         name=_("Enter (sse)"),
                         module=self,
-                        view_class=SsaController,
+                        view_class=StScriptSsaPage,
                         item_data={
                             "map": map_obj["name"],
                             "file": f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}",
@@ -284,7 +284,7 @@ class ScriptModule(AbstractModule):
                         icon="skytemple-e-ground-symbolic",
                         name=stem,
                         module=self,
-                        view_class=SsaController,
+                        view_class=StScriptSsaPage,
                         item_data={
                             "map": map_obj["name"],
                             "file": filename,
@@ -316,7 +316,7 @@ class ScriptModule(AbstractModule):
                         icon="skytemple-e-ground-symbolic",
                         name=stem,
                         module=self,
-                        view_class=SsaController,
+                        view_class=StScriptSsaPage,
                         item_data={
                             "map": map_obj["name"],
                             "file": filename,
@@ -553,7 +553,7 @@ class ScriptModule(AbstractModule):
                 icon="skytemple-folder-symbolic",
                 name=new_name,
                 module=self,
-                view_class=MapController,
+                view_class=StScriptMapPage,
                 item_data=new_name,
             ),
         )
@@ -596,7 +596,7 @@ class ScriptModule(AbstractModule):
             view = entry.view_class
             data = entry.item_data
             if (
-                issubclass(view, SsaController)
+                issubclass(view, StScriptSsaPage)
                 and isinstance(data, dict)
                 and "type" in data
                 and data["type"] == "sse"
@@ -621,7 +621,7 @@ class ScriptModule(AbstractModule):
                 icon="skytemple-e-ground-symbolic",
                 name=_("Enter (sse)"),
                 module=self,
-                view_class=SsaController,
+                view_class=StScriptSsaPage,
                 item_data={
                     "map": level_name,
                     "file": file_name,
@@ -647,7 +647,7 @@ class ScriptModule(AbstractModule):
                 icon="skytemple-e-ground-symbolic",
                 name=scene_name,
                 module=self,
-                view_class=SsaController,
+                view_class=StScriptSsaPage,
                 item_data={
                     "map": level_name,
                     "file": file_name,
@@ -668,7 +668,7 @@ class ScriptModule(AbstractModule):
                 icon="skytemple-e-ground-symbolic",
                 name=scene_name,
                 module=self,
-                view_class=SsaController,
+                view_class=StScriptSsaPage,
                 item_data={
                     "map": level_name,
                     "file": file_name,
@@ -755,7 +755,7 @@ class ScriptModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, SsaController):
+        if isinstance(open_view, StScriptSsaPage):
             pass  # todo
         return None
 
