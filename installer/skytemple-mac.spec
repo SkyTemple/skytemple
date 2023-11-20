@@ -3,6 +3,7 @@ import os
 import sys
 import shutil
 from pathlib import PurePosixPath, Path
+from PyInstaller.utils.hooks import collect_entry_point
 
 pkg_path = os.path.abspath(os.path.join('..', 'skytemple'))
 site_packages = next(p for p in sys.path if 'site-packages' in p)
@@ -57,14 +58,17 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
 
 block_cipher = None
 
+# SkyTemple entrypoints
+st_datas, st_hiddenimports = collect_entry_point("skytemple")
+
 
 a = Analysis(['../skytemple/main.py'],
              pathex=[os.path.abspath(os.path.join('..', 'skytemple'))],
              binaries=additional_binaries,
-             datas=additional_datas,
+             datas=additional_datas + st_datas,
              hiddenimports=['packaging.version', 'packaging.specifiers',
                             'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api',
-                            'certifi', 'tilequant_dsoinfo'],
+                            'certifi', 'tilequant_dsoinfo'] + st_hiddenimports,
              hookspath=[],
              hooksconfig={
                  "gi": {
