@@ -384,8 +384,12 @@ class MainController(AbstractController):
                             idle_anim2,
                         )
 
+                        safe_name = main_name
+                        for c in r'<>:"/\|?*':
+                            safe_name = safe_name.replace(c, "_")
+
                         fn = os.path.join(
-                            directory, f"{entry.md_index:04}_{main_name}.xml"
+                            directory, f"{entry.md_index:04}_{safe_name}.xml"
                         )
 
                         with open_utf8(fn, "w") as file:
