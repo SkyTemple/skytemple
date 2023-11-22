@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-11-20 20:14+0000\n"
-"PO-Revision-Date: 2023-11-20 20:22\n"
+"POT-Creation-Date: 2023-11-22 18:07+0000\n"
+"PO-Revision-Date: 2023-11-22 18:32\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2102,7 +2102,7 @@ msgstr "Impossible de charger l'entrée {old_index},{old_subindex} du fichier KA
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "Impossible de convertir l'image PIL pour le fichier KAO : les dimensions de l'image doivent être de {img_dim}x{img_dim} pixels."
 
-#: skytemple-files/skytemple_files/graphics/kao/_model.py:489
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:491
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Ce portrait ne se compresse pas bien, la taille résultante est plus grande que 800 octets ({len(new_img_compressed)} au total).\n"
@@ -2986,72 +2986,72 @@ msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithm
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:214
-#: skytemple-files/skytemple_files/patch/patches.py:224
+#: skytemple-files/skytemple_files/patch/patches.py:226
+#: skytemple-files/skytemple_files/patch/patches.py:236
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Le correctif « {name} » est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:233
+#: skytemple-files/skytemple_files/patch/patches.py:245
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} »."
 
-#: skytemple-files/skytemple_files/patch/patches.py:242
+#: skytemple-files/skytemple_files/patch/patches.py:254
 #: skytemple/skytemple/module/patch/controller/asm.py:418
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} ». Ce correctif est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:253
+#: skytemple-files/skytemple_files/patch/patches.py:265
 msgid "No configuration was given."
 msgstr "Aucune configuration fournie."
 
-#: skytemple-files/skytemple_files/patch/patches.py:258
+#: skytemple-files/skytemple_files/patch/patches.py:270
 msgid "Missing configuration value."
 msgstr "Valeur de configuration manquante."
 
-#: skytemple-files/skytemple_files/patch/patches.py:264
-#: skytemple-files/skytemple_files/patch/patches.py:270
 #: skytemple-files/skytemple_files/patch/patches.py:276
-#: skytemple-files/skytemple_files/patch/patches.py:284
-#: skytemple-files/skytemple_files/patch/patches.py:301
+#: skytemple-files/skytemple_files/patch/patches.py:282
+#: skytemple-files/skytemple_files/patch/patches.py:288
+#: skytemple-files/skytemple_files/patch/patches.py:296
+#: skytemple-files/skytemple_files/patch/patches.py:313
 msgid "Invalid configuration value."
 msgstr "Valeur de configuration invalide."
 
-#: skytemple-files/skytemple_files/patch/patches.py:272
+#: skytemple-files/skytemple_files/patch/patches.py:284
 msgid "Must be >= {}."
 msgstr "Doit être ≥ {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:278
+#: skytemple-files/skytemple_files/patch/patches.py:290
 msgid "Must be <= {}."
 msgstr "Doit être ≤ {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:393
+#: skytemple-files/skytemple_files/patch/patches.py:405
 msgid "config.xml missing in patch package."
 msgstr "Fichier config.xml manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:396
+#: skytemple-files/skytemple_files/patch/patches.py:408
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Erreur de syntaxe dans le fichier config.xml lors de la lecture du paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:409
+#: skytemple-files/skytemple_files/patch/patches.py:421
 msgid "patch.py missing in patch package."
 msgstr "Fichier patch.py manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:412
+#: skytemple-files/skytemple_files/patch/patches.py:424
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "patch.py du paquet du patch contient un erreur syntaxique."
 
-#: skytemple-files/skytemple_files/patch/patches.py:420
+#: skytemple-files/skytemple_files/patch/patches.py:432
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs (« PatchHandler »)."
 
-#: skytemple-files/skytemple_files/patch/patches.py:429
+#: skytemple-files/skytemple_files/patch/patches.py:441
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Le paquet de correctifs ne contient aucune entrée de configuration dans config.xml pour le nom du correctif géré par ce gestionnaire."
 
-#: skytemple-files/skytemple_files/patch/patches.py:441
+#: skytemple-files/skytemple_files/patch/patches.py:453
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire « {handler.name} »."
@@ -3323,7 +3323,7 @@ msgstr ""
 msgid "Frame durations out of range while trying to build color."
 msgstr ""
 
-#: skytemple-rust/src/st_kao.rs:96
+#: skytemple-rust/src/st_kao.rs:97
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Ce portrait ne se compresse pas bien, la taille compressée est plus grande que 800 octets ({} au total).\n"
@@ -3544,7 +3544,7 @@ msgid "_Cancel"
 msgstr "_Annuler"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:331
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:994
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:999
 #: skytemple/skytemple/_i18n.py:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:98
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:304
@@ -3575,7 +3575,7 @@ msgstr "Le fichier est encore chargé dans la RAM ! Pour l'instant, vous pouvez 
 "Êtes-vous sûr de vouloir fermer ce fichier ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:346
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1656
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1661
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:531
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:396
@@ -3838,112 +3838,112 @@ msgstr "Image PNG (*.png)"
 msgid "Save Screenshot..."
 msgstr "Sauvegarder la capture d'écran..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:813
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:818
 msgid "Open Scenes..."
 msgstr "Ouvrir les Scènes..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:820
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:825
 msgid "Open Scene..."
 msgstr "Ouvrir la Scène..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:829
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:834
 msgid "Create directory..."
 msgstr "Créer un répertoire..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:831
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:836
 msgid "Create new script file..."
 msgstr "Créer un nouveau fichier de script..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:836
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:908
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:841
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:913
 msgid "Macros"
 msgstr "Macros"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:839
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:844
 msgid "Delete directory..."
 msgstr "Supprimer un répertoire..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:847
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:852
 msgid "Delete script file..."
 msgstr "Supprimer un fichier de script..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:856
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:861
 msgid "Create Directory"
 msgstr "Créer un répertoire"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:856
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:861
 msgid "Name of the directory:"
 msgstr "Nom du répertoire :"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:864
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:869
 msgid "Create File"
 msgstr "Créer un fichier"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:864
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:869
 msgid "Name of the new script file:"
 msgstr "Nom du nouveau fichier de script : "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:876
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:881
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
 msgstr "Voulez-vous supprimer le répertoire {row[1]} ainsi que tout son contenu ?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:884
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:889
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
 msgstr "Voulez-vous vraiment supprimer le fichier de script {row[1]} ?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:922
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:927
 msgid "Common"
 msgstr "Commun"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:933
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1428
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:938
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1433
 #: skytemple/skytemple/module/script/module.py:253
 #: skytemple/skytemple/module/script/module.py:622
 msgid "Enter (sse)"
 msgstr "Entrée (sse)"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:944
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1431
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:949
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1436
 #: skytemple/skytemple/module/script/module.py:270
 #: skytemple/skytemple/module/script/module.py:565
 msgid "Acting (ssa)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:954
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:959
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1440
 #: skytemple/skytemple/module/script/module.py:302
 #: skytemple/skytemple/module/script/module.py:576
 msgid "Sub (sss)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:991
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:996
 msgid "Save dumped block..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1227
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1232
 msgid "Unable to save savestate!"
 msgstr "Impossible de sauvegarde la savestate !"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1263
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1268
 msgid "Unable to load savestate!"
 msgstr "Impossible de charger la savestate !"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1376
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1381
 msgid "The game is stopped."
 msgstr "Le jeu est en pause."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1385
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1390
 msgid "The game is paused."
 msgstr "Le jeu est en pause."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1490
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1495
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr "Le débogueur s'est interrompu dans le script {ssb.file_name}."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1652
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1657
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
@@ -3953,12 +3953,12 @@ msgstr "Les modifications de certaines variables n'ont pas encore été enregist
 "Vous devez sauvegarder ces variables pour les recharger après le redémarrage.\n\n"
 "Êtes-vous sûr de vouloir continuer ?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1715
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1720
 msgid "Delete"
 msgstr "Supprimer"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1717
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1728
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1733
 #: skytemple/skytemple/controller/main.py:991
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/controller/main.py:126
@@ -3971,7 +3971,7 @@ msgstr "Supprimer"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1718
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1723
 msgid "You will not be able to restore it."
 msgstr "Vous ne pourrez pas les restaurer."
 
@@ -4847,7 +4847,7 @@ msgid "The script contains a syntax error, please fix it before editing the Posi
 msgstr "Le script contient une erreur de syntaxe, veuillez la corriger avant de modifier le marqueur de position.\n"
 "Erreur de décodage : {err}"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:42
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:41
 msgid "Constants & Variables"
 msgstr "Constantes et variables"
 
