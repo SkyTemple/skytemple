@@ -64,20 +64,24 @@ elif sys.platform.startswith("win"):
     if failed_to_set_locale:
         failed_to_set_locale = False
 
-        lang, env = locale.getlocale()
+        lang, enc = locale.getlocale()
         print(
-            f"WARNING: Failed processing current locale {lang}.{env}. Falling back to {lang}"
+            f"WARNING: Failed processing current locale {lang}.{enc}. Falling back to {lang}"
         )
-        os.environ["LANG"] = lang
-        ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
-        try:
-            locale.setlocale(locale.LC_ALL, lang)
-        except:
-            failed_to_set_locale = True
+        # If this returns None for lang, then we bail!
+        if lang is not None:
+            os.environ["LANG"] = lang
+            ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
+            try:
+                locale.setlocale(locale.LC_ALL, lang)
+            except:
+                failed_to_set_locale = True
 
-        try:
-            locale.getlocale()
-        except:
+            try:
+                locale.getlocale()
+            except:
+                failed_to_set_locale = True
+        else:
             failed_to_set_locale = True
 
         if failed_to_set_locale:
