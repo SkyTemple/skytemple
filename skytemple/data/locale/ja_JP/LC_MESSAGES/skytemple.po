@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-07 11:21\n"
+"PO-Revision-Date: 2023-12-07 13:05\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1138,11 +1138,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:40
 msgid "Scenario Below or Equal"
-msgstr ""
+msgstr "シナリオ以前"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:41
 msgid "Scenario Greater or Equal"
-msgstr "シナリオ以上"
+msgstr "シナリオ以降"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:37
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:348
@@ -1367,7 +1367,7 @@ msgstr "マグマ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:523
 msgid "Water"
-msgstr "みず"
+msgstr "水上"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:546
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:54
@@ -1472,15 +1472,15 @@ msgstr "待機 (グラウンド)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:35
 msgid "Physical Move"
-msgstr "ぶつり"
+msgstr "物理"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:36
 msgid "Special Move"
-msgstr "とくしゅ"
+msgstr "特殊"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:37
 msgid "Status Move"
-msgstr "へんか"
+msgstr "変化"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:60
 msgid "Enemies"
@@ -2066,7 +2066,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
 #: skytemple-rust/src/st_dpla.rs:121
 msgid "This palette has no animation."
-msgstr ""
+msgstr "このパレットにはアニメーションがありません。"
 
 #: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:100
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/model.py:102
@@ -2243,7 +2243,7 @@ msgstr "泡"
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:328
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:355
 msgid "Earthquake"
-msgstr "地震"
+msgstr "じしん"
 
 #. TRANSLATORS: Effect of a tileset's secret power move
 #. TRANSLATORS: Move name
@@ -2270,15 +2270,15 @@ msgstr "すいみん"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:335
 msgid "Speed -1"
-msgstr "いどうそくど -1"
+msgstr "移動速度 -1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:338
 msgid "Attack -1"
-msgstr "こうげき -1"
+msgstr "攻撃 -1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:342
 msgid "Accuracy -1"
-msgstr "めいちゅう -1"
+msgstr "命中 -1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:345
 msgid "Cringe"
@@ -2660,15 +2660,15 @@ msgstr "歩きアニメーション(1フレーム目)"
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:235
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
-msgstr ""
+msgstr "パッチ適用エラー: {ex}"
 
 #: skytemple-files/skytemple_files/patch/category.py:26
 msgid "Improvements and Tweaks"
-msgstr ""
+msgstr "改善と調整"
 
 #: skytemple-files/skytemple_files/patch/category.py:29
 msgid "New Mechanics"
-msgstr ""
+msgstr "新しい仕組み"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:31
@@ -6620,7 +6620,7 @@ msgstr "ウェイト"
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:69
 #: skytemple/skytemple/module/lists/controller/animations.glade:1156
 msgid "Traps"
-msgstr "トラップ"
+msgstr "罠"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3844
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:59
@@ -7153,11 +7153,11 @@ msgstr "タイルセット: "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:136
 msgid "Tileset Example:"
-msgstr ""
+msgstr "タイルセット例:"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:148
 msgid "Color Map:"
-msgstr ""
+msgstr "カラーマップ:"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:239
 msgid "Weather: "
@@ -7174,7 +7174,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:329
 #: skytemple/skytemple/module/dungeon_graphics/module.py:199
 msgid "Color Map"
-msgstr ""
+msgstr "カラーマップ"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:88
 msgid "Export current colormap as PNG..."
@@ -7570,20 +7570,21 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:40
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:40
 msgid "Dungeon Graphics"
-msgstr ""
+msgstr "ダンジョングラフィック"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:55
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged. \n"
 "It also lets you edit backgrounds used for boss fights and other dungeon maps."
-msgstr ""
+msgstr "このセクションでは、ダンジョンタイルのグラフィックや配置方法を編集できます。\n"
+"ボス戦やその他のダンジョンマップに使われる背景を編集することもできます。"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:124
 msgid "Minimap Color"
-msgstr ""
+msgstr "ミニマップの色"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:139
 msgid "Stirring Effect"
-msgstr ""
+msgstr "ターン制限エフェクト"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:154
 msgid "Secret Power"
@@ -7591,7 +7592,7 @@ msgstr "ひみつのちから"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:169
 msgid "Camouflage"
-msgstr ""
+msgstr "ほごしょく"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:184
 msgid "Nature Power"
@@ -7599,11 +7600,11 @@ msgstr "しぜんのちから"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:199
 msgid "Weather"
-msgstr ""
+msgstr "天候エフェクト"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:214
 msgid "Underwater?"
-msgstr ""
+msgstr "水の上"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:239
 msgid "Tileset and Background Properties:"
@@ -7848,11 +7849,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/module.py:77
 msgid "Tilesets"
-msgstr ""
+msgstr "タイルセット"
 
 #: skytemple/skytemple/module/dungeon_graphics/module.py:79
 msgid "This section lets you edit the tilesets that are used for dungeons."
-msgstr ""
+msgstr "このセクションでは、ダンジョンに使用されるタイルセットを編集できます。"
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:7
 msgid "gfxcrunch"
@@ -8171,18 +8172,21 @@ msgstr "ゲストポケモン"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:153
 msgid "Edits which dungeons add guest pokémon to your party, as well as some additional dungeon restrictions."
-msgstr ""
+msgstr "パーティーにゲストポケモンを追加するダンジョンを編集したり、ダンジョンの制限の追加ができます。"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
 "To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<Not available>\n\n"
+"ゲストポケモンデータを表示および編集するには、「パッチ」>「ASM」メニューから「EditExtraPokemon」\n"
+"ASM パッチを適用してください。\n"
+"すでに適用している場合は、最新のバージョンを使用するために再度適用してください。"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:215
 msgid "Dungeon Guest Pokémon"
-msgstr ""
+msgstr "ダンジョンのゲストポケモン"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:231
 msgid "From this menu you can change which dungeons add additional guest pokémon to your party when they are <b>uncleared</b>. You can also set some additional restrictions and edit guest pokémon data."
@@ -8190,11 +8194,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:314
 msgid "Guest pokémon 1"
-msgstr ""
+msgstr "ゲストポケモン 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:328
 msgid "Guest pokémon 2"
-msgstr ""
+msgstr "ゲストポケモン 2"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:342
 msgid "HLR (uncleared)"
@@ -8214,7 +8218,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:461
 msgid "Pokémon ID"
-msgstr ""
+msgstr "ポケモンID"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:482
 msgid "Joined at"
@@ -8256,7 +8260,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
 #: skytemple/skytemple/module/lists/module.py:242
 msgid "Guest Pokémon"
-msgstr ""
+msgstr "ゲストポケモン"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.py:96
 msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A value of -1 represents an empty entry (no guest pokémon).\n"
@@ -8289,7 +8293,9 @@ msgid "If 9999 IQ Points are required, the skill is unused.\n"
 "If -1 IQ Point is required, the skill is unlocked by default.\n"
 "If two skills have the same restriction group they can not be enabled at the same time.\n\n"
 "Editing IQ Group assignments requires the 'CompressIQData' patch to be applied."
-msgstr ""
+msgstr "必要なかしこさ値が「9999」の場合、未使用のかしこさとして扱われます。\n"
+"「-1」の場合、かしこさ値に関係なくデフォルトで習得します。\n"
+"2つのかしこさが同じ制限グループに属している場合、それらを同時に有効化することはできません。"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
@@ -9911,7 +9917,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/module.py:81
 msgid "Misc. Graphics"
-msgstr ""
+msgstr "その他のグラフィック"
 
 #: skytemple/skytemple/module/misc_graphics/module.py:82
 msgid "This section lets you edit miscellaneous graphics."
@@ -9931,7 +9937,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:182
 msgid "Graph"
-msgstr ""
+msgstr "グラフ"
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:226
 #: skytemple/skytemple/module/monster/controller/level_up.py:58
@@ -10102,7 +10108,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/main.glade:456
 msgid "Choose a Pokémon form on the left to edit it's data.\n"
 "You can use the button below to export data of multiple Pokémon forms at once."
-msgstr ""
+msgstr "ポケモンデータを編集するには、左のサイドバーからポケモンフォームを選択します。\n"
+"また、下のボタンから複数のポケモンフォームのデータを一括エクスポートすることができます。"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:498
 msgid "Bulk Export"
@@ -10110,7 +10117,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/main.glade:528
 msgid "Pokémon Data"
-msgstr ""
+msgstr "ポケモンデータ"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:551
 msgid "Here you can edit the different personality groups."
@@ -11744,7 +11751,8 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:874
 msgid "Here you can edit Metronome's movepool.\n"
 "Each move in this list has the same chance of being used by Metronome."
-msgstr ""
+msgstr "技「ゆびをふる」で発動する技のプールを編集します。\n"
+"これらの技はすべて同じ確率で発動します。"
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:999
 msgid "Metronome"
@@ -12529,7 +12537,9 @@ msgstr ""
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite and edit it with PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTempleはスプライトの編集をサポートしていません。\n"
+"エクスポートしたスプライトはPsyCommandoの<a href=\"gfxcrunch\">gfxcrunch</a>を使用して編集することができます。\n"
+"※SkyTempleはインポートしたファイルを検証しません。"
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:180
 msgid "You can also replace this object with a static sprite.\n"
@@ -12545,24 +12555,26 @@ msgstr "画像をインポート"
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite in the gfxcrunch format and import it back again.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTempleはスプライトの編集をサポートしていません。\n"
+"ただし、スプライトをgfxcrunch形式でエクスポートし、再びインポートすることはできます。\n"
+"※SkyTempleはインポートしたファイルを検証しません。"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:40
 #: skytemple/skytemple/module/sprite/controller/object_main.py:33
 msgid "Object Sprites"
-msgstr ""
+msgstr "オブジェクトスプライト"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:56
 msgid "This section lets you import and export object sprites."
-msgstr ""
+msgstr "このセクションでは、オブジェクトスプライトをインポートおよびエクスポートできます。"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:96
 msgid "New Object Sprite"
-msgstr ""
+msgstr "新規オブジェクトスプライト"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:50
 msgid "Create Object Sprite"
-msgstr ""
+msgstr "オブジェクトスプライトを作成"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:50
 msgid "Sprite Name"
@@ -12578,7 +12590,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:91
 msgid "Object sprite added successfully"
-msgstr ""
+msgstr "オブジェクトスプライトを追加しました。"
 
 #: skytemple/skytemple/module/sprite/module.py:168
 msgid "Import WAN sprite..."
