@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-02 12:24\n"
+"PO-Revision-Date: 2023-12-07 08:53\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -25,7 +25,7 @@ msgstr "英語"
 
 #: /dev/fd/63:2 /dev/fd/63:125
 msgid "Explorer Ranks Names"
-msgstr "たんけんたいランクの名称"
+msgstr "探検隊ランクの名称"
 
 #: /dev/fd/63:3 /dev/fd/63:126
 msgid "Default Team Names"
@@ -49,7 +49,7 @@ msgstr "グミを食べた時の文字列"
 
 #: /dev/fd/63:8 /dev/fd/63:131
 msgid "Items and Pokemon Menu Strings"
-msgstr "どうぐとポケモンのメニュー文字列"
+msgstr "道具とポケモンのメニュー文字列"
 
 #: /dev/fd/63:9 /dev/fd/63:132
 msgid "Kangaskhan Storage Strings"
@@ -81,11 +81,11 @@ msgstr "性格診断時のパラメータ文字列 (デバッグ用)"
 
 #: /dev/fd/63:16 /dev/fd/63:139
 msgid "Weather Change Feedback"
-msgstr "てんき変化時のメッセージ"
+msgstr "天気変化時のメッセージ"
 
 #: /dev/fd/63:17 /dev/fd/63:140
 msgid "Weather Names"
-msgstr "てんき名"
+msgstr "天気の名称"
 
 #: /dev/fd/63:18 /dev/fd/63:141
 msgid "Floor-Wide Status Names+Desc"
@@ -101,43 +101,43 @@ msgstr "テストダンジョン"
 
 #: /dev/fd/63:21 /dev/fd/63:144
 msgid "Mission Objectives"
-msgstr ""
+msgstr "「こんかいのもくてき」の文字列"
 
 #: /dev/fd/63:22 /dev/fd/63:145
 msgid "Mission Failure/Faint Strings"
-msgstr ""
+msgstr "依頼失敗・敗北時の文字列"
 
 #: /dev/fd/63:23 /dev/fd/63:146
 msgid "Speed Change Feedback"
-msgstr ""
+msgstr "移動速度変化時のメッセージ"
 
 #: /dev/fd/63:24 /dev/fd/63:147
 msgid "Potential Recruit Strings"
-msgstr ""
+msgstr "「なかまのけんさく」の文字列"
 
 #: /dev/fd/63:25 /dev/fd/63:148
 msgid "Gummi Feedback"
-msgstr ""
+msgstr "グミを食べた時のメッセージ"
 
 #: /dev/fd/63:26 /dev/fd/63:149
 msgid "Traps Feedback"
-msgstr ""
+msgstr "罠を踏んだ時のメッセージ"
 
 #: /dev/fd/63:27 /dev/fd/63:150
 msgid "More Dungeon Feedback"
-msgstr ""
+msgstr "ダンジョン関連のメッセージ"
 
 #: /dev/fd/63:28 /dev/fd/63:151
 msgid "Something's Stirring String"
-msgstr ""
+msgstr "制限ターン関連のメッセージ"
 
 #: /dev/fd/63:29 /dev/fd/63:152
 msgid "Some Fake items Dialogue"
-msgstr ""
+msgstr "そっくりどうぐ関連のメッセージ"
 
 #: /dev/fd/63:30 /dev/fd/63:153
 msgid "Shaymin Form Change Strings"
-msgstr ""
+msgstr "シェイミのフォルムチェンジ関連の文字列"
 
 #: /dev/fd/63:31 /dev/fd/63:154
 msgid "Recruited A Pokemon Strings"
@@ -165,19 +165,19 @@ msgstr ""
 
 #: /dev/fd/63:37 /dev/fd/63:160
 msgid "Kirlia Secret Bazaar Greeting"
-msgstr ""
+msgstr "キルリアのひみつのバザーの台詞"
 
 #: /dev/fd/63:38 /dev/fd/63:161
 msgid "Grab Bags Shop Strings"
-msgstr ""
+msgstr "「マルノームふくぶくろてん」の文字列"
 
 #: /dev/fd/63:39 /dev/fd/63:162
 msgid "Shedinja Shop Strings"
-msgstr ""
+msgstr "「ヌケニンのあなぬけガイド」の文字列"
 
 #: /dev/fd/63:40 /dev/fd/63:163
 msgid "Mime Jr. Spa Strings"
-msgstr ""
+msgstr "「マネネのいやしスペース」の文字列"
 
 #: /dev/fd/63:41 /dev/fd/63:164
 msgid "Swalot's Shop Strings"
@@ -912,7 +912,7 @@ msgstr "ダンジョンタイルセット (#10)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:149
 msgid "Use Fixed Room (#11)"
-msgstr "固定部屋で使用 (#11)"
+msgstr "固定フロアで使用 (#11)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:276
 msgid "This function has no description."
@@ -1689,7 +1689,7 @@ msgstr "床/壁 (部屋) - 鍵ドア (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:176
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr "タイルフラグ 0xC は 1 に設定され、鍵のドアが生成されます。固定ルームIDが&lt; 0xA5 の場合、これは壁になります。それ以外の場合は床になります。"
+msgstr "タイルフラグ 0xC は 1 に設定され、鍵のドアが生成されます。固定フロアIDが&lt; 0xA5 の場合、これは壁になります。それ以外の場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:182
 msgid "F/W, Room; Key Door (0xD)"
@@ -1697,7 +1697,7 @@ msgstr "床/壁 (部屋) - 鍵ドア (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:188
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr "タイルフラグ 0xD は 1 に設定され、鍵のドアが生成されます。固定ルームIDが &lt; 0xA5 の場合、これは壁になります。それ以外の場合は床になります。"
+msgstr "タイルフラグ 0xD は 1 に設定され、鍵のドアが生成されます。固定フロアIDが&lt; 0xA5 の場合、これは壁になります。それ以外の場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:212
 msgid "Attendant1 Spawn Floor"
@@ -5245,7 +5245,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1187
 #: skytemple/skytemple/module/music/module.py:45
 msgid "Music"
-msgstr "音楽"
+msgstr "BGM"
 
 #: skytemple/skytemple/data/widget/music/main.ui:59
 msgid "SkyTemple can not edit music.\n"
@@ -5846,7 +5846,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1601
 msgid "Music:"
-msgstr "音楽:"
+msgstr "BGM:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1613
 msgid "Moves allowed:"
@@ -6010,7 +6010,7 @@ msgstr "N. {i}"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:202
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:38
 msgid "Fixed Rooms"
-msgstr "固定部屋"
+msgstr "固定フロア"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:218
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
@@ -6349,7 +6349,7 @@ msgstr "タイルセット"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1198
 msgid "Fixed Room"
-msgstr "固定部屋"
+msgstr "固定フロア"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1277
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:50
@@ -7062,7 +7062,7 @@ msgstr "SkyTemple"
 #: skytemple/skytemple/module/dungeon/module.py:244
 #, python-brace-format
 msgid "Fixed Room {i}"
-msgstr "固定部屋 {i}"
+msgstr "固定フロア {i}"
 
 #: skytemple/skytemple/module/dungeon/module.py:582
 msgid "Some dungeons were missing in the new group list. This is a bug."
