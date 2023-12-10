@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-10 02:30\n"
+"PO-Revision-Date: 2023-12-10 04:03\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -4652,7 +4652,11 @@ msgid "Welcome to \n"
 "Script Engine Debugger.\n\n"
 "Please load a game ROM\n"
 "via the File menu."
-msgstr ""
+msgstr "欢迎使用\n"
+"SkyTemple\n"
+"脚本引擎调试器。\n\n"
+"请通过文件菜单加载游戏ROM。\n"
+"（请注意：目前，只能使用非汉化版的游戏ROM，否则将无法加载。）"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2558
 msgid "The Script Engine is currently not running."
@@ -5083,11 +5087,11 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:201
 msgid "Save first image as (PNG)..."
-msgstr ""
+msgstr "将第一张图像另存为 (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:225
 msgid "Save second image as (PNG)..."
-msgstr ""
+msgstr "将第二张图像另存为 (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:290
 msgid "You entered invalid numbers."
@@ -12904,7 +12908,13 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">欢迎来到SkyTemple！</span>\n\n"
+"使用此工具，您可以编辑宝可梦不可思议的迷宫：\n"
+"空之探险队中的各项内容。\n\n"
+"请注意以下几点：\n"
+"- 该软件仍属于早期阶段，请先备份您的ROM，以免<i>崩溃</i>。\n"
+"- 在ROM文件的目录下，会自动创建一个项目目录。\n"
+"- 请反馈任何问题。"
 
 #: skytemple/skytemple/skytemple.glade:102
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -12915,7 +12925,12 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project,\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
-msgstr ""
+msgstr "我能否在游戏启动时的徽标上添加\n"
+"“使用SkyTemple创建”的信息？\n\n"
+"这个信息将会置于地面地图 S05P01A 的图层2。\n"
+"如果您不想要，可以移除或自定义。\n\n"
+"如果您想稍后再考虑，或在其他项目中使用它，\n"
+"可以使用主窗口右上角的菜单重新打开此对话框。"
 
 #: skytemple/skytemple/skytemple.glade:122
 msgid "Add \"Created with SkyTemple\""
@@ -12975,11 +12990,11 @@ msgstr "更多文件"
 
 #: skytemple/skytemple/skytemple.glade:713
 msgid "Save as..."
-msgstr ""
+msgstr "另存为..."
 
 #: skytemple/skytemple/skytemple.glade:727
 msgid "Show welcome screen..."
-msgstr ""
+msgstr "显示欢迎页面..."
 
 #: skytemple/skytemple/skytemple.glade:741
 msgid "Settings..."
@@ -12987,7 +13002,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:756
 msgid "Open Image Converter..."
-msgstr ""
+msgstr "打开图像转换器..."
 
 #: skytemple/skytemple/skytemple.glade:771
 msgid "Open SpriteCollab Browser..."
@@ -13063,7 +13078,10 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can find more information about the data we collect and how we\n"
 "use it in our <a href=\"privacy\">privacy information</a>.\n\n"
 "This is used so we can improve SkyTemple."
-msgstr ""
+msgstr "<span size=\"large\">欢迎来到SkyTemple！</span>\n\n"
+"如果您发现了问题，我们很乐意收集一些错误信息。\n\n"
+"您可以在我们的<a href=\"privacy\">隐私信息</a>中找到有关我们收集的数据以及如何使用这些数据的更多信息。\n\n"
+"这将用于改进SkyTemple。"
 
 #: skytemple/skytemple/skytemple.glade:1614
 msgid "Loading ROM \"NAME\"..."
