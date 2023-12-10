@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-10 06:36\n"
+"PO-Revision-Date: 2023-12-10 07:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -3937,7 +3937,7 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/object_main.py:106
 #: skytemple/skytemple/module/spritecollab/module.py:178
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1723
 msgid "You will not be able to restore it."
@@ -5030,7 +5030,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:247
 msgid "If this is enabled a new and faster (but slightly experimental) codebase is used to load and manipulate game files. Try to disable this if you run into crashes or other issues."
-msgstr ""
+msgstr "如果启用此功能，则使用更快（但略带实验性）的新代码库来加载和处理游戏文件。如果您遇到崩溃或其他问题，请尝试禁用此功能。"
 
 #: skytemple/skytemple/controller/settings.py:262
 msgid "This changes the way SkyTemple behaves when asynchronous operations are done (eg. loading files and views). You usually don't want to change this, unless you know what you are doing or are running into crashes or other issues.\n\n\n"
@@ -5038,7 +5038,11 @@ msgid "This changes the way SkyTemple behaves when asynchronous operations are d
 "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
 "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. before they are run.\n\n"
 "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferredoption if available."
-msgstr ""
+msgstr "这将改变 SkyTemple 在执行异步操作（如加载文件和视图）时的行为方式。除非您明白自己在做什么，或者遇到了崩溃或其他问题，否则通常不需要更改。\n\n"
+"基于线程：SkyTemple 会生成一个额外的线程来运行异步操作。这可能会导致线程安全问题，但却是“最流畅”的加载体验。\n\n"
+"同步： 异步操作立即运行。在此期间，SkyTemple UI 会短暂卡顿。\n\n"
+"GLib： 与“同步”相同，但 UI 有机会在加载程序等运行前完成显示。\n\n"
+"使用 Gbulb 事件循环：这将启用单线程异步加载。如果有条件，这通常是首选。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:54
 #: skytemple/skytemple/core/ui_utils.py:98
@@ -5117,11 +5121,11 @@ msgstr "图像转换完成。"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:56
 msgid "Thread-based"
-msgstr ""
+msgstr "基于线程"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:62
 msgid "Synchronous"
-msgstr ""
+msgstr "同步"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:74
 msgid "Using Gbulb event loop"
@@ -5148,7 +5152,7 @@ msgstr ""
 #: skytemple/skytemple/core/widget/user_feedback.py:51
 #: skytemple/skytemple/skytemple.glade:1199
 msgid "Report Error"
-msgstr ""
+msgstr "报告错误"
 
 #: skytemple/skytemple/core/logger.py:94
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
@@ -6886,7 +6890,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1750
 #: skytemple/skytemple/module/script/controller/ssa.py:488
 msgid "Export was canceled."
-msgstr ""
+msgstr "导出已取消。"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1775
 msgid "Import floor from..."
@@ -11384,7 +11388,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
 #: skytemple/skytemple/module/spritecollab/module.py:178
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:177
 msgctxt "Issues as in problems"
@@ -12593,7 +12597,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:259
 msgid "SpriteCollab Browser"
-msgstr ""
+msgstr "「SpriteCollab」精灵共创浏览器"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:278
 msgid "Open in Webbrowser"
@@ -12948,7 +12952,7 @@ msgstr "高级"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
-msgstr ""
+msgstr "使用本地文件处理程序"
 
 #: skytemple/skytemple/skytemple.glade:361
 msgid "Enable Discord integration"
@@ -12960,15 +12964,15 @@ msgstr "主题"
 
 #: skytemple/skytemple/skytemple.glade:432
 msgid "Async Operations"
-msgstr ""
+msgstr "异步操作"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
-msgstr ""
+msgstr "错误报告"
 
 #: skytemple/skytemple/skytemple.glade:527
 msgid "Send error reports"
-msgstr ""
+msgstr "发送错误报告"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
@@ -13075,7 +13079,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1521
 msgid "Allow sending error reports"
-msgstr ""
+msgstr "允许发送错误报告"
 
 #: skytemple/skytemple/skytemple.glade:1548
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
