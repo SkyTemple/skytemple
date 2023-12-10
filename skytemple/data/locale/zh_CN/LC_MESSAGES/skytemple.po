@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-10 09:06\n"
+"PO-Revision-Date: 2023-12-10 10:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -355,13 +355,13 @@ msgstr "投掷物 - 石块"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4472
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1321
 msgid "Berries, Seeds, Vitamins"
-msgstr "树果、种子和营养饮料"
+msgstr "树果,种子,营养饮料"
 
 #: /dev/fd/63:84 /dev/fd/63:207
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4639
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1475
 msgid "Foods, Gummies"
-msgstr "食物和软糖"
+msgstr "食物,软糖"
 
 #: /dev/fd/63:85 /dev/fd/63:208
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4806
@@ -373,7 +373,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4973
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1783
 msgid "TMs, HMs"
-msgstr "招式学习器和秘传学习器"
+msgstr "招式学习器,秘传学习器"
 
 #: /dev/fd/63:87 /dev/fd/63:210
 msgid "Poké (Money)"
@@ -5047,11 +5047,11 @@ msgstr "这将改变 SkyTemple 在执行异步操作（如加载文件和视图�
 #: skytemple/skytemple/controller/tilequant_dialog.py:54
 #: skytemple/skytemple/core/ui_utils.py:98
 msgid "PNG image (*.png)"
-msgstr "PNG图像 (*.png)"
+msgstr "PNG 图像 (*.png)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:59
 msgid "JPEG image (*.jpg, *.jpeg)"
-msgstr "JPEG图像 (*.jpg, *.jpeg)"
+msgstr "JPEG 图像 (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:65
 #: skytemple/skytemple/core/ui_utils.py:83
@@ -12625,7 +12625,7 @@ msgstr "前端 URL："
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:463
 msgid "(optional)"
-msgstr "(选填)"
+msgstr "（选填）"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:240
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
@@ -12643,7 +12643,7 @@ msgstr ""
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:279
 #, python-brace-format
 msgid "NotSpriteCollab ({NOT_SC_SERVER})"
-msgstr "「NotSpriteCollab」不是精灵共创 ({NOT_SC_SERVER})"
+msgstr "「NotSpriteCollab」不是精灵共创({NOT_SC_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:285
 msgid "Custom Server"
@@ -12703,7 +12703,7 @@ msgstr "精灵导入成功。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:153
 msgid "Open a Pokémon in the main window to apply the assets to."
-msgstr "请在主窗口内打开要应用的宝可梦资源。"
+msgstr "请在主窗口内打开要应用该资源的宝可梦。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:160
 msgid "Could not apply the sprites, since no sprite data is available."
