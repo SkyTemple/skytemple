@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-07 13:05\n"
+"PO-Revision-Date: 2023-12-10 09:06\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -89,7 +89,7 @@ msgstr "天気の名称"
 
 #: /dev/fd/63:18 /dev/fd/63:141
 msgid "Floor-Wide Status Names+Desc"
-msgstr ""
+msgstr "フロア全体のステータス名+説明"
 
 #: /dev/fd/63:19 /dev/fd/63:142
 msgid "IQ Skills Menu"
@@ -454,64 +454,64 @@ msgstr "markfont.dat内の最初のアイコンID (うち24エントリが使用
 
 #: /dev/fd/63:105 /dev/fd/63:228
 msgid "String ID for push dialogue"
-msgstr ""
+msgstr "プッシュダイアログの文字列ID"
 
 #: /dev/fd/63:106 /dev/fd/63:229
 msgid "String mentioned above is replaced by a default text when applying"
-msgstr ""
+msgstr "上記の文字列は、適用時にデフォルトのテキストに置き換えられます"
 
 #: /dev/fd/63:107 /dev/fd/63:230
 msgid "Only interruptions don't heal HP"
-msgstr ""
+msgstr "HPを回復せずに中断"
 
 #: /dev/fd/63:108 /dev/fd/63:231
 #, c-format
 msgid "% of exp. shared"
-msgstr ""
+msgstr "Expのシェア率"
 
 #: /dev/fd/63:109 /dev/fd/63:232
 msgid "String ID for the Menu Option"
-msgstr ""
+msgstr "メニューオプションの文字列 ID"
 
 #: /dev/fd/63:110 /dev/fd/63:233
 msgid "String ID to confirm the appraise all"
-msgstr ""
+msgstr "すべて評価を確認するための文字列ID"
 
 #: /dev/fd/63:111 /dev/fd/63:234
 msgid "String ID before revealing the items"
-msgstr ""
+msgstr "アイテム公開前の文字列 ID"
 
 #: /dev/fd/63:112 /dev/fd/63:235
 msgid "String ID when revealing an item"
-msgstr ""
+msgstr "アイテムを公開するときの文字列 ID"
 
 #: /dev/fd/63:113 /dev/fd/63:236
 msgid "All strings mentioned above are replaced by a default text when applying"
-msgstr ""
+msgstr "上記のすべての文字列は適用時にデフォルトテキストに置き換えられます"
 
 #: /dev/fd/63:114 /dev/fd/63:237
 msgid "Cost of each Treasure Box (Only for Appraise All option)"
-msgstr ""
+msgstr "各宝箱のコスト (「すべて鑑定」オプションのみ)"
 
 #: /dev/fd/63:115 /dev/fd/63:238
 msgid "Update the level and stats of evolved enemies"
-msgstr ""
+msgstr "進化した敵のレベルと統計を更新"
 
 #: /dev/fd/63:116 /dev/fd/63:239
 msgid "Fully heal enemies after evolving"
-msgstr ""
+msgstr "敵が進化した後完全に回復させる"
 
 #: /dev/fd/63:117 /dev/fd/63:240
 msgid "Update the moves of evolved enemies"
-msgstr ""
+msgstr "進化した敵の技を更新"
 
 #: /dev/fd/63:118 /dev/fd/63:241
 msgid "Increase Atk/SpAtk/Def/SpDef of evolved enemies by"
-msgstr ""
+msgstr "進化した敵の攻撃・特攻・防御・特防を増加"
 
 #: /dev/fd/63:119 /dev/fd/63:242
 msgid "Let enemies evolve even if the defeated pokémon is revived"
-msgstr ""
+msgstr "倒されて復活した時にも敵を進化させる"
 
 #: /dev/fd/63:121
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -564,54 +564,54 @@ msgstr "init に変数が定義されていません。"
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:48
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:46
 msgid "No variable for assignment."
-msgstr ""
+msgstr "割り当てるための変数がありません"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:50
 msgid "No operator set for assignment."
-msgstr ""
+msgstr "割り当てるための演算子が設定されていません"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:52
 msgid "No value set for assignment."
-msgstr ""
+msgstr "割り当て用の値が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
-msgstr ""
+msgstr "値(X)はインデックスベースの割り当て( {self.ctx.start.line}行)では使用できません."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
 msgid "No target for reset."
-msgstr ""
+msgstr "リセットの対象はありません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_scenario.py:43
 msgid "No variable for assignment set."
-msgstr ""
+msgstr "代入セット用の変数はありません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
-msgstr ""
+msgstr "scn() 変数なし。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
-msgstr ""
+msgstr "value() 変数なし。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:53
 msgid "No target ID set for with(){} block."
-msgstr ""
+msgstr "With(){} ブロックにターゲット ID が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:55
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
 msgid "A with(){} block needs exactly one statement."
-msgstr ""
+msgstr "With(){} ブロックには、1つのステートメントが必要です。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:65
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
-msgstr ""
+msgstr "無効 with(){{}} ターゲットタイプ '{for_type}'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:70
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
-msgstr ""
+msgstr "With(){} ブロックは、1つのバイナリ演算を必要とします。ハンドラは複数の演算を生成します。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:87
 msgid "A with(){} block can not contain labels."
@@ -624,11 +624,11 @@ msgstr "if 条件に値が設定されていません。"
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
-msgstr ""
+msgstr "変数 {var_target_name} は 'not' と一緒に使用することはできません ( {self.ctx.start.line}行目)。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
-msgstr ""
+msgstr "If 条件の変数はありません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:46
@@ -644,32 +644,32 @@ msgstr "if 条件に値が設定されていません。"
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:48
 #, python-brace-format
 msgid "The only supported operators for scn if conditions are ==,<,<=,>,>= (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Scn if 条件でサポートされる演算子は ==、<、<=、>、>= だけです ( {self.ctx.start.line}行目)"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:60
 msgid "Invalid content for an if-header"
-msgstr ""
+msgstr "If-header のコンテンツが無効です"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:64
 #, python-brace-format
 msgid "Invalid operation for if condition: {op.op_code.name} (line {self.ctx.start.line})"
-msgstr ""
+msgstr "If 条件: {op.op_code.name} ( {self.ctx.start.line}行目) の操作は無効です"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:78
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
-msgstr ""
+msgstr "{self.ctx.start.line} 行での操作が不明です)。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:57
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:72
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:63
 msgid "Invalid message switch case call."
-msgstr ""
+msgstr "無効なメッセージスイッチのケースコール。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:58
 msgid "Unknown case operation."
-msgstr ""
+msgstr "不明なケース操作です。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:55
 msgid "Invalid message switch."
@@ -679,57 +679,57 @@ msgstr "無効なメッセージスイッチです。"
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Message_switchは文字列( {self.ctx.start.line}行)の場合のみ使用できます。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:63
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Message_ switch ({self.ctx.start.line}行目) のケースタイプが無効です。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr ""
+msgstr "スイッチブロックにはデフォルトケースを 1 つだけ指定できます ({self.ctx.start.line}行目"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Switch caseにはステートメントのリストが含まれている必要があります ( {self.ctx.start.line}行目)。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr ""
+msgstr "予期しないswitch終了 ( {self.ctx.start.line}行目)"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Switchブロックには、デフォルトケースを 1 つだけ指定できます ( {self.ctx.start.line}行目)。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
 msgid "Invalid content for a switch-header"
-msgstr ""
+msgstr "Switch-headerの内容が無効です"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:72
 msgid "Unknown switch operation."
-msgstr ""
+msgstr "不明なswitch操作。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:42
 msgid "No dungeon id set for dungeon_mode switch condition."
-msgstr ""
+msgstr "Dungeon_mode 切り替え条件に dungeon id が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:42
 msgid "No value set for random switch condition."
-msgstr ""
+msgstr "Random switch条件には値が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:43
 msgid "No variable set for scn switch condition."
-msgstr ""
+msgstr "Scn switch条件の変数が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
 #, python-brace-format
 msgid "Index for scn() if condition must be 0 or 1 (line {self.ctx.start.line})."
-msgstr ""
+msgstr "条件が 0 または 1 でなければならない場合の scn() のインデックス ({self.ctx.start.line} 行目)。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
 #, python-brace-format
@@ -739,11 +739,11 @@ msgstr "マクロ {name} が見つかりません。"
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:89
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:93
 msgid "Dependency cycle detected while trying to resolve macros (for macro '{v['name']}')."
-msgstr ""
+msgstr "マクロを解決しようとしているときに依存関係サイクルが検出されました (マクロ '{v['name']}') 。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:78
 msgid "Macros can not alias."
-msgstr ""
+msgstr "マクロにはエイリアスを付けることはできません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:285
 msgid "Fatal compilation error: Unexpected compilation handler on stack."
