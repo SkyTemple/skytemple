@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-10 04:03\n"
+"PO-Revision-Date: 2023-12-10 04:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -4173,7 +4173,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:71
 #: skytemple/skytemple/skytemple.glade:1911
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:73
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2064
@@ -5057,11 +5057,11 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:87
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr ""
+msgstr "可使用调色板的最大数量。对于普通背景，最多可使用16个调色板。对于地图背景，两层共用14个调色板（因为最后2个调色板不会在游戏中渲染）。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:98
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
-msgstr ""
+msgstr "图像中的该颜色值将作为透明度导入（默认值：#12ab56）。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:107
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
@@ -5071,7 +5071,9 @@ msgstr ""
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
 "No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n"
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
-msgstr ""
+msgstr "抖动：必要时，将对颜色进行减色和重组操作。颜色会发生改变，使其彼此“融合”。处理后的图像在视觉上会包含更多颜色，但也可能降低整体视觉质量。有两种不同的算法可供选择。\n\n"
+"无抖动：必要时，将对颜色进行减色和重组操作，但不执行抖动。\n\n"
+"仅重组颜色：重组颜色以使其符合游戏格式。SkyTemple不会为了兼容性而减少整体颜色数，因此，如果无法使用当前的颜色数，就会出错。但是，如果成功，输出图像将与原图一致。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:134
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
@@ -12909,8 +12911,8 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
 msgstr "<span size=\"large\">欢迎来到SkyTemple！</span>\n\n"
-"使用此工具，您可以编辑宝可梦不可思议的迷宫：\n"
-"空之探险队中的各项内容。\n\n"
+"使用此工具，您可以编辑《宝可梦不可思议的迷宫：\n"
+"空之探险队》中的各项内容。\n\n"
 "请注意以下几点：\n"
 "- 该软件仍属于早期阶段，请先备份您的ROM，以免<i>崩溃</i>。\n"
 "- 在ROM文件的目录下，会自动创建一个项目目录。\n"
@@ -13093,11 +13095,11 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1668
 msgid "Dither: Floyd Steinberg"
-msgstr ""
+msgstr "抖动：Floyd-Steinberg算法"
 
 #: skytemple/skytemple/skytemple.glade:1672
 msgid "No Dithering"
-msgstr ""
+msgstr "无抖动"
 
 #: skytemple/skytemple/skytemple.glade:1676
 msgid "Reorganize colors only"
@@ -13112,11 +13114,14 @@ msgid "This tool converts any image into the image format required by Explorers 
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
 "The images created by this tool can be imported for backgrounds."
-msgstr ""
+msgstr "该工具可将任何图像转换为《空之探险队》所需的图像格式。请注意，游戏对颜色\n"
+"有着相当严格的限制。\n\n"
+"每个8x8瓷砖只能使用一种调色板。\n\n"
+"该工具创建的图像可以导入作为背景。"
 
 #: skytemple/skytemple/skytemple.glade:1760
 msgid "Number of Palettes"
-msgstr ""
+msgstr "调色板数"
 
 #: skytemple/skytemple/skytemple.glade:1803
 msgid "16"
@@ -13124,7 +13129,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1835
 msgid "Transparent Color"
-msgstr ""
+msgstr "透明色"
 
 #: skytemple/skytemple/skytemple.glade:1878
 msgid "Color"
