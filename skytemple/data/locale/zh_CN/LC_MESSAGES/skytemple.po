@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-10 07:36\n"
+"PO-Revision-Date: 2023-12-10 09:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -4980,7 +4980,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/main.py:667
 msgid "'spritecollab' module must be installed to use this."
-msgstr ""
+msgstr "“spritecollab”模块必须安装才能使用。"
 
 #: skytemple/skytemple/controller/main.py:734
 #: skytemple/skytemple/controller/main.py:737
@@ -11862,11 +11862,11 @@ msgstr ""
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:306
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:63
 msgid "Open SpriteCollab Browser"
-msgstr ""
+msgstr "打开「SpriteCollab」精灵共创浏览器"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:307
 msgid "Spritecollab Browser"
-msgstr ""
+msgstr "「Spritecollab」精灵共创浏览器"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:410
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
@@ -12588,7 +12588,7 @@ msgstr ""
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:260
 msgid "Loading..."
-msgstr ""
+msgstr "加载中..."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:148
 msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
@@ -12601,39 +12601,39 @@ msgstr "「SpriteCollab」精灵共创浏览器"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:278
 msgid "Open in Webbrowser"
-msgstr ""
+msgstr "在 Web 浏览器中打开"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:318
 msgid "SpriteCollab Browser Settings"
-msgstr ""
+msgstr "「SpriteCollab」精灵共创浏览器设置"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:353
 msgid "Apply / Refresh"
-msgstr ""
+msgstr "应用/刷新"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:386
 msgid "Server Preset:"
-msgstr ""
+msgstr "服务器预设："
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:420
 msgid "Server URL:"
-msgstr ""
+msgstr "服务器 URL："
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:431
 msgid "Frontend URL:"
-msgstr ""
+msgstr "前端 URL："
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:463
 msgid "(optional)"
-msgstr ""
+msgstr "(选填)"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:240
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
-msgstr ""
+msgstr "未能从配置的 SpriteCollab 服务器加载宝可梦列表。"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:242
 msgid "Error Updating Sprites"
-msgstr ""
+msgstr "更新精灵时出错"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:271
 #, python-brace-format
@@ -12643,43 +12643,43 @@ msgstr ""
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:279
 #, python-brace-format
 msgid "NotSpriteCollab ({NOT_SC_SERVER})"
-msgstr ""
+msgstr "「NotSpriteCollab」不是精灵共创 ({NOT_SC_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:285
 msgid "Custom Server"
-msgstr ""
+msgstr "自定义服务器"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:444
 msgid "Failed loading this Pokémon."
-msgstr ""
+msgstr "宝可梦加载失败。"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:445
 msgid "Error Loading Pokémon"
-msgstr ""
+msgstr "加载宝可梦时出错"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:464
 msgid "Normal"
-msgstr ""
+msgstr "普通"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:481
 msgid "<b>Portraits:</b>"
-msgstr ""
+msgstr "<b>头像:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:497
 msgid "Apply Portraits"
-msgstr ""
+msgstr "应用头像"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:508
 msgid "<b>Sprites:</b>"
-msgstr ""
+msgstr "<b>精灵:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:528
 msgid "Apply Sprites"
-msgstr ""
+msgstr "应用精灵"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:548
 msgid "<b><i>Make sure to credit artists:</i></b>"
-msgstr "<b><i>请标明作品作者：</i></b>"
+msgstr "<b><i>请标明作品作者:</i></b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:554
 msgid "<b>Portrait Credits:</b>"
@@ -12691,27 +12691,27 @@ msgstr "<b>精灵表作者：</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:584
 msgid "Open Details on Website..."
-msgstr ""
+msgstr "在网站上打开详情..."
 
 #: skytemple/skytemple/module/spritecollab/module.py:80
 msgid "Portraits successfully imported."
-msgstr ""
+msgstr "头像导入成功。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:133
 msgid "Sprites successfully imported."
-msgstr ""
+msgstr "精灵导入成功。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:153
 msgid "Open a Pokémon in the main window to apply the assets to."
-msgstr ""
+msgstr "请在主窗口内打开要应用的宝可梦资源。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:160
 msgid "Could not apply the sprites, since no sprite data is available."
-msgstr ""
+msgstr "无法应用该精灵，因为没有可用的精灵数据。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:167
 msgid "This Pokémon does not support portraits and/or sprites."
-msgstr ""
+msgstr "该宝可梦不支持肖像和/或精灵。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:188
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
@@ -12720,7 +12720,10 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "animations (if they aren't available for this Pokémon otherwise).\n"
 "This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
 "when choosing them as a starter or partner."
-msgstr ""
+msgstr "这将使用资源库中的精灵替换该宝可梦的精灵。\n"
+"您也可以选择创建一个新的精灵，它将被用于该宝可梦。\n\n"
+"此外，您还可以选择将 Sleep 睡眠动画复制到 EventSleep/Laying/Waking 动画中（如果该宝可梦没有这些动画）。\n"
+"在选择宝可梦作为主角或搭档时，它们在主世界可能会使用奇怪的动画睡觉。进行此操作后，将会得到解决。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:200
 msgid "Create a new sprite instead of replacing the existing one."
@@ -12728,7 +12731,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/module.py:205
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
-msgstr ""
+msgstr "将 Sleep 睡眠动画复制到 eventSleep/Laying/Waking。"
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:45
 msgid "<LANG> Text Strings"
@@ -13015,7 +13018,7 @@ msgstr "打开图像转换器..."
 
 #: skytemple/skytemple/skytemple.glade:771
 msgid "Open SpriteCollab Browser..."
-msgstr ""
+msgstr "打开「SpriteCollab」精灵共创浏览器..."
 
 #: skytemple/skytemple/skytemple.glade:785
 msgid "Open config directory..."
