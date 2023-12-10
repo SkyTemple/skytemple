@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-10 04:59\n"
+"PO-Revision-Date: 2023-12-10 06:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1068,7 +1068,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:2083
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:69
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:62
 #: skytemple-files/skytemple_files/data/md/protocol.py:67
@@ -3561,7 +3561,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:367
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:35
 msgid "Free"
@@ -4276,7 +4276,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:517
 #: skytemple/skytemple/controller/settings.py:43
 msgid "Japanese"
-msgstr ""
+msgstr "日语"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:593
 msgid "Save State"
@@ -5014,11 +5014,11 @@ msgstr "你想保存对 {rom_name} 的更改吗？"
 
 #: skytemple/skytemple/controller/settings.py:37
 msgid "Detect automatically"
-msgstr ""
+msgstr "自动检测"
 
 #: skytemple/skytemple/controller/settings.py:41
 msgid "Portuguese, Brazilian"
-msgstr ""
+msgstr "葡萄牙语（巴西）"
 
 #: skytemple/skytemple/controller/settings.py:107
 msgid "<i>Use System Settings to set this under Linux.</i>"
@@ -5043,17 +5043,17 @@ msgstr ""
 #: skytemple/skytemple/controller/tilequant_dialog.py:54
 #: skytemple/skytemple/core/ui_utils.py:98
 msgid "PNG image (*.png)"
-msgstr ""
+msgstr "PNG图像 (*.png)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:59
 msgid "JPEG image (*.jpg, *.jpeg)"
-msgstr ""
+msgstr "JPEG图像 (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:65
 #: skytemple/skytemple/core/ui_utils.py:83
 #: skytemple/skytemple/module/monster/controller/level_up.py:646
 msgid "Any files"
-msgstr ""
+msgstr "所有文件"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:87
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
@@ -5065,7 +5065,7 @@ msgstr "图像中的该颜色值将作为透明度导入（默认值：#12ab56�
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:107
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
-msgstr ""
+msgstr "您可以使用此功能以相同的调色板一次转换多个图像。这对需要共享相同调色板的多图层地图背景非常有用。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:118
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
@@ -5077,15 +5077,15 @@ msgstr "抖动：必要时，将对颜色进行减色和重组操作。颜色会
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:134
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
-msgstr ""
+msgstr "仅在启用抖动时才有意义：该选项控制着所应用的抖动量。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:184
 msgid "Please select an input image."
-msgstr ""
+msgstr "请输入图像。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:193
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
-msgstr ""
+msgstr "由于您选择了两张图像进行转换，请提供两张图像的保存位置。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:201
 msgid "Save first image as (PNG)..."
@@ -5097,23 +5097,23 @@ msgstr "将第二张图像另存为 (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:290
 msgid "You entered invalid numbers."
-msgstr ""
+msgstr "您输入的数字无效。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:293
 msgid "The input image does not exist."
-msgstr ""
+msgstr "输入图像不存在。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:301
 msgid "The second input image does not exist."
-msgstr ""
+msgstr "第二个输入图像不存在。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:325
 msgid "The input image is not a supported format."
-msgstr ""
+msgstr "输入图像是不支持的格式。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:362
 msgid "Image was converted."
-msgstr ""
+msgstr "图像转换完成。"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:56
 msgid "Thread-based"
@@ -5138,7 +5138,7 @@ msgstr ""
 #: skytemple/skytemple/core/error_handler.py:118
 #: skytemple/skytemple/main.py:187
 msgid "SkyTemple - Error!"
-msgstr ""
+msgstr "SkyTemple - 错误！"
 
 #: skytemple/skytemple/core/error_handler.py:148
 msgid "Error Details"
@@ -5156,7 +5156,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/logger.py:99
 msgid "SkyTemple - Uncaught error!"
-msgstr ""
+msgstr "SkyTemple - 未捕获的错误！"
 
 #: skytemple/skytemple/core/modules.py:107
 #, python-brace-format
@@ -5813,7 +5813,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
 #: skytemple/skytemple/skytemple.glade:259
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1281
 msgid "Overrides"
@@ -5896,7 +5896,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/monster.glade:3527
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:298
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:126
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:127
@@ -7040,7 +7040,7 @@ msgstr ""
 #: skytemple/skytemple/skytemple.glade:927
 #: skytemple/skytemple/skytemple.glade:1281
 msgid "SkyTemple"
-msgstr ""
+msgstr "SkyTemple"
 
 #: skytemple/skytemple/module/dungeon/module.py:244
 #, python-brace-format
@@ -7483,7 +7483,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
 #: skytemple/skytemple/skytemple.glade:2207
 msgid "Input Image"
-msgstr ""
+msgstr "输入图像"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2323
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2565
@@ -8805,7 +8805,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:201
 msgid "SkyTemple - Notice"
-msgstr ""
+msgstr "SkyTemple - 通知"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:442
 msgid "A script map with the same name as this background does not exist."
@@ -8888,7 +8888,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:756
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:844
 msgid "SkyTemple - Success!"
-msgstr ""
+msgstr "SkyTemple - 成功！"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:762
 msgid "Error during BPA export"
@@ -10056,7 +10056,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/main.glade:195
 #: skytemple/skytemple/module/monster/controller/monster.glade:263
 msgid "** This data is not editable in SkyTemple, but you can export and import it."
-msgstr ""
+msgstr "** 此数据在SkyTemple中不可编辑，但您可以将其导出和导入。"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:213
 #: skytemple/skytemple/module/monster/controller/monster.glade:295
@@ -12675,15 +12675,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:548
 msgid "<b><i>Make sure to credit artists:</i></b>"
-msgstr "<b><i>请标明作品作者:</i></b>"
+msgstr "<b><i>请标明作品作者：</i></b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:554
 msgid "<b>Portrait Credits:</b>"
-msgstr "<b>头像作者:</b>"
+msgstr "<b>头像作者：</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:570
 msgid "<b>Sprite Credits:</b>"
-msgstr "<b>精灵表作者:</b>"
+msgstr "<b>精灵表作者：</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:584
 msgid "Open Details on Website..."
@@ -12936,15 +12936,15 @@ msgstr "我能否在游戏启动时的徽标上添加\n"
 
 #: skytemple/skytemple/skytemple.glade:122
 msgid "Add \"Created with SkyTemple\""
-msgstr ""
+msgstr "添加“使用 SkyTemple 创建”"
 
 #: skytemple/skytemple/skytemple.glade:190
 msgid "SkyTemple Settings"
-msgstr ""
+msgstr "SkyTemple 设置"
 
 #: skytemple/skytemple/skytemple.glade:276
 msgid "Advanced"
-msgstr ""
+msgstr "高级"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
@@ -12952,11 +12952,11 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:361
 msgid "Enable Discord integration"
-msgstr ""
+msgstr "启用 Discord 集成"
 
 #: skytemple/skytemple/skytemple.glade:384
 msgid "Theme"
-msgstr ""
+msgstr "主题"
 
 #: skytemple/skytemple/skytemple.glade:432
 msgid "Async Operations"
@@ -12974,7 +12974,9 @@ msgstr ""
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>如果启用，错误报告将被发送至 sentry.io，\n"
+"允许我们改进SkyTemple。\n"
+"查看<a href=\"privacy\">隐私信息</a>以了解详情。</i>"
 
 #: skytemple/skytemple/skytemple.glade:577
 msgid "Use Client Side Decorations"
@@ -12983,7 +12985,8 @@ msgstr ""
 #: skytemple/skytemple/skytemple.glade:601
 msgid "<i>Translations are written by volunteers and may not be accurate.\n"
 "Consider <a href=\"translate\">helping us</a> translate SkyTemple!</i>"
-msgstr ""
+msgstr "<i>翻译由志愿者们贡献，可能会不准确。\n"
+"考虑<a href=\"translate\">帮助我们</a>翻译 SkyTemple！</i>"
 
 #: skytemple/skytemple/skytemple.glade:671
 #: skytemple/skytemple/skytemple.glade:1059
@@ -13000,7 +13003,7 @@ msgstr "显示欢迎页面..."
 
 #: skytemple/skytemple/skytemple.glade:741
 msgid "Settings..."
-msgstr ""
+msgstr "设置..."
 
 #: skytemple/skytemple/skytemple.glade:756
 msgid "Open Image Converter..."
@@ -13020,7 +13023,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:958
 msgid "A new version of SkyTemple is available: "
-msgstr ""
+msgstr "SkyTemple 现已有可用的新版本："
 
 #: skytemple/skytemple/skytemple.glade:983
 msgid "Update now!"
@@ -13091,7 +13094,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1664
 msgid "Dither: Ordered"
-msgstr ""
+msgstr "抖动：规整"
 
 #: skytemple/skytemple/skytemple.glade:1668
 msgid "Dither: Floyd Steinberg"
@@ -13103,11 +13106,11 @@ msgstr "无抖动"
 
 #: skytemple/skytemple/skytemple.glade:1676
 msgid "Reorganize colors only"
-msgstr ""
+msgstr "仅重组颜色"
 
 #: skytemple/skytemple/skytemple.glade:1682
 msgid "Tilequant"
-msgstr ""
+msgstr "瓷砖量化"
 
 #: skytemple/skytemple/skytemple.glade:1731
 msgid "This tool converts any image into the image format required by Explorers of Sky.\n"
@@ -13137,19 +13140,19 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1990
 msgid "Dithering Level"
-msgstr ""
+msgstr "抖动等级"
 
 #: skytemple/skytemple/skytemple.glade:2078
 msgid "No. of tile clustering passes"
-msgstr ""
+msgstr "瓷砖聚类处理次数"
 
 #: skytemple/skytemple/skytemple.glade:2134
 msgid "No. of color clustering passes"
-msgstr ""
+msgstr "颜色聚类处理次数"
 
 #: skytemple/skytemple/skytemple.glade:2180
 msgid "Advanced Options"
-msgstr ""
+msgstr "高级选项"
 
 #: skytemple/skytemple/skytemple.glade:2259
 msgid "Additional Input Image (optional)"
@@ -13157,5 +13160,5 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:2353
 msgid "Convert"
-msgstr ""
+msgstr "转换"
 
