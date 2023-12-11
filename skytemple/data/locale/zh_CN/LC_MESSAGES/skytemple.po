@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-11 13:30\n"
+"PO-Revision-Date: 2023-12-11 15:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -293,7 +293,7 @@ msgstr "特性说明"
 
 #: /dev/fd/63:69 /dev/fd/63:192
 msgid "Debug Menu Strings"
-msgstr "Debug菜单字符串"
+msgstr "Debug 菜单字符串"
 
 #: /dev/fd/63:70 /dev/fd/63:193
 msgid "Portrait Names"
@@ -405,15 +405,15 @@ msgstr "使用招式学习器"
 
 #: /dev/fd/63:93 /dev/fd/63:216
 msgid "Treasure Box 1"
-msgstr "宝箱1"
+msgstr "宝箱 1"
 
 #: /dev/fd/63:94 /dev/fd/63:217
 msgid "Treasure Box 2"
-msgstr "宝箱2"
+msgstr "宝箱 2"
 
 #: /dev/fd/63:95 /dev/fd/63:218
 msgid "Treasure Box 3"
-msgstr "宝箱3"
+msgstr "宝箱 3"
 
 #: /dev/fd/63:96 /dev/fd/63:219
 #: skytemple/skytemple/module/monster/controller/monster.glade:2814
@@ -442,7 +442,7 @@ msgstr ""
 
 #: /dev/fd/63:102 /dev/fd/63:225
 msgid "ID of the first icon in markfont.dat (23 entries used)"
-msgstr "markfont.dat 中的第一个图标 ID（使用了23个条目）"
+msgstr "markfont.dat 中的第一个图标 ID（使用了 23 个条目）"
 
 #: /dev/fd/63:103 /dev/fd/63:226
 msgid "Display accuracy and power values"
@@ -450,7 +450,7 @@ msgstr ""
 
 #: /dev/fd/63:104 /dev/fd/63:227
 msgid "ID of the first icon in markfont.dat (24 entries used)"
-msgstr "markfont.dat 中的第一个图标 ID（使用了24个条目）"
+msgstr "markfont.dat 中的第一个图标 ID（使用了 24 个条目）"
 
 #: /dev/fd/63:105 /dev/fd/63:228
 msgid "String ID for push dialogue"
@@ -624,27 +624,27 @@ msgstr "if 条件下没有变量。"
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
-msgstr "变量 {var_target_name} 不能与‘not’一起使用（第{self.ctx.start.line}行）。"
+msgstr "变量 {var_target_name} 不能与“not”一起使用（第 {self.ctx.start.line} 行）。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
-msgstr "没有为if条件定义变量。"
+msgstr "没有为 if 条件定义变量。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:46
 msgid "No operator set for if condition."
-msgstr "没有为if条件设置运算符。"
+msgstr "没有为 if 条件设置运算符。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:51
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:43
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:48
 msgid "No value set for if condition."
-msgstr "没有为if条件设置任何值。"
+msgstr "没有为 if 条件设置任何值。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:48
 #, python-brace-format
 msgid "The only supported operators for scn if conditions are ==,<,<=,>,>= (line {self.ctx.start.line})"
-msgstr "scn if 条件仅支持运算符 ==,<,<=,>,>=（第{self.ctx.start.line}行）"
+msgstr "scn if 条件仅支持运算符 ==,<,<=,>,>=（第 {self.ctx.start.line} 行）"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:60
 msgid "Invalid content for an if-header"
@@ -653,7 +653,7 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:64
 #, python-brace-format
 msgid "Invalid operation for if condition: {op.op_code.name} (line {self.ctx.start.line})"
-msgstr "if条件的操作无效： {op.op_code.name} （第{self.ctx.start.line}行）"
+msgstr "if 条件的操作无效: {op.op_code.name} （第 {self.ctx.start.line} 行）"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:78
 #, python-brace-format
