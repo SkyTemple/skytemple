@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-11 17:08\n"
+"PO-Revision-Date: 2023-12-11 18:17\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -751,7 +751,7 @@ msgstr "致命编译错误: 堆栈上出现了意外的编译处理程序。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:286
 msgid "Fatal compilation error: Stack error."
-msgstr "致命编译错误：堆栈错误。"
+msgstr "致命编译错误: 堆栈错误。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:55
 #, python-brace-format
@@ -766,12 +766,12 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:107
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
-msgstr "意外的 break_loop；在第{ctx.start.line}行"
+msgstr "意外的 break_loop 。（第 {ctx.start.line} 行）"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:113
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
-msgstr "意外的 break_loop；在第{ctx.start.line}行"
+msgstr "意外中断。（第 {ctx.start.line} 行）"
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:136
 #, python-brace-format
@@ -4980,7 +4980,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/main.py:667
 msgid "'spritecollab' module must be installed to use this."
-msgstr "“spritecollab”模块必须安装才能使用。"
+msgstr "必须安装才能使用“spritecollab”模块。"
 
 #: skytemple/skytemple/controller/main.py:734
 #: skytemple/skytemple/controller/main.py:737
@@ -5010,7 +5010,7 @@ msgstr ""
 #: skytemple/skytemple/controller/main.py:987
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
-msgstr "你想保存对 {rom_name} 的更改吗？"
+msgstr "是否保存对 {rom_name} 的更改?"
 
 #: skytemple/skytemple/controller/settings.py:37
 msgid "Detect automatically"
@@ -5039,10 +5039,10 @@ msgid "This changes the way SkyTemple behaves when asynchronous operations are d
 "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. before they are run.\n\n"
 "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferredoption if available."
 msgstr "这将改变 SkyTemple 在执行异步操作（如加载文件和视图）时的行为方式。除非您明白自己在做什么，或者遇到了崩溃或其他问题，否则通常不需要更改。\n\n"
-"基于线程：SkyTemple 会生成一个额外的线程来运行异步操作。这可能会导致线程安全问题，但却是“最流畅”的加载体验。\n\n"
-"同步： 异步操作立即运行。在此期间，SkyTemple UI 会短暂卡顿。\n\n"
-"GLib： 与“同步”相同，但 UI 有机会在加载程序等运行前完成显示。\n\n"
-"使用 Gbulb 事件循环：这将启用单线程异步加载。如果有条件，这通常是首选。"
+"基于线程: SkyTemple 会生成一个额外的线程来运行异步操作。这可能会导致线程安全问题，但却是“最流畅”的加载体验。\n\n"
+"同步: 异步操作立即运行。在此期间，SkyTemple UI 会短暂卡顿。\n\n"
+"GLib: 与“同步”相同，但 UI 有机会在加载程序等运行前完成显示。\n\n"
+"使用 Gbulb 事件循环: 这将启用单线程异步加载。如果有条件，这通常是首选。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:54
 #: skytemple/skytemple/core/ui_utils.py:98
@@ -5061,11 +5061,11 @@ msgstr "所有文件"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:87
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr "可使用调色板的最大数量。对于普通背景，最多可使用16个调色板。对于地图背景，两层共用14个调色板（因为最后2个调色板不会在游戏中渲染）。"
+msgstr "可使用调色板的最大数量。对于普通背景，最多可使用 16 个调色板。对于地图背景，两层共用 14 个调色板（因为最后 2 个调色板不会在游戏中渲染）。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:98
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
-msgstr "图像中的该颜色值将作为透明度导入（默认值：#12ab56）。"
+msgstr "图像内的该颜色值将作为透明度导入（默认值 #12ab56）。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:107
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
@@ -5075,13 +5075,13 @@ msgstr "您可以使用此功能以相同的调色板一次转换多个图像。
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
 "No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n"
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
-msgstr "抖动：必要时，将对颜色进行减色和重组操作。颜色会发生改变，使其彼此“融合”。处理后的图像在视觉上会包含更多颜色，但也可能降低整体视觉质量。有两种不同的算法可供选择。\n\n"
-"无抖动：必要时，将对颜色进行减色和重组操作，但不执行抖动。\n\n"
-"仅重组颜色：重组颜色以使其符合游戏格式。SkyTemple不会为了兼容性而减少整体颜色数，因此，如果无法使用当前的颜色数，就会出错。但是，如果成功，输出图像将与原图一致。"
+msgstr "抖动: 必要时，将对颜色进行减色和重组操作。颜色会发生改变，使其彼此“融合”。处理后的图像在视觉上会包含更多颜色，但也可能降低整体视觉质量。有两种不同的算法可供选择。\n\n"
+"无抖动: 必要时，将对颜色进行减色和重组操作，但不执行抖动。\n\n"
+"仅重组颜色: 重组颜色以使其符合游戏格式。SkyTemple不会为了兼容性而减少整体颜色数，因此，如果当前的颜色数不可用，就会出错。但是，如果成功，输出图像将与原图一致。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:134
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
-msgstr "仅在启用抖动时才有意义：该选项控制着所应用的抖动量。"
+msgstr "仅在启用抖动时才有意义: 该选项控制着所应用的抖动量。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:184
 msgid "Please select an input image."
@@ -5101,7 +5101,7 @@ msgstr "将第二张图像另存为 (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:290
 msgid "You entered invalid numbers."
-msgstr "您输入的数字无效。"
+msgstr "输入的数字无效。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:293
 msgid "The input image does not exist."
@@ -5142,7 +5142,7 @@ msgstr ""
 #: skytemple/skytemple/core/error_handler.py:118
 #: skytemple/skytemple/main.py:187
 msgid "SkyTemple - Error!"
-msgstr "SkyTemple - 错误！"
+msgstr "SkyTemple - 错误!"
 
 #: skytemple/skytemple/core/error_handler.py:148
 msgid "Error Details"
@@ -5160,7 +5160,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/logger.py:99
 msgid "SkyTemple - Uncaught error!"
-msgstr "SkyTemple - 未捕获的错误！"
+msgstr "SkyTemple - 未捕获的错误!"
 
 #: skytemple/skytemple/core/modules.py:107
 #, python-brace-format
@@ -8892,7 +8892,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:756
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:844
 msgid "SkyTemple - Success!"
-msgstr "SkyTemple - 成功！"
+msgstr "SkyTemple - 成功!"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:762
 msgid "Error during BPA export"
@@ -10060,7 +10060,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/main.glade:195
 #: skytemple/skytemple/module/monster/controller/monster.glade:263
 msgid "** This data is not editable in SkyTemple, but you can export and import it."
-msgstr "** 此数据在SkyTemple中不可编辑，但您可以将其导出和导入。"
+msgstr "** 此数据不可在SkyTemple中编辑，但您可以将其导出和导入。"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:213
 #: skytemple/skytemple/module/monster/controller/monster.glade:295
@@ -12613,15 +12613,15 @@ msgstr "应用/刷新"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:386
 msgid "Server Preset:"
-msgstr "服务器预设："
+msgstr "服务器预设:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:420
 msgid "Server URL:"
-msgstr "服务器 URL："
+msgstr "服务器 URL:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:431
 msgid "Frontend URL:"
-msgstr "前端 URL："
+msgstr "前端 URL:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:463
 msgid "(optional)"
@@ -12723,7 +12723,7 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 msgstr "这将使用资源库中的精灵替换该宝可梦的精灵。\n"
 "您也可以选择创建一个新的精灵，它将被用于该宝可梦。\n\n"
 "此外，您还可以选择将 Sleep 睡眠动画复制到 EventSleep/Laying/Waking 动画中（如果该宝可梦没有这些动画）。\n"
-"在选择宝可梦作为主角或搭档时，它们在主世界可能会使用奇怪的动画睡觉。进行此操作后，将会得到解决。"
+"在选择宝可梦作为主角或搭档时，它们在主世界的睡觉动画可能会很奇怪。进行此操作后，这将会得到解决。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:200
 msgid "Create a new sprite instead of replacing the existing one."
@@ -12917,10 +12917,10 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr "<span size=\"large\">欢迎来到SkyTemple！</span>\n\n"
-"使用此工具，您可以编辑《宝可梦不可思议的迷宫：\n"
+msgstr "<span size=\"large\">欢迎使用 SkyTemple!</span>\n\n"
+"使用此工具，您可以编辑《宝可梦不可思议的迷宫:\n"
 "空之探险队》中的各项内容。\n\n"
-"请注意以下几点：\n"
+"请注意以下几点:\n"
 "- 该软件仍属于早期阶段，请先备份您的ROM，以免<i>崩溃</i>。\n"
 "- 在ROM文件的目录下，会自动创建一个项目目录。\n"
 "- 请反馈任何问题。"
@@ -12935,8 +12935,8 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
 msgstr "我能否在游戏启动时的徽标上添加\n"
-"“使用SkyTemple创建”的信息？\n\n"
-"这个信息将会置于地面地图 S05P01A 的图层2。\n"
+"“使用 SkyTemple 创建”的信息？\n\n"
+"这个信息将会置于地面地图 S05P01A 的图层 2。\n"
 "如果您不想要，可以移除或自定义。\n\n"
 "如果您想稍后再考虑，或在其他项目中使用它，\n"
 "可以使用主窗口右上角的菜单重新打开此对话框。"
@@ -12992,7 +12992,7 @@ msgstr ""
 #: skytemple/skytemple/skytemple.glade:601
 msgid "<i>Translations are written by volunteers and may not be accurate.\n"
 "Consider <a href=\"translate\">helping us</a> translate SkyTemple!</i>"
-msgstr "<i>翻译由志愿者们贡献，可能会不准确。\n"
+msgstr "<i>翻译由志愿者们贡献，可能存在错误。\n"
 "考虑<a href=\"translate\">帮助我们</a>翻译 SkyTemple！</i>"
 
 #: skytemple/skytemple/skytemple.glade:671
@@ -13030,7 +13030,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:958
 msgid "A new version of SkyTemple is available: "
-msgstr "SkyTemple 现已有可用的新版本："
+msgstr "SkyTemple 现已有可用的新版本: "
 
 #: skytemple/skytemple/skytemple.glade:983
 msgid "Update now!"
@@ -13038,7 +13038,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1017
 msgid "Recent Files:"
-msgstr "最近打开的文件："
+msgstr "最近打开的文件:"
 
 #: skytemple/skytemple/skytemple.glade:1104
 msgid "Native File Handlers enabled."
