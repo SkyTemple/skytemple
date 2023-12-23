@@ -18,6 +18,7 @@
 import logging
 import os
 import shutil
+import struct
 import sys
 from enum import Enum, auto
 from typing import (
@@ -40,7 +41,7 @@ from datetime import datetime
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
-from skytemple_files.user_error import mark_as_user_err
+from skytemple_files.user_error import mark_as_user_err, UserValueError
 
 from skytemple.core.item_tree import ItemTreeEntryRef
 from skytemple.core.profiling import record_transaction, record_span, TaggableContext
@@ -233,6 +234,14 @@ class RomProject:
                 except OSError as e:
                     mark_as_user_err(e)
                     raise e
+                except struct.error:
+                    raise UserValueError(
+                        _("There was an error trying to read the ROM file.")
+                        + " "
+                        + _(
+                            'Are you sure you provided a ROM? A ROM usually has the file extension ".nds".'
+                        )
+                    )
             await AsyncTaskDelegator.buffer()
             self._loaded_modules = {}
 
