@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-12-02 12:10+0000\n"
-"PO-Revision-Date: 2023-12-02 12:24\n"
+"POT-Creation-Date: 2023-12-23 15:03+0000\n"
+"PO-Revision-Date: 2023-12-23 16:22\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3285,6 +3285,10 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "Ein Bild, das importiert werden sollte, ist zu komplex. Es hat zu viele einzigartige Kacheln ({}, maximal sind 1024 erlaubt).\n"
 "Versuche, weniger einzigartige Kacheln zu haben. Einzigartige Kacheln sind 8x8 Bereiche im Bild, die nirgendwo sonst im Bild vorkommen (inklusive gedrehter oder gespiegelter Variationen oder mit einer anderen Unter-Palette)."
 
+#: skytemple-rust/src/python_image.rs:53
+msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
+msgstr ""
+
 #: skytemple-rust/src/romfs.rs:100
 msgid "ROM Header checksum does not match contents."
 msgstr "ROM-Header-Prüfsumme stimmt nicht mit Inhalt überein."
@@ -5196,7 +5200,7 @@ msgid "You can try opening one of the following file manually in a web browser o
 msgstr "Du kannst versuchen eine der folgenden Dateien manuell in einen Webbrowser oder Texteditor zu öffnen: "
 
 #: skytemple/skytemple/core/error_handler.py:118
-#: skytemple/skytemple/main.py:187
+#: skytemple/skytemple/main.py:185
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - Fehler!"
 
@@ -5226,24 +5230,24 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:167
+#: skytemple/skytemple/core/rom_project.py:168
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
 msgstr "Es wurde eine Sicherungsdatei für diese ROM gefunden. Das deutet darauf hin, dass die ROM beschädigt war, als SkyTemple das letzte Mal versucht hat, sie zu speichern."
 
-#: skytemple/skytemple/core/rom_project.py:170
+#: skytemple/skytemple/core/rom_project.py:171
 msgid "No, load ROM as-is"
 msgstr "Nein, ROM laden wie sie ist"
 
-#: skytemple/skytemple/core/rom_project.py:172
+#: skytemple/skytemple/core/rom_project.py:173
 msgid "Yes, load backup"
 msgstr "Ja, Sicherung laden"
 
-#: skytemple/skytemple/core/rom_project.py:174
-#: skytemple/skytemple/core/rom_project.py:178
+#: skytemple/skytemple/core/rom_project.py:175
+#: skytemple/skytemple/core/rom_project.py:179
 msgid "Last modified: {} - Size: {}"
 msgstr "Zuletzt geändert: {} - Größe: {}"
 
-#: skytemple/skytemple/core/rom_project.py:185
+#: skytemple/skytemple/core/rom_project.py:186
 msgid "Do you want to restore the backup?\n"
 "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
@@ -5254,6 +5258,14 @@ msgstr "Möchtest du die Sicherung wiederherstellen?\n"
 "Wenn du 'Nein, ROM so laden, wie sie ist' wählst, wird das Backup gelöscht und SkyTemple wird versuchen, die (potentiell) beschädigte ROM zu laden.\n\n"
 "Originale ROM: {}\n"
 "Backup ROM: {}"
+
+#: skytemple/skytemple/core/rom_project.py:239
+msgid "There was an error trying to read the ROM file."
+msgstr ""
+
+#: skytemple/skytemple/core/rom_project.py:242
+msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
+msgstr ""
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:198
 #: skytemple/skytemple/core/ssb_debugger/context.py:217
@@ -5342,7 +5354,7 @@ msgid "Your comments\n"
 "What else can you tell us that might help fixing the issue?</i></small>"
 msgstr ""
 
-#: skytemple/skytemple/main.py:186
+#: skytemple/skytemple/main.py:184
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr "PyGObject wurde ohne Cairo Unterstützung kompiliert. Kann nicht starten!"
 
