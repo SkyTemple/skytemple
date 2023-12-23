@@ -48,10 +48,10 @@ elif sys.platform.startswith("win"):
 
     failed_to_set_locale = False
     if os.getenv("LANG") is None:
-        lang, enc = locale.getlocale()
-        os.environ["LANG"] = f"{lang}.{enc}"
-        ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
         try:
+            lang, enc = locale.getlocale()
+            os.environ["LANG"] = f"{lang}.{enc}"
+            ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
             locale.setlocale(locale.LC_ALL, f"{lang}.{enc}")
         except:
             failed_to_set_locale = True
@@ -64,31 +64,29 @@ elif sys.platform.startswith("win"):
     if failed_to_set_locale:
         failed_to_set_locale = False
 
-        lang, enc = locale.getlocale()
-        print(
-            f"WARNING: Failed processing current locale {lang}.{enc}. Falling back to {lang}"
-        )
-        # If this returns None for lang, then we bail!
-        if lang is not None:
-            os.environ["LANG"] = lang
-            ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
-            try:
+        try:
+            lang, enc = locale.getlocale()
+            print(
+                f"WARNING: Failed processing current locale {lang}.{enc}. Falling back to {lang}"
+            )
+            # If this returns None for lang, then we bail!
+            if lang is not None:
+                os.environ["LANG"] = lang
+                ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
                 locale.setlocale(locale.LC_ALL, lang)
-            except:
-                failed_to_set_locale = True
 
-            try:
+                # trying to get locale may fail now, we catch this.
                 locale.getlocale()
-            except:
+            else:
                 failed_to_set_locale = True
-        else:
-            failed_to_set_locale = True
 
-        if failed_to_set_locale:
-            print(f"WARNING: Failed to set locale to {lang} falling back to C.")
-            os.environ["LANG"] = "C"
-            ctypes.cdll.msvcrt._putenv("LANG=C")
-            locale.setlocale(locale.LC_ALL, "C")
+            if failed_to_set_locale:
+                print(f"WARNING: Failed to set locale to {lang} falling back to C.")
+                os.environ["LANG"] = "C"
+                ctypes.cdll.msvcrt._putenv("LANG=C")
+                locale.setlocale(locale.LC_ALL, "C")
+        except:
+            failed_to_set_locale = True
 
     libintl_loc = os.path.join(os.path.dirname(__file__), "libintl-8.dll")
     if os.path.exists(libintl_loc):
