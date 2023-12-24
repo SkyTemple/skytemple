@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-23 15:03+0000\n"
-"PO-Revision-Date: 2023-12-24 06:07\n"
+"PO-Revision-Date: 2023-12-24 07:17\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -11449,7 +11449,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/asm.py:63
 #: skytemple/skytemple/module/patch/module.py:46
 msgid "Patches"
-msgstr ""
+msgstr "补丁"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:113
 msgid "This patch has had no issues loading."
@@ -11841,7 +11841,12 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "patches and effects in the C and Rust programming languages.\n\n"
 "Additionally you can browse all symbols and functions\n"
 "in the game known to SkyTemple."
-msgstr ""
+msgstr "在这部分中，您可以应用内置的 ASM 补丁和您自己的 ASM 补丁，以及使用汇编语言编写\n"
+"的自定义道具、招式和特殊处理效果。\n\n"
+"您也能了解到有关如何用 C 和 Rust 编程语言编写自己的\n"
+"补丁和效果的信息。\n\n"
+"此外，您还可以浏览 SkyTemple 已知的的游戏中的所有\n"
+"符号和函数。"
 
 #: skytemple/skytemple/module/patch/module.py:92
 msgid "ASM"
@@ -11989,7 +11994,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:348
 msgid "Title:"
-msgstr ""
+msgstr "标题:"
 
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:286
 #: skytemple/skytemple/module/script/controller/ssa.glade:796
