@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-23 15:03+0000\n"
-"PO-Revision-Date: 2023-12-24 07:17\n"
+"PO-Revision-Date: 2023-12-24 08:14\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2289,7 +2289,7 @@ msgstr ""
 #. TRANSLATORS: Status
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:347
 msgid "Paralysis"
-msgstr ""
+msgstr "麻痹"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:358
 msgid "Rock Slide"
@@ -2661,21 +2661,21 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/category.py:26
 msgid "Improvements and Tweaks"
-msgstr ""
+msgstr "改进与调整"
 
 #: skytemple-files/skytemple_files/patch/category.py:29
 msgid "New Mechanics"
-msgstr ""
+msgstr "新机制"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:31
 msgid "Bugfixes"
-msgstr ""
+msgstr "bug 修复"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:32
 msgid "Utility"
-msgstr ""
+msgstr "实用"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:33
@@ -3746,7 +3746,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1719
 #: skytemple/skytemple/module/script/controller/ssa.py:1961
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:51
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:55
@@ -11386,15 +11386,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:25
 msgid "ASM Patches"
-msgstr ""
+msgstr "ASM 补丁"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "将 ASM（汇编器）补丁应用至游戏。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:76
 msgid "Open Patch Directory..."
-msgstr ""
+msgstr "打开补丁目录..."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:127
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
@@ -11435,16 +11435,16 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:403
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:416
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:384
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:432
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:63
 #: skytemple/skytemple/module/patch/module.py:46
@@ -11457,15 +11457,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.py:129
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
-msgstr ""
+msgstr "该补丁已经应用。有些补丁能够被再次应用，但还有一些补丁可能会出现问题。请谨慎操作。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:141
 msgid "The current ROM is not supported by this patch."
-msgstr ""
+msgstr "该补丁不支持当前 ROM。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:145
 msgid "Please save the ROM before applying the patch."
-msgstr ""
+msgstr "在应用补丁之前，请保存 ROM。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:155
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
@@ -11512,15 +11512,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.py:337
 msgid "Not compatible"
-msgstr ""
+msgstr "不兼容"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:340
 msgid "Applied"
-msgstr ""
+msgstr "已应用"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:342
 msgid "Compatible"
-msgstr ""
+msgstr "兼容"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:552
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
