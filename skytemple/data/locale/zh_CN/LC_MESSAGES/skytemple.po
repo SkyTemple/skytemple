@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-23 15:03+0000\n"
-"PO-Revision-Date: 2023-12-24 08:14\n"
+"PO-Revision-Date: 2023-12-24 09:21\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2684,7 +2684,7 @@ msgstr "实用"
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2091
 #: skytemple/skytemple/module/script/module.py:219
 msgid "Others"
-msgstr ""
+msgstr "其他"
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
@@ -11804,35 +11804,38 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:302
 #: skytemple/skytemple/module/patch/module.py:103
 msgid "Special Process Effects"
-msgstr ""
+msgstr "特殊处理效果"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:88
 msgid "Edits the special process effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "编辑游戏使用的特殊处理效果。\n"
+"这不会列出用 C 或 Rust 语言添加的效果。"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:103
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<不可用>\n\n"
+"要查看和编辑特殊处理效果，请应用“补丁”> \"ASM\" 菜单中的 \"ExtractSPCode\" ASM 补丁。"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:169
 msgid "Edits the effects used by each special process.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "编辑每个特殊处理使用的效果。\n"
+"这不会列出用 C 或 Rust 语言添加的效果。"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:284
 msgid "Add Special Process"
-msgstr ""
+msgstr "添加特殊处理"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.py:121
 msgid "Import Special Process Effect ASM Code..."
-msgstr ""
+msgstr "导入特殊处理效果 ASM 代码..."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.py:184
 msgid "Export Special Process Effect ASM Code..."
-msgstr ""
+msgstr "导出特殊处理效果 ASM 代码..."
 
 #: skytemple/skytemple/module/patch/module.py:48
 msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
@@ -11841,11 +11844,11 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "patches and effects in the C and Rust programming languages.\n\n"
 "Additionally you can browse all symbols and functions\n"
 "in the game known to SkyTemple."
-msgstr "在这部分中，您可以应用内置的 ASM 补丁和您自己的 ASM 补丁，以及使用汇编语言编写\n"
+msgstr "您可在这里应用内置的 ASM 补丁和您自己的 ASM 补丁，以及使用汇编语言编写\n"
 "的自定义道具、招式和特殊处理效果。\n\n"
 "您也能了解到有关如何用 C 和 Rust 编程语言编写自己的\n"
 "补丁和效果的信息。\n\n"
-"此外，您还可以浏览 SkyTemple 已知的的游戏中的所有\n"
+"此外，您还可以浏览 SkyTemple 已知的游戏中的所有\n"
 "符号和函数。"
 
 #: skytemple/skytemple/module/patch/module.py:92
