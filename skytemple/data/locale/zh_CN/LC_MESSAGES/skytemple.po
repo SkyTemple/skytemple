@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-12-23 15:03+0000\n"
-"PO-Revision-Date: 2023-12-24 09:21\n"
+"PO-Revision-Date: 2023-12-24 10:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -11586,13 +11586,15 @@ msgstr ""
 msgid "This section allows you to insert custom ASM code for effects.\n"
 "Please note that C and Rust effects are not listed here.\n"
 "See the \"C/Rust\" section for more information."
-msgstr ""
+msgstr "您可在此处为效果插入自定义 ASM 代码。\n"
+"请注意，此处未列出 C 和 Rust 语言效果。\n"
+"有关更多信息，请参见 \"C/Rust\" 部分。"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:343
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:384
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:342
 msgid "Effect ID: "
-msgstr ""
+msgstr "效果 ID: "
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:440
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:481
@@ -11604,7 +11606,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:576
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:523
 msgid "Import Code"
-msgstr ""
+msgstr "导入代码"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:583
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:624
@@ -11638,7 +11640,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/item_effects.py:135
 msgid "Import Item Effect ASM Code..."
-msgstr ""
+msgstr "导入道具效果 ASM 代码..."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.py:143
 #: skytemple/skytemple/module/patch/controller/move_effects.py:156
@@ -11665,7 +11667,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/sp_effects.py:161
 #: skytemple/skytemple/module/patch/controller/sp_effects.py:180
 msgid "Error importing ASM code."
-msgstr ""
+msgstr "导入 ASM 代码时出错。"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.py:190
 #: skytemple/skytemple/module/patch/controller/move_effects.py:203
@@ -12699,7 +12701,7 @@ msgstr "应用精灵"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:548
 msgid "<b><i>Make sure to credit artists:</i></b>"
-msgstr "<b><i>请标明作品作者:</i></b>"
+msgstr "<b><i>请标明作品作者：</i></b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:554
 msgid "<b>Portrait Credits:</b>"
