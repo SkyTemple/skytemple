@@ -176,7 +176,7 @@ class TilesetController(AbstractController):
 
         filter = Gtk.FileFilter()
         filter.set_name(_("DTEF XML document (*.dtef.xml)"))
-        filter.add_pattern("*.dtef.xml")
+        filter.add_pattern("*.xml")
         dialog.add_filter(filter)
         add_dialog_xml_filter(dialog)
 
