@@ -550,7 +550,7 @@ class FloorController(AbstractController):
     @catch_overflow(i8)
     def on_entry_initial_enemy_density_changed(self, w, *args):
         try:
-            val = i8_checked(int(w.get_text()))
+            val = u8_checked(int(w.get_text()))
         except ValueError:
             return
         self.entry.layout.initial_enemy_density = val
@@ -598,8 +598,8 @@ class FloorController(AbstractController):
     def on_btn_help_initial_enemy_density_clicked(self, *args):
         self._help(
             _(
-                "The final value is randomized between randomized density / 2 and density - 1 if the value is positive. "
-                "If it's negative, its absolute value is used (no random variation is applied in this case)."
+                "The final value is randomized between randomized density / 2 and density - 1. If the value is 0, no "
+                "enemies will spawn on the floor."
             )
         )
 
