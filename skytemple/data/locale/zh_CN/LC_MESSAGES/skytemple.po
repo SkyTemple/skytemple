@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-12-23 15:03+0000\n"
-"PO-Revision-Date: 2023-12-24 10:36\n"
+"POT-Creation-Date: 2024-01-02 12:53+0000\n"
+"PO-Revision-Date: 2024-01-02 13:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -3063,51 +3063,51 @@ msgstr ""
 msgid "Unknown constant {constant_as_string}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:153
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:155
 msgid "The routine data lists for the decompiler must have the same lengths."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:170
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:172
 #, python-brace-format
 msgid "Routine {i} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:194
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:196
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:200
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:202
 msgid "The script must not contain any duplicate coroutines."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:210
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:212
 #, python-brace-format
 msgid "Unknown coroutine {err}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:226
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:228
 msgid "Coroutines and regular routines can not be mixed in a script file."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:245
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:256
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:272
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:283
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:293
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:304
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:398
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:409
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:404
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:415
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr ""
@@ -6773,7 +6773,7 @@ msgid "The final value is randomized between randomized density / 2 and density 
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:609
-msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
+msgid "The value stored in the ROM is actually what you write here divided by 5. Because of this, your input will be rounded to the next multiple of 5."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:617
