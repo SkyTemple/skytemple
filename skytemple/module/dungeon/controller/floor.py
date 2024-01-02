@@ -606,7 +606,7 @@ class FloorController(AbstractController):
     def on_btn_help_max_coin_amount_clicked(self, *args):
         self._help(
             _(
-                "The value stored in the ROM is actually the value divided by 5. Because of this the saved value "
+                "The value stored in the ROM is actually what you write here divided by 5. Because of this, your input "
                 "will be rounded to the next multiple of 5."
             )
         )
