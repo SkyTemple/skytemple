@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING, Union, Optional, Dict, overload, Literal
 from gi.repository import Gtk
 from PIL import Image
 from skytemple_files.common.ppmdu_config.data import Pmd2Sprite
+from skytemple_files.user_error import UserValueError
 
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
@@ -393,6 +394,14 @@ class SpriteModule(AbstractModule):
 
     def save_monster_sprite(self, id, wan: WanFile):
         """Import all three sprite variation of the monster"""
+        with self.get_ground_bin_ctx() as bin_pack:
+            if id >= len(bin_pack):
+                raise UserValueError(
+                    _(
+                        "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
+                    )
+                )
+
         monster, ground, attack = FileType.WAN.CHARA.split_wan(wan)
         # First prepare them all. This make sure we catch any conversion error and avoid partial import
         ground_prepared = self.prepare_monster_sprite(ground, False)

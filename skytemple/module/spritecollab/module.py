@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import asyncio
 import os
+import sys
 from tempfile import NamedTemporaryFile
 from typing import Optional, Tuple
 
@@ -114,24 +115,27 @@ class SpritecollabModule(AbstractModule):
         spr_result = asyncio.run(
             get_sprites(client, (form.monster_id, form.form_path), copy_event_sleep)
         )
-        if spr_result is not None:
-            wan_file, pmd2_sprite, shadow_size_id = spr_result
-            # update sprite
-            sprite_module.save_monster_sprite(sprite_idx, wan_file)
+        try:
+            if spr_result is not None:
+                wan_file, pmd2_sprite, shadow_size_id = spr_result
+                # update sprite
+                sprite_module.save_monster_sprite(sprite_idx, wan_file)
 
-            monster_module.set_sprite_idx(monster_idx, sprite_idx)
-            monster_module.set_shadow_size(
-                monster_idx, ShadowSize(shadow_size_id)  # type: ignore
+                monster_module.set_sprite_idx(monster_idx, sprite_idx)
+                monster_module.set_shadow_size(
+                    monster_idx, ShadowSize(shadow_size_id)  # type: ignore
+                )
+                sprite_module.update_sprconf(pmd2_sprite)
+            else:
+                self._msg_no_data(window)
+                return
+
+            GLib.idle_add(lambda: MainController.reload_view())
+            GLib.idle_add(
+                lambda: self._msg_success(window, _("Sprites successfully imported."))
             )
-            sprite_module.update_sprconf(pmd2_sprite)
-        else:
-            self._msg_no_data(window)
-            return
-
-        GLib.idle_add(lambda: MainController.reload_view())
-        GLib.idle_add(
-            lambda: self._msg_success(window, _("Sprites successfully imported."))
-        )
+        except BaseException as e:
+            display_error(sys.exc_info(), str(e), _("Error importing the spritesheet."))
 
     def _check_opened(self, window: Gtk.Window) -> Optional[int]:
         project = RomProject.get_current()
