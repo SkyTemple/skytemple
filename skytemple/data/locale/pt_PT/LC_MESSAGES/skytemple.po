@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-02 12:53+0000\n"
-"PO-Revision-Date: 2024-01-02 13:46\n"
+"POT-Creation-Date: 2024-01-03 18:49+0000\n"
+"PO-Revision-Date: 2024-01-03 18:55\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -3535,7 +3535,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:100
 #: skytemple/skytemple/module/portrait/controller/portrait.py:117
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:164
-#: skytemple/skytemple/module/sprite/module.py:246
+#: skytemple/skytemple/module/sprite/module.py:247
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -3939,7 +3939,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/map.py:192
 #: skytemple/skytemple/module/script/controller/ssa.py:2206
 #: skytemple/skytemple/module/sprite/controller/object_main.py:106
-#: skytemple/skytemple/module/spritecollab/module.py:178
+#: skytemple/skytemple/module/spritecollab/module.py:182
 msgid "Cancel"
 msgstr ""
 
@@ -11388,7 +11388,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:127
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
-#: skytemple/skytemple/module/spritecollab/module.py:178
+#: skytemple/skytemple/module/spritecollab/module.py:182
 msgid "Apply"
 msgstr ""
 
@@ -12489,6 +12489,7 @@ msgid "The spritesheet was successfully imported."
 msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:338
+#: skytemple/skytemple/module/spritecollab/module.py:138
 msgid "Error importing the spritesheet."
 msgstr ""
 
@@ -12547,44 +12548,48 @@ msgstr ""
 msgid "Object sprite added successfully"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:168
+#: skytemple/skytemple/module/sprite/module.py:169
 msgid "Import WAN sprite..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:187
+#: skytemple/skytemple/module/sprite/module.py:188
 msgid "Export WAN sprite..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:194
+#: skytemple/skytemple/module/sprite/module.py:195
 msgid "WAN sprite (*.wan)"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:215
+#: skytemple/skytemple/module/sprite/module.py:216
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:223
+#: skytemple/skytemple/module/sprite/module.py:224
 msgid "Import gfxcrunch sprite..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:238
+#: skytemple/skytemple/module/sprite/module.py:239
 msgid "Error importing the sprite."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:258
+#: skytemple/skytemple/module/sprite/module.py:259
 msgid "Error exporting the sprite."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:262
+#: skytemple/skytemple/module/sprite/module.py:263
 msgid "Import image file..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:279
+#: skytemple/skytemple/module/sprite/module.py:280
 msgid "Error importing image to object."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:370
+#: skytemple/skytemple/module/sprite/module.py:371
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/module.py:401
+msgid "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
 msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
@@ -12695,27 +12700,27 @@ msgstr ""
 msgid "Open Details on Website..."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:80
+#: skytemple/skytemple/module/spritecollab/module.py:81
 msgid "Portraits successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:133
+#: skytemple/skytemple/module/spritecollab/module.py:135
 msgid "Sprites successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:153
+#: skytemple/skytemple/module/spritecollab/module.py:157
 msgid "Open a Pokémon in the main window to apply the assets to."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:160
+#: skytemple/skytemple/module/spritecollab/module.py:164
 msgid "Could not apply the sprites, since no sprite data is available."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:167
+#: skytemple/skytemple/module/spritecollab/module.py:171
 msgid "This Pokémon does not support portraits and/or sprites."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:188
+#: skytemple/skytemple/module/spritecollab/module.py:192
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
 "You can also choose to create a new sprite instead, it will be assigned to the Pokémon.\n\n"
 "Additionally you can choose to copy the Sleep animation to the EventSleep/Laying/Waking\n"
@@ -12724,11 +12729,11 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "when choosing them as a starter or partner."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:200
+#: skytemple/skytemple/module/spritecollab/module.py:204
 msgid "Create a new sprite instead of replacing the existing one."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:205
+#: skytemple/skytemple/module/spritecollab/module.py:209
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
 msgstr ""
 
