@@ -707,7 +707,7 @@ class DungeonModule(AbstractModule):
             self.project.mark_as_modified(FLOOR_RANKS)
         # Update mission forbidden
         mf = self.get_floor_mf(dungeon_id, floor_offset + number_floors_old - 1)
-        if mf:
+        if mf is not None:
             self.extend_nb_floors_mf(
                 dungeon_id, floor_offset + number_floors_old, floors_added, mf
             )
