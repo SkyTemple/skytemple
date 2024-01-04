@@ -591,7 +591,7 @@ class FloorController(AbstractController):
     def on_btn_help_item_density_clicked(self, *args):
         self._help(
             _(
-                "The final value is randomized between randomized between density - 2 and density + 1."
+                "The final value is randomized between density - 2 and density + 1."
             )
         )
 
