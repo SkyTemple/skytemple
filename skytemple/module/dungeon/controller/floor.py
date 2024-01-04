@@ -590,18 +590,16 @@ class FloorController(AbstractController):
 
     def on_btn_help_item_density_clicked(self, *args):
         self._help(
-            _(
-                "The final value is randomized between density - 2 and density + 1."
-            )
+            _("The final value is randomized between density - 2 and density + 1.")
         )
 
     def on_btn_help_initial_enemy_density_clicked(self, *args):
         self._help(
             _(
                 "The final value is randomized between density / 2 and density - 1. If the value is negative and the "
-				"NegativeEnemyDensity patch is applied, the absolute value of the density is used instead (no random "
-				"variation is applied in this case). If the value is 0, no enemies will spawn on the floor, even as "
-				"turns pass."
+                "NegativeEnemyDensity patch is applied, the absolute value of the density is used instead (no random "
+                "variation is applied in this case). If the value is 0, no enemies will spawn on the floor, even as "
+                "turns pass."
             )
         )
 
