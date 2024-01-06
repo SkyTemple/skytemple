@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-03 18:49+0000\n"
-"PO-Revision-Date: 2024-01-03 18:55\n"
+"POT-Creation-Date: 2024-01-06 10:16+0000\n"
+"PO-Revision-Date: 2024-01-06 10:26\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -854,11 +854,11 @@ msgstr "Erro ao importar mapeamento. Tipo desconhecido: '{mapping_type}'."
 msgid "Invalid variation index {var_idx}."
 msgstr "Índice de variação {var_idx} inválido."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:279
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:280
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
 msgstr "Erro na XML: Um dos quadros da animação não tem 16 cores. Cada frame deve ter um valor para cada cor."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:287
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:288
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
 msgstr "Erro na XML: Durações para uma paleta ou suas cores não estão definidas corretamente."
 
@@ -971,26 +971,26 @@ msgstr ""
 msgid "Only 4bpp and 8bpp images are supported."
 msgstr "Apenas imagens 4bpp e 8bpp são suportadas."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:257
+#: skytemple-files/skytemple_files/common/tiled_image.py:258
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
 msgstr "Impossível converter imagem PIL para imagem PMD gradeada: Precisa ser imagem indexada (=usando uma paleta)"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:268
+#: skytemple-files/skytemple_files/common/tiled_image.py:269
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr "Impossível converter imagem PIL para imagem PMD gradeada: Paleta deve conter {max_len_pal} cores RGB e ser divisível por {single_palette_size}."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:278
+#: skytemple-files/skytemple_files/common/tiled_image.py:279
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr "Impossível converter imagem PIL para imagem PMD gradeada: Dimensões da imagem devem ser {img_width}x{img_height}px."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:356
-#: skytemple-files/skytemple_files/common/tiled_image.py:370
+#: skytemple-files/skytemple_files/common/tiled_image.py:357
+#: skytemple-files/skytemple_files/common/tiled_image.py:371
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr "Impossível converter imagem PIL para imagem PMD gradeada: A cor {pix} (da paleta {math.floor(pix / single_palette_size)}) usada pelo pixel {x+(idx % 2)}x{y} na cela {tile_id} ({tile_x}x{tile_y} está fora de alcance. Esperado era cores da paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:422
+#: skytemple-files/skytemple_files/common/tiled_image.py:426
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
@@ -2911,6 +2911,10 @@ msgstr ""
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/negative_enemy_density.py:49
+msgid "Makes negative enemy density values work as intended (the absolute value of the density is used, without adding a random variation)."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/no_weather_stop.py:51
 msgid "Changes weather damage messages so they don't make the player stop running."
 msgstr ""
@@ -2967,72 +2971,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:226
-#: skytemple-files/skytemple_files/patch/patches.py:236
+#: skytemple-files/skytemple_files/patch/patches.py:230
+#: skytemple-files/skytemple_files/patch/patches.py:240
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:245
+#: skytemple-files/skytemple_files/patch/patches.py:249
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:254
+#: skytemple-files/skytemple_files/patch/patches.py:258
 #: skytemple/skytemple/module/patch/controller/asm.py:418
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:265
+#: skytemple-files/skytemple_files/patch/patches.py:269
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:270
+#: skytemple-files/skytemple_files/patch/patches.py:274
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:276
-#: skytemple-files/skytemple_files/patch/patches.py:282
-#: skytemple-files/skytemple_files/patch/patches.py:288
-#: skytemple-files/skytemple_files/patch/patches.py:296
-#: skytemple-files/skytemple_files/patch/patches.py:313
+#: skytemple-files/skytemple_files/patch/patches.py:280
+#: skytemple-files/skytemple_files/patch/patches.py:286
+#: skytemple-files/skytemple_files/patch/patches.py:292
+#: skytemple-files/skytemple_files/patch/patches.py:300
+#: skytemple-files/skytemple_files/patch/patches.py:317
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:284
+#: skytemple-files/skytemple_files/patch/patches.py:288
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:290
+#: skytemple-files/skytemple_files/patch/patches.py:294
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:405
+#: skytemple-files/skytemple_files/patch/patches.py:409
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:408
+#: skytemple-files/skytemple_files/patch/patches.py:412
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:421
+#: skytemple-files/skytemple_files/patch/patches.py:425
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:424
+#: skytemple-files/skytemple_files/patch/patches.py:428
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:432
+#: skytemple-files/skytemple_files/patch/patches.py:436
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:441
+#: skytemple-files/skytemple_files/patch/patches.py:445
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:453
+#: skytemple-files/skytemple_files/patch/patches.py:457
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -6773,12 +6777,12 @@ msgstr ""
 msgid "The final value is randomized between density and density/2."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:594
-msgid "The final value is randomized between randomized between density - 2 and density + 1."
+#: skytemple/skytemple/module/dungeon/controller/floor.py:593
+msgid "The final value is randomized between density - 2 and density + 1."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:601
-msgid "The final value is randomized between randomized density / 2 and density - 1 if the value is positive. If it's negative, its absolute value is used (no random variation is applied in this case)."
+#: skytemple/skytemple/module/dungeon/controller/floor.py:599
+msgid "The final value is randomized between density / 2 and density - 1. If the value is negative and the NegativeEnemyDensity patch is applied, the absolute value of the density is used instead (no random variation is applied in this case). If the value is 0, no enemies will spawn on the floor, even as turns pass."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:609
