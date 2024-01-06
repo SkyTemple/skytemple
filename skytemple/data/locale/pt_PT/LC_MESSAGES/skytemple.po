@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-11-19 23:17+0000\n"
-"PO-Revision-Date: 2023-11-19 23:27\n"
+"POT-Creation-Date: 2024-01-06 10:16+0000\n"
+"PO-Revision-Date: 2024-01-06 10:26\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -853,11 +853,11 @@ msgstr ""
 msgid "Invalid variation index {var_idx}."
 msgstr ""
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:279
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:280
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
 msgstr ""
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:287
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:288
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
 msgstr ""
 
@@ -970,26 +970,26 @@ msgstr ""
 msgid "Only 4bpp and 8bpp images are supported."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:257
+#: skytemple-files/skytemple_files/common/tiled_image.py:258
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:268
+#: skytemple-files/skytemple_files/common/tiled_image.py:269
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:278
+#: skytemple-files/skytemple_files/common/tiled_image.py:279
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:356
-#: skytemple-files/skytemple_files/common/tiled_image.py:370
+#: skytemple-files/skytemple_files/common/tiled_image.py:357
+#: skytemple-files/skytemple_files/common/tiled_image.py:371
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:422
+#: skytemple-files/skytemple_files/common/tiled_image.py:426
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
@@ -2097,7 +2097,7 @@ msgstr ""
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/_model.py:489
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:491
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
@@ -2906,6 +2906,10 @@ msgstr ""
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/negative_enemy_density.py:49
+msgid "Makes negative enemy density values work as intended (the absolute value of the density is used, without adding a random variation)."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/no_weather_stop.py:51
 msgid "Changes weather damage messages so they don't make the player stop running."
 msgstr ""
@@ -2962,72 +2966,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:214
-#: skytemple-files/skytemple_files/patch/patches.py:224
+#: skytemple-files/skytemple_files/patch/patches.py:230
+#: skytemple-files/skytemple_files/patch/patches.py:240
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:233
+#: skytemple-files/skytemple_files/patch/patches.py:249
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:242
+#: skytemple-files/skytemple_files/patch/patches.py:258
 #: skytemple/skytemple/module/patch/controller/asm.py:418
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:253
+#: skytemple-files/skytemple_files/patch/patches.py:269
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:258
+#: skytemple-files/skytemple_files/patch/patches.py:274
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:264
-#: skytemple-files/skytemple_files/patch/patches.py:270
-#: skytemple-files/skytemple_files/patch/patches.py:276
-#: skytemple-files/skytemple_files/patch/patches.py:284
-#: skytemple-files/skytemple_files/patch/patches.py:301
+#: skytemple-files/skytemple_files/patch/patches.py:280
+#: skytemple-files/skytemple_files/patch/patches.py:286
+#: skytemple-files/skytemple_files/patch/patches.py:292
+#: skytemple-files/skytemple_files/patch/patches.py:300
+#: skytemple-files/skytemple_files/patch/patches.py:317
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:272
+#: skytemple-files/skytemple_files/patch/patches.py:288
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:278
+#: skytemple-files/skytemple_files/patch/patches.py:294
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:393
+#: skytemple-files/skytemple_files/patch/patches.py:409
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:396
+#: skytemple-files/skytemple_files/patch/patches.py:412
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:409
+#: skytemple-files/skytemple_files/patch/patches.py:425
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:412
+#: skytemple-files/skytemple_files/patch/patches.py:428
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:420
+#: skytemple-files/skytemple_files/patch/patches.py:436
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:429
+#: skytemple-files/skytemple_files/patch/patches.py:445
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:441
+#: skytemple-files/skytemple_files/patch/patches.py:457
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -3063,51 +3067,51 @@ msgstr ""
 msgid "Unknown constant {constant_as_string}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:153
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:155
 msgid "The routine data lists for the decompiler must have the same lengths."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:170
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:172
 #, python-brace-format
 msgid "Routine {i} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:194
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:196
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:200
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:202
 msgid "The script must not contain any duplicate coroutines."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:210
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:212
 #, python-brace-format
 msgid "Unknown coroutine {err}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:226
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:228
 msgid "Coroutines and regular routines can not be mixed in a script file."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:245
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:256
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:272
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:283
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:293
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:304
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:398
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:409
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:404
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:415
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr ""
@@ -3253,6 +3257,10 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
+#: skytemple-rust/src/python_image.rs:53
+msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
+msgstr ""
+
 #: skytemple-rust/src/romfs.rs:100
 msgid "ROM Header checksum does not match contents."
 msgstr ""
@@ -3298,7 +3306,7 @@ msgstr ""
 msgid "Frame durations out of range while trying to build color."
 msgstr ""
 
-#: skytemple-rust/src/st_kao.rs:96
+#: skytemple-rust/src/st_kao.rs:97
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
@@ -3518,7 +3526,7 @@ msgid "_Cancel"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:331
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:994
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:999
 #: skytemple/skytemple/_i18n.py:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:98
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:304
@@ -3531,7 +3539,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:100
 #: skytemple/skytemple/module/portrait/controller/portrait.py:117
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:164
-#: skytemple/skytemple/module/sprite/module.py:246
+#: skytemple/skytemple/module/sprite/module.py:247
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -3547,7 +3555,7 @@ msgid "The file is still loaded in RAM! Currently you are still able to debug us
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:346
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1656
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1661
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:531
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:396
@@ -3809,124 +3817,124 @@ msgstr ""
 msgid "Save Screenshot..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:813
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:818
 msgid "Open Scenes..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:820
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:825
 msgid "Open Scene..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:829
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:834
 msgid "Create directory..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:831
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:836
 msgid "Create new script file..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:836
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:908
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:841
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:913
 msgid "Macros"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:839
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:844
 msgid "Delete directory..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:847
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:852
 msgid "Delete script file..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:856
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:861
 msgid "Create Directory"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:856
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:861
 msgid "Name of the directory:"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:864
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:869
 msgid "Create File"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:864
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:869
 msgid "Name of the new script file:"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:876
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:881
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:884
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:889
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:922
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:927
 msgid "Common"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:933
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1428
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:938
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1433
 #: skytemple/skytemple/module/script/module.py:253
 #: skytemple/skytemple/module/script/module.py:622
 msgid "Enter (sse)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:944
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1431
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:949
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1436
 #: skytemple/skytemple/module/script/module.py:270
 #: skytemple/skytemple/module/script/module.py:565
 msgid "Acting (ssa)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:954
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:959
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1440
 #: skytemple/skytemple/module/script/module.py:302
 #: skytemple/skytemple/module/script/module.py:576
 msgid "Sub (sss)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:991
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:996
 msgid "Save dumped block..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1227
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1232
 msgid "Unable to save savestate!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1263
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1268
 msgid "Unable to load savestate!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1376
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1381
 msgid "The game is stopped."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1385
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1390
 msgid "The game is paused."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1490
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1495
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1652
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1657
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
 "Do you still want to continue?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1715
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1720
 msgid "Delete"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1717
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1728
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1733
 #: skytemple/skytemple/controller/main.py:991
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/controller/main.py:126
@@ -3935,11 +3943,11 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/map.py:192
 #: skytemple/skytemple/module/script/controller/ssa.py:2206
 #: skytemple/skytemple/module/sprite/controller/object_main.py:106
-#: skytemple/skytemple/module/spritecollab/module.py:178
+#: skytemple/skytemple/module/spritecollab/module.py:182
 msgid "Cancel"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1718
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1723
 msgid "You will not be able to restore it."
 msgstr ""
 
@@ -4796,7 +4804,7 @@ msgid "The script contains a syntax error, please fix it before editing the Posi
 "Parse error: {err}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:42
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:41
 msgid "Constants & Variables"
 msgstr ""
 
@@ -5130,7 +5138,7 @@ msgid "You can try opening one of the following file manually in a web browser o
 msgstr ""
 
 #: skytemple/skytemple/core/error_handler.py:118
-#: skytemple/skytemple/main.py:183
+#: skytemple/skytemple/main.py:185
 msgid "SkyTemple - Error!"
 msgstr ""
 
@@ -5160,29 +5168,37 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:167
+#: skytemple/skytemple/core/rom_project.py:168
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:170
+#: skytemple/skytemple/core/rom_project.py:171
 msgid "No, load ROM as-is"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:172
+#: skytemple/skytemple/core/rom_project.py:173
 msgid "Yes, load backup"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:174
-#: skytemple/skytemple/core/rom_project.py:178
+#: skytemple/skytemple/core/rom_project.py:175
+#: skytemple/skytemple/core/rom_project.py:179
 msgid "Last modified: {} - Size: {}"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:185
+#: skytemple/skytemple/core/rom_project.py:186
 msgid "Do you want to restore the backup?\n"
 "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
 "Original ROM: {}\n"
 "Backup ROM: {}"
+msgstr ""
+
+#: skytemple/skytemple/core/rom_project.py:239
+msgid "There was an error trying to read the ROM file."
+msgstr ""
+
+#: skytemple/skytemple/core/rom_project.py:242
+msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
 msgstr ""
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:198
@@ -5268,7 +5284,7 @@ msgid "Your comments\n"
 "What else can you tell us that might help fixing the issue?</i></small>"
 msgstr ""
 
-#: skytemple/skytemple/main.py:182
+#: skytemple/skytemple/main.py:184
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr ""
 
@@ -6742,16 +6758,16 @@ msgstr ""
 msgid "The final value is randomized between density and density/2."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:594
-msgid "The final value is randomized between randomized between density - 2 and density + 1."
+#: skytemple/skytemple/module/dungeon/controller/floor.py:593
+msgid "The final value is randomized between density - 2 and density + 1."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:601
-msgid "The final value is randomized between randomized density / 2 and density - 1 if the value is positive. If it's negative, its absolute value is used (no random variation is applied in this case)."
+#: skytemple/skytemple/module/dungeon/controller/floor.py:599
+msgid "The final value is randomized between density / 2 and density - 1. If the value is negative and the NegativeEnemyDensity patch is applied, the absolute value of the density is used instead (no random variation is applied in this case). If the value is 0, no enemies will spawn on the floor, even as turns pass."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:609
-msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
+msgid "The value stored in the ROM is actually what you write here divided by 5. Because of this, your input will be rounded to the next multiple of 5."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:617
@@ -11376,7 +11392,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:127
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
-#: skytemple/skytemple/module/spritecollab/module.py:178
+#: skytemple/skytemple/module/spritecollab/module.py:182
 msgid "Apply"
 msgstr ""
 
@@ -12477,6 +12493,7 @@ msgid "The spritesheet was successfully imported."
 msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:338
+#: skytemple/skytemple/module/spritecollab/module.py:138
 msgid "Error importing the spritesheet."
 msgstr ""
 
@@ -12535,44 +12552,48 @@ msgstr ""
 msgid "Object sprite added successfully"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:168
+#: skytemple/skytemple/module/sprite/module.py:169
 msgid "Import WAN sprite..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:187
+#: skytemple/skytemple/module/sprite/module.py:188
 msgid "Export WAN sprite..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:194
+#: skytemple/skytemple/module/sprite/module.py:195
 msgid "WAN sprite (*.wan)"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:215
+#: skytemple/skytemple/module/sprite/module.py:216
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:223
+#: skytemple/skytemple/module/sprite/module.py:224
 msgid "Import gfxcrunch sprite..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:238
+#: skytemple/skytemple/module/sprite/module.py:239
 msgid "Error importing the sprite."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:258
+#: skytemple/skytemple/module/sprite/module.py:259
 msgid "Error exporting the sprite."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:262
+#: skytemple/skytemple/module/sprite/module.py:263
 msgid "Import image file..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:279
+#: skytemple/skytemple/module/sprite/module.py:280
 msgid "Error importing image to object."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:370
+#: skytemple/skytemple/module/sprite/module.py:371
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/module.py:401
+msgid "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
 msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
@@ -12683,27 +12704,27 @@ msgstr ""
 msgid "Open Details on Website..."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:80
+#: skytemple/skytemple/module/spritecollab/module.py:81
 msgid "Portraits successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:133
+#: skytemple/skytemple/module/spritecollab/module.py:135
 msgid "Sprites successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:153
+#: skytemple/skytemple/module/spritecollab/module.py:157
 msgid "Open a Pokémon in the main window to apply the assets to."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:160
+#: skytemple/skytemple/module/spritecollab/module.py:164
 msgid "Could not apply the sprites, since no sprite data is available."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:167
+#: skytemple/skytemple/module/spritecollab/module.py:171
 msgid "This Pokémon does not support portraits and/or sprites."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:188
+#: skytemple/skytemple/module/spritecollab/module.py:192
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
 "You can also choose to create a new sprite instead, it will be assigned to the Pokémon.\n\n"
 "Additionally you can choose to copy the Sleep animation to the EventSleep/Laying/Waking\n"
@@ -12712,11 +12733,11 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "when choosing them as a starter or partner."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:200
+#: skytemple/skytemple/module/spritecollab/module.py:204
 msgid "Create a new sprite instead of replacing the existing one."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:205
+#: skytemple/skytemple/module/spritecollab/module.py:209
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
 msgstr ""
 
@@ -13042,7 +13063,7 @@ msgid "Open script editor / debugger"
 msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1411
-msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
+msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky"
 msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1488
