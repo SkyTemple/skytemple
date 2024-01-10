@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-01-10 19:44+0000\n"
-"PO-Revision-Date: 2024-01-10 20:33\n"
+"PO-Revision-Date: 2024-01-10 21:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1687,19 +1687,19 @@ msgstr "Die Kachel Eigenschaft 0xA wird auf 1 gesetzt (Zweck unbekannt)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:170
 msgid "F/W, Room; Key Door"
-msgstr ""
+msgstr "B/W, Raum, Schlüssel-Tür"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:176
 msgid "Spawns a locked Key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "Es wird eine Schlüsseltür erstellt. Wenn die ID des statischen Raums &lt; 0xA5 ist, wird unter der Tür eine Mauer sein, ansonsten Boden."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:182
 msgid "F/W, Room; Key Door (Escort)"
-msgstr ""
+msgstr "B/W, Raum, Schlüssel-Tür (Eskorte)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:188
 msgid "Spawns a locked Key Door (meant to be opened by an escort mission client). If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "Es wird eine Schlüsseltür erstellt (die dafür gedacht ist von einem Klienten bei einer Eskorte geöffnet zu werden). Wenn die ID des statischen Raums &lt; 0xA5 ist, wird unter der Tür eine Mauer sein, ansonsten Boden."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:212
 msgid "Attendant1 Spawn Floor"
