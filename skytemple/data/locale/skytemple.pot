@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-10 19:39+0000\n"
+"POT-Creation-Date: 2024-01-10 19:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1685,19 +1685,19 @@ msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:170
-msgid "F/W, Room; Key Door (0xC)"
+msgid "F/W, Room; Key Door"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:176
-msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgid "Spawns a locked Key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:182
-msgid "F/W, Room; Key Door (0xD)"
+msgid "F/W, Room; Key Door (Escort)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:188
-msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgid "Spawns a locked Key Door (meant to be opened by an escort mission client). If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:212
