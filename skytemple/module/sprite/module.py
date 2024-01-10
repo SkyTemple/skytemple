@@ -395,7 +395,8 @@ class SpriteModule(AbstractModule):
     def save_monster_sprite(self, id, wan: WanFile):
         """Import all three sprite variation of the monster"""
         with self.get_ground_bin_ctx() as bin_pack:
-            if id >= len(bin_pack):
+            # We allow id to be the exact length, because this then adds a new entry!
+            if id > len(bin_pack):
                 raise UserValueError(
                     _(
                         "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
