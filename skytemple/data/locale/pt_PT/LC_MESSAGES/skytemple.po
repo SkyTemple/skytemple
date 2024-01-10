@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-06 10:16+0000\n"
-"PO-Revision-Date: 2024-01-06 10:26\n"
+"POT-Creation-Date: 2024-01-10 19:44+0000\n"
+"PO-Revision-Date: 2024-01-10 20:33\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -1684,19 +1684,19 @@ msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:170
-msgid "F/W, Room; Key Door (0xC)"
+msgid "F/W, Room; Key Door"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:176
-msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgid "Spawns a locked Key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:182
-msgid "F/W, Room; Key Door (0xD)"
+msgid "F/W, Room; Key Door (Escort)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:188
-msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgid "Spawns a locked Key Door (meant to be opened by an escort mission client). If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:212
@@ -3538,7 +3538,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:80
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:100
 #: skytemple/skytemple/module/portrait/controller/portrait.py:117
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:164
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:187
 #: skytemple/skytemple/module/sprite/module.py:247
 msgid "_Save"
 msgstr "_Guardar"
@@ -7774,8 +7774,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:209
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:253
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:212
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:304
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:235
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:327
 msgid "Success!"
 msgstr ""
 
@@ -12457,42 +12457,42 @@ msgid "Alternatively you can export the sprite files \n"
 "Warning: SkyTemple does not validate the files you import."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:159
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:182
 msgid "Export spritesheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:211
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:234
 msgid "The spritesheet was successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:219
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:242
 msgid "Error exporting the spritesheet."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:228
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:251
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:274
 msgid "To import select the archive that contains the spritesheets."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:231
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:254
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:277
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:247
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:270
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:272
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:295
 msgid "Import spritesheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:303
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:326
 msgid "The spritesheet was successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:338
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:361
 #: skytemple/skytemple/module/spritecollab/module.py:138
 msgid "Error importing the spritesheet."
 msgstr ""
@@ -12592,7 +12592,7 @@ msgstr ""
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:401
+#: skytemple/skytemple/module/sprite/module.py:402
 msgid "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
 msgstr ""
 
