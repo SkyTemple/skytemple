@@ -101,6 +101,29 @@ Warning: SkyTemple does not validate the files you import."""
         except BaseException as ex:
             logger.error("Failed rendering sprite preview", exc_info=ex)
 
+        # Disable import/export if sprite ID higher than available IDs
+        if self.item_id >= self.module.get_monster_sprite_count():
+            builder_get_assert(self.builder, Gtk.Widget, "import").set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.Widget, "export").set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.Widget, "import_ground").set_sensitive(
+                False
+            )
+            builder_get_assert(self.builder, Gtk.Widget, "export_ground").set_sensitive(
+                False
+            )
+            builder_get_assert(self.builder, Gtk.Widget, "import_attack").set_sensitive(
+                False
+            )
+            builder_get_assert(self.builder, Gtk.Widget, "export_attack").set_sensitive(
+                False
+            )
+            builder_get_assert(
+                self.builder, Gtk.Widget, "import_dungeon"
+            ).set_sensitive(False)
+            builder_get_assert(
+                self.builder, Gtk.Widget, "export_dungeon"
+            ).set_sensitive(False)
+
         return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
     def start_sprite_drawing(self):
