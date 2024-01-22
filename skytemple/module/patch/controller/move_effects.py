@@ -184,6 +184,16 @@ class MoveEffectsController(AbstractController):
                             self._get_current_effect(), file.read()
                         )
                 self.module.mark_move_effects_as_modified()
+                md = SkyTempleMessageDialog(
+                    SkyTempleMainController.window(),
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.INFO,
+                    Gtk.ButtonsType.OK,
+                    _("ASM code imported successfully."),
+                    is_success=True,
+                )
+                md.run()
+                md.destroy()
             except Exception as err:
                 display_error(sys.exc_info(), str(err), _("Error importing ASM code."))
 
@@ -200,7 +210,7 @@ class MoveEffectsController(AbstractController):
                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK,
-                _("Patch successfully imported."),
+                _("ASM code imported successfully."),
                 is_success=True,
             )
             md.run()
