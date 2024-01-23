@@ -158,7 +158,7 @@ class SPEffectsController(AbstractController):
                         )
                 self.module.mark_sp_effects_as_modified()
                 md = SkyTempleMessageDialog(
-                    SkyTempleMainController.window(),
+                    MainController.window(),
                     Gtk.DialogFlags.DESTROY_WITH_PARENT,
                     Gtk.MessageType.INFO,
                     Gtk.ButtonsType.OK,
