@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-11 11:41+0000\n"
-"PO-Revision-Date: 2024-01-13 20:46\n"
+"POT-Creation-Date: 2024-01-26 09:32+0000\n"
+"PO-Revision-Date: 2024-01-26 09:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -12181,28 +12181,31 @@ msgstr "armips ASM-Patches (*.asm)"
 msgid "Raw code (*.bin)"
 msgstr "Roher Code (*.bin)"
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:175
-#: skytemple/skytemple/module/patch/controller/item_effects.py:196
-#: skytemple/skytemple/module/patch/controller/move_effects.py:188
-#: skytemple/skytemple/module/patch/controller/move_effects.py:209
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:161
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:180
+#: skytemple/skytemple/module/patch/controller/item_effects.py:179
+#: skytemple/skytemple/module/patch/controller/item_effects.py:200
+#: skytemple/skytemple/module/patch/controller/move_effects.py:192
+#: skytemple/skytemple/module/patch/controller/move_effects.py:213
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:165
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:184
+msgid "ASM code imported successfully."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/item_effects.py:185
+#: skytemple/skytemple/module/patch/controller/item_effects.py:206
+#: skytemple/skytemple/module/patch/controller/move_effects.py:198
+#: skytemple/skytemple/module/patch/controller/move_effects.py:219
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:171
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:190
 msgid "Error importing ASM code."
 msgstr "Fehler beim Importieren des ASM-Codes."
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:190
-#: skytemple/skytemple/module/patch/controller/move_effects.py:203
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:174
-msgid "Patch successfully imported."
-msgstr "Patch erfolgreich importiert."
-
-#: skytemple/skytemple/module/patch/controller/item_effects.py:200
+#: skytemple/skytemple/module/patch/controller/item_effects.py:210
 msgid "Export Item Effect ASM Code..."
 msgstr "Exportiere ASM-Code für Item-Effekte..."
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:224
-#: skytemple/skytemple/module/patch/controller/move_effects.py:237
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:206
+#: skytemple/skytemple/module/patch/controller/item_effects.py:234
+#: skytemple/skytemple/module/patch/controller/move_effects.py:247
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:216
 msgid "Export and import effect code.\n"
 "The export only exports the raw machine code. It is NOT disassembled.\n"
 "The import accepts both armips ASM code or the raw binary machine code.\n"
@@ -12218,9 +12221,9 @@ msgstr "Exportiere und importiere Effekt-Code.\n"
 "Du kannst den ASM-Editor nutzen, um Patch-Dateien zu generieren.\n"
 "Der ASM-Patch muss eine \"code_out.bin\"-Datei generieren. SkyTemple wird versuchen diese Datei zu importieren.\n"
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:234
-#: skytemple/skytemple/module/patch/controller/move_effects.py:247
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:216
+#: skytemple/skytemple/module/patch/controller/item_effects.py:244
+#: skytemple/skytemple/module/patch/controller/move_effects.py:257
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:226
 msgid "Export / Import Effect Code Help"
 msgstr "Hilfe zum Importieren / Exportieren von Effektcode"
 
@@ -12264,21 +12267,21 @@ msgstr "Metronom"
 msgid "Import Move Effect ASM Code..."
 msgstr "Importiere ASM-Code für Attacken-Effekte..."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:213
+#: skytemple/skytemple/module/patch/controller/move_effects.py:223
 msgid "Export Move Effect ASM Code..."
 msgstr "Exportiere ASM-Code für Attacken-Effekte..."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:273
+#: skytemple/skytemple/module/patch/controller/move_effects.py:283
 msgid "Cannot delete this effect."
 msgstr "Kann diesen Effekt nicht löschen."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:338
+#: skytemple/skytemple/module/patch/controller/move_effects.py:348
 msgid "This will change the number of moves to 559, in case there isn't enough moves in the list.\n"
 "used to fix the previous amount of move effects extracted by the previous versions of the patch."
 msgstr "Dies ändert die Anzahl der Attacken auf 559, falls nicht genügend Attacken in der Liste vorhanden sind.\n"
 "Verwende dies, um die vorherige Anzahl der Attacken-Effekte zu beheben, die von einer alten Version des Patches extrahiert wurden."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:341
+#: skytemple/skytemple/module/patch/controller/move_effects.py:351
 msgid "Fix Number of Moves"
 msgstr "Anzahl der Attacken korrigieren"
 
@@ -12373,7 +12376,7 @@ msgstr "Speziellen Prozess hinzufügen"
 msgid "Import Special Process Effect ASM Code..."
 msgstr "Importieren von ASM-Code für spezielle Prozesse..."
 
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:184
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:194
 msgid "Export Special Process Effect ASM Code..."
 msgstr "Exportieren von ASM-Code für spezielle Prozesse..."
 
