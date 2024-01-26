@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-10 19:44+0000\n"
-"PO-Revision-Date: 2024-01-10 21:40\n"
+"POT-Creation-Date: 2024-01-26 09:32+0000\n"
+"PO-Revision-Date: 2024-01-26 09:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -971,26 +971,26 @@ msgstr "Kachelzuordnung kann nicht verarbeitet werden. Die referenzierte Kachel 
 msgid "Only 4bpp and 8bpp images are supported."
 msgstr "Nur 4bpp und 8bpp-Bilder werden unterstützt."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:258
+#: skytemple-files/skytemple_files/common/tiled_image.py:257
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Es muss ein indiziertes Bild sein (=eine Palette nutzen)"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:269
+#: skytemple-files/skytemple_files/common/tiled_image.py:268
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Palette darf maximal {max_len_pal} RGB Farben beinhalten und muss durch {single_palette_size} teilbar sein."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:279
+#: skytemple-files/skytemple_files/common/tiled_image.py:278
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr "PIL-Bild kann nicht in gekacheltes PMD-Bild umgewandelt werden: Bildgröße muss {img_width}x{img_height}px sein."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:357
-#: skytemple-files/skytemple_files/common/tiled_image.py:371
+#: skytemple-files/skytemple_files/common/tiled_image.py:356
+#: skytemple-files/skytemple_files/common/tiled_image.py:370
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Die Farbe {pix} (aus der Palette {math.floor(pix / single_palette_size)}), benutzt von Pixel {x+(idx % 2)}x{y} in Kachel {tile_id} ({tile_x}x{tile_y} ist außerhalb der erlaubten Palette. Farben werden erwartet aus der Palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:426
+#: skytemple-files/skytemple_files/common/tiled_image.py:422
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
@@ -2065,8 +2065,8 @@ msgstr "Das Bild darf nur die ersten 12 Paletten verwenden. Versuchte Palette {t
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr "Ein Dungeon-Hintergrund oder eine Tilemap kann nicht mehr als 400 Blöcke beinhalten."
 
-#: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
-#: skytemple-rust/src/st_dpla.rs:121
+#: skytemple-files/skytemple_files/graphics/dpla/_model.py:113
+#: skytemple-rust/src/st_dpla.rs:130
 msgid "This palette has no animation."
 msgstr "Diese Palette hat keine Animationen."
 
@@ -3325,16 +3325,16 @@ msgstr "Kartenhintergrund kann nicht importiert werden: Höhe des Bildes muss mi
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
 msgstr "Das Bild darf nur die ersten 12 Paletten verwenden. Versuchte Palette {} zu verwenden"
 
-#: skytemple-rust/src/st_dpla.rs:100
+#: skytemple-rust/src/st_dpla.rs:109
 msgid "Palette is invalid."
 msgstr "Palette ist ungültig."
 
-#: skytemple-rust/src/st_dpla.rs:106 skytemple-rust/src/st_dpla.rs:166
-#: skytemple-rust/src/st_dpla.rs:203 skytemple-rust/src/st_dpla.rs:211
+#: skytemple-rust/src/st_dpla.rs:115 skytemple-rust/src/st_dpla.rs:175
+#: skytemple-rust/src/st_dpla.rs:212 skytemple-rust/src/st_dpla.rs:220
 msgid "Palette index out of range."
 msgstr "Palettenindex außerhalb des gültigen Bereichs."
 
-#: skytemple-rust/src/st_dpla.rs:258
+#: skytemple-rust/src/st_dpla.rs:267
 msgid "Frame durations out of range while trying to build color."
 msgstr "Beim Versuch, eine Farbtabelle zu generieren, lag die Frame-Dauer außerhalb des zulässigen Bereichs."
 
@@ -12181,28 +12181,31 @@ msgstr "armips ASM-Patches (*.asm)"
 msgid "Raw code (*.bin)"
 msgstr "Roher Code (*.bin)"
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:175
-#: skytemple/skytemple/module/patch/controller/item_effects.py:196
-#: skytemple/skytemple/module/patch/controller/move_effects.py:188
-#: skytemple/skytemple/module/patch/controller/move_effects.py:209
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:161
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:180
+#: skytemple/skytemple/module/patch/controller/item_effects.py:179
+#: skytemple/skytemple/module/patch/controller/item_effects.py:200
+#: skytemple/skytemple/module/patch/controller/move_effects.py:192
+#: skytemple/skytemple/module/patch/controller/move_effects.py:213
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:165
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:184
+msgid "ASM code imported successfully."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/item_effects.py:185
+#: skytemple/skytemple/module/patch/controller/item_effects.py:206
+#: skytemple/skytemple/module/patch/controller/move_effects.py:198
+#: skytemple/skytemple/module/patch/controller/move_effects.py:219
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:171
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:190
 msgid "Error importing ASM code."
 msgstr "Fehler beim Importieren des ASM-Codes."
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:190
-#: skytemple/skytemple/module/patch/controller/move_effects.py:203
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:174
-msgid "Patch successfully imported."
-msgstr "Patch erfolgreich importiert."
-
-#: skytemple/skytemple/module/patch/controller/item_effects.py:200
+#: skytemple/skytemple/module/patch/controller/item_effects.py:210
 msgid "Export Item Effect ASM Code..."
 msgstr "Exportiere ASM-Code für Item-Effekte..."
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:224
-#: skytemple/skytemple/module/patch/controller/move_effects.py:237
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:206
+#: skytemple/skytemple/module/patch/controller/item_effects.py:234
+#: skytemple/skytemple/module/patch/controller/move_effects.py:247
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:216
 msgid "Export and import effect code.\n"
 "The export only exports the raw machine code. It is NOT disassembled.\n"
 "The import accepts both armips ASM code or the raw binary machine code.\n"
@@ -12218,9 +12221,9 @@ msgstr "Exportiere und importiere Effekt-Code.\n"
 "Du kannst den ASM-Editor nutzen, um Patch-Dateien zu generieren.\n"
 "Der ASM-Patch muss eine \"code_out.bin\"-Datei generieren. SkyTemple wird versuchen diese Datei zu importieren.\n"
 
-#: skytemple/skytemple/module/patch/controller/item_effects.py:234
-#: skytemple/skytemple/module/patch/controller/move_effects.py:247
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:216
+#: skytemple/skytemple/module/patch/controller/item_effects.py:244
+#: skytemple/skytemple/module/patch/controller/move_effects.py:257
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:226
 msgid "Export / Import Effect Code Help"
 msgstr "Hilfe zum Importieren / Exportieren von Effektcode"
 
@@ -12264,21 +12267,21 @@ msgstr "Metronom"
 msgid "Import Move Effect ASM Code..."
 msgstr "Importiere ASM-Code für Attacken-Effekte..."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:213
+#: skytemple/skytemple/module/patch/controller/move_effects.py:223
 msgid "Export Move Effect ASM Code..."
 msgstr "Exportiere ASM-Code für Attacken-Effekte..."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:273
+#: skytemple/skytemple/module/patch/controller/move_effects.py:283
 msgid "Cannot delete this effect."
 msgstr "Kann diesen Effekt nicht löschen."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:338
+#: skytemple/skytemple/module/patch/controller/move_effects.py:348
 msgid "This will change the number of moves to 559, in case there isn't enough moves in the list.\n"
 "used to fix the previous amount of move effects extracted by the previous versions of the patch."
 msgstr "Dies ändert die Anzahl der Attacken auf 559, falls nicht genügend Attacken in der Liste vorhanden sind.\n"
 "Verwende dies, um die vorherige Anzahl der Attacken-Effekte zu beheben, die von einer alten Version des Patches extrahiert wurden."
 
-#: skytemple/skytemple/module/patch/controller/move_effects.py:341
+#: skytemple/skytemple/module/patch/controller/move_effects.py:351
 msgid "Fix Number of Moves"
 msgstr "Anzahl der Attacken korrigieren"
 
@@ -12373,7 +12376,7 @@ msgstr "Speziellen Prozess hinzufügen"
 msgid "Import Special Process Effect ASM Code..."
 msgstr "Importieren von ASM-Code für spezielle Prozesse..."
 
-#: skytemple/skytemple/module/patch/controller/sp_effects.py:184
+#: skytemple/skytemple/module/patch/controller/sp_effects.py:194
 msgid "Export Special Process Effect ASM Code..."
 msgstr "Exportieren von ASM-Code für spezielle Prozesse..."
 
