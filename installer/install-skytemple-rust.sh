@@ -8,7 +8,12 @@ branch="master"
 wheel_name="skytemple_rust-*-cp311-cp311-win_amd64.whl"
 
 if [ -n "$IS_MACOS" ]; then
-  wheel_name="skytemple_rust-*-cp311-cp311-macosx_10_9_x86_64.whl"
+  # Check if we're running on Apple Silicon
+  if [ "$(uname -m)" = "arm64" ]; then
+    wheel_name="skytemple_rust-*-cp311-cp311-macosx_11_0_arm64.whl"
+  else
+    wheel_name="skytemple_rust-*-cp311-cp311-macosx_10_9_x86_64.whl"
+  fi
 fi
 
 url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels.zip"
