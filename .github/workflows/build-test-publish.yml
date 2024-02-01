@@ -211,7 +211,7 @@ jobs:
             installer/skytemple-*-install-*.exe
 
   package-mac:
-    runs-on: macos-11
+    runs-on: macos-12
     name: Build and package for Mac OS (Intel)
     steps:
       - name: Checkout
@@ -342,11 +342,7 @@ jobs:
           chmod +x armips
 
           # Package
-          if [ "$(uname -m)" = "arm64" ]; then
-            ./build-mac-arm.sh $PACKAGE_VERSION
-          else
-            ./build-mac.sh $PACKAGE_VERSION
-          fi
+          ./build-mac-arm.sh $PACKAGE_VERSION
 
           # Creating a zip makes the artifact upload much faster since there are so many files
           zip -r skytemple-mac.zip dist/SkyTemple.app > /dev/null
