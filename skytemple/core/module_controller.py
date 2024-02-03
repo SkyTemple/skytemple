@@ -2,6 +2,7 @@
 :deprecated: The controller-based approach of presenting and controlling views has been
              replaced. See docs for `AbstractController`.
 """
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.

@@ -175,10 +175,12 @@ class PmdSkyDebugController(AbstractController):
                     model.append(
                         [
                             symbol_name,
-                            f"0x{symbol.absolute_address:0x}"
-                            if symbol.absolute_addresses is not None
-                            and len(symbol.absolute_addresses) > 0
-                            else "???",
+                            (
+                                f"0x{symbol.absolute_address:0x}"
+                                if symbol.absolute_addresses is not None
+                                and len(symbol.absolute_addresses) > 0
+                                else "???"
+                            ),
                             str(symbol.length if symbol.length is not None else 1),
                             symbol.description.strip(),
                         ]

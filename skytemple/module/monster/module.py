@@ -281,9 +281,7 @@ class MonsterModule(AbstractModule):
         v.show_all()
         return v
 
-    def get_portraits_for_export(
-        self, item_id
-    ) -> tuple[
+    def get_portraits_for_export(self, item_id) -> tuple[
         Optional[list[Optional[KaoImageProtocol]]],
         Optional[list[Optional[KaoImageProtocol]]],
     ]:
@@ -440,13 +438,17 @@ class MonsterModule(AbstractModule):
             portraits,
             portraits2,
             self.get_personality(md_gender1.md_index),
-            self.get_personality(md_gender2.md_index)
-            if md_gender2 is not None
-            else None,
+            (
+                self.get_personality(md_gender2.md_index)
+                if md_gender2 is not None
+                else None
+            ),
             self.get_idle_anim_type(md_gender1.md_index),
-            self.get_idle_anim_type(md_gender2.md_index)
-            if md_gender2 is not None
-            else None,
+            (
+                self.get_idle_anim_type(md_gender2.md_index)
+                if md_gender2 is not None
+                else None
+            ),
         )
 
     def update_monster_sort_lists(self, lang):

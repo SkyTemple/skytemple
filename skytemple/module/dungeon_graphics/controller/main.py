@@ -193,9 +193,11 @@ class MainController(AbstractController):
             store.append(
                 [
                     str(i),
-                    f"{_('Tileset')} {i}"
-                    if i < NUMBER_OF_TILESETS
-                    else f"{_('Background')} {i}",
+                    (
+                        f"{_('Tileset')} {i}"
+                        if i < NUMBER_OF_TILESETS
+                        else f"{_('Background')} {i}"
+                    ),
                     v.map_color.value,
                     v.stirring_effect.value,
                     v.secret_power_effect.value,

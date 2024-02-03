@@ -1,4 +1,5 @@
 """Module that manages capturing debugging information and sending it to sentry.io."""
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -280,9 +281,9 @@ def debugger_emulator_state(manager: DebuggerManager):
                     {
                         "id": x.id,
                         "hanger": x.hanger,
-                        "direction": x.direction.ssa_id
-                        if x.direction is not None
-                        else None,
+                        "direction": (
+                            x.direction.ssa_id if x.direction is not None else None
+                        ),
                         "kind": x.kind.name,
                         "sector": x.sector,
                     }
@@ -296,9 +297,9 @@ def debugger_emulator_state(manager: DebuggerManager):
                     {
                         "id": x.id,
                         "hanger": x.hanger,
-                        "direction": x.direction.ssa_id
-                        if x.direction is not None
-                        else None,
+                        "direction": (
+                            x.direction.ssa_id if x.direction is not None else None
+                        ),
                         "kind": x.kind.unique_name,
                         "sector": x.sector,
                     }
@@ -312,9 +313,9 @@ def debugger_emulator_state(manager: DebuggerManager):
                     {
                         "id": x.id,
                         "hanger": x.hanger,
-                        "direction": x.direction.ssa_id
-                        if x.direction is not None
-                        else None,
+                        "direction": (
+                            x.direction.ssa_id if x.direction is not None else None
+                        ),
                         "kind": x.kind,
                         "sector": x.sector,
                     }
@@ -335,9 +336,11 @@ def debugger_emulator_state(manager: DebuggerManager):
     return {
         "running": ges.running,
         "ground_state": ground_state,
-        "game_vars": {k.name: v for k, v in vars._variable_cache.items()}
-        if hasattr(vars, "_variable_cache") and vars._variable_cache is not None
-        else None,
+        "game_vars": (
+            {k.name: v for k, v in vars._variable_cache.items()}
+            if hasattr(vars, "_variable_cache") and vars._variable_cache is not None
+            else None
+        ),
     }
 
 

@@ -470,17 +470,19 @@ class DungeonModule(AbstractModule):
         self._dungeon_floor_iters[idx] = {}
         dungeon.delete_all_children()
         for floor_i in range(0, self.get_number_floors(idx)):
-            self._dungeon_floor_iters[idx][
-                previous_floor_id + floor_i
-            ] = self._item_tree.add_entry(
-                dungeon,
-                ItemTreeEntry(
-                    icon=ICON_FLOOR,
-                    name=self.generate_floor_label(floor_i + previous_floor_id),
-                    module=self,
-                    view_class=FloorController,
-                    item_data=FloorViewInfo(previous_floor_id + floor_i, dungeon_info),
-                ),
+            self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = (
+                self._item_tree.add_entry(
+                    dungeon,
+                    ItemTreeEntry(
+                        icon=ICON_FLOOR,
+                        name=self.generate_floor_label(floor_i + previous_floor_id),
+                        module=self,
+                        view_class=FloorController,
+                        item_data=FloorViewInfo(
+                            previous_floor_id + floor_i, dungeon_info
+                        ),
+                    ),
+                )
             )
 
     def load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
@@ -720,9 +722,9 @@ class DungeonModule(AbstractModule):
             new_total_floor_count = sum(
                 [dungeon_definitions[x].number_floors for x in is_group.dungeon_ids]
             )
-            dungeon_definitions[
-                dungeon_id
-            ].number_floors_in_group = new_total_floor_count
+            dungeon_definitions[dungeon_id].number_floors_in_group = (
+                new_total_floor_count
+            )
 
             for dungeon_in_group in (
                 x for x in is_group.dungeon_ids if x != dungeon_id
@@ -733,9 +735,9 @@ class DungeonModule(AbstractModule):
                     > dungeon_definitions[dungeon_id].start_after
                 ):
                     dungeon_definitions[dungeon_in_group].start_after += floors_added
-                dungeon_definitions[
-                    dungeon_in_group
-                ].number_floors_in_group = u8_checked(new_total_floor_count)
+                dungeon_definitions[dungeon_in_group].number_floors_in_group = (
+                    u8_checked(new_total_floor_count)
+                )
         else:
             dungeon_definitions[dungeon_id].number_floors_in_group = number_floors_new
 

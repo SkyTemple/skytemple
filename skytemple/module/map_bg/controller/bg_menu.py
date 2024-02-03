@@ -1,4 +1,5 @@
 """Sub-controller for the map bg menu."""
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -432,9 +433,9 @@ class BgMenuController:
                 new_chunk_size
                 > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len
             ):
-                self.parent.bpc.layers[
-                    bpc_layer_to_use
-                ].chunk_tilemap_len = new_chunk_size
+                self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = (
+                    new_chunk_size
+                )
             self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings.copy()
             self.parent.reload_all()
             self.parent.mark_as_modified()
@@ -472,9 +473,9 @@ class BgMenuController:
                     new_chunk_size
                     > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len
                 ):
-                    self.parent.bpc.layers[
-                        bpc_layer_to_use
-                    ].chunk_tilemap_len = new_chunk_size
+                    self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = (
+                        new_chunk_size
+                    )
                 self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
                 self.parent.reload_all()
                 self.parent.mark_as_modified()

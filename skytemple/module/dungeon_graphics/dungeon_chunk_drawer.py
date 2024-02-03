@@ -1,4 +1,5 @@
 """Module that draws the chunks icon views"""
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.

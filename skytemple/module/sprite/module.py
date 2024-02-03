@@ -307,12 +307,10 @@ class SpriteModule(AbstractModule):
     @overload
     def get_monster_monster_sprite_chara(
         self, id, raw: Literal[False] = False
-    ) -> WanFile:
-        ...
+    ) -> WanFile: ...
 
     @overload
-    def get_monster_monster_sprite_chara(self, id, raw: Literal[True]) -> bytes:
-        ...
+    def get_monster_monster_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
 
     def get_monster_monster_sprite_chara(
         self, id, raw: bool = False
@@ -326,12 +324,10 @@ class SpriteModule(AbstractModule):
     @overload
     def get_monster_ground_sprite_chara(
         self, id, raw: Literal[False] = False
-    ) -> WanFile:
-        ...
+    ) -> WanFile: ...
 
     @overload
-    def get_monster_ground_sprite_chara(self, id, raw: Literal[True]) -> bytes:
-        ...
+    def get_monster_ground_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
 
     def get_monster_ground_sprite_chara(
         self, id, raw: bool = False
@@ -344,12 +340,10 @@ class SpriteModule(AbstractModule):
     @overload
     def get_monster_attack_sprite_chara(
         self, id, raw: Literal[False] = False
-    ) -> WanFile:
-        ...
+    ) -> WanFile: ...
 
     @overload
-    def get_monster_attack_sprite_chara(self, id, raw: Literal[True]) -> bytes:
-        ...
+    def get_monster_attack_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
 
     def get_monster_attack_sprite_chara(
         self, id, raw: bool = False
@@ -361,7 +355,11 @@ class SpriteModule(AbstractModule):
             return FileType.WAN.CHARA.deserialize(decompressed)
 
     def get_monster_sprite_count(self):
-        with self.get_monster_bin_ctx() as monster_bin, self.get_attack_bin_ctx() as attack_bin, self.get_ground_bin_ctx() as ground_bin:
+        with (
+            self.get_monster_bin_ctx() as monster_bin,
+            self.get_attack_bin_ctx() as attack_bin,
+            self.get_ground_bin_ctx() as ground_bin,
+        ):
             if len(monster_bin) != len(attack_bin) or len(attack_bin) != len(
                 ground_bin
             ):

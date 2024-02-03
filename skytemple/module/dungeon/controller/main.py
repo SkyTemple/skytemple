@@ -540,15 +540,15 @@ class MainController(AbstractController):
     def _fix_error(self, dungeons: list[DungeonDefinition], e: DungeonValidatorError):
         mappa = self.module.get_mappa()
         if isinstance(e, DungeonTotalFloorCountInvalidError):
-            dungeons[
-                e.dungeon_id
-            ].number_floors_in_group = e.expected_floor_count_in_group
+            dungeons[e.dungeon_id].number_floors_in_group = (
+                e.expected_floor_count_in_group
+            )
         elif isinstance(e, InvalidFloorListReferencedError) or isinstance(
             e, FloorReusedError
         ):
-            dungeons[
-                e.dungeon_id
-            ].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
+            dungeons[e.dungeon_id].mappa_index = (
+                self.module.mappa_generate_and_insert_new_floor_list()
+            )
             dungeons[e.dungeon_id].start_after = u8(0)
             dungeons[e.dungeon_id].number_floors = u8(1)
             dungeons[e.dungeon_id].number_floors_in_group = u8(1)

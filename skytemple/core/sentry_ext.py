@@ -2,6 +2,7 @@
 Sentry extensions for user feedback. Can be removed and replaced by if
 https://github.com/getsentry/sentry-python/pull/2442 is merged and released.
 """
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.

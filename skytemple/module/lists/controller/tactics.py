@@ -79,10 +79,12 @@ class TacticsController(AbstractController):
                     [
                         str(idx),
                         str(entry),
-                        self.module.project.get_string_provider().get_value(
-                            StringType.TACTICS_NAMES, idx
-                        )
-                        if idx != 11
-                        else _("<Not working>"),
+                        (
+                            self.module.project.get_string_provider().get_value(
+                                StringType.TACTICS_NAMES, idx
+                            )
+                            if idx != 11
+                            else _("<Not working>")
+                        ),
                     ]
                 )

@@ -1,6 +1,7 @@
 """
 Module that contains profiling contexts. They are based on Sentry's transactions and spans.
 """
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -29,8 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class TaggableContext(AbstractContextManager, Protocol):
-    def set_tag(self, key: str, value: Any):
-        ...
+    def set_tag(self, key: str, value: Any): ...
 
 
 def record_transaction(
@@ -52,20 +52,17 @@ def reset_impls_cache():
 class _ProfilingImplementation(ABC):
     @classmethod
     @abstractmethod
-    def new(cls) -> _ProfilingImplementation | None:
-        ...
+    def new(cls) -> _ProfilingImplementation | None: ...
 
     @abstractmethod
     def make_transaction(
         self, name: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None:
-        ...
+    ) -> TaggableContext | None: ...
 
     @abstractmethod
     def make_span(
         self, op: str, description: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None:
-        ...
+    ) -> TaggableContext | None: ...
 
 
 class _LogImpl(_ProfilingImplementation):
