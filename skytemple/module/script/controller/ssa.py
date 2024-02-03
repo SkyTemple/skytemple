@@ -31,6 +31,7 @@ from skytemple_files.common.xml_util import prettify
 from skytemple_files.script.ssa_sse_sss.ssa_xml import ssa_to_xml, ssa_xml_import
 
 from skytemple.controller.main import MainController
+from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
@@ -109,7 +110,7 @@ def popover_position(x, y, w, h):
 class SsaController(AbstractController):
     _last_open_tab = None
     _paned_pos = None
-    _last_scale_factor: Optional[float] = None
+    _last_scale_factor: Optional[CanvasScale] = None
     # Cache for map backgrounds, for faster scene view transitions in the same map context
     # Should be set to (None, ) when loading a map BG context.
     map_bg_surface_cache = (None,)
@@ -138,9 +139,9 @@ class SsaController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor: float = self.__class__._last_scale_factor
+            self._scale_factor = self.__class__._last_scale_factor
         else:
-            self._scale_factor = 1.0
+            self._scale_factor = CanvasScale(1.0)
         self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE

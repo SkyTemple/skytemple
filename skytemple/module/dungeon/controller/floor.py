@@ -41,6 +41,7 @@ from range_typed_integers import (
 from skytemple_files.common.types.file_types import FileType
 
 from skytemple.controller.main import MainController
+from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.error_handler import display_error
 from skytemple.core.list_icon_renderer import ListIconRenderer
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -191,7 +192,7 @@ class SpawnEntry:
 class FloorController(AbstractController):
     _last_open_tab_id = 0
     _last_open_tab_item_lists = FloorEditItemList.FLOOR
-    _last_scale_factor = None
+    _last_scale_factor: Optional[CanvasScale] = None
     _last_show_full_map = False
 
     def __init__(self, module: "DungeonModule", item: "FloorViewInfo"):
@@ -208,9 +209,9 @@ class FloorController(AbstractController):
         self._sprite_provider = module.project.get_sprite_provider()
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor: float = self.__class__._last_scale_factor
+            self._scale_factor = self.__class__._last_scale_factor
         else:
-            self._scale_factor = 2
+            self._scale_factor = CanvasScale(2)
 
         self._item_list_edit_active = self.__class__._last_open_tab_item_lists
 
