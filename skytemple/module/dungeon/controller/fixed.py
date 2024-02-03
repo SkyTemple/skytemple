@@ -25,6 +25,7 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.protocol import Gender
 
 from skytemple.controller.main import MainController
+from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
@@ -78,7 +79,7 @@ if TYPE_CHECKING:
 
 
 class FixedController(AbstractController):
-    _last_scale_factor: Optional[float] = None
+    _last_scale_factor: Optional[CanvasScale] = None
     _last_show_full_map = True
 
     def __init__(self, module: "DungeonModule", item_id: int):
@@ -89,9 +90,9 @@ class FixedController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor: float = self.__class__._last_scale_factor
+            self._scale_factor = self.__class__._last_scale_factor
         else:
-            self._scale_factor = 1.0
+            self._scale_factor = CanvasScale(1.0)
 
         self.drawer: Optional[FixedRoomDrawer] = None
         self.entity_rule_container: EntityRuleContainer = EntityRuleContainer(

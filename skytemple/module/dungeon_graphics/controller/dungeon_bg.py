@@ -22,6 +22,7 @@ import cairo
 from gi.repository import Gtk, Gdk
 
 from skytemple.controller.main import MainController
+from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
@@ -115,7 +116,7 @@ class DungeonBgController(AbstractController):
         self.bg_draw: Optional[Gtk.DrawingArea] = None
         self.bg_draw_event_box: Optional[Gtk.EventBox] = None
 
-        self.scale_factor: float = 1.0
+        self.scale_factor = CanvasScale(1.0)
 
         self.bg_draw_is_clicked = False
 

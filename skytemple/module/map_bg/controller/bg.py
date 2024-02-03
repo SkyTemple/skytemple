@@ -24,6 +24,7 @@ import cairo
 from gi.repository import Gtk, Gdk
 
 from skytemple.controller.main import MainController
+from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -147,7 +148,7 @@ class BgController(AbstractController):
 
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
-        self.scale_factor: float = 1.0
+        self.scale_factor = CanvasScale(1.0)
         self.current_chunks_icon_layer = 0
 
         self.bg_draw_is_clicked = False
