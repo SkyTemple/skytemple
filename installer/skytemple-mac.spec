@@ -8,6 +8,11 @@ from PyInstaller.utils.hooks import collect_entry_point, copy_metadata
 pkg_path = os.path.abspath(os.path.join("..", "skytemple"))
 site_packages = next(p for p in sys.path if "site-packages" in p)
 
+# The Homebrew lib path is different on ARM and Intel
+homebrew_path = os.path.join(os.sep, "usr", "local")
+if os.uname().machine == "arm64":
+    homebrew_path = os.path.join(os.sep, "opt", "homebrew")
+
 additional_datas = [
     (os.path.join(pkg_path, "data"), "data"),
     (os.path.join(pkg_path, "*.glade"), "."),
@@ -72,29 +77,29 @@ additional_datas = [
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dylib"), "."),
     (
-        os.path.join(os.sep, "usr", "local", "lib", "libSDL-1.2.0.dylib"),
+        os.path.join(homebrew_path, "lib", "libSDL-1.2.0.dylib"),
         ".",
     ),  # Must be installed with Homebrew
     (
-        os.path.join(os.sep, "usr", "local", "lib", "libSDL2-2.0.0.dylib"),
+        os.path.join(homebrew_path, "lib", "libSDL2-2.0.0.dylib"),
         ".",
     ),  # Must be installed with Homebrew
     (
-        os.path.join(os.sep, "usr", "local", "lib", "libenchant-2.dylib"),
+        os.path.join(homebrew_path, "lib", "libenchant-2.dylib"),
         ".",
     ),  # Must be installed with Homebrew
     (
-        os.path.join(os.sep, "usr", "local", "lib", "libaspell.15.dylib"),
+        os.path.join(homebrew_path, "lib", "libaspell.15.dylib"),
         ".",
     ),  # Gets installed with Enchant
     (
         os.path.join(
-            os.sep, "usr", "local", "lib", "enchant-2", "enchant_applespell.so"
+            homebrew_path, "lib", "enchant-2", "enchant_applespell.so"
         ),
         ".",
     ),  # Gets installed with Enchant
     (
-        os.path.join(os.sep, "usr", "local", "opt", "cairo", "lib", "libcairo.2.dylib"),
+        os.path.join(homebrew_path, "opt", "cairo", "lib", "libcairo.2.dylib"),
         ".",
     ),
     (os.path.join(site_packages, "libtilequant.dylib"), "."),

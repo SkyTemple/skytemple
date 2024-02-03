@@ -19,12 +19,25 @@ import os
 import sys
 import locale
 import gettext
+from pathlib import Path
 from skytemple.core.ui_utils import data_dir, APP, builder_get_assert
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.impl_cfg import (
     ENV_SKYTEMPLE_USE_NATIVE,
     change_implementation_type,
 )
+
+# Workaround for errors on macOS when running from a bundle
+if sys.platform.startswith("darwin"):
+    base_path = Path(__file__).parent.absolute().as_posix()
+    os.chdir(base_path)  # Set working directory to the executable directory
+    os.environ["DYLD_LIBRARY_PATH"] = base_path
+    os.environ["PATH"] = f"{base_path}/skytemple_files/_resources:{os.environ['PATH']}"
+    os.environ["PYENCHANT_LIBRARY_PATH"] = f"{base_path}/libenchant-2.dylib"
+
+    # Disable SDL video. It's not used and would only be required with joystick/gamepad support,
+    # but alas it doesn't work because Cococa only supports I/O from the main thread.
+    os.environ["SDL_VIDEODRIVER"] = "dummy"  # Fixes the debugger not loading
 
 settings = SkyTempleSettingsStore()
 

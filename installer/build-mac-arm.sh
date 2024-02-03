@@ -34,51 +34,8 @@ rm -rf skytemple.iconset
 
 # Build the app
 pyinstaller skytemple-mac.spec --noconfirm
-
-# Bundle gtksourceview4
-cp -r /usr/local/Cellar/gtksourceview4/*/share/* dist/SkyTemple.app/Contents/MacOS/share/
-
-# Check if we need to copy the cacert file
-if [ -f "dist/skytemple/certifi/cacert.pem" ]; then
-  echo "Moved cacert to correct place"
-  cp -rf dist/skytemple/certifi/cacert.pem dist/skytemple/certifi.pem
-fi
-
 rm skytemple.icns
 
 # Since the library search path for the app is wrong, execute a shell script that sets is correctly
 # and launches the app instead of launching run_skytemple directly
 appdir=dist/SkyTemple.app/Contents/MacOS
-
-# Change "run_skytemple" to "pre_run_skytemple" in the launcher info to launch the shell script instead of the app
-sed -i '' 's/run_skytemple/pre_run_skytemple/' dist/SkyTemple.app/Contents/Info.plist
-
-# Set the rpath (https://blog.krzyzanowskim.com/2018/12/05/rpath-what/)
-install_name_tool -add_rpath @executable_path/. dist/SkyTemple.app/Contents/MacOS/run_skytemple
-
-# Create a shell script that sets LD_LIBRARY_PATH and the working directory, then launches SkyTemple
-cat > $appdir/pre_run_skytemple << EOF
-#!/bin/sh
-
-# Fix the language 🥲
-# The output of "defaults read -g AppleLanguages" looks like this, so we need to extract
-# the language code and replace "-" with "_".
-# (
-#     "de-DE",
-#     "en-US"
-# )
-language="\$(defaults read -g AppleLanguages | grep -o "\w\w-\w\w" | head -1 | sed -e "s/-/_/")"
-export LC_ALL="\$language.UTF-8"
-
-# Run the SkyTemple binary
-cd "\$(dirname \$0)"
-"\$(dirname \$0)/run_skytemple"
-EOF
-
-chmod +x $appdir/pre_run_skytemple
-
-# Write the version number to files that are read at runtime
-version=$PACKAGE_VERSION ||$(python3 -c "import importlib.metadata; print(importlib.metadata.metadata(\"skytemple\")[\"version\"])")
-
-echo $version > $appdir/VERSION
-echo $version > $appdir/data/VERSION

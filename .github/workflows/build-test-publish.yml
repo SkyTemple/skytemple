@@ -211,8 +211,8 @@ jobs:
             installer/skytemple-*-install-*.exe
 
   package-mac:
-    runs-on: macos-11
-    name: Build and package for Mac OS
+    runs-on: macos-12
+    name: Build and package for Mac OS (Intel)
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -269,7 +269,7 @@ jobs:
       - name: Upload .app
         uses: actions/upload-artifact@v3
         with:
-          name: skytemple-mac-app
+          name: skytemple-mac-app-x86_64
           path: |
             installer/skytemple-mac.zip
 
@@ -288,7 +288,88 @@ jobs:
       - name: Upload .dmg
         uses: actions/upload-artifact@v3
         with:
-          name: skytemple-mac-dmg
+          name: skytemple-mac-dmg-x86_64
+          path: |
+            installer/SkyTemple*.dmg
+  
+  package-mac-arm64:
+    runs-on: macos-14
+    name: Build and package for Mac OS (ARM)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: |
+          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+${GITHUB_SHA::8}\"/" pyproject.toml
+          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
+      - name: Note version
+        run: |
+          python3 -m venv .yq-venv
+          . .yq-venv/bin/activate
+          pip install yq
+          echo "PACKAGE_VERSION=$(tomlq '.project.version' pyproject.toml -r)" >> $GITHUB_ENV
+      - name: Install and package
+        run: |
+          # git is already installed.
+          brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 meson cmake
+          pip3 install -U certifi
+          export PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+
+          # Install other dependencies and SkyTemple itself
+          pip3 install py-desmume 'pyinstaller~=5.0'
+          if [ -n "$IS_DEV_BUILD" ]; then
+            IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
+          fi
+          pip3 install -r requirements-mac-windows.txt
+          # Generate MO localization files
+          installer/generate-mo.sh
+          pip3 install '.[eventserver]'
+          if [ -n "$IS_DEV_BUILD" ]; then
+            installer/install-skytemple-components-from-git.sh
+          fi
+
+          cd installer
+
+          # Install themes
+          curl https://skytemple.org/build_deps/Arc.zip -O
+          unzip Arc.zip > /dev/null
+          curl https://skytemple.org/build_deps/ZorinBlue.zip -O
+          unzip ZorinBlue.zip > /dev/null
+
+          # Download armips
+          curl https://skytemple.org/build_deps/mac/armips -O
+          chmod +x armips
+
+          # Package
+          ./build-mac-arm.sh $PACKAGE_VERSION
+
+          # Creating a zip makes the artifact upload much faster since there are so many files
+          zip -r skytemple-mac.zip dist/SkyTemple.app > /dev/null
+
+      - name: Upload .app
+        uses: actions/upload-artifact@v3
+        with:
+          name: skytemple-mac-app-arm64
+          path: |
+            installer/skytemple-mac.zip
+
+      - name: Create installer
+        run: |
+          export PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+          
+          # See https://github.com/sindresorhus/create-dmg
+          # create-dmg automatically generates an installer icon if imagemagick is installed
+          brew install graphicsmagick imagemagick
+          npm -g install create-dmg
+
+          # This tool returns exit code 2 if the DMG was created but code signing failed for some reason
+          npx create-dmg --dmg-title=SkyTemple installer/dist/SkyTemple.app installer || true
+
+      - name: Upload .dmg
+        uses: actions/upload-artifact@v3
+        with:
+          name: skytemple-mac-dmg-arm64
           path: |
             installer/SkyTemple*.dmg
 
