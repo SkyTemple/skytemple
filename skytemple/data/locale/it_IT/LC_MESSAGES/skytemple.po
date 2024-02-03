@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-02-03 11:19+0000\n"
-"PO-Revision-Date: 2024-02-03 11:21\n"
+"PO-Revision-Date: 2024-02-03 12:22\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -12552,51 +12552,51 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:61
 msgid "The length of the sprite name must be between 1-10 characters."
-msgstr ""
+msgstr "La lunghezza del nome dello sprite deve essere compresa tra 1 e 10 caratteri."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:73
 msgid "A sprite with this name already exists."
-msgstr ""
+msgstr "Esiste già uno sprite con questo nome."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:91
 msgid "Object sprite added successfully"
-msgstr ""
+msgstr "Sprite aggiunto con successo"
 
 #: skytemple/skytemple/module/sprite/module.py:169
 msgid "Import WAN sprite..."
-msgstr ""
+msgstr "Importa sprite WAN..."
 
 #: skytemple/skytemple/module/sprite/module.py:188
 msgid "Export WAN sprite..."
-msgstr ""
+msgstr "Esporta sprite WAN..."
 
 #: skytemple/skytemple/module/sprite/module.py:195
 msgid "WAN sprite (*.wan)"
-msgstr ""
+msgstr "Sprite WAN (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:216
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Per importare seleziona la directory di esportazione dello sprite. Se è ancora compresso, decomprimilo prima."
 
 #: skytemple/skytemple/module/sprite/module.py:224
 msgid "Import gfxcrunch sprite..."
-msgstr ""
+msgstr "Importa sprite gfxcrunch..."
 
 #: skytemple/skytemple/module/sprite/module.py:239
 msgid "Error importing the sprite."
-msgstr ""
+msgstr "Errore durante l'importazione dello sprite."
 
 #: skytemple/skytemple/module/sprite/module.py:259
 msgid "Error exporting the sprite."
-msgstr ""
+msgstr "Errore durante l'esportazione dello sprite."
 
 #: skytemple/skytemple/module/sprite/module.py:263
 msgid "Import image file..."
-msgstr ""
+msgstr "Importa file di immagine..."
 
 #: skytemple/skytemple/module/sprite/module.py:280
 msgid "Error importing image to object."
-msgstr ""
+msgstr "Errore durante l'importazione dell'immagine su oggetto."
 
 #: skytemple/skytemple/module/sprite/module.py:369
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
@@ -12828,78 +12828,80 @@ msgstr "Aggiungi blocco"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:207
 msgid "Selected Chunk"
-msgstr ""
+msgstr "Blocco selezionato"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:261
 msgid "Flip X"
-msgstr ""
+msgstr "Ribalta X"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:299
 msgid "Flip Y"
-msgstr ""
+msgstr "Ribalta Y"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:338
 msgid "Palette"
-msgstr ""
+msgstr "Palette"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:383
 msgid "Tile No."
-msgstr ""
+msgstr "Piastrella n."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:425
 msgid "Selected Tile"
-msgstr ""
+msgstr "Piastrella selezionata"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:457
 msgid "Palette for Tile Preview"
-msgstr ""
+msgstr "Palette per l'anteprima delle piastrelle"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:529
 msgid "Static Tiles"
-msgstr ""
+msgstr "Piastrelle statiche"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:576
 msgid "Animated Tiles Slot 1"
-msgstr ""
+msgstr "Piastrelle animate Slot 1"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:617
 msgid "Animated Tiles Slot 2"
-msgstr ""
+msgstr "Piastrelle animate Slot 2"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:658
 msgid "Animated Tiles Slot 3"
-msgstr ""
+msgstr "Piastrelle animate Slot 3"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:699
 msgid "Animated Tiles Slot 4"
-msgstr ""
+msgstr "Piastrelle animate Slot 4"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.py:464
 msgid "BPA slot is empty.\n\n"
 "Go to Tiles > Animated Tiles to\n"
 "manage animated tiles."
-msgstr ""
+msgstr "Lo slot BPA è vuoto.\n\n"
+"Vai su Piastrelle > Piastrelle animate per gestire\n"
+"le piastrelle animate."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:17
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:134
 msgid "Palette Editor"
-msgstr ""
+msgstr "Editor palette"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
 msgid "Make all colors unique"
-msgstr ""
+msgstr "Rendi unici tutti i colori"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
 msgid "Add Frame (after current)"
-msgstr ""
+msgstr "Aggiungi cornice (dopo quella corrente)"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:174
 msgid "CTRL + Click to add before current"
-msgstr ""
+msgstr "CTRL + Clicca per aggiungere prima dell'attuale"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:187
 msgid "Remove current Frame"
-msgstr ""
+msgstr "Rimuovi la cornice attuale"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:111
 msgid "Some images editors have problems when editing indexed images that contain\n"
@@ -12909,27 +12911,32 @@ msgid "Some images editors have problems when editing indexed images that contai
 "To solve this, you can make all colors in the palettes unique. This is done by\n"
 "slightly shifting the color values of duplicate colors (not visible for the\n"
 "human eye)."
-msgstr ""
+msgstr "Alcuni editor di immagini hanno problemi durante la modifica di immagini indicizzate che contengono\n"
+"lo stesso colore più volte (non corrispondono all'indice di colore effettivo).\n"
+"Poiché l'importazione prevede che tutte le caselle 8x8 utilizzino solo una palette a 16 colori, questo\n"
+"può causare problemi.\n\n"
+"Per risolvere questo problema, è possibile rendere unici tutti i colori delle palette. Questo è possibile\n"
+"spostando leggermente i valori di colore dei colori duplicati (non visibile per l'occhio umano)."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:119
 msgid "Make Colors Unique"
-msgstr ""
+msgstr "Rendi unici i colori"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:133
 msgid "Made colors unique."
-msgstr ""
+msgstr "Colori resi unici."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:164
 msgid "You can not remove the last palette."
-msgstr ""
+msgstr "Non puoi rimuovere l'ultima palette."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:220
 msgid "Color "
-msgstr ""
+msgstr "Colore "
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:85
 msgid "Only 1x1 or 3x3 supported."
-msgstr ""
+msgstr "Supportato solo 1x1 o 3x3."
 
 #: skytemple/skytemple/skytemple.glade:47
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
@@ -12940,7 +12947,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">Benvenuto su SkyTemple!</span>\n\n"
+"Con questo strumento puoi modificare varie cose nelle ROM\n"
+"di Pokémon Mystery Dungeon Esploratori del Cielo.\n\n"
+"Nota quanto segue:\n"
+"- Questo è un software ancora acerbo, per favore fai dei backup della tua\n"
+"  ROM. Qualcosa <i>andrà</i> storto.\n"
+"- È stata creata una cartella di progetto accanto alla ROM.\n"
+"- Si prega di segnalare qualsiasi problema."
 
 #: skytemple/skytemple/skytemple.glade:102
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -12961,7 +12975,7 @@ msgstr "Possiamo aggiungere il messaggio «Creato con SkyTemple»\n"
 
 #: skytemple/skytemple/skytemple.glade:122
 msgid "Add \"Created with SkyTemple\""
-msgstr ""
+msgstr "Aggiungi \"Creato con SkyTemple\""
 
 #: skytemple/skytemple/skytemple.glade:190
 msgid "SkyTemple Settings"
@@ -12969,51 +12983,54 @@ msgstr "Impostazioni SkyTemple"
 
 #: skytemple/skytemple/skytemple.glade:276
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzate"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
-msgstr ""
+msgstr "Usa Gestori File Nativi"
 
 #: skytemple/skytemple/skytemple.glade:361
 msgid "Enable Discord integration"
-msgstr ""
+msgstr "Abilita l'integrazione con Discord"
 
 #: skytemple/skytemple/skytemple.glade:384
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: skytemple/skytemple/skytemple.glade:432
 msgid "Async Operations"
-msgstr ""
+msgstr "Operazioni Async"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
-msgstr ""
+msgstr "Report di errore"
 
 #: skytemple/skytemple/skytemple.glade:527
 msgid "Send error reports"
-msgstr ""
+msgstr "Invia report di errore"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>Se abilitato, i report di errore vengono inviati a sentry.io,\n"
+"permettendoci di migliorare SkyTemple.\n"
+"Leggi le <a href=\"privacy\">informazioni sulla privacy</a> per ulteriori dettagli.</i>"
 
 #: skytemple/skytemple/skytemple.glade:577
 msgid "Use Client Side Decorations"
-msgstr ""
+msgstr "Usa le decorazioni sul lato cliente"
 
 #: skytemple/skytemple/skytemple.glade:601
 msgid "<i>Translations are written by volunteers and may not be accurate.\n"
 "Consider <a href=\"translate\">helping us</a> translate SkyTemple!</i>"
-msgstr ""
+msgstr "<i>Le traduzioni sono scritte da volontari e potrebbero non essere accurate.\n"
+"Considera <a href=\"translate\">di aiutarci</a> a tradurre SkyTemple!</i>"
 
 #: skytemple/skytemple/skytemple.glade:671
 #: skytemple/skytemple/skytemple.glade:1059
 msgid "More Files"
-msgstr ""
+msgstr "Più file"
 
 #: skytemple/skytemple/skytemple.glade:713
 msgid "Save as..."
