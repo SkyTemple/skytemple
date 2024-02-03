@@ -120,9 +120,9 @@ class ListIconRenderer:
     def _reload_icons_in_tree(self):
         try:
             for model, idx, params in self._registered_for_reload:
-                model[get_list_store_iter_by_idx(model, idx)][
-                    self.column_id
-                ] = self._get_icon(*params)
+                model[get_list_store_iter_by_idx(model, idx)][self.column_id] = (
+                    self._get_icon(*params)
+                )
             self._loading = False
             self._refresh_timer = None
         except (AttributeError, TypeError):

@@ -181,9 +181,11 @@ Warning: SkyTemple does not validate the files you import."""
         dialog = Gtk.FileChooserNative.new(
             _("Export spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER
-            if not is_zip
-            else Gtk.FileChooserAction.SAVE,
+            (
+                Gtk.FileChooserAction.SELECT_FOLDER
+                if not is_zip
+                else Gtk.FileChooserAction.SAVE
+            ),
             _("_Save"),
             None,
         )
@@ -248,11 +250,13 @@ Warning: SkyTemple does not validate the files you import."""
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("To import select the archive that contains the spritesheets.")
-            if self._zip_is_active()
-            else _(
-                "To import select the directory of the spritesheets. If it "
-                "is still zipped, unzip it first."
+            (
+                _("To import select the archive that contains the spritesheets.")
+                if self._zip_is_active()
+                else _(
+                    "To import select the directory of the spritesheets. If it "
+                    "is still zipped, unzip it first."
+                )
             ),
             title="SkyTemple",
         )
@@ -266,16 +270,18 @@ Warning: SkyTemple does not validate the files you import."""
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK_CANCEL,
-            _(
-                "This will insert a completely new sprite into the game's sprite file and "
-                "assign the new ID to the Pokémon.\n"
-                "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
-            )
-            + _("To import select the archive that contains the spritesheets.")
-            if self._zip_is_active()
-            else _(
-                "To import select the directory of the spritesheets. If it "
-                "is still zipped, unzip it first."
+            (
+                _(
+                    "This will insert a completely new sprite into the game's sprite file and "
+                    "assign the new ID to the Pokémon.\n"
+                    "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
+                )
+                + _("To import select the archive that contains the spritesheets.")
+                if self._zip_is_active()
+                else _(
+                    "To import select the directory of the spritesheets. If it "
+                    "is still zipped, unzip it first."
+                )
             ),
             title="SkyTemple",
         )
@@ -294,9 +300,11 @@ Warning: SkyTemple does not validate the files you import."""
         dialog = Gtk.FileChooserNative.new(
             _("Import spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER
-            if not is_zip
-            else Gtk.FileChooserAction.OPEN,
+            (
+                Gtk.FileChooserAction.SELECT_FOLDER
+                if not is_zip
+                else Gtk.FileChooserAction.OPEN
+            ),
             None,
             None,
         )

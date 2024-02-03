@@ -1,4 +1,5 @@
 """UI utilities."""
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -191,13 +192,11 @@ def glib_async(f):
 @overload
 def catch_overflow(
     typ: type[u8] | type[u16] | type[u32] | type[i8] | type[i16] | type[i32],
-):
-    ...
+): ...
 
 
 @overload
-def catch_overflow(range_start: int, range_end: int):
-    ...
+def catch_overflow(range_start: int, range_end: int): ...
 
 
 def catch_overflow(typ_or_range_start, range_end=None):

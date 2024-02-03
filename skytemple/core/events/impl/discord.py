@@ -2,6 +2,7 @@
 Discord presence module.
 If the extra dependencies are not installed, importing this module will raise an ImportError.
 """
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -351,9 +352,11 @@ class DiscordPresence(AbstractListener):
             elif self.current_presence == "debugger":
                 self._update_presence(
                     state=self.debugger_script_name,
-                    details="In the debugger"
-                    if self.debugger_script_name is None
-                    else "Editing script",
+                    details=(
+                        "In the debugger"
+                        if self.debugger_script_name is None
+                        else "Editing script"
+                    ),
                     start=self.start,
                     large_text=self.rom_name,
                     small_image="bug",

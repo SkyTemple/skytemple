@@ -273,17 +273,17 @@ class MiscGraphicsModule(AbstractModule):
                         if pal_name == None:
                             none_assoc = True
                         spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
-                        self._tree_level_iter[
-                            spec.get_row_name()
-                        ] = item_tree.add_entry(
-                            root,
-                            ItemTreeEntry(
-                                icon="skytemple-e-graphics-symbolic",
-                                name=spec.get_row_name(),
-                                module=self,
-                                view_class=FontController,
-                                item_data=spec,
-                            ),
+                        self._tree_level_iter[spec.get_row_name()] = (
+                            item_tree.add_entry(
+                                root,
+                                ItemTreeEntry(
+                                    icon="skytemple-e-graphics-symbolic",
+                                    name=spec.get_row_name(),
+                                    module=self,
+                                    view_class=FontController,
+                                    item_data=spec,
+                                ),
+                            )
                         )
 
         for i, name in enumerate(self.list_of_graphic_fonts):

@@ -2,6 +2,7 @@
 Module that draws the icon views and drawing areas in the chunk editor.
 Tile based instead of chunk based.
 """
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.

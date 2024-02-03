@@ -103,7 +103,7 @@ class GfxcrunchController:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             shell=shell,
-            universal_newlines=True
+            universal_newlines=True,
             # creationflags=
         )
 

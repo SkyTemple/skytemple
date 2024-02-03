@@ -87,9 +87,9 @@ class AsmController(AbstractController):
         self._accepted_danger = False
 
         self._category_tabs: dict[PatchCategory, Gtk.Box] = {}  # category -> page
-        self._category_tabs_reverse: dict[
-            Gtk.Widget, PatchCategory
-        ] = {}  # page -> category
+        self._category_tabs_reverse: dict[Gtk.Widget, PatchCategory] = (
+            {}
+        )  # page -> category
         self._current_tab: Optional[PatchCategory] = None
 
     def get_view(self) -> Gtk.Widget:
@@ -449,8 +449,7 @@ class AsmController(AbstractController):
         is_load: bool,
         is_error: Literal[True],
         errors_or_issues: list[ErrorsTuple],
-    ):
-        ...
+    ): ...
 
     @overload
     def _error_or_issue(
@@ -458,8 +457,7 @@ class AsmController(AbstractController):
         is_load: bool,
         is_error: Literal[False],
         errors_or_issues: dict[str, list[warnings.WarningMessage]],
-    ):
-        ...
+    ): ...
 
     def _error_or_issue(self, is_load: bool, is_error: bool, errors_or_issues):
         """Show the compatibility issues / patch error dialog with the appropriate content based on the situation."""

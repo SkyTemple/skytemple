@@ -1,4 +1,5 @@
 """Manages the integration of SkyTemple Script Debugger (skytemple-ssb-debugger)."""
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.

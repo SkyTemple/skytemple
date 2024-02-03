@@ -56,9 +56,9 @@ class FixedRoomsController(AbstractController):
 
         self.enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
-            self.enemy_settings_name[
-                spawn_type.value
-            ] = f"{spawn_type.value}: {spawn_type.description}"
+            self.enemy_settings_name[spawn_type.value] = (
+                f"{spawn_type.value}: {spawn_type.description}"
+            )
 
         self.monster_names = {}
         length = len(self.module.get_monster_md().entries)
@@ -66,9 +66,9 @@ class FixedRoomsController(AbstractController):
             name = self.module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES, i % FileType.MD.properties().num_entities
             )
-            self.monster_names[
-                i
-            ] = f"{name} ({Gender(entry.gender).print_name}) (${i:04})"
+            self.monster_names[i] = (
+                f"{name} ({Gender(entry.gender).print_name}) (${i:04})"
+            )
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _("(Special?)") + f" (${i:04})"
 

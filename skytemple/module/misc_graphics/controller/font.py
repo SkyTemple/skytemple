@@ -269,9 +269,9 @@ class FontController(AbstractController):
         # Deletes all selected font entries
         # Allows multiple deletions
         entry_tree = builder_get_assert(self.builder, Gtk.TreeView, "entry_tree")
-        active_rows: list[
-            Gtk.TreePath
-        ] = entry_tree.get_selection().get_selected_rows()[1]
+        active_rows: list[Gtk.TreePath] = (
+            entry_tree.get_selection().get_selected_rows()[1]
+        )
         store = assert_not_none(cast(Optional[Gtk.ListStore], entry_tree.get_model()))
         assert self.font is not None
         for x in sorted(active_rows, key=lambda x: -x.get_indices()[0]):
@@ -320,9 +320,9 @@ class FontController(AbstractController):
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
             entry_tree = builder_get_assert(self.builder, Gtk.TreeView, "entry_tree")
-            active_rows: list[
-                Gtk.TreePath
-            ] = entry_tree.get_selection().get_selected_rows()[1]
+            active_rows: list[Gtk.TreePath] = (
+                entry_tree.get_selection().get_selected_rows()[1]
+            )
             for x in active_rows:
                 prop = self.entries[x.get_indices()[0]].get_properties()
                 if self.font.get_entry_image_size() > 12:

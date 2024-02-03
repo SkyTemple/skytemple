@@ -709,9 +709,9 @@ class ItemListsController(AbstractController):
             if sum_of_all_weights == 0:
                 row[chance_idx] = "0.00%"
             else:
-                row[
-                    chance_idx
-                ] = f"{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%"
+                row[chance_idx] = (
+                    f"{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%"
+                )
 
     def _fill_available_categories_into_store(self, cb_store):
         available_categories = [

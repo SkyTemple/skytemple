@@ -390,13 +390,13 @@ class MapBgModule(AbstractModule):
             "BALANCE/fixed.bin", FileType.FIXED_BIN, static_data=static_data
         )
 
-        dungeon_bin_context: ModelContext[
-            DungeonBinPack
-        ] = self.project.open_file_in_rom(
-            "DUNGEON/dungeon.bin",
-            FileType.DUNGEON_BIN,
-            static_data=static_data,
-            threadsafe=True,
+        dungeon_bin_context: ModelContext[DungeonBinPack] = (
+            self.project.open_file_in_rom(
+                "DUNGEON/dungeon.bin",
+                FileType.DUNGEON_BIN,
+                static_data=static_data,
+                threadsafe=True,
+            )
         )
 
         dungeon_list = HardcodedDungeons.get_dungeon_list(

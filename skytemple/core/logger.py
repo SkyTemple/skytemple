@@ -1,4 +1,5 @@
 """Logging configuration."""
+
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.

@@ -266,9 +266,9 @@ class SsaController(AbstractController):
             assert self.ssa
             # PLACE
             place_layer = 0
-            new_entity: Optional[
-                Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]
-            ] = None
+            new_entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]] = (
+                None
+            )
             if self.drawer.get_sector_highlighted() is not None:
                 place_layer = self.drawer.get_sector_highlighted()
 
@@ -2140,12 +2140,10 @@ class SsaController(AbstractController):
         return name
 
     @typing.overload
-    def _script_id(self, name: str, as_int: typing.Literal[False] = False) -> str:
-        ...
+    def _script_id(self, name: str, as_int: typing.Literal[False] = False) -> str: ...
 
     @typing.overload
-    def _script_id(self, name: str, as_int: typing.Literal[True]) -> int:
-        ...
+    def _script_id(self, name: str, as_int: typing.Literal[True]) -> int: ...
 
     def _script_id(self, name: str, as_int: bool = False) -> Union[str, int]:
         # First try to parse as an int, if this fails, the event has no script assigned.

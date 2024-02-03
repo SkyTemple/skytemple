@@ -106,9 +106,9 @@ class FixedController(AbstractController):
         self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
             self.enemy_settings_name[spawn_type.value] = f"{spawn_type.description}"
-            self.long_enemy_settings_name[
-                spawn_type.value
-            ] = f"{spawn_type.value}: {spawn_type.description}"
+            self.long_enemy_settings_name[spawn_type.value] = (
+                f"{spawn_type.value}: {spawn_type.description}"
+            )
 
         self.monster_names = {}
         self.long_monster_names = {}
@@ -119,9 +119,9 @@ class FixedController(AbstractController):
                 StringType.POKEMON_NAMES, i % num_entities
             )
             self.monster_names[i] = f"{name}"
-            self.long_monster_names[
-                i
-            ] = f"{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})"
+            self.long_monster_names[i] = (
+                f"{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})"
+            )
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _("(Special?)")
             self.long_monster_names[i] = _("(Special?)") + f" (${i:04})"
@@ -193,9 +193,11 @@ class FixedController(AbstractController):
                         )
                         self._select_combobox(
                             "utility_tile_direction",
-                            lambda row: row[0] == action_to_copy.direction.ssa_id
-                            if action_to_copy.direction is not None
-                            else 0,
+                            lambda row: (
+                                row[0] == action_to_copy.direction.ssa_id
+                                if action_to_copy.direction is not None
+                                else 0
+                            ),
                         )
                     else:
                         builder_get_assert(
@@ -207,9 +209,11 @@ class FixedController(AbstractController):
                         )
                         self._select_combobox(
                             "utility_entity_direction",
-                            lambda row: row[0] == action_to_copy.direction.ssa_id
-                            if action_to_copy.direction is not None
-                            else 0,
+                            lambda row: (
+                                row[0] == action_to_copy.direction.ssa_id
+                                if action_to_copy.direction is not None
+                                else 0
+                            ),
                         )
 
             # SELECT
@@ -243,9 +247,9 @@ class FixedController(AbstractController):
                     old_x, old_y = self.drawer.get_selected()
                     # abort if dragging onto same tile
                     if old_x != tile_x or old_y != tile_y:
-                        self.floor.actions[
-                            tile_y * self.floor.width + tile_x
-                        ] = self.floor.actions[old_y * self.floor.width + old_x]
+                        self.floor.actions[tile_y * self.floor.width + tile_x] = (
+                            self.floor.actions[old_y * self.floor.width + old_x]
+                        )
                         # Insert floor at old position
                         self.floor.actions[old_y * self.floor.width + old_x] = TileRule(
                             TileRuleType.FLOOR_ROOM, None
@@ -724,9 +728,9 @@ class FixedController(AbstractController):
                 self.drawer.interaction_mode == InteractionMode.PLACE_TILE
                 or self.drawer.interaction_mode == InteractionMode.PLACE_ENTITY
             ):
-                self.floor.actions[
-                    y * self.floor.width + x
-                ] = self.drawer.get_selected()
+                self.floor.actions[y * self.floor.width + x] = (
+                    self.drawer.get_selected()
+                )
                 self.module.mark_fixed_floor_as_modified(self.floor_id)
 
     @staticmethod
