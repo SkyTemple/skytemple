@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-01-26 09:32+0000\n"
+"POT-Creation-Date: 2024-02-03 10:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1056,8 +1056,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:36
 #: skytemple-files/skytemple_files/data/md/protocol.py:480
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:688
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:689
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:692
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:693
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:557
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:566
 #: skytemple/skytemple/module/map_bg/controller/bg.py:811
@@ -1266,7 +1266,7 @@ msgid "IQ"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:455
-#: skytemple/skytemple/core/events/impl/discord.py:320
+#: skytemple/skytemple/core/events/impl/discord.py:321
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:890
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5516
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:67
@@ -1570,7 +1570,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:106
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5351
-#: skytemple/skytemple/module/dungeon/module.py:978
+#: skytemple/skytemple/module/dungeon/module.py:980
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:297
 msgid "Floor"
 msgstr ""
@@ -3544,15 +3544,15 @@ msgid "Don't Save"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:330
-#: skytemple/skytemple/_i18n.py:24
+#: skytemple/skytemple/_i18n.py:25
 msgid "_Cancel"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:331
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:999
-#: skytemple/skytemple/_i18n.py:50
+#: skytemple/skytemple/_i18n.py:51
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:98
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:304
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:305
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:82
 #: skytemple/skytemple/module/misc_graphics/controller/chr.py:69
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:79
@@ -3561,7 +3561,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:80
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:100
 #: skytemple/skytemple/module/portrait/controller/portrait.py:117
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:187
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:189
 #: skytemple/skytemple/module/sprite/module.py:247
 msgid "_Save"
 msgstr ""
@@ -3582,12 +3582,12 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:346
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1661
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:531
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:396
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:413
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:646
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:986
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1023
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:535
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:397
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:414
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:647
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:987
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1024
 #: skytemple/skytemple/module/script/controller/ssa.py:696
 msgid "Warning!"
 msgstr ""
@@ -3783,7 +3783,7 @@ msgid "Value"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:155
-#: skytemple/skytemple/core/ui_utils.py:77
+#: skytemple/skytemple/core/ui_utils.py:78
 msgid "Nintendo DS ROMs (*.nds)"
 msgstr ""
 
@@ -3911,7 +3911,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:938
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1433
 #: skytemple/skytemple/module/script/module.py:253
-#: skytemple/skytemple/module/script/module.py:622
+#: skytemple/skytemple/module/script/module.py:620
 msgid "Enter (sse)"
 msgstr ""
 
@@ -3975,7 +3975,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
 #: skytemple/skytemple/module/script/controller/main.py:233
 #: skytemple/skytemple/module/script/controller/map.py:192
-#: skytemple/skytemple/module/script/controller/ssa.py:2206
+#: skytemple/skytemple/module/script/controller/ssa.py:2204
 #: skytemple/skytemple/module/sprite/controller/object_main.py:106
 #: skytemple/skytemple/module/spritecollab/module.py:182
 msgid "Cancel"
@@ -4163,7 +4163,7 @@ msgid "Replace with"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
-#: skytemple/skytemple/module/dungeon/module.py:1000
+#: skytemple/skytemple/module/dungeon/module.py:1002
 msgid "Nothing"
 msgstr ""
 
@@ -4872,139 +4872,139 @@ msgstr ""
 msgid "Action not supported"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:21
+#: skytemple/skytemple/_i18n.py:22
 msgid "_About"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:22
+#: skytemple/skytemple/_i18n.py:23
 msgid "_Add"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:23
+#: skytemple/skytemple/_i18n.py:24
 msgid "_Apply"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:25
+#: skytemple/skytemple/_i18n.py:26
 msgid "_Close"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:26
+#: skytemple/skytemple/_i18n.py:27
 msgid "_Copy"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:27
+#: skytemple/skytemple/_i18n.py:28
 msgid "Cu_t"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:28
+#: skytemple/skytemple/_i18n.py:29
 msgid "_Delete"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:29
+#: skytemple/skytemple/_i18n.py:30
 msgid "_Forward"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:30
+#: skytemple/skytemple/_i18n.py:31
 msgid "_Next"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:31
+#: skytemple/skytemple/_i18n.py:32
 msgid "P_ause"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:32
+#: skytemple/skytemple/_i18n.py:33
 msgid "_Play"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:33
+#: skytemple/skytemple/_i18n.py:34
 msgid "_Stop"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:34
+#: skytemple/skytemple/_i18n.py:35
 msgid "_New"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:35
+#: skytemple/skytemple/_i18n.py:36
 msgid "_OK"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:36
+#: skytemple/skytemple/_i18n.py:37
 #: skytemple/skytemple/module/dungeon/controller/floor.py:2578
 msgid "No"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:37
+#: skytemple/skytemple/_i18n.py:38
 msgid "_No"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:38
+#: skytemple/skytemple/_i18n.py:39
 #: skytemple/skytemple/module/dungeon/controller/floor.py:2579
 msgid "Yes"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:39
+#: skytemple/skytemple/_i18n.py:40
 msgid "_Yes"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:40
+#: skytemple/skytemple/_i18n.py:41
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:101
 #: skytemple/skytemple/module/misc_graphics/controller/chr.py:88
 msgid "_Open"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:41
+#: skytemple/skytemple/_i18n.py:42
 msgid "_Paste"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:42
+#: skytemple/skytemple/_i18n.py:43
 msgid "_Preferences"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:43
+#: skytemple/skytemple/_i18n.py:44
 msgid "_Print"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:44
+#: skytemple/skytemple/_i18n.py:45
 msgid "_Properties"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:45
+#: skytemple/skytemple/_i18n.py:46
 msgid "_Quit"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:46
+#: skytemple/skytemple/_i18n.py:47
 msgid "_Redo"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:47
+#: skytemple/skytemple/_i18n.py:48
 msgid "_Refresh"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:48
+#: skytemple/skytemple/_i18n.py:49
 msgid "_Remove"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:49
+#: skytemple/skytemple/_i18n.py:50
 msgid "_Revert"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:51
+#: skytemple/skytemple/_i18n.py:52
 msgid "Save _As"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:52
+#: skytemple/skytemple/_i18n.py:53
 msgid "Select _All"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:53
+#: skytemple/skytemple/_i18n.py:54
 msgid "_Undo"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:54
+#: skytemple/skytemple/_i18n.py:55
 msgid "Zoom _In"
 msgstr ""
 
-#: skytemple/skytemple/_i18n.py:55
+#: skytemple/skytemple/_i18n.py:56
 msgid "Zoom _Out"
 msgstr ""
 
@@ -5098,7 +5098,7 @@ msgid ""
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:54
-#: skytemple/skytemple/core/ui_utils.py:98
+#: skytemple/skytemple/core/ui_utils.py:99
 msgid "PNG image (*.png)"
 msgstr ""
 
@@ -5107,7 +5107,7 @@ msgid "JPEG image (*.jpg, *.jpeg)"
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:65
-#: skytemple/skytemple/core/ui_utils.py:83
+#: skytemple/skytemple/core/ui_utils.py:84
 #: skytemple/skytemple/module/monster/controller/level_up.py:646
 msgid "Any files"
 msgstr ""
@@ -5185,38 +5185,38 @@ msgstr ""
 msgid "Using Gbulb event loop"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:85
+#: skytemple/skytemple/core/error_handler.py:86
 msgid "Trying to display the error failed. Wow!"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:88
+#: skytemple/skytemple/core/error_handler.py:89
 msgid "You can try opening one of the following file manually in a web browser or text editor: "
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:118
+#: skytemple/skytemple/core/error_handler.py:119
 #: skytemple/skytemple/main.py:185
 msgid "SkyTemple - Error!"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:148
+#: skytemple/skytemple/core/error_handler.py:149
 msgid "Error Details"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:152
+#: skytemple/skytemple/core/error_handler.py:153
 #: skytemple/skytemple/core/widget/user_feedback.py:51
 #: skytemple/skytemple/skytemple.glade:1199
 msgid "Report Error"
 msgstr ""
 
-#: skytemple/skytemple/core/logger.py:94
+#: skytemple/skytemple/core/logger.py:95
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
 msgstr ""
 
-#: skytemple/skytemple/core/logger.py:99
+#: skytemple/skytemple/core/logger.py:100
 msgid "SkyTemple - Uncaught error!"
 msgstr ""
 
-#: skytemple/skytemple/core/modules.py:107
+#: skytemple/skytemple/core/modules.py:108
 #, python-brace-format
 msgid ""
 "SkyTemple found the following plugins in your plugins directory ({plugin_dir}).\n"
@@ -5227,24 +5227,24 @@ msgid ""
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:168
+#: skytemple/skytemple/core/rom_project.py:169
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:171
+#: skytemple/skytemple/core/rom_project.py:172
 msgid "No, load ROM as-is"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:173
+#: skytemple/skytemple/core/rom_project.py:174
 msgid "Yes, load backup"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:175
-#: skytemple/skytemple/core/rom_project.py:179
+#: skytemple/skytemple/core/rom_project.py:176
+#: skytemple/skytemple/core/rom_project.py:180
 msgid "Last modified: {} - Size: {}"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:186
+#: skytemple/skytemple/core/rom_project.py:187
 msgid ""
 "Do you want to restore the backup?\n"
 "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
@@ -5254,11 +5254,11 @@ msgid ""
 "Backup ROM: {}"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:239
+#: skytemple/skytemple/core/rom_project.py:240
 msgid "There was an error trying to read the ROM file."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:242
+#: skytemple/skytemple/core/rom_project.py:243
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
 msgstr ""
 
@@ -5277,26 +5277,26 @@ msgstr ""
 msgid "SkyTemple Script Engine Debugger - Error!"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:90
+#: skytemple/skytemple/core/ui_utils.py:91
 msgid "GIF image (*.gif)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:106
+#: skytemple/skytemple/core/ui_utils.py:107
 msgid "XML document (*.xml)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:114
+#: skytemple/skytemple/core/ui_utils.py:115
 msgid "CSV file (*.csv)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:234
+#: skytemple/skytemple/core/ui_utils.py:233
 msgid ""
 "The value you entered is invalid.\n"
 "\n"
 "Valid values must be in the range [{},{}]."
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:236
+#: skytemple/skytemple/core/ui_utils.py:235
 msgid "SkyTemple - Value out of range"
 msgstr ""
 
@@ -6005,95 +6005,95 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:73
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:82
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:477
-#: skytemple/skytemple/module/dungeon/module.py:992
+#: skytemple/skytemple/module/dungeon/module.py:994
 msgid "(Special?)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:515
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:519
 msgid "Width and height must be numbers >= 0."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:516
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:520
 msgid "Invalid values."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:529
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:533
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:544
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:548
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:552
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:556
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:561
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:565
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:568
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:572
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:575
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:579
 msgid ""
 "If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:583
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:587
 msgid ""
 "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:591
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:595
 msgid ""
 "If disabled, prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:599
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:603
 msgid ""
 "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:607
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:611
 msgid ""
 "Enables boss fight conditions.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:615
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:619
 msgid ""
 "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:623
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:627
 msgid ""
 "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:643
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:647
 #, python-brace-format
 msgid "Background {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:645
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:649
 #, python-brace-format
 msgid "Tileset {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:654
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:658
 msgid "No override"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:656
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:660
 #: skytemple/skytemple/module/dungeon/controller/floor.py:2628
 #, python-brace-format
 msgid "No. {i}"
@@ -7176,82 +7176,82 @@ msgstr ""
 msgid "Fixed Room {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:582
+#: skytemple/skytemple/module/dungeon/module.py:584
 msgid "Some dungeons were missing in the new group list. This is a bug."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:615
+#: skytemple/skytemple/module/dungeon/module.py:617
 #, python-brace-format
 msgid "\"{dname}\" Group"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:622
+#: skytemple/skytemple/module/dungeon/module.py:624
 msgid "Floor {floor_i + 1}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:978
+#: skytemple/skytemple/module/dungeon/module.py:980
 msgid "Secondary"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:983
+#: skytemple/skytemple/module/dungeon/module.py:985
 msgid "Vis."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:985
+#: skytemple/skytemple/module/dungeon/module.py:987
 msgid "Unb."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:1013
+#: skytemple/skytemple/module/dungeon/module.py:1015
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:1100
+#: skytemple/skytemple/module/dungeon/module.py:1102
 msgid ""
 "Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n"
 "You can edit groups under \"Dungeons\"."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:75
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:76
 msgid "Export PNG of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:169
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1056
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:170
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1057
 msgid "Export PNG of chunks..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:190
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:270
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:191
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:271
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:259
 msgid "Error exporting the tileset."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:221
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:298
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1104
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1174
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:222
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:299
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1105
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1175
 msgid "An image must be selected."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:234
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:308
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:235
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:309
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:217
 msgid "Error importing the tileset."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:250
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1130
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:251
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1131
 msgid "Export PNG of tiles..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:393
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:643
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:983
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:394
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:644
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:984
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:412
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:413
 msgid "Palette Animation is not enabled for this palette."
 msgstr ""
 
@@ -7932,8 +7932,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:209
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:253
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:235
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:327
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:237
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:335
 msgid "Success!"
 msgstr ""
 
@@ -8847,7 +8847,7 @@ msgid ""
 "999 means unused."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/tactics.py:86
+#: skytemple/skytemple/module/lists/controller/tactics.py:87
 msgid "<Not working>"
 msgstr ""
 
@@ -9062,84 +9062,84 @@ msgstr ""
 msgid "Background Palettes"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:241
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:242
 msgid ""
 "Incorrect values.\n"
 "Only enter numbers from 1 to 255 for chunks and tiles dimensions."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:255
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:256
 msgid "Save GIF of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:301
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:302
 msgid "Export PNGs of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:366
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:367
 msgid "The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:377
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:378
 msgid "The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:550
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:551
 msgid ""
 "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:659
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:660
 msgid "This map has no BPA for animated tiles activated."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:660
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:661
 msgid "No animated tiles"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:718
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:719
 msgid "Export animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:755
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:756
 msgid "The animated tiles were successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:756
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:844
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:757
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:845
 msgid "SkyTemple - Success!"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:762
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:763
 msgid "Error during BPA export"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:784
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:785
 msgid "Import animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:840
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:841
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:850
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:851
 msgid "Error during BPA import"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:945
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:946
 msgid "All \"number of frames\" values were invalid or 0. No values were saved."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:964
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:965
 msgid "All \"frame time\" values were invalid or 0. No values were saved."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1022
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1023
 msgid "Palette Animation is not enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1193
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1194
 msgid "This map has no second layer."
 msgstr ""
 
@@ -11101,11 +11101,11 @@ msgstr ""
 msgid "This entry has no portraits."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/module.py:310
+#: skytemple/skytemple/module/monster/module.py:308
 msgid "Stats and moves are only editable for base forms."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/module.py:633
+#: skytemple/skytemple/module/monster/module.py:635
 msgid ""
 "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
@@ -11804,11 +11804,11 @@ msgstr ""
 msgid "Compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:552
+#: skytemple/skytemple/module/patch/controller/asm.py:550
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:568
+#: skytemple/skytemple/module/patch/controller/asm.py:566
 msgid ""
 "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n"
 "\n"
@@ -12667,35 +12667,35 @@ msgstr ""
 msgid "Map not found."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:690
+#: skytemple/skytemple/module/script/module.py:688
 msgid "The file name provided must not have a file extension."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:694
+#: skytemple/skytemple/module/script/module.py:692
 msgid "The file name provided is too long (max 8 characters)."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:774
+#: skytemple/skytemple/module/script/module.py:772
 msgid "Script Scenes for maps in category \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:776
+#: skytemple/skytemple/module/script/module.py:774
 msgid "This section contains all the script scenes of maps, that start with the letter {}."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:779
+#: skytemple/skytemple/module/script/module.py:777
 msgid "Script Scenes for other maps"
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:781
+#: skytemple/skytemple/module/script/module.py:779
 msgid "This section contains all the script scenes of maps, that don't fit in any of the other categories."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:793
+#: skytemple/skytemple/module/script/module.py:791
 msgid "Sub Scenes for \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:795
+#: skytemple/skytemple/module/script/module.py:793
 msgid ""
 "This section contains all sub scenes for the map {}.\n"
 "\n"
@@ -12703,11 +12703,11 @@ msgid ""
 "depending on the current story progress."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:806
+#: skytemple/skytemple/module/script/module.py:804
 msgid "Acting Scenes for \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:808
+#: skytemple/skytemple/module/script/module.py:806
 msgid ""
 "This section contains all acting scenes for the map {}.\n"
 "\n"
@@ -12803,39 +12803,39 @@ msgstr ""
 msgid "Export spritesheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:234
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:236
 msgid "The spritesheet was successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:242
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:244
 msgid "Error exporting the spritesheet."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:251
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:274
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:254
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:279
 msgid "To import select the archive that contains the spritesheets."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:254
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:277
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:257
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:282
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:270
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:275
 msgid ""
 "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:295
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:301
 msgid "Import spritesheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:326
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:334
 msgid "The spritesheet was successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:361
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:369
 #: skytemple/skytemple/module/spritecollab/module.py:138
 msgid "Error importing the spritesheet."
 msgstr ""
@@ -12934,11 +12934,11 @@ msgstr ""
 msgid "Error importing image to object."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:371
+#: skytemple/skytemple/module/sprite/module.py:369
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/module.py:402
+#: skytemple/skytemple/module/sprite/module.py:400
 msgid "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
 msgstr ""
 
@@ -13269,7 +13269,7 @@ msgstr ""
 msgid "Color "
 msgstr ""
 
-#: skytemple/skytemple/module/tiled_img/drawer_tiled.py:84
+#: skytemple/skytemple/module/tiled_img/drawer_tiled.py:85
 msgid "Only 1x1 or 3x3 supported."
 msgstr ""
 
