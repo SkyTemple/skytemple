@@ -278,7 +278,7 @@ class SettingsController:
         webbrowser.open_new_tab("https://skytemple.org/privacy.html")
 
     def on_help_language_activate_link(self, *args):
-        webbrowser.open_new_tab("hhttps://translate.skytemple.org/")
+        webbrowser.open_new_tab("https://translate.skytemple.org/")
 
     def _list_gtk_themes(self):
         dirs = [
