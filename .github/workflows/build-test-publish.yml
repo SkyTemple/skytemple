@@ -198,7 +198,7 @@ jobs:
               bash .\install-skytemple-rust.sh
           }
       - name: Create installer
-        uses: joncloud/makensis-action@v3.7
+        uses: joncloud/makensis-action@v4.1
         with:
           script-file: "installer/skytemple.nsi"
           arguments: "/DPRODUCT_VERSION=${{ env.PACKAGE_VERSION }}"
