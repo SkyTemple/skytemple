@@ -40,7 +40,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="intro_dialog_label_first">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="halign">start</property>
@@ -49,12 +49,13 @@
 With this tool you can edit various things in ROMs
 of Pokémon Mystery Dungeon Explorers of Sky.
 
-Please note the following:
-- This is still very early software, please make backups of your
-  ROM. Things &lt;i&gt;will&lt;/i&gt; break.
-- A project directory was created next to the ROM.
-- Please report any issues.</property>
+You can find more information on how to use this
+application in &lt;a href="wiki"&gt;the SkyTemple wiki&lt;/a&gt;.
+You can also access help from the wiki for
+the section you are currently in with the "?"
+icon at the top of the app.</property>
             <property name="use-markup">True</property>
+            <signal name="activate-link" handler="on_intro_dialog_label_first_activate_link" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -206,6 +207,23 @@ the top-right of the main window.</property>
             <property name="can-focus">False</property>
             <property name="layout-style">end</property>
             <child>
+              <object class="GtkButton" id="settings_help_button">
+                <property name="label">gtk-help</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+                <signal name="clicked" handler="on_settings_help_button_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+                <property name="secondary">True</property>
+                <property name="non-homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="button3">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
@@ -216,7 +234,7 @@ the top-right of the main window.</property>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">0</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -230,7 +248,7 @@ the top-right of the main window.</property>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -1354,6 +1372,27 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="help_button">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Help</property>
+            <signal name="clicked" handler="on_help_button_clicked" swapped="no"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">help-browser-symbolic</property>
+                <property name="icon_size">3</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="reload_button">
             <property name="visible">True</property>
             <property name="sensitive">False</property>
@@ -1372,7 +1411,7 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -1394,7 +1433,7 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>
@@ -1690,6 +1729,22 @@ This is used so we can improve SkyTemple.</property>
           <object class="GtkButtonBox">
             <property name="can-focus">False</property>
             <property name="layout-style">end</property>
+            <child>
+              <object class="GtkButton" id="tq_help">
+                <property name="label">gtk-help</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+                <property name="secondary">True</property>
+                <property name="non-homogeneous">True</property>
+              </packing>
+            </child>
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-close</property>
