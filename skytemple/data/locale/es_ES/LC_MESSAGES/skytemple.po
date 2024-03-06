@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-02-03 17:28+0000\n"
-"PO-Revision-Date: 2024-03-06 14:56\n"
+"PO-Revision-Date: 2024-03-06 16:22\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -5271,11 +5271,11 @@ msgstr "¿Quieres restaurar la copia de seguridad?\n"
 
 #: skytemple/skytemple/core/rom_project.py:240
 msgid "There was an error trying to read the ROM file."
-msgstr ""
+msgstr "Se ha producido un error al intentar leer el archivo ROM."
 
 #: skytemple/skytemple/core/rom_project.py:243
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
-msgstr ""
+msgstr "¿Estás seguro de que has proporcionado una ROM? Una ROM normalmente tiene la extensión de archivo \".nds\"."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:198
 #: skytemple/skytemple/core/ssb_debugger/context.py:217
@@ -5324,11 +5324,13 @@ msgstr "Música"
 msgid "SkyTemple can not edit music.\n"
 "However you can use the tool SkySongBuilder to insert your custom music into the game.\n\n"
 "Warning: Make sure to close SkyTemple before modifying the ROM with any other tool."
-msgstr ""
+msgstr "SkyTemple no puede editar música.\n"
+"Sin embargo, puedes usar la herramienta SkySongBuilder para insertar tu música personalizada en el juego.\n\n"
+"Advertencia: asegúrate de cerrar SkyTemple antes de modificar la ROM con cualquier otra herramienta."
 
 #: skytemple/skytemple/data/widget/music/main.ui:74
 msgid "More information about SkySongBuilder"
-msgstr ""
+msgstr "Más información sobre SkySongBuilder"
 
 #: skytemple/skytemple/data/widget/script/ssb_page.ui:76
 msgid "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
@@ -5346,7 +5348,9 @@ msgstr "Abrir depurador del motor de scripts"
 msgid "We are very sorry you ran into an issue while using SkyTemple!\n"
 "We already collected some error information and will have a look at it. \n"
 "You can help us fix this issue by providing some additional information below."
-msgstr ""
+msgstr "¡Lamentamos mucho que hayas tenido algún problema al usar SkyTemple!\n"
+"Ya hemos recopilado información sobre errores y la revisaremos. \n"
+"Puedes ayudarnos a solucionar este problema proporcionándonos más información a continuación."
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:54
 msgid "Send"
@@ -5355,13 +5359,16 @@ msgstr "Enviar"
 #: skytemple/skytemple/data/widget/user_feedback.ui:93
 msgid "Your name\n"
 "<small><i>eg. your Discord username, email address, etc.</i></small>"
-msgstr ""
+msgstr "Tu nombre\n"
+"<small><i>p. ej.: tu usuario de Discord, dirección de correo, etc.</i></small>"
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:134
 msgid "Your comments\n"
 "<small><i>What were you trying to do when this error happened? \n"
 "What else can you tell us that might help fixing the issue?</i></small>"
-msgstr ""
+msgstr "Tus comentarios\n"
+"<small><i>¿Qué intentabas hacer cuando ocurrió este error? \n"
+"¿Qué más nos puedes decir que pueda ayudar a solucionar el problema?</i></small>"
 
 #: skytemple/skytemple/main.py:197
 msgid "PyGObject compiled without Cairo support. Can't start!"
