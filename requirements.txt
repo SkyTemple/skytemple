@@ -4,7 +4,7 @@ pmdsky-debug-py
 git+https://github.com/skytemple/skytemple-dtef@main#egg=skytemple_dtef
 git+https://github.com/skytemple/skytemple-icons@main#egg=skytemple_icons
 range-typed-integers >= 1.0.0
-pygobject==3.46.0
+pygobject==3.48.1
 pycairo==1.18.2; sys_platform != "win32"
 natsort==8.4.0
 tilequant==1.1.0
