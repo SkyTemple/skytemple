@@ -488,8 +488,9 @@ class ChunkEditorController:
                     self.on_icon_view_static_tiles_selection_changed,
                 )
                 for idx in range(
-                    self.bpa_starts[i], self.bpa_starts[i] + ani_tile_g.count()
-                ):  # type: ignore
+                    self.bpa_starts[i],  # type: ignore
+                    self.bpa_starts[i] + ani_tile_g.count(),  # type: ignore
+                ):
                     store.append([idx, str(idx)])
 
                 renderer.start()

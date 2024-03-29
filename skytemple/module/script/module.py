@@ -581,7 +581,9 @@ class ScriptModule(AbstractModule):
         )
         self._sub_roots[new_name] = sr
 
-    def get_subnodes(self, name: str) -> tuple[
+    def get_subnodes(
+        self, name: str
+    ) -> tuple[
         Optional[ItemTreeEntryRef],
         Optional[ItemTreeEntryRef],
         Optional[ItemTreeEntryRef],

@@ -322,8 +322,8 @@ class MonsterModule(AbstractModule):
                 static_data = self.project.get_rom_module().get_static_data()
                 values = HardcodedMonsterGroundIdleAnimTable.get(ov11, static_data)
                 values[item_id] = (
-                    value if isinstance(value, IdleAnimType) else IdleAnimType(value)
-                )  # type: ignore
+                    value if isinstance(value, IdleAnimType) else IdleAnimType(value)  # type: ignore
+                )
                 HardcodedMonsterGroundIdleAnimTable.set(values, ov11, static_data)
 
             self.project.modify_binary(BinaryName.OVERLAY_11, update)

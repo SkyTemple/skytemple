@@ -264,8 +264,9 @@ class Drawer:
                         # Move to beginning of next line
                         if do_translates:
                             ctx.translate(
-                                -BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM
-                            )  # type: ignore
+                                -BPC_TILE_DIM * (self.width_in_tiles - 1),  # type: ignore
+                                BPC_TILE_DIM,
+                            )
                     else:
                         # Move to next tile in line
                         if do_translates:
@@ -290,8 +291,9 @@ class Drawer:
                     # Move to beginning of next line
                     if do_translates:
                         ctx.translate(
-                            -BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM
-                        )  # type: ignore
+                            -BPC_TILE_DIM * (self.width_in_tiles - 1),  # type: ignore
+                            BPC_TILE_DIM,
+                        )
                 else:
                     # Move to next tile in line
                     if do_translates:

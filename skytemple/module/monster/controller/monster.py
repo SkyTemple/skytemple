@@ -993,8 +993,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
             for entry in entry_list:
                 entry_main_tree = self.module.generate_entry__entry(
-                    entry.md_index, Gender(entry.gender)
-                )  # type: ignore
+                    entry.md_index,
+                    Gender(entry.gender),  # type: ignore
+                )
                 store.append(
                     ent_root,
                     [
@@ -1613,8 +1614,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 idx = entry.md_index
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
             label.set_text(
-                f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})"
-            )  # type: ignore
+                f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})"  # type: ignore
+            )
         except BaseException:
             label.set_text(_("??? Enter a valid Entry ID ($)"))
 

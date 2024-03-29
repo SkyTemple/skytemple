@@ -147,8 +147,8 @@ class WteWtuController(AbstractController):
                 try:
                     self.wte.from_pil(
                         img_pil,
-                        WteImageType(depth),
-                        discard,  # type: ignore
+                        WteImageType(depth),  # type: ignore
+                        discard,
                     )
                 except ValueError as err:
                     display_error(

@@ -20,7 +20,6 @@
 from gi.repository import Gtk
 
 
-
 def on_map_width_chunks_changed(builder, wdg):
     """If the chunk width is changed and the values are linked, also update linked fields"""
     map_wh_link: Gtk.Switch = builder.get_object("map_wh_link")
