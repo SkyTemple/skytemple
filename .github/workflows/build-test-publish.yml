@@ -38,8 +38,8 @@ jobs:
     name: Linting
     steps:
     - uses: actions/checkout@v4
-      with:
-        submodules: 'recursive'
+    - name: Install gobject-introspection
+      run: sudo apt-get install -y gobject-introspection
     - name: Set up Python 3.11
       uses: actions/setup-python@v5
       with:
@@ -56,8 +56,8 @@ jobs:
     name: Code Format
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: 'recursive'
+      - name: Install gobject-introspection
+        run: sudo apt-get install -y gobject-introspection
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
