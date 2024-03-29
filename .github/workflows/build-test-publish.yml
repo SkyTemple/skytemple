@@ -361,6 +361,7 @@ jobs:
 
           # Download armips
           curl https://skytemple.org/build_deps/mac/armips-mac-arm64 -O
+          mv armips-mac-arm64 armips
           chmod +x armips
 
           # Package
