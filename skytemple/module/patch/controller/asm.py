@@ -87,9 +87,9 @@ class AsmController(AbstractController):
         self._accepted_danger = False
 
         self._category_tabs: dict[PatchCategory, Gtk.Box] = {}  # category -> page
-        self._category_tabs_reverse: dict[Gtk.Widget, PatchCategory] = (
-            {}
-        )  # page -> category
+        self._category_tabs_reverse: dict[
+            Gtk.Widget, PatchCategory
+        ] = {}  # page -> category
         self._current_tab: Optional[PatchCategory] = None
 
     def get_view(self) -> Gtk.Widget:

@@ -28,7 +28,9 @@ from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
 
 class SsbLoadedFileHandler(DataHandler["SsbLoadedFile"]):
     @classmethod
-    def deserialize(cls, data: bytes, *, filename, static_data, project_fm, **kwargs: OptionalKwargs) -> "SsbLoadedFile":  # type: ignore
+    def deserialize(
+        cls, data: bytes, *, filename, static_data, project_fm, **kwargs: OptionalKwargs
+    ) -> "SsbLoadedFile":  # type: ignore
         f = SsbLoadedFile(
             filename, FileType.SSB.deserialize(data, static_data), None, project_fm
         )
@@ -36,7 +38,9 @@ class SsbLoadedFileHandler(DataHandler["SsbLoadedFile"]):
         return f
 
     @classmethod
-    def serialize(cls, data: "SsbLoadedFile", *, static_data, **kwargs: OptionalKwargs) -> bytes:  # type: ignore
+    def serialize(
+        cls, data: "SsbLoadedFile", *, static_data, **kwargs: OptionalKwargs
+    ) -> bytes:  # type: ignore
         return FileType.SSB.serialize(data.ssb_model, static_data)
 
     @classmethod

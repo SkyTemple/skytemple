@@ -286,9 +286,7 @@ class WorldMapController(AbstractController):
             else:
                 map_store.clear()
             selected_map_iter = map_store.append([-1, _("<Don't show on map>")])
-            for (
-                level
-            ) in (
+            for level in (
                 self._config.script_data.level_list
             ):  # TODO: Use the list from the game when available
                 iiter = map_store.append([level.id, level.name])

@@ -541,7 +541,10 @@ class ListsModule(AbstractModule):
         def update(binary):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedMenus.set_menu(
-                MenuType(menu_id), values, binary, static_data  # type: ignore
+                MenuType(menu_id),
+                values,
+                binary,
+                static_data,  # type: ignore
             )
 
         self.project.modify_binary(MenuType(menu_id).binary, update)  # type: ignore

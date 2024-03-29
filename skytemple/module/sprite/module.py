@@ -463,9 +463,9 @@ class SpriteModule(AbstractModule):
         sprconf = self.project.open_sprconf()
         FileType.SPRCONF.update(sprconf, sprite)
         self.project.mark_as_modified(SPRCONF_FILENAME)
-        self.project.get_rom_module().get_static_data().animation_names[
-            sprite.id
-        ] = sprite
+        self.project.get_rom_module().get_static_data().animation_names[sprite.id] = (
+            sprite
+        )
 
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]

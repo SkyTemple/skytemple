@@ -108,7 +108,9 @@ class MainController:
         cls._instance._editor_stack.set_visible_child(
             builder_get_assert(cls._instance.builder, Gtk.Box, "es_loading")
         )
-        view_cls: Union[AbstractController, Gtk.Widget] = assert_not_none(cls._instance._current_view)  # type: ignore
+        view_cls: Union[AbstractController, Gtk.Widget] = assert_not_none(
+            cls._instance._current_view
+        )  # type: ignore
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(
             load_view(

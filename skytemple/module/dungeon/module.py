@@ -722,9 +722,9 @@ class DungeonModule(AbstractModule):
             new_total_floor_count = sum(
                 [dungeon_definitions[x].number_floors for x in is_group.dungeon_ids]
             )
-            dungeon_definitions[dungeon_id].number_floors_in_group = (
-                new_total_floor_count
-            )
+            dungeon_definitions[
+                dungeon_id
+            ].number_floors_in_group = new_total_floor_count
 
             for dungeon_in_group in (
                 x for x in is_group.dungeon_ids if x != dungeon_id
@@ -735,9 +735,9 @@ class DungeonModule(AbstractModule):
                     > dungeon_definitions[dungeon_id].start_after
                 ):
                     dungeon_definitions[dungeon_in_group].start_after += floors_added
-                dungeon_definitions[dungeon_in_group].number_floors_in_group = (
-                    u8_checked(new_total_floor_count)
-                )
+                dungeon_definitions[
+                    dungeon_in_group
+                ].number_floors_in_group = u8_checked(new_total_floor_count)
         else:
             dungeon_definitions[dungeon_id].number_floors_in_group = number_floors_new
 

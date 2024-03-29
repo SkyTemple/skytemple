@@ -290,7 +290,8 @@ class MonsterController(AbstractController):
         try:
             val = w.get_model()[w.get_active_iter()][0]
             self.module.set_idle_anim_type(
-                self.item_id, IdleAnimType(val)  # type: ignore
+                self.item_id,
+                IdleAnimType(val),  # type: ignore
             )
         except ValueError:
             pass
@@ -991,7 +992,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             )
 
             for entry in entry_list:
-                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
+                entry_main_tree = self.module.generate_entry__entry(
+                    entry.md_index, Gender(entry.gender)
+                )  # type: ignore
                 store.append(
                     ent_root,
                     [
@@ -1609,7 +1612,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             else:
                 idx = entry.md_index
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
-            label.set_text(f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})")  # type: ignore
+            label.set_text(
+                f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})"
+            )  # type: ignore
         except BaseException:
             label.set_text(_("??? Enter a valid Entry ID ($)"))
 
@@ -1705,7 +1710,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             name = self.module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES, sidx
             )
-            self._ent_names[idx] = f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
+            self._ent_names[idx] = (
+                f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
+            )
             monster_store.append([self._ent_names[idx]])
 
     def on_cr_entity_editing_started(self, renderer, editable, path):

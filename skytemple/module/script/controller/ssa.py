@@ -505,7 +505,9 @@ class SsaController(AbstractController):
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
             elif self.__class__.map_bg_surface_cache[0] == item_id:
-                self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]  # type: ignore
+                self._map_bg_surface, bma_width, bma_height = (
+                    self.__class__.map_bg_surface_cache[1:]
+                )  # type: ignore
             else:
                 bma = self.map_bg_module.get_bma(item_id)
                 bpl = self.map_bg_module.get_bpl(item_id)
@@ -518,7 +520,12 @@ class SsaController(AbstractController):
                 )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
-                self.__class__.map_bg_surface_cache = (item_id, self._map_bg_surface, bma_width, bma_height)  # type: ignore
+                self.__class__.map_bg_surface_cache = (
+                    item_id,
+                    self._map_bg_surface,
+                    bma_width,
+                    bma_height,
+                )  # type: ignore
             if self.drawer:
                 self._set_drawer_bg(
                     assert_not_none(self._map_bg_surface), bma_width, bma_height
@@ -716,9 +723,7 @@ class SsaController(AbstractController):
                     model[after_iter][0:2] = self._list_entry_generate_layer(  # type: ignore
                         layer_id + after_inc,
                         self.ssa.layer_list[layer_id + after_inc + 1],
-                    )[
-                        0:2
-                    ]
+                    )[0:2]
                     after_iter = model.iter_next(after_iter)
                     after_inc += 1
                 # REMOVE ALL ENTITIES THAT NO LONGER EXIST FROM THE LISTS
@@ -784,7 +789,10 @@ class SsaController(AbstractController):
                     after_iter = po_store.iter_next(po_iter)
                     after_inc = 0
                     while after_iter:
-                        po_store[after_iter] = [layer_id + after_inc, f"Sector {layer_id + after_inc}"]  # type: ignore
+                        po_store[after_iter] = [
+                            layer_id + after_inc,
+                            f"Sector {layer_id + after_inc}",
+                        ]  # type: ignore
                         after_iter = po_store.iter_next(after_iter)
                         after_inc += 1
                     # Remove from popover combo box
@@ -964,7 +972,9 @@ class SsaController(AbstractController):
             and self._currently_selected_entity is not None
         ):
             kind_id = model[cbiter][0]
-            self._currently_selected_entity.actor = self.static_data.script_data.level_entities__by_id[kind_id]  # type: ignore
+            self._currently_selected_entity.actor = (
+                self.static_data.script_data.level_entities__by_id[kind_id]
+            )  # type: ignore
             self._refresh_for_selected()
 
     def on_po_actor_script_changed(self, widget: Gtk.ComboBox, *args):
@@ -995,7 +1005,9 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].actors.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].actors.remove(
+            self._currently_selected_entity
+        )  # type: ignore
         # Remove from list
         if l_iter is not None:
             typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
@@ -1024,7 +1036,9 @@ class SsaController(AbstractController):
             and self._currently_selected_entity is not None
         ):
             kind_id = model[cbiter][0]
-            self._currently_selected_entity.object = self.static_data.script_data.objects__by_id[kind_id]  # type: ignore
+            self._currently_selected_entity.object = (
+                self.static_data.script_data.objects__by_id[kind_id]
+            )  # type: ignore
             self._refresh_for_selected()
 
     def on_po_object_script_changed(self, widget: Gtk.ComboBox, *args):
@@ -1075,7 +1089,9 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].objects.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].objects.remove(
+            self._currently_selected_entity
+        )  # type: ignore
         # Remove from list
         if l_iter is not None:
             typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
@@ -1143,7 +1159,9 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].performers.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].performers.remove(
+            self._currently_selected_entity
+        )  # type: ignore
         # Remove from list
         if l_iter is not None:
             typing.cast(Gtk.ListStore, tree.get_model()).remove(l_iter)
@@ -1171,7 +1189,9 @@ class SsaController(AbstractController):
             and cbiter != []
             and self._currently_selected_entity is not None
         ):
-            self._currently_selected_entity.trigger_id = self.ssa.triggers.index(model[cbiter][0])  # type: ignore
+            self._currently_selected_entity.trigger_id = self.ssa.triggers.index(
+                model[cbiter][0]
+            )  # type: ignore
             self._refresh_for_selected()
 
     def on_po_trigger_width_changed(self, widget: Gtk.Entry, *args):
@@ -1198,7 +1218,9 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].events.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].events.remove(
+            self._currently_selected_entity
+        )  # type: ignore
         # Remove from list
         if l_iter is not None:
             typing.cast(Gtk.ListStore, tree.get_model()).remove(l_iter)

@@ -73,7 +73,9 @@ def release_version(is_dev_version: bool):
                 import subprocess
 
                 try:
-                    return subprocess.check_output([git_bin, "rev-parse", "HEAD"]).decode("utf-8")[:8]  # type: ignore
+                    return subprocess.check_output(
+                        [git_bin, "rev-parse", "HEAD"]
+                    ).decode("utf-8")[:8]  # type: ignore
                 except subprocess.CalledProcessError as ex:
                     raise ValueError("Was unable to determine dev version") from ex
         else:
@@ -352,11 +354,15 @@ def collect_state_context() -> dict[str, Captured]:
 
     rom_project = RomProject.get_current()
     try:
-        view_state = MainController._instance._current_view_module.collect_debugging_info(  # type: ignore
-            MainController._instance._current_view  # type: ignore
+        view_state = (
+            MainController._instance._current_view_module.collect_debugging_info(  # type: ignore
+                MainController._instance._current_view  # type: ignore
+            )
         )
         if "models" in view_state:  # type: ignore
-            view_state["models"] = {k: capture_any(v) for k, v in view_state["models"].items()}  # type: ignore
+            view_state["models"] = {
+                k: capture_any(v) for k, v in view_state["models"].items()
+            }  # type: ignore
     except Exception as ex:
         view_state = {"error_collecting": str(ex)}
     w, h = MainController.window().get_size()
@@ -407,7 +413,9 @@ def capture(
 ) -> Optional[str]:
     from skytemple_files.common.util import capture_capturable
 
-    error_context: dict[str, str | int] = {k: capture_capturable(v) for k, v in error_context_in.items()}  # type: ignore
+    error_context: dict[str, str | int] = {
+        k: capture_capturable(v) for k, v in error_context_in.items()
+    }  # type: ignore
     try_ignore_err(
         collect_device_context, lambda c: sentry_sdk.set_context("device", c)
     )

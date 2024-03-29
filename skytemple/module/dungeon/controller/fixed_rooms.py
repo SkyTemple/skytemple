@@ -379,7 +379,9 @@ class FixedRoomsController(AbstractController):
         )
         store[path][3] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
-        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])  # type: ignore
+        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(
+            cb_store[new_iter][0]
+        )  # type: ignore
         self._save()
 
     @glib_async

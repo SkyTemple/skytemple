@@ -2420,9 +2420,9 @@ class FloorController(AbstractController):
             # divisible. Find the last non-zero we set and set it to 10000.
             self.entry.monsters[last_weight_main_set_idx].main_spawn_weight = u16(10000)
         if last_weight_mh != 0 and last_weight_mh != 10000:
-            self.entry.monsters[last_weight_mh_set_idx].monster_house_spawn_weight = (
-                u16(10000)
-            )
+            self.entry.monsters[
+                last_weight_mh_set_idx
+            ].monster_house_spawn_weight = u16(10000)
         self.mark_as_modified()
 
     def _save_trap_spawn_rates(self):

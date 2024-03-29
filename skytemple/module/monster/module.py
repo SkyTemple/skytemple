@@ -153,7 +153,8 @@ class MonsterModule(AbstractModule):
                 self._tree_iter__entries[entry.md_index] = item_tree.add_entry(
                     ent_root,
                     self.generate_entry__entry(
-                        entry.md_index, Gender(entry.gender)  # type: ignore
+                        entry.md_index,
+                        Gender(entry.gender),  # type: ignore
                     ),
                 )
 
@@ -281,7 +282,9 @@ class MonsterModule(AbstractModule):
         v.show_all()
         return v
 
-    def get_portraits_for_export(self, item_id) -> tuple[
+    def get_portraits_for_export(
+        self, item_id
+    ) -> tuple[
         Optional[list[Optional[KaoImageProtocol]]],
         Optional[list[Optional[KaoImageProtocol]]],
     ]:
@@ -318,7 +321,9 @@ class MonsterModule(AbstractModule):
             def update(ov11):
                 static_data = self.project.get_rom_module().get_static_data()
                 values = HardcodedMonsterGroundIdleAnimTable.get(ov11, static_data)
-                values[item_id] = value if isinstance(value, IdleAnimType) else IdleAnimType(value)  # type: ignore
+                values[item_id] = (
+                    value if isinstance(value, IdleAnimType) else IdleAnimType(value)
+                )  # type: ignore
                 HardcodedMonsterGroundIdleAnimTable.set(values, ov11, static_data)
 
             self.project.modify_binary(BinaryName.OVERLAY_11, update)

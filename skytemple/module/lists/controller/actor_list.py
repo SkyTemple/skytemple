@@ -56,9 +56,7 @@ class ActorListController(ListBaseController):
 
         # ON LOAD ASSIGN PPMDU ENTITY LIST TO ACTOR LIST MODEL
         # This will also reflect changes to the list in other parts of the UI.
-        self.module.project.get_rom_module().get_static_data().script_data.level_entities = (
-            self._list.list
-        )
+        self.module.project.get_rom_module().get_static_data().script_data.level_entities = self._list.list
 
         stack.set_visible_child(
             builder_get_assert(self.builder, Gtk.Widget, "box_list")

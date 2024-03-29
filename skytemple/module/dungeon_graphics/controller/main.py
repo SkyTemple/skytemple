@@ -183,7 +183,14 @@ class MainController(AbstractController):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
-            store.append([e.value, self.module.project.get_string_provider().get_value(string_type, e.value)])  # type: ignore
+            store.append(
+                [
+                    e.value,
+                    self.module.project.get_string_provider().get_value(
+                        string_type, e.value
+                    ),
+                ]
+            )  # type: ignore
 
     def _init_values(self):
         from skytemple.module.dungeon_graphics.module import NUMBER_OF_TILESETS
