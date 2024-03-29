@@ -25,7 +25,7 @@ from collections.abc import Coroutine
 from enum import Enum, auto
 
 import gbulb
-from gi.repository import Gtk, GLib, Gio
+from gi.repository import GLib, Gio
 
 from skytemple.core.async_tasks.now import Now
 from skytemple_files.common.task_runner import AsyncTaskRunner

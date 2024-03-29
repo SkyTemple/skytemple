@@ -26,15 +26,10 @@ from typing import (
     Union,
     TYPE_CHECKING,
     Optional,
-    Dict,
     Callable,
-    Type,
-    Tuple,
     Any,
-    List,
     overload,
     Literal,
-    cast,
 )
 from collections.abc import Iterator
 from datetime import datetime
@@ -586,7 +581,7 @@ class RomProject:
                     f"Saving {name} in ROM. Model: {model}, Handler: {handler}"
                 )
                 if handler == FileType.SIR0:
-                    logger.debug(f"> Saving as Sir0 wrapped data.")
+                    logger.debug("> Saving as Sir0 wrapped data.")
                     model = FileType.SIR0.wrap_obj(model)
                 if assert_that is not None:
                     assert (

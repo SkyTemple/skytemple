@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import TYPE_CHECKING, Optional, Dict, List, Tuple, cast
+from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk, Gdk
 from range_typed_integers import i16, i16_checked

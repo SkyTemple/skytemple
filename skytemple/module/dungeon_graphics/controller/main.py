@@ -15,19 +15,18 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from enum import Enum
-from typing import TYPE_CHECKING, Type, Union, Optional
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async, builder_get_assert, iter_tree_model
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.data.md.protocol import PokeType
 from skytemple_files.hardcoded.dungeons import (
     TilesetMapColor,
     TilesetStirringEffect,
-    TilesetBaseEnum,
     TilesetSecretPowerEffect,
     TilesetNaturePowerMoveEntry,
     TilesetWeatherEffect,

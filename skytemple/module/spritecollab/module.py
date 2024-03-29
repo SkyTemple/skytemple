@@ -18,7 +18,7 @@ import asyncio
 import os
 import sys
 from tempfile import NamedTemporaryFile
-from typing import Optional, Tuple
+from typing import Optional
 
 from PIL import Image
 from gi.repository import Gtk, GLib, Pango

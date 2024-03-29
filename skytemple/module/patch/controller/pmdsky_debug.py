@@ -15,9 +15,9 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import webbrowser
-from typing import TYPE_CHECKING, Optional, List, cast
+from typing import TYPE_CHECKING, Optional, cast
 
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk
 from pmdsky_debug_py import RELEASE
 from pmdsky_debug_py.protocol import SectionProtocol, Symbol
 from skytemple.core.ui_utils import builder_get_assert, assert_not_none

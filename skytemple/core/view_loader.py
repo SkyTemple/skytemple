@@ -18,7 +18,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Any, Type
+from typing import TYPE_CHECKING, Any
 
 from gi.repository import Gtk
 from gi.repository import GLib

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional, List, Union
+from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
@@ -50,7 +50,7 @@ from skytemple_files.graphics.dpci.protocol import DpciProtocol
 from skytemple_files.graphics.dpl.protocol import DplProtocol
 from skytemple_files.graphics.dpla.protocol import DplaProtocol
 from skytemple_files.graphics.colvec.model import Colvec
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
 from skytemple_files.hardcoded.dungeons import TilesetProperties, HardcodedDungeons
@@ -170,7 +170,7 @@ class DungeonGraphicsModule(AbstractModule):
                 root,
                 ItemTreeEntry(
                     icon="skytemple-e-graphics-symbolic",
-                    name=f"Traps",
+                    name="Traps",
                     module=self,
                     view_class=TrpItmImgController,
                     item_data=ImgType.TRP,
@@ -183,7 +183,7 @@ class DungeonGraphicsModule(AbstractModule):
                 root,
                 ItemTreeEntry(
                     icon="skytemple-e-graphics-symbolic",
-                    name=f"Items",
+                    name="Items",
                     module=self,
                     view_class=TrpItmImgController,
                     item_data=ImgType.ITM,
@@ -212,7 +212,7 @@ class DungeonGraphicsModule(AbstractModule):
 
     def get_colvec(self) -> Colvec:
         with self.dungeon_bin_context as dungeon_bin:
-            return dungeon_bin.get(f"colormap.colvec")
+            return dungeon_bin.get("colormap.colvec")
 
     def get_dma(self, item_id) -> DmaProtocol:
         with self.dungeon_bin_context as dungeon_bin:

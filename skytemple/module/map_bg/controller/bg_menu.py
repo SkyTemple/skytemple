@@ -22,8 +22,8 @@ import re
 import sys
 from collections import OrderedDict
 from functools import partial
-from typing import TYPE_CHECKING, List, Optional, Tuple
-from collections.abc import Sequence, MutableSequence
+from typing import TYPE_CHECKING, Optional
+from collections.abc import MutableSequence
 
 from range_typed_integers import u16, u16_checked
 from skytemple_files.user_error import UserValueError
@@ -434,9 +434,9 @@ class BgMenuController:
                 new_chunk_size
                 > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len
             ):
-                self.parent.bpc.layers[
-                    bpc_layer_to_use
-                ].chunk_tilemap_len = new_chunk_size
+                self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = (
+                    new_chunk_size
+                )
             self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings.copy()
             self.parent.reload_all()
             self.parent.mark_as_modified()
@@ -474,9 +474,9 @@ class BgMenuController:
                     new_chunk_size
                     > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len
                 ):
-                    self.parent.bpc.layers[
-                        bpc_layer_to_use
-                    ].chunk_tilemap_len = new_chunk_size
+                    self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = (
+                        new_chunk_size
+                    )
                 self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
                 self.parent.reload_all()
                 self.parent.mark_as_modified()
@@ -547,14 +547,14 @@ class BgMenuController:
             for child in bpa_duration_box.get_children():
                 bpa_duration_box.remove(child)
             if bpa is None or len(bpa.frame_info) < 1:
-                l = Gtk.Label.new(
+                labl = Gtk.Label.new(
                     _(
                         "This BPA has no frames.\n"
                         "Enable the BPA and import images for a BPA to add frames."
                     )
                 )
-                l.show()
-                bpa_duration_box.add(l)
+                labl.show()
+                bpa_duration_box.add(labl)
             else:
                 # Fill value for existing BPAs
                 for frame_info in bpa.frame_info:
@@ -830,9 +830,9 @@ class BgMenuController:
                 # Don't forget to update the BPC!
                 bpa_relative_idx = active_bpa_index % 4
                 bpc_layer_for_bpa = 0 if active_bpa_index < 4 else 1
-                self.parent.bpc.layers[bpc_layer_for_bpa].bpas[bpa_relative_idx] = (
-                    active_bpa.number_of_tiles
-                )
+                self.parent.bpc.layers[bpc_layer_for_bpa].bpas[
+                    bpa_relative_idx
+                ] = active_bpa.number_of_tiles
                 md = SkyTempleMessageDialog(
                     MainController.window(),
                     Gtk.DialogFlags.DESTROY_WITH_PARENT,

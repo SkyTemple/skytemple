@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, List, Tuple, cast
+from typing import TYPE_CHECKING, Optional, cast
 
 from xml.etree.ElementTree import ElementTree
 
@@ -111,7 +111,7 @@ class FontController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             assert self.font
             xml, tables = self.font.export_to_xml()
-            with open(os.path.join(fn, f"char_tables.xml"), "w") as f:
+            with open(os.path.join(fn, "char_tables.xml"), "w") as f:
                 f.write(prettify(xml))
             for i, table in tables.items():
                 table.save(os.path.join(fn, f"table-{i}.png"))
@@ -145,7 +145,7 @@ class FontController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                xml = ElementTree().parse(os.path.join(fn, f"char_tables.xml"))
+                xml = ElementTree().parse(os.path.join(fn, "char_tables.xml"))
                 tables = dict()
                 for i in range(256):
                     path = os.path.join(fn, f"table-{i}.png")

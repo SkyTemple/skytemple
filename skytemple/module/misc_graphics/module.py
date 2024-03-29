@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Dict, List, Union
+from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _
@@ -41,11 +41,8 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.graphics.wte.model import Wte
 from skytemple_files.graphics.wtu.model import Wtu
-from skytemple_files.graphics.fonts import *
+from skytemple_files.graphics.fonts import FontType
 from skytemple_files.graphics.fonts.abstract import AbstractFont
-from skytemple_files.graphics.fonts.font_dat.model import FontDat
-from skytemple_files.graphics.fonts.font_sir0.model import FontSir0
-from skytemple_files.graphics.fonts.banner_font.model import BannerFont
 from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
 from skytemple_files.graphics.chr.model import Chr
 from skytemple_files.graphics.zmappat.model import ZMappaT
@@ -269,8 +266,8 @@ class MiscGraphicsModule(AbstractModule):
                     pal_name = assoc[1]
                     if pal_name not in self.list_of_bins:
                         pal_name = None
-                    if not none_assoc or pal_name != None:
-                        if pal_name == None:
+                    if not none_assoc or pal_name is not None:
+                        if pal_name is None:
                             none_assoc = True
                         spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
                         self._tree_level_iter[spec.get_row_name()] = (

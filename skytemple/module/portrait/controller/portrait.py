@@ -19,7 +19,7 @@ import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING, List, cast
+from typing import TYPE_CHECKING, cast
 
 import cairo
 from PIL import Image

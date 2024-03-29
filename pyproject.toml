@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "skytemple"
-version = "1.6.3"
+version = "1.6.4"
 authors = [
     {name = 'Marco "Capypara" Köpcke', email = "hello@capypara.de"},
     # see About dialog or GitHub contributors list for additional people.
@@ -85,5 +85,10 @@ spritecollab =      "skytemple.module.spritecollab.module:SpritecollabModule"
 [tool.setuptools.packages.find]
 exclude = ["installer", "docs"]
 
-[tools.ruff.lint]
-select = [ "W", "E", "F", "ARG"]
+[tool.ruff.lint]
+select = [ "W", "E", "F"]
+ignore = [
+  "E402",  # Module level import not at top of file -> gi imports may come after gi.require_version.
+  "E501",  # Line too long. Maybe enable later.
+  "F841",  # Unused variable: f-string magic
+]

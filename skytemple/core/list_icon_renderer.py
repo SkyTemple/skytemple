@@ -17,7 +17,7 @@
 import typing
 from functools import partial
 from itertools import zip_longest
-from typing import Dict, Any
+from typing import Any
 
 import cairo
 from gi.repository import GdkPixbuf, GLib
@@ -100,7 +100,7 @@ class ListIconRenderer:
         return self._icon_pixbufs[target_name]
 
     def _reload_icon(self, parameters, idx, store, load_fn, target_name, was_loading):
-        if store == None:
+        if store is None:
             return
         if not self._loading and not was_loading:
             row = store[get_list_store_iter_by_idx(store, idx)]

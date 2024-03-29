@@ -18,7 +18,6 @@ import logging
 import os
 import sys
 import webbrowser
-from functools import partial
 from glob import glob
 from typing import Optional
 

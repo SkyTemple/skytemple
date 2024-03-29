@@ -17,7 +17,6 @@
 from __future__ import annotations
 
 import logging
-import os.path
 import sys
 from typing import Callable
 from collections.abc import Sequence

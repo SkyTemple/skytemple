@@ -20,7 +20,7 @@ import json
 import logging
 import os
 import threading
-from typing import TYPE_CHECKING, Tuple, Dict, List, Union, Optional
+from typing import TYPE_CHECKING, Union, Optional
 
 import cairo
 
@@ -31,7 +31,7 @@ from skytemple_files.graphics.img_itm.model import ImgItm
 from skytemple_files.graphics.img_trp.model import ImgTrp
 
 from PIL import Image, ImageFilter
-from gi.repository import Gdk, Gtk, GdkPixbuf
+from gi.repository import Gdk, Gtk
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.model_context import ModelContext

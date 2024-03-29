@@ -20,7 +20,7 @@
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, GLib, GObject, Pango
+from gi.repository import Gtk, Gdk, GLib, GObject
 
 
 class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
@@ -147,6 +147,6 @@ class CellRendererTextView(Gtk.CellRendererText):
         return editable
 
     def editing_done(self, editable, tree, path):
-        if editable.props.editing_canceled == False:
+        if editable.props.editing_canceled is False:
             self.emit("edited", path, editable.get_text())
         tree.grab_focus()

@@ -17,7 +17,7 @@
 import logging
 import typing
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List, Optional
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u16_checked, u8, u8_checked

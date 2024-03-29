@@ -15,8 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import re
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u16_checked
@@ -137,7 +136,7 @@ class ActorListController(ListBaseController):
         # ent_name:
         try:
             self._list_store[path][7] = self._ent_names[entid]
-        except KeyError as e:
+        except KeyError:
             raise UserValueError(_("No Pokémon with this ID found."))
 
         # entid:

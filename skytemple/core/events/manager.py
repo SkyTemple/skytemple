@@ -16,7 +16,6 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import asyncio
 import logging
-from typing import List
 
 from gi.repository import GLib
 

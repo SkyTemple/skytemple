@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Dict, Optional, Union
+from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _

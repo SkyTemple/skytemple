@@ -14,8 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import os
-from typing import TYPE_CHECKING, Optional, List, Dict, cast
+from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 from range_typed_integers import i16, i16_checked, u8, u32, u8_checked
@@ -25,20 +24,18 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import (
-    data_dir,
     glib_async,
     catch_overflow,
     builder_get_assert,
     assert_not_none,
     iter_tree_model,
 )
-from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.i18n_util import _
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.ppmdu_config.script_data import (
     Pmd2ScriptLevelMapType,
     Pmd2ScriptLevel,
 )
-from skytemple_files.common.types.file_types import FileType
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons
 from skytemple_files.hardcoded.ground_dungeon_tilesets import GroundTilesetMapping
 from skytemple_files.list.level.model import LevelListBin
@@ -161,7 +158,7 @@ class MainController(AbstractController):
             md.run()
             md.destroy()
             return
-        new_id = max(l.id for l in self._list.list) + 1
+        new_id = max(lst.id for lst in self._list.list) + 1
         store = builder_get_assert(self.builder, Gtk.ListStore, "level_list_tree_store")
         store.append(
             [
@@ -254,7 +251,7 @@ class MainController(AbstractController):
         store = builder_get_assert(self.builder, Gtk.ListStore, "mapbg_store")
         for i, level in enumerate(self.module.get_bg_level_list().level):
             lvls.append((i, level.bma_name))
-        for i, level in sorted(lvls, key=lambda l: l[1]):
+        for i, level in sorted(lvls, key=lambda lst: lst[1]):
             lbl = f"{level} (#{i:03})"
             self._labels_mapid[i] = lbl
             store.append([i, lbl])
@@ -345,7 +342,9 @@ class MainController(AbstractController):
                 )
             )
         # UPDATE STATIC DATA
-        self.module.project.get_rom_module().get_static_data().script_data.level_list = self._list.list
+        self.module.project.get_rom_module().get_static_data().script_data.level_list = (
+            self._list.list
+        )
         self.module.mark_level_list_as_modified()
 
     def _save_td(self):

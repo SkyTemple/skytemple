@@ -14,16 +14,13 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType
 
-from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEONS
 from skytemple.core.string_provider import StringType
-from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
 
 from skytemple.core.ui_utils import builder_get_assert
 

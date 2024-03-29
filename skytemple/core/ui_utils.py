@@ -23,7 +23,7 @@ import os
 import pathlib
 import sys
 from tempfile import NamedTemporaryFile
-from typing import Union, Type, overload, TypeVar, Any, cast, Dict
+from typing import overload, TypeVar, Any
 from collections.abc import Iterable
 from xml.etree import ElementTree
 
@@ -35,7 +35,6 @@ gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gtk, GLib
 from gi.repository.Gio import AppInfo
-from gi.repository.Gtk import TreeModelRow
 from skytemple_files.common.i18n_util import _
 
 import importlib.metadata as importlib_metadata

@@ -15,8 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
-from typing import TYPE_CHECKING, Optional, Callable, Tuple
-from collections.abc import Mapping
+from typing import TYPE_CHECKING, Optional, Callable
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
@@ -851,7 +850,7 @@ class FixedController(AbstractController):
 
             self.drawer.set_draw_tile_grid(
                 builder_get_assert(
-                    self.builder, Gtk.ToggleToolButton, f"tool_scene_grid"
+                    self.builder, Gtk.ToggleToolButton, "tool_scene_grid"
                 ).get_active()
             )
 

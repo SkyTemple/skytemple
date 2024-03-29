@@ -17,7 +17,7 @@
 import logging
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u16_checked

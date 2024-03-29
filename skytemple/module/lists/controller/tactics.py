@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, List, cast
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk
 from range_typed_integers import i16, i16_checked

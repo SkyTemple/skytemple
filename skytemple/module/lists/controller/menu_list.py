@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, List, cast
+from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 from range_typed_integers import i32_checked, i32, u16_checked, u16
@@ -24,7 +24,6 @@ from range_typed_integers import i32_checked, i32, u16_checked, u16
 from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import (
     catch_overflow,
     builder_get_assert,

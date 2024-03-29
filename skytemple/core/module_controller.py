@@ -24,7 +24,7 @@ import os
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 
 from skytemple.core.abstract_module import AbstractModule

@@ -101,7 +101,7 @@ def handle_exception(exc_type, exc_value, exc_traceback):
                 log=False,
             )
         )
-    except:
+    except Exception:
         pass
 
 

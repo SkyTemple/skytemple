@@ -18,7 +18,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import typing
 from enum import Enum, auto
-from typing import List, Union, Optional
+from typing import Union, Optional
 from collections.abc import Iterable, Sequence
 
 from gi.repository import GLib, Gtk

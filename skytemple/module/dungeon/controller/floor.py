@@ -24,7 +24,7 @@ import typing
 from enum import Enum
 from functools import partial
 from itertools import zip_longest
-from typing import TYPE_CHECKING, List, Type, Dict, Tuple, Optional
+from typing import TYPE_CHECKING, Optional
 from xml.etree import ElementTree
 
 from gi.repository import Gtk, GLib, GdkPixbuf
@@ -787,7 +787,7 @@ class FloorController(AbstractController):
         # ent_name:
         try:
             store[path][2] = self._ent_names[entid]
-        except KeyError as e:
+        except KeyError:
             raise UserValueError(_("No Pokémon with this ID found."))
         store[path][0] = entid
         # ent_icon:
@@ -1266,7 +1266,7 @@ class FloorController(AbstractController):
         try:
             v = int(text)
             assert v >= 0
-        except:
+        except Exception:
             return
         store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         if store[path][2]:
@@ -1388,7 +1388,7 @@ class FloorController(AbstractController):
 
             self.drawer.set_draw_tile_grid(
                 builder_get_assert(
-                    self.builder, Gtk.ToggleToolButton, f"tool_scene_grid"
+                    self.builder, Gtk.ToggleToolButton, "tool_scene_grid"
                 ).get_active()
             )
 
@@ -1890,7 +1890,7 @@ class FloorController(AbstractController):
         dungeon_name = self._string_provider.get_value(
             StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id
         )
-        builder_get_assert(self.builder, Gtk.Label, f"label_dungeon_name").set_text(
+        builder_get_assert(self.builder, Gtk.Label, "label_dungeon_name").set_text(
             f'{"Dungeon"} {self.item.dungeon.dungeon_id}\n{dungeon_name}'
         )
         builder_get_assert(self.builder, Gtk.Label, "label_floor_number").set_text(
@@ -2420,9 +2420,9 @@ class FloorController(AbstractController):
             # divisible. Find the last non-zero we set and set it to 10000.
             self.entry.monsters[last_weight_main_set_idx].main_spawn_weight = u16(10000)
         if last_weight_mh != 0 and last_weight_mh != 10000:
-            self.entry.monsters[
-                last_weight_mh_set_idx
-            ].monster_house_spawn_weight = u16(10000)
+            self.entry.monsters[last_weight_mh_set_idx].monster_house_spawn_weight = (
+                u16(10000)
+            )
         self.mark_as_modified()
 
     def _save_trap_spawn_rates(self):

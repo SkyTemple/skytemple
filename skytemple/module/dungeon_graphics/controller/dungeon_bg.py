@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import itertools
-from typing import TYPE_CHECKING, List, Optional
+from typing import TYPE_CHECKING, Optional
 
 import cairo
 from gi.repository import Gtk, Gdk
@@ -41,7 +41,7 @@ from skytemple_files.graphics.dpci import DPCI_TILE_DIM
 from skytemple_files.graphics.dpl.protocol import DplProtocol
 from skytemple_files.graphics.dpl import DPL_PAL_LEN, DPL_MAX_PAL
 from skytemple_files.graphics.dpla.protocol import DplaProtocol
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
@@ -59,7 +59,7 @@ INFO_IMEXPORT_TILES = _(
   chunk mapping (Chunks > Edit Chunks).
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
   (=not existing with another palette or flipped or rotated).
-"""
+"""  # noqa: W291
 )
 
 INFO_IMEXPORT_CHUNK = _(
@@ -74,7 +74,7 @@ INFO_IMEXPORT_CHUNK = _(
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
-Palettes > Edit Palettes."""
+Palettes > Edit Palettes."""  # noqa: W291
 )
 
 INFO_IMEXPORT_ENTIRE = _(
@@ -89,7 +89,7 @@ INFO_IMEXPORT_ENTIRE = _(
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
-Palettes > Edit Palettes."""
+Palettes > Edit Palettes."""  # noqa: W291
 )
 
 
@@ -374,7 +374,7 @@ class DungeonBgController(AbstractController):
     def _init_chunks_icon_view(self):
         """Fill the icon view"""
         self._deinit_chunks_icon_view()
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"bg_chunks_view")
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, "bg_chunks_view")
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(
             icon_view, self.pal_ani_durations, self.chunks_surfaces
@@ -397,14 +397,14 @@ class DungeonBgController(AbstractController):
 
         self.current_icon_view_renderer.set_pink_bg(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+                self.builder, Gtk.ToggleToolButton, "tb_bg_color"
             ).get_active()
         )
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
         icon_view: Gtk.IconView = builder_get_assert(
-            self.builder, Gtk.IconView, f"bg_chunks_view"
+            self.builder, Gtk.IconView, "bg_chunks_view"
         )
         icon_view.clear()
         icon_view.set_model(None)
@@ -445,7 +445,7 @@ class DungeonBgController(AbstractController):
             )
 
             icon_view: Gtk.IconView = builder_get_assert(
-                self.builder, Gtk.IconView, f"bg_chunks_view"
+                self.builder, Gtk.IconView, "bg_chunks_view"
             )
             icon_view.queue_resize()
 

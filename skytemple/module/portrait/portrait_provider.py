@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import threading
-from typing import List, Dict, Tuple, Optional
+from typing import Optional
 
 import cairo
 from gi.repository import Gdk, GdkPixbuf, Gtk

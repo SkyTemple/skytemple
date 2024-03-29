@@ -22,7 +22,7 @@ import re
 import sys
 import tempfile
 import webbrowser
-from typing import TYPE_CHECKING, Dict, Optional, List, Any, Callable, cast
+from typing import TYPE_CHECKING, Optional, Any, Callable, cast
 
 import cairosvg
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf
@@ -44,10 +44,8 @@ from skytemple_files.common.util import open_utf8, add_extension_if_missing
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.waza_p.protocol import (
     WazaPProtocol,
-    MoveLearnsetProtocol,
-    LevelUpMoveProtocol,
 )
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.user_error import UserValueError
 
 if TYPE_CHECKING:
@@ -391,7 +389,7 @@ class LevelUpController(AbstractController):
             level_up_moves.append(
                 FileType.WAZA_P.get_level_up_model()(u16(int(row[1])), u16(int(row[0])))
             )
-        level_up_moves.sort(key=lambda l: l.level_id)
+        level_up_moves.sort(key=lambda lum: lum.level_id)
         learn_set.level_up_moves = level_up_moves
         self.queue_render_graph()
         self._mark_moves_as_modified()
@@ -439,7 +437,7 @@ class LevelUpController(AbstractController):
         # move name:
         try:
             store[path][index_name] = self._move_names[move_id]
-        except KeyError as e:
+        except KeyError:
             raise UserValueError(_("No move with this ID found."))
         # move id:
         store[path][index_id] = move_id

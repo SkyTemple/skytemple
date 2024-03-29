@@ -25,11 +25,7 @@ from types import TracebackType
 from typing import (
     TYPE_CHECKING,
     Optional,
-    Dict,
-    List,
     overload,
-    Tuple,
-    Type,
     Union,
     Literal,
     cast,
@@ -316,7 +312,7 @@ class AsmController(AbstractController):
                         self._issues[patch.name] = w
                 # We catch BaseExceptions, because we don't want loaded patch packages to do fun stuff like close
                 # the app by raising SystemExit (though I suppose if they wanted to, they could).
-                except BaseException as err:
+                except BaseException:
                     errors.append(
                         (
                             f(
@@ -354,7 +350,7 @@ class AsmController(AbstractController):
                             "orange" if patch.name in self._issues else None,
                         ]
                     )
-                except BaseException as err:
+                except BaseException:
                     errors.append(
                         (
                             f(

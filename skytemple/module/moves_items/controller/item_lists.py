@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict, List, Optional, cast
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk
 
@@ -35,10 +35,6 @@ from skytemple.core.ui_utils import (
 from skytemple.module.dungeon.controller.floor import (
     POKE_CATEGORY_ID,
     LINKBOX_CATEGORY_ID,
-)
-from skytemple_files.common.ppmdu_config.dungeon_data import (
-    Pmd2DungeonItem,
-    Pmd2DungeonItemCategory,
 )
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.dungeon_data.mappa_bin.protocol import (
@@ -187,7 +183,7 @@ class ItemListsController(AbstractController):
         try:
             v = int(text)
             assert v >= 0
-        except:
+        except Exception:
             return
         store = builder_get_assert(self.builder, Gtk.ListStore, "item_categories_store")
         store[path][4] = text
@@ -467,7 +463,7 @@ class ItemListsController(AbstractController):
         try:
             v = int(text)
             assert v >= 0
-        except:
+        except Exception:
             return
         store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         if store[path][2]:

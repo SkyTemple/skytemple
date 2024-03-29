@@ -17,7 +17,7 @@
 
 import itertools
 import typing
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional
 from collections.abc import Iterable, Sequence
 
 import cairo
@@ -60,7 +60,7 @@ INFO_IMEXPORT_TILES = _(
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
   (=not existing with another palette or flipped or rotated).
 
-Animated tiles are not imported."""
+Animated tiles are not imported."""  # noqa: W291
 )
 
 INFO_IMEXPORT_CHUNK = _(
@@ -91,7 +91,7 @@ transparency.
 
 Static tiles, chunks and palettes are replaced on import. 
 Animated tiles and palette animation settings are not changed.
-"""
+"""  # noqa: W291
 )
 
 INFO_IMEXPORT_ENTIRE = _(
@@ -116,7 +116,7 @@ Static tiles are replaced on import.
 Animated tiles and palette animation settings are not changed.
 
 Since no animated tiles are imported, they need
-to be (re-)assigned to chunks after the import."""
+to be (re-)assigned to chunks after the import."""  # noqa: W291
 )
 
 
@@ -697,22 +697,22 @@ class BgController(AbstractController):
         # Set drawer state based on some buttons
         self.drawer.set_show_only_edited_layer(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_hide_other"
+                self.builder, Gtk.ToggleToolButton, "tb_hide_other"
             ).get_active()
         )
         self.drawer.set_draw_chunk_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_chunk_grid"
+                self.builder, Gtk.ToggleToolButton, "tb_chunk_grid"
             ).get_active()
         )
         self.drawer.set_draw_tile_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_tile_grid"
+                self.builder, Gtk.ToggleToolButton, "tb_tile_grid"
             ).get_active()
         )
         self.drawer.set_pink_bg(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+                self.builder, Gtk.ToggleToolButton, "tb_bg_color"
             ).get_active()
         )
 
@@ -726,17 +726,17 @@ class BgController(AbstractController):
         # Set drawer state based on some buttons
         self.drawer.set_draw_chunk_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_chunk_grid"
+                self.builder, Gtk.ToggleToolButton, "tb_chunk_grid"
             ).get_active()
         )
         self.drawer.set_draw_tile_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_tile_grid"
+                self.builder, Gtk.ToggleToolButton, "tb_tile_grid"
             ).get_active()
         )
         self.drawer.set_pink_bg(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+                self.builder, Gtk.ToggleToolButton, "tb_bg_color"
             ).get_active()
         )
 
@@ -751,12 +751,12 @@ class BgController(AbstractController):
         # Set drawer state based on some buttons
         self.drawer.set_draw_chunk_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_chunk_grid"
+                self.builder, Gtk.ToggleToolButton, "tb_chunk_grid"
             ).get_active()
         )
         self.drawer.set_draw_tile_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_tile_grid"
+                self.builder, Gtk.ToggleToolButton, "tb_tile_grid"
             ).get_active()
         )
 
@@ -766,7 +766,7 @@ class BgController(AbstractController):
 
         self.current_chunks_icon_layer = layer_number
 
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"bg_chunks_view")
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, "bg_chunks_view")
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(
             icon_view,
@@ -793,18 +793,18 @@ class BgController(AbstractController):
 
         self.current_icon_view_renderer.set_pink_bg(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+                self.builder, Gtk.ToggleToolButton, "tb_bg_color"
             ).get_active()
         )
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"bg_chunks_view")
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, "bg_chunks_view")
         icon_view.clear()
         icon_view.set_model(None)
 
     def _init_data_layer_combobox(self):
-        cb = builder_get_assert(self.builder, Gtk.ComboBox, f"data_combo_box")
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, "data_combo_box")
         if cb.get_model() is None:
             store = Gtk.ListStore(str, int)
             for i in range(0, 256):
@@ -990,9 +990,7 @@ class BgController(AbstractController):
                 int(BPC_TILE_DIM * 3 * self.scale_factor),
             )
 
-            icon_view = builder_get_assert(
-                self.builder, Gtk.IconView, f"bg_chunks_view"
-            )
+            icon_view = builder_get_assert(self.builder, Gtk.IconView, "bg_chunks_view")
             icon_view.queue_resize()
 
     def reload_all(self):

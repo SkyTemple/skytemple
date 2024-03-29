@@ -15,13 +15,11 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import sys
-import webbrowser
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING
 
 from range_typed_integers import u16, u8_checked, u16_checked, u8
 
-from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.i18n_util import _
 
 from gi.repository import Gtk
 
@@ -31,18 +29,14 @@ from skytemple.core.ui_utils import (
     builder_get_assert,
     iter_tree_model,
 )
-from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple_files.common.util import open_utf8
 from skytemple_files.data.inter_d.model import InterDEntry, InterDEntryType
 
 if TYPE_CHECKING:
-    from skytemple.module.moves_items.module import MovesItemsModule
     from skytemple.module.lists.module import ListsModule
-from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 

@@ -19,7 +19,7 @@ import os
 import sys
 from functools import reduce
 from math import gcd
-from typing import Optional, List, Union, Tuple, Dict, Literal
+from typing import Optional, Union, Literal
 from collections.abc import Iterable, Sequence
 from xml.etree.ElementTree import Element
 

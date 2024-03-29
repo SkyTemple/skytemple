@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import typing
 from enum import auto, Enum
-from typing import Tuple, Union, Callable, Optional, List
+from typing import Union, Callable, Optional
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -755,7 +755,7 @@ class Drawer:
         )
         ctx.set_font_size(6)
         ctx.move_to(cx - 5, cy - 2)
-        ctx.show_text(f"OBJ")
+        ctx.show_text("OBJ")
         ctx.translate(x, y)
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
@@ -795,7 +795,7 @@ class Drawer:
         )
         ctx.set_font_size(6)
         ctx.move_to(cx - 5, cy - 2)
-        ctx.show_text(f"TRG")
+        ctx.show_text("TRG")
         ctx.translate(x, y)
         self._draw_plus(ctx)
         ctx.translate(-x, -y)

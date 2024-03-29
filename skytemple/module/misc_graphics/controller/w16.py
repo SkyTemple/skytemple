@@ -19,7 +19,7 @@ import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING
 
 import cairo
 
@@ -117,7 +117,7 @@ class W16Controller(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            r = re.compile(rf"(\d+)\.png", re.IGNORECASE)
+            r = re.compile(r"(\d+)\.png", re.IGNORECASE)
             imgs_dict = {
                 int(match[1]): name
                 for match, name in self._try_match_import(r, os.listdir(fn))

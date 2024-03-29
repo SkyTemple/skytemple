@@ -20,7 +20,7 @@ import sys
 import locale
 import gettext
 from pathlib import Path
-from skytemple.core.ui_utils import data_dir, APP, builder_get_assert
+from skytemple.core.ui_utils import data_dir, APP
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.impl_cfg import (
     ENV_SKYTEMPLE_USE_NATIVE,
@@ -66,12 +66,12 @@ elif sys.platform.startswith("win"):
             os.environ["LANG"] = f"{lang}.{enc}"
             ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
             locale.setlocale(locale.LC_ALL, f"{lang}.{enc}")
-        except:
+        except Exception:
             failed_to_set_locale = True
 
     try:
         locale.getlocale()
-    except:
+    except Exception:
         failed_to_set_locale = True
 
     if failed_to_set_locale:
@@ -98,7 +98,7 @@ elif sys.platform.startswith("win"):
                 os.environ["LANG"] = "C"
                 ctypes.cdll.msvcrt._putenv("LANG=C")
                 locale.setlocale(locale.LC_ALL, "C")
-        except:
+        except Exception:
             failed_to_set_locale = True
 
     libintl_loc = os.path.join(os.path.dirname(__file__), "libintl-8.dll")
@@ -110,7 +110,7 @@ elif sys.platform.startswith("win"):
     else:
         try:
             libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library("libintl-8"))
-        except:
+        except Exception:
             libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library("intl"))
 elif sys.platform == "darwin":
     import ctypes
@@ -126,7 +126,7 @@ libintl.bindtextdomain(APP, LOCALE_DIR)  # type: ignore
 try:
     libintl.bind_textdomain_codeset(APP, "UTF-8")  # type: ignore
     libintl.libintl_setlocale(0, settings.get_locale())  # type: ignore
-except:
+except Exception:
     pass
 libintl.textdomain(APP)
 gettext.bindtextdomain(APP, LOCALE_DIR)
@@ -171,18 +171,13 @@ from skytemple_files.common.i18n_util import _
 gi.require_version("Gtk", "3.0")
 
 # SKYTEMPLE_LOGLEVEL re-export kept for compatibility until 2.x
-from skytemple.core.logger import setup_logging, SKYTEMPLE_LOGLEVEL
+from skytemple.core.logger import setup_logging
 
 setup_logging()
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 
 # Re-exports kept for compatibility until 2.x
-from skytemple.core.events.manager import EventManager
-from skytemple.core.modules import Modules
-from skytemple_icons import icons
-from skytemple_ssb_debugger.main import get_debugger_data_dir
-from skytemple.core.ui_utils import make_builder
 
 try:
     gi.require_foreign("cairo")

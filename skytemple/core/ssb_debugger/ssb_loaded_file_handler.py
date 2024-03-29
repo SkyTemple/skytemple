@@ -16,7 +16,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional
 
 from skytemple_files.common.util import OptionalKwargs
 from skytemple_files.common.types.data_handler import DataHandler

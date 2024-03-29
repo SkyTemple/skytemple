@@ -26,7 +26,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
-from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.i18n_util import _
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.util import add_extension_if_missing
 
@@ -189,7 +189,7 @@ class MainController(AbstractController):
         try:
             self.project.set_rom_name(entry.get_text())
             self.module.mark_as_modified()
-        except:
+        except Exception:
             # Invalid input, e.g. non-ASCII characters
             entry.set_text(self.project.get_rom_name())
 
@@ -197,6 +197,6 @@ class MainController(AbstractController):
         try:
             self.project.set_id_code(entry.get_text())
             self.module.mark_as_modified()
-        except:
+        except Exception:
             # Invalid input, e.g. non-ASCII characters
             entry.set_text(self.project.get_id_code())

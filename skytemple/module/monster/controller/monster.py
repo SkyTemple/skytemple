@@ -19,7 +19,7 @@ import re
 import sys
 import typing
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List, Optional, Dict, cast
+from typing import TYPE_CHECKING, Optional, cast
 from xml.etree import ElementTree
 
 import cairo
@@ -68,7 +68,7 @@ from skytemple_files.data.md.protocol import (
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.data.monster_xml import monster_xml_export
 from skytemple_files.hardcoded.monster_sprite_data_table import IdleAnimType
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -1280,12 +1280,12 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _init_entid(self):
         if not self.module.project.is_patch_applied("ExpandPokeList"):
-            builder_get_assert(self.builder, Gtk.Label, f"label_base_id").set_text(
+            builder_get_assert(self.builder, Gtk.Label, "label_base_id").set_text(
                 f"#{self.entry.md_index_base:03}"
             )
         else:
-            builder_get_assert(self.builder, Gtk.Label, f"label_base_id").set_text(
-                f"See Entity ID"
+            builder_get_assert(self.builder, Gtk.Label, "label_base_id").set_text(
+                "See Entity ID"
             )
         name = self._string_provider.get_value(
             StringType.POKEMON_NAMES, self.entry.md_index_base
@@ -1578,7 +1578,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
                 label.set_text(f"{p}{idx:04d}: {name}")
             else:
-                label.set_text(f"")
+                label.set_text("")
         except BaseException:
             label.set_text(_("??? Enter a valid parameter (#)"))
 

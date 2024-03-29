@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import List, Dict, Optional, Tuple, Union
+from typing import Optional, Union
 from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk

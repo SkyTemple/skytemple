@@ -15,9 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import os
 import sys
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING
 
 import cairo
 from skytemple_files.user_error import mark_as_user_err
@@ -29,12 +28,11 @@ from skytemple_files.graphics.chr.model import Chr
 
 from PIL import Image
 from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 

@@ -20,11 +20,11 @@ import subprocess
 import tempfile
 from enum import Enum, auto
 from subprocess import Popen
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import data_dir, APP, make_builder, builder_get_assert
+from skytemple.core.ui_utils import data_dir, make_builder, builder_get_assert
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.user_error import make_user_err

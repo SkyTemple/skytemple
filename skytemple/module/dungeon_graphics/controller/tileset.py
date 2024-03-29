@@ -21,21 +21,17 @@ import os
 import shutil
 import sys
 import webbrowser
-from collections import OrderedDict
-from functools import partial
 from typing import (
     TYPE_CHECKING,
-    List,
     Callable,
     Optional,
     cast,
 )
-from collections.abc import Iterable, Sequence, MutableSequence
+from collections.abc import Iterable, MutableSequence
 
 import cairo
 from skytemple_files.user_error import mark_as_user_err
 
-from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
@@ -44,16 +40,7 @@ from skytemple.core.ui_utils import (
     builder_get_assert,
     iter_tree_model,
 )
-from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import (
-    DungeonTilesProvider,
-)
-from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import (
-    DungeonPalettesProvider,
-)
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
-from skytemple.module.tiled_img.dialog_controller.chunk_editor import (
-    ChunkEditorController,
-)
 from skytemple_dtef import get_template_file
 from skytemple_dtef.explorers_dtef import ExplorersDtef, VAR0_FN, VAR2_FN, VAR1_FN
 from skytemple_dtef.explorers_dtef_importer import ExplorersDtefImporter
@@ -64,7 +51,6 @@ from skytemple_files.hardcoded.dungeons import (
     HardcodedDungeons,
 )
 
-from PIL import Image
 from gi.repository import Gtk
 
 from skytemple.controller.main import MainController

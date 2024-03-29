@@ -16,13 +16,12 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
-from typing import Union, List, Dict
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import ResponseType
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import APP, make_builder, builder_get_assert
+from skytemple.core.ui_utils import make_builder, builder_get_assert
 from skytemple_files.common.util import make_palette_colors_unique
 from skytemple_files.common.i18n_util import _
 

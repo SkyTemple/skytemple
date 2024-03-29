@@ -24,7 +24,7 @@ import webbrowser
 from os.path import expanduser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import Union, Type, Tuple, Any, Optional, Dict, cast
+from typing import Union, Any, Optional, cast
 
 from skytemple_files.common.util import Capturable
 from skytemple_files.user_error import USER_ERROR_MARK

@@ -17,7 +17,7 @@
 import re
 import typing
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Optional, Dict, List, Union
+from typing import TYPE_CHECKING, Optional
 
 import cairo
 from gi.repository import Gtk, GLib

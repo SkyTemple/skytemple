@@ -22,7 +22,7 @@ import os
 import typing
 from datetime import datetime
 from functools import partial
-from typing import Optional, TYPE_CHECKING, Dict, Union, TypeVar, Callable
+from typing import Optional, TYPE_CHECKING, TypeVar, Callable
 import atexit
 import contextlib
 
@@ -143,7 +143,6 @@ def try_ignore_err(source: Callable[[], T], sink: Callable[[T], None]):
 @typing.no_type_check
 def collect_device_context() -> dict[str, Captured]:
     import platform
-    import socket
     import psutil
 
     mem = psutil.virtual_memory()

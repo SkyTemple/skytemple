@@ -22,10 +22,8 @@ from gi.repository import Gtk
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import data_dir, builder_get_assert, assert_not_none
-from skytemple_files.common.util import create_file_in_rom
 from skytemple_files.common.i18n_util import _
 from skytemple.controller.main import MainController as SkyTempleMainController
-from skytemple_files.common.types.file_types import FileType
 
 if TYPE_CHECKING:
     from skytemple.module.sprite.module import SpriteModule

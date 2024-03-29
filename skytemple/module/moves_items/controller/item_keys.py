@@ -17,7 +17,7 @@
 import logging
 import re
 import sys
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
 
@@ -87,8 +87,8 @@ Only keys from 0 to 2047 should be used."""
         tree_store = builder_get_assert(self.builder, Gtk.ListStore, "tree_store")
 
         pre_new_list = []
-        for l in iter_tree_model(tree_store):
-            pre_new_list.append((l[2], l[0]))
+        for lst in iter_tree_model(tree_store):
+            pre_new_list.append((lst[2], lst[0]))
         pre_new_list.sort()
         new_list = [x[1] for x in pre_new_list]
         self.module.set_i2n(self._current_lang, new_list)
@@ -106,8 +106,8 @@ Only keys from 0 to 2047 should be used."""
     def _get_max_key(self):
         tree_store = builder_get_assert(self.builder, Gtk.ListStore, "tree_store")
         new_list = []
-        for l in iter_tree_model(tree_store):
-            new_list.append(l[0])
+        for lst in iter_tree_model(tree_store):
+            new_list.append(lst[0])
         return max(new_list)
 
     def _setup_dialog(self):
@@ -131,8 +131,8 @@ Only keys from 0 to 2047 should be used."""
     def on_btn_fix_clicked(self, *args):
         tree_store = builder_get_assert(self.builder, Gtk.ListStore, "tree_store")
         pre_new_list = []
-        for l in iter_tree_model(tree_store):
-            pre_new_list.append((l[2], l[0]))
+        for lst in iter_tree_model(tree_store):
+            pre_new_list.append((lst[2], lst[0]))
         pre_new_list.sort()
         new_list = [x[1] for x in pre_new_list]
         while len(new_list) < 1400:
@@ -171,11 +171,11 @@ This means all keys with id >= that one will be incremented by 1. """
             )
             tree_store = builder_get_assert(self.builder, Gtk.ListStore, "tree_store")
             pre_new_list = []
-            for l in iter_tree_model(tree_store):
-                if l[0] >= key:
-                    pre_new_list.append((l[2], l[0] + 1))
+            for lst in iter_tree_model(tree_store):
+                if lst[0] >= key:
+                    pre_new_list.append((lst[2], lst[0] + 1))
                 else:
-                    pre_new_list.append((l[2], l[0]))
+                    pre_new_list.append((lst[2], lst[0]))
             pre_new_list.sort()
             new_list = [x[1] for x in pre_new_list]
             self.module.set_i2n(self._current_lang, new_list)
@@ -203,9 +203,9 @@ A key can't be removed if it's still used by one item. """
             )
             tree_store = builder_get_assert(self.builder, Gtk.ListStore, "tree_store")
             no_key = []
-            for l in iter_tree_model(tree_store):
-                if key == l[0]:
-                    no_key.append(str(l[2]))
+            for lst in iter_tree_model(tree_store):
+                if key == lst[0]:
+                    no_key.append(str(lst[2]))
             if len(no_key) > 0:
                 display_error(
                     sys.exc_info(),
@@ -214,11 +214,11 @@ A key can't be removed if it's still used by one item. """
                 )
             else:
                 pre_new_list = []
-                for l in iter_tree_model(tree_store):
-                    if l[0] > key:
-                        pre_new_list.append((l[2], l[0] - 1))
+                for lst in iter_tree_model(tree_store):
+                    if lst[0] > key:
+                        pre_new_list.append((lst[2], lst[0] - 1))
                     else:
-                        pre_new_list.append((l[2], l[0]))
+                        pre_new_list.append((lst[2], lst[0]))
                 pre_new_list.sort()
                 new_list = [x[1] for x in pre_new_list]
                 self.module.set_i2n(self._current_lang, new_list)

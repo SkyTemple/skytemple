@@ -14,8 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Dict, Optional, Callable, List, cast
-from collections.abc import Mapping
+from typing import Optional, Callable, cast
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeModelRow
@@ -23,7 +22,6 @@ from range_typed_integers import u16_checked, u16
 from skytemple.core.ui_utils import builder_get_assert, assert_not_none
 
 from skytemple_files.common.ppmdu_config.script_data import (
-    Pmd2ScriptRoutine,
     Pmd2ScriptData,
 )
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger

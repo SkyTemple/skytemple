@@ -21,10 +21,9 @@ from __future__ import annotations
 import os
 import sys
 import logging
-from typing import TYPE_CHECKING, Type
+from typing import TYPE_CHECKING
 from collections.abc import Sequence
 
-from typing import Dict
 
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.project_file_manager import ProjectFileManager

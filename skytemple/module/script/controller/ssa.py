@@ -17,18 +17,16 @@
 import math
 import sys
 from functools import partial
-from typing import TYPE_CHECKING, Optional, List, Union, Callable, Tuple
-from collections.abc import Mapping
+from typing import TYPE_CHECKING, Optional, Union, Callable
 from xml.etree import ElementTree
 
 import cairo
 import typing
 from gi.repository import Gtk, Gdk
-from gi.repository.Gtk import TreeViewColumn
 from range_typed_integers import i16, u16
 from skytemple_files.common.util import add_extension_if_missing, open_utf8
 from skytemple_files.common.xml_util import prettify
-from skytemple_files.script.ssa_sse_sss.ssa_xml import ssa_to_xml, ssa_xml_import
+from skytemple_files.script.ssa_sse_sss.ssa_xml import ssa_to_xml
 
 from skytemple.controller.main import MainController
 from skytemple.core.canvas_scale import CanvasScale
@@ -723,7 +721,9 @@ class SsaController(AbstractController):
                     model[after_iter][0:2] = self._list_entry_generate_layer(  # type: ignore
                         layer_id + after_inc,
                         self.ssa.layer_list[layer_id + after_inc + 1],
-                    )[0:2]
+                    )[
+                        0:2
+                    ]
                     after_iter = model.iter_next(after_iter)
                     after_inc += 1
                 # REMOVE ALL ENTITIES THAT NO LONGER EXIST FROM THE LISTS
@@ -833,7 +833,7 @@ class SsaController(AbstractController):
                 Gtk.DialogFlags.MODAL,
                 Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                f"Acting scenes must have exactly one script assigned to them.",
+                "Acting scenes must have exactly one script assigned to them.",
             )
             md.run()
             md.destroy()
@@ -1306,14 +1306,14 @@ class SsaController(AbstractController):
     def _refresh_layer(self, layer_id):
         ssa_layers = builder_get_assert(self.builder, Gtk.TreeView, "ssa_layers")
         l_iter = self._find_list_iter(ssa_layers, lambda row: layer_id == row[0])
-        for i, f in enumerate(
+        for i, ff in enumerate(
             self._list_entry_generate_layer(layer_id, self.ssa.layer_list[layer_id])[
                 0:2
             ]
         ):
             typing.cast(Gtk.ListStore, assert_not_none(ssa_layers.get_model()))[l_iter][
                 i
-            ] = f
+            ] = ff
         return l_iter
 
     def _refresh_for_selected(self):
@@ -2026,7 +2026,7 @@ class SsaController(AbstractController):
 
         self.drawer.set_draw_tile_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tool_scene_grid"
+                self.builder, Gtk.ToggleToolButton, "tool_scene_grid"
             ).get_active()
         )
 

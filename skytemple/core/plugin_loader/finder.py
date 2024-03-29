@@ -23,7 +23,7 @@ from importlib.util import spec_from_loader
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import ModuleType
-from typing import Optional, Union, List, Dict
+from typing import Optional, Union
 from collections.abc import Sequence, Iterable
 from wheel.wheelfile import WheelFile
 

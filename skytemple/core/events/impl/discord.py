@@ -23,7 +23,7 @@ import asyncio
 import inspect
 import logging
 import os
-from typing import List, Optional, Callable
+from typing import Optional, Callable
 
 from gi.repository import GLib
 from skytemple_files.common.i18n_util import _
@@ -127,7 +127,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MiscGraphicsModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.misc_graphics.module import MiscGraphicsModule
         from skytemple.module.misc_graphics.controller.w16 import W16Controller
         from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 
@@ -142,7 +141,6 @@ class DiscordPresence(AbstractListener):
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
         from skytemple.module.dungeon_graphics.module import (
-            DungeonGraphicsModule,
             NUMBER_OF_TILESETS,
         )
         from skytemple.module.dungeon_graphics.controller.tileset import (
@@ -162,7 +160,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__BgpModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.bgp.module import BgpModule
         from skytemple.module.bgp.controller.bgp import BgpController
 
         self.module_info = "Editing background images"
@@ -179,7 +176,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__ListsModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.lists.module import ListsModule
         from skytemple.module.lists.controller.actor_list import ActorListController
         from skytemple.module.lists.controller.starters_list import (
             StartersListController,
@@ -226,7 +222,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MapBgModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.map_bg.module import MapBgModule
         from skytemple.module.map_bg.controller.bg import BgController
 
         self.module_info = "Editing map backgrounds"
@@ -237,7 +232,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__ScriptModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.script.module import ScriptModule
         from skytemple.module.script.controller.ssa import SsaController
 
         self.module_info = "Editing scenes"
@@ -251,7 +245,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__DungeonModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.dungeon.module import DungeonModule
         from skytemple.module.dungeon.controller.dungeon import DungeonController
         from skytemple.module.dungeon.controller.floor import FloorController
         from skytemple.module.dungeon.controller.fixed_rooms import FixedRoomsController
@@ -276,7 +269,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MonsterModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.monster.module import MonsterModule
         from skytemple.module.monster.controller.monster import MonsterController
 
         self.module_info = "Editing Pokémon"
@@ -290,7 +282,6 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__StringsModule(
         self, module, controller: AbstractController, breadcrumbs: list[str]
     ):
-        from skytemple.module.strings.module import StringsModule
         from skytemple.module.strings.controller.strings import StringsController
 
         self.module_info = "Editing Text Strings"

@@ -17,7 +17,7 @@
 import logging
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional
 
 from range_typed_integers import u16_checked, u16
 
@@ -27,7 +27,7 @@ from skytemple.core.ui_utils import (
     builder_get_assert,
     assert_not_none,
 )
-from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.i18n_util import _
 
 from gi.repository import Gtk
 
@@ -41,7 +41,6 @@ from skytemple_files.data.data_cd.model import DataCD
 
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
-from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 

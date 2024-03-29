@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import TYPE_CHECKING, List, Union, Optional, cast
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
@@ -29,7 +29,7 @@ from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow, builder_get_assert, iter_tree_model
 from skytemple.module.lists.controller.base import ListBaseController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonDungeon
 from skytemple_files.hardcoded.guest_pokemon import (
     ExtraDungeonDataList,

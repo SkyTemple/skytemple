@@ -15,9 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import os
 import sys
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 import cairo
 
@@ -25,7 +24,6 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.colvec.model import Colvec
-from skytemple_files.graphics.colvec import *
 from skytemple_dtef.explorers_dtef import ExplorersDtef
 
 from PIL import Image
@@ -36,7 +34,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.graphics.dma.protocol import DmaProtocol
 from skytemple_files.graphics.dpc.protocol import DpcProtocol
 from skytemple_files.graphics.dpci.protocol import DpciProtocol

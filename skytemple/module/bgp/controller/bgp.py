@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 import cairo
 
@@ -44,7 +44,7 @@ INFO_IMEXPORT_ENTIRE = _(
   one of these 16 palettes.
 - The first color in each palette is transparency.
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
-  (=not existing with another palette or flipped or rotated)."""
+  (=not existing with another palette or flipped or rotated)."""  # noqa: W291
 )
 
 logger = logging.getLogger(__name__)

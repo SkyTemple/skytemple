@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 import typing
-from typing import TYPE_CHECKING, Tuple, List
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk, GLib
 from gi.repository.Gtk import Widget
@@ -33,7 +33,7 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
 from skytemple_files.data.tbl_talk.model import TalkType
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule

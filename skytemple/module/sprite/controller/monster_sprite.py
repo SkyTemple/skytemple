@@ -17,8 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, List, Tuple, Optional
-from collections.abc import Iterable
+from typing import TYPE_CHECKING, Optional
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
 from zipfile import ZipFile
@@ -37,9 +36,8 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.chara_wan.model import WanFile
 from skytemple_files.graphics.wan_wat.model import Wan
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
-from PIL import Image
 from gi.repository import Gtk, GLib
 
 from skytemple.core.module_controller import AbstractController
@@ -90,7 +88,7 @@ class MonsterSpriteController(AbstractController):
                 _(
                     """Alternatively you can export the sprite files 
 in the gfxcrunch format and edit them manually.
-Warning: SkyTemple does not validate the files you import."""
+Warning: SkyTemple does not validate the files you import."""  # noqa: W291
                 )
             )
         self.builder.connect_signals(self)

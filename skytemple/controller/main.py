@@ -20,7 +20,7 @@ import sys
 import traceback
 import webbrowser
 from threading import current_thread
-from typing import Optional, List, Type, TYPE_CHECKING, Tuple, cast, Union
+from typing import Optional, TYPE_CHECKING, cast, Union
 import packaging.version
 
 import gi
@@ -47,7 +47,6 @@ from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.ui_utils import (
     add_dialog_file_filters,
-    data_dir,
     version,
     open_dir,
     builder_get_assert,
@@ -332,7 +331,7 @@ class MainController:
                 logger.info(
                     f"Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})"
                 )
-                logger.debug(f"Loading ROM module tree items...")
+                logger.debug("Loading ROM module tree items...")
                 with record_span("load-tree-items", rom_module.__class__.__name__):
                     rom_module.load_tree_items(self._tree_repr)
                 root_node = rom_module.get_root_node()
@@ -352,7 +351,7 @@ class MainController:
                         if module.__class__.__name__ == "MapBgModule":
                             self._loaded_map_bg_module = module  # type: ignore
                 # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
-                logger.debug(f"Loaded all modules.")
+                logger.debug("Loaded all modules.")
 
                 # Generate all labels.
                 with record_span("ui", "finalize-tree"):
@@ -617,7 +616,7 @@ class MainController:
         )
         about.connect("response", lambda d, r: d.hide())
 
-        def activate_link(l, uri, *args):
+        def activate_link(_link, uri, *args):
             webbrowser.open_new_tab(uri)
             return True
 

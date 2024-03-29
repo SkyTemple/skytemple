@@ -2,14 +2,13 @@ import asyncio
 import platform
 import webbrowser
 from threading import Thread
-from typing import Optional, Callable, List, Dict, Tuple, TYPE_CHECKING, Any, cast
+from typing import Optional, Callable, TYPE_CHECKING, Any, cast
 
 from PIL import Image
 from gi.repository import Gtk, GLib, GdkPixbuf
 from skytemple.core.ui_utils import (
     builder_get_assert,
     assert_not_none,
-    iter_tree_model,
     create_tree_view_column,
 )
 from skytemple_files.common.i18n_util import _, f

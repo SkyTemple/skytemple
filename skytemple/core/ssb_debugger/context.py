@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from threading import Lock
-from typing import TYPE_CHECKING, Optional, List, Dict, Set
+from typing import TYPE_CHECKING, Optional
 from collections.abc import Iterable
 
 from gi.repository import Gtk
@@ -250,7 +250,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK,
-                f"SkyTemple is missing the 'script' " f"module to handle this request.",
+                "SkyTemple is missing the 'script' " "module to handle this request.",
             )
             md.run()
             md.destroy()

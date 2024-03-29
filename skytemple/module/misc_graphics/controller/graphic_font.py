@@ -17,13 +17,11 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, Dict, List
+from typing import TYPE_CHECKING, Optional
 
-from xml.etree.ElementTree import Element, ElementTree
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import assert_not_none, builder_get_assert
-from skytemple_files.common.xml_util import prettify
 
 import cairo
 
@@ -32,12 +30,11 @@ from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
 
 from PIL import Image
 from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 

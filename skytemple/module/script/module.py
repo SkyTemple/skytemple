@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import Optional, Dict, List, Tuple, Union
+from typing import Optional, Union
 from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
@@ -60,7 +60,7 @@ from skytemple_files.common.script_util import (
     LSD_EXT,
 )
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaBinProtocol
@@ -369,7 +369,7 @@ class ScriptModule(AbstractModule):
         scenes = []
         if map_obj["enter_sse"] is not None:
             scenes.append(map_obj["enter_sse"])
-        for ssa, _ in map_obj["ssas"]:
+        for ssa, __ in map_obj["ssas"]:
             scenes.append(ssa)
         for sss in map_obj["subscripts"].keys():
             scenes.append(sss)
@@ -581,9 +581,7 @@ class ScriptModule(AbstractModule):
         )
         self._sub_roots[new_name] = sr
 
-    def get_subnodes(
-        self, name: str
-    ) -> tuple[
+    def get_subnodes(self, name: str) -> tuple[
         Optional[ItemTreeEntryRef],
         Optional[ItemTreeEntryRef],
         Optional[ItemTreeEntryRef],

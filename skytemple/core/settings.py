@@ -18,7 +18,7 @@ import configparser
 import logging
 import os
 import uuid
-from typing import Optional, Tuple, List
+from typing import Optional
 from collections.abc import Sequence
 
 from skytemple.core.async_tasks.delegator import AsyncConfiguration
@@ -213,7 +213,7 @@ class SkyTempleSettingsStore:
             self.loaded_config[SECT_INTEGRATION_DISCORD] = {}
         self.loaded_config[SECT_INTEGRATION_DISCORD][
             KEY_INTEGRATION_DISCORD_DISCORD_ENABLED
-        ] = "1" if value else "0"
+        ] = ("1" if value else "0")
         self._save()
 
     def get_allow_sentry(self) -> bool:
@@ -281,7 +281,7 @@ class SkyTempleSettingsStore:
             if KEY_ENABLE_CSD in self.loaded_config[SECT_GENERAL]:
                 try:
                     return bool(int(self.loaded_config[SECT_GENERAL][KEY_ENABLE_CSD]))
-                except:
+                except Exception:
                     return True
         return True
 

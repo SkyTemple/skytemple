@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import TYPE_CHECKING, Optional, Tuple, List
+from typing import TYPE_CHECKING, Optional
 
 import cairo
 from range_typed_integers import u32, u16, u16_checked
@@ -39,7 +39,7 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule, WteOpenSpec

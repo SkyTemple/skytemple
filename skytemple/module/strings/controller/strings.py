@@ -19,7 +19,7 @@ import logging
 import re
 import sys
 import typing
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeModelFilter, TreeSelection

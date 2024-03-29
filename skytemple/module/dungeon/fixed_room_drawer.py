@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import typing
 from enum import auto, Enum
-from typing import Union, Optional, Tuple, TYPE_CHECKING
+from typing import Union, Optional, TYPE_CHECKING
 
 import cairo
 from gi.repository import Gtk, GLib

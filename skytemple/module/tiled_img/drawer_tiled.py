@@ -20,7 +20,7 @@ Tile based instead of chunk based.
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import List, Optional
+from typing import Optional
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
@@ -32,7 +32,7 @@ from skytemple_files.common.tiled_image import TilemapEntry
 import cairo
 
 from skytemple_files.graphics.bpc import BPC_TILE_DIM
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 FPS = 60
 FRAME_COUNTER_MAX = 1000000

@@ -19,7 +19,6 @@
 
 from gi.repository import Gtk
 
-from skytemple_files.graphics.bpc import BPC_TILE_DIM
 
 
 def on_map_width_chunks_changed(builder, wdg):

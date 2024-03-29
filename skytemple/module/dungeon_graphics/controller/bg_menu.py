@@ -20,7 +20,7 @@ import itertools
 import logging
 import sys
 from collections import OrderedDict
-from typing import TYPE_CHECKING, Union, List
+from typing import TYPE_CHECKING, Union
 
 from range_typed_integers import u16_checked, u16
 
@@ -34,7 +34,7 @@ from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_
 )
 from skytemple_files.common.util import chunks, add_extension_if_missing
 from skytemple_files.graphics.dpc import DPC_TILING_DIM
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 from PIL import Image
 from gi.repository import Gtk
@@ -376,7 +376,7 @@ class BgMenuController:
                                 ).get_text()
                             )
                         )
-                    except:
+                    except Exception:
                         time = u16(0)
                         had_errors = True
                     durations_per_frame_for_colors[offset + cidx] = time

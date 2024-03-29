@@ -30,7 +30,7 @@ from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule

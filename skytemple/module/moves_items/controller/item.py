@@ -17,7 +17,7 @@
 import logging
 import typing
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List, Optional
+from typing import TYPE_CHECKING, Optional
 
 import cairo
 from gi.repository import Gtk, GLib

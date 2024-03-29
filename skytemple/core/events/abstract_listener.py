@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC
-from typing import List
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import AbstractController

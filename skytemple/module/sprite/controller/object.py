@@ -15,12 +15,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 import cairo
 
 from skytemple.core.ui_utils import builder_get_assert
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 from gi.repository import Gtk, GLib
 
@@ -53,7 +53,7 @@ class ObjectController(AbstractController):
                 _(
                     """SkyTemple can not edit sprites. 
 However you can export the sprite in the gfxcrunch format and import it back again.
-Warning: SkyTemple does not validate the files you import."""
+Warning: SkyTemple does not validate the files you import."""  # noqa: W291
                 )
             )
 

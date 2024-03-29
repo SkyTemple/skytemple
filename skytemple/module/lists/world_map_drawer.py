@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Tuple, Union, Callable, Optional, List, Dict
+from typing import Union, Callable, Optional
 
 import cairo
 from gi.repository import Gtk

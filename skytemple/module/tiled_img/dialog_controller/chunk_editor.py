@@ -17,7 +17,7 @@
 
 import itertools
 import os
-from typing import Union, List, Optional, cast
+from typing import Optional, cast
 from collections.abc import Sequence
 
 import cairo
@@ -27,7 +27,6 @@ from range_typed_integers import u16
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.ui_utils import (
-    APP,
     make_builder,
     builder_get_assert,
     assert_not_none,
@@ -42,7 +41,7 @@ from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provide
 from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
 from skytemple_files.common.protocol import TilemapEntryProtocol
 from skytemple_files.common.tiled_image import TilemapEntry
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 bpa_views = [
     "icon_view_animated_tiles1",
@@ -247,7 +246,7 @@ class ChunkEditorController:
         if model is not None and treeiter is not None and treeiter != []:
             first_tile_id = model[treeiter[0]][0]
             icon_view_tiles_in_chunk = builder_get_assert(
-                self.builder, Gtk.IconView, f"icon_view_tiles_in_chunk"
+                self.builder, Gtk.IconView, "icon_view_tiles_in_chunk"
             )
             store: Gtk.ListStore = cast(
                 Gtk.ListStore, assert_not_none(icon_view_tiles_in_chunk.get_model())
@@ -282,7 +281,7 @@ class ChunkEditorController:
             # Also update the selected tile
             self.switching_tile = True
             icon_view_static_tiles = builder_get_assert(
-                self.builder, Gtk.IconView, f"icon_view_static_tiles"
+                self.builder, Gtk.IconView, "icon_view_static_tiles"
             )
             if mapping.idx < self.tile_graphics.count():
                 store = cast(
@@ -324,10 +323,10 @@ class ChunkEditorController:
             if not self.switching_tile:
                 self.edited_mappings[self.current_tile_id].idx = selected_bpc_tile
                 builder_get_assert(
-                    self.builder, Gtk.ComboBox, f"combo_box_palettes"
+                    self.builder, Gtk.ComboBox, "combo_box_palettes"
                 ).set_active(self.current_tile_picker_palette)
                 # == self.edited_mappings[self.current_tile_id].pal_idx = self.current_tile_picker_palette
-            builder_get_assert(self.builder, Gtk.Label, f"tile_number_label").set_text(
+            builder_get_assert(self.builder, Gtk.Label, "tile_number_label").set_text(
                 str(selected_bpc_tile)
             )
 
@@ -336,7 +335,7 @@ class ChunkEditorController:
             Gtk.ListStore,
             assert_not_none(
                 builder_get_assert(
-                    self.builder, Gtk.IconView, f"icon_view_chunk"
+                    self.builder, Gtk.IconView, "icon_view_chunk"
                 ).get_model()
             ),
         )
@@ -346,7 +345,7 @@ class ChunkEditorController:
 
     def _init_icon_view_chunk(self):
         """Fill the icon view containing all the chunks"""
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"icon_view_chunk")
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, "icon_view_chunk")
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
             icon_view,
@@ -377,7 +376,7 @@ class ChunkEditorController:
     def _init_icon_view_tiles_in_chunk(self):
         """Init the icon view containing the 3x3 tiles for the current chunk"""
         icon_view = builder_get_assert(
-            self.builder, Gtk.IconView, f"icon_view_tiles_in_chunk"
+            self.builder, Gtk.IconView, "icon_view_tiles_in_chunk"
         )
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
@@ -418,7 +417,7 @@ class ChunkEditorController:
     def _init_icon_view_static_tiles(self):
         """Fill the icon view containing all static tiles"""
         icon_view = builder_get_assert(
-            self.builder, Gtk.IconView, f"icon_view_static_tiles"
+            self.builder, Gtk.IconView, "icon_view_static_tiles"
         )
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
 

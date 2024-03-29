@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import locale
 from enum import Enum, auto
-from typing import TYPE_CHECKING, Optional, Union, List
+from typing import TYPE_CHECKING, Optional, Union
 
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
 from skytemple_files.common.types.file_types import FileType
@@ -189,5 +189,5 @@ class StringProvider:
                 if lang_locale == current_locale:
                     return lang
             return self.get_languages()[0]
-        except:
+        except Exception:
             return self.get_languages()[0]

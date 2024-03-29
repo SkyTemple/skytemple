@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import Union, List, Optional, Tuple, Dict
+from typing import Union, Optional
 
 from gi.repository import Gtk
 
@@ -45,7 +45,7 @@ from skytemple_files.graphics.bma.protocol import BmaProtocol
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
 from skytemple_files.graphics.bpl.protocol import BplProtocol
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol
 from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
 from skytemple_files.hardcoded.ground_dungeon_tilesets import (
@@ -221,27 +221,27 @@ class MapBgModule(AbstractModule):
         self.mark_level_list_as_modified()
 
     def get_bma(self, item_id) -> BmaProtocol:
-        l = self.bgs.level[item_id]
+        lst = self.bgs.level[item_id]
         return self.project.open_file_in_rom(
-            f"{MAP_BG_PATH}{l.bma_name.lower()}.bma", FileType.BMA
+            f"{MAP_BG_PATH}{lst.bma_name.lower()}.bma", FileType.BMA
         )
 
     def get_bpc(self, item_id) -> BpcProtocol:
-        l = self.bgs.level[item_id]
+        lst = self.bgs.level[item_id]
         return self.project.open_file_in_rom(
-            f"{MAP_BG_PATH}{l.bpc_name.lower()}.bpc", FileType.BPC
+            f"{MAP_BG_PATH}{lst.bpc_name.lower()}.bpc", FileType.BPC
         )
 
     def get_bpl(self, item_id) -> BplProtocol:
-        l = self.bgs.level[item_id]
+        lst = self.bgs.level[item_id]
         return self.project.open_file_in_rom(
-            f"{MAP_BG_PATH}{l.bpl_name.lower()}.bpl", FileType.BPL
+            f"{MAP_BG_PATH}{lst.bpl_name.lower()}.bpl", FileType.BPL
         )
 
     def get_bpas(self, item_id) -> list[Optional[BpaProtocol]]:
-        l = self.bgs.level[item_id]
+        lst = self.bgs.level[item_id]
         bpas: list[Optional[BpaProtocol]] = []
-        for bpa in l.bpa_names:
+        for bpa in lst.bpa_names:
             if bpa is None:
                 bpas.append(None)
             else:
@@ -279,11 +279,11 @@ class MapBgModule(AbstractModule):
 
     def mark_as_modified(self, item_id):
         """Mark a specific map as modified"""
-        l = self.bgs.level[item_id]
-        self.project.mark_as_modified(f"{MAP_BG_PATH}{l.bma_name.lower()}.bma")
-        self.project.mark_as_modified(f"{MAP_BG_PATH}{l.bpc_name.lower()}.bpc")
-        self.project.mark_as_modified(f"{MAP_BG_PATH}{l.bpl_name.lower()}.bpl")
-        for bpa in l.bpa_names:
+        lst = self.bgs.level[item_id]
+        self.project.mark_as_modified(f"{MAP_BG_PATH}{lst.bma_name.lower()}.bma")
+        self.project.mark_as_modified(f"{MAP_BG_PATH}{lst.bpc_name.lower()}.bpc")
+        self.project.mark_as_modified(f"{MAP_BG_PATH}{lst.bpl_name.lower()}.bpl")
+        for bpa in lst.bpa_names:
             if bpa is not None:
                 self.project.mark_as_modified(f"{MAP_BG_PATH}{bpa.lower()}.bpa")
 
@@ -365,8 +365,8 @@ class MapBgModule(AbstractModule):
         A BPC layer was removed, change the BPAs for the entry item_id in the level list.
         Replace 0-4 with 5-8 and set 5-8 to None.
         """
-        l = self.bgs.level[item_id]
-        l.bpa_names = l.bpa_names[4:8] + [None, None, None, None]
+        lst = self.bgs.level[item_id]
+        lst.bpa_names = lst.bpa_names[4:8] + [None, None, None, None]
         self.mark_level_list_as_modified()
 
     def get_mapping_dungeon_assets(

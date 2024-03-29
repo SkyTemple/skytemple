@@ -22,7 +22,6 @@ from gi.repository import Gtk, Gdk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.common.i18n_util import _
 
 from skytemple.core.ui_utils import data_dir, builder_get_assert, assert_not_none
 

@@ -17,7 +17,7 @@
 from __future__ import annotations
 
 from enum import Enum, auto
-from typing import Optional, TYPE_CHECKING, Union, Any, Type, cast
+from typing import TYPE_CHECKING, Any, cast
 from collections.abc import Iterable
 
 from gi.repository import Gtk

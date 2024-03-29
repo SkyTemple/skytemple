@@ -18,7 +18,7 @@
 # TODO: This module shares quite some code with SsaController.
 import math
 import os
-from typing import List, Optional, Tuple
+from typing import Optional
 
 import cairo
 from gi.repository import Gtk, Gdk
@@ -27,8 +27,8 @@ from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.sprite_provider import SpriteProvider
-from skytemple.core.ui_utils import APP, make_builder, builder_get_assert
-from skytemple.module.script.drawer import Drawer, InteractionMode
+from skytemple.core.ui_utils import make_builder, builder_get_assert
+from skytemple.module.script.drawer import Drawer
 from skytemple_files.common.ppmdu_config.script_data import (
     Pmd2ScriptLevel,
     Pmd2ScriptLevelMapType,
@@ -36,8 +36,7 @@ from skytemple_files.common.ppmdu_config.script_data import (
 from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 from skytemple_files.script.ssa_sse_sss.model import Ssa
-from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 SIZE_REQUEST_NONE = 500
 
@@ -244,7 +243,7 @@ class PosMarkEditorController:
 
         self.drawer.set_draw_tile_grid(
             builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, f"tool_scene_grid"
+                self.builder, Gtk.ToggleToolButton, "tool_scene_grid"
             ).get_active()
         )
 

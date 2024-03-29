@@ -17,7 +17,7 @@
 import sys
 import textwrap
 from itertools import chain
-from typing import TYPE_CHECKING, Optional, List, Union, cast
+from typing import TYPE_CHECKING, Optional, Union, cast
 from collections.abc import Sequence
 
 from gi.repository import Gtk, Gdk
@@ -38,7 +38,7 @@ from skytemple_files.dungeon_data.mappa_bin.validator.exception import (
 )
 from skytemple_files.hardcoded.dungeons import DungeonDefinition
 from skytemple.controller.main import MainController as MainSkyTempleController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 from skytemple.core.ui_utils import builder_get_assert, iter_tree_model
 
@@ -540,15 +540,15 @@ class MainController(AbstractController):
     def _fix_error(self, dungeons: list[DungeonDefinition], e: DungeonValidatorError):
         mappa = self.module.get_mappa()
         if isinstance(e, DungeonTotalFloorCountInvalidError):
-            dungeons[
-                e.dungeon_id
-            ].number_floors_in_group = e.expected_floor_count_in_group
+            dungeons[e.dungeon_id].number_floors_in_group = (
+                e.expected_floor_count_in_group
+            )
         elif isinstance(e, InvalidFloorListReferencedError) or isinstance(
             e, FloorReusedError
         ):
-            dungeons[
-                e.dungeon_id
-            ].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
+            dungeons[e.dungeon_id].mappa_index = (
+                self.module.mappa_generate_and_insert_new_floor_list()
+            )
             dungeons[e.dungeon_id].start_after = u8(0)
             dungeons[e.dungeon_id].number_floors = u8(1)
             dungeons[e.dungeon_id].number_floors_in_group = u8(1)
@@ -593,5 +593,5 @@ class MainController(AbstractController):
                         )
 
 
-def check_consecutive(l):
-    return sorted(l) == list(range(min(l), max(l) + 1))
+def check_consecutive(lst):
+    return sorted(lst) == list(range(min(lst), max(lst) + 1))

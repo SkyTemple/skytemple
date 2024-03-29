@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Union, Optional, Dict, overload, Literal
+from typing import TYPE_CHECKING, Union, Optional, overload, Literal
 
 from gi.repository import Gtk
 from PIL import Image
@@ -47,7 +47,7 @@ from skytemple_files.common.util import MONSTER_BIN, add_extension_if_missing
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 from skytemple_files.graphics.chara_wan.model import WanFile
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_rust import pmd_wan
 
 if TYPE_CHECKING:

@@ -17,7 +17,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any, Union
+from typing import TypedDict, TYPE_CHECKING, Any
 
 from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
 from skytemple.core.open_request import OpenRequest

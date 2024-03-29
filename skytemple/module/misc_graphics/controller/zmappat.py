@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, List, cast
+from typing import TYPE_CHECKING, cast
 
 import cairo
 
@@ -25,7 +25,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import builder_get_assert
 from skytemple_files.graphics.zmappat.model import ZMappaT, ZMappaTVariation
-from skytemple_files.graphics.zmappat import *
+from skytemple_files.graphics.zmappat import ZMAPPAT_NB_VARIATIONS
 
 from PIL import Image
 from gi.repository import Gtk
@@ -33,7 +33,7 @@ from gi.repository import Gtk
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 

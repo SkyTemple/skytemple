@@ -18,7 +18,6 @@ import os
 import sys
 import webbrowser
 from shutil import which
-from typing import Tuple, List
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.item_tree import ItemTree
