@@ -295,7 +295,6 @@ class StMonsterMonsterPage(Gtk.Box):
             store.append([item])
         self._is_loading = True
         self._init_values()
-        self._is_loading = False
         self._update_pre_evo_label()
         self._update_base_form_label()
         self._update_param_label()
@@ -318,6 +317,7 @@ class StMonsterMonsterPage(Gtk.Box):
             self._md_evo = None
             stack.set_visible_child(self.box_no_evo)
         self.draw_sprite.queue_draw()
+        self._is_loading = False
         notebook = self.main_notebook
         notebook.set_current_page(self.__class__._last_open_tab_id)
         self._check_sprite_size(self.__class__._previous_item_id != self.item_data)
@@ -403,6 +403,8 @@ class StMonsterMonsterPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u8)
     def on_entry_personality_changed(self, w, *args):
+        if self._is_loading:
+            return
         try:
             self.module.set_personality(self.item_data, u8_checked(int(w.get_text())))
         except ValueError:
@@ -410,6 +412,8 @@ class StMonsterMonsterPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cb_idle_anim_changed(self, w, *args):
+        if self._is_loading:
+            return
         try:
             val = w.get_model()[w.get_active_iter()][0]
             self.module.set_idle_anim_type(self.item_data, IdleAnimType(val))  # type: ignore
@@ -434,7 +438,8 @@ class StMonsterMonsterPage(Gtk.Box):
     def on_cb_gender_changed(self, w, *args):
         self._update_from_cb(w)
         # Changing the gender should also refresh the tree, as the gender is marked here.
-        self.module.refresh(self.item_data)
+        if not self._is_loading:
+            self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -442,7 +447,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 0)
         if self._our_lang_index == 1:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_data)
+            if not self._is_loading:
+                self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -450,7 +456,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 1)
         if self._our_lang_index == 2:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_data)
+            if not self._is_loading:
+                self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -458,7 +465,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 2)
         if self._our_lang_index == 3:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_data)
+            if not self._is_loading:
+                self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -466,7 +474,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 3)
         if self._our_lang_index == 4:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_data)
+            if not self._is_loading:
+                self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -474,7 +483,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 4)
         if self._our_lang_index == 5:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_data)
+            if not self._is_loading:
+                self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -1599,7 +1609,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._string_provider.get_model(lang).strings[
             self._string_provider.get_index(StringType.POKEMON_NAMES, idx)
         ] = w.get_text()
-        self.module.update_monster_sort_lists(lang)
+        if not self._is_loading:
+            self.module.update_monster_sort_lists(lang)
 
     def _update_lang_cat_from_entry(self, w: Gtk.Entry, lang_index):
         if not self.module.project.is_patch_applied("ExpandPokeList"):
@@ -1899,7 +1910,8 @@ class StMonsterMonsterPage(Gtk.Box):
         except ValueError:
             return
         self._md_evo.evo_stats[self.item_data].hp_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_data)
+        if not self._is_loading:
+            self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1909,7 +1921,8 @@ class StMonsterMonsterPage(Gtk.Box):
         except ValueError:
             return
         self._md_evo.evo_stats[self.item_data].atk_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_data)
+        if not self._is_loading:
+            self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1919,7 +1932,8 @@ class StMonsterMonsterPage(Gtk.Box):
         except ValueError:
             return
         self._md_evo.evo_stats[self.item_data].spatk_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_data)
+        if not self._is_loading:
+            self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1929,7 +1943,8 @@ class StMonsterMonsterPage(Gtk.Box):
         except ValueError:
             return
         self._md_evo.evo_stats[self.item_data].def_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_data)
+        if not self._is_loading:
+            self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1939,7 +1954,8 @@ class StMonsterMonsterPage(Gtk.Box):
         except ValueError:
             return
         self._md_evo.evo_stats[self.item_data].spdef_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_data)
+        if not self._is_loading:
+            self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     def on_btn_add_evo_clicked(self, *args):
@@ -2007,4 +2023,5 @@ class StMonsterMonsterPage(Gtk.Box):
         for entry in iter_tree_model(store):
             eggs_entries.append(entry[0])
         self._md_evo.evo_entries[self.item_data].eggs = eggs_entries
-        self.module.mark_md_evo_as_modified(self.item_data)
+        if not self._is_loading:
+            self.module.mark_md_evo_as_modified(self.item_data)

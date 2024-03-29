@@ -617,7 +617,6 @@ class StDungeonFloorPage(Gtk.Box):
             self.switch_kecleon_gender.destroy()
             self.label_kecleon_gender.destroy()
         self._init_layout_values()
-        self._loading = False
         # Preview
         self._draw = self.fixed_draw
         self._init_drawer()
@@ -626,6 +625,7 @@ class StDungeonFloorPage(Gtk.Box):
         self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
         self._generate_floor()
         notebook = self.floor_notebook
+        self._loading = False
         notebook.set_current_page(self.__class__._last_open_tab_id)
         item_list_notebook = self.item_list_notebook
         item_list_notebook.set_current_page(self._item_list_edit_active.value)
@@ -660,6 +660,8 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cb_floor_ranks_changed(self, w, *args):
+        if self._loading:
+            return
         if self.module.has_floor_ranks():
             cb = self.cb_floor_ranks
             self.module.set_floor_rank(
