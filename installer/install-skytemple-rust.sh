@@ -24,7 +24,7 @@ rm -rf tmp_rust || true
 mkdir tmp_rust
 cd tmp_rust
 curl -LO $url
-unzip wheels.zip
+unzip wheels*.zip
 eval pip3 install $wheel_name
 
 rm -rf tmp_rust || true
