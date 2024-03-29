@@ -107,8 +107,8 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         except BaseException as ex:
             logger.error("Failed rendering sprite preview", exc_info=ex)
         # Disable import/export if sprite ID higher than available IDs
-        if self.item_id >= self.module.get_monster_sprite_count():
-            self.import_widget.set_sensitive(False)
+        if self.item_data >= self.module.get_monster_sprite_count():
+            self.button_import.set_sensitive(False)
             self.export.set_sensitive(False)
             self.import_ground.set_sensitive(False)
             self.export_ground.set_sensitive(False)
