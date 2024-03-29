@@ -73,6 +73,7 @@ main_thread = current_thread()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 COL_VISIBLE = 7
+SKYTEMPLE_WIKI_LINK = "https://wiki.skytemple.org"
 
 
 class MainController:
@@ -235,6 +236,37 @@ class MainController:
 
     def on_reload_button_clicked(self, wdg):
         self.reload_project()
+
+    def on_help_button_clicked(self, wdg):
+        if (
+            self._current_view_module is None
+            or self._current_view_controller_class is None
+        ):
+            webbrowser.open(
+                f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple"
+            )
+        else:
+
+            def slug_convert(s):
+                return "".join(
+                    ["-" + c.lower() if c.isupper() else c for c in s]
+                ).lstrip("-")
+
+            module_slug = slug_convert(
+                self._current_view_module.__class__.__name__
+            ).replace("-module", "")
+            view_slug = slug_convert(
+                self._current_view_controller_class.__name__
+            ).replace("-controller", "")
+
+            webbrowser.open(
+                f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple--{module_slug}--{view_slug}"
+            )
+
+    def on_settings_help_button_clicked(self, wdg):
+        webbrowser.open(
+            f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-settings"
+        )
 
     def on_debugger_button_clicked(self, wdg):
         self._debugger_manager.open(self._window)
@@ -630,6 +662,9 @@ class MainController:
 
     def on_update_button_clicked(self, *args):
         webbrowser.open_new_tab("https://download.skytemple.org/skytemple/latest/")
+
+    def on_intro_dialog_label_first_activate_link(self, *args):
+        webbrowser.open(f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple")
 
     def on_label_privacy_activate_link(self, *args):
         webbrowser.open_new_tab("https://skytemple.org/privacy.html")
