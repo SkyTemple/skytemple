@@ -1,6 +1,6 @@
 """Module that draws the main background DrawingArea and the chunks icon views for dungeon backgrounds"""
 
-#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2024 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
