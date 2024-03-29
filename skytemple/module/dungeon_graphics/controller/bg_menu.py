@@ -21,7 +21,7 @@ import itertools
 import logging
 import sys
 from collections import OrderedDict
-from typing import TYPE_CHECKING, Union, cast
+from typing import TYPE_CHECKING, cast
 
 from range_typed_integers import u16_checked, u16
 
@@ -63,7 +63,7 @@ logger = logging.getLogger(__name__)
 
 class BgMenuController:
     def __init__(
-        self, bg: Union[StDungeonGraphicsTilesetPage, StDungeonGraphicsDungeonBgPage]
+        self, bg: StDungeonGraphicsTilesetPage | StDungeonGraphicsDungeonBgPage
     ):
         self.parent = bg
 

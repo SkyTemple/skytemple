@@ -20,7 +20,6 @@ import sys
 import os
 from functools import partial
 from typing import TYPE_CHECKING, Optional, Callable, cast, ClassVar
-from typing import Union
 from xml.etree import ElementTree
 import cairo
 import typing
@@ -347,9 +346,7 @@ class StScriptSsaPage(Gtk.Box):
             assert self.ssa
             # PLACE
             place_layer = 0
-            new_entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]] = (
-                None
-            )
+            new_entity: SsaActor | SsaObject | SsaPerformer | SsaEvent | None = None
             if self.drawer.get_sector_highlighted() is not None:
                 place_layer = self.drawer.get_sector_highlighted()
             if self.drawer.interaction_mode == InteractionMode.PLACE_ACTOR:

@@ -23,7 +23,7 @@ import re
 import sys
 from collections import OrderedDict
 from functools import partial
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from collections.abc import MutableSequence
 
 from range_typed_integers import u16, u16_checked
@@ -347,8 +347,8 @@ class BgMenuController:
                 img1_path = map_import_layer1_file.get_filename()
                 img2_path = map_import_layer2_file.get_filename()
                 # Make sure to raise an error if the images have less than 256 colors. Otherwise this could cause issues.
-                img1: Optional[Image.Image] = None
-                img2: Optional[Image.Image] = None
+                img1: Image.Image | None = None
+                img2: Image.Image | None = None
                 if img1_path is not None:
                     with open(img1_path, "rb") as f1:
                         img1 = Image.open(f1)
@@ -1164,11 +1164,11 @@ class BgMenuController:
         bpc_layer_to_use,
         bpc: BpcProtocol,
         bpl: BplProtocol,
-        bpas: list[Optional[BpaProtocol]],
+        bpas: list[BpaProtocol | None],
     ) -> tuple[
         list[TilemapEntryProtocol],
         MapBgStaticTileProvider,
-        list[Optional[MapBgAnimatedTileProvider]],
+        list[MapBgAnimatedTileProvider | None],
         MapBgPaletteProvider,
     ]:
         palettes = MapBgPaletteProvider(bpl)
@@ -1176,7 +1176,7 @@ class BgMenuController:
 
         bpa_start = 0 if bpc_layer_to_use == 0 else 4
         bpas = bpas[bpa_start : bpa_start + 4]
-        animated_tiles: list[Optional[MapBgAnimatedTileProvider]] = []
+        animated_tiles: list[MapBgAnimatedTileProvider | None] = []
         for bpa in bpas:
             if bpa is None:
                 animated_tiles.append(None)

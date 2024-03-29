@@ -25,7 +25,7 @@ import typing
 from enum import Enum
 from functools import partial
 from itertools import zip_longest
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from xml.etree import ElementTree
 from gi.repository import Gtk, GLib, GdkPixbuf
 from range_typed_integers import (
@@ -547,7 +547,7 @@ class StDungeonFloorPage(Gtk.Box):
     item_cat_others_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     _last_open_tab_id = 0
     _last_open_tab_item_lists = FloorEditItemList.FLOOR
-    _last_scale_factor: Optional[CanvasScale] = None
+    _last_scale_factor: CanvasScale | None = None
     _last_show_full_map = False
 
     def __init__(self, module: DungeonModule, item_data: FloorViewInfo):

@@ -192,7 +192,7 @@ class StScriptMainPage(Gtk.Box):
             md.run()
             md.destroy()
             return
-        new_id = max((lst.id for lst in self._list.list)) + 1
+        new_id = max(lst.id for lst in self._list.list) + 1
         store = self.level_list_tree_store
         store.append(
             [

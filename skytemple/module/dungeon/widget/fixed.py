@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 import sys
-from typing import TYPE_CHECKING, Optional, Callable, cast
+from typing import TYPE_CHECKING, Callable, cast
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u32_checked, u32, u8
 from skytemple_files.common.types.file_types import FileType
@@ -180,7 +180,7 @@ class StDungeonFixedPage(Gtk.Notebook):
     btn_help_boss: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_free: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_unk5: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    _last_scale_factor: Optional[CanvasScale] = None
+    _last_scale_factor: CanvasScale | None = None
     _last_show_full_map = True
 
     def __init__(self, module: DungeonModule, item_data: int):

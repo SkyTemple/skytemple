@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
-from typing import Optional, Callable, cast
+from typing import Callable, cast
 
 from typing import TYPE_CHECKING
 
@@ -42,11 +42,11 @@ class SsaEventDialogController:
         talk_script_names: dict[int, str],
         scriptdata: Pmd2ScriptData,
         *,
-        edit: Optional[SsaTrigger] = None,
+        edit: SsaTrigger | None = None,
     ):
         self.parent = parent
-        self.edit: Optional[SsaTrigger] = edit
-        self.new_model: Optional[SsaTrigger] = None
+        self.edit: SsaTrigger | None = edit
+        self.new_model: SsaTrigger | None = None
         self.talk_script_names = talk_script_names
         self.scriptdata = scriptdata
         self.parent.dialog_event.set_transient_for(main_window)
@@ -130,7 +130,7 @@ class SsaEventDialogController:
             )
         return response
 
-    def get_event(self) -> Optional[SsaTrigger]:
+    def get_event(self) -> SsaTrigger | None:
         """Returns the new model with the data from the dialog."""
         return self.new_model
 
