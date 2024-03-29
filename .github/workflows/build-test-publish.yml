@@ -47,7 +47,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r requirements_type_checks.txt
     - name: Lint with ruff
       run: ruff check --output-format=github .
 
@@ -56,12 +56,14 @@ jobs:
     name: Code Format
     steps:
       - uses: actions/checkout@v4
-      - name: Install gobject-introspection
-        run: sudo apt-get install -y gobject-introspection
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Install ruff
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff
       - name: Check with ruff
         run: ruff format --check .
         
@@ -243,6 +245,10 @@ jobs:
         run: |
           # git is already installed.
           brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 cmake
+          
+          python3 -m venv .venv
+          . .venv/bin/activate
+          
           pip3 install -U certifi
           PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:$PATH
 
@@ -322,9 +328,13 @@ jobs:
           pip install yq
           echo "PACKAGE_VERSION=$(tomlq '.project.version' pyproject.toml -r)" >> $GITHUB_ENV
       - name: Install and package
-        run: |
+        run: |          
           # git is already installed.
           brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 meson cmake
+          
+          python3 -m venv .venv
+          . .venv/bin/activate
+          
           pip3 install -U certifi
           export PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
 
