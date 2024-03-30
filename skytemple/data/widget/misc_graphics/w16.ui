@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <requires lib="gtk+" version="3.20" />
+  <template class="StMiscGraphicsW16Page" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkToolbar">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="icon_size">2</property>
+        <child>
+          <object class="GtkToolButton" id="button_import">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="is-important">True</property>
+            <property name="label" translatable="yes">Import</property>
+            <property name="use-underline">True</property>
+            <property name="icon-name">skytemple-import-symbolic</property>
+            <signal name="clicked" handler="on_button_import_clicked" swapped="no" />
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="homogeneous">True</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolButton" id="export">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="is-important">True</property>
+            <property name="label" translatable="yes">Export</property>
+            <property name="use-underline">True</property>
+            <property name="icon-name">skytemple-export-symbolic</property>
+            <signal name="clicked" handler="on_export_clicked" swapped="no" />
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="homogeneous">True</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="hscrollbar-policy">never</property>
+        <property name="shadow-type">in</property>
+        <child>
+          <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <!-- n-columns=4 n-rows=3 -->
+              <object class="GtkGrid" id="grid">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">5</property>
+                <property name="margin-right">5</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property>
+                <property name="row-spacing">5</property>
+                <property name="column-spacing">5</property>
+                <property name="column-homogeneous">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="label" translatable="yes">The images in this preview are scaled to 64x64px.
+Imported image dimensions must be a multiple of 8.</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                    <property name="width">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <style>
+      <class name="back_illust" />
+      <class name="misc_graphics" />
+    </style>
+  </template>
+</interface>

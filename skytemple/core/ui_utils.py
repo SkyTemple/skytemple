@@ -158,7 +158,11 @@ def version(*, ignore_dev=False) -> str:
 
 
 def make_builder(gui_file) -> Gtk.Builder:
-    """GTK under Windows does not detect the locale. So we have to translate manually."""
+    """
+    GTK under Windows does not detect the locale. So we have to translate manually.
+
+    :deprecated: Use GtkTemplate instead.
+    """
     if sys.platform == "win32":
         tree = ElementTree.parse(gui_file)
         for node in tree.iter():
@@ -172,12 +176,6 @@ def make_builder(gui_file) -> Gtk.Builder:
         builder = Gtk.Builder()
         builder.set_translation_domain(APP)
         builder.add_from_file(gui_file)
-
-    # TODO: A bit of a dirty quickfix to make all switches look better
-    for object in builder.get_objects():
-        if isinstance(object, Gtk.Switch):
-            object.set_halign(Gtk.Align.CENTER)
-            object.set_valign(Gtk.Align.CENTER)
 
     return builder
 
@@ -271,3 +269,8 @@ def create_tree_view_column(
     for attr, column_id in kwargs.items():
         column.add_attribute(renderer, attr, column_id)
     return column
+
+
+def safe_destroy(widget: Gtk.Widget):
+    """Destroys the given widget in a template destroy scenario. May skip the widget if not deemed sound."""
+    widget.destroy()

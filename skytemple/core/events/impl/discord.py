@@ -23,9 +23,9 @@ import asyncio
 import inspect
 import logging
 import os
-from typing import Optional, Callable
+from typing import Optional, Callable, Union
 
-from gi.repository import GLib
+from gi.repository import GLib, Gtk
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.types.file_types import FileType
 
@@ -111,70 +111,87 @@ class DiscordPresence(AbstractListener):
     def on_view_switch(
         self,
         module: AbstractModule,
-        controller: AbstractController,
+        view: Union[AbstractController, Gtk.Widget],
         breadcrumbs: list[str],
     ):
         mod_handler = getattr(
             self, f"on_view_switch__{module.__class__.__name__}", None
         )
         if mod_handler and callable(mod_handler):
-            mod_handler(module, controller, breadcrumbs)
+            mod_handler(module, view, breadcrumbs)
         else:
             self.module_info = f'Editing in module "{module.__class__.__name__}"'
             self.module_state = self.rom_name
         self._update_current_presence()
 
     def on_view_switch__MiscGraphicsModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.misc_graphics.controller.w16 import W16Controller
-        from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
+        from skytemple.module.misc_graphics.widget.w16 import StMiscGraphicsW16Page
+        from skytemple.module.misc_graphics.widget.wte_wtu import (
+            StMiscGraphicsWteWtuPage,
+        )
 
         self.module_info = "Editing graphics"
         self.module_state = self.rom_name
-        if isinstance(controller, W16Controller):
-            self.module_state = module.list_of_w16s[controller.item_id]
-        if isinstance(controller, WteWtuController):
-            self.module_state = controller.item.wte_filename
+        if isinstance(view, StMiscGraphicsW16Page):
+            self.module_state = module.list_of_w16s[view.item_data]
+        if isinstance(view, StMiscGraphicsWteWtuPage):
+            self.module_state = view.item_data.wte_filename
 
     def on_view_switch__DungeonGraphicsModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
         from skytemple.module.dungeon_graphics.module import (
             NUMBER_OF_TILESETS,
         )
-        from skytemple.module.dungeon_graphics.controller.tileset import (
-            TilesetController,
+        from skytemple.module.dungeon_graphics.widget.tileset import (
+            StDungeonGraphicsTilesetPage,
         )
-        from skytemple.module.dungeon_graphics.controller.dungeon_bg import (
-            DungeonBgController,
+        from skytemple.module.dungeon_graphics.widget.dungeon_bg import (
+            StDungeonGraphicsDungeonBgPage,
         )
 
         self.module_info = "Editing dungeon tilesets"
         self.module_state = self.rom_name
-        if isinstance(controller, TilesetController):
-            self.module_state = f"Tileset {controller.item_id}"
-        if isinstance(controller, DungeonBgController):
-            self.module_state = f"Background {NUMBER_OF_TILESETS + controller.item_id}"
+        if isinstance(view, StDungeonGraphicsTilesetPage):
+            self.module_state = f"Tileset {view.item_data}"
+        if isinstance(view, StDungeonGraphicsDungeonBgPage):
+            self.module_state = f"Background {NUMBER_OF_TILESETS + view.item_data}"
 
     def on_view_switch__BgpModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.bgp.controller.bgp import BgpController
+        from skytemple.module.bgp.widget.bgp import StBgpBgpPage
 
         self.module_info = "Editing background images"
         self.module_state = self.rom_name
-        if isinstance(controller, BgpController):
-            self.module_state = module.list_of_bgps[controller.item_id]
+        if isinstance(view, StBgpBgpPage):
+            self.module_state = module.list_of_bgps[view.item_data]
 
     def on_view_switch__RomModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
         self.module_info = "Editing the ROM"
         self.module_state = self.rom_name
 
     def on_view_switch__ListsModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
         from skytemple.module.lists.controller.actor_list import ActorListController
         from skytemple.module.lists.controller.starters_list import (
@@ -183,36 +200,36 @@ class DiscordPresence(AbstractListener):
         from skytemple.module.lists.controller.recruitment_list import (
             RecruitmentListController,
         )
-        from skytemple.module.lists.controller.world_map import WorldMapController
+        from skytemple.module.lists.widget.world_map import StListsWorldMapPage
 
         self.module_info = "Editing lists"
         self.module_state = self.rom_name
-        if isinstance(controller, ActorListController):
+        if isinstance(view, ActorListController):
             self.module_info = "Editing the actor list"
-        if isinstance(controller, StartersListController):
+        if isinstance(view, StartersListController):
             self.module_info = "Editing the starters list"
-        if isinstance(controller, RecruitmentListController):
+        if isinstance(view, RecruitmentListController):
             self.module_info = "Editing the recruitment list"
-        if isinstance(controller, WorldMapController):
+        if isinstance(view, StListsWorldMapPage):
             self.module_info = "Editing the world map"
 
     def on_view_switch__PatchModule(
         self,
         module: AbstractModule,
-        controller: AbstractController,
+        view: Union[AbstractController, Gtk.Widget],
         breadcrumbs: list[str],
     ):
-        from skytemple.module.patch.controller.item_effects import ItemEffectsController
-        from skytemple.module.patch.controller.move_effects import MoveEffectsController
-        from skytemple.module.patch.controller.sp_effects import SPEffectsController
+        from skytemple.module.patch.widget.item_effects import StPatchItemEffectsPage
+        from skytemple.module.patch.widget.move_effects import StPatchMoveEffectsPage
+        from skytemple.module.patch.widget.sp_effects import StPatchSPEffectsPage
 
-        if isinstance(controller, ItemEffectsController):
+        if isinstance(view, StPatchItemEffectsPage):
             self.module_info = "Editing item effects"
             self.module_state = self.rom_name
-        elif isinstance(controller, MoveEffectsController):
+        elif isinstance(view, StPatchMoveEffectsPage):
             self.module_info = "Editing move effects"
             self.module_state = self.rom_name
-        elif isinstance(controller, SPEffectsController):
+        elif isinstance(view, StPatchSPEffectsPage):
             self.module_info = "Editing special processes"
             self.module_state = self.rom_name
         else:
@@ -220,107 +237,128 @@ class DiscordPresence(AbstractListener):
             self.module_state = self.rom_name
 
     def on_view_switch__MapBgModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.map_bg.controller.bg import BgController
+        from skytemple.module.map_bg.widget.bg import StMapBgBgPage
 
         self.module_info = "Editing map backgrounds"
         self.module_state = self.rom_name
-        if isinstance(controller, BgController):
+        if isinstance(view, StMapBgBgPage):
             self.module_state = breadcrumbs[0]
 
     def on_view_switch__ScriptModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.script.controller.ssa import SsaController
+        from skytemple.module.script.widget.ssa import StScriptSsaPage
 
         self.module_info = "Editing scenes"
         self.module_state = self.rom_name
-        if isinstance(controller, SsaController):
-            if controller.type == "sse":
+        if isinstance(view, StScriptSsaPage):
+            if view.type == "sse":
                 self.module_state = f"{breadcrumbs[1]} / {breadcrumbs[0]}"
             else:
                 self.module_state = f"{breadcrumbs[2]} / {breadcrumbs[0]}"
 
     def on_view_switch__DungeonModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.dungeon.controller.dungeon import DungeonController
-        from skytemple.module.dungeon.controller.floor import FloorController
-        from skytemple.module.dungeon.controller.fixed_rooms import FixedRoomsController
-        from skytemple.module.dungeon.controller.fixed import FixedController
+        from skytemple.module.dungeon.widget.dungeon import StDungeonDungeonPage
+        from skytemple.module.dungeon.widget.floor import StDungeonFloorPage
+        from skytemple.module.dungeon.widget.fixed_rooms import StDungeonFixedRoomsPage
+        from skytemple.module.dungeon.widget.fixed import StDungeonFixedPage
 
         self.module_state = self.rom_name
-        if isinstance(controller, DungeonController):
+        if isinstance(view, StDungeonDungeonPage):
             self.module_info = "Editing Dungeons"
-            self.module_state = controller.dungeon_name
-        elif isinstance(controller, FloorController):
+            self.module_state = view.dungeon_name
+        elif isinstance(view, StDungeonFloorPage):
             self.module_info = "Editing Dungeons"
             dungeon_name = module.project.get_string_provider().get_value(
-                StringType.DUNGEON_NAMES_MAIN, controller.item.dungeon.dungeon_id
+                StringType.DUNGEON_NAMES_MAIN, view.item_data.dungeon.dungeon_id
             )
-            self.module_state = f"{dungeon_name} - Floor {controller.item.floor_id + 1}"
-        elif isinstance(controller, FixedRoomsController):
+            self.module_state = f"{dungeon_name} - Floor {view.item_data.floor_id + 1}"
+        elif isinstance(view, StDungeonFixedRoomsPage):
             self.module_info = "Editing Fixed Rooms"
-        elif isinstance(controller, FixedController):
+        elif isinstance(view, StDungeonFixedPage):
             self.module_info = "Editing Fixed Rooms"
-            self.module_state = f"Fixed Room {controller.floor_id}"
+            self.module_state = f"Fixed Room {view.item_data}"
 
     def on_view_switch__MonsterModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.monster.controller.monster import MonsterController
+        from skytemple.module.monster.widget.monster import StMonsterMonsterPage
 
         self.module_info = "Editing Pokémon"
         self.module_state = self.rom_name
-        if isinstance(controller, MonsterController):
+        if isinstance(view, StMonsterMonsterPage):
             self.module_state = module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES,
-                controller.item_id % FileType.MD.properties().num_entities,
+                view.item_data % FileType.MD.properties().num_entities,
             )
 
     def on_view_switch__StringsModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.strings.controller.strings import StringsController
+        from skytemple.module.strings.widget.strings import StStringsStringsPage
 
         self.module_info = "Editing Text Strings"
         self.module_state = self.rom_name
-        if isinstance(controller, StringsController):
-            self.module_state = controller.langname
+        if isinstance(view, StStringsStringsPage):
+            self.module_state = view.langname
 
     def on_view_switch__SpriteModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.sprite.controller.object import ObjectController
+        from skytemple.module.sprite.widget.object import StSpriteObjectPage
 
         self.module_info = "Editing sprites"
         self.module_state = self.rom_name
-        if isinstance(controller, ObjectController):
+        if isinstance(view, StSpriteObjectPage):
             self.module_state = breadcrumbs[0]
 
     def on_view_switch__MovesItemsModule(
-        self, module, controller: AbstractController, breadcrumbs: list[str]
+        self,
+        module,
+        view: Union[AbstractController, Gtk.Widget],
+        breadcrumbs: list[str],
     ):
-        from skytemple.module.moves_items.controller.item import ItemController
-        from skytemple.module.moves_items.controller.item_lists import (
-            ItemListsController,
+        from skytemple.module.moves_items.widget.item import StMovesItemsItemPage
+        from skytemple.module.moves_items.widget.item_lists import (
+            StMovesItemsItemListsPage,
         )
-        from skytemple.module.moves_items.controller.move import MoveController
+        from skytemple.module.moves_items.widget.move import StMovesItemsMovePage
 
-        if isinstance(controller, StStatusPage):
-            if controller.item_data.title == _("Items"):
+        if isinstance(view, StStatusPage):
+            if view.item_data.title == _("Items"):
                 self.module_info = "Editing Items"
             else:
                 self.module_info = "Editing Moves"
             self.module_state = self.rom_name
-        elif isinstance(controller, ItemController):
+        elif isinstance(view, StMovesItemsItemPage):
             self.module_info = "Editing Items"
             self.module_state = breadcrumbs[0]
-        elif isinstance(controller, MoveController):
+        elif isinstance(view, StMovesItemsMovePage):
             self.module_info = "Editing Moves"
             self.module_state = breadcrumbs[0]
-        elif isinstance(controller, ItemListsController):
+        elif isinstance(view, StMovesItemsItemListsPage):
             self.module_info = "Editing Item Lists"
             self.module_state = self.rom_name
 

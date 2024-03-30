@@ -198,6 +198,8 @@ jobs:
           $env:INCLUDE = "C:\gtk-build\gtk\x64\release\include;C:\gtk-build\gtk\x64\release\include\cairo;C:\gtk-build\gtk\x64\release\include\glib-2.0;C:\gtk-build\gtk\x64\release\include\gobject-introspection-1.0;C:\gtk-build\gtk\x64\release\lib\glib-2.0\include;" + $env:INCLUDE
 
           cd installer
+          
+          pip debug --verbose  # print compatible tags etc. for debugging purposes
 
           # Package
           .\build-windows.ps1 $PACKAGE_VERSION
@@ -246,11 +248,11 @@ jobs:
           # git is already installed.
           brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 cmake
           
-          python3 -m venv .venv
+          python3.11 -m venv .venv
           . .venv/bin/activate
+          pip3 debug --verbose  # print compatible tags etc. for debugging purposes
           
           pip3 install -U certifi
-          PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:$PATH
 
 
           # Install other dependencies and SkyTemple itself
@@ -332,8 +334,9 @@ jobs:
           # git is already installed.
           brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 meson cmake
           
-          python3 -m venv .venv
+          python3.11 -m venv .venv
           . .venv/bin/activate
+          pip3 debug --verbose  # print compatible tags etc. for debugging purposes
           
           pip3 install -U certifi
           export PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:/opt/homebrew/bin:$PATH

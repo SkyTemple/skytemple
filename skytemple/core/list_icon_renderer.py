@@ -29,6 +29,13 @@ ORANGE_RGB = (1, 0.65, 0)
 
 
 class ListIconRenderer:
+    """
+    Render sprites in a TreeView.
+
+    Future deprecation:
+    When switched to GTK 4: Use Gtk ColumnViews or ListViews instead with the StSprite widget.
+    """
+
     def __init__(self, column_id, can_be_placeholder=False):
         self._icon_pixbufs: dict[Any, GdkPixbuf.Pixbuf] = {}
         self._refresh_timer = None

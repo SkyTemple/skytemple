@@ -30,23 +30,21 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
 from skytemple.module.lists.controller.guest_pokemon import GuestPokemonController
-from skytemple.module.lists.controller.iq import IqController
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.object_list import ObjectListController
-from skytemple.module.lists.controller.misc_settings import MiscSettingsController
-from skytemple.module.lists.controller.rank_list import RankListController
-from skytemple.module.lists.controller.menu_list import MenuListController
 from skytemple.module.lists.controller.special_pcs import SpecialPcsController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
-from skytemple.module.lists.controller.tactics import TacticsController
-from skytemple.module.lists.controller.world_map import WorldMapController
-from skytemple.module.lists.controller.dungeon_interrupt import (
-    DungeonInterruptController,
-)
-from skytemple.module.lists.controller.animations import AnimationsController
+from skytemple.module.lists.widget.animations import StListsAnimationsPage
+from skytemple.module.lists.widget.dungeon_interrupt import StListsDungeonInterruptPage
+from skytemple.module.lists.widget.dungeon_music import StListsDungeonMusicPage
+from skytemple.module.lists.widget.iq import StListsIqPage
+from skytemple.module.lists.widget.menu_list import StListsMenuListPage
+from skytemple.module.lists.widget.misc_settings import StListsMiscSettingsPage
+from skytemple.module.lists.widget.rank_list import StListsRankListPage
+from skytemple.module.lists.widget.tactics import StListsTacticsPage
+from skytemple.module.lists.widget.world_map import StListsWorldMapPage
 from skytemple.module.monster.module import WAZA_P_BIN
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.inter_d.handler import InterDHandler
@@ -181,7 +179,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-e-worldmap-symbolic",
                 name=_("World Map Markers"),
                 module=self,
-                view_class=WorldMapController,
+                view_class=StListsWorldMapPage,
                 item_data=0,
             ),
         )
@@ -191,7 +189,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Rank List"),
                 module=self,
-                view_class=RankListController,
+                view_class=StListsRankListPage,
                 item_data=0,
             ),
         )
@@ -201,7 +199,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Menu List"),
                 module=self,
-                view_class=MenuListController,
+                view_class=StListsMenuListPage,
                 item_data=0,
             ),
         )
@@ -211,7 +209,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Dungeon Interruptions"),
                 module=self,
-                view_class=DungeonInterruptController,
+                view_class=StListsDungeonInterruptPage,
                 item_data=0,
             ),
         )
@@ -221,7 +219,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Animations"),
                 module=self,
-                view_class=AnimationsController,
+                view_class=StListsAnimationsPage,
                 item_data=0,
             ),
         )
@@ -231,7 +229,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-e-music-symbolic",
                 name=_("Dungeon Music"),
                 module=self,
-                view_class=DungeonMusicController,
+                view_class=StListsDungeonMusicPage,
                 item_data=0,
             ),
         )
@@ -261,7 +259,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Tactics"),
                 module=self,
-                view_class=TacticsController,
+                view_class=StListsTacticsPage,
                 item_data=0,
             ),
         )
@@ -271,7 +269,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("IQ"),
                 module=self,
-                view_class=IqController,
+                view_class=StListsIqPage,
                 item_data=0,
             ),
         )
@@ -281,7 +279,7 @@ class ListsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Misc. Settings"),
                 module=self,
-                view_class=MiscSettingsController,
+                view_class=StListsMiscSettingsPage,
                 item_data=0,
             ),
         )
@@ -617,26 +615,26 @@ class ListsModule(AbstractModule):
             pass  # todo
         if isinstance(open_view, RecruitmentListController):
             pass  # todo
-        if isinstance(open_view, WorldMapController):
+        if isinstance(open_view, StListsWorldMapPage):
             pass  # todo
-        if isinstance(open_view, RankListController):
+        if isinstance(open_view, StListsRankListPage):
             pass  # todo
-        if isinstance(open_view, MenuListController):
+        if isinstance(open_view, StListsMenuListPage):
             pass  # todo
-        if isinstance(open_view, DungeonInterruptController):
+        if isinstance(open_view, StListsDungeonInterruptPage):
             pass  # todo
-        if isinstance(open_view, AnimationsController):
+        if isinstance(open_view, StListsAnimationsPage):
             pass  # todo
-        if isinstance(open_view, DungeonMusicController):
+        if isinstance(open_view, StListsDungeonMusicPage):
             pass  # todo
         if isinstance(open_view, GuestPokemonController):
             pass  # todo
         if isinstance(open_view, SpecialPcsController):
             pass  # todo
-        if isinstance(open_view, TacticsController):
+        if isinstance(open_view, StListsTacticsPage):
             pass  # todo
-        if isinstance(open_view, IqController):
+        if isinstance(open_view, StListsIqPage):
             pass  # todo
-        if isinstance(open_view, MiscSettingsController):
+        if isinstance(open_view, StListsMiscSettingsPage):
             pass  # todo
         return None

@@ -22,18 +22,19 @@ from skytemple.core.item_tree import (
     RecursionType,
 )
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.patch.controller.cot import CotController
-from skytemple.module.patch.controller.item_effects import ItemEffectsController
-from skytemple.module.patch.controller.move_effects import MoveEffectsController
-from skytemple.module.patch.controller.pmdsky_debug import PmdSkyDebugController
-from skytemple.module.patch.controller.sp_effects import SPEffectsController
 from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple.core.rom_project import RomProject
-from skytemple.module.patch.controller.asm import AsmController
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.data_cd.model import DataCD
 from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.val_list.model import ValList
+
+from skytemple.module.patch.widget.asm import StPatchAsmPage
+from skytemple.module.patch.widget.cot import StPatchCotPage
+from skytemple.module.patch.widget.item_effects import StPatchItemEffectsPage
+from skytemple.module.patch.widget.move_effects import StPatchMoveEffectsPage
+from skytemple.module.patch.widget.pmdsky_debug import StPatchPmdSkyDebugPage
+from skytemple.module.patch.widget.sp_effects import StPatchSPEffectsPage
 
 SP_EFFECTS = "BALANCE/process.bin"
 MOVE_EFFECTS = "BALANCE/waza_cd.bin"
@@ -91,7 +92,7 @@ class PatchModule(AbstractModule):
                 icon="skytemple-e-patch-symbolic",
                 name=_("ASM"),
                 module=self,
-                view_class=AsmController,
+                view_class=StPatchAsmPage,
                 item_data=0,
             ),
         )
@@ -102,7 +103,7 @@ class PatchModule(AbstractModule):
                 icon="skytemple-e-special-symbolic",
                 name=_("Special Process Effects"),
                 module=self,
-                view_class=SPEffectsController,
+                view_class=StPatchSPEffectsPage,
                 item_data=0,
             ),
         )
@@ -113,7 +114,7 @@ class PatchModule(AbstractModule):
                 icon="skytemple-e-item-symbolic",
                 name=_("Item Effects"),
                 module=self,
-                view_class=ItemEffectsController,
+                view_class=StPatchItemEffectsPage,
                 item_data=0,
             ),
         )
@@ -124,7 +125,7 @@ class PatchModule(AbstractModule):
                 icon="skytemple-e-move-symbolic",
                 name=_("Move Effects"),
                 module=self,
-                view_class=MoveEffectsController,
+                view_class=StPatchMoveEffectsPage,
                 item_data=0,
             ),
         )
@@ -135,7 +136,7 @@ class PatchModule(AbstractModule):
                 icon="skytemple-e-patch-symbolic",
                 name=_("C / Rust"),
                 module=self,
-                view_class=CotController,
+                view_class=StPatchCotPage,
                 item_data=0,
             ),
         )
@@ -146,7 +147,7 @@ class PatchModule(AbstractModule):
                 icon="skytemple-e-patch-symbolic",
                 name=_("Symbols"),
                 module=self,
-                view_class=PmdSkyDebugController,
+                view_class=StPatchPmdSkyDebugPage,
                 item_data=0,
             ),
         )

@@ -145,12 +145,17 @@ class AsyncTaskDelegator:
             sys.exit(exit_code)
 
     @classmethod
-    def run_task(cls, coro: Coroutine):
+    def run_task(cls, coro: Coroutine, threadsafe=True):
         """
         This runs the coroutine, depending on the current configuration for async tasks.
+        If the task is marked as not threadsafe (=it is expected to run on the calling thread) the task
+        may be run immediately instead of the configured async strategy.
         """
         if cls.config_type().async_task_runner_type == AsyncTaskRunnerType.THREAD_BASED:
-            AsyncTaskRunner.instance().run_task(coro)
+            if not threadsafe:
+                Now.instance().run_task(coro)
+            else:
+                AsyncTaskRunner.instance().run_task(coro)
         elif (
             cls.config_type().async_task_runner_type
             == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING

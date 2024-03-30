@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+export SKYTEMPLE_MEMPROFILE=1
+export G_SLICE=always-malloc
+export PYTHONMALLOC=malloc
+exec valgrind \
+  --tool=massif \
+  --num-callers=50 \
+  --trace-children=no \
+  --threshold=0.1 \
+  --alloc-fn=g_malloc \
+  --alloc-fn=g_object_new \
+  --alloc-fn=g_malloc0 \
+  --alloc-fn=g_malloc0_n \
+  --alloc-fn=g_malloc_n \
+  --alloc-fn=g_realloc \
+  --alloc-fn=g_realloc_n \
+  --alloc-fn=g_slice_alloc \
+  --alloc-fn=g_slice_alloc0 \
+  --alloc-fn=g_type_create_instance \
+  --alloc-fn=g_object_new_internal \
+  --alloc-fn=g_object_new_with_properties \
+  --alloc-fn=g_object_newv \
+  --alloc-fn=g_object_new_valist \
+  --alloc-fn=g_try_malloc \
+  --alloc-fn=g_try_malloc_n \
+  --alloc-fn=g_hash_table_realloc_key_or_value_array \
+  --alloc-fn=realloc_arrays \
+  --alloc-fn=g_hash_table_resize \
+  --alloc-fn=g_hash_table_maybe_resize \
+  --alloc-fn=g_hash_table_insert_node \
+  --alloc-fn=g_hash_table_insert_internal \
+  --alloc-fn=g_hash_table_setup_storage \
+  --alloc-fn=tracemalloc_realloc \
+  --alloc-fn=realloc \
+  --alloc-fn=calloc \
+  python -m skytemple.main

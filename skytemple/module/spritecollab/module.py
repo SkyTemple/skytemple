@@ -38,7 +38,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.item_tree import ItemTree
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import RomProject
-from skytemple.module.spritecollab.controller.browser import BrowserController
+from skytemple.module.spritecollab.widget.browser import StSpritecollabBrowserPage
 
 
 class SpritecollabModule(AbstractModule):
@@ -57,7 +57,7 @@ class SpritecollabModule(AbstractModule):
         pass  # n/a
 
     def show_spritecollab_browser(self):
-        return BrowserController.get_instance(self).show()
+        return StSpritecollabBrowserPage.get_instance(self).show()
 
     def apply_portraits(self, window: Gtk.Window, portraits: Image.Image):
         project = RomProject.get_current()

@@ -1,29 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<?xml version='1.0' encoding='utf-8'?>
 <interface>
-  <requires lib="gtk+" version="3.22"/>
+  <requires lib="gtk+" version="3.22" />
   <object class="GtkListStore" id="list_store">
     <columns>
       <!-- column-name id -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
       <!-- column-name name -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
       <!-- column-name type -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
       <!-- column-name ent_icon -->
-      <column type="GdkPixbuf"/>
+      <column type="GdkPixbuf" />
       <!-- column-name entid -->
-      <column type="gint"/>
+      <column type="gint" />
       <!-- column-name unk3 -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
       <!-- column-name unk4 -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
       <!-- column-name ent_name -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
       <!-- column-name color -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
     </columns>
-    <signal name="row-changed" handler="on_list_store_row_changed" swapped="no"/>
+    <signal name="row-changed" handler="on_list_store_row_changed" swapped="no" />
   </object>
   <object class="GtkStack" id="list_stack">
     <property name="visible">True</property>
@@ -51,7 +50,7 @@
                     <property name="margin-top">64</property>
                     <property name="label" translatable="yes">Actor List</property>
                     <style>
-                      <class name="skytemple-view-main-label"/>
+                      <class name="skytemple-view-main-label" />
                     </style>
                   </object>
                   <packing>
@@ -81,7 +80,7 @@
                     <property name="label" translatable="yes">&lt;Not available&gt;
 
 To view and edit this list, please apply the "ActorAndLevelLoader" 
-ASM patch from the "Patches" > "ASM" menu.</property>
+ASM patch from the "Patches" &gt; "ASM" menu.</property>
                     <property name="justify">center</property>
                   </object>
                   <packing>
@@ -128,7 +127,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                     <property name="margin-top">64</property>
                     <property name="label" translatable="yes">Actor List</property>
                     <style>
-                      <class name="skytemple-view-main-label"/>
+                      <class name="skytemple-view-main-label" />
                     </style>
                   </object>
                   <packing>
@@ -164,13 +163,13 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                         <property name="model">list_store</property>
                         <property name="search-column">0</property>
                         <child internal-child="selection">
-                          <object class="GtkTreeSelection"/>
+                          <object class="GtkTreeSelection" />
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
                             <property name="title" translatable="yes">ID</property>
                             <child>
-                              <object class="GtkCellRendererText"/>
+                              <object class="GtkCellRendererText" />
                               <attributes>
                                 <attribute name="foreground">8</attribute>
                                 <attribute name="text">0</attribute>
@@ -185,7 +184,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_name">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_cr_name_edited" swapped="no"/>
+                                <signal name="edited" handler="on_cr_name_edited" swapped="no" />
                               </object>
                               <attributes>
                                 <attribute name="foreground">8</attribute>
@@ -201,7 +200,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_type">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_cr_type_edited" swapped="no"/>
+                                <signal name="edited" handler="on_cr_type_edited" swapped="no" />
                               </object>
                               <attributes>
                                 <attribute name="foreground">8</attribute>
@@ -215,7 +214,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                             <property name="resizable">True</property>
                             <property name="title" translatable="yes">Pokémon</property>
                             <child>
-                              <object class="GtkCellRendererPixbuf"/>
+                              <object class="GtkCellRendererPixbuf" />
                               <attributes>
                                 <attribute name="pixbuf">3</attribute>
                               </attributes>
@@ -223,8 +222,8 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_entity">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_cr_entity_edited" swapped="no"/>
-                                <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no"/>
+                                <signal name="edited" handler="on_cr_entity_edited" swapped="no" />
+                                <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no" />
                               </object>
                               <attributes>
                                 <attribute name="foreground">8</attribute>
@@ -240,7 +239,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_unk3">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_cr_unk3_edited" swapped="no"/>
+                                <signal name="edited" handler="on_cr_unk3_edited" swapped="no" />
                               </object>
                               <attributes>
                                 <attribute name="foreground">8</attribute>
@@ -256,7 +255,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_unk4">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_cr_unk4_edited" swapped="no"/>
+                                <signal name="edited" handler="on_cr_unk4_edited" swapped="no" />
                               </object>
                               <attributes>
                                 <attribute name="foreground">8</attribute>
@@ -286,7 +285,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="tooltip-text" translatable="yes">Reload</property>
-                        <signal name="clicked" handler="on_btn_add_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_btn_add_clicked" swapped="no" />
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -308,7 +307,7 @@ ASM patch from the "Patches" > "ASM" menu.</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="tooltip-text" translatable="yes">Reload</property>
-                        <signal name="clicked" handler="on_btn_remove_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_btn_remove_clicked" swapped="no" />
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -377,7 +376,7 @@ Otherwise the species name is used.</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">baseline</property>
-                            <signal name="draw" handler="on_draw_example_placeholder_draw" swapped="no"/>
+                            <signal name="draw" handler="on_draw_example_placeholder_draw" swapped="no" />
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -447,22 +446,22 @@ Otherwise the species name is used.</property>
       </packing>
     </child>
     <style>
-      <class name="back_illust"/>
-      <class name="monsters"/>
+      <class name="back_illust" />
+      <class name="monsters" />
     </style>
   </object>
   <object class="GtkListStore" id="monster_store">
     <columns>
       <!-- column-name label -->
-      <column type="gchararray"/>
+      <column type="gchararray" />
     </columns>
   </object>
   <object class="GtkEntryCompletion" id="completion_entities">
     <property name="model">monster_store</property>
     <property name="text-column">0</property>
-    <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
+    <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no" />
     <child>
-      <object class="GtkCellRendererText"/>
+      <object class="GtkCellRendererText" />
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>

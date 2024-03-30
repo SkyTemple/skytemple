@@ -24,7 +24,8 @@ import logging
 from abc import ABC, abstractmethod
 from contextlib import AbstractContextManager
 from types import TracebackType
-from typing import Protocol, ClassVar, TYPE_CHECKING, Iterable, Any
+from typing import Protocol, ClassVar, TYPE_CHECKING, Any
+from collections.abc import Iterable
 
 logger = logging.getLogger(__name__)
 

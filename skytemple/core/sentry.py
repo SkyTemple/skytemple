@@ -22,7 +22,7 @@ import os
 import typing
 from datetime import datetime
 from functools import partial
-from typing import Optional, TYPE_CHECKING, TypeVar, Callable
+from typing import TYPE_CHECKING, TypeVar, Callable
 import atexit
 import contextlib
 
@@ -410,7 +410,7 @@ def capture(
     settings: SkyTempleSettingsStore,
     exc_info: ExceptionInfo | None,
     **error_context_in: Capturable,
-) -> Optional[str]:
+) -> str | None:
     from skytemple_files.common.util import capture_capturable
 
     error_context: dict[str, str | int] = {
