@@ -38,9 +38,6 @@ from skytemple.core.open_request import (
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple.core.string_provider import StringType
-from skytemple.module.script.controller.dialog.pos_mark_editor import (
-    PosMarkEditorController,
-)
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.script_util import (
@@ -58,6 +55,8 @@ from skytemple_ssb_debugger.context.abstract import (
     EXPS_KEYWORDS,
 )
 from skytemple_files.common.i18n_util import _
+
+from skytemple.module.script.widget.pos_mark_editor import StPosMarkEditorDialog
 
 if TYPE_CHECKING:
     from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
@@ -233,7 +232,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             assert window is not None
             current_project = RomProject.get_current()
             assert current_project is not None
-            cntrl: PosMarkEditorController = current_project.get_module(
+            cntrl: StPosMarkEditorDialog = current_project.get_module(
                 "script"
             ).get_pos_mark_editor_controller(
                 window,
@@ -243,7 +242,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
                 pos_marks,
                 pos_mark_to_edit,
             )
-            return cntrl.run() == Gtk.ResponseType.OK
+            return cntrl.run_dialog() == Gtk.ResponseType.OK
         except IndexError:
             md = SkyTempleMessageDialog(
                 self._manager.get_window(),

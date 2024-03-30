@@ -16,9 +16,10 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 # TODO: This module shares quite some code with SsaController.
+from __future__ import annotations
 import math
 import os
-from typing import Optional
+from typing import Optional, TYPE_CHECKING, cast
 
 import cairo
 from gi.repository import Gtk, Gdk
@@ -27,7 +28,7 @@ from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.sprite_provider import SpriteProvider
-from skytemple.core.ui_utils import make_builder, builder_get_assert
+from skytemple.core.ui_utils import data_dir
 from skytemple.module.script.drawer import Drawer
 from skytemple_files.common.ppmdu_config.script_data import (
     Pmd2ScriptLevel,
@@ -38,10 +39,24 @@ from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_fo
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple_files.common.i18n_util import _
 
+if TYPE_CHECKING:
+    pass
+
 SIZE_REQUEST_NONE = 500
 
 
-class PosMarkEditorController:
+@Gtk.Template(
+    filename=os.path.join(data_dir(), "widget", "script", "pos_mark_editor.ui")
+)
+class StPosMarkEditorDialog(Gtk.Dialog):
+    __gtype_name__ = "StPosMarkEditorDialog"
+    ssa_draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    tool_choose_map_bg_cb: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
+    tool_scene_grid: Gtk.ToggleToolButton = cast(
+        Gtk.ToggleToolButton, Gtk.Template.Child()
+    )
+    editor_rest_room_note: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
+
     def __init__(
         self,
         ssa: Ssa,
@@ -54,8 +69,8 @@ class PosMarkEditorController:
         pos_mark_to_edit: int,
     ):
         """A controller for a dialog for editing position marks for an Ssb file."""
-        path = os.path.abspath(os.path.dirname(__file__))
-        self.builder = make_builder(os.path.join(path, "pos_mark_editor.glade"))
+        super().__init__()
+
         self.sprite_provider = sprite_provider
         self.ssa: Ssa = ssa
         self.map_bg_module = map_bg_module
@@ -76,31 +91,28 @@ class PosMarkEditorController:
         self._map_bg_surface: Optional[cairo.Surface] = None
         self._currently_selected_mark: Optional[SourceMapPositionMark] = None
 
-        self._w_ssa_draw = builder_get_assert(self.builder, Gtk.DrawingArea, "ssa_draw")
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
         self.drawer: Optional[Drawer] = None
 
-        self.window = builder_get_assert(self.builder, Gtk.Dialog, "dialog")
-        self.window.set_transient_for(parent_window)
-        self.window.set_attached_to(parent_window)
+        self.set_transient_for(parent_window)
+        self.set_attached_to(parent_window)
         self.title = _("Edit Position Marks")
 
-        self.builder.connect_signals(self)
-
-    def run(self):
+    def run_dialog(self):
         """Run the dialog and return the response. If it's OK, the new model can be retrieved via get_event()"""
-        self.window.set_title(self.title)
+        self.set_title(self.title)
 
         self._init_drawer()
         self._init_rest_room_note()
         self._init_all_the_stores()
         self._update_scales()
 
-        response = self.window.run()
-        self.window.hide()
+        response = self.run()
+        self.hide()
         return response
 
+    @Gtk.Template.Callback()
     def on_ssa_draw_event_button_press_event(self, box, button: Gdk.EventButton):
         correct_mouse_x = int((button.x - 4) / self._scale_factor)
         correct_mouse_y = int((button.y - 4) / self._scale_factor)
@@ -115,8 +127,9 @@ class PosMarkEditorController:
             self._currently_selected_mark = self.drawer.get_pos_mark_under_mouse()
             self.drawer.set_selected(self._currently_selected_mark)
 
-        self._w_ssa_draw.queue_draw()
+        self.ssa_draw.queue_draw()
 
+    @Gtk.Template.Callback()
     def on_ssa_draw_event_button_release_event(self, box, button: Gdk.EventButton):
         if button.button == 1 and self.drawer is not None:
             # SELECT / DRAG
@@ -144,8 +157,9 @@ class PosMarkEditorController:
                         self._currently_selected_mark.y_offset = 0
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
-        self._w_ssa_draw.queue_draw()
+        self.ssa_draw.queue_draw()
 
+    @Gtk.Template.Callback()
     def on_ssa_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
         correct_mouse_x = int((motion.x - 4) / self._scale_factor)
         correct_mouse_y = int((motion.y - 4) / self._scale_factor)
@@ -175,22 +189,26 @@ class PosMarkEditorController:
                             ),
                         )
 
-            self._w_ssa_draw.queue_draw()
+            self.ssa_draw.queue_draw()
 
     # SCENE TOOLBAR #
+    @Gtk.Template.Callback()
     def on_tool_scene_zoom_in_clicked(self, *args):
         self._scale_factor *= 2
         self._update_scales()
 
+    @Gtk.Template.Callback()
     def on_tool_scene_zoom_out_clicked(self, *args):
         self._scale_factor /= 2
         self._update_scales()
 
+    @Gtk.Template.Callback()
     def on_tool_scene_grid_toggled(self, w, *args):
         if self.drawer:
             self.drawer.set_draw_tile_grid(w.get_active())
-            self._w_ssa_draw.queue_draw()
+            self.ssa_draw.queue_draw()
 
+    @Gtk.Template.Callback()
     def on_tool_choose_map_bg_cb_changed(self, w: Gtk.ComboBox):
         model, cbiter = w.get_model(), w.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
@@ -220,9 +238,7 @@ class PosMarkEditorController:
     def _init_all_the_stores(self):
         # MAP BGS
         map_bg_list = self.map_bg_module.bgs
-        tool_choose_map_bg_cb = builder_get_assert(
-            self.builder, Gtk.ComboBox, "tool_choose_map_bg_cb"
-        )
+        tool_choose_map_bg_cb = self.tool_choose_map_bg_cb
         map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
         default_bg = map_bg_store.append([-1, _("None")])
         for i, entry in enumerate(map_bg_list.level):
@@ -234,39 +250,35 @@ class PosMarkEditorController:
 
     def _init_drawer(self):
         self.drawer = Drawer(
-            self._w_ssa_draw, self.ssa, lambda *args: "", self.sprite_provider
+            self.ssa_draw, self.ssa, lambda *args: "", self.sprite_provider
         )
         self.drawer.add_position_marks(self.pos_marks)
         self.drawer.edit_position_marks()
         self.drawer.set_selected(self.pos_marks[self.pos_mark_to_edit])
         self.drawer.start()
 
-        self.drawer.set_draw_tile_grid(
-            builder_get_assert(
-                self.builder, Gtk.ToggleToolButton, "tool_scene_grid"
-            ).get_active()
-        )
+        self.drawer.set_draw_tile_grid(self.tool_scene_grid.get_active())
 
     def _set_drawer_bg(self, surface: cairo.Surface, w: int, h: int):
         self._map_bg_width = w
         self._map_bg_height = h
-        self._w_ssa_draw.set_size_request(
+        self.ssa_draw.set_size_request(
             round(self._map_bg_width * self._scale_factor),
             round(self._map_bg_height * self._scale_factor),
         )
         if self.drawer:
             self.drawer.map_bg = surface
-        self._w_ssa_draw.queue_draw()
+        self.ssa_draw.queue_draw()
 
     def _update_scales(self):
-        self._w_ssa_draw.set_size_request(
+        self.ssa_draw.set_size_request(
             round(self._map_bg_width * self._scale_factor),
             round(self._map_bg_height * self._scale_factor),
         )
         if self.drawer:
             self.drawer.set_scale(self._scale_factor)
 
-        self._w_ssa_draw.queue_draw()
+        self.ssa_draw.queue_draw()
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -276,9 +288,7 @@ class PosMarkEditorController:
         cb.add_attribute(renderer_text, "text", col)
 
     def _init_rest_room_note(self):
-        info_bar = builder_get_assert(
-            self.builder, Gtk.InfoBar, "editor_rest_room_note"
-        )
+        info_bar = self.editor_rest_room_note
         if (
             self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET
             or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM
@@ -307,6 +317,4 @@ class PosMarkEditorController:
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
         assert self._tileset_drawer_overlay is not None
         self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
-        self.on_tool_choose_map_bg_cb_changed(
-            builder_get_assert(self.builder, Gtk.ComboBox, "tool_choose_map_bg_cb")
-        )
+        self.on_tool_choose_map_bg_cb_changed(self.tool_choose_map_bg_cb)

@@ -46,9 +46,6 @@ from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHan
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.script.controller.dialog.pos_mark_editor import (
-    PosMarkEditorController,
-)
 from skytemple_files.common.script_util import (
     load_script_files,
     SCRIPT_DIR,
@@ -73,6 +70,7 @@ from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.module.script.widget.main import SCRIPT_SCENES, StScriptMainPage
 from skytemple.module.script.widget.map import StScriptMapPage
+from skytemple.module.script.widget.pos_mark_editor import StPosMarkEditorDialog
 from skytemple.module.script.widget.ssa import StScriptSsaPage
 from skytemple.module.script.widget.ssb import StScriptSsbPage
 
@@ -478,7 +476,7 @@ class ScriptModule(AbstractModule):
         scene_type: str,
         pos_marks: list[SourceMapPositionMark],
         pos_mark_to_edit: int,
-    ) -> PosMarkEditorController:
+    ) -> StPosMarkEditorDialog:
         if (
             mapname
             not in self.project.get_rom_module()
@@ -486,7 +484,7 @@ class ScriptModule(AbstractModule):
             .script_data.level_list__by_name
         ):
             raise ValueError(_("Map not found."))
-        return PosMarkEditorController(
+        return StPosMarkEditorDialog(
             self.get_ssa(f"{SCRIPT_DIR}/{mapname}/{scene_name[:-4]}.{scene_type}"),
             parent_window,
             self.get_sprite_provider(),
