@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _
 
 from skytemple.core import sentry_ext
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import data_dir
 
 EMAIL_TO_USE = "_reporter@skytemple.org"
@@ -67,6 +68,18 @@ class StUserFeedbackWindow(Gtk.Window):
             )
             .strip()
         )
+        if comments.strip() == "":
+            md = SkyTempleMessageDialog(
+                self,
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                _("Please include a comment in your report. You don't need to submit empty reports, we receive all errors automatically. Your comments help us to understand the issue, but they are not required. If you don't want to submit comments, hit Cancel."),
+                title=_("Report Error"),
+            )
+            md.run()
+            md.destroy()
+            return
         sentry_ext.capture_user_feedback(
             {
                 "event_id": self.sentry_event_id,
