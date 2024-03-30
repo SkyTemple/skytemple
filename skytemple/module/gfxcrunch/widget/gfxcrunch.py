@@ -14,17 +14,18 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 import logging
 import os
 import subprocess
 import tempfile
 from enum import Enum, auto
 from subprocess import Popen
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import data_dir, make_builder, builder_get_assert
+from skytemple.core.ui_utils import data_dir, make_builder
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.user_error import make_user_err
@@ -50,15 +51,19 @@ IMGS = {
 }
 
 
-class GfxcrunchController:
-    def __init__(self, module: "GfxcrunchModule"):
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "gfxcrunch", "gfxcrunch.ui"))
+class StGfxcrunchDialog(Gtk.Dialog):
+    __gtype_name__ = "StGfxcrunchDialog"
+    module: GfxcrunchModule
+    console: Gtk.TextView = cast(Gtk.TextView, Gtk.Template.Child())
+    spinner: Gtk.Spinner = cast(Gtk.Spinner, Gtk.Template.Child())
+    close_button: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    duskako: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
+
+    def __init__(self, module: GfxcrunchModule):
+        super().__init__()
         self.module = module
 
-        self.builder = self._get_builder(__file__, "gfxcrunch.glade")
-        self.builder.connect_signals(self)
-        self.buffer = builder_get_assert(
-            self.builder, Gtk.TextView, "console"
-        ).get_buffer()
         self.status = GfxcrunchStatus.RUNNING
 
     def import_sprite(self, dir_fn: str) -> bytes:
@@ -83,16 +88,18 @@ class GfxcrunchController:
                 raise make_user_err(RuntimeError, _("The gfxcrunch process failed."))
 
     def _run_window(self):
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, "dialog")
-        dialog.resize(750, 350)
-        dialog.set_transient_for(MainController.window())
-        dialog.set_attached_to(MainController.window())
-        self.buffer.delete(self.buffer.get_start_iter(), self.buffer.get_end_iter())
+        self.resize(750, 350)
+        self.set_transient_for(MainController.window())
+        self.set_attached_to(MainController.window())
+        self.console.get_buffer().delete(
+            self.console.get_buffer().get_start_iter(),
+            self.console.get_buffer().get_end_iter(),
+        )
         self._update_status(GfxcrunchStatus.RUNNING)
-        builder_get_assert(self.builder, Gtk.Spinner, "spinner").start()
-        builder_get_assert(self.builder, Gtk.Button, "close").set_sensitive(False)
-        dialog.run()
-        dialog.hide()
+        self.spinner.start()
+        self.close_button.set_sensitive(False)
+        self.run()
+        self.hide()
 
     async def _run_gfxcrunch(self, arg_list: list[str]):
         cmd, base_args, shell = self.module.get_gfxcrunch_cmd()
@@ -135,11 +142,15 @@ class GfxcrunchController:
         return make_builder(os.path.join(path, glade_file))
 
     def _stdout(self, line):
-        self.buffer.insert_markup(self.buffer.get_end_iter(), line, -1)
+        buffer = self.console.get_buffer()
+        buffer.insert_markup(buffer.get_end_iter(), line, -1)
 
     def _stderr(self, line):
-        self.buffer.insert_markup(
-            self.buffer.get_end_iter(), f'<span color="red">{line}</span>', -1
+        buffer = self.console.get_buffer()
+        buffer.insert_markup(
+            buffer.get_end_iter(),
+            f'<span color="red">{line}</span>',
+            -1,
         )
 
     def _done(self, return_code):
@@ -150,10 +161,9 @@ class GfxcrunchController:
             self._stderr(
                 f(_("!! Process exited with error. Exit code: {return_code} !!"))
             )
-        builder_get_assert(self.builder, Gtk.Spinner, "spinner").stop()
-        builder_get_assert(self.builder, Gtk.Button, "close").set_sensitive(True)
+        self.spinner.stop()
+        self.close_button.set_sensitive(True)
 
     def _update_status(self, status):
         self.status = status
-        img = builder_get_assert(self.builder, Gtk.Image, "duskako")
-        img.set_from_file(os.path.join(data_dir(), IMGS[status]))
+        self.duskako.set_from_file(os.path.join(data_dir(), IMGS[status]))

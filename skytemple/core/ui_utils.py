@@ -158,7 +158,11 @@ def version(*, ignore_dev=False) -> str:
 
 
 def make_builder(gui_file) -> Gtk.Builder:
-    """GTK under Windows does not detect the locale. So we have to translate manually."""
+    """
+    GTK under Windows does not detect the locale. So we have to translate manually.
+
+    :deprecated: Use GtkTemplate instead.
+    """
     if sys.platform == "win32":
         tree = ElementTree.parse(gui_file)
         for node in tree.iter():

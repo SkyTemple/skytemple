@@ -23,7 +23,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.item_tree import ItemTree
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import data_dir
-from skytemple.module.gfxcrunch.controller.gfxcrunch import GfxcrunchController
+from skytemple.module.gfxcrunch.widget.gfxcrunch import StGfxcrunchDialog
 
 GFXCRUNCH_BIN = "ppmd_gfxcrunch.exe"
 WINE_BIN = "wine"
@@ -66,10 +66,10 @@ class GfxcrunchModule(AbstractModule):
         return WINE_BIN, [os.path.join(data_dir(), GFXCRUNCH_BIN)], False
 
     def import_sprite(self, dir_fn: str) -> bytes:
-        return GfxcrunchController(self).import_sprite(dir_fn)
+        return StGfxcrunchDialog(self).import_sprite(dir_fn)
 
     def export_sprite(self, wan: bytes, dir_fn: str):
-        return GfxcrunchController(self).export_sprite(wan, dir_fn)
+        return StGfxcrunchDialog(self).export_sprite(wan, dir_fn)
 
     def open_gfxcrunch_page(self):
         webbrowser.open_new_tab(
