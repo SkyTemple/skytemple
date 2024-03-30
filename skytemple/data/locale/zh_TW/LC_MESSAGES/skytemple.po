@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-03-29 21:36+0000\n"
-"PO-Revision-Date: 2024-03-29 22:26\n"
+"POT-Creation-Date: 2024-03-30 13:58+0000\n"
+"PO-Revision-Date: 2024-03-30 14:34\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -3252,7 +3252,7 @@ msgstr ""
 msgid "SWDL Wavi length invalid; tried to read past EOF."
 msgstr ""
 
-#: skytemple-rust/src/image/tiled.rs:231
+#: skytemple-rust/src/image/tiled.rs:230
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
@@ -5154,7 +5154,8 @@ msgid "Error Details"
 msgstr ""
 
 #: skytemple/skytemple/core/error_handler.py:153
-#: skytemple/skytemple/core/widget/user_feedback.py:51
+#: skytemple/skytemple/core/widget/user_feedback.py:52
+#: skytemple/skytemple/core/widget/user_feedback.py:80
 #: skytemple/skytemple/skytemple.glade:1217
 msgid "Report Error"
 msgstr ""
@@ -5242,6 +5243,10 @@ msgstr ""
 
 #: skytemple/skytemple/core/ui_utils.py:238
 msgid "SkyTemple - Value out of range"
+msgstr ""
+
+#: skytemple/skytemple/core/widget/user_feedback.py:78
+msgid "Please include a comment in your report. You don't need to submit empty reports, we receive all errors automatically. Your comments help us to understand the issue, but they are not required. If you don't want to submit comments, hit Cancel."
 msgstr ""
 
 #: skytemple/skytemple/data/widget/music/main.ui:40
