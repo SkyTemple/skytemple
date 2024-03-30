@@ -19,8 +19,7 @@ import logging
 import typing
 from enum import Enum
 from typing import TYPE_CHECKING, Optional, cast
-import cairo
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk
 from range_typed_integers import u16, u16_checked, u8, u8_checked
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -30,6 +29,8 @@ from skytemple_files.common.i18n_util import _
 from skytemple_files.data.item_s_p.model import ItemSPType
 from skytemple_files.data.md.protocol import PokeType
 import os
+
+from skytemple.core.widget.sprite import StSprite, StSpriteData
 
 
 class UseType(Enum):
@@ -93,7 +94,7 @@ class StMovesItemsItemPage(Gtk.Box):
     entry_buy_price: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_sell_price: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_palette: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    draw_sprite: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    sprite_container: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     main_notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     label_lang1: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     label_lang2: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
@@ -175,20 +176,7 @@ class StMovesItemsItemPage(Gtk.Box):
             notebook = self.main_notebook
             notebook.remove_page(3)
 
-    @Gtk.Template.Callback()
-    def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
-        scale = 2
-        sprite, x, y, w, h = self._sprite_provider.get_for_item(
-            self.item_p, lambda: GLib.idle_add(widget.queue_draw)
-        )
-        ctx.scale(scale, scale)
-        ctx.set_source_surface(sprite)
-        ctx.get_source().set_filter(cairo.Filter.NEAREST)
-        ctx.paint()
-        ctx.scale(1 / scale, 1 / scale)
-        if widget.get_size_request() != (w, h):
-            widget.set_size_request(w * scale, h * scale)
-        return True
+        self._reset_sprite()
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
@@ -210,7 +198,7 @@ class StMovesItemsItemPage(Gtk.Box):
         self.item_p.sprite = val
         self.mark_as_modified()
         self._sprite_provider.reset()
-        self.draw_sprite.queue_draw()
+        self._reset_sprite()
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
@@ -242,7 +230,7 @@ class StMovesItemsItemPage(Gtk.Box):
         self.item_p.palette = val
         self.mark_as_modified()
         self._sprite_provider.reset()
-        self.draw_sprite.queue_draw()
+        self._reset_sprite()
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
@@ -659,3 +647,13 @@ class StMovesItemsItemPage(Gtk.Box):
                 StringType.ITEM_LONG_DESCRIPTIONS, self.item_data
             )
         ] = w.get_text(w.get_start_iter(), w.get_end_iter(), False)
+
+    def _reset_sprite(self):
+        for child in self.sprite_container.get_children():
+            self.sprite_container.remove(child)
+
+        sp = StSprite(
+            StSpriteData(self._sprite_provider.get_for_item, (self.item_p,), scale=2)
+        )
+        self.sprite_container.add(sp)
+        sp.show()

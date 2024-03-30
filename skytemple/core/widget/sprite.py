@@ -35,6 +35,7 @@ class StSpriteData:
         "parameters",
         "passed_fn_supports_callback",
         "tint_placeholder",
+        "scale",
     ]
     # (*parameters, callback_fn) -> SpriteAndOffsetAndDims
     load_fn: Any  # TODO: type. Type of function is first parameters, then callback.
@@ -43,6 +44,7 @@ class StSpriteData:
     passed_fn_supports_callback: bool
     # If True, will tint this sprite in orange.
     tint_placeholder: bool
+    scale: int
 
     def __init__(
         self,
@@ -50,11 +52,13 @@ class StSpriteData:
         parameters: Any,
         passed_fn_supports_callback=True,
         tint_placeholder=False,
+        scale=1,
     ):
         self.load_fn = load_fn
         self.parameters = parameters
         self.passed_fn_supports_callback = passed_fn_supports_callback
         self.tint_placeholder = tint_placeholder
+        self.scale = scale
 
 
 @Gtk.Template(filename=os.path.join(data_dir(), "widget", "sprite.ui"))
@@ -100,9 +104,18 @@ class StSprite(Gtk.DrawingArea):
             sp_ctx.set_operator(cairo.OPERATOR_IN)
             sp_ctx.fill()
 
+        if self.sprite_data.scale != 1:
+            ctx.scale(self.sprite_data.scale, self.sprite_data.scale)
         ctx.set_source_surface(sprite)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
-        if self.get_size_request() != (w, h):
-            self.set_size_request(w, h)
+        if self.sprite_data.scale != 1:
+            ctx.scale(1 / self.sprite_data.scale, 1 / self.sprite_data.scale)
+        if self.get_size_request() != (
+            w * self.sprite_data.scale,
+            h * self.sprite_data.scale,
+        ):
+            self.set_size_request(
+                w * self.sprite_data.scale, h * self.sprite_data.scale
+            )
         return True
