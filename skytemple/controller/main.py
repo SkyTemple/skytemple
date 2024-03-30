@@ -61,6 +61,8 @@ from skytemple_files.common.version_util import (
     get_event_banner,
 )
 
+from skytemple.core.widget.status_page import StStatusPage, StStatusPageData
+
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 
@@ -256,9 +258,34 @@ class MainController:
             module_slug = slug_convert(
                 self._current_view_module.__class__.__name__
             ).replace("-module", "")
-            view_slug = slug_convert(
-                self._current_view_controller_class.__name__
-            ).replace("-controller", "")
+
+            if isinstance(self._current_view, StStatusPage):
+                # TODO: Yikes, this is a bit of a mess caused by merging the view migration
+                #       and the wiki help button. Maybe clean this up at some point?
+                it: StStatusPageData = self._current_view.item_data
+                view_slug = "main"
+                if module_slug == "dungeon":
+                    if it.title == _("Dojo Dungeons"):
+                        view_slug = "dojos"
+                    else:
+                        view_slug = "group"
+                if module_slug == "map-bg":
+                    view_slug = "folder"
+                if module_slug == "moves-items":
+                    if it.title == _("Items"):
+                        view_slug = "main-items"
+                    if it.title == _("Moves"):
+                        view_slug = "main-moves"
+                if module_slug == "script":
+                    # XXX: we can't detect lsd/sub
+                    view_slug = "folder"
+            else:
+                view_slug = (
+                    slug_convert(self._current_view_controller_class.__name__)
+                    .replace(f"st-{module_slug}-", "")
+                    .replace("-controller", "")
+                    .replace("-page", "")
+                )
 
             webbrowser.open(
                 f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple--{module_slug}--{view_slug}"
