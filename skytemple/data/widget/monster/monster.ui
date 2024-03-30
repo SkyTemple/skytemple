@@ -773,12 +773,11 @@ If you choose to export both genders, upon import the matching gender entry will
               </packing>
             </child>
             <child>
-              <object class="GtkDrawingArea" id="draw_sprite">
+              <object class="GtkBox" id="sprite_container">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <signal name="draw" handler="on_draw_sprite_draw" swapped="no" />
               </object>
               <packing>
                 <property name="left-attach">0</property>

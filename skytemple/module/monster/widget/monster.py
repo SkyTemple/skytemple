@@ -19,7 +19,7 @@ import logging
 import re
 import sys
 from enum import Enum
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, Optional, cast, Callable
 from xml.etree import ElementTree
 import cairo
 from explorerscript.util import open_utf8
@@ -47,6 +47,7 @@ from skytemple.core.ui_utils import (
     data_dir,
     safe_destroy,
 )
+from skytemple.core.widget.sprite import StSprite, StSpriteData
 from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
@@ -130,7 +131,7 @@ class StMonsterMonsterPage(Gtk.Box):
     entry_national_pokedex_number: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     cb_gender: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     draw_portrait: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
-    draw_sprite: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    sprite_container: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     entry_entid: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_sprite_index: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     btn_import: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -316,7 +317,7 @@ class StMonsterMonsterPage(Gtk.Box):
         else:
             self._md_evo = None
             stack.set_visible_child(self.box_no_evo)
-        self.draw_sprite.queue_draw()
+        self._reset_sprite()
         self._is_loading = False
         notebook = self.main_notebook
         notebook.set_current_page(self.__class__._last_open_tab_id)
@@ -353,21 +354,6 @@ class StMonsterMonsterPage(Gtk.Box):
         ctx.scale(1 / scale, 1 / scale)
         if widget.get_size_request() != (IMG_DIM * scale, IMG_DIM * scale):
             widget.set_size_request(IMG_DIM * scale, IMG_DIM * scale)
-        return True
-
-    @Gtk.Template.Callback()
-    def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
-        if self.entry.entid > 0:
-            sprite, x, y, w, h = self._sprite_provider.get_monster(
-                self.entry.md_index, 0, lambda: GLib.idle_add(widget.queue_draw)
-            )
-        else:
-            sprite, x, y, w, h = self._sprite_provider.get_error()
-        ctx.set_source_surface(sprite)
-        ctx.get_source().set_filter(cairo.Filter.NEAREST)
-        ctx.paint()
-        if widget.get_size_request() != (w, h):
-            widget.set_size_request(w, h)
         return True
 
     @Gtk.Template.Callback()
@@ -431,7 +417,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self.mark_as_modified()
         self._sprite_provider.reset()
         self._check_sprite_size(False)
-        self.draw_sprite.queue_draw()
+        self._reset_sprite()
         self._reload_sprite_page()
 
     @Gtk.Template.Callback()
@@ -2025,3 +2011,22 @@ class StMonsterMonsterPage(Gtk.Box):
         self._md_evo.evo_entries[self.item_data].eggs = eggs_entries
         if not self._is_loading:
             self.module.mark_md_evo_as_modified(self.item_data)
+
+    def _reset_sprite(self):
+        for child in self.sprite_container.get_children():
+            self.sprite_container.remove(child)
+
+        fn: Callable
+        params: tuple
+
+        if self.entry.entid > 0:
+            fn = self._sprite_provider.get_monster
+            params = (self.entry.md_index, 0)
+            supports_cb = True
+        else:
+            fn = self._sprite_provider.get_error
+            params = ()
+            supports_cb = False
+        sp = StSprite(StSpriteData(fn, params, supports_cb))
+        self.sprite_container.add(sp)
+        sp.show()
