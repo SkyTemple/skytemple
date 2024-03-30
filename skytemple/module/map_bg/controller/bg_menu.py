@@ -57,17 +57,13 @@ from skytemple.core.ui_utils import (
     add_dialog_gif_filter,
     add_dialog_png_filter,
 )
-from skytemple.module.tiled_img.dialog_controller.chunk_editor import (
-    ChunkEditorController,
-)
 from skytemple.module.map_bg.controller.bg_menu_dialogs.map_width_height import (
     on_map_width_chunks_changed,
     on_map_height_chunks_changed,
     on_map_wh_link_state_set,
 )
-from skytemple.module.tiled_img.dialog_controller.palette_editor import (
-    PaletteEditorController,
-)
+from skytemple.module.tiled_img.widget.chunk_editor import StChunkEditorDialog
+from skytemple.module.tiled_img.widget.palette_editor import StPaletteEditorDialog
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.widget.bg import StMapBgBgPage
@@ -409,7 +405,7 @@ class BgMenuController:
         ) = self._get_chunk_editor_provider(
             bpc_layer_to_use, self.parent.bpc, self.parent.bpl, self.parent.bpas
         )
-        cntrl = ChunkEditorController(
+        cntrl = StChunkEditorDialog(
             MainController.window(),
             mappings,
             static_tiles_provider,
@@ -418,7 +414,7 @@ class BgMenuController:
             animated_tiles_providers,
             self.parent.bpa_durations,
         )
-        edited_mappings = cntrl.show()
+        edited_mappings = cntrl.show_dialog()
         if edited_mappings:
             # TODO: Hardcoded chunk size
             new_chunk_size = int(len(edited_mappings) / 9)
@@ -448,7 +444,7 @@ class BgMenuController:
             ) = self._get_chunk_editor_provider(
                 bpc_layer_to_use, self.parent.bpc, self.parent.bpl, self.parent.bpas
             )
-            cntrl = ChunkEditorController(
+            cntrl = StChunkEditorDialog(
                 MainController.window(),
                 mappings,
                 static_tiles_provider,
@@ -457,7 +453,7 @@ class BgMenuController:
                 animated_tiles_providers,
                 self.parent.bpa_durations,
             )
-            edited_mappings = cntrl.show()
+            edited_mappings = cntrl.show_dialog()
 
             if edited_mappings:
                 # TODO: Hardcoded chunk size
@@ -838,8 +834,8 @@ class BgMenuController:
         for i, pal in enumerate(self.parent.bpl.get_real_palettes()):
             dict_pals[f"{i}"] = pal.copy()
 
-        cntrl = PaletteEditorController(MainController.window(), dict_pals)
-        edited_palettes = cntrl.show()
+        cntrl = StPaletteEditorDialog(MainController.window(), dict_pals)
+        edited_palettes = cntrl.show_dialog()
         if edited_palettes:
             self.parent.bpl.set_palettes(edited_palettes)
             self.parent.reload_all()
@@ -1006,10 +1002,10 @@ class BgMenuController:
         for i, pal in enumerate(self.parent.bpl.animation_palette):
             dict_pals[f"F{i + 1}"] = list(pal)
 
-        cntrl = PaletteEditorController(
+        cntrl = StPaletteEditorDialog(
             MainController.window(), dict_pals, False, True, False
         )
-        edited_palettes = cntrl.show()
+        edited_palettes = cntrl.show_dialog()
         if edited_palettes:
             self.parent.bpl.animation_palette = edited_palettes
             self.parent.reload_all()

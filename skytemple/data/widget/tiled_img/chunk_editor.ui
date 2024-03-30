@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright 2020 Parakoopa
-  ~
-  ~ This file is part of SkyTemple.
-  ~
-  ~ SkyTemple is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ SkyTemple is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-  -->
-
-<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkListStore" id="palette_ids">
@@ -27,7 +7,7 @@
       <column type="gint"/>
     </columns>
   </object>
-  <object class="GtkDialog" id="map_bg_chunk_editor">
+  <template class="StChunkEditorDialog" parent="GtkDialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Chunk Editor</property>
     <property name="modal">True</property>
@@ -743,5 +723,5 @@
     <child type="titlebar">
       <placeholder/>
     </child>
-  </object>
+  </template>
 </interface>

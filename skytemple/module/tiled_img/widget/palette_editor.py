@@ -14,19 +14,32 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+from __future__ import annotations
 import os
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import ResponseType
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import make_builder, builder_get_assert
+from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.util import make_palette_colors_unique
 from skytemple_files.common.i18n_util import _
 
+if TYPE_CHECKING:
+    from skytemple.module.tiled_img.module import TiledImgModule
 
-class PaletteEditorController:
+
+@Gtk.Template(
+    filename=os.path.join(data_dir(), "widget", "tiled_img", "palette_editor.ui")
+)
+class StPaletteEditorDialog(Gtk.Dialog):
+    __gtype_name__ = "StPaletteEditorDialog"
+    module: TiledImgModule
+    notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
+    make_unique_box: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
+    add_remove_btns: Gtk.ButtonBox = cast(Gtk.ButtonBox, Gtk.Template.Child())
+
     def __init__(
         self,
         parent_window,
@@ -35,20 +48,16 @@ class PaletteEditorController:
         allow_adding_removing=False,
         show_make_unique_button=True,
     ):
-        path = os.path.abspath(os.path.dirname(__file__))
+        super().__init__()
 
         # Deprecated, this option doesn't do anything anymore. color0 is always editable.
         self.disable_color0 = False
         self.allow_adding_removing = allow_adding_removing
         self.show_make_unique_button = show_make_unique_button
 
-        self.builder = make_builder(os.path.join(path, "palette_editor.glade"))
+        self.set_attached_to(parent_window)
+        self.set_transient_for(parent_window)
 
-        self.dialog = builder_get_assert(self.builder, Gtk.Dialog, "map_bg_palettes")
-        self.dialog.set_attached_to(parent_window)
-        self.dialog.set_transient_for(parent_window)
-
-        self.notebook = builder_get_assert(self.builder, Gtk.Notebook, "notebook")
         self.notebook.add_events(
             Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK
         )
@@ -58,33 +67,29 @@ class PaletteEditorController:
         self.tab_keys = list(palettes.keys())
         self.palettes = list(palettes.values())
 
-        self.builder.connect_signals(self)
-
-    def show(self):
-        self.dialog.set_size_request(690, 280)
+    def show_dialog(self):
+        self.set_size_request(690, 280)
         self._init_notebook_pages()
         self._init_page(0)
         if not self.show_make_unique_button:
-            builder_get_assert(self.builder, Gtk.Box, "make_unique_box").set_visible(
-                False
-            )
+            self.make_unique_box.set_visible(False)
         if not self.allow_adding_removing:
-            builder_get_assert(
-                self.builder, Gtk.ButtonBox, "add_remove_btns"
-            ).set_visible(False)
+            self.add_remove_btns.set_visible(False)
 
-        resp = self.dialog.run()
-        self.dialog.destroy()
+        resp = self.run()
+        self.destroy()
 
         if resp == ResponseType.OK:
             return self.palettes
         return None
 
+    @Gtk.Template.Callback()
     def on_notebook_switch_page(self, ntb, wdg, page_num):
         if page_num is None:
             return
         self._init_page(page_num)
 
+    @Gtk.Template.Callback()
     def on_notebook_scroll_event(self, widget, event):
         if event.get_scroll_deltas()[2] < 0:
             self.notebook.prev_page()
@@ -100,9 +105,10 @@ class PaletteEditorController:
             int(color.blue_float * 255),  # type: ignore
         ]
 
+    @Gtk.Template.Callback()
     def on_make_unique_info_button_clicked(self, *args):
         md = SkyTempleMessageDialog(
-            self.dialog,
+            self,
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -121,11 +127,12 @@ class PaletteEditorController:
         md.run()
         md.destroy()
 
+    @Gtk.Template.Callback()
     def on_make_unique_button_clicked(self, *args):
         self.palettes = make_palette_colors_unique(self.palettes)
         self._init_page(self.notebook.get_current_page())
         md = SkyTempleMessageDialog(
-            self.dialog,
+            self,
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -137,6 +144,7 @@ class PaletteEditorController:
         md.run()
         md.destroy()
 
+    @Gtk.Template.Callback()
     def on_palette_add_button_release_event(self, wdg, event):
         tab_label = Gtk.Label.new("*")
         tab_label.show()
@@ -153,10 +161,11 @@ class PaletteEditorController:
 
         self.notebook.set_current_page(idx)
 
+    @Gtk.Template.Callback()
     def on_palette_remove_clicked(self, wdg):
         if self.notebook.get_n_pages() < 2:
             md = SkyTempleMessageDialog(
-                self.dialog,
+                self,
                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,

@@ -43,12 +43,8 @@ from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple.module.tiled_img.dialog_controller.chunk_editor import (
-    ChunkEditorController,
-)
-from skytemple.module.tiled_img.dialog_controller.palette_editor import (
-    PaletteEditorController,
-)
+from skytemple.module.tiled_img.widget.chunk_editor import StChunkEditorDialog
+from skytemple.module.tiled_img.widget.palette_editor import StPaletteEditorDialog
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.widget.dungeon_bg import (
@@ -135,14 +131,14 @@ class BgMenuController:
         all_tilemaps = list(itertools.chain.from_iterable(self.parent.dpc.chunks))
         static_tiles_provider = DungeonTilesProvider(self.parent.dpci)
         palettes_provider = DungeonPalettesProvider(self.parent.dpl, self.parent.dpla)
-        cntrl = ChunkEditorController(
+        cntrl = StChunkEditorDialog(
             MainController.window(),
             all_tilemaps,
             static_tiles_provider,
             palettes_provider,
             self.parent.pal_ani_durations,
         )
-        edited_mappings = cntrl.show()
+        edited_mappings = cntrl.show_dialog()
         if edited_mappings:
             self.parent.dpc.chunks = list(
                 chunks(edited_mappings, DPC_TILING_DIM * DPC_TILING_DIM)
@@ -297,8 +293,8 @@ class BgMenuController:
         for i, pal in enumerate(self.parent.dpl.palettes):
             dict_pals[f"{i}"] = list(pal)
 
-        cntrl = PaletteEditorController(MainController.window(), dict_pals)
-        edited_palettes = cntrl.show()
+        cntrl = StPaletteEditorDialog(MainController.window(), dict_pals)
+        edited_palettes = cntrl.show_dialog()
         if edited_palettes:
             self.parent.dpl.palettes = edited_palettes
             self.parent.reload_all()
@@ -413,10 +409,10 @@ class BgMenuController:
         for i, pal in enumerate(list_of_frames):
             dict_pals[f"F{i + 1}"] = pal.copy()
 
-        cntrl = PaletteEditorController(
+        cntrl = StPaletteEditorDialog(
             MainController.window(), dict_pals, False, True, False
         )
-        edited_palettes = cntrl.show()
+        edited_palettes = cntrl.show_dialog()
         if edited_palettes:
             # Transpose back
             edited_colors: list[list[int]] = list(
