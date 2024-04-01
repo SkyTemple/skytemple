@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-03-30 18:44+0000\n"
-"PO-Revision-Date: 2024-03-30 19:26\n"
+"POT-Creation-Date: 2024-03-30 20:14+0000\n"
+"PO-Revision-Date: 2024-04-01 01:27\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1267,6 +1267,7 @@ msgid "IQ"
 msgstr "CI"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:455
+#: skytemple/skytemple/controller/main.py:275
 #: skytemple/skytemple/core/events/impl/discord.py:350
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:889
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5540
@@ -3550,7 +3551,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "¿Quieres guardar los cambios en {filename}?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:328
-#: skytemple/skytemple/controller/main.py:1027
+#: skytemple/skytemple/controller/main.py:1054
 msgid "Don't Save"
 msgstr "No guardar"
 
@@ -3578,7 +3579,7 @@ msgid "_Save"
 msgstr "_Guardar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:332
-#: skytemple/skytemple/controller/main.py:1031
+#: skytemple/skytemple/controller/main.py:1058
 msgid "If you don't save, your changes will be lost."
 msgstr "Si no guardas, se perderán los cambios."
 
@@ -3977,7 +3978,7 @@ msgstr "Eliminar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1733
-#: skytemple/skytemple/controller/main.py:1029
+#: skytemple/skytemple/controller/main.py:1056
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/widget/main.py:128
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:46
@@ -4416,7 +4417,7 @@ msgstr "Estado del terreno"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1098
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2807
-#: skytemple/skytemple/controller/main.py:1030
+#: skytemple/skytemple/controller/main.py:1057
 #: skytemple/skytemple/skytemple.glade:1361
 msgid "Save"
 msgstr "Guardar"
@@ -5024,57 +5025,68 @@ msgstr "Ampliar"
 msgid "Zoom _Out"
 msgstr "Alejar"
 
-#: skytemple/skytemple/controller/main.py:281
+#: skytemple/skytemple/controller/main.py:268
+#: skytemple/skytemple/module/dungeon/module.py:128
+msgid "Dojo Dungeons"
+msgstr "Territorios del Dojo"
+
+#: skytemple/skytemple/controller/main.py:277
+#: skytemple/skytemple/module/monster/level_up_graph.py:104
+#: skytemple/skytemple/module/moves_items/module.py:66
+msgid "Moves"
+msgstr "Movimientos"
+
+#: skytemple/skytemple/controller/main.py:308
 msgid "Save As..."
 msgstr "Guardar como..."
 
-#: skytemple/skytemple/controller/main.py:301
+#: skytemple/skytemple/controller/main.py:328
 msgid "Open ROM..."
 msgstr "Abrir ROM..."
 
-#: skytemple/skytemple/controller/main.py:421
+#: skytemple/skytemple/controller/main.py:448
 msgid "Error opening the ROM"
 msgstr "Error al abrir la ROM"
 
-#: skytemple/skytemple/controller/main.py:443
+#: skytemple/skytemple/controller/main.py:470
 msgid "Error saving the ROM"
 msgstr "Error al guardar la ROM"
 
-#: skytemple/skytemple/controller/main.py:630
-#: skytemple/skytemple/controller/main.py:691
+#: skytemple/skytemple/controller/main.py:657
+#: skytemple/skytemple/controller/main.py:718
 msgid "A project must be opened to use this."
 msgstr "Debe abrirse un proyecto para utilizarlo."
 
-#: skytemple/skytemple/controller/main.py:705
+#: skytemple/skytemple/controller/main.py:732
 msgid "'spritecollab' module must be installed to use this."
 msgstr "El módulo 'spritecollab' debe estar instalado para usar esto."
 
-#: skytemple/skytemple/controller/main.py:772
-#: skytemple/skytemple/controller/main.py:775
+#: skytemple/skytemple/controller/main.py:799
+#: skytemple/skytemple/controller/main.py:802
 msgid "Open a ROM"
 msgstr "Abrir una ROM"
 
-#: skytemple/skytemple/controller/main.py:808
+#: skytemple/skytemple/controller/main.py:835
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Cargando ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:809
+#: skytemple/skytemple/controller/main.py:836
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Abriendo {filename}."
 
-#: skytemple/skytemple/controller/main.py:1010
+#: skytemple/skytemple/controller/main.py:1037
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Guardando ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:1011
+#: skytemple/skytemple/controller/main.py:1038
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Guardando {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:1025
+#: skytemple/skytemple/controller/main.py:1052
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "¿Quieres guardar los cambios en {rom_name}?"
@@ -10145,10 +10157,6 @@ msgstr "Error al importar la imagen."
 msgid "(Special?)"
 msgstr "(¿Especial?)"
 
-#: skytemple/skytemple/module/dungeon/module.py:128
-msgid "Dojo Dungeons"
-msgstr "Territorios del Dojo"
-
 #: skytemple/skytemple/module/dungeon/module.py:130
 msgid "Dojo Dungeons are the dungeons used in the Marowak Dojo.\n"
 "You can not change the number of floors for Dojo Dungeons."
@@ -11923,11 +11931,6 @@ msgstr "Def."
 #: skytemple/skytemple/module/monster/level_up_graph.py:102
 msgid "Sp. DEF"
 msgstr "Def. Esp."
-
-#: skytemple/skytemple/module/monster/level_up_graph.py:104
-#: skytemple/skytemple/module/moves_items/module.py:66
-msgid "Moves"
-msgstr "Movimientos"
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:104
 #, python-brace-format
