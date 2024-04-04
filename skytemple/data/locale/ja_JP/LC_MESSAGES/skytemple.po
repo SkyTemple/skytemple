@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-01 01:27\n"
+"PO-Revision-Date: 2024-04-04 11:19\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -3246,15 +3246,15 @@ msgstr ""
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:262
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:281
 msgid "SWDL file too short (Wavi EOF)."
-msgstr ""
+msgstr "SWDLファイルの長さが短すぎます (Wavi EOF)。"
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:265
 msgid "Invalid SWDL/Wavi header."
-msgstr ""
+msgstr "SWDL/Wavi ヘッダーが無効です。"
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:275
 msgid "SWDL Wavi length invalid; tried to read past EOF."
-msgstr ""
+msgstr "SWDL Wavi の長さが無効です。読み込み時にEOFを超えています。"
 
 #: skytemple-rust/src/image/tiled.rs:230
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
