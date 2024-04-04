@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-01 01:27\n"
+"PO-Revision-Date: 2024-04-04 11:19\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1692,7 +1692,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:176
 msgid "Spawns a locked Key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "Genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:182
 msgid "F/W, Room; Key Door (Escort)"
@@ -2997,7 +2997,7 @@ msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo di
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
-msgstr ""
+msgstr "Corrige la probabilidad de que los territorios no se usen. Ahora determina la probabilidad de que aparezca una sala laberinto en el piso."
 
 #: skytemple-files/skytemple_files/patch/patches.py:230
 #: skytemple-files/skytemple_files/patch/patches.py:240
