@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-05 12:17\n"
+"PO-Revision-Date: 2024-04-05 16:03\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -12815,7 +12815,7 @@ msgstr "Roher Code (*.bin)"
 #: skytemple/skytemple/module/patch/widget/sp_effects.py:165
 #: skytemple/skytemple/module/patch/widget/sp_effects.py:185
 msgid "ASM code imported successfully."
-msgstr ""
+msgstr "ASM-Code wurde erfolgreich importiert."
 
 #: skytemple/skytemple/module/patch/widget/item_effects.py:180
 #: skytemple/skytemple/module/patch/widget/item_effects.py:202
@@ -12930,7 +12930,7 @@ msgstr "Alle Portraits als PNGs exportieren..."
 #: skytemple/skytemple/module/portrait/widget/portrait.py:308
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
-msgstr ""
+msgstr "Um zu importieren, wähle einen Ordner aus. Dateien nach dem Muster '{self.item_data + 1}_XX.png' werden importiert. Dabei muss XX eine Zahl zwischen 0 und 40 sein."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:311
 msgid "Import Portraits"
@@ -13543,7 +13543,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can also access help from the wiki for\n"
 "the section you are currently in with the \"?\"\n"
 "icon at the top of the app."
-msgstr ""
+msgstr "<span size=\"large\">Willkommen bei SkyTemple!</span>\n\n"
+"Mit diesem Tool kannst du verschiedene Dinge in den ROMs\n"
+"von Pokémon Mystery Dungeon Erkundungsteam Himmel bearbeiten.\n\n"
+"Weitere Informationen über die Verwendung dieser\n"
+"Anwendung findest du im <a href=\"wiki\">SkyTemple-Wiki</a>.\n"
+"Du kannst auch Hilfe aus unserem Wiki abrufen. Klicke dafür auf das\n"
+"\"?\" Symbol oben in der Anwendung. Es wird eine Wiki-Seite passend zu\n"
+"dem Abschnitt geöffnet, in dem du dich gerade befindest."
 
 #: skytemple/skytemple/skytemple.glade:103
 msgid "Can we add a \"Created with SkyTemple\" message\n"
