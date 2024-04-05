@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-05 04:26\n"
+"PO-Revision-Date: 2024-04-05 07:16\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2244,7 +2244,7 @@ msgstr "泡"
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:329
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:359
 msgid "Earthquake"
-msgstr "じしん"
+msgstr "地震"
 
 #. TRANSLATORS: Effect of a tileset's secret power move
 #. TRANSLATORS: Move name
@@ -3263,7 +3263,7 @@ msgstr ""
 
 #: skytemple-rust/src/python_image.rs:53
 msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
-msgstr ""
+msgstr "入力された画像はインデックス付き画像ではありません (パレットはありません)。インデックス付きの画像 (最大 {} 色) に変換して、もう一度試してください。"
 
 #: skytemple-rust/src/romfs.rs:100
 msgid "ROM Header checksum does not match contents."
@@ -13174,7 +13174,7 @@ msgstr "ディザ: Floyd-Steinberg"
 
 #: skytemple/skytemple/skytemple.glade:1711
 msgid "No Dithering"
-msgstr ""
+msgstr "ディザリングなし"
 
 #: skytemple/skytemple/skytemple.glade:1715
 msgid "Reorganize colors only"
