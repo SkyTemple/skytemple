@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-04 12:19\n"
+"PO-Revision-Date: 2024-04-05 12:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2785,15 +2785,15 @@ msgstr "Wer würdest du dann gerne sein?"
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:66
 msgid "Adds an extra menu during the personality test to choose the starter."
-msgstr ""
+msgstr "Fügt am Anfang des Persönlichkeitstests ein extra Menü hinzu, um den Starter von Hand auszuwählen."
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:106
 msgid "[CS:S]Control mode set to[CR] [CS:C]automatic[CR][CS:S].[CR]"
-msgstr ""
+msgstr "[CS:S] Steuermodus auf[CR] [CS:C]automatisch[CR] [CS:S] eingestellt.[CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:109
 msgid "[CS:S]Control mode set to[CR] [CS:E]manual[CR][CS:S].[CR]"
-msgstr ""
+msgstr "[CS:S] Steuermodus auf[CR] [CS:C]manuell[CR] [CS:S] eingestellt.[CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:121
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
@@ -2936,7 +2936,7 @@ msgstr "Ersetzt die fixierte Attacke (L+A) mit einer Schnellauswahl wie in PidU 
 
 #: skytemple-files/skytemple_files/patch/handler/negative_enemy_density.py:49
 msgid "Makes negative enemy density values work as intended (the absolute value of the density is used, without adding a random variation)."
-msgstr ""
+msgstr "Sorgt dafür, dass negative Werte für die Gegner-Spawn-Dichte so funktionieren, wie vorgesehen (der absolute Wert wird dann verwendet, ohne Variation hinzuzufügen)."
 
 #: skytemple-files/skytemple_files/patch/handler/no_weather_stop.py:51
 msgid "Changes weather damage messages so they don't make the player stop running."
@@ -3070,7 +3070,7 @@ msgstr "Kein Patch für Handler '{handler.name}' gefunden in der Konfiguration."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:109
 msgid "Unknown or extra XML element '{}' in scene data."
-msgstr ""
+msgstr "Unbekanntes oder zusätzliches XML-Element '{}' in Szenendaten."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:110
 msgid "'{}' missing in scene data."
@@ -3078,7 +3078,7 @@ msgstr "'{}' fehlt in den Szenendaten."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:470
 msgid "The event ID {} is out of bounds for one of the triggers."
-msgstr ""
+msgstr "Die Event-ID {} liegt außerhalb der Grenzen für einen der Trigger."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:558
 msgid "Unknown direction value."
