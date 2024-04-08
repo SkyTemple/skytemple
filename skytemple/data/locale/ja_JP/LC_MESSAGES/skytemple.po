@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-05 16:03\n"
+"PO-Revision-Date: 2024-04-08 02:02\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1391,22 +1391,22 @@ msgstr "大"
 #: skytemple-files/skytemple_files/data/monster_xml.py:219
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__NAME}' missing for language {xml_lang.tag}."
-msgstr ""
+msgstr "XML が無効です。言語 {xml_lang.tag} の '{XML_STRINGS__NAME}' が見つかりません。"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:227
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__CATEGORY}' missing for language {xml_lang.tag}."
-msgstr ""
+msgstr "XML が無効です。言語 {xml_lang.tag} の '{XML_STRINGS__CATEGORY}' が見つかりません。"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:460
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
-msgstr ""
+msgstr "XML が無効です。 '{XML_GENENT_EXCLUSIVE_ITEMS}' には 4 つの道具 ID が必要です。"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:558
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
-msgstr ""
+msgstr "XML が無効です。 {b} に '{a}' がありません。"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:607
 #, python-brace-format
@@ -6129,7 +6129,7 @@ msgstr "レイアウト"
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:610
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3636
 msgid "Pokémon Spawns"
-msgstr ""
+msgstr "出現ポケモン"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:624
 msgid "Trap Spawns"
@@ -6137,27 +6137,27 @@ msgstr "トラップスポーン"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:638
 msgid "Floor Item Spawns"
-msgstr ""
+msgstr "フロア内の道具"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:652
 msgid "Shop Item Spawns"
-msgstr ""
+msgstr "カクレオンのお店の道具"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:666
 msgid "Monster House Item Spawns"
-msgstr ""
+msgstr "モンスターハウスの道具"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:680
 msgid "Buried Item Spawns"
-msgstr ""
+msgstr "壁に埋まっている道具"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:694
 msgid "Grab Bag Item Spawns"
-msgstr ""
+msgstr "バザー福袋の道具"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:708
 msgid "Secret Room Item Spawns"
-msgstr ""
+msgstr "ひみつのへやの道具"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:731
 #: skytemple/skytemple/data/widget/monster/monster.ui:374
@@ -6390,11 +6390,11 @@ msgstr "不明 E:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2639
 msgid "Enemy IQ:"
-msgstr ""
+msgstr "敵のかしこさ:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2651
 msgid "IQ Booster boost:"
-msgstr ""
+msgstr "IQアッパー上昇値:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2663
 msgid "Shop item positions:"
