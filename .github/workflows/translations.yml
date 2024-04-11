@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - gtk4 # temporary
 
 jobs:
   build:
