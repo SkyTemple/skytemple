@@ -1,7 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
 import sys
-import shutil
 from pathlib import PurePosixPath, Path
 from PyInstaller.utils.hooks import collect_entry_point, copy_metadata
 
@@ -15,6 +14,7 @@ if os.uname().machine == "arm64":
 
 additional_datas = [
     (os.path.join(pkg_path, "data"), "data"),
+    # todo: Remove
     (os.path.join(pkg_path, "*.glade"), "."),
     (os.path.join(pkg_path, "*.css"), "."),
     # (os.path.join(site_packages, 'skytemple_rust*.so'), '.'),
@@ -26,6 +26,7 @@ additional_datas = [
         os.path.join(site_packages, "skytemple_ssb_debugger", "data"),
         "skytemple_ssb_debugger/data",
     ),
+    # todo: Remove
     (
         os.path.join(site_packages, "skytemple_ssb_debugger", "*.glade"),
         "skytemple_ssb_debugger",
@@ -34,10 +35,12 @@ additional_datas = [
         os.path.join(site_packages, "skytemple_ssb_debugger", "*.lang"),
         "skytemple_ssb_debugger",
     ),
+    # todo: Remove
     (
         os.path.join(site_packages, "skytemple_ssb_debugger", "controller", "*.glade"),
         "skytemple_ssb_debugger/controller",
     ),
+    # todo: Remove
     (
         os.path.join(
             site_packages,
@@ -93,9 +96,7 @@ additional_binaries = [
         ".",
     ),  # Gets installed with Enchant
     (
-        os.path.join(
-            homebrew_path, "lib", "enchant-2", "enchant_applespell.so"
-        ),
+        os.path.join(homebrew_path, "lib", "enchant-2", "enchant_applespell.so"),
         ".",
     ),  # Gets installed with Enchant
     (
@@ -161,8 +162,9 @@ a = Analysis(
     hooksconfig={
         "gi": {
             "module-versions": {
-                "Gtk": "3.0",
-                "GtkSource": "4",
+                "Gtk": "4.0",
+                "Adw": "1",
+                "GtkSource": "5",
             },
         },
     },
@@ -203,5 +205,5 @@ app = BUNDLE(
     name="SkyTemple.app",
     icon="skytemple.icns",
     version=os.getenv("PACKAGE_VERSION", "0.0.0"),
-    bundle_identifier="de.parakoopa.skytemple",
+    bundle_identifier="org.skytemple.SkyTemple",
 )

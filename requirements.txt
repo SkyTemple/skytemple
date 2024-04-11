@@ -1,15 +1,15 @@
 ndspy==4.1.0
-skytemple-files[spritecollab] >= 1.6.5, < 1.7.0
+git+https://github.com/skytemple/skytemple-files@master#egg=skytemple_files[spritecollab]
 pmdsky-debug-py
-skytemple-dtef >= 1.6.1, < 1.7.0
-skytemple-icons >= 1.3.2, < 1.7.0
+git+https://github.com/skytemple/skytemple-dtef@main#egg=skytemple_dtef
+git+https://github.com/skytemple/skytemple-icons@main#egg=skytemple_icons
 range-typed-integers >= 1.0.0
-pygobject==3.48.1
+pygobject>=3.48.0
 pycairo==1.18.2; sys_platform != "win32"
 natsort==8.4.0
 tilequant==1.1.0
-skytemple-ssb-debugger >= 1.6.4, < 1.7.0
-skytemple-eventserver >= 1.6.0, < 1.7.0
+git+https://github.com/skytemple/skytemple-ssb-debugger@gtk4#egg=skytemple_ssb_debugger
+git+https://github.com/skytemple/skytemple-eventserver@main#egg=skytemple_eventserver
 pypresence==4.3.0
 pygal==3.0.4
 CairoSVG==2.7.1
@@ -20,5 +20,5 @@ packaging
 wheel
 types-setuptools
 ruff
-pygobject-stubs --config-settings=config=Gtk3,Gdk3,GtkSource4
+pygobject-stubs>=2.11.0 --config-settings=config=Gtk4,Gdk4,GtkSource5
 importlib_metadata>=4.6; python_version < "3.10"
