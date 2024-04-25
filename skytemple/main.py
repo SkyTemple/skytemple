@@ -52,6 +52,12 @@ if getattr(sys, "frozen", False) and platform.system() in ["Windows", "Darwin"]:
 
         ctypes.cdll.msvcrt._putenv(f"SSL_CERT_FILE={ca_bundle_path}")
         ctypes.cdll.msvcrt._putenv(f"REQUESTS_CA_BUNDLE={ca_bundle_path}")
+    else:
+        # Make sure armips can be found.
+        base_path = os.path.abspath(os.path.join(data_dir(), ".."))
+        os.environ["PATH"] = (
+            f"{base_path}/skytemple_files/_resources:{os.environ['PATH']}"
+        )
 
 try:
     init_locale()
