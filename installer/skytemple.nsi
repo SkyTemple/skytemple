@@ -46,6 +46,8 @@ Function UninstallPrevious
 
     ; Run the uninstaller silently.
     ExecShellWait "open" "$R0" "/S" SW_HIDE
+    ; FIXME: For some reason the ExecShellWait above sometimes doesn't wait enough!
+    Sleep 10000
 
     Done:
 FunctionEnd
