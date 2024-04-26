@@ -354,7 +354,7 @@ class StPatchAsmPage(Gtk.Box):
                         (
                             f(
                                 _(
-                                    "Error loading patch package {os.path.basename(fname)}."
+                                    "Error loading patch package {patch.name}."
                                 )
                             ),
                             sys.exc_info(),
