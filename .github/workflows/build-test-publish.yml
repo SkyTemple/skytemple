@@ -216,9 +216,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: "C:\\gtk-build"
-          key: win-gtk-build-2023-10-1-1
+          key: win-gtk-build-2024-fork1-1
           restore-keys: |
-            win-gtk-build-2023-10-1-
+            win-gtk-build-2023-fork1-1-
       - name: Checkout
         uses: actions/checkout@v4
       # Temporarily move the preinstalled git, it causes errors related to cygwin.
@@ -246,7 +246,7 @@ jobs:
       
           python -m pip install --user pipx
           python -m pipx ensurepath
-          pipx install "gvsbuild==2023.10.1"
+          pipx install "git+https://github.com/theCapypara/gvsbuild@pango-patch"
       - name: Build GTK and other libs
         run: |
           $env:path = "C:\pipx_bin;" + $env:path
