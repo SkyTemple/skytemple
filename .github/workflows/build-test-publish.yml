@@ -172,11 +172,11 @@ jobs:
           PATH_MACOS=$(eval echo "${{ steps.artifact_macos_x86.outputs.download-path }}/*.dmg")
           PATH_MACOS_ARM=$(eval echo "${{ steps.artifact_macos_arm64.outputs.download-path }}/*.dmg")
           
-          mkdir -p /mnt/dist/randomizer
+          mkdir -p /mnt/dist/skytemple
           cp -f "$PATH_WHEEL" "/mnt/dist/skytemple/skytemple-$REF.whl"
           cp -f "$PATH_WIN" "/mnt/dist/skytemple/skytemple-$REF.exe"
           cp -f "$PATH_MACOS" "/mnt/dist/skytemple/skytemple-x86-$REF.dmg"
-          cp -f "$PATH_MACOS_ARM" "/mnt/dist/randomizer/skytemple-arm64-$REF.dmg"
+          cp -f "$PATH_MACOS_ARM" "/mnt/dist/skytemple/skytemple-arm64-$REF.dmg"
   deploy-to-skytemple-dist:
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: [self-hosted, skytemple-dist]
