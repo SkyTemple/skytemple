@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-03-30 20:14+0000\n"
-"PO-Revision-Date: 2024-04-05 16:03\n"
+"POT-Creation-Date: 2024-04-26 13:00+0000\n"
+"PO-Revision-Date: 2024-04-26 13:08\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -17,524 +17,908 @@ msgstr ""
 "X-Crowdin-File: /[SkyTemple.skytemple] master/skytemple/data/locale/skytemple.pot\n"
 "X-Crowdin-File-ID: 10\n"
 
-#: /dev/fd/63:1 /dev/fd/63:120
+#: /dev/fd/63:1 /dev/fd/63:214
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:527
 #: skytemple/skytemple/controller/settings.py:37
 msgid "English"
 msgstr "Englisch"
 
-#: /dev/fd/63:2 /dev/fd/63:125
+#: /dev/fd/63:2 /dev/fd/63:219
+msgid "Friend Rescue Set Phrases"
+msgstr ""
+
+#: /dev/fd/63:3 /dev/fd/63:220
+msgid "Friend Rescue Message Input Strings"
+msgstr ""
+
+#: /dev/fd/63:4 /dev/fd/63:221
+msgid "Debug Strings (Game Init)"
+msgstr ""
+
+#: /dev/fd/63:5 /dev/fd/63:222
+msgid "Util Strings"
+msgstr ""
+
+#: /dev/fd/63:6 /dev/fd/63:223
+msgid "Chapter and Special Episode Strings"
+msgstr ""
+
+#: /dev/fd/63:7 /dev/fd/63:224
 msgid "Explorer Ranks Names"
 msgstr "Erkunderrang-Namen"
 
-#: /dev/fd/63:3 /dev/fd/63:126
+#: /dev/fd/63:8 /dev/fd/63:225
+msgid "Default Menu Strings 1"
+msgstr ""
+
+#: /dev/fd/63:9 /dev/fd/63:226
+msgid "Default Menu Strings 2"
+msgstr ""
+
+#: /dev/fd/63:10 /dev/fd/63:227
+msgid "Debug Strings (Main Menu)"
+msgstr ""
+
+#: /dev/fd/63:11 /dev/fd/63:228
 msgid "Default Team Names"
 msgstr "Standard Team-Namen"
 
-#: /dev/fd/63:4 /dev/fd/63:127
-msgid "Job Debriefing Related Strings"
-msgstr "Zeichenketten für Jobergebnisse"
+#: /dev/fd/63:12 /dev/fd/63:229
+msgid "Save Data Strings"
+msgstr ""
 
-#: /dev/fd/63:5 /dev/fd/63:128
-msgid "Member Joined Menu"
-msgstr "Menü \"Ins Team aufnehmen?\""
+#: /dev/fd/63:13 /dev/fd/63:230
+msgid "Prize Ticket Strings"
+msgstr ""
 
-#: /dev/fd/63:6 /dev/fd/63:129
-msgid "Some Item Menu Strings"
-msgstr "Einige Zeichenketten für Item-Menüs"
+#: /dev/fd/63:14 /dev/fd/63:231
+msgid "Job Debriefing Related Strings (Primary)"
+msgstr ""
 
-#: /dev/fd/63:7 /dev/fd/63:130
-msgid "Gummi Eating Strings"
-msgstr "Gummi-Verzehr Zeichenketten"
+#: /dev/fd/63:15 /dev/fd/63:232
+msgid "Job Debriefing Related Strings (Secondary)"
+msgstr ""
 
-#: /dev/fd/63:8 /dev/fd/63:131
-msgid "Items and Pokemon Menu Strings"
-msgstr "Zeichenketten für Items und Pokémon Menüs"
+#: /dev/fd/63:16 /dev/fd/63:233
+msgid "Dungeon Item Action Menu Strings"
+msgstr ""
 
-#: /dev/fd/63:9 /dev/fd/63:132
-msgid "Kangaskhan Storage Strings"
-msgstr "Kangama-Lager Zeichenketten"
-
-#: /dev/fd/63:10 /dev/fd/63:133
-msgid "Evolution Strings"
-msgstr "Zeichenketten zur Entwicklung"
-
-#: /dev/fd/63:11 /dev/fd/63:134
-msgid "Music tracks names"
-msgstr "Namen von Musiktiteln"
-
-#: /dev/fd/63:12 /dev/fd/63:135
-msgid "Personality Quiz Questions"
-msgstr "Fragen im Persönlichkeitstest"
-
-#: /dev/fd/63:13 /dev/fd/63:136
-msgid "Personality Quiz Answers"
-msgstr "Antworten im Persönlichkeitstest"
-
-#: /dev/fd/63:14 /dev/fd/63:137
-msgid "Personality Quiz result strings"
-msgstr "Ergebnisse im Persönlichkeitstest"
-
-#: /dev/fd/63:15 /dev/fd/63:138
-msgid "Personality string natures"
-msgstr "Zeichenketten für Wesen im Persönlichkeitstest"
-
-#: /dev/fd/63:16 /dev/fd/63:139
-msgid "Weather Change Feedback"
-msgstr "Zeichenketten zu Wetteränderungen"
-
-#: /dev/fd/63:17 /dev/fd/63:140
-msgid "Weather Names"
-msgstr "Wetter-Namen"
-
-#: /dev/fd/63:18 /dev/fd/63:141
-msgid "Floor-Wide Status Names+Desc"
-msgstr "Namen und Beschreibungen von Ebenenzuständen"
-
-#: /dev/fd/63:19 /dev/fd/63:142
-msgid "IQ Skills Menu"
-msgstr "Menü für IQ-Fähigkeiten"
-
-#: /dev/fd/63:20 /dev/fd/63:143
-msgid "Test Dungeon"
-msgstr "Test-Dungeon"
-
-#: /dev/fd/63:21 /dev/fd/63:144
-msgid "Mission Objectives"
-msgstr "Missionsziele"
-
-#: /dev/fd/63:22 /dev/fd/63:145
-msgid "Mission Failure/Faint Strings"
-msgstr "Zeichenketten für Missionsfehlschlag"
-
-#: /dev/fd/63:23 /dev/fd/63:146
-msgid "Speed Change Feedback"
-msgstr "Änderungen der Geschwindigkeit"
-
-#: /dev/fd/63:24 /dev/fd/63:147
-msgid "Potential Recruit Strings"
-msgstr "Potenzielle Team-Anwärter"
-
-#: /dev/fd/63:25 /dev/fd/63:148
+#: /dev/fd/63:17 /dev/fd/63:234
 msgid "Gummi Feedback"
 msgstr "Gummi-Feedback"
 
-#: /dev/fd/63:26 /dev/fd/63:149
-msgid "Traps Feedback"
-msgstr "Fallen-Feedback"
+#: /dev/fd/63:18 /dev/fd/63:235
+msgid "Dungeon Item Pickup Menu Strings"
+msgstr ""
 
-#: /dev/fd/63:27 /dev/fd/63:150
-msgid "More Dungeon Feedback"
-msgstr "Weiterer Dungeon-Feedback"
+#: /dev/fd/63:19 /dev/fd/63:236
+msgid "Storage Space Full Strings"
+msgstr ""
 
-#: /dev/fd/63:28 /dev/fd/63:151
-msgid "Something's Stirring String"
-msgstr "'Da ist irgendetwas...' Zeichenketten"
+#: /dev/fd/63:20 /dev/fd/63:237
+msgid "Treasure Bag Full Strings"
+msgstr ""
 
-#: /dev/fd/63:29 /dev/fd/63:152
-msgid "Some Fake items Dialogue"
-msgstr "Zeichenketten für Plagiat-Items"
+#: /dev/fd/63:21 /dev/fd/63:238
+msgid "New Recruit Full Strings"
+msgstr ""
 
-#: /dev/fd/63:30 /dev/fd/63:153
-msgid "Shaymin Form Change Strings"
-msgstr "Zeichenketten für Shaymins Formwechsel"
+#: /dev/fd/63:22 /dev/fd/63:239
+msgid "Kangaskhan Storage Filter Strings"
+msgstr ""
 
-#: /dev/fd/63:31 /dev/fd/63:154
-msgid "Recruited A Pokemon Strings"
-msgstr "Zeichenketten für Pokémon Anwerbung"
+#: /dev/fd/63:23 /dev/fd/63:240
+msgid "Kangaskhan Storage Strings"
+msgstr "Kangama-Lager Zeichenketten"
 
-#: /dev/fd/63:32 /dev/fd/63:155
-msgid "Battle Feedback Messages"
-msgstr "Feedback-Meldungen für Kämpfe"
+#: /dev/fd/63:24 /dev/fd/63:241
+msgid "Kecleon Market Strings"
+msgstr ""
 
-#: /dev/fd/63:33 /dev/fd/63:156
-msgid "Misson Feedback"
-msgstr "Feedback für Missionen"
+#: /dev/fd/63:25 /dev/fd/63:242
+msgid "Duskull Bank Strings"
+msgstr ""
 
-#: /dev/fd/63:34 /dev/fd/63:157
+#: /dev/fd/63:26 /dev/fd/63:243
+msgid "Chansey Day Care Strings"
+msgstr ""
+
+#: /dev/fd/63:27 /dev/fd/63:244
+msgid "Croagunk Swap Shop Strings"
+msgstr ""
+
+#: /dev/fd/63:28 /dev/fd/63:245
+msgid "Xatu Appraisal Strings"
+msgstr ""
+
+#: /dev/fd/63:29 /dev/fd/63:246
+msgid "Electivire Link Shop Strings"
+msgstr ""
+
+#: /dev/fd/63:30 /dev/fd/63:247
+msgid "Chimecho Assembly Strings"
+msgstr ""
+
+#: /dev/fd/63:31 /dev/fd/63:248
+msgid "Luminous Spring Strings"
+msgstr ""
+
+#: /dev/fd/63:32 /dev/fd/63:249
+msgid "Diary Strings"
+msgstr ""
+
+#: /dev/fd/63:33 /dev/fd/63:250
+msgid "Level Up Strings"
+msgstr ""
+
+#: /dev/fd/63:34 /dev/fd/63:251
+msgid "Exclusive Items Strings"
+msgstr ""
+
+#: /dev/fd/63:35 /dev/fd/63:252
+msgid "Special Episode Item Handling Strings"
+msgstr ""
+
+#: /dev/fd/63:36 /dev/fd/63:253
+msgid "Demo Dungeon Strings"
+msgstr ""
+
+#: /dev/fd/63:37 /dev/fd/63:254
+msgid "Sky Jukebox Menu Strings"
+msgstr ""
+
+#: /dev/fd/63:38 /dev/fd/63:255
+msgid "Music Tracks"
+msgstr ""
+
+#: /dev/fd/63:39 /dev/fd/63:256
+msgid "Personality Quiz Questions"
+msgstr "Fragen im Persönlichkeitstest"
+
+#: /dev/fd/63:40 /dev/fd/63:257
+msgid "Personality Quiz Answers"
+msgstr "Antworten im Persönlichkeitstest"
+
+#: /dev/fd/63:41 /dev/fd/63:258
+msgid "Personality Quiz Results"
+msgstr ""
+
+#: /dev/fd/63:42 /dev/fd/63:259
+msgid "Personality Quiz Aura"
+msgstr ""
+
+#: /dev/fd/63:43 /dev/fd/63:260
+msgid "Partner Selection Strings"
+msgstr ""
+
+#: /dev/fd/63:44 /dev/fd/63:261
+msgid "New Game Welcome"
+msgstr ""
+
+#: /dev/fd/63:45 /dev/fd/63:262
+msgid "Personality Quiz Aura Finger Move"
+msgstr ""
+
+#: /dev/fd/63:46 /dev/fd/63:263
+msgid "Personality Quiz Debug (Breakdown)"
+msgstr ""
+
+#: /dev/fd/63:47 /dev/fd/63:264
+msgid "Personality Quiz Debug (Colored)"
+msgstr ""
+
+#: /dev/fd/63:48 /dev/fd/63:265
+msgid "Sentry Duty Strings"
+msgstr ""
+
+#: /dev/fd/63:49 /dev/fd/63:266
+msgid "Sentry Duty Hints"
+msgstr ""
+
+#: /dev/fd/63:50 /dev/fd/63:267
+msgid "Dungeon Item Usage (Basic)"
+msgstr ""
+
+#: /dev/fd/63:51 /dev/fd/63:268
+msgid "Dungeon Menu Strings (Primary)"
+msgstr ""
+
+#: /dev/fd/63:52 /dev/fd/63:269
+msgid "Dungeon Status Effect Strings"
+msgstr ""
+
+#: /dev/fd/63:53 /dev/fd/63:270
+msgid "Dungeon Menu Strings (Details)"
+msgstr ""
+
+#: /dev/fd/63:54 /dev/fd/63:271
+msgid "Dungeon Menu Strings (Secondary)"
+msgstr ""
+
+#: /dev/fd/63:55
+msgid "Dungeon Defeated Dialogue Strings"
+msgstr ""
+
+#: /dev/fd/63:56
+msgid "Dungeon Cleared Dialogue Strings"
+msgstr ""
+
+#: /dev/fd/63:57 /dev/fd/63:274
+msgid "Dungeon Item Usage (Bag)"
+msgstr ""
+
+#: /dev/fd/63:58 /dev/fd/63:275
+msgid "Weather Change Feedback"
+msgstr "Zeichenketten zu Wetteränderungen"
+
+#: /dev/fd/63:59 /dev/fd/63:276
+msgid "Weather Names"
+msgstr "Wetter-Namen"
+
+#: /dev/fd/63:60 /dev/fd/63:277
+msgid "Floor-Wide Status"
+msgstr ""
+
+#: /dev/fd/63:61 /dev/fd/63:278
+msgid "Story Mission Objectives"
+msgstr ""
+
+#: /dev/fd/63:62 /dev/fd/63:279
+msgid "Mission Failure/Faint Strings"
+msgstr "Zeichenketten für Missionsfehlschlag"
+
+#: /dev/fd/63:63 /dev/fd/63:280
+msgid "Speed Change Feedback"
+msgstr "Änderungen der Geschwindigkeit"
+
+#: /dev/fd/63:64 /dev/fd/63:281
+msgid "Dungeon Potential Recruit Strings"
+msgstr ""
+
+#: /dev/fd/63:65 /dev/fd/63:282
+msgid "Dungeon Gummi Feedback"
+msgstr ""
+
+#: /dev/fd/63:66 /dev/fd/63:283
+msgid "Traps Feedback (Primary)"
+msgstr ""
+
+#: /dev/fd/63:67 /dev/fd/63:284
+msgid "Nothing At Feet String"
+msgstr ""
+
+#: /dev/fd/63:68 /dev/fd/63:285
+msgid "Dungeon Friend Rescue Strings"
+msgstr ""
+
+#: /dev/fd/63:69 /dev/fd/63:286
+msgid "Dungeon General Feedback 1"
+msgstr ""
+
+#: /dev/fd/63:70 /dev/fd/63:287
+msgid "Dungeon General Feedback 2"
+msgstr ""
+
+#: /dev/fd/63:71 /dev/fd/63:288
+msgid "Something's Stirring Strings"
+msgstr ""
+
+#: /dev/fd/63:72 /dev/fd/63:289
+msgid "Dungeon General Feedback 3"
+msgstr ""
+
+#: /dev/fd/63:73 /dev/fd/63:290
+msgid "Dungeon New Recruit Strings"
+msgstr ""
+
+#: /dev/fd/63:74 /dev/fd/63:291
+msgid "Dungeon General Feedback 4"
+msgstr ""
+
+#: /dev/fd/63:75 /dev/fd/63:292
+msgid "Status Effect Resolved Feedback"
+msgstr ""
+
+#: /dev/fd/63:76 /dev/fd/63:293
+msgid "Status Effect Apply Feedback"
+msgstr ""
+
+#: /dev/fd/63:77 /dev/fd/63:294
+msgid "Pokemon Stats Change Feedback 1"
+msgstr ""
+
+#: /dev/fd/63:78 /dev/fd/63:295
+msgid "Status Effect Protect Feedback 1"
+msgstr ""
+
+#: /dev/fd/63:79 /dev/fd/63:296
+msgid "PP Recover Strings"
+msgstr ""
+
+#: /dev/fd/63:80 /dev/fd/63:297
+msgid "Conversion/Sketch Strings"
+msgstr ""
+
+#: /dev/fd/63:81 /dev/fd/63:298
+msgid "Status Effect Protect Feedback 2"
+msgstr ""
+
+#: /dev/fd/63:82 /dev/fd/63:299
+msgid "Dungeon Pokemon Stat Names"
+msgstr ""
+
+#: /dev/fd/63:83 /dev/fd/63:300
+msgid "Pokemon Stats Change Feedback 2"
+msgstr ""
+
+#: /dev/fd/63:84 /dev/fd/63:301
+msgid "Dungeon General Feedback 5"
+msgstr ""
+
+#: /dev/fd/63:85 /dev/fd/63:302
+msgid "Mission Feedback"
+msgstr ""
+
+#: /dev/fd/63:86 /dev/fd/63:303
+msgid "Dungeon General Feedback 6"
+msgstr ""
+
+#: /dev/fd/63:87 /dev/fd/63:304
 msgid "Kecleon Dungeon Shop Strings"
 msgstr "Zeichenketten für Dungeon Kecleon-Läden"
 
-#: /dev/fd/63:35 /dev/fd/63:158
-msgid "Misc Battle Events Strings"
-msgstr "Verschiedene Kampfereignisse"
+#: /dev/fd/63:88 /dev/fd/63:305
+msgid "Anchored Feedback"
+msgstr ""
 
-#: /dev/fd/63:36 /dev/fd/63:159
-msgid "Secret Bazaar Stairs Found"
-msgstr "Treppen für Geheimbasar gefunden"
+#: /dev/fd/63:89 /dev/fd/63:306
+msgid "Traps Feedback (Secondary)"
+msgstr ""
 
-#: /dev/fd/63:37 /dev/fd/63:160
-msgid "Kirlia Secret Bazaar Greeting"
-msgstr "Kirlia Geheimbasar Begrüßung"
+#: /dev/fd/63:90 /dev/fd/63:307
+msgid "Dungeon General Feedback 7"
+msgstr ""
 
-#: /dev/fd/63:38 /dev/fd/63:161
+#: /dev/fd/63:91 /dev/fd/63:308
+msgid "Move Feedback (Primary)"
+msgstr ""
+
+#: /dev/fd/63:92 /dev/fd/63:309
+msgid "Dungeon Level Up Detail Strings"
+msgstr ""
+
+#: /dev/fd/63:93 /dev/fd/63:310
+msgid "Kirlia Secret Bazaar Strings"
+msgstr ""
+
+#: /dev/fd/63:94 /dev/fd/63:311
 msgid "Grab Bags Shop Strings"
 msgstr "Wundertüten-Laden Zeichenketten"
 
-#: /dev/fd/63:39 /dev/fd/63:162
+#: /dev/fd/63:95 /dev/fd/63:312
 msgid "Shedinja Shop Strings"
 msgstr "Fluchtratgeber Zeichenketten"
 
-#: /dev/fd/63:40 /dev/fd/63:163
+#: /dev/fd/63:96 /dev/fd/63:313
 msgid "Mime Jr. Spa Strings"
 msgstr "Pantimimi-Wellness Zeichenketten"
 
-#: /dev/fd/63:41 /dev/fd/63:164
+#: /dev/fd/63:97 /dev/fd/63:314
 msgid "Swalot's Shop Strings"
 msgstr "Schluckwech-Shop Zeichenketten"
 
-#: /dev/fd/63:42 /dev/fd/63:165
-msgid "Team Tactics Menu strings"
-msgstr "Menü für Taktikauswahl"
+#: /dev/fd/63:98 /dev/fd/63:315
+msgid "Team Tactics Menu Strings"
+msgstr ""
 
-#: /dev/fd/63:43 /dev/fd/63:166
-msgid "Item Became Sticky"
-msgstr "Item wurde klebrig"
+#: /dev/fd/63:99 /dev/fd/63:316
+msgid "Item Became Sticky String"
+msgstr ""
 
-#: /dev/fd/63:44 /dev/fd/63:167
+#: /dev/fd/63:100 /dev/fd/63:317
 msgid "Pokemon LEVEL_UP Dialogue"
 msgstr "Pokémon LEVEL_UP Nachrichten"
 
-#: /dev/fd/63:45 /dev/fd/63:168
+#: /dev/fd/63:101 /dev/fd/63:318
 msgid "Pokemon WAIT Dialogue"
 msgstr "Pokémon WAIT Nachrichten"
 
-#: /dev/fd/63:46 /dev/fd/63:169
+#: /dev/fd/63:102 /dev/fd/63:319
 msgid "Pokemon HEALTHY Dialogue"
 msgstr "Pokémon HEALTHY Nachrichten"
 
-#: /dev/fd/63:47 /dev/fd/63:170
+#: /dev/fd/63:103 /dev/fd/63:320
 msgid "Pokemon HALF_LIFE Dialogue"
 msgstr "Pokémon HALF_LIFE Nachrichten"
 
-#: /dev/fd/63:48 /dev/fd/63:171
+#: /dev/fd/63:104 /dev/fd/63:321
 msgid "Pokemon PINCH Dialogue"
 msgstr "Pokémon PINCH Nachrichten"
 
-#: /dev/fd/63:49 /dev/fd/63:172
+#: /dev/fd/63:105 /dev/fd/63:322
 msgid "Pokemon GROUND_WAIT Dialogue"
 msgstr "Pokémon GROUND_WAIT Nachrichten"
 
-#: /dev/fd/63:50 /dev/fd/63:173
+#: /dev/fd/63:106 /dev/fd/63:323
 msgid "Item Names"
 msgstr "Item-Namen"
 
-#: /dev/fd/63:51 /dev/fd/63:174
+#: /dev/fd/63:107 /dev/fd/63:324
 msgid "Move Names"
 msgstr "Attacken-Namen"
 
-#: /dev/fd/63:52 /dev/fd/63:175
+#: /dev/fd/63:108 /dev/fd/63:325
 msgid "Pokemon Names"
 msgstr "Pokémon-Namen"
 
-#: /dev/fd/63:53 /dev/fd/63:176
+#: /dev/fd/63:109 /dev/fd/63:326
 msgid "Pokemon Categories"
 msgstr "Pokémon-Kategorien"
 
-#: /dev/fd/63:54 /dev/fd/63:177
+#: /dev/fd/63:110 /dev/fd/63:327
 msgid "Tactics Names"
 msgstr "Taktik-Namen"
 
-#: /dev/fd/63:55 /dev/fd/63:178
+#: /dev/fd/63:111 /dev/fd/63:328
 msgid "Tactics Descriptions"
 msgstr "Taktikbeschreibungen"
 
-#: /dev/fd/63:56 /dev/fd/63:179
+#: /dev/fd/63:112 /dev/fd/63:329
 msgid "IQ Skills Names"
 msgstr "Namen für IQ-Fähigkeiten"
 
-#: /dev/fd/63:57 /dev/fd/63:180
+#: /dev/fd/63:113 /dev/fd/63:330
 msgid "IQ Skills Descriptions"
 msgstr "Beschreibungen für IQ-Fähigkeiten"
 
-#: /dev/fd/63:58 /dev/fd/63:181
+#: /dev/fd/63:114 /dev/fd/63:331
 msgid "Move Targets Strings"
 msgstr "Attacken-Ziel Zeichenketten"
 
-#: /dev/fd/63:59 /dev/fd/63:182
+#: /dev/fd/63:115 /dev/fd/63:332
 msgid "Accuracy/Power Stars Ratings"
 msgstr "Zeichenketten für Genauigkeit und Stärke"
 
-#: /dev/fd/63:60 /dev/fd/63:183
+#: /dev/fd/63:116 /dev/fd/63:333
+msgid "Always Hit/No Damage Strings"
+msgstr ""
+
+#: /dev/fd/63:117 /dev/fd/63:334
 msgid "Move Descriptions"
 msgstr "Attacken-Beschreibungen"
 
-#: /dev/fd/63:61 /dev/fd/63:184
+#: /dev/fd/63:118 /dev/fd/63:335
 msgid "Item Long Descriptions"
 msgstr "Item-Beschreibungen (lang)"
 
-#: /dev/fd/63:62 /dev/fd/63:185
+#: /dev/fd/63:119 /dev/fd/63:336
 msgid "Item Short Descriptions"
 msgstr "Item-Beschreibungen (kuz)"
 
-#: /dev/fd/63:63 /dev/fd/63:186
+#: /dev/fd/63:120 /dev/fd/63:337
 msgid "Trap Names"
 msgstr "Fallennamen"
 
-#: /dev/fd/63:64 /dev/fd/63:187
+#: /dev/fd/63:121 /dev/fd/63:338
 msgid "Trap Descriptions"
 msgstr "Fallenbeschreibungen"
 
-#: /dev/fd/63:65 /dev/fd/63:188
-msgid "Statuses Names and Descriptions"
-msgstr "Statusnamen und -beschreibungen"
+#: /dev/fd/63:122 /dev/fd/63:339
+msgid "Status Names and Descriptions"
+msgstr ""
 
-#: /dev/fd/63:66 /dev/fd/63:189
+#: /dev/fd/63:123 /dev/fd/63:340
+msgid "Auxiliary Move Descriptions"
+msgstr ""
+
+#: /dev/fd/63:124 /dev/fd/63:341
 msgid "Type Names"
 msgstr "Typnamen"
 
-#: /dev/fd/63:67 /dev/fd/63:190
+#: /dev/fd/63:125 /dev/fd/63:342
 msgid "Ability Names"
 msgstr "Fähigkeitsnamen"
 
-#: /dev/fd/63:68 /dev/fd/63:191
+#: /dev/fd/63:126 /dev/fd/63:343
 msgid "Ability Descriptions"
 msgstr "Fähigkeitsbeschreibungen"
 
-#: /dev/fd/63:69 /dev/fd/63:192
-msgid "Debug Menu Strings"
-msgstr "Debug-Menü-Zeichenketten"
+#: /dev/fd/63:127 /dev/fd/63:344
+msgid "Wireless Connection Strings"
+msgstr ""
 
-#: /dev/fd/63:70 /dev/fd/63:193
+#: /dev/fd/63:128 /dev/fd/63:345
+msgid "Friend Code Strings"
+msgstr ""
+
+#: /dev/fd/63:129 /dev/fd/63:346
+msgid "Email Strings"
+msgstr ""
+
+#: /dev/fd/63:130 /dev/fd/63:347
+msgid "Wi-fi Connection Strings"
+msgstr ""
+
+#: /dev/fd/63:131 /dev/fd/63:348
+msgid "Wonder Mail S Strings"
+msgstr ""
+
+#: /dev/fd/63:132 /dev/fd/63:349
+msgid "Game Trade Strings"
+msgstr ""
+
+#: /dev/fd/63:133 /dev/fd/63:350
+msgid "Mission Board Strings"
+msgstr ""
+
+#: /dev/fd/63:134 /dev/fd/63:351
+msgid "SOS Mail Strings"
+msgstr ""
+
+#: /dev/fd/63:135 /dev/fd/63:352
+msgid "Mission Title Set Phrases"
+msgstr ""
+
+#: /dev/fd/63:136 /dev/fd/63:353
+msgid "Mission Description Set Phrases"
+msgstr ""
+
+#: /dev/fd/63:137 /dev/fd/63:354
+msgid "Mission Detail Strings"
+msgstr ""
+
+#: /dev/fd/63:138 /dev/fd/63:355
+msgid "Mission Objective Strings"
+msgstr ""
+
+#: /dev/fd/63:139 /dev/fd/63:356
+msgid "Debug Strings (Mission)"
+msgstr ""
+
+#: /dev/fd/63:140 /dev/fd/63:357
+msgid "Debug Strings (Switch)"
+msgstr ""
+
+#: /dev/fd/63:141 /dev/fd/63:358
+msgid "Debug Strings (Data)"
+msgstr ""
+
+#: /dev/fd/63:142 /dev/fd/63:359
+msgid "Debug Strings (Checks)"
+msgstr ""
+
+#: /dev/fd/63:143 /dev/fd/63:360
+msgid "Debug Strings (General)"
+msgstr ""
+
+#: /dev/fd/63:144 /dev/fd/63:361
+msgid "Debug Strings (Manipulation)"
+msgstr ""
+
+#: /dev/fd/63:145 /dev/fd/63:362
+msgid "Debug Strings (Testing)"
+msgstr ""
+
+#: /dev/fd/63:146 /dev/fd/63:363
+msgid "Debug Strings (Scripts)"
+msgstr ""
+
+#: /dev/fd/63:147 /dev/fd/63:364
+msgid "Debug Strings (Menu)"
+msgstr ""
+
+#: /dev/fd/63:148 /dev/fd/63:365
+msgid "Debug Strings (Status)"
+msgstr ""
+
+#: /dev/fd/63:149 /dev/fd/63:366
+msgid "Debug Strings (Dungeon 1)"
+msgstr ""
+
+#: /dev/fd/63:150 /dev/fd/63:367
 msgid "Portrait Names"
 msgstr "Portrait-Namen"
 
-#: /dev/fd/63:71 /dev/fd/63:194
+#: /dev/fd/63:151 /dev/fd/63:368
+msgid "Debug Strings (Dungeon 2)"
+msgstr ""
+
+#: /dev/fd/63:152 /dev/fd/63:369
+msgid "Debug Strings (PKMN Storage)"
+msgstr ""
+
+#: /dev/fd/63:153 /dev/fd/63:370
+msgid "Debug Strings (Message)"
+msgstr ""
+
+#: /dev/fd/63:154 /dev/fd/63:371
+msgid "Debug Strings (Triggers)"
+msgstr ""
+
+#: /dev/fd/63:155 /dev/fd/63:372
+msgid "Debug Strings (Bulletin 1)"
+msgstr ""
+
+#: /dev/fd/63:156 /dev/fd/63:373
+msgid "Debug Strings (Bulletin 2)"
+msgstr ""
+
+#: /dev/fd/63:157 /dev/fd/63:374
+msgid "Debug Strings (Mail)"
+msgstr ""
+
+#: /dev/fd/63:158 /dev/fd/63:375
+msgid "Debug Strings (Name)"
+msgstr ""
+
+#: /dev/fd/63:159 /dev/fd/63:376
+msgid "Debug Strings (Parameters)"
+msgstr ""
+
+#: /dev/fd/63:160 /dev/fd/63:377
+msgid "Debug Strings (Counter)"
+msgstr ""
+
+#: /dev/fd/63:161 /dev/fd/63:378
+msgid "Game and Dungeon Hints"
+msgstr ""
+
+#: /dev/fd/63:162 /dev/fd/63:379
+msgid "Adventure Log Entries"
+msgstr ""
+
+#: /dev/fd/63:163 /dev/fd/63:380
 msgid "Ground Map Names"
 msgstr "Namen von Ground-Karten"
 
-#: /dev/fd/63:72 /dev/fd/63:195
+#: /dev/fd/63:164 /dev/fd/63:381
 msgid "Dungeon Names (Main)"
 msgstr "Dungeon-Namen (Haupt)"
 
-#: /dev/fd/63:73 /dev/fd/63:196
+#: /dev/fd/63:165 /dev/fd/63:382
 msgid "Dungeon Names (Selection)"
 msgstr "Dungeon-Namen (Auswahl)"
 
-#: /dev/fd/63:74 /dev/fd/63:197
+#: /dev/fd/63:166 /dev/fd/63:383
 msgid "Dungeon Names (SetDungeonBanner)"
 msgstr "Dungeon-Namen (SetDungeonBanner)"
 
-#: /dev/fd/63:75 /dev/fd/63:198
+#: /dev/fd/63:167 /dev/fd/63:384
 msgid "Dungeon Names (Banner)"
 msgstr "Dungeon-Namen (Banner)"
 
-#: /dev/fd/63:76 /dev/fd/63:199
+#: /dev/fd/63:168 /dev/fd/63:385
+msgid "Staff Roll 1"
+msgstr ""
+
+#: /dev/fd/63:169 /dev/fd/63:386
+msgid "Special Mission Strings"
+msgstr ""
+
+#: /dev/fd/63:170 /dev/fd/63:387
+msgid "Super Hasbrello and Bidoof Family"
+msgstr ""
+
+#: /dev/fd/63:171 /dev/fd/63:388
 msgid "Spinda's Juice Bar Strings"
 msgstr "Zeichenketten der Pandir-Saftbar"
 
-#: /dev/fd/63:77 /dev/fd/63:200
+#: /dev/fd/63:172 /dev/fd/63:389
 msgid "Recycle Shop Strings"
 msgstr "Wiederverwertungsladen"
 
-#: /dev/fd/63:78 /dev/fd/63:201
-msgid "Staff Roll"
-msgstr "Mitwirkende"
+#: /dev/fd/63:173 /dev/fd/63:390
+msgid "Staff Roll 2"
+msgstr ""
 
-#: /dev/fd/63:79 /dev/fd/63:202
-msgid "New Pokemon Names"
-msgstr "Neue Pokémon-Namen"
+#: /dev/fd/63:174 /dev/fd/63:391
+msgid "Staff Roll 3"
+msgstr ""
 
-#: /dev/fd/63:80 /dev/fd/63:203
-msgid "New Pokemon Categories"
-msgstr "Neue Pokémon-Kategorien"
-
-#: /dev/fd/63:81 /dev/fd/63:204
+#: /dev/fd/63:175 /dev/fd/63:392
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4164
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:997
 msgid "Thrown - Pierce"
 msgstr "Wurf-Items - Durchbohrend"
 
-#: /dev/fd/63:82 /dev/fd/63:205
+#: /dev/fd/63:176 /dev/fd/63:393
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4329
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1149
 msgid "Thrown - Rock"
 msgstr "Wurf-Items - Steine"
 
-#: /dev/fd/63:83 /dev/fd/63:206
+#: /dev/fd/63:177 /dev/fd/63:394
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4496
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1303
 msgid "Berries, Seeds, Vitamins"
 msgstr "Beeren, Samen, Vitamine"
 
-#: /dev/fd/63:84 /dev/fd/63:207
+#: /dev/fd/63:178 /dev/fd/63:395
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4663
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1457
 msgid "Foods, Gummies"
 msgstr "Nahrung, Gummis"
 
-#: /dev/fd/63:85 /dev/fd/63:208
+#: /dev/fd/63:179 /dev/fd/63:396
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4830
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1611
 msgid "Hold"
 msgstr "Getragen"
 
-#: /dev/fd/63:86 /dev/fd/63:209
+#: /dev/fd/63:180 /dev/fd/63:397
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4997
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1765
 msgid "TMs, HMs"
 msgstr "TMs, VMs"
 
-#: /dev/fd/63:87 /dev/fd/63:210
+#: /dev/fd/63:181 /dev/fd/63:398
 msgid "Poké (Money)"
 msgstr "Poké (Geld)"
 
-#: /dev/fd/63:88 /dev/fd/63:211
+#: /dev/fd/63:182 /dev/fd/63:399
 msgid "Unknown 7"
 msgstr "Unbekannt 7"
 
-#: /dev/fd/63:89 /dev/fd/63:212
+#: /dev/fd/63:183 /dev/fd/63:400
 #: skytemple/skytemple/data/widget/monster/monster.ui:3543
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1398
 msgid "Other"
 msgstr "Anderes"
 
-#: /dev/fd/63:90 /dev/fd/63:213
+#: /dev/fd/63:184 /dev/fd/63:401
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5164
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1919
 msgid "Orbs"
 msgstr "Orbs"
 
-#: /dev/fd/63:91 /dev/fd/63:214
+#: /dev/fd/63:185 /dev/fd/63:402
 msgid "Link Box"
 msgstr "Linkbox"
 
-#: /dev/fd/63:92 /dev/fd/63:215
+#: /dev/fd/63:186 /dev/fd/63:403
 msgid "Used TM"
 msgstr "Genutzte TM"
 
-#: /dev/fd/63:93 /dev/fd/63:216
+#: /dev/fd/63:187 /dev/fd/63:404
 msgid "Treasure Box 1"
 msgstr "Schatzbox 1"
 
-#: /dev/fd/63:94 /dev/fd/63:217
+#: /dev/fd/63:188 /dev/fd/63:405
 msgid "Treasure Box 2"
 msgstr "Schatzbox 2"
 
-#: /dev/fd/63:95 /dev/fd/63:218
+#: /dev/fd/63:189 /dev/fd/63:406
 msgid "Treasure Box 3"
 msgstr "Schatzbox 3"
 
-#: /dev/fd/63:96 /dev/fd/63:219
+#: /dev/fd/63:190 /dev/fd/63:407
 #: skytemple/skytemple/data/widget/monster/monster.ui:2831
 msgid "Exclusive Items"
 msgstr "Exklusive Items"
 
-#: /dev/fd/63:97 /dev/fd/63:220
+#: /dev/fd/63:191 /dev/fd/63:408
 msgid "Red component"
 msgstr "Rote Komponente"
 
-#: /dev/fd/63:98 /dev/fd/63:221
+#: /dev/fd/63:192 /dev/fd/63:409
 msgid "Green component"
 msgstr "Grüne Komponente"
 
-#: /dev/fd/63:99 /dev/fd/63:222
+#: /dev/fd/63:193 /dev/fd/63:410
 msgid "Blue component"
 msgstr "Blaue Komponente"
 
-#: /dev/fd/63:100 /dev/fd/63:223
+#: /dev/fd/63:194 /dev/fd/63:411
 msgid "Alpha component"
 msgstr "Alpha Komponente"
 
-#: /dev/fd/63:101 /dev/fd/63:224
+#: /dev/fd/63:195 /dev/fd/63:412
 msgid "Conversion 2 Type when hit by a Fairy move"
 msgstr "Typ von \"Umwandlung 2\" wenn getroffen von einer Fee-Attacke"
 
-#: /dev/fd/63:102 /dev/fd/63:225
+#: /dev/fd/63:196 /dev/fd/63:413
 msgid "ID of the first icon in markfont.dat (23 entries used)"
 msgstr "ID des ersten Icons in markfont.dat (23 Einträge verwenden verwendet)"
 
-#: /dev/fd/63:103 /dev/fd/63:226
+#: /dev/fd/63:197 /dev/fd/63:414
 msgid "Display accuracy and power values"
 msgstr "Anzeige der Genauigkeit- und Stärke-Werte"
 
-#: /dev/fd/63:104 /dev/fd/63:227
+#: /dev/fd/63:198 /dev/fd/63:415
 msgid "ID of the first icon in markfont.dat (24 entries used)"
 msgstr "ID des ersten Icons in markfont.dat (24 Einträge verwenden verwendet)"
 
-#: /dev/fd/63:105 /dev/fd/63:228
+#: /dev/fd/63:199 /dev/fd/63:416
 msgid "String ID for push dialogue"
 msgstr "Zeichenketten-Nr. für den Schieben-Text"
 
-#: /dev/fd/63:106 /dev/fd/63:229
+#: /dev/fd/63:200 /dev/fd/63:417
 msgid "String mentioned above is replaced by a default text when applying"
 msgstr "Diese Zeichenkette wird ersetzt durch einen Standardtext wenn der Patch angewendet wird"
 
-#: /dev/fd/63:107 /dev/fd/63:230
+#: /dev/fd/63:201 /dev/fd/63:418
 msgid "Only interruptions don't heal HP"
 msgstr "Nur Unterbrechungen heilen keine KP"
 
-#: /dev/fd/63:108 /dev/fd/63:231
+#: /dev/fd/63:202 /dev/fd/63:419
 #, c-format
 msgid "% of exp. shared"
 msgstr "% der geteilten Erfahrungspunkte"
 
-#: /dev/fd/63:109 /dev/fd/63:232
+#: /dev/fd/63:203 /dev/fd/63:420
 msgid "String ID for the Menu Option"
 msgstr "String-ID für die Menüoption"
 
-#: /dev/fd/63:110 /dev/fd/63:233
+#: /dev/fd/63:204 /dev/fd/63:421
 msgid "String ID to confirm the appraise all"
 msgstr "String-ID zur Bestätigung der Begutachtung aller"
 
-#: /dev/fd/63:111 /dev/fd/63:234
+#: /dev/fd/63:205 /dev/fd/63:422
 msgid "String ID before revealing the items"
 msgstr "String-ID vor dem Enthüllen der Items"
 
-#: /dev/fd/63:112 /dev/fd/63:235
+#: /dev/fd/63:206 /dev/fd/63:423
 msgid "String ID when revealing an item"
 msgstr "String-ID beim Enthüllen eines Items"
 
-#: /dev/fd/63:113 /dev/fd/63:236
+#: /dev/fd/63:207 /dev/fd/63:424
 msgid "All strings mentioned above are replaced by a default text when applying"
 msgstr "Alle oben genannten Strings werden beim Anwenden durch einen Standardtext ersetzt"
 
-#: /dev/fd/63:114 /dev/fd/63:237
+#: /dev/fd/63:208 /dev/fd/63:425
 msgid "Cost of each Treasure Box (Only for Appraise All option)"
 msgstr "Kosten für jede Schatzkiste (Nur für Option „Alle begutachten“)"
 
-#: /dev/fd/63:115 /dev/fd/63:238
+#: /dev/fd/63:209 /dev/fd/63:426
 msgid "Update the level and stats of evolved enemies"
 msgstr "Aktualisiere das Level und die Statuswerte von entwickelten Gegnern"
 
-#: /dev/fd/63:116 /dev/fd/63:239
+#: /dev/fd/63:210 /dev/fd/63:427
 msgid "Fully heal enemies after evolving"
 msgstr "Heile Gegner nach der Entwicklung vollständig"
 
-#: /dev/fd/63:117 /dev/fd/63:240
+#: /dev/fd/63:211 /dev/fd/63:428
 msgid "Update the moves of evolved enemies"
 msgstr "Aktualisiere die Attacken entwickelter Feinde"
 
-#: /dev/fd/63:118 /dev/fd/63:241
+#: /dev/fd/63:212 /dev/fd/63:429
 msgid "Increase Atk/SpAtk/Def/SpDef of evolved enemies by"
 msgstr "Erhöhe Ang./Sp. Ang./Vert./Sp. Vert. entwickelter Feinde um"
 
-#: /dev/fd/63:119 /dev/fd/63:242
+#: /dev/fd/63:213 /dev/fd/63:430
 msgid "Let enemies evolve even if the defeated pokémon is revived"
 msgstr "Erlaube es, dass sich Gegner entwickeln, selbst wenn der Angreifer wiederbelebt wird"
 
-#: /dev/fd/63:121
+#: /dev/fd/63:215
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
 #: skytemple/skytemple/controller/settings.py:38
 msgid "French"
 msgstr "Französisch"
 
-#: /dev/fd/63:122
+#: /dev/fd/63:216
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
 #: skytemple/skytemple/controller/settings.py:39
 msgid "German"
 msgstr "Deutsch"
 
-#: /dev/fd/63:123
+#: /dev/fd/63:217
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:561
 msgid "Italian"
 msgstr "Italienisch"
 
-#: /dev/fd/63:124
+#: /dev/fd/63:218
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
 #: skytemple/skytemple/controller/settings.py:41
 msgid "Spanish"
 msgstr "Spanisch"
+
+#: /dev/fd/63:272
+msgid "Dungeon Defeated Dialog Strings"
+msgstr ""
+
+#: /dev/fd/63:273
+msgid "Dungeon Cleared Dialog Strings"
+msgstr ""
 
 #: explorerscript/explorerscript/macro.py:85
 #, python-brace-format
