@@ -163,9 +163,9 @@ jobs:
           PATH_MACOS=$(eval echo "${{ steps.artifact_macos_x86.outputs.download-path }}/*.dmg")
           
           mkdir -p /mnt/dist/randomizer
-          cp -f "$PATH_WHEEL" "/mnt/dist/randomizer/skytemple-$REF.whl"
-          cp -f "$PATH_WIN" "/mnt/dist/randomizer/skytemple-$REF.exe"
-          cp -f "$PATH_MACOS" "/mnt/dist/randomizer/skytemple-x86-$REF.dmg"
+          cp -f "$PATH_WHEEL" "/mnt/dist/skytemple/skytemple-$REF.whl"
+          cp -f "$PATH_WIN" "/mnt/dist/skytemple/skytemple-$REF.exe"
+          cp -f "$PATH_MACOS" "/mnt/dist/skytemple/skytemple-x86-$REF.dmg"
   deploy-to-skytemple-dist:
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: [self-hosted, skytemple-dist]
@@ -196,8 +196,8 @@ jobs:
           PATH_WIN=$(eval echo "${{ steps.artifact_windows.outputs.download-path }}/*.exe")
           PATH_MACOS=$(eval echo "${{ steps.artifact_macos_x86.outputs.download-path }}/*.dmg")
           
-          dist.py "$PATH_WIN" "randomizer/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-win-install.exe"
-          dist.py "$PATH_MACOS" "randomizer/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-mac-install-x86-64.dmg"
+          dist.py "$PATH_WIN" "skytemple/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-win-install.exe"
+          dist.py "$PATH_MACOS" "skytemple/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-mac-install-x86-64.dmg"
   package-windows:
     # This is partly based on https://github.com/wingtk/gvsbuild/blob/main/.github/workflows/ci.yml
     runs-on: windows-2022
