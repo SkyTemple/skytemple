@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-04-26 13:00+0000\n"
-"PO-Revision-Date: 2024-04-26 13:08\n"
+"PO-Revision-Date: 2024-04-26 15:34\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2435,12 +2435,12 @@ msgstr "PIL イメージを CHR ファイルに変換できません。幅と高
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:117
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
-msgstr ""
+msgstr "マップ背景をインポートできません。画像の幅は{expected_width}pxである必要があります。"
 
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:126
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
-msgstr ""
+msgstr "マップ背景をインポートできません。画像の高さは{expected_height}pxである必要があります。"
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:136
 #, python-brace-format
@@ -2557,7 +2557,7 @@ msgstr "不透明"
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:205
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:234
 msgid "Tile and masks list must have exactly 3 items"
-msgstr ""
+msgstr "タイルとマスクのリストは、必ず3つの項目を持つ必要があります。"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:212
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:241
@@ -3262,7 +3262,7 @@ msgstr "依頼の報酬/宝箱のコンテンツやカクレオン商店の道�
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:153
 msgid "Don't have enough space to put filenames! "
-msgstr ""
+msgstr "ファイル名を入れるスペースが足りません。 "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:80
 msgid "Extracts move effects code and put it in files."
@@ -3506,7 +3506,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:256
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
-msgstr ""
+msgstr "不明な操作 ({in_op.op_code.name}) です。"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:283
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
@@ -3519,12 +3519,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:409
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
-msgstr ""
+msgstr "文字列の言語 {lang} が不明です。"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:415
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
-msgstr ""
+msgstr "無効なパラメータ {param} が設定されています。"
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:186
 msgid "Could not compile script: All languages must have the same amount of strings."
