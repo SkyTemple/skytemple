@@ -121,6 +121,86 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           twine upload *.whl
+  deploy-to-artifact-storage:
+    runs-on: [self-hosted, artifact-storage]
+    name: Upload artifacts
+    needs:
+      - build
+      - package-windows
+      - package-mac
+      - package-mac-arm64
+    concurrency:
+      group: "${{ github.workflow }}-${{ github.ref }}"
+    steps:
+      - name: Clear
+        run: |
+          rm -rf "${{ github.workspace }}/artifacts" || true
+          mkdir -p "${{ github.workspace }}/artifacts"
+      - name: Download wheels
+        id: artifact_wheel
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/artifacts/whl
+          name: wheels
+      - name: Download Windows
+        id: artifact_windows
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/artifacts/win
+          name: skytemple-windows-app-x64
+      - name: Download MacOS Intel
+        id: artifact_macos_x86
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/artifacts/mac_x86
+          name: skytemple-mac-dmg-x86_64
+      - name: Copy over distributions
+        run: |
+          # Replace / in PR refs (123/merge -> 123-merge)
+          REF=${GITHUB_REF_NAME/\//-}
+          
+          PATH_WHEEL=$(eval echo "${{ steps.artifact_wheel.outputs.download-path }}/*.whl")
+          PATH_WIN=$(eval echo "${{ steps.artifact_windows.outputs.download-path }}/*.exe")
+          PATH_MACOS=$(eval echo "${{ steps.artifact_macos_x86.outputs.download-path }}/*.dmg")
+          
+          mkdir -p /mnt/dist/randomizer
+          cp -f "$PATH_WHEEL" "/mnt/dist/randomizer/skytemple-$REF.whl"
+          cp -f "$PATH_WIN" "/mnt/dist/randomizer/skytemple-$REF.exe"
+          cp -f "$PATH_MACOS" "/mnt/dist/randomizer/skytemple-x86-$REF.dmg"
+  deploy-to-skytemple-dist:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: [self-hosted, skytemple-dist]
+    name: Upload to Deposit Box
+    needs:
+      - build
+      - package-windows
+      - package-mac
+      - package-mac-arm64
+    steps:
+      - name: Clear
+        run: |
+          rm -rf "${{ github.workspace }}/artifacts" || true
+          mkdir -p "${{ github.workspace }}/artifacts"
+      - name: Download Windows
+        id: artifact_windows
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/artifacts/win
+          name: skytemple-windows-app-x64
+      - name: Download MacOS Intel
+        id: artifact_macos_x86
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/artifacts/mac_x86
+          name: skytemple-mac-dmg-x86_64
+      - name: Copy over distributions
+        run: |
+          PATH_WIN=$(eval echo "${{ steps.artifact_windows.outputs.download-path }}/*.exe")
+          PATH_MACOS=$(eval echo "${{ steps.artifact_macos_x86.outputs.download-path }}/*.dmg")
+          PATH_MACOS_ARM=$(eval echo "${{ steps.artifact_macos_arm64.outputs.download-path }}/*.dmg")
+          
+          dist.py "$PATH_WIN" "randomizer/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-win-install.exe"
+          dist.py "$PATH_MACOS" "randomizer/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-mac-install-x86-64.dmg"
   package-windows:
     # This is partly based on https://github.com/wingtk/gvsbuild/blob/main/.github/workflows/ci.yml
     runs-on: windows-2022
