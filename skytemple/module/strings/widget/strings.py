@@ -221,7 +221,7 @@ class StStringsStringsPage(Gtk.Box):
             fn = add_extension_if_missing(fn, "csv")
             with open_utf8(fn, "w", newline="") as result_file:
                 wr = csv.writer(result_file, lineterminator="\n")
-                wr.writerows([[x.replace('\n', '\\n')] for x in self._str.strings])
+                wr.writerows([[x.replace("\n", "\\n")] for x in self._str.strings])
 
     def _visibility_func(self, model, iter, *args):
         if self._active_category is not None:
