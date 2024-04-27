@@ -352,11 +352,7 @@ class StPatchAsmPage(Gtk.Box):
                 except BaseException:
                     errors.append(
                         (
-                            f(
-                                _(
-                                    "Error loading patch package {os.path.basename(fname)}."
-                                )
-                            ),
+                            f(_("Error loading patch package {patch.name}.")),
                             sys.exc_info(),
                         )
                     )
