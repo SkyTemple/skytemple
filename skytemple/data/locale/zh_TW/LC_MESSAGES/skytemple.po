@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-04-26 13:00+0000\n"
-"PO-Revision-Date: 2024-04-26 13:08\n"
+"POT-Creation-Date: 2024-04-27 19:01+0000\n"
+"PO-Revision-Date: 2024-04-27 19:10\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -3363,7 +3363,7 @@ msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:258
-#: skytemple/skytemple/module/patch/widget/asm.py:411
+#: skytemple/skytemple/module/patch/widget/asm.py:407
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
@@ -12586,7 +12586,6 @@ msgid "Not all patches were applied successfully. The ROM will now be reloaded."
 msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/asm.py:319
-#: skytemple/skytemple/module/patch/widget/asm.py:357
 msgid "Error loading patch package {os.path.basename(fname)}."
 msgstr ""
 
@@ -12602,11 +12601,16 @@ msgstr ""
 msgid "Compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:523
+#: skytemple/skytemple/module/patch/widget/asm.py:355
+#, python-brace-format
+msgid "Error loading patch package {patch.name}."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/widget/asm.py:519
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:536
+#: skytemple/skytemple/module/patch/widget/asm.py:532
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Do you want to continue loading these patches? By selecting 'No', only the built-in patches will be loaded."
 msgstr ""
