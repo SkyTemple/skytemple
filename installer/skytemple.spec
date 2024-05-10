@@ -10,6 +10,7 @@ site_packages = next(p for p in sys.path if "site-packages" in p)
 additional_files = []
 additional_datas = [
     (os.path.join(pkg_path, "data"), "data"),
+    # todo: Remove
     (os.path.join(pkg_path, "*.glade"), "."),
     (os.path.join(pkg_path, "*.css"), "."),
     (os.path.join(site_packages, "skytemple_rust*.pyd"), "."),
@@ -21,6 +22,7 @@ additional_datas = [
         os.path.join(site_packages, "skytemple_ssb_debugger", "data"),
         "skytemple_ssb_debugger/data",
     ),
+    # todo: Remove
     (
         os.path.join(site_packages, "skytemple_ssb_debugger", "*.glade"),
         "skytemple_ssb_debugger",
@@ -29,10 +31,12 @@ additional_datas = [
         os.path.join(site_packages, "skytemple_ssb_debugger", "*.lang"),
         "skytemple_ssb_debugger",
     ),
+    # todo: Remove
     (
         os.path.join(site_packages, "skytemple_ssb_debugger", "controller", "*.glade"),
         "skytemple_ssb_debugger/controller",
     ),
+    # todo: Remove
     (
         os.path.join(
             site_packages,
@@ -120,12 +124,13 @@ a = Analysis(
         "skytemple.module.spritecollab.module",
     ]
     + st_hiddenimports,
-    hookspath=[os.path.abspath(os.path.join(".", "hooks"))],
+    hookspath=None,
     hooksconfig={
         "gi": {
             "module-versions": {
-                "Gtk": "3.0",
-                "GtkSource": "4",
+                "Gtk": "4.0",
+                "Adw": "1",
+                "GtkSource": "5",
             },
         },
     },

@@ -11,15 +11,6 @@ if (test-path dist) {
 # Download armips and other binary depedencies
 curl https://skytemple.org/build_deps/armips.exe -O
 
-# Install themes
-curl https://skytemple.org/build_deps/Arc.zip -O
-unzip Arc.zip
-curl https://skytemple.org/build_deps/ZorinBlue.zip -O
-unzip ZorinBlue.zip
-
-# SDL2
-curl https://skytemple.org/build_deps/SDL2.dll -O
-
 # Install NSIS
 curl https://skytemple.org/build_deps/nsis.zip -O
 unzip -o nsis.zip -d "C:\Program Files (x86)\NSIS"
@@ -28,14 +19,10 @@ python -m venv C:\skytemple-venv
 C:\skytemple-venv\Scripts\activate.ps1
 
 # Install PyInstaller
-pip install setuptools wheel 'pyinstaller~=5.0'
-
-# Install PyGObject and pycairo
-pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygobject\dist\PyGObject*.whl)
-pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pycairo\dist\pycairo*.whl)
+pip install setuptools wheel 'pyinstaller~=6.0'
 
 # Install certifi for cert handling
-pip install -U certifi
+pip3 install -U certifi
 
 # Generate MO localization files
 bash .\generate-mo.sh
@@ -43,22 +30,21 @@ bash .\generate-mo.sh
 # install SkyTemple
 pip install -r ../requirements-mac-windows.txt
 pip install '..[eventserver]'
+# pip likes to troll us. Force reinstall the proper PyGObject versions
+pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygobject\dist\PyGObject*.whl)
+pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pycairo\dist\pycairo*.whl)
 
 if ($env:IS_DEV_BUILD) {
   bash .\install-skytemple-components-from-git.sh
 }
 
-pyinstaller skytemple.spec
+pyinstaller --log-level=DEBUG skytemple.spec
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 
 if(!(Test-Path ".\dist\skytemple\skytemple.exe")){
-    return 1
+    exit 1
 }
 
-# Check if we need to copy the cacert file
-if (Test-Path ".\dist\skytemple\certifi\cacert.pem") {
-  echo "Moved cacert to correct place"
-  cp dist/skytemple/certifi/cacert.pem dist/skytemple/certifi.pem
-}
+python gen_list_files_for_nsis.py dist\skytemple install_list.nsh uninstall_list.nsh
 
-echo $env:PACKAGE_VERSION | Out-File -FilePath dist/skytemple/VERSION -Encoding utf8
-echo $env:PACKAGE_VERSION | Out-File -FilePath dist/skytemple/data/VERSION -Encoding utf8
+if ($LASTEXITCODE) { exit $LASTEXITCODE }

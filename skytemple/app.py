@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import os
+import platform
 import sys
 
 from gi.repository import Gtk, Gdk, GLib
@@ -76,9 +77,20 @@ class SkyTempleApplication(Gtk.Application):
             with record_span("sys", "load-css"):
                 # Load CSS
                 style_provider = Gtk.CssProvider()
-                with open(os.path.join(path, "skytemple.css"), "rb") as f:
-                    css = f.read()
-                style_provider.load_from_data(css)
+                style_provider.load_from_path(
+                    os.path.abspath(
+                        os.path.join(os.path.dirname(__file__), "skytemple.css")
+                    )
+                )
+                if platform.system() == "Windows":
+                    style_provider.load_from_path(
+                        os.path.abspath(
+                            os.path.join(
+                                os.path.dirname(__file__),
+                                "skytemple-windows.css",
+                            )
+                        )
+                    )
                 default_screen = Gdk.Screen.get_default()
                 if default_screen is not None:
                     Gtk.StyleContext.add_provider_for_screen(
