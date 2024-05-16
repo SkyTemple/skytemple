@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-04-27 19:01+0000\n"
-"PO-Revision-Date: 2024-04-27 19:09\n"
+"POT-Creation-Date: 2024-05-16 11:15+0000\n"
+"PO-Revision-Date: 2024-05-16 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -3345,6 +3345,10 @@ msgstr "ダンジョンで仲間を押す機能を実装します。\n"
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/remove_body_size_check.py:48
+msgid "Removes the total body size check before entering a dungeon."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:49
 msgid "Allows the partner to be of the same type as the player in the personality test."
 msgstr "性格診断のパートナーの選択肢に主人公と同じタイプのポケモンを追加します。"
@@ -3376,72 +3380,72 @@ msgstr "PX 圧縮とは異なるアルゴリズムを使用する ATUPX コン�
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr "ダンジョンの未使用の確率を修正します。これにより、フロアに壁の迷路部屋が出現する確率が決まるようになります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:230
-#: skytemple-files/skytemple_files/patch/patches.py:240
+#: skytemple-files/skytemple_files/patch/patches.py:234
+#: skytemple-files/skytemple_files/patch/patches.py:244
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "パッチ '{name}' が見つかりません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:249
+#: skytemple-files/skytemple_files/patch/patches.py:253
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "'{name}' を適用する前に、パッチ '{patch_name}' を適用する必要があります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:258
+#: skytemple-files/skytemple_files/patch/patches.py:262
 #: skytemple/skytemple/module/patch/widget/asm.py:407
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:269
+#: skytemple-files/skytemple_files/patch/patches.py:273
 msgid "No configuration was given."
 msgstr "設定は行われませんでした。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:274
+#: skytemple-files/skytemple_files/patch/patches.py:278
 msgid "Missing configuration value."
 msgstr "設定値がありません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:280
-#: skytemple-files/skytemple_files/patch/patches.py:286
-#: skytemple-files/skytemple_files/patch/patches.py:292
-#: skytemple-files/skytemple_files/patch/patches.py:300
-#: skytemple-files/skytemple_files/patch/patches.py:317
+#: skytemple-files/skytemple_files/patch/patches.py:284
+#: skytemple-files/skytemple_files/patch/patches.py:290
+#: skytemple-files/skytemple_files/patch/patches.py:296
+#: skytemple-files/skytemple_files/patch/patches.py:304
+#: skytemple-files/skytemple_files/patch/patches.py:321
 msgid "Invalid configuration value."
 msgstr "無効な設定値です。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:288
+#: skytemple-files/skytemple_files/patch/patches.py:292
 msgid "Must be >= {}."
 msgstr "値は {} 以上である必要があります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:294
+#: skytemple-files/skytemple_files/patch/patches.py:298
 msgid "Must be <= {}."
 msgstr "値は {} 以下である必要があります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:409
+#: skytemple-files/skytemple_files/patch/patches.py:413
 msgid "config.xml missing in patch package."
 msgstr "パッチパッケージに config.xml が見つかりません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:412
+#: skytemple-files/skytemple_files/patch/patches.py:416
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "パッチパッケージの読み込み中に config.xml の構文エラーが発生しました。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:425
+#: skytemple-files/skytemple_files/patch/patches.py:429
 msgid "patch.py missing in patch package."
 msgstr "パッチパッケージに patch.py が見つかりません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:428
+#: skytemple-files/skytemple_files/patch/patches.py:432
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "パッチパッケージの patch.py に構文エラーがあります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:436
+#: skytemple-files/skytemple_files/patch/patches.py:440
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "パッチパッケージの patch.py に 'PatchHandler' が含まれていません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:445
+#: skytemple-files/skytemple_files/patch/patches.py:449
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "パッチパッケージの config.xml にハンドラーのパッチ名のエントリが含まれていません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:457
+#: skytemple-files/skytemple_files/patch/patches.py:461
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "設定にハンドラ '{handler.name}' のパッチが見つかりません。"
