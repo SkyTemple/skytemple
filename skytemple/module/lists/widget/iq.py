@@ -425,7 +425,7 @@ class StListsIqPage(Gtk.Box):
             store.append(
                 [
                     str(i),
-                    self._string_provider.get_value(StringType.IQ_SKILL_NAMES, i - 1),
+                    self._string_provider.get_value(StringType.IQ_SKILL_NAMES, i),
                     str(skill.iq_required),
                     str(skill.restriction_group),
                 ]
