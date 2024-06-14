@@ -143,6 +143,8 @@ pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygob
 pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pycairo\dist\pycairo*.whl)
 ```
 
+The SDL2 library is also required for the built-in emulator. Download it from https://skytemple.org/build_deps/SDL2.dll and place it on `<some-directory-for-skytemple-dev>/.venv/Lib/site-packages`. If you did not create a virtual environment, place it somewhere that is included in your system's PATH so Windows can find it when needed.
+
 You can now clone any SkyTemple repo and install it in editable mode. Some are:
 
    - https://github.com/SkyTemple/tilequant.git
