@@ -91,13 +91,9 @@ class StMovesItemsMovePage(Gtk.Box):
     btn_help_settings_range_ai: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     cb_settings_range_ai_target: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     cb_settings_range_ai_range: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
-    cb_settings_range_ai_condition: Gtk.ComboBox = cast(
-        Gtk.ComboBox, Gtk.Template.Child()
-    )
+    cb_settings_range_ai_condition: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     entry_ai_weight: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    btn_help_settings_range_ai_condition: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    btn_help_settings_range_ai_condition: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     entry_ai_condition1_chance: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_range_check_text: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     switch_affected_by_magic_coat: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
@@ -115,18 +111,10 @@ class StMovesItemsMovePage(Gtk.Box):
     switch_ai_frozen_check: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_dialog_store: Gtk.TreeStore = cast(Gtk.TreeStore, Gtk.Template.Child())
     store_completion_items: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_items: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items1: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items2: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items3: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_items: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items1: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items2: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items3: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
 
     def __init__(self, module: MovesItemsModule, item_data: int):
         super().__init__()
@@ -437,9 +425,7 @@ class StMovesItemsMovePage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "These are the range settings that the game uses for processing the actual move."
-            ),
+            _("These are the range settings that the game uses for processing the actual move."),
             title=_("Actual values:")[:-1],
         )
         md.run()
@@ -470,9 +456,7 @@ class StMovesItemsMovePage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "The Pokémon must be in this condition in order for this move to be used."
-            ),
+            _("The Pokémon must be in this condition in order for this move to be used."),
             title=_("Required condition:")[:-1],
         )
         md.run()
@@ -552,9 +536,7 @@ class StMovesItemsMovePage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "Whether the AI with Status Checker can select this move when the target is frozen."
-            ),
+            _("Whether the AI with Status Checker can select this move when the target is frozen."),
             title=_("AI - Don't use on Frozen:")[:-1],
         )
         md.run()
@@ -600,16 +582,12 @@ class StMovesItemsMovePage(Gtk.Box):
 
     def _init_stores(self):
         self._comboxbox_for_enum(["cb_category"], WazaMoveCategory)
-        self._comboxbox_for_enum_with_strings(
-            ["cb_type"], PokeType, StringType.TYPE_NAMES
-        )
+        self._comboxbox_for_enum_with_strings(["cb_type"], PokeType, StringType.TYPE_NAMES)
         self._comboxbox_for_enum(["cb_settings_range_target"], WazaMoveRangeTarget)
         self._comboxbox_for_enum(["cb_settings_range_range"], WazaMoveRangeRange)
         self._comboxbox_for_enum(["cb_settings_range_ai_target"], WazaMoveRangeTarget)
         self._comboxbox_for_enum(["cb_settings_range_ai_range"], WazaMoveRangeRange)
-        self._comboxbox_for_enum(
-            ["cb_settings_range_ai_condition"], WazaMoveRangeCondition
-        )
+        self._comboxbox_for_enum(["cb_settings_range_ai_condition"], WazaMoveRangeCondition)
 
     def _init_values(self):
         # Names
@@ -621,14 +599,10 @@ class StMovesItemsMovePage(Gtk.Box):
             if lang_id < len(langs):
                 # We have this language
                 gui_entry.set_text(
-                    self._string_provider.get_value(
-                        StringType.MOVE_NAMES, self.item_data, langs[lang_id]
-                    )
+                    self._string_provider.get_value(StringType.MOVE_NAMES, self.item_data, langs[lang_id])
                 )
                 gui_entry_desc.set_text(
-                    self._string_provider.get_value(
-                        StringType.MOVE_DESCRIPTIONS, self.item_data, langs[lang_id]
-                    )
+                    self._string_provider.get_value(StringType.MOVE_DESCRIPTIONS, self.item_data, langs[lang_id])
                 )
         self._set_entry("entry_move_id", self.move.move_id)
         self._set_entry("entry_base_power", self.move.base_power)
@@ -648,12 +622,8 @@ class StMovesItemsMovePage(Gtk.Box):
         self._set_cb("cb_settings_range_range", self.move.settings_range.range)
         self._set_cb("cb_settings_range_ai_target", self.move.settings_range_ai.target)
         self._set_cb("cb_settings_range_ai_range", self.move.settings_range_ai.range)
-        self._set_cb(
-            "cb_settings_range_ai_condition", self.move.settings_range_ai.condition
-        )
-        self._set_switch(
-            "switch_affected_by_magic_coat", self.move.affected_by_magic_coat
-        )
+        self._set_cb("cb_settings_range_ai_condition", self.move.settings_range_ai.condition)
+        self._set_switch("switch_affected_by_magic_coat", self.move.affected_by_magic_coat)
         self._set_switch("switch_is_snatchable", self.move.is_snatchable)
         self._set_switch("switch_uses_mouth", self.move.uses_mouth)
         self._set_switch("switch_ignores_taunted", self.move.ignores_taunted)
@@ -663,9 +633,7 @@ class StMovesItemsMovePage(Gtk.Box):
         if not self._is_loading:
             self.module.mark_move_as_modified(self.item_data)
 
-    def _comboxbox_for_enum(
-        self, names: list[str], enum: type[Enum], sort_by_name=False
-    ):
+    def _comboxbox_for_enum(self, names: list[str], enum: type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
             enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
@@ -674,14 +642,10 @@ class StMovesItemsMovePage(Gtk.Box):
         for name in names:
             self._fast_set_comboxbox_store(getattr(self, name), store, 1)
 
-    def _comboxbox_for_enum_with_strings(
-        self, names: list[str], enum: type[Enum], string_type: StringType
-    ):
+    def _comboxbox_for_enum_with_strings(self, names: list[str], enum: type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
-            store.append(
-                [entry.value, self._string_provider.get_value(string_type, entry.value)]
-            )
+            store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
             self._fast_set_comboxbox_store(getattr(self, name), store, 1)
 
@@ -737,7 +701,5 @@ class StMovesItemsMovePage(Gtk.Box):
     def _update_lang_desc_from_buffer(self, w: Gtk.TextBuffer, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(
-                StringType.MOVE_DESCRIPTIONS, self.item_data
-            )
+            self._string_provider.get_index(StringType.MOVE_DESCRIPTIONS, self.item_data)
         ] = w.get_text(w.get_start_iter(), w.get_end_iter(), False)

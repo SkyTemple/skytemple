@@ -85,6 +85,9 @@ spritecollab =      "skytemple.module.spritecollab.module:SpritecollabModule"
 [tool.setuptools.packages.find]
 exclude = ["installer", "docs"]
 
+[tool.ruff]
+line-length = 120
+
 [tool.ruff.lint]
 select = [ "W", "E", "F"]
 ignore = [

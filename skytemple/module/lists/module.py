@@ -118,9 +118,7 @@ class ListsModule(AbstractModule):
         self._tactics_root_iter: ItemTreeEntryRef
         self._iq_tree_iter: ItemTreeEntryRef
 
-        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(
-            WAZA_P_BIN, FileType.WAZA_P
-        )
+        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
     def load_tree_items(self, item_tree: ItemTree):
         root = item_tree.add_entry(
@@ -348,9 +346,7 @@ class ListsModule(AbstractModule):
 
     def mark_misc_settings_as_modified(self):
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._misc_settings_tree_iter, RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._misc_settings_tree_iter, RecursionType.UP)
 
     def mark_iq_as_modified(self):
         # Mark as modified in tree
@@ -394,9 +390,7 @@ class ListsModule(AbstractModule):
 
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        self._item_tree.mark_as_modified(
-            self._special_episodes_root_iter, RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._special_episodes_root_iter, RecursionType.UP)
 
     def get_tactics(self) -> list[i16]:
         arm9 = self.project.get_binary(BinaryName.ARM9)
@@ -423,12 +417,8 @@ class ListsModule(AbstractModule):
     def set_starter_ids(self, player, partner):
         def update(ov13):
             static_data = self.project.get_rom_module().get_static_data()
-            HardcodedPersonalityTestStarters.set_player_md_ids(
-                player, ov13, static_data
-            )
-            HardcodedPersonalityTestStarters.set_partner_md_ids(
-                partner, ov13, static_data
-            )
+            HardcodedPersonalityTestStarters.set_player_md_ids(player, ov13, static_data)
+            HardcodedPersonalityTestStarters.set_partner_md_ids(partner, ov13, static_data)
 
         self.project.modify_binary(BinaryName.OVERLAY_13, update)
 
@@ -468,25 +458,17 @@ class ListsModule(AbstractModule):
         static_data = self.project.get_rom_module().get_static_data()
         species = HardcodedRecruitmentTables.get_monster_species_list(ov11, static_data)
         level = HardcodedRecruitmentTables.get_monster_levels_list(ov11, static_data)
-        location = HardcodedRecruitmentTables.get_monster_locations_list(
-            ov11, static_data
-        )
+        location = HardcodedRecruitmentTables.get_monster_locations_list(ov11, static_data)
         return species, level, location
 
-    def set_recruitment_list(
-        self, species: list[u16], level: list[u16], location: list[u8]
-    ):
+    def set_recruitment_list(self, species: list[u16], level: list[u16], location: list[u8]):
         """Sets the recruitment lists: species, levels, locations"""
 
         def update(ov11):
             static_data = self.project.get_rom_module().get_static_data()
-            HardcodedRecruitmentTables.set_monster_species_list(
-                species, ov11, static_data
-            )
+            HardcodedRecruitmentTables.set_monster_species_list(species, ov11, static_data)
             HardcodedRecruitmentTables.set_monster_levels_list(level, ov11, static_data)
-            HardcodedRecruitmentTables.set_monster_locations_list(
-                location, ov11, static_data
-            )
+            HardcodedRecruitmentTables.set_monster_locations_list(location, ov11, static_data)
 
         self.project.modify_binary(BinaryName.OVERLAY_11, update)
 
@@ -571,14 +553,10 @@ class ListsModule(AbstractModule):
         )
         self.project.modify_binary(
             BinaryName.OVERLAY_10,
-            lambda ov10: HardcodedDungeonMusic.set_random_music_list(
-                random, ov10, config
-            ),
+            lambda ov10: HardcodedDungeonMusic.set_random_music_list(random, ov10, config),
         )
 
-        self._item_tree.mark_as_modified(
-            self._dungeon_music_tree_iter, RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._dungeon_music_tree_iter, RecursionType.UP)
 
     def set_extra_dungeon_data(self, lst: list[ExtraDungeonDataEntry]):
         """Updates the extra dungeon data list"""
@@ -589,9 +567,7 @@ class ListsModule(AbstractModule):
 
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        self._item_tree.mark_as_modified(
-            self._guest_pokemon_root_iter, RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._guest_pokemon_root_iter, RecursionType.UP)
 
     def set_guest_pokemon_data(self, lst: list[GuestPokemon]):
         """Updates the guest pokémon data list"""
@@ -602,13 +578,9 @@ class ListsModule(AbstractModule):
 
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        self._item_tree.mark_as_modified(
-            self._guest_pokemon_root_iter, RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._guest_pokemon_root_iter, RecursionType.UP)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, ActorListController):
             pass  # todo
         if isinstance(open_view, StartersListController):

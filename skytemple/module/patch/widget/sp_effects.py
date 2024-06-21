@@ -53,9 +53,7 @@ class StPatchSPEffectsPage(Gtk.Stack):
     box_list: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     effects_notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     sps_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    sp_effect_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    sp_effect_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_goto_effect: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_add_sp: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     cb_effect_ids: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
@@ -86,9 +84,7 @@ class StPatchSPEffectsPage(Gtk.Stack):
 
     def _get_current_sp_effect(self) -> int | None:
         tree_store = self.sp_effects_store
-        active_rows: list[Gtk.TreePath] = (
-            self.sps_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.sps_tree.get_selection().get_selected_rows()[1]
         sp_effect = None
         for x in active_rows:
             sp_effect = tree_store[x.get_indices()[0]][1]
@@ -148,14 +144,10 @@ class StPatchSPEffectsPage(Gtk.Stack):
             try:
                 if fn.split(".")[-1].lower() == "asm":
                     with open_utf8(fn, "r") as file:
-                        self.sp_effects.import_armips_effect_code(
-                            self._get_current_effect(), file.read()
-                        )
+                        self.sp_effects.import_armips_effect_code(self._get_current_effect(), file.read())
                 else:
                     with open(fn, "rb") as file:
-                        self.sp_effects.set_effect_code(
-                            self._get_current_effect(), file.read()
-                        )
+                        self.sp_effects.set_effect_code(self._get_current_effect(), file.read())
                 self.module.mark_sp_effects_as_modified()
                 md = SkyTempleMessageDialog(
                     MainController.window(),

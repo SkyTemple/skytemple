@@ -75,9 +75,7 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
         implementing concrete MetaPathFinders.
         """
         if fullname in self.packages:
-            return spec_from_loader(
-                fullname, SkyTemplePluginLoader(self.packages[fullname])
-            )
+            return spec_from_loader(fullname, SkyTemplePluginLoader(self.packages[fullname]))
         return None
 
     def find_distributions(
@@ -97,17 +95,11 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
             atexit.register(whl_ctx.close)
             temp_dir = whl_ctx.enter_context(TemporaryDirectory())
             whl.extractall(temp_dir)
-            dist = importlib_metadata.PathDistribution(
-                Path(temp_dir).joinpath(whl.dist_info_path)
-            )
+            dist = importlib_metadata.PathDistribution(Path(temp_dir).joinpath(whl.dist_info_path))
             dists.append(dist)
             # TODO: Is this OK to do like this?
             if dist.files is not None:
-                packages_in_dist = {
-                    x.parts[0]
-                    for x in dist.files
-                    if not x.parts[0].endswith(".dist-info")
-                }
+                packages_in_dist = {x.parts[0] for x in dist.files if not x.parts[0].endswith(".dist-info")}
                 for package in packages_in_dist:
                     self.packages[package] = os.path.join(temp_dir, package)
 

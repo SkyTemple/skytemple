@@ -95,34 +95,18 @@ class StMonsterMonsterPage(Gtk.Box):
     export_type_names: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_type_moveset1: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_type_moveset2: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    export_type_portraits_other_gender: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    export_type_portraits_other_gender: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_type_stats: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    export_type_portraits_current_gender: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    export_type_portraits_current_gender: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_file_switch: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    cr_export_selected: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    cr_export_selected: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     monster_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_entities: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_entities: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     store_completion_items: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_items: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items1: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items2: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items3: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_items: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items1: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items2: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items3: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     box_main: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     label_id_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     label_base_id: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
@@ -228,9 +212,7 @@ class StMonsterMonsterPage(Gtk.Box):
     lbl_unk_1_1: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     lbl_unk_1_2: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     lbl_unk_1_3: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
-    btn_help_item_required_for_spawning: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    btn_help_item_required_for_spawning: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_can_evolve: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_can_move: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     switch_bitfield1_0: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
@@ -240,9 +222,7 @@ class StMonsterMonsterPage(Gtk.Box):
     switch_can_move: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     switch_bitfield1_5: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     switch_can_evolve: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    switch_item_required_for_spawning: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    switch_item_required_for_spawning: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     btn_help_unk21_h: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_can_throw: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     entry_unk30: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -263,15 +243,11 @@ class StMonsterMonsterPage(Gtk.Box):
         self.module = module
         self.item_data = item_data
         self.entry: MdEntryProtocol = self.module.get_entry(self.item_data)
-        self._monster_bin = self.module.project.open_file_in_rom(
-            MONSTER_BIN, FileType.BIN_PACK, threadsafe=True
-        )
+        self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
-        self._portrait_provider = module.project.get_module(
-            "portrait"
-        ).get_portrait_provider()
+        self._portrait_provider = module.project.get_module("portrait").get_portrait_provider()
         self._level_up_controller: StMonsterLevelUpPage | None = None
         self._cached_sprite_page: int | None = None
         # The ID of our language. The ID is referring to the ID in the widget names (so starting with 1)
@@ -280,9 +256,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._render_graph_on_tab_change = True
         self.item_names = {}
         for i in range(0, MAX_ITEMS):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.ITEM_NAMES, i
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_names[i] = f"{name} (#{i:04})"
         self._sprite_provider.reset()
         self._portrait_provider.reset()
@@ -872,9 +846,7 @@ class StMonsterMonsterPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
-            ),
+            _("Affects the damage the Pokémon takes when attacked with a Sizebust Orb."),
             title=_("Size"),
         )
         md.run()
@@ -1113,20 +1085,11 @@ class StMonsterMonsterPage(Gtk.Box):
         store.clear()
         monster_entries_by_base_id: dict[int, list[MdEntryProtocol]] = {}
         for entry in self.module.monster_md.entries:
-            if (
-                getattr(entry, self.module.effective_base_attr)
-                not in monster_entries_by_base_id
-            ):
-                monster_entries_by_base_id[
-                    getattr(entry, self.module.effective_base_attr)
-                ] = []
-            monster_entries_by_base_id[
-                getattr(entry, self.module.effective_base_attr)
-            ].append(entry)
+            if getattr(entry, self.module.effective_base_attr) not in monster_entries_by_base_id:
+                monster_entries_by_base_id[getattr(entry, self.module.effective_base_attr)] = []
+            monster_entries_by_base_id[getattr(entry, self.module.effective_base_attr)].append(entry)
         for baseid, entry_list in monster_entries_by_base_id.items():
-            name = self.module.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, baseid
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
             entry_main_tree = self.module.generate_entry__entity_root(baseid, name)
             ent_root = store.append(
                 None,
@@ -1286,9 +1249,7 @@ class StMonsterMonsterPage(Gtk.Box):
                 for i in range(store.iter_n_children(titer)):
                     child = store.iter_nth_child(titer, i)
                     if child is not None:
-                        if (
-                            store[child][2] and store[child][5]
-                        ):  # is floor and is selected
+                        if store[child][2] and store[child][5]:  # is floor and is selected
                             selected_monsters.append(store[child][0])
                         collect_monsters_recurse(child)
 
@@ -1309,9 +1270,7 @@ class StMonsterMonsterPage(Gtk.Box):
         fn = save_diag.get_filename()
         save_diag.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            self.module.import_from_xml(
-                [self.entry.md_index], ElementTree.parse(fn).getroot()
-            )
+            self.module.import_from_xml([self.entry.md_index], ElementTree.parse(fn).getroot())
             SkyTempleMainController.reload_view()
 
     @Gtk.Template.Callback()
@@ -1334,9 +1293,9 @@ class StMonsterMonsterPage(Gtk.Box):
                         assert child is not None
                         children.append(child)
                     states = [store[child][5] for child in children]
-                    should_be_inconsistent = any(
-                        [store[child][6] for child in children]
-                    ) or not states.count(states[0]) == len(states)
+                    should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(
+                        states[0]
+                    ) == len(states)
                 store[parent][6] = should_be_inconsistent
                 if should_be_inconsistent:
                     store[parent][5] = False
@@ -1385,18 +1344,14 @@ class StMonsterMonsterPage(Gtk.Box):
             self.label_base_id.set_text(f"#{self.entry.md_index_base:03}")
         else:
             self.label_base_id.set_text("See Entity ID")
-        name = self._string_provider.get_value(
-            StringType.POKEMON_NAMES, self.entry.md_index_base
-        )
+        name = self._string_provider.get_value(StringType.POKEMON_NAMES, self.entry.md_index_base)
         self.label_id_name.set_text(f"${self.entry.md_index:04d}: {name}")
 
     def _init_stores(self):
         # Genders
         self._comboxbox_for_enum(["cb_gender"], Gender)
         # Types
-        self._comboxbox_for_enum_with_strings(
-            ["cb_type_primary", "cb_type_secondary"], PokeType, StringType.TYPE_NAMES
-        )
+        self._comboxbox_for_enum_with_strings(["cb_type_primary", "cb_type_secondary"], PokeType, StringType.TYPE_NAMES)
         # Movement Types
         self._comboxbox_for_enum(["cb_movement_type"], MovementType)
         # IQ Groups
@@ -1430,15 +1385,9 @@ class StMonsterMonsterPage(Gtk.Box):
                     idx = self.entry.md_index_base
                 else:
                     idx = self.entry.md_index
-                gui_entry.set_text(
-                    self._string_provider.get_value(
-                        StringType.POKEMON_NAMES, idx, langs[lang_id]
-                    )
-                )
+                gui_entry.set_text(self._string_provider.get_value(StringType.POKEMON_NAMES, idx, langs[lang_id]))
                 gui_entry_cat.set_text(
-                    self._string_provider.get_value(
-                        StringType.POKEMON_CATEGORIES, idx, langs[lang_id]
-                    )
+                    self._string_provider.get_value(StringType.POKEMON_CATEGORIES, idx, langs[lang_id])
                 )
         # Stats
         a = self.module.get_idle_anim_type(self.item_data)
@@ -1446,13 +1395,9 @@ class StMonsterMonsterPage(Gtk.Box):
             self.cb_idle_anim.set_sensitive(False)
         else:
             self._set_cb("cb_idle_anim", a.value)
-        self._set_entry(
-            "entry_personality", self.module.get_personality(self.item_data)
-        )
+        self._set_entry("entry_personality", self.module.get_personality(self.item_data))
         self._set_entry("entry_unk31", self.entry.unk31)
-        self._set_entry(
-            "entry_national_pokedex_number", self.entry.national_pokedex_number
-        )
+        self._set_entry("entry_national_pokedex_number", self.entry.national_pokedex_number)
         self._set_entry("entry_entid", self.entry.entid)
         self._set_entry("entry_sprite_index", self.entry.sprite_index)
         self._set_entry("entry_base_movement_speed", self.entry.base_movement_speed)
@@ -1476,9 +1421,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._set_switch("switch_can_move", self.entry.can_move)
         self._set_switch("switch_bitfield1_5", self.entry.bitfield1_5)
         self._set_switch("switch_can_evolve", self.entry.can_evolve)
-        self._set_switch(
-            "switch_item_required_for_spawning", self.entry.item_required_for_spawning
-        )
+        self._set_switch("switch_item_required_for_spawning", self.entry.item_required_for_spawning)
         self._set_entry("entry_exp_yield", self.entry.exp_yield)
         self._set_entry("entry_recruit_rate1", self.entry.recruit_rate1)
         self._set_entry("entry_base_hp", self.entry.base_hp)
@@ -1495,18 +1438,10 @@ class StMonsterMonsterPage(Gtk.Box):
         self._set_entry("entry_chance_spawn_asleep", self.entry.chance_spawn_asleep)
         self._set_entry("entry_hp_regeneration", self.entry.hp_regeneration)
         self._set_entry("entry_unk21_h", self.entry.unk21_h)
-        self._set_entry(
-            "entry_exclusive_item1", self.item_names[self.entry.exclusive_item1]
-        )
-        self._set_entry(
-            "entry_exclusive_item2", self.item_names[self.entry.exclusive_item2]
-        )
-        self._set_entry(
-            "entry_exclusive_item3", self.item_names[self.entry.exclusive_item3]
-        )
-        self._set_entry(
-            "entry_exclusive_item4", self.item_names[self.entry.exclusive_item4]
-        )
+        self._set_entry("entry_exclusive_item1", self.item_names[self.entry.exclusive_item1])
+        self._set_entry("entry_exclusive_item2", self.item_names[self.entry.exclusive_item2])
+        self._set_entry("entry_exclusive_item3", self.item_names[self.entry.exclusive_item3])
+        self._set_entry("entry_exclusive_item4", self.item_names[self.entry.exclusive_item4])
         self._set_entry("entry_unk27", self.entry.unk27)
         self._set_entry("entry_unk28", self.entry.unk28)
         self._set_entry("entry_unk29", self.entry.unk29)
@@ -1516,9 +1451,7 @@ class StMonsterMonsterPage(Gtk.Box):
         if not self._is_loading:
             self.module.mark_md_as_modified(self.item_data)
 
-    def _comboxbox_for_enum(
-        self, names: list[str], enum: type[Enum], sort_by_name=False
-    ):
+    def _comboxbox_for_enum(self, names: list[str], enum: type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
             enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
@@ -1560,9 +1493,7 @@ class StMonsterMonsterPage(Gtk.Box):
 
     def _set_cb(self, cb_name, value):
         cb: Gtk.ComboBox = getattr(self, cb_name)
-        l_iter: Gtk.TreeIter = assert_not_none(
-            assert_not_none(cb.get_model()).get_iter_first()
-        )
+        l_iter: Gtk.TreeIter = assert_not_none(assert_not_none(cb.get_model()).get_iter_first())
         while l_iter:
             row = cb.get_model()[l_iter]
             if row[0] == value:
@@ -1611,9 +1542,7 @@ class StMonsterMonsterPage(Gtk.Box):
     def _init_sub_pages(self):
         notebook = self.main_notebook
         tab_label: Gtk.Label = Gtk.Label.new(_("Stats and Moves"))
-        level_up_view, self._level_up_controller = self.module.get_level_up_view(
-            self.item_data
-        )
+        level_up_view, self._level_up_controller = self.module.get_level_up_view(self.item_data)
         notebook.append_page(level_up_view, tab_label)
         tab_label = Gtk.Label.new(_("Portraits"))
         notebook.append_page(self.module.get_portrait_view(self.item_data), tab_label)
@@ -1738,9 +1667,7 @@ class StMonsterMonsterPage(Gtk.Box):
         table matches the currently selected sprite of the Pokémon. If not, change
         the value and save it.
         """
-        md_gender1, md_gender2 = self.module.get_entry_both(
-            getattr(self.entry, self.module.effective_base_attr)
-        )
+        md_gender1, md_gender2 = self.module.get_entry_both(getattr(self.entry, self.module.effective_base_attr))
         sprite_size_table = self.module.get_pokemon_sprite_data_table()
         try:
             with self._monster_bin as monster_bin:
@@ -1750,9 +1677,7 @@ class StMonsterMonsterPage(Gtk.Box):
                     md_gender2=md_gender2,
                     monster_bin=monster_bin,
                     sprite_size_table=sprite_size_table,
-                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied(
-                        "ExpandPokeList"
-                    ),
+                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("ExpandPokeList"),
                 )
             if changed:
                 self._set_entry("entry_unk17", self.entry.unk17)
@@ -1787,12 +1712,8 @@ class StMonsterMonsterPage(Gtk.Box):
                 sidx = entry.md_index_base
             else:
                 sidx = entry.md_index
-            name = self.module.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, sidx
-            )
-            self._ent_names[idx] = (
-                f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
+            self._ent_names[idx] = f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
             monster_store.append([self._ent_names[idx]])
 
     @Gtk.Template.Callback()
@@ -1947,9 +1868,7 @@ class StMonsterMonsterPage(Gtk.Box):
     def on_btn_add_evo_clicked(self, *args):
         try:
             if len(self._md_evo.evo_entries[self.item_data].evos) >= MAX_EVOS:
-                raise ValueError(
-                    _(f"A pokémon can't evolve into more than {MAX_EVOS} evolutions.")
-                )
+                raise ValueError(_(f"A pokémon can't evolve into more than {MAX_EVOS} evolutions."))
             else:
                 self._add_monster_to_store("evo_tree")
         except ValueError as err:
@@ -1959,9 +1878,7 @@ class StMonsterMonsterPage(Gtk.Box):
     def on_btn_add_egg_clicked(self, *args):
         try:
             if len(self._md_evo.evo_entries[self.item_data].eggs) >= MAX_EGGS:
-                raise ValueError(
-                    _(f"A pokémon can't have more than {MAX_EGGS} children.")
-                )
+                raise ValueError(_(f"A pokémon can't have more than {MAX_EGGS} children."))
             else:
                 self._add_monster_to_store("egg_tree")
         except ValueError as err:

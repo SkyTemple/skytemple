@@ -111,9 +111,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             r = re.compile("(\\d+)\\.png", re.IGNORECASE)
             imgs_dict = {
-                int(match[1]): name
-                for match, name in self._try_match_import(r, os.listdir(fn))
-                if match is not None
+                int(match[1]): name for match, name in self._try_match_import(r, os.listdir(fn)) if match is not None
             }
             imgs = []
             # Convert imgs to list
@@ -121,11 +119,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
                 if i not in imgs_dict:
                     display_error(
                         None,
-                        f(
-                            _(
-                                'Failed importing image "{i}":\nImage for number {i} missing.'
-                            )
-                        ),
+                        f(_('Failed importing image "{i}":\nImage for number {i} missing.')),
                         _("Image for number {i} missing."),
                     )
                     return
@@ -141,13 +135,9 @@ class StMiscGraphicsW16Page(Gtk.Box):
                             # Existing image, update
                             self.w16[index].set(image)
                         else:
-                            self.w16.append(
-                                W16AtImage.new(W16TocEntry(0, 0, 0, 0), image)
-                            )
+                            self.w16.append(W16AtImage.new(W16TocEntry(0, 0, 0, 0), image))
                 except Exception as err:
-                    logger.error(
-                        f(_("Failed importing image '{index}'.")), exc_info=err
-                    )
+                    logger.error(f(_("Failed importing image '{index}'.")), exc_info=err)
                     display_error(
                         sys.exc_info(),
                         f(_('Failed importing image "{index}":\n{err}')),
@@ -177,9 +167,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
             self._draws.append(draw)
             draw.connect("draw", partial(self.on_draw, index))
 
-    def _append(
-        self, grid: Gtk.Grid, x, y, index, image: Image.Image
-    ) -> Gtk.DrawingArea:
+    def _append(self, grid: Gtk.Grid, x, y, index, image: Image.Image) -> Gtk.DrawingArea:
         self._surfaces.append(self._get_surface(image))
         box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 5)
         box.set_margin_bottom(10)

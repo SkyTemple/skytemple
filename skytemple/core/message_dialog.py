@@ -54,10 +54,7 @@ class SkyTempleMessageDialog(Gtk.MessageDialog):
         self.img: Gtk.Image = Gtk.Image.new_from_file(os.path.join(data_dir(), img))
         kwargs.update(
             {
-                "destroy_with_parent": (
-                    dialog_flags & Gtk.DialogFlags.DESTROY_WITH_PARENT
-                )
-                > 0,
+                "destroy_with_parent": (dialog_flags & Gtk.DialogFlags.DESTROY_WITH_PARENT) > 0,
                 "modal": (dialog_flags & Gtk.DialogFlags.MODAL) > 0,
                 "use_header_bar": (dialog_flags & Gtk.DialogFlags.USE_HEADER_BAR) > 0,
                 "message_type": message_type,

@@ -57,9 +57,7 @@ class StScriptMapPage(Gtk.Box):
                 )
             )
         )
-        self._sub_enter, self._sub_acting, self._sub_sub = self.module.get_subnodes(
-            self.item_data
-        )
+        self._sub_enter, self._sub_acting, self._sub_sub = self.module.get_subnodes(self.item_data)
         if self._sub_enter:
             self.btn_add_enter.set_sensitive(False)
 
@@ -101,9 +99,7 @@ class StScriptMapPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_btn_add_acting_clicked(self, *args):
-        response, name = self._show_generic_input(
-            _("Scene Name (without file extension)"), _("Create Scene")
-        )
+        response, name = self._show_generic_input(_("Scene Name (without file extension)"), _("Create Scene"))
         if response != Gtk.ResponseType.OK:
             return
         name_file = name.lower()
@@ -144,9 +140,7 @@ class StScriptMapPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_btn_add_sub_clicked(self, *args):
-        response, name = self._show_generic_input(
-            _("Scene Name (without file extension)"), _("Create Scene")
-        )
+        response, name = self._show_generic_input(_("Scene Name (without file extension)"), _("Create Scene"))
         if response != Gtk.ResponseType.OK:
             return
         name_file = name.lower()
@@ -200,7 +194,5 @@ class StScriptMapPage(Gtk.Box):
         response = dialog.run()
         dialog.hide()
         assert_not_none(cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
-        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(
-            btn_cancel
-        )
+        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return (response, entry.get_text())

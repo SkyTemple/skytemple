@@ -43,9 +43,7 @@ if TYPE_CHECKING:
     from skytemple.core.ssb_debugger.manager import DebuggerManager
 
 # I'm versioning this since it's public knowledge anyway. Please do not misuse this.
-SENTRY_ENDPOINT = (
-    "https://d4fa0c44839145a39bd6014ca7407ab3@o1155044.ingest.sentry.io/6235225"
-)
+SENTRY_ENDPOINT = "https://d4fa0c44839145a39bd6014ca7407ab3@o1155044.ingest.sentry.io/6235225"
 sentry_is_init = False
 ran_init = False
 logger = logging.getLogger(__name__)
@@ -154,8 +152,7 @@ def collect_device_context() -> dict[str, Captured]:
         display = Display.get_default()
         if display is not None:
             mon_geoms = [
-                assert_not_none(display.get_monitor(i)).get_geometry()
-                for i in range(display.get_n_monitors())
+                assert_not_none(display.get_monitor(i)).get_geometry() for i in range(display.get_n_monitors())
             ]
 
             x0 = min(r.x for r in mon_geoms)
@@ -218,11 +215,7 @@ def debugger_open_scripts(manager: DebuggerManager):
     if not manager.is_opened():
         return None
     notebook = manager.get_controller().editor_notebook  # type: ignore
-    if (
-        notebook is None
-        or not hasattr(notebook, "_open_editors")
-        or notebook._open_editors is None
-    ):
+    if notebook is None or not hasattr(notebook, "_open_editors") or notebook._open_editors is None:
         return None
     return list(notebook._open_editors.keys())
 
@@ -262,19 +255,11 @@ def debugger_emulator_state(manager: DebuggerManager):
     if ges.running:
         ground_state = {
             "loaded_ssx_files": [
-                (
-                    {"file_name": x.file_name, "hanger": x.hanger}
-                    if x is not None
-                    else None
-                )
+                ({"file_name": x.file_name, "hanger": x.hanger} if x is not None else None)
                 for x in ges.loaded_ssx_files
             ],
             "loaded_ssb_files": [
-                (
-                    {"file_name": x.file_name, "hanger": x.hanger}
-                    if x is not None
-                    else None
-                )
+                ({"file_name": x.file_name, "hanger": x.hanger} if x is not None else None)
                 for x in ges.loaded_ssb_files
             ],
             "actors": [
@@ -282,9 +267,7 @@ def debugger_emulator_state(manager: DebuggerManager):
                     {
                         "id": x.id,
                         "hanger": x.hanger,
-                        "direction": (
-                            x.direction.ssa_id if x.direction is not None else None
-                        ),
+                        "direction": (x.direction.ssa_id if x.direction is not None else None),
                         "kind": x.kind.name,
                         "sector": x.sector,
                     }
@@ -298,9 +281,7 @@ def debugger_emulator_state(manager: DebuggerManager):
                     {
                         "id": x.id,
                         "hanger": x.hanger,
-                        "direction": (
-                            x.direction.ssa_id if x.direction is not None else None
-                        ),
+                        "direction": (x.direction.ssa_id if x.direction is not None else None),
                         "kind": x.kind.unique_name,
                         "sector": x.sector,
                     }
@@ -314,9 +295,7 @@ def debugger_emulator_state(manager: DebuggerManager):
                     {
                         "id": x.id,
                         "hanger": x.hanger,
-                        "direction": (
-                            x.direction.ssa_id if x.direction is not None else None
-                        ),
+                        "direction": (x.direction.ssa_id if x.direction is not None else None),
                         "kind": x.kind,
                         "sector": x.sector,
                     }
@@ -326,11 +305,7 @@ def debugger_emulator_state(manager: DebuggerManager):
                 for x in ges.performers
             ],
             "events": [
-                (
-                    {"id": x.id, "hanger": x.hanger, "kind": x.kind, "sector": x.sector}
-                    if x is not None
-                    else None
-                )
+                ({"id": x.id, "hanger": x.hanger, "kind": x.kind, "sector": x.sector} if x is not None else None)
                 for x in ges.events
             ],
         }
@@ -353,10 +328,8 @@ def collect_state_context() -> dict[str, Captured]:
 
     rom_project = RomProject.get_current()
     try:
-        view_state = (
-            MainController._instance._current_view_module.collect_debugging_info(  # type: ignore
-                MainController._instance._current_view  # type: ignore
-            )
+        view_state = MainController._instance._current_view_module.collect_debugging_info(  # type: ignore
+            MainController._instance._current_view  # type: ignore
         )
         if "models" in view_state:  # type: ignore
             view_state["models"] = {  # type: ignore
@@ -366,12 +339,8 @@ def collect_state_context() -> dict[str, Captured]:
     except Exception as ex:
         view_state = {"error_collecting": str(ex)}
     w, h = MainController.window().get_size()
-    dw = if_not_none(
-        MainController.debugger_manager()._opened_main_window, lambda w: w.get_size()[0]
-    )
-    dh = if_not_none(
-        MainController.debugger_manager()._opened_main_window, lambda w: w.get_size()[1]
-    )
+    dw = if_not_none(MainController.debugger_manager()._opened_main_window, lambda w: w.get_size()[0])
+    dh = if_not_none(MainController.debugger_manager()._opened_main_window, lambda w: w.get_size()[1])
     return {
         "skytemple": {
             "window": {
@@ -380,9 +349,7 @@ def collect_state_context() -> dict[str, Captured]:
             },
             "rom": {
                 "filename": if_not_none(rom_project, lambda p: p.get_rom_name()),
-                "edition": if_not_none(
-                    rom_project, lambda p: p.get_rom_module().get_static_data()
-                ),
+                "edition": if_not_none(rom_project, lambda p: p.get_rom_module().get_static_data()),
             },
             "module": type(MainController._instance._current_view_module).__qualname__,
             "view": MainController._instance._current_view_controller_class.__qualname__,  # type: ignore
@@ -394,9 +361,7 @@ def collect_state_context() -> dict[str, Captured]:
                 "height": dh,
             },
             "open_scripts": debugger_open_scripts(MainController.debugger_manager()),
-            "focused_script": debugger_focused_script(
-                MainController.debugger_manager()
-            ),
+            "focused_script": debugger_focused_script(MainController.debugger_manager()),
             # "emulator_state": debugger_emulator_state(MainController.debugger_manager())
         },
     }
@@ -417,17 +382,11 @@ def capture(
         k: capture_capturable(v)  # type: ignore
         for k, v in error_context_in.items()
     }
-    try_ignore_err(
-        collect_device_context, lambda c: sentry_sdk.set_context("device", c)
-    )
+    try_ignore_err(collect_device_context, lambda c: sentry_sdk.set_context("device", c))
     try_ignore_err(collect_os_context, lambda c: sentry_sdk.set_context("os", c))
-    try_ignore_err(
-        collect_runtime_context, lambda c: sentry_sdk.set_context("runtime", c)
-    )
+    try_ignore_err(collect_runtime_context, lambda c: sentry_sdk.set_context("runtime", c))
     try_ignore_err(collect_app_context, lambda c: sentry_sdk.set_context("app", c))
-    try_ignore_err(
-        collect_state_context, lambda c: sentry_sdk.set_context("skytemple_state", c)
-    )
+    try_ignore_err(collect_state_context, lambda c: sentry_sdk.set_context("skytemple_state", c))
     try_ignore_err(
         partial(collect_config_context, settings),
         lambda c: sentry_sdk.set_context("config", c),
@@ -437,8 +396,6 @@ def capture(
         return sentry_sdk.capture_exception(exc_info)
     else:
         if "message" in error_context:
-            return sentry_sdk.capture_message(
-                f"Error without exception: {error_context['message']}"
-            )
+            return sentry_sdk.capture_message(f"Error without exception: {error_context['message']}")
         else:
             return sentry_sdk.capture_message("Unknown event. See context.")

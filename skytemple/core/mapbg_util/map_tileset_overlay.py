@@ -57,10 +57,7 @@ class MapTilesetOverlay:
         bma_chunk_width: int,
         bma_chunk_height: int,
     ):
-        if (
-            bma_chunk_width != self._cached__bma_chunk_width
-            or self._cached__bma_chunks != bma_chunks
-        ):
+        if bma_chunk_width != self._cached__bma_chunk_width or self._cached__bma_chunks != bma_chunks:
             self._cached__bma_chunk_width = bma_chunk_width
             self._cached__bma_chunks = list(bma_chunks)
             self._cached = None
@@ -70,28 +67,18 @@ class MapTilesetOverlay:
                 rules = drawer.rules_from_fixed_room(self.fixed_room)
             else:
                 rules = drawer.rules_from_bma(bma_chunks, bma_chunk_width)
-            mappings = drawer.get_mappings_for_rules(
-                rules, treat_outside_as_wall=True, variation_index=0
-            )
-            frame = pil_to_cairo_surface(
-                drawer.draw(mappings, self.dpci, self.dpc, self.dpl, None)[0].convert(
-                    "RGBA"
-                )
-            )
+            mappings = drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True, variation_index=0)
+            frame = pil_to_cairo_surface(drawer.draw(mappings, self.dpci, self.dpc, self.dpl, None)[0].convert("RGBA"))
             self._cached = frame
         ctx.set_source_surface(self._cached)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
 
-    def create(
-        self, bma_chunks: Sequence[int], bma_chunk_width: int, bma_chunk_height: int
-    ) -> cairo.Surface:
+    def create(self, bma_chunks: Sequence[int], bma_chunk_width: int, bma_chunk_height: int) -> cairo.Surface:
         surface = cairo.ImageSurface(
             cairo.FORMAT_RGB24,
             bma_chunk_width * BPC_TILE_DIM * 3,
             bma_chunk_height * BPC_TILE_DIM * 3,
         )
-        self.draw_full(
-            cairo.Context(surface), bma_chunks, bma_chunk_width, bma_chunk_height
-        )
+        self.draw_full(cairo.Context(surface), bma_chunks, bma_chunk_width, bma_chunk_height)
         return surface

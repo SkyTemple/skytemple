@@ -21,7 +21,5 @@ import cairo
 
 class AbstractDrawerPlugin(ABC):
     @abstractmethod
-    def draw(
-        self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int
-    ):
+    def draw(self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int):
         pass

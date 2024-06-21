@@ -43,9 +43,7 @@ if TYPE_CHECKING:
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "colvec.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "colvec.ui"))
 class StDungeonGraphicsColvecPage(Gtk.Paned):
     __gtype_name__ = "StDungeonGraphicsColvecPage"
     module: DungeonGraphicsModule
@@ -55,9 +53,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
     button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     cb_tileset: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
-    description1: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    description1: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     draw_colormap: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     draw_tileset: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     cb_weather: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
@@ -187,20 +183,14 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
         assert it is not None
         v: int = cb_store[it][0]
         surface = self.colvec.to_pil(v)
-        surface = surface.resize(
-            (surface.width * 16, surface.height * 16), resample=Image.NEAREST
-        )
+        surface = surface.resize((surface.width * 16, surface.height * 16), resample=Image.NEAREST)
         self.colormap = pil_to_cairo_surface(surface.convert("RGBA"))
         self.surface = None
         if self.dma:
-            self.dtef = ExplorersDtef(
-                self.dma, self.dpc, self.dpci, self.dpl, self.dpla
-            )
+            self.dtef = ExplorersDtef(self.dma, self.dpc, self.dpci, self.dpl, self.dpla)
             surface = self.dtef.get_tiles()[0]
             # Apply colormap
-            surface.putpalette(
-                self.colvec.apply_colormap(v, list(surface.palette.palette))
-            )
+            surface.putpalette(self.colvec.apply_colormap(v, list(surface.palette.palette)))
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
         self.draw_tileset.queue_draw()
         self.draw_colormap.queue_draw()
@@ -215,9 +205,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
         # Init combobox
         cb_store.clear()
         for v in range(self.colvec.nb_colormaps()):
-            cb_store.append(
-                [v, self._string_provider.get_value(StringType.WEATHER_NAMES, v)]
-            )
+            cb_store.append([v, self._string_provider.get_value(StringType.WEATHER_NAMES, v)])
 
     def exec_draw_tileset(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

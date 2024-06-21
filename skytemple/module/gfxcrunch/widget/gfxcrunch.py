@@ -154,13 +154,9 @@ class StGfxcrunchDialog(Gtk.Dialog):
         )
 
     def _done(self, return_code):
-        self._update_status(
-            GfxcrunchStatus.SUCCESS if return_code == 0 else GfxcrunchStatus.ERROR
-        )
+        self._update_status(GfxcrunchStatus.SUCCESS if return_code == 0 else GfxcrunchStatus.ERROR)
         if return_code != 0:
-            self._stderr(
-                f(_("!! Process exited with error. Exit code: {return_code} !!"))
-            )
+            self._stderr(f(_("!! Process exited with error. Exit code: {return_code} !!")))
         self.spinner.stop()
         self.close_button.set_sensitive(True)
 

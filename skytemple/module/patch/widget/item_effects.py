@@ -54,9 +54,7 @@ class StPatchItemEffectsPage(Gtk.Stack):
     box_list: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     effects_notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     items_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    item_effect_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    item_effect_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_goto_effect: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     cb_effect_ids: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     btn_add_effect: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -86,9 +84,7 @@ class StPatchItemEffectsPage(Gtk.Stack):
 
     def _get_current_item_effect(self) -> int | None:
         tree_store = self.item_effects_store
-        active_rows: list[Gtk.TreePath] = (
-            self.items_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.items_tree.get_selection().get_selected_rows()[1]
         item_effect = None
         for x in active_rows:
             item_effect = tree_store[x.get_indices()[0]][2]
@@ -157,14 +153,10 @@ class StPatchItemEffectsPage(Gtk.Stack):
             try:
                 if fn.split(".")[-1].lower() == "asm":
                     with open_utf8(fn, "r") as file:
-                        self.item_effects.import_armips_effect_code(
-                            self._get_current_effect(), file.read()
-                        )
+                        self.item_effects.import_armips_effect_code(self._get_current_effect(), file.read())
                 else:
                     with open(fn, "rb") as file:
-                        self.item_effects.set_effect_code(
-                            self._get_current_effect(), file.read()
-                        )
+                        self.item_effects.set_effect_code(self._get_current_effect(), file.read())
                 self.module.mark_item_effects_as_modified()
                 md = SkyTempleMessageDialog(
                     MainController.window(),
@@ -184,9 +176,7 @@ class StPatchItemEffectsPage(Gtk.Stack):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.item_effects.import_armips_effect_code(
-                self._get_current_effect(), text
-            )
+            self.item_effects.import_armips_effect_code(self._get_current_effect(), text)
             self.module.mark_item_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),
@@ -215,9 +205,7 @@ class StPatchItemEffectsPage(Gtk.Stack):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             with open(fn, "wb") as file:
-                file.write(
-                    self.item_effects.get_effect_code(self._get_current_effect())
-                )
+                file.write(self.item_effects.get_effect_code(self._get_current_effect()))
 
     def on_btn_help_import_clicked(self):
         md = SkyTempleMessageDialog(

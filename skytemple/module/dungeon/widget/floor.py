@@ -196,24 +196,12 @@ class StDungeonFloorPage(Gtk.Box):
     module: DungeonModule
     item_data: FloorViewInfo
     adjustment1: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
-    adjustment_empty_monster_house_change: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    adjustment_hidden_stairs_change: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    adjustment_kecleon_shop_chance: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    adjustment_monster_house_chance: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    adjustment_sticky_item_change: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    adjustment_unused_change: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    adjustment_empty_monster_house_change: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    adjustment_hidden_stairs_change: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    adjustment_kecleon_shop_chance: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    adjustment_monster_house_chance: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    adjustment_sticky_item_change: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    adjustment_unused_change: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     category_add_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     dialog_category_add: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     button2: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -228,56 +216,24 @@ class StDungeonFloorPage(Gtk.Box):
     chance_label7: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     chance_label8: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     chance_label9: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
-    completion_item_berries_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_berries: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_foods_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_foods: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_hold_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_hold: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_orbs_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_orbs: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_others_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_others: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_thrown_pierce_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_thrown_pierce: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_thrown_rock_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_thrown_rock: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_item_berries_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_berries: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_foods_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_foods: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_hold_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_hold: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_orbs_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_orbs: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_others_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_others: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_thrown_pierce_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_thrown_pierce: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_thrown_rock_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_thrown_rock: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     completion_item_tms_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_item_tms: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_item_tms: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     completion_monsters_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_monsters: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_monsters: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     cr_item_cat_name_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     export_dialog_store: Gtk.TreeStore = cast(Gtk.TreeStore, Gtk.Template.Child())
     export_dialog: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
@@ -293,21 +249,15 @@ class StDungeonFloorPage(Gtk.Box):
     export_type_unk_items1: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_type_unk_items2: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     export_file_switch: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    cr_export_selected: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    cr_export_selected: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     filefilter1: Gtk.FileFilter = cast(Gtk.FileFilter, Gtk.Template.Child())
     item_cat_berries_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_foods_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_hold_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_orbs_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_others_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    item_cat_thrown_pierce_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    item_cat_thrown_rock_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
+    item_cat_thrown_pierce_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    item_cat_thrown_rock_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_tms_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_categories_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     monster_spawns_chance_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
@@ -339,14 +289,10 @@ class StDungeonFloorPage(Gtk.Box):
     entry_room_density: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     btn_help_room_density: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_dead_ends: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    cb_terrain_settings__has_secondary_terrain: Gtk.ComboBox = cast(
-        Gtk.ComboBox, Gtk.Template.Child()
-    )
+    cb_terrain_settings__has_secondary_terrain: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     entry_water_density: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     btn_help_water_density: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    cb_terrain_settings__generate_imperfect_rooms: Gtk.ComboBox = cast(
-        Gtk.ComboBox, Gtk.Template.Child()
-    )
+    cb_terrain_settings__generate_imperfect_rooms: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     cb_darkness_level: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     cb_weather: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     entry_secondary_terrain: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -375,27 +321,19 @@ class StDungeonFloorPage(Gtk.Box):
     cb_floor_ranks: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     cb_mission_forbidden: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     btn_help_iq_booster_boost: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    btn_help_kecleon_shop_item_positions: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    btn_help_kecleon_shop_item_positions: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_unk_hidden_stairs: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_floor_ranks: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_mission_forbidden: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     entry_iq_booster_boost: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     tool_scene_zoom_in: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tool_scene_zoom_out: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    tool_scene_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tool_fullmap: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
+    tool_scene_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tool_fullmap: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     tool_entry_seed: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     btn_help_tool_seed: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     tool_refresh: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    tool_auto_refresh: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
+    tool_auto_refresh: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     label_notes: Gtk.ToolItem = cast(Gtk.ToolItem, Gtk.Template.Child())
     tool_label_info: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     preview_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
@@ -403,27 +341,13 @@ class StDungeonFloorPage(Gtk.Box):
     preview_error: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     preview_error_infinite: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     monster_spawns_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_monster_spawns_entity: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monster_spawns_level: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monster_spawns_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monster_spawns_chance: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monster_spawns_weight_mh: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monster_spawns_chance_mh: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    monster_spawns_keep_synced_toggle: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    cr_monster_spawns_entity: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monster_spawns_level: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monster_spawns_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monster_spawns_chance: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monster_spawns_weight_mh: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monster_spawns_chance_mh: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    monster_spawns_keep_synced_toggle: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     btn_help_monster_spawn_table: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     kecleon_level_entry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     monster_spawns_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -431,118 +355,62 @@ class StDungeonFloorPage(Gtk.Box):
     monster_spawns_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     switch_kecleon_gender: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     trap_spawns_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_trap_spawns_trap: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_trap_spawns_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_trap_spawns_trap: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_trap_spawns_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_help_trap_spawn_table: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_list_notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     sw_item_editor: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
     item_categories_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_name: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_items_cat_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_name: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_items_cat_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_categories_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_categories_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_pierce_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_thrown_pierce_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_thrown_pierce_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_thrown_pierce_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_thrown_pierce_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_thrown_pierce_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_thrown_pierce_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_thrown_pierce_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_pierce_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_rock_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_thrown_rock_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_thrown_rock_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_thrown_rock_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_thrown_rock_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_thrown_rock_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_thrown_rock_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_thrown_rock_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_rock_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_berries_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_berries_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_berries_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_berries_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_berries_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_berries_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_berries_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_berries_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_berries_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_foods_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_foods_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_foods_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_foods_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_foods_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_foods_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_foods_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_foods_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_foods_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_hold_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_hold_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_hold_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_hold_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_hold_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_hold_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_hold_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_hold_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_hold_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_tms_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_tms_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_tms_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_tms_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_tms_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_tms_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_tms_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_tms_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_tms_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_orbs_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_orbs_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_orbs_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_orbs_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_orbs_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_orbs_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_orbs_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_orbs_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_orbs_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_others_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_others_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_others_guaranteed: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_items_cat_others_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_others_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_others_guaranteed: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_items_cat_others_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_others_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_others_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     _last_open_tab_id = 0
@@ -568,11 +436,7 @@ class StDungeonFloorPage(Gtk.Box):
         self._item_list_edit_active = self.__class__._last_open_tab_item_lists
         self._ent_names: dict[int, str] = {}
         self._item_names: dict[int, str] = {}
-        orig_cats = (
-            module.project.get_rom_module()
-            .get_static_data()
-            .dungeon_data.item_categories
-        )
+        orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
         # TODO: Support editing other item categories?
         self.item_categories = {
             0: orig_cats[0],
@@ -781,11 +645,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_btn_help_water_density_clicked(self, *args):
-        self._help(
-            _(
-                "This is the amount of lakes that will be generated during the water generation phase."
-            )
-        )
+        self._help(_("This is the amount of lakes that will be generated during the water generation phase."))
 
     @Gtk.Template.Callback()
     @catch_overflow(u8)
@@ -912,9 +772,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_btn_help_item_density_clicked(self, *args):
-        self._help(
-            _("The final value is randomized between density - 2 and density + 1.")
-        )
+        self._help(_("The final value is randomized between density - 2 and density + 1."))
 
     @Gtk.Template.Callback()
     def on_btn_help_initial_enemy_density_clicked(self, *args):
@@ -934,11 +792,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_btn_help_chances_clicked(self, *args):
-        self._help(
-            _(
-                "These sliders control how likely it is (in %) for certain things to generate on this floor."
-            )
-        )
+        self._help(_("These sliders control how likely it is (in %) for certain things to generate on this floor."))
 
     @Gtk.Template.Callback()
     def on_btn_help_kecleon_shop_item_positions_clicked(self, *args):
@@ -1040,11 +894,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_btn_help_iq_booster_boost_clicked(self, *args):
-        self._help(
-            _(
-                "If more than 0, the IQ booster increases IQ on this floor by this amount."
-            )
-        )
+        self._help(_("If more than 0, the IQ booster increases IQ on this floor by this amount."))
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
@@ -1072,9 +922,7 @@ class StDungeonFloorPage(Gtk.Box):
     def on_btn_goto_fixed_floor_clicked(self, *args):
         idx = self.cb_fixed_floor_id.get_active()
         if idx > 0:
-            self.module.project.request_open(
-                OpenRequest(REQUEST_TYPE_DUNGEON_FIXED_FLOOR, idx)
-            )
+            self.module.project.request_open(OpenRequest(REQUEST_TYPE_DUNGEON_FIXED_FLOOR, idx))
 
     @Gtk.Template.Callback()
     def on_btn_goto_music_clicked(self, *args):
@@ -1301,16 +1149,12 @@ class StDungeonFloorPage(Gtk.Box):
         self._on_cat_item_name_changed("item_cat_thrown_pierce_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_thrown_pierce_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_thrown_pierce_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_thrown_pierce)
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_thrown_pierce_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_thrown_pierce_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_thrown_pierce_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_thrown_pierce_weight_edited(self, widget, path, text):
@@ -1329,16 +1173,12 @@ class StDungeonFloorPage(Gtk.Box):
         self._on_cat_item_name_changed("item_cat_thrown_rock_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_thrown_rock_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_thrown_rock_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_thrown_rock)
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_thrown_rock_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_thrown_rock_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_thrown_rock_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_thrown_rock_weight_edited(self, widget, path, text):
@@ -1357,16 +1197,12 @@ class StDungeonFloorPage(Gtk.Box):
         self._on_cat_item_name_changed("item_cat_berries_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_berries_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_berries_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_berries)
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_berries_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_berries_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_berries_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_berries_weight_edited(self, widget, path, text):
@@ -1390,9 +1226,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_foods_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_foods_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_foods_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_foods_weight_edited(self, widget, path, text):
@@ -1416,9 +1250,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_hold_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_hold_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_hold_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_hold_weight_edited(self, widget, path, text):
@@ -1442,9 +1274,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_tms_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_tms_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_tms_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_tms_weight_edited(self, widget, path, text):
@@ -1468,9 +1298,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_orbs_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_orbs_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_orbs_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_orbs_weight_edited(self, widget, path, text):
@@ -1489,16 +1317,12 @@ class StDungeonFloorPage(Gtk.Box):
         self._on_cat_item_name_changed("item_cat_others_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_others_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_others_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_others)
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_others_guaranteed_toggled(self, widget, path):
-        self._on_cat_item_guaranteed_toggled(
-            "item_cat_others_store", path, widget.get_active()
-        )
+        self._on_cat_item_guaranteed_toggled("item_cat_others_store", path, widget.get_active())
 
     @Gtk.Template.Callback()
     def on_cr_items_cat_others_weight_edited(self, widget, path, text):
@@ -1527,9 +1351,7 @@ class StDungeonFloorPage(Gtk.Box):
         if entid not in self.categories_for_stores[store_name].item_ids():
             display_error(
                 None,
-                _(
-                    "This item does not belong in this category. Please chose another item."
-                ),
+                _("This item does not belong in this category. Please chose another item."),
                 _("Invalid item id"),
                 should_report=False,
             )
@@ -1645,9 +1467,7 @@ class StDungeonFloorPage(Gtk.Box):
             typing.cast(Gtk.ListStore, model).remove(treeiter)
         tmodel = tree.get_model()
         if tmodel is not None:
-            self._recalculate_spawn_chances(
-                Gtk.Buildable.get_name(typing.cast(Gtk.Buildable, tmodel)), 4, 3
-            )
+            self._recalculate_spawn_chances(Gtk.Buildable.get_name(typing.cast(Gtk.Buildable, tmodel)), 4, 3)
         self._save_item_spawn_rates()
 
     # </editor-fold>
@@ -1671,9 +1491,7 @@ class StDungeonFloorPage(Gtk.Box):
             self.drawer.set_draw_tile_grid(w.get_active())
 
     @Gtk.Template.Callback()
-    def on_tool_fullmap_toggled(
-        self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False
-    ):
+    def on_tool_fullmap_toggled(self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False):
         assert self.drawer is not None
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
@@ -1687,9 +1505,7 @@ class StDungeonFloorPage(Gtk.Box):
                 self._scale_factor *= 10
                 self.__class__._last_scale_factor = self._scale_factor
             minimap_provider = MinimapProvider(self.module.get_zmappa())
-            self.drawer.set_entity_renderer(
-                MinimapEntityRenderer(self.drawer, minimap_provider)
-            )
+            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
             self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
         self._update_scales()
         if self._draw is not None:
@@ -1718,9 +1534,7 @@ class StDungeonFloorPage(Gtk.Box):
             floor = typing.cast(
                 list[Tile],
                 DungeonFloorGenerator(
-                    unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied(
-                        "UnusedDungeonChance"
-                    ),
+                    unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied("UnusedDungeonChance"),
                     gen_properties=RandomGenProperties.default(rng),
                 ).generate(self.entry.layout, max_retries=3, flat=True),
             )
@@ -1729,19 +1543,11 @@ class StDungeonFloorPage(Gtk.Box):
                 return
             if self._draw is not None:
                 stack.set_visible_child(self._draw)
-            item_cats = (
-                self.module.project.get_rom_module()
-                .get_static_data()
-                .dungeon_data.item_categories
-            )
+            item_cats = self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories
             actions: list[FixedFloorActionRule] = []
             warnings = set()
-            open_guaranteed_floor = {
-                x for x, y in self.entry.floor_items.items.items() if y == GUARANTEED
-            }
-            open_guaranteed_buried = {
-                x for x, y in self.entry.buried_items.items.items() if y == GUARANTEED
-            }
+            open_guaranteed_floor = {x for x, y in self.entry.floor_items.items.items() if y == GUARANTEED}
+            open_guaranteed_buried = {x for x, y in self.entry.buried_items.items.items() if y == GUARANTEED}
             for x in floor:
                 idx = None
                 if x.typ == TileType.PLAYER_SPAWN:
@@ -1762,9 +1568,7 @@ class StDungeonFloorPage(Gtk.Box):
                             break
                     if invalid:
                         warnings.add(
-                            _(
-                                "Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."
-                            )
+                            _("Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead.")
                         )
                     idx = last
                 if x.typ == TileType.ITEM and len(open_guaranteed_floor) > 0:
@@ -1797,11 +1601,7 @@ class StDungeonFloorPage(Gtk.Box):
                             invalid_itm = False
                             break
                     if invalid_cat or invalid_itm:
-                        warnings.add(
-                            _(
-                                "Warning: Some Item spawns may be invalid. Poké will been spawned instead."
-                            )
-                        )
+                        warnings.add(_("Warning: Some Item spawns may be invalid. Poké will been spawned instead."))
                     idx = last_item
                 if x.typ == TileType.TRAP:
                     ridx = rng.randrange(0, 10000)
@@ -1814,22 +1614,16 @@ class StDungeonFloorPage(Gtk.Box):
                             break
                     if invalid:
                         warnings.add(
-                            _(
-                                "Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."
-                            )
+                            _("Warning: Some traps spawns may be invalid. Unused traps will been spawned instead.")
                         )
                     idx = last
                 actions.append(DirectRule(x, idx))
             if self.drawer is not None:
-                self.drawer.fixed_floor = FixedFloor.new(
-                    u16(SIZE_Y), u16(SIZE_X), actions
-                )
+                self.drawer.fixed_floor = FixedFloor.new(u16(SIZE_Y), u16(SIZE_X), actions)
             if self.entry.layout.fixed_floor_id > 0:
                 self.tool_label_info.set_text(
                     (
-                        _(
-                            "Note: Floor uses a fixed room, the preview doesn't take this into account.\n"
-                        )
+                        _("Note: Floor uses a fixed room, the preview doesn't take this into account.\n")
                         + "\n".join(warnings)
                     ).strip("\n")
                 )
@@ -1839,11 +1633,7 @@ class StDungeonFloorPage(Gtk.Box):
         except Exception as ex:
             logger.error("Preview loading error", exc_info=ex)
             tb: Gtk.TextBuffer = self.preview_error_buffer
-            tb.set_text(
-                "".join(
-                    traceback.format_exception(type(ex), value=ex, tb=ex.__traceback__)
-                )
-            )
+            tb.set_text("".join(traceback.format_exception(type(ex), value=ex, tb=ex.__traceback__)))
             stack.set_visible_child(self.preview_error)
 
     def _init_tileset(self):
@@ -1851,17 +1641,13 @@ class StDungeonFloorPage(Gtk.Box):
         if self.entry.layout.tileset_id < TILESET_FIRST_BG:
             # Real tileset
             self.drawer.set_tileset_renderer(
-                FixedFloorDrawerTileset(
-                    *self.module.get_dungeon_tileset(self.entry.layout.tileset_id)
-                )
+                FixedFloorDrawerTileset(*self.module.get_dungeon_tileset(self.entry.layout.tileset_id))
             )
         else:
             # Background to render using dummy tileset
             self.drawer.set_tileset_renderer(
                 FixedFloorDrawerBackground(
-                    *self.module.get_dungeon_background(
-                        self.entry.layout.tileset_id - TILESET_FIRST_BG
-                    ),
+                    *self.module.get_dungeon_background(self.entry.layout.tileset_id - TILESET_FIRST_BG),
                     *self.module.get_dummy_tileset(),
                 )
             )
@@ -1870,12 +1656,8 @@ class StDungeonFloorPage(Gtk.Box):
         if self.drawer is not None and self.drawer.fixed_floor is not None:
             assert self._draw is not None and self.drawer.tileset_renderer is not None
             self._draw.set_size_request(
-                (self.drawer.fixed_floor.width + 10)
-                * self.drawer.tileset_renderer.chunk_dim()
-                * self._scale_factor,
-                (self.drawer.fixed_floor.height + 10)
-                * self.drawer.tileset_renderer.chunk_dim()
-                * self._scale_factor,
+                (self.drawer.fixed_floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
+                (self.drawer.fixed_floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
             )
             if self.drawer:
                 self.drawer.set_scale(self._scale_factor)
@@ -1940,30 +1722,20 @@ class StDungeonFloorPage(Gtk.Box):
                         -1,
                         False,
                         ICON_GROUP,
-                        self.module.generate_group_label(
-                            dungeon_or_group.base_dungeon_id
-                        ),
+                        self.module.generate_group_label(dungeon_or_group.base_dungeon_id),
                         False,
                         False,
                     ],
                 )
-                for dungeon, start_id in zip(
-                    dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids
-                ):
-                    self._add_dungeon_to_export_dialog_tree(
-                        group, store, dungeon, start_id
-                    )
+                for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
+                    self._add_dungeon_to_export_dialog_tree(group, store, dungeon, start_id)
             else:
                 # Dungeon
-                self._add_dungeon_to_export_dialog_tree(
-                    None, store, dungeon_or_group, 0
-                )
+                self._add_dungeon_to_export_dialog_tree(None, store, dungeon_or_group, 0)
         # Dojo dungeons
         from skytemple.module.dungeon.module import DOJOS_VIEW_DATA
 
-        dojo_root = store.append(
-            None, [-1, -1, False, ICON_DUNGEONS, DOJOS_VIEW_DATA.title, False, False]
-        )
+        dojo_root = store.append(None, [-1, -1, False, ICON_DUNGEONS, DOJOS_VIEW_DATA.title, False, False])
         for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
             self._add_dungeon_to_export_dialog_tree(dojo_root, store, i, 0)
         resp = dialog.run()
@@ -1972,9 +1744,7 @@ class StDungeonFloorPage(Gtk.Box):
             # Create output XML
             xml = mappa_floor_to_xml(
                 self.entry,
-                self.module.project.get_rom_module()
-                .get_static_data()
-                .dungeon_data.item_categories,
+                self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories,
                 export_layout=self.export_type_layout.get_active(),
                 export_monsters=self.export_type_monsters.get_active(),
                 export_traps=self.export_type_traps.get_active(),
@@ -2074,9 +1844,9 @@ class StDungeonFloorPage(Gtk.Box):
                         assert child is not None
                         children.append(child)
                     states = [store[child][5] for child in children]
-                    should_be_inconsistent = any(
-                        [store[child][6] for child in children]
-                    ) or not states.count(states[0]) == len(states)
+                    should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(
+                        states[0]
+                    ) == len(states)
                 store[parent][6] = should_be_inconsistent
                 if should_be_inconsistent:
                     store[parent][5] = False
@@ -2098,9 +1868,7 @@ class StDungeonFloorPage(Gtk.Box):
         mark_active_recurse(store.get_iter(path))
 
     @Gtk.Template.Callback()
-    def on_item_list_notebook_switch_page(
-        self, w: Gtk.Notebook, page: Gtk.Box, page_num: int, *args
-    ):
+    def on_item_list_notebook_switch_page(self, w: Gtk.Notebook, page: Gtk.Box, page_num: int, *args):
         self._item_list_edit_active = FloorEditItemList(page_num)
         self.__class__._last_open_tab_item_lists = FloorEditItemList(page_num)
         sw: Gtk.ScrolledWindow = self.sw_item_editor
@@ -2110,9 +1878,7 @@ class StDungeonFloorPage(Gtk.Box):
         page.pack_start(sw, True, True, 0)
         self._init_item_spawns()
 
-    def _add_dungeon_to_export_dialog_tree(
-        self, root_node, item_store, idx, previous_floor_id
-    ):
+    def _add_dungeon_to_export_dialog_tree(self, root_node, item_store, idx, previous_floor_id):
         from skytemple.module.dungeon.module import ICON_DUNGEON
 
         dungeon = item_store.append(
@@ -2143,12 +1909,8 @@ class StDungeonFloorPage(Gtk.Box):
         return dungeon
 
     def _init_labels(self):
-        dungeon_name = self._string_provider.get_value(
-            StringType.DUNGEON_NAMES_MAIN, self.item_data.dungeon.dungeon_id
-        )
-        self.label_dungeon_name.set_text(
-            f"{'Dungeon'} {self.item_data.dungeon.dungeon_id}\n{dungeon_name}"
-        )
+        dungeon_name = self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, self.item_data.dungeon.dungeon_id)
+        self.label_dungeon_name.set_text(f"{'Dungeon'} {self.item_data.dungeon.dungeon_id}\n{dungeon_name}")
         self.label_floor_number.set_text(f"{'Floor'} {self.item_data.floor_id + 1}")
 
     def _init_layout_stores(self):
@@ -2185,25 +1947,15 @@ class StDungeonFloorPage(Gtk.Box):
 
     def _init_layout_values(self):
         cb = self.cb_floor_ranks
-        if (
-            self.item_data.dungeon.length_can_be_edited
-            and self.module.has_floor_ranks()
-        ):
-            rank = self.module.get_floor_rank(
-                self.item_data.dungeon.dungeon_id, self.item_data.floor_id
-            )
+        if self.item_data.dungeon.length_can_be_edited and self.module.has_floor_ranks():
+            rank = self.module.get_floor_rank(self.item_data.dungeon.dungeon_id, self.item_data.floor_id)
             if rank:
                 cb.set_active(rank)
         else:
             cb.set_sensitive(False)
         cb = self.cb_mission_forbidden
-        if (
-            self.item_data.dungeon.length_can_be_edited
-            and self.module.has_mission_forbidden()
-        ):
-            mf = self.module.get_floor_mf(
-                self.item_data.dungeon.dungeon_id, self.item_data.floor_id
-            )
+        if self.item_data.dungeon.length_can_be_edited and self.module.has_mission_forbidden():
+            mf = self.module.get_floor_mf(self.item_data.dungeon.dungeon_id, self.item_data.floor_id)
             if mf:
                 cb.set_active(mf)
         else:
@@ -2244,18 +1996,14 @@ class StDungeonFloorPage(Gtk.Box):
             if w_name.startswith(CB):
                 if w_name.startswith(CB_TERRAIN_SETTINGS):
                     val_key = w_name[len(CB_TERRAIN_SETTINGS) :]
-                    self._set_cb(
-                        w_name, getattr(self.entry.layout.terrain_settings, val_key)
-                    )
+                    self._set_cb(w_name, getattr(self.entry.layout.terrain_settings, val_key))
                 else:
                     val_key = w_name[len(CB) :]
                     self._set_cb(w_name, getattr(self.entry.layout, val_key))
             elif w_name.startswith(ENTRY):
                 if w_name.startswith(ENTRY_TERRAIN_SETTINGS):
                     val_key = w_name[len(ENTRY_TERRAIN_SETTINGS) :]
-                    self._set_entry(
-                        w_name, getattr(self.entry.layout.terrain_settings, val_key)
-                    )
+                    self._set_entry(w_name, getattr(self.entry.layout.terrain_settings, val_key))
                 else:
                     val_key = w_name[len(ENTRY) :]
                     self._set_entry(w_name, getattr(self.entry.layout, val_key))
@@ -2283,9 +2031,7 @@ class StDungeonFloorPage(Gtk.Box):
         for i, monster in enumerate(self.entry.monsters):
             relative_weight_main = relative_weights_main[i]
             relative_weight_mh = relative_weights_mh[i]
-            chance_main = (
-                f"{int(relative_weight_main) / sum_of_all_weights_main * 100:.3f}%"
-            )
+            chance_main = f"{int(relative_weight_main) / sum_of_all_weights_main * 100:.3f}%"
             chance_mh = f"{int(relative_weight_mh) / sum_of_all_weights_mh * 100:.3f}%"
             if monster.md_index in KECLEON_MD_INDEX:
                 self.kecleon_level_entry.set_text(str(monster.level))
@@ -2311,9 +2057,7 @@ class StDungeonFloorPage(Gtk.Box):
                     str(relative_weight_mh),
                 ]
             )
-        self.monster_spawns_keep_synced_toggle.set_active(
-            are_all_weight_types_same_values
-        )
+        self.monster_spawns_keep_synced_toggle.set_active(are_all_weight_types_same_values)
 
     def _init_monster_completion_store(self):
         monster_md = self.module.get_monster_md()
@@ -2321,9 +2065,7 @@ class StDungeonFloorPage(Gtk.Box):
         for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
-            name = self.module.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, entry.md_index_base
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
             self._ent_names[idx] = f"{name} (#{idx:03})"
             monster_store.append([self._ent_names[idx]])
 
@@ -2331,9 +2073,7 @@ class StDungeonFloorPage(Gtk.Box):
         store = self.trap_spawns_store
         trap_icon_renderer = ListIconRenderer(4)
         # Add all traps
-        relative_weights = self.module.calculate_relative_weights(
-            [x for x in self.entry.traps.weights.values()]
-        )
+        relative_weights = self.module.calculate_relative_weights([x for x in self.entry.traps.weights.values()])
         sum_of_all_weights = sum(relative_weights)
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -2351,9 +2091,7 @@ class StDungeonFloorPage(Gtk.Box):
             store.append(
                 [
                     trap.value,
-                    self.module.project.get_string_provider().get_value(
-                        StringType.TRAP_NAMES, trap.value
-                    ),
+                    self.module.project.get_string_provider().get_value(StringType.TRAP_NAMES, trap.value),
                     chance,
                     str(relative_weight),
                     trap_icon,
@@ -2386,9 +2124,7 @@ class StDungeonFloorPage(Gtk.Box):
             s.clear()
         il = self.get_current_item_list()
         # Add item categories
-        relative_weights = self.module.calculate_relative_weights(
-            list(il.categories.values())
-        )
+        relative_weights = self.module.calculate_relative_weights(list(il.categories.values()))
         sum_of_all_weights = sum(relative_weights)
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -2398,9 +2134,7 @@ class StDungeonFloorPage(Gtk.Box):
                 continue  # TODO: Support editing other item categories?
             name = self.item_categories[category].name_localized
             chance_str = f"{int(relative_weight) / sum_of_all_weights * 100:.3f}%"
-            item_categories_store.append(
-                [category, name, False, chance_str, str(relative_weight)]
-            )
+            item_categories_store.append([category, name, False, chance_str, str(relative_weight)])
         # Add items
         items_by_category = self._split_items_in_list_in_cats(il.items)
         for j, (category_m, store) in enumerate(item_stores.items()):
@@ -2440,9 +2174,7 @@ class StDungeonFloorPage(Gtk.Box):
                 )
         self._update_cr_item_cat_name_store()
 
-    def _split_items_in_list_in_cats(
-        self, items: dict[int, Probability]
-    ) -> dict[int, dict[int, Probability]]:
+    def _split_items_in_list_in_cats(self, items: dict[int, Probability]) -> dict[int, dict[int, Probability]]:
         out_items: dict[int, dict[int, Probability]] = {}
         for cat in self.item_categories.values():
             out_items[cat.id] = {}
@@ -2471,9 +2203,7 @@ class StDungeonFloorPage(Gtk.Box):
             self.item_categories[8]: completion_item_others_store,
         }
         for i in range(0, MAX_ITEM_ID):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.ITEM_NAMES, i
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self._item_names[i] = f"{name} (#{i:03})"
         for category, store in completion_stores.items():
             for item in category.item_ids():
@@ -2493,18 +2223,14 @@ class StDungeonFloorPage(Gtk.Box):
         if weight_mh_idx is not None:
             weight_data_sets.append((weight_mh_idx, chance_mh_idx))
         for weight_idx, chance_idx in weight_data_sets:
-            sum_of_all_weights = sum(
-                int(row[weight_idx]) for row in iter_tree_model(store)
-            )
+            sum_of_all_weights = sum(int(row[weight_idx]) for row in iter_tree_model(store))
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
             for row in iter_tree_model(store):
                 if sum_of_all_weights == 0:
                     row[chance_idx] = "0.00%"
                 else:
-                    row[chance_idx] = (
-                        f"{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%"
-                    )
+                    row[chance_idx] = f"{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%"
 
     # TODO: Generalize this with the base classs for lists
 
@@ -2590,15 +2316,11 @@ class StDungeonFloorPage(Gtk.Box):
             weight_main = 0
             weight_mh = 0
             if row.relative_weight_main != 0:
-                weight_main = last_weight_main + int(
-                    10000 * (row.relative_weight_main / sum_of_weights_main)
-                )
+                weight_main = last_weight_main + int(10000 * (row.relative_weight_main / sum_of_weights_main))
                 last_weight_main = weight_main
                 last_weight_main_set_idx = i
             if row.relative_weight_mh != 0:
-                weight_mh = last_weight_mh + int(
-                    10000 * (row.relative_weight_mh / sum_of_weights_mh)
-                )
+                weight_mh = last_weight_mh + int(10000 * (row.relative_weight_mh / sum_of_weights_mh))
                 last_weight_mh = weight_mh
                 last_weight_mh_set_idx = i
             self.entry.monsters.append(
@@ -2614,9 +2336,7 @@ class StDungeonFloorPage(Gtk.Box):
             # divisible. Find the last non-zero we set and set it to 10000.
             self.entry.monsters[last_weight_main_set_idx].main_spawn_weight = u16(10000)
         if last_weight_mh != 0 and last_weight_mh != 10000:
-            self.entry.monsters[
-                last_weight_mh_set_idx
-            ].monster_house_spawn_weight = u16(10000)
+            self.entry.monsters[last_weight_mh_set_idx].monster_house_spawn_weight = u16(10000)
         self.mark_as_modified()
 
     def _save_trap_spawn_rates(self):
@@ -2641,9 +2361,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     def _fill_available_categories_into_store(self, cb_store):
         available_categories = [
-            cat
-            for cat in self.item_categories.values()
-            if cat not in self.get_current_item_list().categories.keys()
+            cat for cat in self.item_categories.values() if cat not in self.get_current_item_list().categories.keys()
         ]
         # Init combobox
         cb_store.clear()
@@ -2674,18 +2392,14 @@ class StDungeonFloorPage(Gtk.Box):
             for row in iter_tree_model(store):
                 rows.append(row[:])
             rows.sort(key=lambda e: e[0])
-            sum_of_weights = sum(
-                int(row[4]) for row in iter_tree_model(store) if row[2] is False
-            )
+            sum_of_weights = sum(int(row[4]) for row in iter_tree_model(store) if row[2] is False)
             last_weight = 0
             last_weight_set_idx = None
             for row in rows:
                 # Add Poké and Link Box items for those categories
                 if not cat:
                     if row[0] == POKE_CATEGORY_ID:
-                        item_weights[
-                            self.item_categories[POKE_CATEGORY_ID].item_ids()[0]
-                        ] = 10000
+                        item_weights[self.item_categories[POKE_CATEGORY_ID].item_ids()[0]] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
                         item_weights[self._get_link_box_item_id()] = 10000
                 was_set = False
@@ -2714,9 +2428,7 @@ class StDungeonFloorPage(Gtk.Box):
                         category_weights[last_weight_set_idx] = 10000
                     else:
                         item_weights[last_weight_set_idx] = 10000
-        item_weights = {
-            k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])
-        }
+        item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
         il = self.get_current_item_list()
         il.categories = category_weights
         il.items = item_weights
@@ -2752,11 +2464,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     def _comboxbox_for_music_id(self, names: list[str]):
         store = Gtk.ListStore(int, str)  # id, name
-        music_entries = (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .script_data.bgms__by_id
-        )
+        music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
         dungeon_music, random_tracks = self.module.get_dungeon_music_spec()
         for i, track in enumerate(dungeon_music):
             if track.is_random_ref:
@@ -2819,9 +2527,7 @@ class StDungeonFloorPage(Gtk.Box):
         if isinstance(w, Gtk.ComboBox):
             self._update_from_cb(w)
         elif isinstance(w, Gtk.Entry):
-            raise RuntimeError(
-                "Internal error: Do not call _update_from_widget() on an entry. Set manually instead."
-            )
+            raise RuntimeError("Internal error: Do not call _update_from_widget() on an entry. Set manually instead.")
         else:
             self._update_from_scale(typing.cast(Gtk.Scale, w))
         if self.tool_auto_refresh.get_active():

@@ -71,9 +71,7 @@ class MapBgModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
-        self.bgs: BgListProtocol = rom_project.open_file_in_rom(
-            MAP_BG_LIST, FileType.BG_LIST_DAT
-        )
+        self.bgs: BgListProtocol = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
 
         self._item_tree: ItemTree
         self._tree_level_iter: list[ItemTreeEntryRef] = []
@@ -223,21 +221,15 @@ class MapBgModule(AbstractModule):
 
     def get_bma(self, item_id) -> BmaProtocol:
         lst = self.bgs.level[item_id]
-        return self.project.open_file_in_rom(
-            f"{MAP_BG_PATH}{lst.bma_name.lower()}.bma", FileType.BMA
-        )
+        return self.project.open_file_in_rom(f"{MAP_BG_PATH}{lst.bma_name.lower()}.bma", FileType.BMA)
 
     def get_bpc(self, item_id) -> BpcProtocol:
         lst = self.bgs.level[item_id]
-        return self.project.open_file_in_rom(
-            f"{MAP_BG_PATH}{lst.bpc_name.lower()}.bpc", FileType.BPC
-        )
+        return self.project.open_file_in_rom(f"{MAP_BG_PATH}{lst.bpc_name.lower()}.bpc", FileType.BPC)
 
     def get_bpl(self, item_id) -> BplProtocol:
         lst = self.bgs.level[item_id]
-        return self.project.open_file_in_rom(
-            f"{MAP_BG_PATH}{lst.bpl_name.lower()}.bpl", FileType.BPL
-        )
+        return self.project.open_file_in_rom(f"{MAP_BG_PATH}{lst.bpl_name.lower()}.bpl", FileType.BPL)
 
     def get_bpas(self, item_id) -> list[Optional[BpaProtocol]]:
         lst = self.bgs.level[item_id]
@@ -246,20 +238,12 @@ class MapBgModule(AbstractModule):
             if bpa is None:
                 bpas.append(None)
             else:
-                bpas.append(
-                    self.project.open_file_in_rom(
-                        f"{MAP_BG_PATH}{bpa.lower()}.bpa", FileType.BPA
-                    )
-                )
+                bpas.append(self.project.open_file_in_rom(f"{MAP_BG_PATH}{bpa.lower()}.bpa", FileType.BPA))
         return bpas
 
     def add_map(self, map_name):
         item_id = len(self.bgs.level)
-        self.bgs.add_level(
-            FileType.BG_LIST_DAT.get_entry_model_cls()(
-                map_name, map_name, map_name, [None] * 8
-            )
-        )
+        self.bgs.add_level(FileType.BG_LIST_DAT.get_entry_model_cls()(map_name, map_name, map_name, [None] * 8))
         parent = self._other_node
         if map_name[0] in self._sub_nodes.keys():
             parent = self._sub_nodes[map_name[0]]
@@ -289,9 +273,7 @@ class MapBgModule(AbstractModule):
                 self.project.mark_as_modified(f"{MAP_BG_PATH}{bpa.lower()}.bpa")
 
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[item_id], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
 
     def mark_level_list_as_modified(self):
         self.project.mark_as_modified(MAP_BG_LIST)
@@ -299,15 +281,9 @@ class MapBgModule(AbstractModule):
     def add_created_with_logo(self):
         """Add a 'Created with SkyTemple' logo to S05P01A."""
         try:
-            bma = self.project.open_file_in_rom(
-                f"{MAP_BG_PATH}s05p01a.bma", FileType.BMA
-            )
-            bpc = self.project.open_file_in_rom(
-                f"{MAP_BG_PATH}s05p01a.bpc", FileType.BPC
-            )
-            bpl = self.project.open_file_in_rom(
-                f"{MAP_BG_PATH}s05p01a.bpl", FileType.BPL
-            )
+            bma = self.project.open_file_in_rom(f"{MAP_BG_PATH}s05p01a.bma", FileType.BMA)
+            bpc = self.project.open_file_in_rom(f"{MAP_BG_PATH}s05p01a.bpc", FileType.BPC)
+            bpl = self.project.open_file_in_rom(f"{MAP_BG_PATH}s05p01a.bpl", FileType.BPL)
 
             AddCreatedWithLogo(bma, bpc, bpl).process()
 
@@ -320,9 +296,7 @@ class MapBgModule(AbstractModule):
                     item_id = i
                     break
             if item_id != -1:
-                self._item_tree.mark_as_modified(
-                    self._tree_level_iter[item_id], RecursionType.UP
-                )
+                self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
         except BaseException as err:
             display_error(sys.exc_info(), str(err), _("Error adding the logo."))
         else:
@@ -340,11 +314,7 @@ class MapBgModule(AbstractModule):
 
     def get_associated_script_map(self, item_id):
         """Returns the script map that is associated to this map bg item ID, or None if not found"""
-        for level in (
-            self.project.get_rom_module()
-            .get_static_data()
-            .script_data.level_list__by_id.values()
-        ):
+        for level in self.project.get_rom_module().get_static_data().script_data.level_list__by_id.values():
             if level.mapid == item_id:
                 return level
         return None
@@ -352,11 +322,7 @@ class MapBgModule(AbstractModule):
     def get_all_associated_script_maps(self, item_id):
         """Returns all script maps that are associated to this map bg item ID, or empty list if not found"""
         maps = []
-        for level in (
-            self.project.get_rom_module()
-            .get_static_data()
-            .script_data.level_list__by_id.values()
-        ):
+        for level in self.project.get_rom_module().get_static_data().script_data.level_list__by_id.values():
             if level.mapid == item_id:
                 maps.append(level)
         return maps
@@ -382,33 +348,23 @@ class MapBgModule(AbstractModule):
         static_data = self.project.get_rom_module().get_static_data()
         config = self.project.get_rom_module().get_static_data()
         ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
-        mappings = HardcodedGroundDungeonTilesets.get_ground_dungeon_tilesets(
-            ov11, config
-        )
+        mappings = HardcodedGroundDungeonTilesets.get_ground_dungeon_tilesets(ov11, config)
 
         mappa = self.project.open_file_in_rom("BALANCE/mappa_s.bin", FileType.MAPPA_BIN)
-        fixed = self.project.open_file_in_rom(
-            "BALANCE/fixed.bin", FileType.FIXED_BIN, static_data=static_data
+        fixed = self.project.open_file_in_rom("BALANCE/fixed.bin", FileType.FIXED_BIN, static_data=static_data)
+
+        dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
+            "DUNGEON/dungeon.bin",
+            FileType.DUNGEON_BIN,
+            static_data=static_data,
+            threadsafe=True,
         )
 
-        dungeon_bin_context: ModelContext[DungeonBinPack] = (
-            self.project.open_file_in_rom(
-                "DUNGEON/dungeon.bin",
-                FileType.DUNGEON_BIN,
-                static_data=static_data,
-                threadsafe=True,
-            )
-        )
-
-        dungeon_list = HardcodedDungeons.get_dungeon_list(
-            self.project.get_binary(BinaryName.ARM9), static_data
-        )
+        dungeon_list = HardcodedDungeons.get_dungeon_list(self.project.get_binary(BinaryName.ARM9), static_data)
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StMapBgBgPage):
             pass  # todo
         return None
@@ -418,17 +374,9 @@ class MapBgModule(AbstractModule):
 def make_status_page_data_folder(name: Optional[str]) -> StStatusPageData:
     if name is not None:
         title = _('Map Background category "{}"').format(name)
-        description = _(
-            "This section contains all the map backgrounds, that start with the letter {}.".format(
-                name[0]
-            )
-        )
+        description = _("This section contains all the map backgrounds, that start with the letter {}.".format(name[0]))
     else:
         title = _("Map Backgrounds for other maps")
-        description = _(
-            "This section contains all the map backgrounds, that don't fit in any of the other categories."
-        )
+        description = _("This section contains all the map backgrounds, that don't fit in any of the other categories.")
 
-    return StStatusPageData(
-        icon_name="skytemple-illust-map", title=title, description=description
-    )
+    return StStatusPageData(icon_name="skytemple-illust-map", title=title, description=description)

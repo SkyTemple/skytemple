@@ -145,9 +145,7 @@ class FloorViewInfo:
 
 
 class DungeonGroup:
-    def __init__(
-        self, base_dungeon_id: int, dungeon_ids: Sequence[int], start_ids: Sequence[int]
-    ):
+    def __init__(self, base_dungeon_id: int, dungeon_ids: Sequence[int], start_ids: Sequence[int]):
         self.base_dungeon_id = base_dungeon_id
         self.dungeon_ids = dungeon_ids
         self.start_ids = start_ids
@@ -214,9 +212,7 @@ class DungeonModule(AbstractModule):
         self._root_iter = root
 
         static_data = self.project.get_rom_module().get_static_data()
-        self._fixed_floor_data = self.project.open_file_in_rom(
-            FIXED_PATH, FileType.FIXED_BIN, static_data=static_data
-        )
+        self._fixed_floor_data = self.project.open_file_in_rom(FIXED_PATH, FileType.FIXED_BIN, static_data=static_data)
         self._dungeon_bin_context = self.project.open_file_in_rom(
             DUNGEON_BIN, FileType.DUNGEON_BIN, static_data=static_data, threadsafe=True
         )
@@ -253,14 +249,10 @@ class DungeonModule(AbstractModule):
     def rebuild_dungeon_tree(self):
         assert self._root_iter is not None
         # Collect modified of _dungeon_iters and _dungeon_floor_iters
-        modified_dungeons = {
-            x: y.entry().modified for x, y in self._dungeon_iters.items()
-        }
+        modified_dungeons = {x: y.entry().modified for x, y in self._dungeon_iters.items()}
         modified_floors = {}
         for dungeon_entr, floors_entr in self._dungeon_floor_iters.items():
-            modified_floors[dungeon_entr] = {
-                x: y.entry().modified for x, y in floors_entr.items()
-            }
+            modified_floors[dungeon_entr] = {x: y.entry().modified for x, y in floors_entr.items()}
         # Delete everything under _root_iter
         self._root_iter.delete_all_children()
         self._dungeon_iters = {}
@@ -271,9 +263,7 @@ class DungeonModule(AbstractModule):
         for dungeon_m, modified in modified_dungeons.items():
             if dungeon_m in self._dungeon_iters:
                 if modified:
-                    self._item_tree.mark_as_modified(
-                        self._dungeon_iters[dungeon_m], RecursionType.UP
-                    )
+                    self._item_tree.mark_as_modified(self._dungeon_iters[dungeon_m], RecursionType.UP)
         for dungeon_mf, floors in modified_floors.items():
             if dungeon_mf in self._dungeon_floor_iters:
                 for floor, modified in floors.items():
@@ -294,9 +284,7 @@ class DungeonModule(AbstractModule):
                 dungeon_id, f_id = request.identifier
                 return self._dungeon_floor_iters[dungeon_id][f_id]
             except Exception as ex:
-                logger.warning(
-                    f"Could not fulfill floor open request: {ex.__class__.__name__}:{ex}"
-                )
+                logger.warning(f"Could not fulfill floor open request: {ex.__class__.__name__}:{ex}")
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY:
             StDungeonFixedRoomsPage.focus_entity_on_open = request.identifier
             return self._fixed_floor_root_iter
@@ -314,9 +302,7 @@ class DungeonModule(AbstractModule):
         did = item.dungeon.dungeon_id
         # if ID >= 0xB4 && ID <= 0xBD {
         if DOJO_DUNGEONS_FIRST <= did <= DOJO_DUNGEONS_FIRST + 9:
-            return self.get_mappa().floor_lists[DOJO_MAPPA_ENTRY][
-                item.floor_id + (did - DOJO_DUNGEONS_FIRST) * 5
-            ]
+            return self.get_mappa().floor_lists[DOJO_MAPPA_ENTRY][item.floor_id + (did - DOJO_DUNGEONS_FIRST) * 5]
         elif did == DOJO_DUNGEONS_FIRST + 10:
             return self.get_mappa().floor_lists[DOJO_MAPPA_ENTRY][item.floor_id + 0x32]
         elif DOJO_DUNGEONS_FIRST + 11 <= did <= 0xD3:
@@ -362,9 +348,7 @@ class DungeonModule(AbstractModule):
             self.save_mappa()
 
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._dungeon_iters[dungeon_id], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._dungeon_iters[dungeon_id], RecursionType.UP)
 
     def mark_root_as_modified(self):
         # Mark as modified in tree
@@ -380,9 +364,7 @@ class DungeonModule(AbstractModule):
         )
         self._cached_dungeon_list = None
 
-    def update_dungeon_restrictions(
-        self, dungeon_id: int, restrictions: DungeonRestriction
-    ):
+    def update_dungeon_restrictions(self, dungeon_id: int, restrictions: DungeonRestriction):
         all_restrictions = self.get_dungeon_restrictions()
         all_restrictions[dungeon_id] = restrictions
         self.save_dungeon_restrictions(all_restrictions)
@@ -413,19 +395,13 @@ class DungeonModule(AbstractModule):
                     root,
                     ItemTreeEntry(
                         icon=ICON_GROUP,
-                        name=self.generate_group_label(
-                            dungeon_or_group.base_dungeon_id
-                        ),
+                        name=self.generate_group_label(dungeon_or_group.base_dungeon_id),
                         module=self,
                         view_class=StStatusPage,
-                        item_data=self.make_status_page_data_group(
-                            dungeon_or_group.base_dungeon_id
-                        ),
+                        item_data=self.make_status_page_data_group(dungeon_or_group.base_dungeon_id),
                     ),
                 )
-                for dungeon, start_id in zip(
-                    dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids
-                ):
+                for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
                     self._add_dungeon_to_tree(group, dungeon, start_id)
             else:
                 # Dungeon
@@ -446,11 +422,7 @@ class DungeonModule(AbstractModule):
             self._add_dungeon_to_tree(dojo_root, i, 0)
 
     def _add_dungeon_to_tree(self, root_node, idx, previous_floor_id):
-        clazz = (
-            StDungeonDungeonPage
-            if idx not in self._validator.invalid_dungeons
-            else StDungeonInvalidDungeonPage
-        )
+        clazz = StDungeonDungeonPage if idx not in self._validator.invalid_dungeons else StDungeonInvalidDungeonPage
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
         self._dungeon_iters[idx] = self._item_tree.add_entry(
             root_node,
@@ -471,19 +443,15 @@ class DungeonModule(AbstractModule):
         self._dungeon_floor_iters[idx] = {}
         dungeon.delete_all_children()
         for floor_i in range(0, self.get_number_floors(idx)):
-            self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = (
-                self._item_tree.add_entry(
-                    dungeon,
-                    ItemTreeEntry(
-                        icon=ICON_FLOOR,
-                        name=self.generate_floor_label(floor_i + previous_floor_id),
-                        module=self,
-                        view_class=StDungeonFloorPage,
-                        item_data=FloorViewInfo(
-                            previous_floor_id + floor_i, dungeon_info
-                        ),
-                    ),
-                )
+            self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = self._item_tree.add_entry(
+                dungeon,
+                ItemTreeEntry(
+                    icon=ICON_FLOOR,
+                    name=self.generate_floor_label(floor_i + previous_floor_id),
+                    module=self,
+                    view_class=StDungeonFloorPage,
+                    item_data=FloorViewInfo(previous_floor_id + floor_i, dungeon_info),
+                ),
             )
 
     def load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
@@ -498,17 +466,11 @@ class DungeonModule(AbstractModule):
             if dungeon.mappa_index not in groups:
                 groups[dungeon.mappa_index] = []
             groups[dungeon.mappa_index].append(idx)
-            self.adjust_nb_floors_mf(
-                dungeon.mappa_index, dungeon.number_floors_in_group
-            )
-            self.adjust_nb_floors_ranks(
-                dungeon.mappa_index, dungeon.number_floors_in_group
-            )
+            self.adjust_nb_floors_mf(dungeon.mappa_index, dungeon.number_floors_in_group)
+            self.adjust_nb_floors_ranks(dungeon.mappa_index, dungeon.number_floors_in_group)
         groups_sorted = {}
         for idx, entries in groups.items():
-            groups_sorted[idx] = sorted(
-                entries, key=lambda dun_idx: lst[dun_idx].start_after
-            )
+            groups_sorted[idx] = sorted(entries, key=lambda dun_idx: lst[dun_idx].start_after)
         groups = groups_sorted
 
         for idx, dungeon in enumerate(lst):
@@ -518,10 +480,7 @@ class DungeonModule(AbstractModule):
                     idx = groups[dungeon.mappa_index][0]
                     # This should be the only dungeon then.
                     # TODO: For 136 this somehow isn't true...
-                    assert (
-                        idx == 136
-                        or lst[idx].number_floors == lst[idx].number_floors_in_group
-                    )
+                    assert idx == 136 or lst[idx].number_floors == lst[idx].number_floors_in_group
                     assert lst[idx].start_after == 0
                     yield idx
                 else:
@@ -567,9 +526,7 @@ class DungeonModule(AbstractModule):
                 dungeons_not_visited.remove(i)
                 old_first = dungeons[i].start_after
                 old_last = old_first + dungeons[i].number_floors
-                new_floors = old_floor_lists[dungeons[i].mappa_index][
-                    old_first:old_last
-                ]
+                new_floors = old_floor_lists[dungeons[i].mappa_index][old_first:old_last]
                 reorder_list[-1].append((dungeons[i].mappa_index, old_first, old_last))
                 floor_i = len(new_floor_list)
                 for floor in new_floors:
@@ -581,9 +538,7 @@ class DungeonModule(AbstractModule):
                 new_floor_list += new_floors
             new_floor_lists.append(new_floor_list)
 
-        assert len(dungeons_not_visited) == 0, _(
-            "Some dungeons were missing in the new group list. " "This is a bug."
-        )
+        assert len(dungeons_not_visited) == 0, _("Some dungeons were missing in the new group list. " "This is a bug.")
 
         # If we haven't inserted the dojo dungeon floor list yet, do it now and pad with empty lists.
         if len(new_floor_lists) < DOJO_MAPPA_ENTRY:
@@ -612,9 +567,7 @@ class DungeonModule(AbstractModule):
 
     def generate_group_label(self, base_dungeon_id) -> str:
         # noinspection PyUnusedLocal
-        dname = self.project.get_string_provider().get_value(
-            StringType.DUNGEON_NAMES_MAIN, base_dungeon_id
-        )
+        dname = self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, base_dungeon_id)
         return f(_('"{dname}" Group'))
 
     def generate_dungeon_label(self, idx) -> str:
@@ -677,15 +630,9 @@ class DungeonModule(AbstractModule):
         if floors_added < 0:
             # We removed floors
             for _ in range(0, -floors_added):
-                mappa.remove_floor_from_floor_list(
-                    mappa_index, floor_offset + number_floors_new
-                )
+                mappa.remove_floor_from_floor_list(mappa_index, floor_offset + number_floors_new)
         else:
-            cat_ided = (
-                self.project.get_rom_module()
-                .get_static_data()
-                .dungeon_data.item_categories
-            )
+            cat_ided = self.project.get_rom_module().get_static_data().dungeon_data.item_categories
             # We added floors
             last_floor_xml = mappa_floor_to_xml(
                 mappa.floor_lists[mappa_index][floor_offset + number_floors_old - 1],
@@ -695,50 +642,33 @@ class DungeonModule(AbstractModule):
                 mappa.insert_floor_in_floor_list(
                     mappa_index,
                     floor_offset + number_floors_old + i,
-                    mappa_floor_from_xml(
-                        last_floor_xml, {x.name: x for x in cat_ided.values()}
-                    ),
+                    mappa_floor_from_xml(last_floor_xml, {x.name: x for x in cat_ided.values()}),
                 )
 
         # Update floor ranks
         ranks = self.get_floor_rank(dungeon_id, floor_offset + number_floors_old - 1)
         if ranks:
-            self.extend_nb_floors_ranks(
-                dungeon_id, floor_offset + number_floors_old, floors_added, ranks
-            )
+            self.extend_nb_floors_ranks(dungeon_id, floor_offset + number_floors_old, floors_added, ranks)
         if self.has_floor_ranks():
             self.project.mark_as_modified(FLOOR_RANKS)
         # Update mission forbidden
         mf = self.get_floor_mf(dungeon_id, floor_offset + number_floors_old - 1)
         if mf is not None:
-            self.extend_nb_floors_mf(
-                dungeon_id, floor_offset + number_floors_old, floors_added, mf
-            )
+            self.extend_nb_floors_mf(dungeon_id, floor_offset + number_floors_old, floors_added, mf)
         if self.has_mission_forbidden():
             self.project.mark_as_modified(FLOOR_MISSION_FORBIDDEN)
 
         # Update dungeon data
         dungeon_definitions[dungeon_id].number_floors = number_floors_new
         if is_group:
-            new_total_floor_count = sum(
-                [dungeon_definitions[x].number_floors for x in is_group.dungeon_ids]
-            )
-            dungeon_definitions[
-                dungeon_id
-            ].number_floors_in_group = new_total_floor_count
+            new_total_floor_count = sum([dungeon_definitions[x].number_floors for x in is_group.dungeon_ids])
+            dungeon_definitions[dungeon_id].number_floors_in_group = new_total_floor_count
 
-            for dungeon_in_group in (
-                x for x in is_group.dungeon_ids if x != dungeon_id
-            ):
+            for dungeon_in_group in (x for x in is_group.dungeon_ids if x != dungeon_id):
                 # Update dungeon data of group floors
-                if (
-                    dungeon_definitions[dungeon_in_group].start_after
-                    > dungeon_definitions[dungeon_id].start_after
-                ):
+                if dungeon_definitions[dungeon_in_group].start_after > dungeon_definitions[dungeon_id].start_after:
                     dungeon_definitions[dungeon_in_group].start_after += floors_added
-                dungeon_definitions[
-                    dungeon_in_group
-                ].number_floors_in_group = u8_checked(new_total_floor_count)
+                dungeon_definitions[dungeon_in_group].number_floors_in_group = u8_checked(new_total_floor_count)
         else:
             dungeon_definitions[dungeon_id].number_floors_in_group = number_floors_new
 
@@ -751,9 +681,7 @@ class DungeonModule(AbstractModule):
         self.save_dungeon_list(dungeon_definitions)
         if is_group:
             for dungeon_in_group in is_group.dungeon_ids:
-                self._regenerate_dungeon_floors(
-                    dungeon_in_group, dungeon_definitions[dungeon_in_group].start_after
-                )
+                self._regenerate_dungeon_floors(dungeon_in_group, dungeon_definitions[dungeon_in_group].start_after)
         else:
             self._regenerate_dungeon_floors(dungeon_id, floor_offset)
 
@@ -769,16 +697,12 @@ class DungeonModule(AbstractModule):
                 floor,
                 {
                     x.name: x
-                    for x in self.project.get_rom_module()
-                    .get_static_data()
-                    .dungeon_data.item_categories.values()
+                    for x in self.project.get_rom_module().get_static_data().dungeon_data.item_categories.values()
                 },
             )
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
-    def get_dungeon_tileset(
-        self, tileset_id
-    ) -> tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
+    def get_dungeon_tileset(self, tileset_id) -> tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
         with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f"dungeon{tileset_id}.dma"),
@@ -787,9 +711,7 @@ class DungeonModule(AbstractModule):
                 dungeon_bin.get(f"dungeon{tileset_id}.dpl"),
             )
 
-    def get_dungeon_background(
-        self, background_id
-    ) -> tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
+    def get_dungeon_background(self, background_id) -> tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
         with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f"dungeon_bg{background_id}.dbg"),
@@ -807,9 +729,7 @@ class DungeonModule(AbstractModule):
     def has_floor_ranks(self):
         return self.project.file_exists(FLOOR_RANKS)
 
-    def extend_nb_floors_ranks(
-        self, dungeon_id: int, start_floor: int, nb_floors: int, rank: int = 0
-    ):
+    def extend_nb_floors_ranks(self, dungeon_id: int, start_floor: int, nb_floors: int, rank: int = 0):
         if self.has_floor_ranks():
             group_id = self._get_dungeon_group(dungeon_id)
             f_ranks = self.project.open_file_in_rom(FLOOR_RANKS, FloorAttributeHandler)
@@ -842,38 +762,28 @@ class DungeonModule(AbstractModule):
             f_ranks.set_floor_attr(group_id, floor_id + 1, rank)
             self.project.mark_as_modified(FLOOR_RANKS)
 
-    def extend_nb_floors_mf(
-        self, dungeon_id: int, start_floor: int, nb_floors: int, forbidden: int
-    ):
+    def extend_nb_floors_mf(self, dungeon_id: int, start_floor: int, nb_floors: int, forbidden: int):
         if self.has_mission_forbidden():
             group_id = self._get_dungeon_group(dungeon_id)
-            f_mission = self.project.open_file_in_rom(
-                FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler
-            )
+            f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
             f_mission.extend_nb_floors(group_id, start_floor + 1, nb_floors, forbidden)
 
     def reorder_floors_mf(
         self, reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]]
     ):  # (old_group_id, start_floor, end_floor)
         if self.has_floor_ranks():
-            f_mission = self.project.open_file_in_rom(
-                FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler
-            )
+            f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
             f_mission.reorder_floors(reorder_list)
 
     def adjust_nb_floors_mf(self, group_id: int, nb_floors: int):
         if self.has_mission_forbidden():
-            f_mission = self.project.open_file_in_rom(
-                FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler
-            )
+            f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
             f_mission.adjust_nb_floors(group_id, nb_floors + 1)
 
     def get_floor_mf(self, dungeon_id: int, floor_id: int) -> Optional[int]:
         if self.has_mission_forbidden():
             group_id = self._get_dungeon_group(dungeon_id)
-            f_mission = self.project.open_file_in_rom(
-                FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler
-            )
+            f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
             return f_mission.get_floor_attr(group_id, floor_id + 1)
         else:
             return None
@@ -881,9 +791,7 @@ class DungeonModule(AbstractModule):
     def set_floor_mf(self, dungeon_id: int, floor_id: int, forbidden: int):
         if self.has_mission_forbidden():
             group_id = self._get_dungeon_group(dungeon_id)
-            f_mission = self.project.open_file_in_rom(
-                FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler
-            )
+            f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
             f_mission.set_floor_attr(group_id, floor_id + 1, forbidden)
             self.project.mark_as_modified(FLOOR_MISSION_FORBIDDEN)
 
@@ -919,9 +827,7 @@ class DungeonModule(AbstractModule):
         self.project.modify_binary(BinaryName.OVERLAY_29, update_ov29)
         self.project.modify_binary(
             BinaryName.OVERLAY_10,
-            lambda binary: HardcodedFixedFloorTables.set_monster_spawn_stats_table(
-                binary, stats, config
-            ),
+            lambda binary: HardcodedFixedFloorTables.set_monster_spawn_stats_table(binary, stats, config),
         )
         self._item_tree.mark_as_modified(self._fixed_floor_root_iter, RecursionType.UP)
 
@@ -971,9 +877,7 @@ class DungeonModule(AbstractModule):
 
     def mark_fixed_floor_as_modified(self, floor_id):
         self.project.mark_as_modified(FIXED_PATH)
-        self._item_tree.mark_as_modified(
-            self._fixed_floor_iters[floor_id], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._fixed_floor_iters[floor_id], RecursionType.UP)
 
     @staticmethod
     def desc_fixed_floor_tile(tile):
@@ -996,19 +900,12 @@ class DungeonModule(AbstractModule):
         )
 
     @staticmethod
-    def desc_fixed_floor_monster(
-        monster_id, enemy_settings, monster_names, enemy_settings_names, short=False
-    ):
+    def desc_fixed_floor_monster(monster_id, enemy_settings, monster_names, enemy_settings_names, short=False):
         if monster_id == 0:
             return _("Nothing")
         if short:
             return monster_names[monster_id]
-        return (
-            monster_names[monster_id]
-            + " ("
-            + enemy_settings_names[enemy_settings]
-            + ")"
-        )
+        return monster_names[monster_id] + " (" + enemy_settings_names[enemy_settings] + ")"
 
     def desc_fixed_floor_stats(self, i, entry):
         return f(
@@ -1026,9 +923,7 @@ class DungeonModule(AbstractModule):
 
     def mappa_generate_new_floor(self) -> MappaFloorProtocol:
         """Copies the first floor of test dungeon and returns it"""
-        cats_ided = (
-            self.project.get_rom_module().get_static_data().dungeon_data.item_categories
-        )
+        cats_ided = self.project.get_rom_module().get_static_data().dungeon_data.item_categories
         cats_named = {x.name: x for x in cats_ided.values()}
         return mappa_floor_from_xml(
             mappa_floor_to_xml(self.get_mappa().floor_lists[0][0], cats_ided),
@@ -1046,24 +941,16 @@ class DungeonModule(AbstractModule):
         )
 
     def get_item(self, idx):
-        return self.project.open_file_in_rom(
-            "BALANCE/item_p.bin", FileType.ITEM_P
-        ).item_list[idx]
+        return self.project.open_file_in_rom("BALANCE/item_p.bin", FileType.ITEM_P).item_list[idx]
 
     def item_count(self):
-        return len(
-            self.project.open_file_in_rom(
-                "BALANCE/item_p.bin", FileType.ITEM_P
-            ).item_list
-        )
+        return len(self.project.open_file_in_rom("BALANCE/item_p.bin", FileType.ITEM_P).item_list)
 
     def get_zmappa(self):
         with self._dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get("minimap.zmappat")
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StDungeonDungeonPage):
             pass  # todo
         if isinstance(open_view, StDungeonFloorPage):

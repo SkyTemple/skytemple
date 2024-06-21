@@ -47,9 +47,7 @@ class ActorListController(ListBaseController):
         stack = builder_get_assert(self.builder, Gtk.Stack, "list_stack")
 
         if not self.module.has_actor_list():
-            stack.set_visible_child(
-                builder_get_assert(self.builder, Gtk.Widget, "box_na")
-            )
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, "box_na"))
             return stack
         self._list = self.module.get_actor_list()
 
@@ -57,9 +55,7 @@ class ActorListController(ListBaseController):
         # This will also reflect changes to the list in other parts of the UI.
         self.module.project.get_rom_module().get_static_data().script_data.level_entities = self._list.list
 
-        stack.set_visible_child(
-            builder_get_assert(self.builder, Gtk.Widget, "box_list")
-        )
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, "box_list"))
         self.load()
         return stack
 
@@ -144,9 +140,7 @@ class ActorListController(ListBaseController):
         # ent_icon:
         # If color is orange it's special.
         # TODO: it's a bit weird doing this over the color
-        self._list_store[path][3] = self._get_icon(
-            entid, idx, self._list_store[path][8] == ORANGE
-        )
+        self._list_store[path][3] = self._get_icon(entid, idx, self._list_store[path][8] == ORANGE)
 
     @catch_overflow(u16)
     def on_cr_unk3_edited(self, widget, path, text):
@@ -169,9 +163,7 @@ class ActorListController(ListBaseController):
         """Propagate changes to list store entries to the model."""
         if self._loading:
             return
-        a_id, name, a_type, ent_icon, entid, unk3, unk4, ent_name, color = store[path][
-            :
-        ]
+        a_id, name, a_type, ent_icon, entid, unk3, unk4, ent_name, color = store[path][:]
         a_id = int(a_id)
         actor = self._list.list[a_id]
         name_before = actor.name

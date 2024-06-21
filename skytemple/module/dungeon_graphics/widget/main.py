@@ -37,9 +37,7 @@ DUNGEON_GRAPHICS_NAME = _("Dungeon Graphics")
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "main.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "main.ui"))
 class StDungeonGraphicsMainPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsMainPage"
     module: DungeonGraphicsModule
@@ -47,27 +45,13 @@ class StDungeonGraphicsMainPage(Gtk.Box):
     box_edit: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     level_list_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    cr_map_color: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_stirring_effect: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_secret_power_effect: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_camouflage_type: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_nature_power_move_entry: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_weather_effect: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_full_water_floor: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    cr_map_color: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_stirring_effect: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_secret_power_effect: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_camouflage_type: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_nature_power_move_entry: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_weather_effect: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_full_water_floor: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     list_tree_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
     def __init__(self, module: DungeonGraphicsModule, item_data: None):
@@ -80,9 +64,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     @glib_async
-    def on_cr_map_color_changed(
-        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
-    ):
+    def on_cr_map_color_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
         store = self.list_tree_store
         cb_store = widget.props.model
         store[path][2] = cb_store[new_iter][0]
@@ -91,9 +73,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     @glib_async
-    def on_cr_stirring_effect_changed(
-        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
-    ):
+    def on_cr_stirring_effect_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
         store = self.list_tree_store
         cb_store = widget.props.model
         store[path][3] = cb_store[new_iter][0]
@@ -102,9 +82,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     @glib_async
-    def on_cr_secret_power_effect_changed(
-        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
-    ):
+    def on_cr_secret_power_effect_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
         store = self.list_tree_store
         cb_store = widget.props.model
         store[path][4] = cb_store[new_iter][0]
@@ -113,9 +91,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     @glib_async
-    def on_cr_camouflage_type_changed(
-        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
-    ):
+    def on_cr_camouflage_type_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
         store = self.list_tree_store
         cb_store = widget.props.model
         store[path][5] = cb_store[new_iter][0]
@@ -124,9 +100,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     @glib_async
-    def on_cr_nature_power_move_entry_changed(
-        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
-    ):
+    def on_cr_nature_power_move_entry_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
         store = self.list_tree_store
         cb_store = widget.props.model
         store[path][6] = cb_store[new_iter][0]
@@ -135,9 +109,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     @glib_async
-    def on_cr_weather_effect_changed(
-        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
-    ):
+    def on_cr_weather_effect_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
         store = self.list_tree_store
         cb_store = widget.props.model
         store[path][7] = cb_store[new_iter][0]
@@ -158,13 +130,9 @@ class StDungeonGraphicsMainPage(Gtk.Box):
         # cr_secret_power_effect
         self._create_for_enum(self.cr_secret_power_effect, TilesetSecretPowerEffect)
         # cr_camouflage_type
-        self._create_for_enum_with_strings(
-            self.cr_camouflage_type, PokeType, StringType.TYPE_NAMES
-        )
+        self._create_for_enum_with_strings(self.cr_camouflage_type, PokeType, StringType.TYPE_NAMES)
         # cr_nature_power_move_entry
-        self._create_for_enum(
-            self.cr_nature_power_move_entry, TilesetNaturePowerMoveEntry
-        )
+        self._create_for_enum(self.cr_nature_power_move_entry, TilesetNaturePowerMoveEntry)
         # cr_weather_effect
         self._create_for_enum(self.cr_weather_effect, TilesetWeatherEffect)
 
@@ -174,18 +142,14 @@ class StDungeonGraphicsMainPage(Gtk.Box):
         for e in en:
             store.append([e.value, e.print_name])  # type: ignore
 
-    def _create_for_enum_with_strings(
-        self, cr: Gtk.CellRendererCombo, en: type[Enum], string_type: StringType
-    ):
+    def _create_for_enum_with_strings(self, cr: Gtk.CellRendererCombo, en: type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
             store.append(
                 [
                     e.value,
-                    self.module.project.get_string_provider().get_value(
-                        string_type, e.value
-                    ),
+                    self.module.project.get_string_provider().get_value(string_type, e.value),
                 ]
             )
 
@@ -197,9 +161,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
             store.append(
                 [
                     str(i),
-                    f"{_('Tileset')} {i}"
-                    if i < NUMBER_OF_TILESETS
-                    else f"{_('Background')} {i}",
+                    f"{_('Tileset')} {i}" if i < NUMBER_OF_TILESETS else f"{_('Background')} {i}",
                     v.map_color.value,
                     v.stirring_effect.value,
                     v.secret_power_effect.value,
@@ -210,9 +172,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
                     v.map_color.print_name,
                     v.stirring_effect.print_name,
                     v.secret_power_effect.print_name,
-                    self.module.project.get_string_provider().get_value(
-                        StringType.TYPE_NAMES, v.camouflage_type.value
-                    ),
+                    self.module.project.get_string_provider().get_value(StringType.TYPE_NAMES, v.camouflage_type.value),
                     v.nature_power_move_entry.print_name,
                     v.weather_effect.print_name,
                 ]

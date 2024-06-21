@@ -50,17 +50,13 @@ class StPatchCotPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_tutorial_video_enter(self, *args):
         img_btn = self.tutorial_video
-        pointer = Gdk.Cursor.new_from_name(
-            MainController.window().get_display(), "pointer"
-        )
+        pointer = Gdk.Cursor.new_from_name(MainController.window().get_display(), "pointer")
         GLib.idle_add(lambda: assert_not_none(img_btn.get_window()).set_cursor(pointer))
 
     @Gtk.Template.Callback()
     def on_tutorial_video_leave(self, *args):
         img_btn = self.tutorial_video
-        default = Gdk.Cursor.new_from_name(
-            MainController.window().get_display(), "default"
-        )
+        default = Gdk.Cursor.new_from_name(MainController.window().get_display(), "default")
         GLib.idle_add(lambda: assert_not_none(img_btn.get_window()).set_cursor(default))
 
     @Gtk.Template.Callback()
@@ -69,12 +65,8 @@ class StPatchCotPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_readme_cot_clicked(self, *args):
-        webbrowser.open_new_tab(
-            "https://github.com/SkyTemple/c-of-time/blob/main/README.md"
-        )
+        webbrowser.open_new_tab("https://github.com/SkyTemple/c-of-time/blob/main/README.md")
 
     @Gtk.Template.Callback()
     def on_readme_rod_clicked(self, *args):
-        webbrowser.open_new_tab(
-            "https://github.com/SkyTemple/c-of-time/blob/main/rust/README.md"
-        )
+        webbrowser.open_new_tab("https://github.com/SkyTemple/c-of-time/blob/main/rust/README.md")

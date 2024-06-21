@@ -34,9 +34,7 @@ class StDungeonInvalidDungeonPage(Gtk.Box):
     cb_direction_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     label_dungeon_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     btn_goto: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    spin_floor_count_adjument: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    spin_floor_count_adjument: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
 
     def __init__(self, module: DungeonModule, item_data: DungeonViewInfo):
         super().__init__()

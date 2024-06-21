@@ -39,9 +39,7 @@ BGP_FILE_EXT = "bgp"
 MAIN_VIEW_DATA = StStatusPageData(
     icon_name="skytemple-illust-background",
     title=_("Backgrounds"),
-    description=_(
-        "This section lets you edit static backgrounds used in various places of the game."
-    ),
+    description=_("This section lets you edit static backgrounds used in various places of the game."),
 )
 
 
@@ -94,17 +92,13 @@ class BgpModule(AbstractModule):
         bgp_filename = self.list_of_bgps[item_id]
         self.project.mark_as_modified(bgp_filename)
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[item_id], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
 
     def get_bgp(self, item_id):
         bgp_filename = self.list_of_bgps[item_id]
         return self.project.open_file_in_rom(bgp_filename, FileType.BGP)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StBgpBgpPage):
             return {"models": {self.list_of_bgps[open_view.item_data]: open_view.bgp}}
         return None

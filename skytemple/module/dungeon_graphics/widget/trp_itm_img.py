@@ -48,9 +48,7 @@ IMAGE_ZOOM = 4
 MAX_ENTRIES = 10000
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "trp_itm_img.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "trp_itm_img.ui"))
 class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsTrpItmImgPage"
     module: DungeonGraphicsModule
@@ -199,9 +197,7 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
         stack = self.entry_stack
         if surface:
             stack.set_visible_child(self.entry_viewer)
-            surface = surface.resize(
-                (surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM)
-            )
+            surface = surface.resize((surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM))
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
             self.draw_area.queue_draw()
         else:

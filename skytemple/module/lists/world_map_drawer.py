@@ -60,9 +60,7 @@ class WorldMapDrawer:
         self._editing_pos: Optional[tuple[int, int]] = None
         self._hide: Optional[MapMarkerPlacement] = None
 
-        self.tile_grid_plugin = GridDrawerPlugin(
-            BPC_TILE_DIM, BPC_TILE_DIM, color=(0.2, 0.2, 0.2, 0.1)
-        )
+        self.tile_grid_plugin = GridDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM, color=(0.2, 0.2, 0.2, 0.1))
 
         self.scale = scale
 
@@ -140,9 +138,7 @@ class WorldMapDrawer:
         self.mouse_x = x
         self.mouse_y = y
 
-    def _draw_marker(
-        self, ctx: cairo.Context, marker: MapMarkerPlacement, x=None, y=None
-    ):
+    def _draw_marker(self, ctx: cairo.Context, marker: MapMarkerPlacement, x=None, y=None):
         x, y = self._get_marker_xy(marker, x, y)
         if (x, y) not in self.markers_at_pos:
             self.markers_at_pos[(x, y)] = []
@@ -185,9 +181,7 @@ class WorldMapDrawer:
 
     def _draw_name(self, ctx: cairo.Context, marker_ids: list[int], x: int, y: int):
         ctx.set_source_rgb(*COLOR_MARKERS)
-        ctx.select_font_face(
-            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
-        )
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
         ctx.set_font_size(4 * self.scale)
         ctx.move_to(x, y - 4 * self.scale)
         label = ""

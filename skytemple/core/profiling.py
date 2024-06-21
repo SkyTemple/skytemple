@@ -34,15 +34,11 @@ class TaggableContext(AbstractContextManager, Protocol):
     def set_tag(self, key: str, value: Any): ...
 
 
-def record_transaction(
-    name: str, tags: dict[str, Any] | None = None
-) -> TaggableContext:
+def record_transaction(name: str, tags: dict[str, Any] | None = None) -> TaggableContext:
     return _Ctx(True, name, None, tags)
 
 
-def record_span(
-    op: str, description: str, tags: dict[str, Any] | None = None
-) -> TaggableContext:
+def record_span(op: str, description: str, tags: dict[str, Any] | None = None) -> TaggableContext:
     return _Ctx(False, description, op, tags)
 
 
@@ -56,14 +52,10 @@ class _ProfilingImplementation(ABC):
     def new(cls) -> _ProfilingImplementation | None: ...
 
     @abstractmethod
-    def make_transaction(
-        self, name: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None: ...
+    def make_transaction(self, name: str, tags: dict[str, Any] | None) -> TaggableContext | None: ...
 
     @abstractmethod
-    def make_span(
-        self, op: str, description: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None: ...
+    def make_span(self, op: str, description: str, tags: dict[str, Any] | None) -> TaggableContext | None: ...
 
 
 class _LogImpl(_ProfilingImplementation):
@@ -89,18 +81,14 @@ class _LogImpl(_ProfilingImplementation):
     def new(cls) -> _LogImpl | None:
         return _LogImpl()
 
-    def make_transaction(
-        self, name: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None:
+    def make_transaction(self, name: str, tags: dict[str, Any] | None) -> TaggableContext | None:
         x = self.__class__.LogCtx("transaction", name)
         if tags is not None:
             for k, v in tags.items():
                 x.set_tag(k, v)
         return x
 
-    def make_span(
-        self, op: str, description: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None:
+    def make_span(self, op: str, description: str, tags: dict[str, Any] | None) -> TaggableContext | None:
         x = self.__class__.LogCtx("span", f"{op}->{description}")
         if tags is not None:
             for k, v in tags.items():
@@ -118,18 +106,14 @@ class _SentryImpl(_ProfilingImplementation):
             return cls()
         return None
 
-    def make_transaction(
-        self, name: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None:
+    def make_transaction(self, name: str, tags: dict[str, Any] | None) -> TaggableContext | None:
         transact = self.sentry_sdk.start_transaction(name=name)
         if tags is not None:
             for k, v in tags.items():
                 transact.set_tag(k, v)
         return transact
 
-    def make_span(
-        self, op: str, description: str, tags: dict[str, Any] | None
-    ) -> TaggableContext | None:
+    def make_span(self, op: str, description: str, tags: dict[str, Any] | None) -> TaggableContext | None:
         span = self.sentry_sdk.start_span(op=op, description=description)
         if tags is not None:
             for k, v in tags.items():
@@ -164,18 +148,12 @@ class _Ctx(TaggableContext):
 
     def __enter__(self):
         if self.is_transaction:
-            self._entered = [
-                impl.make_transaction(self.name_or_desc, self.tags)
-                for impl in self.instance_impls
-            ]
+            self._entered = [impl.make_transaction(self.name_or_desc, self.tags) for impl in self.instance_impls]
 
         else:
             if TYPE_CHECKING:
                 assert self.op is not None
-            self._entered = [
-                impl.make_span(self.op, self.name_or_desc, self.tags)
-                for impl in self.instance_impls
-            ]
+            self._entered = [impl.make_span(self.op, self.name_or_desc, self.tags) for impl in self.instance_impls]
 
         for entered in self._entered:
             if entered is not None:

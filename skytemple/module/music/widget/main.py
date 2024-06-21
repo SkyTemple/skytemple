@@ -42,6 +42,4 @@ class StMusicMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_button_sky_song_builder_clicked(self, *args):
-        webbrowser.open_new_tab(
-            "https://wiki.skytemple.org/index.php?title=SkyTemple:UI-Link/skytemple--music--main"
-        )
+        webbrowser.open_new_tab("https://wiki.skytemple.org/index.php?title=SkyTemple:UI-Link/skytemple--music--main")

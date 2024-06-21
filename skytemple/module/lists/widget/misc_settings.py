@@ -94,9 +94,7 @@ class StListsMiscSettingsPage(Gtk.Box):
                 BinaryName.OVERLAY_00,
                 lambda bin: self.module.project.modify_binary(
                     BinaryName.OVERLAY_09,
-                    lambda bin2: HardcodedMainMenuMusic.set_main_menu_music(
-                        mus, bin, static_data, bin2
-                    ),
+                    lambda bin2: HardcodedMainMenuMusic.set_main_menu_music(mus, bin, static_data, bin2),
                 ),
             )
             self.module.mark_misc_settings_as_modified()
@@ -160,9 +158,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(
             BinaryName.OVERLAY_29,
-            lambda bin: HardcodedDungeonMisc.set_belly_loss_walk_through_walls(
-                val, bin, static_data
-            ),
+            lambda bin: HardcodedDungeonMisc.set_belly_loss_walk_through_walls(val, bin, static_data),
         )
         self.module.mark_misc_settings_as_modified()
 
@@ -178,9 +174,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(
             BinaryName.OVERLAY_29,
-            lambda bin: HardcodedDungeonMisc.set_belly_loss_1000ile_walk_through_walls(
-                val, bin, static_data
-            ),
+            lambda bin: HardcodedDungeonMisc.set_belly_loss_1000ile_walk_through_walls(val, bin, static_data),
         )
         self.module.mark_misc_settings_as_modified()
 
@@ -196,9 +190,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(
             BinaryName.OVERLAY_10,
-            lambda bin: HardcodedDungeonMisc.set_ginseng_increase_by_3_chance(
-                val, bin, static_data
-            ),
+            lambda bin: HardcodedDungeonMisc.set_ginseng_increase_by_3_chance(val, bin, static_data),
         )
         self.module.mark_misc_settings_as_modified()
 
@@ -262,9 +254,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(
             BinaryName.OVERLAY_10,
-            lambda bin: HardcodedDungeonMisc.set_burn_damage_delay(
-                val, bin, static_data
-            ),
+            lambda bin: HardcodedDungeonMisc.set_burn_damage_delay(val, bin, static_data),
         )
         self.module.mark_misc_settings_as_modified()
 
@@ -280,9 +270,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(
             BinaryName.OVERLAY_10,
-            lambda bin: HardcodedDungeonMisc.set_poison_damage_delay(
-                val, bin, static_data
-            ),
+            lambda bin: HardcodedDungeonMisc.set_poison_damage_delay(val, bin, static_data),
         )
         self.module.mark_misc_settings_as_modified()
 
@@ -298,9 +286,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(
             BinaryName.OVERLAY_10,
-            lambda bin: HardcodedDungeonMisc.set_bad_poison_damage_delay(
-                val, bin, static_data
-            ),
+            lambda bin: HardcodedDungeonMisc.set_bad_poison_damage_delay(val, bin, static_data),
         )
         self.module.mark_misc_settings_as_modified()
 
@@ -309,11 +295,7 @@ class StListsMiscSettingsPage(Gtk.Box):
         cb_store = self.store_main_menu_music
         # Init combobox
         cb_store.clear()
-        for idx, track in (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .script_data.bgms__by_id.items()
-        ):
+        for idx, track in self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id.items():
             cb_store.append([idx, track.name])
 
     def _init_values(self):
@@ -322,55 +304,25 @@ class StListsMiscSettingsPage(Gtk.Box):
         ov10 = self.module.project.get_binary(BinaryName.OVERLAY_10)
         ov29 = self.module.project.get_binary(BinaryName.OVERLAY_29)
         static_data = self.module.project.get_rom_module().get_static_data()
-        self.entry_text_speed.set_text(
-            str(HardcodedTextSpeed.get_text_speed(arm9, static_data))
-        )
-        self.cb_main_menu_music.set_active(
-            HardcodedMainMenuMusic.get_main_menu_music(ov00, static_data)
-        )
-        self.entry_normal_spawn_delay.set_text(
-            str(HardcodedSpawnRate.get_normal_spawn_rate(ov10, static_data))
-        )
-        self.entry_stolen_spawn_delay.set_text(
-            str(HardcodedSpawnRate.get_stolen_spawn_rate(ov10, static_data))
-        )
-        self.entry_belly_lost.set_text(
-            str(HardcodedDungeonMisc.get_belly_loss_turn(ov29, static_data))
-        )
+        self.entry_text_speed.set_text(str(HardcodedTextSpeed.get_text_speed(arm9, static_data)))
+        self.cb_main_menu_music.set_active(HardcodedMainMenuMusic.get_main_menu_music(ov00, static_data))
+        self.entry_normal_spawn_delay.set_text(str(HardcodedSpawnRate.get_normal_spawn_rate(ov10, static_data)))
+        self.entry_stolen_spawn_delay.set_text(str(HardcodedSpawnRate.get_stolen_spawn_rate(ov10, static_data)))
+        self.entry_belly_lost.set_text(str(HardcodedDungeonMisc.get_belly_loss_turn(ov29, static_data)))
         self.entry_belly_lost_wtw.set_text(
-            str(
-                HardcodedDungeonMisc.get_belly_loss_walk_through_walls(
-                    ov29, static_data
-                )
-            )
+            str(HardcodedDungeonMisc.get_belly_loss_walk_through_walls(ov29, static_data))
         )
         self.entry_belly_lost_wtw_1000.set_text(
-            str(
-                HardcodedDungeonMisc.get_belly_loss_1000ile_walk_through_walls(
-                    ov29, static_data
-                )
-            )
+            str(HardcodedDungeonMisc.get_belly_loss_1000ile_walk_through_walls(ov29, static_data))
         )
         self.entry_ginseng_3_chance.set_text(
-            str(
-                HardcodedDungeonMisc.get_ginseng_increase_by_3_chance(ov10, static_data)
-            )
+            str(HardcodedDungeonMisc.get_ginseng_increase_by_3_chance(ov10, static_data))
         )
-        self.entry_life_seed.set_text(
-            str(HardcodedHpItems.get_life_seed_hp(ov10, static_data))
-        )
-        self.entry_oran_berry.set_text(
-            str(HardcodedHpItems.get_oran_berry_hp(ov10, static_data))
-        )
-        self.entry_sitrus_berry.set_text(
-            str(HardcodedHpItems.get_sitrus_berry_hp(ov10, static_data))
-        )
-        self.entry_burn_damage_delay.set_text(
-            str(HardcodedDungeonMisc.get_burn_damage_delay(ov10, static_data))
-        )
-        self.entry_poison_damage_delay.set_text(
-            str(HardcodedDungeonMisc.get_poison_damage_delay(ov10, static_data))
-        )
+        self.entry_life_seed.set_text(str(HardcodedHpItems.get_life_seed_hp(ov10, static_data)))
+        self.entry_oran_berry.set_text(str(HardcodedHpItems.get_oran_berry_hp(ov10, static_data)))
+        self.entry_sitrus_berry.set_text(str(HardcodedHpItems.get_sitrus_berry_hp(ov10, static_data)))
+        self.entry_burn_damage_delay.set_text(str(HardcodedDungeonMisc.get_burn_damage_delay(ov10, static_data)))
+        self.entry_poison_damage_delay.set_text(str(HardcodedDungeonMisc.get_poison_damage_delay(ov10, static_data)))
         self.entry_bad_poison_damage_delay.set_text(
             str(HardcodedDungeonMisc.get_bad_poison_damage_delay(ov10, static_data))
         )

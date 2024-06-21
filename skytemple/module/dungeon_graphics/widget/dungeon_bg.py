@@ -54,25 +54,15 @@ INFO_IMEXPORT_ENTIRE = _(
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "dungeon_bg.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "dungeon_bg.ui"))
 class StDungeonGraphicsDungeonBgPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsDungeonBgPage"
     module: DungeonGraphicsModule
     item_data: int
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings: Gtk.Dialog = cast(
-        Gtk.Dialog, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings_btn_close: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings_btn_ok: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_palettes_animated_settings: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
+    dialog_palettes_animated_settings_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    dialog_palettes_animated_settings_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     palette_animation11_enabled: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     palette_animation11_frame_time0: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     palette_animation11_frame_time4: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -107,12 +97,8 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
     palette_animation12_frame_time3: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     palette_animation12_frame_time9: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     palette_animation12_frame_time10: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     men_map_export: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_map_import: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_chunks_layer1_edit: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
@@ -129,12 +115,8 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
     bg_layers: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     tb_zoom_in: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tb_zoom_out: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    tb_chunk_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tb_tile_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
+    tb_chunk_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tb_tile_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     tb_bg_color: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     bg_draw_sw: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
     bg_layers_toolbox: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
@@ -162,23 +144,17 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
     dialog_chunks_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_chunks_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_chunks_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    chunks_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    chunks_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     chunks_import_palettes: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     dialog_map_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_map_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_map_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     map_import_layer1: Gtk.ButtonBox = cast(Gtk.ButtonBox, Gtk.Template.Child())
-    map_import_layer1_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    map_import_layer1_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     dialog_tiles_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_tiles_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_tiles_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    tiles_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    tiles_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
 
     def __init__(self, module: DungeonGraphicsModule, item_data: int):
         super().__init__()
@@ -228,12 +204,8 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         correct_mouse_y = int(button.y / self.scale_factor)
         if button.button == 1:
             self.bg_draw_is_clicked = True
-            snap_x = correct_mouse_x - correct_mouse_x % (
-                DBG_TILING_DIM * DPCI_TILE_DIM
-            )
-            snap_y = correct_mouse_y - correct_mouse_y % (
-                DBG_TILING_DIM * DPCI_TILE_DIM
-            )
+            snap_x = correct_mouse_x - correct_mouse_x % (DBG_TILING_DIM * DPCI_TILE_DIM)
+            snap_y = correct_mouse_y - correct_mouse_y % (DBG_TILING_DIM * DPCI_TILE_DIM)
             self._set_chunk_at_pos(snap_x, snap_y)
 
     def on_bg_draw_release(self, box, button: Gdk.EventButton):
@@ -244,12 +216,8 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         correct_mouse_x = int(motion.x / self.scale_factor)
         correct_mouse_y = int(motion.y / self.scale_factor)
         if self.drawer:
-            snap_x = correct_mouse_x - correct_mouse_x % (
-                DBG_TILING_DIM * DPCI_TILE_DIM
-            )
-            snap_y = correct_mouse_y - correct_mouse_y % (
-                DBG_TILING_DIM * DPCI_TILE_DIM
-            )
+            snap_x = correct_mouse_x - correct_mouse_x % (DBG_TILING_DIM * DPCI_TILE_DIM)
+            snap_y = correct_mouse_y - correct_mouse_y % (DBG_TILING_DIM * DPCI_TILE_DIM)
             self.drawer.set_mouse_position(snap_x, snap_y)
             if self.bg_draw_is_clicked:
                 self._set_chunk_at_pos(snap_x, snap_y)
@@ -258,15 +226,10 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         if self.drawer:
             chunk_x = int(mouse_x / (DBG_TILING_DIM * DPCI_TILE_DIM))
             chunk_y = int(mouse_y / (DBG_TILING_DIM * DPCI_TILE_DIM))
-            if (
-                0 <= chunk_x < DBG_WIDTH_AND_HEIGHT
-                and 0 <= chunk_y < DBG_WIDTH_AND_HEIGHT
-            ):
+            if 0 <= chunk_x < DBG_WIDTH_AND_HEIGHT and 0 <= chunk_y < DBG_WIDTH_AND_HEIGHT:
                 # Set chunk at current position
                 self.mark_as_modified()
-                self.dbg.place_chunk(
-                    chunk_x, chunk_y, self.drawer.get_selected_chunk_id()
-                )
+                self.dbg.place_chunk(chunk_x, chunk_y, self.drawer.get_selected_chunk_id())
                 self.drawer.mappings = self.dbg.mappings
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
@@ -403,20 +366,15 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
             pal_ani_frames: list[list[cairo.Surface]] = []
             self.chunks_surfaces.append(pal_ani_frames)
             chunk_data = self.dpc.chunks[chunk_idx]
-            chunk_image = self.dpc.single_chunk_to_pil(
-                chunk_idx, self.dpci, self.dpl.palettes
-            )
+            chunk_image = self.dpc.single_chunk_to_pil(chunk_idx, self.dpci, self.dpl.palettes)
             has_pal_ani = any(
-                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10)
-                for chunk in chunk_data
+                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10) for chunk in chunk_data
             )
             if not has_pal_ani:
                 len_pal_ani = 1
             else:
                 ani_pal_lengths = [
-                    self.dpla.get_frame_count_for_palette(x)
-                    for x in (0, 1)
-                    if self.dpla.has_for_palette(x)
+                    self.dpla.get_frame_count_for_palette(x) for x in (0, 1) if self.dpla.has_for_palette(x)
                 ]
                 if len(ani_pal_lengths) < 2:
                     len_pal_ani = ani_pal_lengths[0]
@@ -457,9 +415,7 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         self.bg_draw_event_box.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
         self.bg_draw_event_box.connect("button-press-event", self.on_bg_draw_click)
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
-        self.bg_draw_event_box.connect(
-            "motion-notify-event", self.on_bg_draw_mouse_move
-        )
+        self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
         self.bg_draw = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
         bg_draw_sw.add(self.bg_draw_event_box)
@@ -467,9 +423,7 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
             DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM,
             DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM,
         )
-        self.drawer = Drawer(
-            self.bg_draw, self.dbg, self.pal_ani_durations, self.chunks_surfaces
-        )
+        self.drawer = Drawer(self.bg_draw, self.dbg, self.pal_ani_durations, self.chunks_surfaces)
         self.drawer.start()
 
     def _init_chunks_icon_view(self):
@@ -477,16 +431,12 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         self._deinit_chunks_icon_view()
         icon_view = self.bg_chunks_view
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
-        self.current_icon_view_renderer = DrawerCellRenderer(
-            icon_view, self.pal_ani_durations, self.chunks_surfaces
-        )
+        self.current_icon_view_renderer = DrawerCellRenderer(icon_view, self.pal_ani_durations, self.chunks_surfaces)
         store = Gtk.ListStore(int)
         icon_view.set_model(store)
         icon_view.pack_start(self.current_icon_view_renderer, True)
         icon_view.add_attribute(self.current_icon_view_renderer, "chunkidx", 0)
-        icon_view.connect(
-            "selection-changed", self.on_current_icon_view_selection_changed
-        )
+        icon_view.connect("selection-changed", self.on_current_icon_view_selection_changed)
         for idx in range(0, len(self.chunks_surfaces)):
             store.append([idx])
         first_iter = store.get_iter_first()
@@ -512,18 +462,8 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
         if self.bg_draw:
             self.bg_draw.set_size_request(
-                round(
-                    DBG_WIDTH_AND_HEIGHT
-                    * DBG_TILING_DIM
-                    * DPCI_TILE_DIM
-                    * self.scale_factor
-                ),
-                round(
-                    DBG_WIDTH_AND_HEIGHT
-                    * DBG_TILING_DIM
-                    * DPCI_TILE_DIM
-                    * self.scale_factor
-                ),
+                round(DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor),
+                round(DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor),
             )
         if self.drawer:
             self.drawer.set_scale(self.scale_factor)

@@ -38,9 +38,7 @@ class LevelUpGraphProvider:
         self.move_learnset = move_learnset
         self.move_strings = move_strings
 
-    def provide(
-        self, add_title=None, dark=False, disable_xml_declaration=False
-    ) -> Graph:
+    def provide(self, add_title=None, dark=False, disable_xml_declaration=False) -> Graph:
         chart = pygal.XY(
             xrange=(1, len(self.level_bin_entry.levels) + 1),
             secondary_range=(
@@ -100,9 +98,7 @@ class LevelUpGraphProvider:
         chart.add(_("Sp. ATK"), sp_atks)  # TRANSLATORS: Special Attack
         chart.add(_("DEF"), defs)  # TRANSLATORS: Defense
         chart.add(_("Sp. DEF"), sp_defs)  # TRANSLATORS: Special Defense
-        chart.add(
-            _("Moves"), moves, stroke=False, formatter=lambda x: f(_("at level {x[0]}"))
-        )
+        chart.add(_("Moves"), moves, stroke=False, formatter=lambda x: f(_("at level {x[0]}")))
 
         return chart
 
@@ -122,35 +118,23 @@ if __name__ == "__main__":
         out_dir = "/tmp/monster_graphs"
         os.makedirs(out_dir, exist_ok=True)
         monster_md = FileType.MD.deserialize(rom.getFileByName("BALANCE/monster.md"))
-        level_bin = FileType.BIN_PACK.deserialize(
-            rom.getFileByName("BALANCE/m_level.bin")
-        )
+        level_bin = FileType.BIN_PACK.deserialize(rom.getFileByName("BALANCE/m_level.bin"))
         waza_p = FileType.WAZA_P.deserialize(rom.getFileByName("BALANCE/waza_p.bin"))
         move_string_block = config.string_index_data.string_blocks["Move Names"]
         monster_name_block = config.string_index_data.string_blocks["Pokemon Names"]
         strings = FileType.STR.deserialize(rom.getFileByName("MESSAGE/text_e.str"))
         move_strings = strings.strings[move_string_block.begin : move_string_block.end]
-        monster_strings = strings.strings[
-            monster_name_block.begin : monster_name_block.end
-        ]
+        monster_strings = strings.strings[monster_name_block.begin : monster_name_block.end]
 
         level_bin = level_bin
 
         # The level_bin has no entry for monster 0.
-        for monster, lbinentry_bin, waza_entry in zip(
-            monster_md.entries[1:], level_bin, waza_p.learnsets[1:]
-        ):
+        for monster, lbinentry_bin, waza_entry in zip(monster_md.entries[1:], level_bin, waza_p.learnsets[1:]):
             level_bin_entry = FileType.LEVEL_BIN_ENTRY.deserialize(
-                FileType.COMMON_AT.deserialize(
-                    FileType.SIR0.deserialize(lbinentry_bin).content
-                ).decompress()
+                FileType.COMMON_AT.deserialize(FileType.SIR0.deserialize(lbinentry_bin).content).decompress()
             )
-            graph_provider = LevelUpGraphProvider(
-                monster, level_bin_entry, waza_entry, move_strings
-            )
-            g = graph_provider.provide(
-                f"{monster_strings[monster.md_index]}", dark=True
-            )
+            graph_provider = LevelUpGraphProvider(monster, level_bin_entry, waza_entry, move_strings)
+            g = graph_provider.provide(f"{monster_strings[monster.md_index]}", dark=True)
             g.render_to_file(os.path.join(out_dir, f"{monster.md_index}.svg"))
             g.render_to_png(os.path.join(out_dir, f"{monster.md_index}.png"), dpi=92)
 

@@ -53,21 +53,15 @@ class ObjectListController(ListBaseController):
         stack = builder_get_assert(self.builder, Gtk.Stack, "list_stack")
 
         if not self.module.has_object_list():
-            stack.set_visible_child(
-                builder_get_assert(self.builder, Gtk.Widget, "box_na")
-            )
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, "box_na"))
             return stack
         self._list = self.module.get_object_list()
 
         # ON LOAD ASSIGN PPMDU ENTITY LIST TO ACTOR LIST MODEL
         # This will also reflect changes to the list in other parts of the UI.
-        self.module.project.get_rom_module().get_static_data().script_data.objects = (
-            self._list.list
-        )
+        self.module.project.get_rom_module().get_static_data().script_data.objects = self._list.list
 
-        stack.set_visible_child(
-            builder_get_assert(self.builder, Gtk.Widget, "box_list")
-        )
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, "box_list"))
         self.load()
         return stack
 
@@ -147,9 +141,7 @@ class ObjectListController(ListBaseController):
 
     def refresh_list(self):
         tree = builder_get_assert(self.builder, Gtk.TreeView, "object_tree")
-        self._list_store = assert_not_none(
-            cast(Optional[Gtk.ListStore], tree.get_model())
-        )
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
         # Iterate list
         for idx, entry in enumerate(self._list.list):

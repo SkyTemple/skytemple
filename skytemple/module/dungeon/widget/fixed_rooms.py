@@ -54,140 +54,60 @@ class StDungeonFixedRoomsPage(Gtk.Box):
     model_tiles__traps: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     nb_sl: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     tree_entities: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_entities_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_entities_tile_id: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_entities_tile_desc: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_entities_item_id: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_entities_item_desc: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_entities_monster_id: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_entities_monster_desc: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_entities_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_entities_tile_id: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_entities_tile_desc: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_entities_item_id: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_entities_item_desc: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_entities_monster_id: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_entities_monster_desc: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_entities_goto_monster: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_entities_goto_item: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_entities_goto_tile: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     tree_tiles: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_tiles_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    cr_tiles_trap_id: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_0: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_1: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_2: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_3: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_4: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_5: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_6: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf1_7: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_room_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_0: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_1: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_2: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_3: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_4: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_5: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_6: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_tiles_bf2_7: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    cr_tiles_trap_id: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_tiles_bf1_0: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_1: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_2: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_3: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_4: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_5: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_6: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf1_7: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_room_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_tiles_bf2_0: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_1: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_2: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_3: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_4: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_5: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_6: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_tiles_bf2_7: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     tree_items: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_items_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    cr_items_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_item_quantity: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_item_quantity: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     tree_monsters: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_monsters_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monsters_monster: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_monsters_type: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_monsters_stats: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    cr_monsters_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monsters_monster: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_monsters_type: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_monsters_stats: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     btn_monsters_goto_stats: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     tree_stats: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_stats_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    cr_stats_level: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_stats_level: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     cr_stats_hp: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    cr_stats_exp_yield: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_stats_atk: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_stats_sp_atk: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_stats_def: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_stats_sp_def: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_stats_unka: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_stats_exp_yield: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_stats_atk: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_stats_sp_atk: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_stats_def: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_stats_sp_def: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_stats_unka: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     store_completion_items: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_items: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_items: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     store_completion_monsters: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_monsters: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_monsters: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     # If set, this entity will be focused on first load
     focus_entity_on_open = None
 
@@ -204,25 +124,19 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         ) = module.get_fixed_floor_entity_lists()
         self.enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
-            self.enemy_settings_name[spawn_type.value] = (
-                f"{spawn_type.value}: {spawn_type.description}"
-            )
+            self.enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
         self.monster_names = {}
         length = len(self.module.get_monster_md().entries)
         for i, entry in enumerate(self.module.get_monster_md().entries):
             name = self.module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES, i % FileType.MD.properties().num_entities
             )
-            self.monster_names[i] = (
-                f"{name} ({Gender(entry.gender).print_name}) (${i:04})"
-            )
+            self.monster_names[i] = f"{name} ({Gender(entry.gender).print_name}) (${i:04})"
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _("(Special?)") + f" (${i:04})"
         self.item_names = {}
         for i in range(0, MAX_ITEMS):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.ITEM_NAMES, i
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_names[i] = f"{name} (#{i:04})"
         for i in range(MAX_ITEMS, MAX_ITEMS + SPECIAL_ITEMS):
             self.item_names[i] = _("(Special?)") + f" (#{i:04})"
@@ -258,9 +172,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         cb_store = self.model_entities__tiles
         store[path][1] = f"{_('Tile')} {cb_store[new_iter][0]}"
         self.lst_entity[int(store[path][0])].tile_id = cb_store[new_iter][0]
-        store[path][4] = self.module.desc_fixed_floor_tile(
-            self.lst_tile[cb_store[new_iter][0]]
-        )
+        store[path][4] = self.module.desc_fixed_floor_tile(self.lst_tile[cb_store[new_iter][0]])
         self._save()
 
     @Gtk.Template.Callback()
@@ -270,9 +182,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         cb_store = self.model_entities__items
         store[path][2] = f"{_('Item')} {cb_store[new_iter][0]}"
         self.lst_entity[int(store[path][0])].item_id = cb_store[new_iter][0]
-        store[path][5] = self.module.desc_fixed_floor_item(
-            self.lst_item[cb_store[new_iter][0]].item_id
-        )
+        store[path][5] = self.module.desc_fixed_floor_item(self.lst_item[cb_store[new_iter][0]].item_id)
         self._save()
 
     @Gtk.Template.Callback()
@@ -307,9 +217,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                 t_model[self.lst_entity[int(model[treeiter][0])].monster_id].path,
             )
             s.select_path(p)
-            t.scroll_to_cell(
-                p, column=None, use_align=True, row_align=0.5, col_align=0.5
-            )
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     @Gtk.Template.Callback()
     def on_btn_entities_goto_item_clicked(self, *args):
@@ -327,9 +235,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                 t_model[self.lst_entity[int(model[treeiter][0])].item_id].path,
             )
             s.select_path(p)
-            t.scroll_to_cell(
-                p, column=None, use_align=True, row_align=0.5, col_align=0.5
-            )
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     @Gtk.Template.Callback()
     def on_btn_entities_goto_tile_clicked(self, *args):
@@ -347,9 +253,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                 t_model[self.lst_entity[int(model[treeiter][0])].tile_id].path,
             )
             s.select_path(p)
-            t.scroll_to_cell(
-                p, column=None, use_align=True, row_align=0.5, col_align=0.5
-            )
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     @Gtk.Template.Callback()
     def on_btn_monsters_goto_stats_clicked(self, *args):
@@ -369,9 +273,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                 t_model[self.lst_monster[int(model[treeiter][0])].stats_entry].path,
             )
             s.select_path(p)
-            t.scroll_to_cell(
-                p, column=None, use_align=True, row_align=0.5, col_align=0.5
-            )
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     @Gtk.Template.Callback()
     @glib_async
@@ -535,9 +437,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         cb_store = self.model_monsters__type
         store[path][3] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
-        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(
-            cb_store[new_iter][0]
-        )  # type: ignore
+        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])  # type: ignore
         self._save()
 
     @Gtk.Template.Callback()
@@ -694,14 +594,8 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                     f"{_('Tile')} {entity.tile_id}",
                     f"{_('Item')} {entity.item_id}",
                     f"Pokémon {entity.monster_id}",
-                    "("
-                    + self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id])
-                    + ")",
-                    "("
-                    + self.module.desc_fixed_floor_item(
-                        self.lst_item[entity.item_id].item_id
-                    )
-                    + ")",
+                    "(" + self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]) + ")",
+                    "(" + self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id) + ")",
                     "("
                     + self.module.desc_fixed_floor_monster(
                         monster.md_idx,
@@ -750,9 +644,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         store = self.model_items
         store.clear()
         for idx, item in enumerate(self.lst_item):
-            store.append(
-                [str(idx), item.item_id, self.item_names[item.item_id], item.quantity]
-            )
+            store.append([str(idx), item.item_id, self.item_names[item.item_id], item.quantity])
 
     def _init_monsters(self):
         # Init Monsters Completion
@@ -811,9 +703,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         ):
             return (
                 monster.stats_entry,
-                self._generate_stats_label(
-                    monster.stats_entry, self.lst_stats[monster.stats_entry]
-                ),
+                self._generate_stats_label(monster.stats_entry, self.lst_stats[monster.stats_entry]),
                 True,
             )
         return (0, _("n/a"), False)

@@ -181,9 +181,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             elif type_of_scene == "sse":
                 current = RomProject.get_current()
                 assert current is not None
-                current.request_open(
-                    OpenRequest(REQUEST_TYPE_SCENE_SSE, map_name), True
-                )
+                current.request_open(OpenRequest(REQUEST_TYPE_SCENE_SSE, map_name), True)
             else:
                 raise ValueError()
             if self._manager.main_window is not None:
@@ -232,9 +230,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             assert window is not None
             current_project = RomProject.get_current()
             assert current_project is not None
-            cntrl: StPosMarkEditorDialog = current_project.get_module(
-                "script"
-            ).get_pos_mark_editor_controller(
+            cntrl: StPosMarkEditorDialog = current_project.get_module("script").get_pos_mark_editor_controller(
                 window,
                 mapname,
                 scene_name.split("/")[-1],
@@ -291,9 +287,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             should_report=should_report,
         )
 
-    def capture_error(
-        self, exc_info, *, context: Optional[dict[str, Capturable]] = None
-    ):
+    def capture_error(self, exc_info, *, context: Optional[dict[str, Capturable]] = None):
         if context is None:
             context = {}
         capture_error(exc_info, **context)
@@ -311,10 +305,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         pro = RomProject.get_current()
         assert pro is not None
         yield from self.get_static_data().script_data.op_codes__by_name.keys()
-        yield from (
-            x.name.replace("$", "")
-            for x in SsbConstant.collect_all(self.get_static_data().script_data)
-        )
+        yield from (x.name.replace("$", "") for x in SsbConstant.collect_all(self.get_static_data().script_data))
         yield from EXPS_KEYWORDS
         yield from pro.get_string_provider().get_all(StringType.POKEMON_NAMES)
 
@@ -327,6 +318,4 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         text: str,
         **kwargs,
     ) -> Gtk.MessageDialog:
-        return SkyTempleMessageDialog(
-            parent, dialog_flags, message_type, buttons_type, text, **kwargs
-        )
+        return SkyTempleMessageDialog(parent, dialog_flags, message_type, buttons_type, text, **kwargs)

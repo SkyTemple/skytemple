@@ -37,9 +37,7 @@ IMAGE_ZOOM = 4
 MAX_ENTRIES = 10000
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "misc_graphics", "graphic_font.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "graphic_font.ui"))
 class StMiscGraphicsGraphicFontPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsGraphicFontPage"
     module: MiscGraphicsModule
@@ -61,9 +59,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.font: GraphicFont = assert_not_none(
-            self.module.get_graphic_font(self.item_data)
-        )
+        self.font: GraphicFont = assert_not_none(self.module.get_graphic_font(self.item_data))
         assert self.font is not None
         self._init_font()
         self.draw_area.connect("draw", self.exec_draw)
@@ -179,9 +175,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
         stack = self.entry_stack
         if surface:
             stack.set_visible_child(self.entry_viewer)
-            surface = surface.resize(
-                (surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM)
-            )
+            surface = surface.resize((surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM))
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
             self.draw_area.queue_draw()
         else:

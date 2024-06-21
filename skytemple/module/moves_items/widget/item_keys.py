@@ -39,9 +39,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "moves_items", "item_keys.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "moves_items", "item_keys.ui"))
 class StMovesItemsItemKeysPage(Gtk.Box):
     __gtype_name__ = "StMovesItemsItemKeysPage"
     module: MovesItemsModule
@@ -244,9 +242,7 @@ class StMovesItemsItemKeysPage(Gtk.Box):
         tree_store.clear()
         lst = []
         for i, x in enumerate(self.module.get_i2n(self._current_lang)):
-            lst.append(
-                [x, self._string_provider.get_value(StringType.ITEM_NAMES, i), i]
-            )
+            lst.append([x, self._string_provider.get_value(StringType.ITEM_NAMES, i), i])
         lst.sort()
         for y in lst:
             tree_store.append(y)

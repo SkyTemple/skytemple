@@ -67,23 +67,15 @@ class StScriptMainPage(Gtk.Box):
     level_list_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     cr_nameid: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
-    cr_maptype: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    cr_maptype: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     cr_mapid: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     cr_weather: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     box_edit1: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     dungeon_tileset_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_td_level: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_td_dungeon: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_td_floor_number: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_td_level: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_td_dungeon: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_td_floor_number: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
     def __init__(self, module: ScriptModule, item_data: int):
         super().__init__()
@@ -266,9 +258,7 @@ class StScriptMainPage(Gtk.Box):
         response = dialog.run()
         dialog.hide()
         assert_not_none(cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
-        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(
-            btn_cancel
-        )
+        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return (response, entry.get_text())
 
     def _init_label_stores(self):
@@ -327,9 +317,7 @@ class StScriptMainPage(Gtk.Box):
                 self._labels_td_level[i] = lbl
                 store.append([i, lbl])
         static = self.module.project.get_rom_module().get_static_data()
-        dungeons = HardcodedDungeons.get_dungeon_list(
-            self.module.project.get_binary(BinaryName.ARM9), static
-        )
+        dungeons = HardcodedDungeons.get_dungeon_list(self.module.project.get_binary(BinaryName.ARM9), static)
         store = self.td_dungeon_store
         for i, dungeon in enumerate(dungeons):
             lbl = f"{self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, i)} (#{i:03})"
@@ -370,7 +358,5 @@ class StScriptMainPage(Gtk.Box):
     def _save_td(self):
         self._dungeon_tilesets.clear()
         for row in iter_tree_model(self.dungeon_tileset_store):
-            self._dungeon_tilesets.append(
-                GroundTilesetMapping(row[1], row[2], u8(int(row[5])), u32(0))
-            )
+            self._dungeon_tilesets.append(GroundTilesetMapping(row[1], row[2], u8(int(row[5])), u32(0)))
         self.module.save_dungeon_tilesets(self._dungeon_tilesets)

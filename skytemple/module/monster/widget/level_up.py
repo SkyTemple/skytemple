@@ -71,9 +71,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
     hmtm_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     level_up_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     move_names_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_moves: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_moves: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     stats_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     graph_box: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     graph_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
@@ -86,23 +84,15 @@ class StMonsterLevelUpPage(Gtk.Notebook):
     stats_exp: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     stats_hp: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     stats_atk: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    stats_sp_atk: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    stats_sp_atk: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     stats_def: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    stats_sp_def: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    stats_sp_def: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     stats_export: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     stats_import: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     level_up_box: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     level_up_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    level_up_level: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    level_up_move: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    level_up_level: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    level_up_move: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     level_up_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     level_up_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     hmtm_box: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
@@ -343,9 +333,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
                         raise UserValueError(_("All values must be numbers."))
                     all_levels = set(range(1, 101))
                     if len(levels) != len(all_levels) or set(levels) != all_levels:
-                        raise UserValueError(
-                            _("The CSV must contain one entry per level.")
-                        )
+                        raise UserValueError(_("The CSV must contain one entry per level."))
                     content.sort(key=lambda row: int(row[CSV_LEVEL]))
             except BaseException as err:
                 display_error(
@@ -401,9 +389,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
         learn_set = self._waza_p.learnsets[self.item_data]
         level_up_moves = []
         for row in iter_tree_model(store):
-            level_up_moves.append(
-                FileType.WAZA_P.get_level_up_model()(u16(int(row[1])), u16(int(row[0])))
-            )
+            level_up_moves.append(FileType.WAZA_P.get_level_up_model()(u16(int(row[1])), u16(int(row[0]))))
         level_up_moves.sort(key=lambda lum: lum.level_id)
         learn_set.level_up_moves = level_up_moves
         self.queue_render_graph()
@@ -472,9 +458,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
 
     def _init_move_names(self):
         move_names_store = self.move_names_store
-        for idx, name in enumerate(
-            self._string_provider.get_all(StringType.MOVE_NAMES)
-        ):
+        for idx, name in enumerate(self._string_provider.get_all(StringType.MOVE_NAMES)):
             self._move_names[idx] = f"{name} ({idx:03})"
             move_names_store.append([idx, self._move_names[idx]])
 
@@ -488,9 +472,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
                 stats_box.remove(child)
             self._render_graph = False
             self._has_stats = False
-            stats_box.pack_start(
-                Gtk.Label.new(_("This Pokémon has no stats.")), True, True, 0
-            )
+            stats_box.pack_start(Gtk.Label.new(_("This Pokémon has no stats.")), True, True, 0)
         else:
             self._level_bin_entry = self.module.get_m_level_bin_entry(entry_id)
             assert self._level_bin_entry is not None
@@ -523,15 +505,9 @@ class StMonsterLevelUpPage(Gtk.Notebook):
                 hmtm_box.remove(child)
             for child in egg_box.get_children():
                 egg_box.remove(child)
-            level_up_box.pack_start(
-                Gtk.Label.new(_("This Pokémon has no moves.")), True, True, 0
-            )
-            hmtm_box.pack_start(
-                Gtk.Label.new(_("This Pokémon has no moves.")), True, True, 0
-            )
-            egg_box.pack_start(
-                Gtk.Label.new(_("This Pokémon has no moves.")), True, True, 0
-            )
+            level_up_box.pack_start(Gtk.Label.new(_("This Pokémon has no moves.")), True, True, 0)
+            hmtm_box.pack_start(Gtk.Label.new(_("This Pokémon has no moves.")), True, True, 0)
+            egg_box.pack_start(Gtk.Label.new(_("This Pokémon has no moves.")), True, True, 0)
             self._has_stats = False
         else:
             entry = self._waza_p.learnsets[self.item_data]
@@ -574,9 +550,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
             graph_box = self.graph_box
             for child in graph_box.get_children():
                 graph_box.remove(child)
-            graph_box.pack_start(
-                Gtk.Label.new(_("This Pokémon has no stats.")), True, True, 0
-            )
+            graph_box.pack_start(Gtk.Label.new(_("This Pokémon has no stats.")), True, True, 0)
         else:
             self.queue_render_graph()
 
@@ -598,9 +572,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
             learnset,
             self._string_provider.get_all(StringType.MOVE_NAMES),
         )
-        svg = graph_provider.provide(
-            dark=is_dark_theme(MainController.window()), disable_xml_declaration=True
-        ).render()
+        svg = graph_provider.provide(dark=is_dark_theme(MainController.window()), disable_xml_declaration=True).render()
         with open_utf8(self.get_tmp_html_path(), "w") as f:
             f.write(
                 render_graph_template(

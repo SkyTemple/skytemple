@@ -56,9 +56,7 @@ class StStringsStringsPage(Gtk.Box):
     list_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     lang_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     category_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    category_tree_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    category_tree_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     btn_import: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_export: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     string_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
@@ -80,20 +78,14 @@ class StStringsStringsPage(Gtk.Box):
         self._search_text = ""
         self.lang_name.set_text(f(_("{self.langname} Text Strings")))
         self._str = self.module.get_string_file(self.filename)
-        self._string_cats = (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .string_index_data.string_blocks
-        )
+        self._string_cats = self.module.project.get_rom_module().get_static_data().string_index_data.string_blocks
         self.refresh_cats()
         self.refresh_list()
         self._suppress_signals = False
 
     def on_cr_string_edited(self, widget, path, text):
         idx = self._filter[path][0] - 1
-        logger.debug(
-            f"String edited - {idx} - {path} - {self._str.strings[idx]} -> {text}"
-        )
+        logger.debug(f"String edited - {idx} - {path} - {self._str.strings[idx]} -> {text}")
         self._filter[path][1] = text
         self._str.strings[idx] = text
         self.module.mark_as_modified(self.filename)
@@ -113,9 +105,7 @@ class StStringsStringsPage(Gtk.Box):
         tree = self.string_tree
         renderer_editabletext = CellRendererTextView()
         renderer_editabletext.set_property("editable", True)
-        column_editabletext = create_tree_view_column(
-            _("String"), renderer_editabletext, text=1, editable=2
-        )
+        column_editabletext = create_tree_view_column(_("String"), renderer_editabletext, text=1, editable=2)
         tree.append_column(column_editabletext)
         renderer_editabletext.connect("edited", self.on_cr_string_edited)
         self._list_store = typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))
@@ -189,9 +179,7 @@ class StStringsStringsPage(Gtk.Box):
                 self.module.mark_as_modified(self.filename)
                 MainController.reload_view()
             except BaseException as err:
-                display_error(
-                    sys.exc_info(), str(err), _("Error importing the strings.")
-                )
+                display_error(sys.exc_info(), str(err), _("Error importing the strings."))
 
     @Gtk.Template.Callback()
     def on_btn_export_clicked(self, *args):
@@ -225,11 +213,7 @@ class StStringsStringsPage(Gtk.Box):
 
     def _visibility_func(self, model, iter, *args):
         if self._active_category is not None:
-            if (
-                not self._active_category.begin
-                <= model[iter][0] - 1
-                < self._active_category.end
-            ):
+            if not self._active_category.begin <= model[iter][0] - 1 < self._active_category.end:
                 return False
         if self._search_text != "":
             if self._search_text.lower() not in model[iter][1].lower():

@@ -82,25 +82,17 @@ class StListsWorldMapPage(Gtk.Box):
         self._markers = self.module.get_world_map_markers()
         self._config = self.module.project.get_rom_module().get_static_data()
         # Build the location names list
-        self._location_names[0] = self.module.project.get_string_provider().get_value(
-            StringType.GROUND_MAP_NAMES, 0
-        )
+        self._location_names[0] = self.module.project.get_string_provider().get_value(StringType.GROUND_MAP_NAMES, 0)
         for idx in range(0, 180):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.DUNGEON_NAMES_SELECTION, idx
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
             self._location_names[idx + 1] = name
         for idx in range(0, len(self._markers) - 181):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.GROUND_MAP_NAMES, idx + 1
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.GROUND_MAP_NAMES, idx + 1)
             self._location_names[idx + 181] = name
         self._init_list()
         self._init_drawer()
         self._level_id = (
-            WORLD_MAP_DEFAULT_ID
-            if WORLD_MAP_DEFAULT_ID in self._config.script_data.level_list__by_id
-            else 0
+            WORLD_MAP_DEFAULT_ID if WORLD_MAP_DEFAULT_ID in self._config.script_data.level_list__by_id else 0
         )
         self._change_map_bg(self._level_id, self.draw_area, self.drawer)
 
@@ -156,9 +148,7 @@ class StListsWorldMapPage(Gtk.Box):
                 ll_by_name = self._config.script_data.level_list__by_name
                 if self._level_id != ll_by_name[map_name].id:
                     self._level_id = ll_by_name[map_name].id
-                    self._change_map_bg(
-                        ll_by_name[map_name].id, self.draw_area, self.drawer
-                    )
+                    self._change_map_bg(ll_by_name[map_name].id, self.draw_area, self.drawer)
 
     @Gtk.Template.Callback()
     def on_draw_event_button_press_event(self, box, button: Gdk.EventButton):
@@ -191,18 +181,14 @@ class StListsWorldMapPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_edit_map_bg_clicked(self, *args):
-        self.module.project.request_open(
-            OpenRequest(REQUEST_TYPE_MAP_BG, self._level_id)
-        )
+        self.module.project.request_open(OpenRequest(REQUEST_TYPE_MAP_BG, self._level_id))
 
     def _init_drawer(self):
         draw = self.draw_area
         self.drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.drawer.start()
         draw = self.diag_draw
-        self.dialog_drawer = WorldMapDrawer(
-            draw, self._markers, self._get_dungeon_name, SCALE
-        )
+        self.dialog_drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.dialog_drawer.start()
 
     def _change_map_bg(self, level_id: int, draw, drawer):
@@ -212,9 +198,7 @@ class StListsWorldMapPage(Gtk.Box):
             bpc = self.map_bg_module.get_bpc(self._get_map_id(level_id))
             bpas = self.map_bg_module.get_bpas(self._get_map_id(level_id))
             surface = pil_to_cairo_surface(
-                bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert(
-                    "RGBA"
-                )
+                bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert("RGBA")
             )
             if drawer:
                 if level_id == WORLD_MAP_DEFAULT_ID:
@@ -227,9 +211,7 @@ class StListsWorldMapPage(Gtk.Box):
                 drawer.map_bg = surface
                 draw.queue_draw()
         else:
-            surface = pil_to_cairo_surface(
-                Image.new(mode="RGBA", size=(1, 1), color=(0, 0, 0, 0))
-            )
+            surface = pil_to_cairo_surface(Image.new(mode="RGBA", size=(1, 1), color=(0, 0, 0, 0)))
             drawer.level_id = -1
             drawer.map_bg = surface
             draw.set_size_request(1, 1)
@@ -278,9 +260,7 @@ class StListsWorldMapPage(Gtk.Box):
                 screen: Gdk.Screen = dialog.get_screen()
                 window = screen.get_active_window()
                 assert window is not None
-                monitor = screen.get_monitor_geometry(
-                    screen.get_monitor_at_window(window)
-                )
+                monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(window))
                 dialog.resize(round(monitor.width * 0.75), round(monitor.height * 0.75))
             except BaseException:
                 dialog.resize(1015, 865)
@@ -296,9 +276,7 @@ class StListsWorldMapPage(Gtk.Box):
             else:
                 map_store.clear()
             selected_map_iter = map_store.append([-1, _("<Don't show on map>")])
-            for level in (
-                self._config.script_data.level_list
-            ):  # TODO: Use the list from the game when available
+            for level in self._config.script_data.level_list:  # TODO: Use the list from the game when available
                 iiter = map_store.append([level.id, level.name])
                 if level.id == self._markers[idx].level_id:
                     selected_map_iter = iiter
@@ -333,9 +311,7 @@ class StListsWorldMapPage(Gtk.Box):
             else:
                 self.radio_pos.set_active(True)
             # Drawer
-            self._change_map_bg(
-                self._markers[idx].level_id, self.diag_draw, self.dialog_drawer
-            )
+            self._change_map_bg(self._markers[idx].level_id, self.diag_draw, self.dialog_drawer)
             self._edited_marker = self._markers[idx]
             self._edited_pos = (self._edited_marker.x, self._edited_marker.y)
             self.on_radio_reference_toggled(self.radio_reference)
@@ -412,15 +388,11 @@ class StListsWorldMapPage(Gtk.Box):
             model, cbiter = (cb_reference.get_model(), cb_reference.get_active_iter())
             if model is not None and cbiter is not None and (cbiter != []):
                 if self.dialog_drawer:
-                    self.dialog_drawer.set_editing(
-                        self._markers[model[cbiter][0]], hide=self._edited_marker
-                    )
+                    self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)
         else:
             self.cb_reference.set_sensitive(False)
             if self.dialog_drawer and self._edited_marker and self._edited_pos:
-                self.dialog_drawer.set_editing(
-                    self._edited_marker, editing_pos=self._edited_pos
-                )
+                self.dialog_drawer.set_editing(self._edited_marker, editing_pos=self._edited_pos)
 
     @Gtk.Template.Callback()
     def on_cb_reference_changed(self, cb: Gtk.ComboBox):
@@ -428,9 +400,7 @@ class StListsWorldMapPage(Gtk.Box):
         model, cbiter = (cb.get_model(), cb.get_active_iter())
         if model is not None and cbiter is not None and (cbiter != []):
             if self.dialog_drawer:
-                self.dialog_drawer.set_editing(
-                    self._markers[model[cbiter][0]], hide=self._edited_marker
-                )
+                self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)
 
     @Gtk.Template.Callback()
     def on_diag_draw_event_button_press_event(self, box, button: Gdk.EventButton):
@@ -443,6 +413,4 @@ class StListsWorldMapPage(Gtk.Box):
         if button.button == 1:
             self.dialog_drawer.set_mouse_position(x, y)
             self._edited_pos = (x, y)
-            self.dialog_drawer.set_editing(
-                self._edited_marker, editing_pos=self._edited_pos
-            )
+            self.dialog_drawer.set_editing(self._edited_marker, editing_pos=self._edited_pos)

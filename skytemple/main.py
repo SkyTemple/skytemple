@@ -79,9 +79,7 @@ elif sys.platform.startswith("win"):
 
         try:
             lang, enc = locale.getlocale()
-            print(
-                f"WARNING: Failed processing current locale {lang}.{enc}. Falling back to {lang}"
-            )
+            print(f"WARNING: Failed processing current locale {lang}.{enc}. Falling back to {lang}")
             # If this returns None for lang, then we bail!
             if lang is not None:
                 os.environ["LANG"] = lang
@@ -160,9 +158,7 @@ reload(ui_utils)
 
 if getattr(sys, "frozen", False):
     # Running via PyInstaller. Fix SSL configuration
-    os.environ["SSL_CERT_FILE"] = os.path.join(
-        os.path.dirname(sys.executable), "certifi", "cacert.pem"
-    )
+    os.environ["SSL_CERT_FILE"] = os.path.join(os.path.dirname(sys.executable), "certifi", "cacert.pem")
 
 
 import gi

@@ -96,13 +96,9 @@ class StringsModule(AbstractModule):
         self.project.mark_as_modified(f"MESSAGE/{filename}")
         # Mark as modified in tree
         if self._item_tree is not None:
-            self._item_tree.mark_as_modified(
-                self._tree_iters[filename], RecursionType.UP
-            )
+            self._item_tree.mark_as_modified(self._tree_iters[filename], RecursionType.UP)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StStringsStringsPage):
             pass  # todo
         return None

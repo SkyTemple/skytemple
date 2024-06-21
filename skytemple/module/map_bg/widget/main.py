@@ -54,9 +54,7 @@ class StMapBgMainPage(Gtk.Box):
     def on_btn_add_clicked(self, *args):
         from skytemple.module.map_bg.module import MAP_BG_PATH
 
-        response, name = self._show_generic_input(
-            _("Map Background Name"), _("Create Background")
-        )
+        response, name = self._show_generic_input(_("Map Background Name"), _("Create Background"))
         if response != Gtk.ResponseType.OK:
             return
         name = name.lower()
@@ -67,9 +65,7 @@ class StMapBgMainPage(Gtk.Box):
                 Gtk.DialogFlags.MODAL,
                 Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                _(
-                    "The length of the map background name must be between 1-8 characters."
-                ),
+                _("The length of the map background name must be between 1-8 characters."),
             )
             md.run()
             md.destroy()
@@ -99,15 +95,9 @@ class StMapBgMainPage(Gtk.Box):
         with open(os.path.join(data_dir(), "empty.bpc"), "rb") as f:
             empty_bpc = FileType.BPC.deserialize(f.read())
         # Write to ROM
-        self.module.project.create_new_file(
-            MAP_BG_PATH + bpl_name, empty_bpl, FileType.BPL
-        )
-        self.module.project.create_new_file(
-            MAP_BG_PATH + bma_name, empty_bma, FileType.BMA
-        )
-        self.module.project.create_new_file(
-            MAP_BG_PATH + bpc_name, empty_bpc, FileType.BPC
-        )
+        self.module.project.create_new_file(MAP_BG_PATH + bpl_name, empty_bpl, FileType.BPL)
+        self.module.project.create_new_file(MAP_BG_PATH + bma_name, empty_bma, FileType.BMA)
+        self.module.project.create_new_file(MAP_BG_PATH + bpc_name, empty_bpc, FileType.BPC)
         self.module.add_map(name_bg_list)
         md = SkyTempleMessageDialog(
             SkyTempleMainController.window(),

@@ -72,9 +72,7 @@ class AbstractModule(ABC):
         """
         pass
 
-    def collect_debugging_info(
-        self, open_view: AbstractController | Gtk.Widget
-    ) -> DebuggingInfo | None:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         """
         Return debugging information for the currently opened controller or view widget (passed in).
         If this module can't provide this information for that controller, returns None.

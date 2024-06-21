@@ -60,21 +60,11 @@ class StDungeonMainPage(Gtk.Box):
     button3: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     button4: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     tree_errors: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_errors_fix: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    cr_errors_dungeon: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_dungeons_error_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_dungeons_error_description: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_dungeons_solution: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_errors_fix: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    cr_errors_dungeon: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_dungeons_error_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_dungeons_error_description: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_dungeons_solution: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     store_grouped_dungeons: Gtk.TreeStore = cast(Gtk.TreeStore, Gtk.Template.Child())
     dialog_groups: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     button1: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -89,9 +79,7 @@ class StDungeonMainPage(Gtk.Box):
         self.string_provider = self.module.project.get_string_provider()
         # Enable drag and drop
         dungeons_tree = self.tree_grouped
-        dungeons_tree.enable_model_drag_source(
-            Gdk.ModifierType.BUTTON1_MASK, DND_TARGETS, Gdk.DragAction.MOVE
-        )
+        dungeons_tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, DND_TARGETS, Gdk.DragAction.MOVE)
         dungeons_tree.enable_model_drag_dest(DND_TARGETS, Gdk.DragAction.MOVE)
 
     @Gtk.Template.Callback()
@@ -188,9 +176,7 @@ class StDungeonMainPage(Gtk.Box):
         if not self.module.get_validator().validate(self.module.get_dungeon_list()):
             display_error(
                 None,
-                _(
-                    "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
-                ),
+                _("The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."),
             )
             return
         dialog = self.dialog_groups
@@ -202,13 +188,9 @@ class StDungeonMainPage(Gtk.Box):
         if resp == Gtk.ResponseType.APPLY:
             try:
                 # Collect new dungeon groupings and tell module to re-group dungeons
-                new_groups: list[DungeonGroup | int] = sorted(
-                    self._collect_new_groups_from_dialog(), key=int
-                )
+                new_groups: list[DungeonGroup | int] = sorted(self._collect_new_groups_from_dialog(), key=int)
                 dungeon_ids_from_dialog = set(
-                    chain.from_iterable(
-                        [x] if isinstance(x, int) else x.dungeon_ids for x in new_groups
-                    )
+                    chain.from_iterable([x] if isinstance(x, int) else x.dungeon_ids for x in new_groups)
                 )
                 # Sanity check
                 if expected_dungeon_ids != dungeon_ids_from_dialog:
@@ -240,9 +222,7 @@ class StDungeonMainPage(Gtk.Box):
         dungeon_ids = set()
         for dungeon_or_group in self.module.load_dungeons():
             if isinstance(dungeon_or_group, DungeonGroup):
-                group_root = dungeons.append(
-                    None, self._generate_group_row(dungeon_or_group.base_dungeon_id)
-                )
+                group_root = dungeons.append(None, self._generate_group_row(dungeon_or_group.base_dungeon_id))
                 for dungeon_id in dungeon_or_group.dungeon_ids:
                     dungeon_ids.add(dungeon_id)
                     dungeons.append(group_root, self._generate_dungeon_row(dungeon_id))
@@ -254,9 +234,7 @@ class StDungeonMainPage(Gtk.Box):
     # <editor-fold desc="DRAGGING AND DROPPING IN THE GROUP DIALOG" defaultstate="collapsed">
 
     @Gtk.Template.Callback()
-    def on_tree_grouped_drag_data_get(
-        self, w: Gtk.TreeView, context, selection: Gtk.SelectionData, target_id, etime
-    ):
+    def on_tree_grouped_drag_data_get(self, w: Gtk.TreeView, context, selection: Gtk.SelectionData, target_id, etime):
         model, treeiter = w.get_selection().get_selected()
         if treeiter is not None:
             dungeon_id = model[treeiter][1]
@@ -279,16 +257,12 @@ class StDungeonMainPage(Gtk.Box):
         drop_info = w.get_dest_row_at_pos(x, y)
         if drop_info:
             path, position = drop_info
-            if (
-                model.get_path(dungeon_iter) != path
-            ):  # do not continue when dragging on itself.
+            if model.get_path(dungeon_iter) != path:  # do not continue when dragging on itself.
                 iter = model.get_iter(path)
                 did_drag = True
                 # Did we drag onto a group or a dungeon in a group?
                 new_group_iter = self._get_group_iter(model, iter, position)
-                old_group_iter = self._get_group_iter(
-                    model, dungeon_iter, Gtk.TreeViewDropPosition.INTO_OR_BEFORE
-                )
+                old_group_iter = self._get_group_iter(model, dungeon_iter, Gtk.TreeViewDropPosition.INTO_OR_BEFORE)
                 if not new_group_iter:
                     # After/Before top level:
                     # Don't do anything
@@ -303,24 +277,18 @@ class StDungeonMainPage(Gtk.Box):
                         assert iter is not None
                         model.remove(iter)
                         if before_iter is None:
-                            new_iter = model.insert(
-                                None, 0, self._generate_group_row(dungeon_id_insert)
-                            )
+                            new_iter = model.insert(None, 0, self._generate_group_row(dungeon_id_insert))
                         else:
                             new_iter = model.insert_after(
                                 model.iter_parent(before_iter),
                                 before_iter,
                                 self._generate_group_row(dungeon_id_insert),
                             )
-                        model.append(
-                            new_iter, self._generate_dungeon_row(dungeon_id_insert)
-                        )
+                        model.append(new_iter, self._generate_dungeon_row(dungeon_id_insert))
                         model.append(new_iter, self._generate_dungeon_row(dungeon_id))
                         w.expand_row(model.get_path(new_iter), False)
                     elif old_group_iter is not None:
-                        self._reinsert(
-                            model, dungeon_id, self._generate_dungeon_row(dungeon_id)
-                        )
+                        self._reinsert(model, dungeon_id, self._generate_dungeon_row(dungeon_id))
                     else:
                         did_drag = False
                 elif new_group_iter == iter:
@@ -330,19 +298,12 @@ class StDungeonMainPage(Gtk.Box):
                     model.append(new_group_iter, self._generate_dungeon_row(dungeon_id))
                 # After/Before in group / Inside in group:
                 # Add it to group after/before this element
-                elif (
-                    position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE
-                    or position == Gtk.TreeViewDropPosition.BEFORE
-                ):
+                elif position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.BEFORE:
                     assert new_group_iter is not None
-                    model.insert_before(
-                        new_group_iter, iter, self._generate_dungeon_row(dungeon_id)
-                    )
+                    model.insert_before(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
                 else:
                     assert new_group_iter is not None
-                    model.insert_after(
-                        new_group_iter, iter, self._generate_dungeon_row(dungeon_id)
-                    )
+                    model.insert_after(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
                 if did_drag:
                     assert dungeon_iter is not None
                     # Remove the original iter.
@@ -367,9 +328,7 @@ class StDungeonMainPage(Gtk.Box):
                             self._reinsert(
                                 model,
                                 dungeon_id_that_was_in_group,
-                                self._generate_dungeon_row(
-                                    dungeon_id_that_was_in_group
-                                ),
+                                self._generate_dungeon_row(dungeon_id_that_was_in_group),
                             )
                     # Select the newly inserted.
                     dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
@@ -386,10 +345,7 @@ class StDungeonMainPage(Gtk.Box):
         position: Gtk.TreeViewDropPosition,
     ) -> Gtk.TreeIter | None:
         # If we drag before or after and not into, we work with the parent instead!
-        if (
-            position == Gtk.TreeViewDropPosition.BEFORE
-            or position == Gtk.TreeViewDropPosition.AFTER
-        ):
+        if position == Gtk.TreeViewDropPosition.BEFORE or position == Gtk.TreeViewDropPosition.AFTER:
             if liter is not None:
                 liter = model.iter_parent(liter)
         if liter:
@@ -424,9 +380,7 @@ class StDungeonMainPage(Gtk.Box):
             treeiter = model.get_iter_first()
         while treeiter is not None:
             if model.iter_n_children(treeiter) > 0:
-                candidate = self._find_dungeon_iter(
-                    model, dungeon_id, model.iter_nth_child(treeiter, 0)
-                )
+                candidate = self._find_dungeon_iter(model, dungeon_id, model.iter_nth_child(treeiter, 0))
                 if candidate:
                     return candidate
             if not model[treeiter][0] and model[treeiter][1] == str(dungeon_id):
@@ -450,9 +404,7 @@ class StDungeonMainPage(Gtk.Box):
         if current_group_dungeon_id != first_dungeon_in_group_id:
             # We need to re-write...
             model[group_iter][:] = self._generate_group_row(first_dungeon_in_group_id)
-            after_iter, prepend_instead = self._reinsert_get_pos(
-                model, first_dungeon_in_group_id
-            )
+            after_iter, prepend_instead = self._reinsert_get_pos(model, first_dungeon_in_group_id)
             if not prepend_instead:
                 model.move_before(group_iter, after_iter)
             else:
@@ -477,9 +429,7 @@ class StDungeonMainPage(Gtk.Box):
 
     # </editor-fold>
 
-    def _collect_new_groups_from_dialog(
-        self, start=None, allow_groups=True
-    ) -> Sequence[DungeonGroup | int]:
+    def _collect_new_groups_from_dialog(self, start=None, allow_groups=True) -> Sequence[DungeonGroup | int]:
         from skytemple.module.dungeon.module import DungeonGroup
 
         model = self.store_grouped_dungeons
@@ -494,12 +444,8 @@ class StDungeonMainPage(Gtk.Box):
                 assert model[treeiter][0], "Only groups may have children."
                 if not allow_groups:
                     raise ValueError("Group was not allowed on this level.")
-                sub_group_dungeons = self._collect_new_groups_from_dialog(
-                    model.iter_nth_child(treeiter, 0), False
-                )
-                assert len(sub_group_dungeons) > 0 and all(
-                    isinstance(x, int) for x in sub_group_dungeons
-                )
+                sub_group_dungeons = self._collect_new_groups_from_dialog(model.iter_nth_child(treeiter, 0), False)
+                assert len(sub_group_dungeons) > 0 and all(isinstance(x, int) for x in sub_group_dungeons)
 
                 dungeons.append(
                     DungeonGroup(sub_group_dungeons[0], sub_group_dungeons, [])  # type: ignore
@@ -510,15 +456,11 @@ class StDungeonMainPage(Gtk.Box):
             treeiter = model.iter_next(treeiter)
         return dungeons
 
-    def _get_solution_text(
-        self, dungeons: list[DungeonDefinition], e: DungeonValidatorError
-    ):
+    def _get_solution_text(self, dungeons: list[DungeonDefinition], e: DungeonValidatorError):
         if isinstance(e, InvalidFloorListReferencedError):
             return _("Create a new floor list with one empty floor for this dungeon.")
         if isinstance(e, InvalidFloorReferencedError):
-            return _(
-                "Correct the floor count for this dungeon. If no floor exists, generate one."
-            )
+            return _("Correct the floor count for this dungeon. If no floor exists, generate one.")
         if isinstance(e, FloorReusedError):
             return _("Create a new floor list with one empty floor for this dungeon.")
         if isinstance(e, DungeonMissingFloorError):
@@ -539,28 +481,18 @@ class StDungeonMainPage(Gtk.Box):
     def _fix_error(self, dungeons: list[DungeonDefinition], e: DungeonValidatorError):
         mappa = self.module.get_mappa()
         if isinstance(e, DungeonTotalFloorCountInvalidError):
-            dungeons[
-                e.dungeon_id
-            ].number_floors_in_group = e.expected_floor_count_in_group
-        elif isinstance(e, InvalidFloorListReferencedError) or isinstance(
-            e, FloorReusedError
-        ):
-            dungeons[
-                e.dungeon_id
-            ].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
+            dungeons[e.dungeon_id].number_floors_in_group = e.expected_floor_count_in_group
+        elif isinstance(e, InvalidFloorListReferencedError) or isinstance(e, FloorReusedError):
+            dungeons[e.dungeon_id].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
             dungeons[e.dungeon_id].start_after = u8(0)
             dungeons[e.dungeon_id].number_floors = u8(1)
             dungeons[e.dungeon_id].number_floors_in_group = u8(1)
         elif isinstance(e, InvalidFloorReferencedError):
-            valid_floors = (
-                len(mappa.floor_lists[e.dungeon.mappa_index]) - e.dungeon.start_after
-            )
+            valid_floors = len(mappa.floor_lists[e.dungeon.mappa_index]) - e.dungeon.start_after
             if valid_floors > 0:
                 dungeons[e.dungeon_id].number_floors = u8_checked(valid_floors)
             else:
-                mappa.add_floor_to_floor_list(
-                    e.dungeon.mappa_index, self.module.mappa_generate_new_floor()
-                )
+                mappa.add_floor_to_floor_list(e.dungeon.mappa_index, self.module.mappa_generate_new_floor())
                 dungeons[e.dungeon_id].number_floors = u8(1)
         elif isinstance(e, DungeonMissingFloorError):
             # Special case for Regigigas Chamber
@@ -580,10 +512,7 @@ class StDungeonMainPage(Gtk.Box):
                     mappa.add_floor_to_floor_list(e.dungeon.mappa_index, floor)
             # Add additional floors
             # TODO: Raise error or warning if we can't fix it? It should really always be consecutive.
-            elif (
-                min(e.floors_in_mappa_not_referenced)
-                == e.dungeon.start_after + e.dungeon.number_floors
-            ):
+            elif min(e.floors_in_mappa_not_referenced) == e.dungeon.start_after + e.dungeon.number_floors:
                 if check_consecutive(e.floors_in_mappa_not_referenced):
                     max_floor_id = max(e.floors_in_mappa_not_referenced)
                     dungeons[e.dungeon_id].number_floors = u8_checked(

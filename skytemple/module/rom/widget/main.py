@@ -62,9 +62,7 @@ class StRomMainPage(Gtk.Box):
         self.file_name.set_text(file_name)
         self.name.set_text(self.project.get_rom_name())
         self.id_code.set_text(self.project.get_id_code())
-        self.icon_surface = pil_to_cairo_surface(
-            self.icon_banner.icon.to_pil().convert("RGBA")
-        )
+        self.icon_surface = pil_to_cairo_surface(self.icon_banner.icon.to_pil().convert("RGBA"))
         title_japanese_buffer = self.title_japanese.get_buffer()
         title_japanese_buffer.set_text(self.icon_banner.title_japanese)
         title_japanese_buffer.connect("changed", self.on_title_japanese_changed)
@@ -134,9 +132,7 @@ class StRomMainPage(Gtk.Box):
                     _("Failed importing game icon:\n") + str(err),
                     _("Could not import."),
                 )
-            self.icon_surface = pil_to_cairo_surface(
-                self.icon_banner.icon.to_pil().convert("RGBA")
-            )
+            self.icon_surface = pil_to_cairo_surface(self.icon_banner.icon.to_pil().convert("RGBA"))
             self.draw_icon.queue_draw()
             # Mark as modified
             self.module.mark_as_modified()

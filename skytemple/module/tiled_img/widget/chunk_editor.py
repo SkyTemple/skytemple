@@ -48,9 +48,7 @@ if TYPE_CHECKING:
 TILE_DIM = 8
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "tiled_img", "chunk_editor.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "tiled_img", "chunk_editor.ui"))
 class StChunkEditorDialog(Gtk.Dialog):
     __gtype_name__ = "StChunkEditorDialog"
     module: TiledImgModule
@@ -77,9 +75,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         tile_graphics: AbstractTileGraphicsProvider,
         palettes: AbstractTilePalettesProvider,
         pal_ani_durations: int,
-        animated_tile_graphics: Optional[
-            Sequence[Optional[AbstractTileGraphicsProvider]]
-        ] = None,
+        animated_tile_graphics: Optional[Sequence[Optional[AbstractTileGraphicsProvider]]] = None,
         animated_tile_durations=0,
     ):
         super().__init__()
@@ -112,9 +108,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         self.tile_surfaces = []
         # For each palette
         for pal in range(0, len(self.palettes.get())):
-            all_bpc_tiles_for_current_pal = self.tile_graphics.get_pil(
-                self.palettes.get(), pal
-            )
+            all_bpc_tiles_for_current_pal = self.tile_graphics.get_pil(self.palettes.get(), pal)
             tiles_current_pal: list[list[list[cairo.Surface]]] = []
             self.tile_surfaces.append(tiles_current_pal)
 
@@ -130,9 +124,7 @@ class StChunkEditorDialog(Gtk.Dialog):
                 for pal_ani in range(0, len_pal_ani):
                     # Switch out the palette with that from the palette animation
                     if has_pal_ani:
-                        pal_for_frame = itertools.chain.from_iterable(
-                            self.palettes.apply_palette_animations(pal_ani)
-                        )
+                        pal_for_frame = itertools.chain.from_iterable(self.palettes.apply_palette_animations(pal_ani))
                         all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
                     pal_ani_tile.append(
                         [
@@ -153,9 +145,7 @@ class StChunkEditorDialog(Gtk.Dialog):
             if self.animated_tile_graphics is not None:
                 for ani_tile_g in self.animated_tile_graphics:
                     if ani_tile_g is not None:
-                        all_bpa_tiles_for_current_pal = ani_tile_g.get_pil(
-                            self.palettes.get(), pal
-                        )
+                        all_bpa_tiles_for_current_pal = ani_tile_g.get_pil(self.palettes.get(), pal)
                         # For each tile...
                         for tile_idx in range(0, ani_tile_g.count()):
                             pal_ani_tile = []
@@ -169,13 +159,9 @@ class StChunkEditorDialog(Gtk.Dialog):
                                     # Switch out the palette with that from the palette animation
                                     if has_pal_ani:
                                         pal_for_frame = itertools.chain.from_iterable(
-                                            self.palettes.apply_palette_animations(
-                                                pal_ani
-                                            )
+                                            self.palettes.apply_palette_animations(pal_ani)
                                         )
-                                        all_bpc_tiles_for_current_pal.putpalette(
-                                            pal_for_frame
-                                        )
+                                        all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
                                     bpa_ani_tile.append(
                                         pil_to_cairo_surface(
                                             frame.crop(
@@ -299,9 +285,7 @@ class StChunkEditorDialog(Gtk.Dialog):
                 for e in iter_tree_model(store):
                     if e[0] == mapping.idx:
                         self.icon_view_static_tiles.select_path(e.path)
-                        self.icon_view_static_tiles.scroll_to_path(
-                            e.path, True, 0.5, 0.5
-                        )
+                        self.icon_view_static_tiles.scroll_to_path(e.path, True, 0.5, 0.5)
                         for bpa_view in self.bpa_views:
                             if bpa_view:
                                 bpa_view.unselect_all()
@@ -312,12 +296,8 @@ class StChunkEditorDialog(Gtk.Dialog):
                 for i, bpa_view in enumerate(self.bpa_views):
                     assert self.animated_tile_graphics is not None
                     if self.animated_tile_graphics[i]:
-                        if bpa_view and mapping.idx >= assert_not_none(
-                            self.bpa_starts[i]
-                        ):
-                            store = cast(
-                                Gtk.ListStore, assert_not_none(bpa_view.get_model())
-                            )
+                        if bpa_view and mapping.idx >= assert_not_none(self.bpa_starts[i]):
+                            store = cast(Gtk.ListStore, assert_not_none(bpa_view.get_model()))
                             for e in iter_tree_model(store):
                                 if e[0] == mapping.idx:
                                     bpa_view.select_path(e.path)
@@ -362,9 +342,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         self.icon_view_chunk.set_model(store)
         self.icon_view_chunk.pack_start(renderer, True)
         self.icon_view_chunk.add_attribute(renderer, "tileidx", 0)
-        self.icon_view_chunk.connect(
-            "selection-changed", self.on_icon_view_chunk_selection_changed
-        )
+        self.icon_view_chunk.connect("selection-changed", self.on_icon_view_chunk_selection_changed)
 
         for idx in range(0, len(self.edited_mappings), 9):
             store.append([idx])
@@ -391,9 +369,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         self.icon_view_tiles_in_chunk.set_model(store)
         self.icon_view_tiles_in_chunk.pack_start(renderer, True)
         self.icon_view_tiles_in_chunk.add_attribute(renderer, "tileidx", 0)
-        self.icon_view_tiles_in_chunk.connect(
-            "selection-changed", self.on_icon_view_tiles_in_chunk_selection_changed
-        )
+        self.icon_view_tiles_in_chunk.connect("selection-changed", self.on_icon_view_tiles_in_chunk_selection_changed)
 
         renderer.start()
 
@@ -429,9 +405,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         self.icon_view_static_tiles.pack_start(renderer, True)
         self.icon_view_static_tiles.add_attribute(renderer, "tileidx", 0)
         self.icon_view_static_tiles.set_text_column(1)
-        self.icon_view_static_tiles.connect(
-            "selection-changed", self.on_icon_view_static_tiles_selection_changed
-        )
+        self.icon_view_static_tiles.connect("selection-changed", self.on_icon_view_static_tiles_selection_changed)
 
         for idx in range(0, self.tile_graphics.count()):
             store.append([idx, str(idx)])
@@ -446,14 +420,10 @@ class StChunkEditorDialog(Gtk.Dialog):
         for i, ani_tile_g in enumerate(self.animated_tile_graphics):
             view = self.bpa_views[i]
             if ani_tile_g is None:
-                sw: Gtk.ScrolledWindow = cast(
-                    Gtk.ScrolledWindow, assert_not_none(view.get_parent())
-                )
+                sw: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, assert_not_none(view.get_parent()))
                 sw.remove(view)
                 label = Gtk.Label.new(
-                    _(
-                        "BPA slot is empty.\n\nGo to Tiles > Animated Tiles to\nmanage animated tiles."
-                    )
+                    _("BPA slot is empty.\n\nGo to Tiles > Animated Tiles to\nmanage animated tiles.")
                 )
                 label.set_vexpand(True)
                 label.show()

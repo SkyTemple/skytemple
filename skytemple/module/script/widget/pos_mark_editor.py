@@ -45,16 +45,12 @@ if TYPE_CHECKING:
 SIZE_REQUEST_NONE = 500
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "script", "pos_mark_editor.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "pos_mark_editor.ui"))
 class StPosMarkEditorDialog(Gtk.Dialog):
     __gtype_name__ = "StPosMarkEditorDialog"
     ssa_draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     tool_choose_map_bg_cb: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
-    tool_scene_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
+    tool_scene_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     editor_rest_room_note: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
 
     def __init__(
@@ -172,21 +168,14 @@ class StPosMarkEditorDialog(Gtk.Dialog):
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
                         abs(start_x - motion.x) > BPC_TILE_DIM / 2 * self._scale_factor
-                        or abs(start_y - motion.y)
-                        > BPC_TILE_DIM / 2 * self._scale_factor
+                        or abs(start_y - motion.y) > BPC_TILE_DIM / 2 * self._scale_factor
                     ):
                         self._bg_draw_is_clicked__drag_active = True
                         self.drawer.set_drag_position(
                             int((start_x - 4) / self._scale_factor)
-                            - (
-                                self._currently_selected_mark.x_with_offset
-                                * BPC_TILE_DIM
-                            ),
+                            - (self._currently_selected_mark.x_with_offset * BPC_TILE_DIM),
                             int((start_y - 4) / self._scale_factor)
-                            - (
-                                self._currently_selected_mark.y_with_offset
-                                * BPC_TILE_DIM
-                            ),
+                            - (self._currently_selected_mark.y_with_offset * BPC_TILE_DIM),
                         )
 
             self.ssa_draw.queue_draw()
@@ -226,9 +215,7 @@ class StPosMarkEditorDialog(Gtk.Dialog):
                 bpc = self.map_bg_module.get_bpc(item_id)
                 bpas = self.map_bg_module.get_bpas(item_id)
                 self._map_bg_surface = pil_to_cairo_surface(
-                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[
-                        0
-                    ].convert("RGBA")
+                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert("RGBA")
                 )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
@@ -249,9 +236,7 @@ class StPosMarkEditorDialog(Gtk.Dialog):
         tool_choose_map_bg_cb.set_active_iter(default_bg)
 
     def _init_drawer(self):
-        self.drawer = Drawer(
-            self.ssa_draw, self.ssa, lambda *args: "", self.sprite_provider
-        )
+        self.drawer = Drawer(self.ssa_draw, self.ssa, lambda *args: "", self.sprite_provider)
         self.drawer.add_position_marks(self.pos_marks)
         self.drawer.edit_position_marks()
         self.drawer.set_selected(self.pos_marks[self.pos_mark_to_edit])
@@ -301,14 +286,10 @@ class StPosMarkEditorDialog(Gtk.Dialog):
                 dungeon_list,
             ) = self.script_module.get_mapping_dungeon_assets()
             with dungeon_bin_context as dungeon_bin:
-                mapping = resolve_mapping_for_level(
-                    self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list
-                )
+                mapping = resolve_mapping_for_level(self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
-                self._tileset_drawer_overlay = MapTilesetOverlay(
-                    dma, dpc, dpci, dpl, fixed_room
-                )
+                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
             else:
                 info_bar.destroy()
         else:

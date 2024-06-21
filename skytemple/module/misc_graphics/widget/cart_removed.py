@@ -35,9 +35,7 @@ if TYPE_CHECKING:
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "misc_graphics", "cart_removed.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "cart_removed.ui"))
 class StMiscGraphicsCartRemovedPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsCartRemovedPage"
     module: MiscGraphicsModule
@@ -106,9 +104,7 @@ class StMiscGraphicsCartRemovedPage(Gtk.Paned):
                 img = Image.open(fn, "r")
                 self.module.set_cart_removed_data(img)
             except Exception as err:
-                display_error(
-                    sys.exc_info(), str(err), _("Error importing cart removed image.")
-                )
+                display_error(sys.exc_info(), str(err), _("Error importing cart removed image."))
             self._reinit_image()
 
     def _reinit_image(self):

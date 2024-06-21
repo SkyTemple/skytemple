@@ -62,9 +62,7 @@ if TYPE_CHECKING:
 URL_HELP = "https://github.com/SkyTemple/skytemple-dtef/blob/main/docs/SkyTemple.rst"
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "tileset.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "tileset.ui"))
 class StDungeonGraphicsTilesetPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsTilesetPage"
     module: DungeonGraphicsModule
@@ -72,18 +70,10 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
     dialog_chunks_export: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_chunks_export_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_chunks_export_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings: Gtk.Dialog = cast(
-        Gtk.Dialog, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings_btn_close: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings_btn_ok: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_palettes_animated_settings: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
+    dialog_palettes_animated_settings_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    dialog_palettes_animated_settings_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     palette_animation11_enabled: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     palette_animation11_frame_time0: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     palette_animation11_frame_time4: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -118,12 +108,8 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
     palette_animation12_frame_time3: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     palette_animation12_frame_time9: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     palette_animation12_frame_time10: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     dialog_tiles_export: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_tiles_export_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_tiles_export_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -165,19 +151,13 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
     dialog_chunks_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_chunks_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_chunks_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    chunks_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    chunks_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     chunks_import_palettes: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     dialog_tiles_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_tiles_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_tiles_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    tiles_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
-    secondary_terrain_type_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
+    tiles_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
+    secondary_terrain_type_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     _last_open_tab_id = 0
 
     def __init__(self, module: DungeonGraphicsModule, item_data: int):
@@ -241,9 +221,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
-            ),
+            _("To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."),
             title="SkyTemple",
         )
         md.run()
@@ -270,9 +248,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
                 fn_var0 = os.path.join(dirname, VAR0_FN)
                 fn_var1 = os.path.join(dirname, VAR1_FN)
                 fn_var2 = os.path.join(dirname, VAR2_FN)
-                dtef_importer = ExplorersDtefImporter(
-                    self.dma, self.dpc, self.dpci, self.dpl, self.dpla
-                )
+                dtef_importer = ExplorersDtefImporter(self.dma, self.dpc, self.dpci, self.dpl, self.dpla)
                 try:
                     dtef_importer.do_import(dirname, fn_xml, fn_var0, fn_var1, fn_var2)
                 except ValueError as e:
@@ -436,9 +412,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
             secondary_terrains[self.item_data] = SecondaryTerrainTableEntry(idx)
 
             def update(arm9):
-                HardcodedDungeons.set_secondary_terrains(
-                    secondary_terrains, arm9, static
-                )
+                HardcodedDungeons.set_secondary_terrains(secondary_terrains, arm9, static)
 
             self.module.project.modify_binary(BinaryName.ARM9, update)
             self.mark_as_modified()
@@ -511,20 +485,15 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
             pal_ani_frames: list[list[cairo.Surface]] = []
             self.chunks_surfaces.append(pal_ani_frames)
             chunk_data = self.dpc.chunks[chunk_idx]
-            chunk_image = self.dpc.single_chunk_to_pil(
-                chunk_idx, self.dpci, self.dpl.palettes
-            )
+            chunk_image = self.dpc.single_chunk_to_pil(chunk_idx, self.dpci, self.dpl.palettes)
             has_pal_ani = any(
-                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10)
-                for chunk in chunk_data
+                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10) for chunk in chunk_data
             )
             if not has_pal_ani:
                 len_pal_ani = 1
             else:
                 ani_pal_lengths = [
-                    self.dpla.get_frame_count_for_palette(x)
-                    for x in (0, 1)
-                    if self.dpla.has_for_palette(x)
+                    self.dpla.get_frame_count_for_palette(x) for x in (0, 1) if self.dpla.has_for_palette(x)
                 ]
                 if len(ani_pal_lengths) < 2:
                     len_pal_ani = ani_pal_lengths[0]
@@ -566,9 +535,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
                 for idx, val in enumerate(self.dma.get_extra(extra_type)):
                     store.append([idx + 16 * extra_type, val])
 
-        for i, v_icon_view_name in enumerate(
-            ("rules_main_1", "rules_main_2", "rules_main_3")
-        ):
+        for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
             self._init_an_icon_view(v_icon_view_name, init_main_rules_store, False)
         self._init_an_icon_view("rules_extra", init_extra_rules_store, False)
         self.update_chunks_from_current_rules()
@@ -638,12 +605,8 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
                 chunk_type = solid_type if solid else DmaType.FLOOR
                 solid_neighbors = get_tile_neighbors(self.rules, x, y, bool(solid))  # type: ignore
                 all_chunk_mapping_vars.append(self.dma.get(chunk_type, solid_neighbors))
-        for i, v_icon_view_name in enumerate(
-            ("rules_main_1", "rules_main_2", "rules_main_3")
-        ):
-            icon_view_model = cast(
-                Optional[Gtk.ListStore], getattr(self, v_icon_view_name).get_model()
-            )
+        for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
+            icon_view_model = cast(Optional[Gtk.ListStore], getattr(self, v_icon_view_name).get_model())
             if icon_view_model:
                 icon_view_model.clear()
                 for j, idxs in enumerate(all_chunk_mapping_vars):
@@ -688,9 +651,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         box = self.dungeon_image_placeholder
         for child in box.get_children():
             box.remove(child)
-        image: Gtk.Image = Gtk.Image.new_from_surface(
-            pil_to_cairo_surface(self.dtef.get_tiles()[0].convert("RGBA"))
-        )
+        image: Gtk.Image = Gtk.Image.new_from_surface(pil_to_cairo_surface(self.dtef.get_tiles()[0].convert("RGBA")))
         box.pack_start(image, True, True, 0)
         box.show_all()
 

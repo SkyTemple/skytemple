@@ -91,9 +91,7 @@ class StPatchAsmPage(Gtk.Box):
         self._acknowledged_danger = False
         self._accepted_danger = False
         self._category_tabs: dict[PatchCategory, Gtk.Box] = {}  # category -> page
-        self._category_tabs_reverse: dict[
-            Gtk.Widget, PatchCategory
-        ] = {}  # page -> category
+        self._category_tabs_reverse: dict[Gtk.Widget, PatchCategory] = {}  # page -> category
         self._current_tab: PatchCategory | None = None
         self._load_image_for_issue_dialog()
         self.refresh_all()
@@ -115,9 +113,7 @@ class StPatchAsmPage(Gtk.Box):
             if name in self._issues:
                 self._error_or_issue(True, False, {name: self._issues[name]})
             else:
-                self._msg(
-                    _("This patch has had no issues loading."), Gtk.MessageType.INFO
-                )
+                self._msg(_("This patch has had no issues loading."), Gtk.MessageType.INFO)
 
     @Gtk.Template.Callback()
     def on_btn_apply_clicked(self, *args):
@@ -173,9 +169,7 @@ class StPatchAsmPage(Gtk.Box):
                         Gtk.DialogFlags.DESTROY_WITH_PARENT,
                         Gtk.MessageType.INFO,
                         Gtk.ButtonsType.YES_NO,
-                        _(
-                            "This patch requires some other patches to be applied first:\n"
-                        )
+                        _("This patch requires some other patches to be applied first:\n")
                         + "\n".join(dependencies)
                         + _("\nDo you want to apply these first?"),
                     )
@@ -199,9 +193,7 @@ class StPatchAsmPage(Gtk.Box):
             except PatchNotConfiguredError as ex:
                 err = str(ex)
                 if ex.config_parameter != "*":
-                    err += _(
-                        '\nConfiguration field with errors: "{}"\nError: {}'
-                    ).format(ex.config_parameter, ex.error)
+                    err += _('\nConfiguration field with errors: "{}"\nError: {}').format(ex.config_parameter, ex.error)
                 self._msg(
                     f(_("Error applying the patch:\n{err}")),
                     exc_info=sys.exc_info(),
@@ -213,11 +205,7 @@ class StPatchAsmPage(Gtk.Box):
                     True,
                     [
                         (
-                            f(
-                                _(
-                                    "Failed applying patch '{patch}'. The ROM may be corrupted now."
-                                )
-                            ),
+                            f(_("Failed applying patch '{patch}'. The ROM may be corrupted now.")),
                             sys.exc_info(),
                         )
                     ],
@@ -227,25 +215,19 @@ class StPatchAsmPage(Gtk.Box):
                     self._error_or_issue(False, False, issues)
                 if not some_skipped:
                     self._msg(
-                        _(
-                            "Patch was successfully applied. The ROM will now be reloaded."
-                        ),
+                        _("Patch was successfully applied. The ROM will now be reloaded."),
                         Gtk.MessageType.INFO,
                         is_success=True,
                     )
                 else:
                     self._msg(
-                        _(
-                            "Not all patches were applied successfully. The ROM will now be reloaded."
-                        ),
+                        _("Not all patches were applied successfully. The ROM will now be reloaded."),
                         Gtk.MessageType.INFO,
                     )
             finally:
                 self.module.mark_asm_patches_as_modified()
                 self.refresh(self._current_tab)
-                MainSkyTempleController.save(
-                    lambda: MainSkyTempleController.reload_project()
-                )
+                MainSkyTempleController.save(lambda: MainSkyTempleController.reload_project())
 
     @Gtk.Template.Callback()
     def on_btn_refresh_clicked(self, *args):
@@ -256,9 +238,7 @@ class StPatchAsmPage(Gtk.Box):
         open_dir(self.patch_dir())
 
     @Gtk.Template.Callback()
-    def on_patch_categories_switch_page(
-        self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
-    ):
+    def on_patch_categories_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         if not self._suppress_signals:
             cat = self._category_tabs_reverse[page]
             sw = self.patch_window
@@ -275,11 +255,7 @@ class StPatchAsmPage(Gtk.Box):
             notebook.append_page(box, Gtk.Label.new(category.print_name))
             self._category_tabs[category] = box
             self._category_tabs_reverse[box] = category
-            if (
-                self._current_tab is None
-                and page_num == 0
-                or self._current_tab == category
-            ):
+            if self._current_tab is None and page_num == 0 or self._current_tab == category:
                 # Select
                 notebook.set_current_page(page_num)
                 self.refresh(category)
@@ -314,11 +290,7 @@ class StPatchAsmPage(Gtk.Box):
                 except BaseException:
                     errors.append(
                         (
-                            f(
-                                _(
-                                    "Error loading patch package {os.path.basename(fname)}."
-                                )
-                            ),
+                            f(_("Error loading patch package {os.path.basename(fname)}.")),
                             sys.exc_info(),
                         )
                     )
@@ -331,11 +303,7 @@ class StPatchAsmPage(Gtk.Box):
                         continue
                     applied_str = _("Not compatible")
                     try:
-                        applied_str = (
-                            _("Applied")
-                            if self._patcher.is_applied(patch.name)
-                            else _("Compatible")
-                        )
+                        applied_str = _("Applied") if self._patcher.is_applied(patch.name) else _("Compatible")
                     except NotImplementedError:
                         pass
                     if len(w) > 0:
@@ -411,17 +379,13 @@ class StPatchAsmPage(Gtk.Box):
         return list(reversed(collected_deps))
 
     def _apply(self, patch: str):
-        patches = (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .asm_patches_constants.patches
-        )
+        patches = self.module.project.get_rom_module().get_static_data().asm_patches_constants.patches
         parameter_data = None
         if patch in patches:
             if len(patches[patch].parameters) > 0:
-                parameter_data = ParamDialogController(
-                    MainSkyTempleController.window()
-                ).run(patch, patches[patch].parameters)
+                parameter_data = ParamDialogController(MainSkyTempleController.window()).run(
+                    patch, patches[patch].parameters
+                )
         self._patcher.apply(patch, parameter_data)
 
     def _load_image_for_issue_dialog(self):
@@ -454,9 +418,7 @@ class StPatchAsmPage(Gtk.Box):
         try:
             screen: Gdk.Screen = dialog.get_screen()
             monitor = screen.get_monitor_geometry(
-                screen.get_monitor_at_window(
-                    assert_not_none(screen.get_active_window())
-                )
+                screen.get_monitor_at_window(assert_not_none(screen.get_active_window()))
             )
             dialog.resize(round(monitor.width * 0.65), round(monitor.height * 0.65))
         except BaseException:

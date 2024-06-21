@@ -70,15 +70,11 @@ class StListsIqPage(Gtk.Box):
     iq_skills_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     tree_iq_gain: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     tree_iq_gain_other_items: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_other_iq_gain: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_other_iq_gain: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     tree_belly_gain: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     tree_iq_skills: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_iq_pnts: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    cr_iq_restrictions: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_iq_restrictions: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     entry_min_iq_exclusive_move_user: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_min_iq_item_master: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     intimidator_activation_chance: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -105,9 +101,7 @@ class StListsIqPage(Gtk.Box):
             static_data = self.module.project.get_rom_module().get_static_data()
             self.module.project.modify_binary(
                 BinaryName.ARM9,
-                lambda bin: HardcodedIq.set_min_iq_for_exclusive_move_user(
-                    val, bin, static_data
-                ),
+                lambda bin: HardcodedIq.set_min_iq_for_exclusive_move_user(val, bin, static_data),
             )
             self.module.mark_iq_as_modified()
 
@@ -122,9 +116,7 @@ class StListsIqPage(Gtk.Box):
             static_data = self.module.project.get_rom_module().get_static_data()
             self.module.project.modify_binary(
                 BinaryName.ARM9,
-                lambda bin: HardcodedIq.set_min_iq_for_item_master(
-                    val, bin, static_data
-                ),
+                lambda bin: HardcodedIq.set_min_iq_for_item_master(val, bin, static_data),
             )
             self.module.mark_iq_as_modified()
 
@@ -169,18 +161,14 @@ class StListsIqPage(Gtk.Box):
         elif typ == IqGainOtherItem.JUICE_BAR_NECTAR:
             self.module.project.modify_binary(
                 BinaryName.ARM9,
-                lambda bin: HardcodedIq.set_juice_bar_nectar_gain(
-                    val, bin, static_data
-                ),
+                lambda bin: HardcodedIq.set_juice_bar_nectar_gain(val, bin, static_data),
             )
             self.module.mark_iq_as_modified()
 
     @Gtk.Template.Callback()
     @catch_overflow(i32)
     def on_cr_iq_pnts_edited(self, widget, path, text):
-        store = assert_not_none(
-            cast(Optional[Gtk.ListStore], self.tree_iq_skills.get_model())
-        )
+        store = assert_not_none(cast(Optional[Gtk.ListStore], self.tree_iq_skills.get_model()))
         try:
             val = i32_checked(int(text))
         except ValueError:
@@ -199,9 +187,7 @@ class StListsIqPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(i16)
     def on_cr_iq_restrictions_edited(self, widget, path, text):
-        store = assert_not_none(
-            cast(Optional[Gtk.ListStore], self.tree_iq_skills.get_model())
-        )
+        store = assert_not_none(cast(Optional[Gtk.ListStore], self.tree_iq_skills.get_model()))
         try:
             val = i16_checked(int(text))
         except ValueError:
@@ -219,9 +205,7 @@ class StListsIqPage(Gtk.Box):
 
     @catch_overflow(u8)
     def on_cr_iq_gain_edited(self, widget, path, text, *, type_id):
-        store = assert_not_none(
-            cast(Optional[Gtk.ListStore], self.tree_iq_gain.get_model())
-        )
+        store = assert_not_none(cast(Optional[Gtk.ListStore], self.tree_iq_gain.get_model()))
         try:
             val = u8_checked(int(text))
         except ValueError:
@@ -235,17 +219,13 @@ class StListsIqPage(Gtk.Box):
         gains[type_id][gummi_id] = val
         self.module.project.modify_binary(
             BinaryName.ARM9,
-            lambda bin: HardcodedIq.set_gummi_iq_gains(
-                gains, bin, static_data, patch_applied
-            ),
+            lambda bin: HardcodedIq.set_gummi_iq_gains(gains, bin, static_data, patch_applied),
         )
         self.module.mark_iq_as_modified()
 
     @catch_overflow(u8)
     def on_cr_belly_heal_edited(self, widget, path, text, *, type_id):
-        store = assert_not_none(
-            cast(Optional[Gtk.ListStore], self.tree_belly_gain.get_model())
-        )
+        store = assert_not_none(cast(Optional[Gtk.ListStore], self.tree_belly_gain.get_model()))
         try:
             val = u8_checked(int(text))
         except ValueError:
@@ -259,18 +239,14 @@ class StListsIqPage(Gtk.Box):
         gains[type_id][gummi_id] = val
         self.module.project.modify_binary(
             BinaryName.ARM9,
-            lambda bin: HardcodedIq.set_gummi_belly_heal(
-                gains, bin, static_data, patch_applied
-            ),
+            lambda bin: HardcodedIq.set_gummi_belly_heal(gains, bin, static_data, patch_applied),
         )
         self.module.mark_iq_as_modified()
 
     @catch_overflow(u8)
     def on_cr_skill_to_group(self, widget, path, *, group_id):
         selected = not widget.get_active()
-        store = assert_not_none(
-            cast(Optional[Gtk.ListStore], self.tree_iq_skills.get_model())
-        )
+        store = assert_not_none(cast(Optional[Gtk.ListStore], self.tree_iq_skills.get_model()))
         store[path][group_id + 4] = selected
         skill_id = u8_checked(int(store[path][0]))
         arm9 = self.module.project.get_binary(BinaryName.ARM9)
@@ -296,12 +272,8 @@ class StListsIqPage(Gtk.Box):
         self.entry_min_iq_exclusive_move_user.set_text(
             str(HardcodedIq.get_min_iq_for_exclusive_move_user(arm9, static_data))
         )
-        self.entry_min_iq_item_master.set_text(
-            str(HardcodedIq.get_min_iq_for_item_master(arm9, static_data))
-        )
-        self.intimidator_activation_chance.set_text(
-            str(HardcodedIq.get_intimidator_chance(ov10, static_data))
-        )
+        self.entry_min_iq_item_master.set_text(str(HardcodedIq.get_min_iq_for_item_master(arm9, static_data)))
+        self.intimidator_activation_chance.set_text(str(HardcodedIq.get_intimidator_chance(ov10, static_data)))
 
     def _init_iq_gains(self):
         """
@@ -317,12 +289,8 @@ class StListsIqPage(Gtk.Box):
         static_data = self.module.project.get_rom_module().get_static_data()
         patch_applied = self.module.project.is_patch_applied("AddTypes")
         type_strings = self._string_provider.get_all(StringType.TYPE_NAMES)
-        gummi_iq_gain_table = HardcodedIq.get_gummi_iq_gains(
-            arm9, static_data, patch_applied
-        )
-        gummi_belly_gain_table = HardcodedIq.get_gummi_belly_heal(
-            arm9, static_data, patch_applied
-        )
+        gummi_iq_gain_table = HardcodedIq.get_gummi_iq_gains(arm9, static_data, patch_applied)
+        gummi_belly_gain_table = HardcodedIq.get_gummi_belly_heal(arm9, static_data, patch_applied)
         num_types = min(len(gummi_iq_gain_table), len(type_strings))
         # Normal Gummis
         store: Gtk.ListStore = Gtk.ListStore(*[int, str] + [str] * num_types)
@@ -337,9 +305,7 @@ class StListsIqPage(Gtk.Box):
             gummi_item_id = FIRST_GUMMI_ITEM_ID + i - 1
             if i == 18:
                 gummi_item_id = FAIRY_GUMMI_ITEM_ID
-            gummi_name = self._string_provider.get_value(
-                StringType.ITEM_NAMES, gummi_item_id
-            )
+            gummi_name = self._string_provider.get_value(StringType.ITEM_NAMES, gummi_item_id)
             data = [i, gummi_name]
             data_belly = [i, gummi_name]
             for j in range(0, num_types):
@@ -361,9 +327,7 @@ class StListsIqPage(Gtk.Box):
         store_other_items.append(
             [
                 IqGainOtherItem.WONDER_GUMMI,
-                self._string_provider.get_value(
-                    StringType.ITEM_NAMES, WONDER_GUMMI_ITEM_ID
-                ),
+                self._string_provider.get_value(StringType.ITEM_NAMES, WONDER_GUMMI_ITEM_ID),
                 str(HardcodedIq.get_wonder_gummi_gain(arm9, static_data)),
             ]
         )
@@ -394,9 +358,7 @@ class StListsIqPage(Gtk.Box):
         # Ignore invalid
         restrictions.pop()
         # noinspection PyTypeChecker
-        store: Gtk.ListStore = Gtk.ListStore(
-            *[str, str, str, str] + [bool] * (len(IQGroup) - 1)
-        )
+        store: Gtk.ListStore = Gtk.ListStore(*[str, str, str, str] + [bool] * (len(IQGroup) - 1))
         tree: Gtk.TreeView = self.tree_iq_skills
         tree.set_model(store)
         for i, skill in enumerate(iq_skills):
@@ -406,16 +368,10 @@ class StListsIqPage(Gtk.Box):
                     if entry == IQGroup.INVALID:
                         continue
                     renderer: Gtk.CellRendererToggle = Gtk.CellRendererToggle(
-                        activatable=self.module.project.is_patch_applied(
-                            PATCH_IQ_SKILL_GROUPS
-                        )
+                        activatable=self.module.project.is_patch_applied(PATCH_IQ_SKILL_GROUPS)
                     )
-                    renderer.connect(
-                        "toggled", partial(self.on_cr_skill_to_group, group_id=entry_i)
-                    )
-                    column = create_tree_view_column(
-                        entry.print_name, renderer, active=entry_i + 4
-                    )
+                    renderer.connect("toggled", partial(self.on_cr_skill_to_group, group_id=entry_i))
+                    column = create_tree_view_column(entry.print_name, renderer, active=entry_i + 4)
                     tree.append_column(column)
                 continue
             iq_group_assignments = []

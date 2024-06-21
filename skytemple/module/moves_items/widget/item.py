@@ -145,18 +145,10 @@ class StMovesItemsItemPage(Gtk.Box):
     cb_excl_type: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     export_dialog_store: Gtk.TreeStore = cast(Gtk.TreeStore, Gtk.Template.Child())
     store_completion_items: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_items: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items1: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items2: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_items3: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_items: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items1: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items2: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_items3: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
 
     def __init__(self, module: MovesItemsModule, item_data: int):
         super().__init__()
@@ -396,9 +388,7 @@ class StMovesItemsItemPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
-            ),
+            _("For stackable items: Indicates the minimum amount you can get for 1 instance of that item."),
             title=_("Min Amount"),
         )
         md.run()
@@ -411,9 +401,7 @@ class StMovesItemsItemPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _(
-                "For stackable items: Indicates the maximum amount you can get for 1 instance of that item."
-            ),
+            _("For stackable items: Indicates the maximum amount you can get for 1 instance of that item."),
             title=_("Max Amount"),
         )
         md.run()
@@ -510,11 +498,7 @@ class StMovesItemsItemPage(Gtk.Box):
 
     def _init_stores(self):
         store = Gtk.ListStore(int, str)  # id, name
-        for category in (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .dungeon_data.item_categories.values()
-        ):
+        for category in self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories.values():
             store.append([category.id, category.name_localized])
         self._fast_set_comboxbox_store(self.cb_category, store, 1)
         self._comboxbox_for_enum(["cb_action_name"], UseType)
@@ -531,9 +515,7 @@ class StMovesItemsItemPage(Gtk.Box):
             if lang_id < len(langs):
                 # We have this language
                 gui_entry.set_text(
-                    self._string_provider.get_value(
-                        StringType.ITEM_NAMES, self.item_data, langs[lang_id]
-                    )
+                    self._string_provider.get_value(StringType.ITEM_NAMES, self.item_data, langs[lang_id])
                 )
                 gui_entry_short_desc.set_text(
                     self._string_provider.get_value(
@@ -572,9 +554,7 @@ class StMovesItemsItemPage(Gtk.Box):
         if not self._is_loading:
             self.module.mark_item_as_modified(self.item_data)
 
-    def _comboxbox_for_enum(
-        self, names: list[str], enum: type[Enum], sort_by_name=False
-    ):
+    def _comboxbox_for_enum(self, names: list[str], enum: type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
             enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
@@ -635,25 +615,19 @@ class StMovesItemsItemPage(Gtk.Box):
     def _update_lang_short_desc_from_entry(self, w: Gtk.Entry, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(
-                StringType.ITEM_SHORT_DESCRIPTIONS, self.item_data
-            )
+            self._string_provider.get_index(StringType.ITEM_SHORT_DESCRIPTIONS, self.item_data)
         ] = w.get_text()
 
     def _update_lang_desc_from_buffer(self, w: Gtk.TextBuffer, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(
-                StringType.ITEM_LONG_DESCRIPTIONS, self.item_data
-            )
+            self._string_provider.get_index(StringType.ITEM_LONG_DESCRIPTIONS, self.item_data)
         ] = w.get_text(w.get_start_iter(), w.get_end_iter(), False)
 
     def _reset_sprite(self):
         for child in self.sprite_container.get_children():
             self.sprite_container.remove(child)
 
-        sp = StSprite(
-            StSpriteData(self._sprite_provider.get_for_item, (self.item_p,), scale=2)
-        )
+        sp = StSprite(StSpriteData(self._sprite_provider.get_for_item, (self.item_p,), scale=2))
         self.sprite_container.add(sp)
         sp.show()

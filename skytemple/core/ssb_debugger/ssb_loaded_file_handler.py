@@ -30,9 +30,7 @@ class SsbLoadedFileHandler(DataHandler["SsbLoadedFile"]):
     def deserialize(  # type: ignore
         cls, data: bytes, *, filename, static_data, project_fm, **kwargs: OptionalKwargs
     ) -> "SsbLoadedFile":
-        f = SsbLoadedFile(
-            filename, FileType.SSB.deserialize(data, static_data), None, project_fm
-        )
+        f = SsbLoadedFile(filename, FileType.SSB.deserialize(data, static_data), None, project_fm)
         f.exps.ssb_hash = SsbFileManager.hash(data)
         return f
 

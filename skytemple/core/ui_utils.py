@@ -142,9 +142,7 @@ def open_dir(directory):
 
 
 def version(*, ignore_dev=False) -> str:
-    if not ignore_dev and os.path.exists(
-        os.path.abspath(os.path.join(data_dir(), "..", "..", ".git"))
-    ):
+    if not ignore_dev and os.path.exists(os.path.abspath(os.path.join(data_dir(), "..", "..", ".git"))):
         return "dev"
     try:
         return importlib_metadata.metadata("skytemple")["version"]
@@ -230,9 +228,9 @@ def catch_overflow(typ_or_range_start, range_end=None):
                     GLib.idle_add(
                         lambda: display_error(
                             sys.exc_info(),
-                            _(
-                                "The value you entered is invalid.\n\nValid values must be in the range [{},{}]."
-                            ).format(rmin, rmax),
+                            _("The value you entered is invalid.\n\nValid values must be in the range [{},{}].").format(
+                                rmin, rmax
+                            ),
                             _("SkyTemple - Value out of range"),
                             log=False,
                             should_report=False,
@@ -256,9 +254,7 @@ def get_list_store_iter_by_idx(store: Gtk.ListStore, idx, get_iter=False):
     return liter
 
 
-def create_tree_view_column(
-    title: str, renderer: Gtk.CellRenderer, **kwargs: int
-) -> Gtk.TreeViewColumn:
+def create_tree_view_column(title: str, renderer: Gtk.CellRenderer, **kwargs: int) -> Gtk.TreeViewColumn:
     """
     Compatibility with the 'old' TreeViewColumn constructor and generally a convenient shortcut for quick TreeViewColumn
     construction.

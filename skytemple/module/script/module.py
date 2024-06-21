@@ -383,13 +383,9 @@ class ScriptModule(AbstractModule):
         if type == "sse":
             count_scripts = len(self._map_sse[mapname].entry().item_data["scripts"])
         elif type == "ssa":
-            count_scripts = len(
-                self._map_ssas[mapname][filename].entry().item_data["scripts"]
-            )
+            count_scripts = len(self._map_ssas[mapname][filename].entry().item_data["scripts"])
         elif type == "sss":
-            count_scripts = len(
-                self._map_ssss[mapname][filename].entry().item_data["scripts"]
-            )
+            count_scripts = len(self._map_ssss[mapname][filename].entry().item_data["scripts"])
         else:
             raise ValueError("Unknown scene type.")
         actor_ids = static_data.script_data.level_entities__by_id.keys()
@@ -399,12 +395,8 @@ class ScriptModule(AbstractModule):
         first_object = static_data.script_data.objects__by_id[min(object_ids)]
         last_object = static_data.script_data.objects__by_id[max(object_ids)]
         coroutine_ids = static_data.script_data.common_routine_info__by_id.keys()
-        first_coroutine = static_data.script_data.common_routine_info__by_id[
-            min(coroutine_ids)
-        ]
-        last_coroutine = static_data.script_data.common_routine_info__by_id[
-            max(coroutine_ids)
-        ]
+        first_coroutine = static_data.script_data.common_routine_info__by_id[min(coroutine_ids)]
+        last_coroutine = static_data.script_data.common_routine_info__by_id[max(coroutine_ids)]
         for layer in ssa.layer_list:
             for actor in layer.actors:
                 if actor.actor.id < first_actor.id or actor.actor.id > last_actor.id:
@@ -421,10 +413,7 @@ class ScriptModule(AbstractModule):
                     obj.script_id = -1
                     warning = True
         for event in ssa.triggers:
-            if (
-                event.coroutine.id < first_coroutine.id
-                or event.coroutine.id > last_coroutine.id
-            ):
+            if event.coroutine.id < first_coroutine.id or event.coroutine.id > last_coroutine.id:
                 event.coroutine = first_coroutine
                 warning = True
             if event.script_id < 0 or event.script_id >= count_scripts:
@@ -477,20 +466,13 @@ class ScriptModule(AbstractModule):
         pos_marks: list[SourceMapPositionMark],
         pos_mark_to_edit: int,
     ) -> StPosMarkEditorDialog:
-        if (
-            mapname
-            not in self.project.get_rom_module()
-            .get_static_data()
-            .script_data.level_list__by_name
-        ):
+        if mapname not in self.project.get_rom_module().get_static_data().script_data.level_list__by_name:
             raise ValueError(_("Map not found."))
         return StPosMarkEditorDialog(
             self.get_ssa(f"{SCRIPT_DIR}/{mapname}/{scene_name[:-4]}.{scene_type}"),
             parent_window,
             self.get_sprite_provider(),
-            self.project.get_rom_module()
-            .get_static_data()
-            .script_data.level_list__by_name[mapname],
+            self.project.get_rom_module().get_static_data().script_data.level_list__by_name[mapname],
             self.project.get_module("map_bg"),
             self,
             pos_marks,
@@ -513,13 +495,11 @@ class ScriptModule(AbstractModule):
     def get_map_display_name(self, nameid):
         sp = self.project.get_string_provider()
         if nameid == 0:
-            return sp.get_value(StringType.GROUND_MAP_NAMES, 0), sp.get_index(
-                StringType.GROUND_MAP_NAMES, 0
-            )
+            return sp.get_value(StringType.GROUND_MAP_NAMES, 0), sp.get_index(StringType.GROUND_MAP_NAMES, 0)
         if nameid < 181:
-            return sp.get_value(
+            return sp.get_value(StringType.DUNGEON_NAMES_SELECTION, nameid + 1), sp.get_index(
                 StringType.DUNGEON_NAMES_SELECTION, nameid + 1
-            ), sp.get_index(StringType.DUNGEON_NAMES_SELECTION, nameid + 1)
+            )
         return sp.get_value(StringType.GROUND_MAP_NAMES, nameid - 180), sp.get_index(
             StringType.GROUND_MAP_NAMES, nameid - 180
         )
@@ -533,9 +513,7 @@ class ScriptModule(AbstractModule):
         config = self.project.get_rom_module().get_static_data()
         self.project.modify_binary(
             BinaryName.OVERLAY_11,
-            lambda binary: HardcodedGroundDungeonTilesets.set_ground_dungeon_tilesets(
-                value, binary, config
-            ),
+            lambda binary: HardcodedGroundDungeonTilesets.set_ground_dungeon_tilesets(value, binary, config),
         )
         self._item_tree.mark_as_modified(self._root, RecursionType.UP)
 
@@ -610,9 +588,7 @@ class ScriptModule(AbstractModule):
 
     def add_scene_enter(self, level_name):
         scene_name = "enter"
-        file_name, ssb_file_name = self._create_scene_file(
-            level_name, scene_name, "sse", matching_ssb="00"
-        )
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, "sse", matching_ssb="00")
         self._map_sse[level_name] = self._item_tree.add_entry(
             self._map_scene_root[level_name],
             ItemTreeEntry(
@@ -631,9 +607,7 @@ class ScriptModule(AbstractModule):
         self.mark_as_modified(level_name, "sse", file_name)
 
     def add_scene_acting(self, level_name, scene_name):
-        file_name, ssb_file_name = self._create_scene_file(
-            level_name, scene_name, "ssa", matching_ssb=""
-        )
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, "ssa", matching_ssb="")
         lsd_path = f"{SCRIPT_DIR}/{level_name}/{level_name.lower()}{LSD_EXT}"
         if not self.project.file_exists(lsd_path):
             self.project.create_new_file(lsd_path, FileType.LSD.new(), FileType.LSD)
@@ -657,9 +631,7 @@ class ScriptModule(AbstractModule):
         self.mark_as_modified(level_name, "ssa", file_name)
 
     def add_scene_sub(self, level_name, scene_name):
-        file_name, ssb_file_name = self._create_scene_file(
-            level_name, scene_name, "sss", matching_ssb="00"
-        )
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, "sss", matching_ssb="00")
         self._map_ssss[level_name][file_name] = self._item_tree.add_entry(
             self._sub_roots[level_name],
             ItemTreeEntry(
@@ -684,13 +656,9 @@ class ScriptModule(AbstractModule):
     def _create_scene_file(self, level_name, scene_name, ext, matching_ssb=None):
         dir_name = f"{SCRIPT_DIR}/{level_name}"
         if "." in scene_name:
-            raise ValueError(
-                _("The file name provided must not have a file extension.")
-            )
+            raise ValueError(_("The file name provided must not have a file extension."))
         if len(scene_name) > 8:
-            raise ValueError(
-                _("The file name provided is too long (max 8 characters).")
-            )
+            raise ValueError(_("The file name provided is too long (max 8 characters)."))
         ssx_name = f"{dir_name}/{scene_name}.{ext}"
 
         self.project.ensure_dir(dir_name)
@@ -711,9 +679,7 @@ class ScriptModule(AbstractModule):
                 **save_kwargs,
             )
             # Update debugger
-            SkyTempleMainController.debugger_manager().on_script_added(
-                ssb_name, level_name, ext, f"{scene_name}.{ext}"
-            )
+            SkyTempleMainController.debugger_manager().on_script_added(ssb_name, level_name, ext, f"{scene_name}.{ext}")
             return ssx_name, ssb_name
         else:
             return ssx_name, None
@@ -731,28 +697,20 @@ class ScriptModule(AbstractModule):
         mappings = self.get_dungeon_tilesets()
 
         mappa = self.project.open_file_in_rom("BALANCE/mappa_s.bin", FileType.MAPPA_BIN)
-        fixed = self.project.open_file_in_rom(
-            "BALANCE/fixed.bin", FileType.FIXED_BIN, static_data=static_data
+        fixed = self.project.open_file_in_rom("BALANCE/fixed.bin", FileType.FIXED_BIN, static_data=static_data)
+
+        dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
+            "DUNGEON/dungeon.bin",
+            FileType.DUNGEON_BIN,
+            static_data=static_data,
+            threadsafe=True,
         )
 
-        dungeon_bin_context: ModelContext[DungeonBinPack] = (
-            self.project.open_file_in_rom(
-                "DUNGEON/dungeon.bin",
-                FileType.DUNGEON_BIN,
-                static_data=static_data,
-                threadsafe=True,
-            )
-        )
-
-        dungeon_list = HardcodedDungeons.get_dungeon_list(
-            self.project.get_binary(BinaryName.ARM9), static_data
-        )
+        dungeon_list = HardcodedDungeons.get_dungeon_list(self.project.get_binary(BinaryName.ARM9), static_data)
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StScriptSsaPage):
             pass  # todo
         return None
@@ -770,18 +728,16 @@ class StStatusPageDataSub(StStatusPageData):
 def make_status_page_data_folder(name: Optional[str]) -> StStatusPageData:
     if name is not None:
         title = _('Script Scenes for maps in category "{}"').format(name)
-        description = _(
-            "This section contains all the script scenes of maps, that start with the letter {}."
-        ).format(name[0])
+        description = _("This section contains all the script scenes of maps, that start with the letter {}.").format(
+            name[0]
+        )
     else:
         title = _("Script Scenes for other maps")
         description = _(
             "This section contains all the script scenes of maps, that don't fit in any of the other categories."
         )
 
-    return StStatusPageData(
-        icon_name="skytemple-illust-scenes", title=title, description=description
-    )
+    return StStatusPageData(icon_name="skytemple-illust-scenes", title=title, description=description)
 
 
 # noinspection PyUnusedLocal

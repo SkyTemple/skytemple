@@ -66,16 +66,12 @@ class TilequantController:
         any_filter.set_name(_("Any files"))
         any_filter.add_pattern("*")
 
-        tq_input_file = builder_get_assert(
-            builder, Gtk.FileChooserButton, "tq_input_file"
-        )
+        tq_input_file = builder_get_assert(builder, Gtk.FileChooserButton, "tq_input_file")
         tq_input_file.add_filter(png_filter)
         tq_input_file.add_filter(jpg_filter)
         tq_input_file.add_filter(any_filter)
 
-        tq_second_file = builder_get_assert(
-            builder, Gtk.FileChooserButton, "tq_second_file"
-        )
+        tq_second_file = builder_get_assert(builder, Gtk.FileChooserButton, "tq_second_file")
         tq_second_file.add_filter(png_filter)
         tq_second_file.add_filter(jpg_filter)
         tq_second_file.add_filter(any_filter)
@@ -95,9 +91,7 @@ class TilequantController:
             "clicked",
             partial(
                 self.show_help,
-                _(
-                    "This exact color of the image will be imported as transparency (default: #12ab56)."
-                ),
+                _("This exact color of the image will be imported as transparency (default: #12ab56)."),
             ),
         )
         builder_get_assert(builder, Gtk.Button, "tq_second_file_help").connect(
@@ -131,17 +125,11 @@ class TilequantController:
             "clicked",
             partial(
                 self.show_help,
-                _(
-                    "Only relevant if dithering is enabled: This controls the amount of dithering applied."
-                ),
+                _("Only relevant if dithering is enabled: This controls the amount of dithering applied."),
             ),
         )
-        builder_get_assert(builder, Gtk.Button, "tq_convert").connect(
-            "clicked", self.convert
-        )
-        builder_get_assert(builder, Gtk.Button, "tq_help").connect(
-            "clicked", self.show_wiki_help
-        )
+        builder_get_assert(builder, Gtk.Button, "tq_convert").connect("clicked", self.convert)
+        builder_get_assert(builder, Gtk.Button, "tq_help").connect("clicked", self.show_wiki_help)
         self.builder = builder
         self._previous_output_image: Optional[str] = None
         self._previous_second_output_image: Optional[str] = None
@@ -150,15 +138,9 @@ class TilequantController:
         """
         Shows the tilequant dialog. Doesn't return anything.
         """
-        builder_get_assert(self.builder, Gtk.Entry, "tq_number_palettes").set_text(
-            str(num_pals)
-        )
-        builder_get_assert(
-            self.builder, Gtk.FileChooserButton, "tq_input_file"
-        ).unselect_all()
-        builder_get_assert(
-            self.builder, Gtk.FileChooserButton, "tq_second_file"
-        ).unselect_all()
+        builder_get_assert(self.builder, Gtk.Entry, "tq_number_palettes").set_text(str(num_pals))
+        builder_get_assert(self.builder, Gtk.FileChooserButton, "tq_input_file").unselect_all()
+        builder_get_assert(self.builder, Gtk.FileChooserButton, "tq_second_file").unselect_all()
         self.window.run()
         self.window.hide()
 
@@ -168,20 +150,12 @@ class TilequantController:
         if active_iter is None:
             return
         mode = ImageConversionMode(mode_cb.get_model()[active_iter][0])
-        dither_level = builder_get_assert(
-            self.builder, Gtk.Scale, "tq_dither_level"
-        ).get_value()
+        dither_level = builder_get_assert(self.builder, Gtk.Scale, "tq_dither_level").get_value()
         has_first_image = (
-            builder_get_assert(
-                self.builder, Gtk.FileChooserButton, "tq_input_file"
-            ).get_filename()
-            is not None
+            builder_get_assert(self.builder, Gtk.FileChooserButton, "tq_input_file").get_filename() is not None
         )
         has_second_image = (
-            builder_get_assert(
-                self.builder, Gtk.FileChooserButton, "tq_second_file"
-            ).get_filename()
-            is not None
+            builder_get_assert(self.builder, Gtk.FileChooserButton, "tq_second_file").get_filename() is not None
         )
 
         if not has_first_image:
@@ -251,38 +225,24 @@ class TilequantController:
 
         try:
             num_tile_cluster_passes = int(
-                builder_get_assert(
-                    self.builder, Gtk.Entry, "tq_num_tile_cluster_passes"
-                ).get_text()
+                builder_get_assert(self.builder, Gtk.Entry, "tq_num_tile_cluster_passes").get_text()
             )
             assert num_tile_cluster_passes > 0
         except (ValueError, AssertionError):
             num_tile_cluster_passes = 0
         try:
             num_color_cluster_passes = int(
-                builder_get_assert(
-                    self.builder, Gtk.Entry, "tq_num_color_cluster_passes"
-                ).get_text()
+                builder_get_assert(self.builder, Gtk.Entry, "tq_num_color_cluster_passes").get_text()
             )
             assert num_color_cluster_passes > 0
         except (ValueError, AssertionError):
             num_color_cluster_passes = 0
 
         try:
-            num_pals = int(
-                builder_get_assert(
-                    self.builder, Gtk.Entry, "tq_number_palettes"
-                ).get_text()
-            )
-            input_image = builder_get_assert(
-                self.builder, Gtk.FileChooserButton, "tq_input_file"
-            ).get_filename()
-            second_input_file = builder_get_assert(
-                self.builder, Gtk.FileChooserButton, "tq_second_file"
-            ).get_filename()
-            transparent_color_v = builder_get_assert(
-                self.builder, Gtk.ColorButton, "tq_transparent_color"
-            ).get_color()
+            num_pals = int(builder_get_assert(self.builder, Gtk.Entry, "tq_number_palettes").get_text())
+            input_image = builder_get_assert(self.builder, Gtk.FileChooserButton, "tq_input_file").get_filename()
+            second_input_file = builder_get_assert(self.builder, Gtk.FileChooserButton, "tq_second_file").get_filename()
+            transparent_color_v = builder_get_assert(self.builder, Gtk.ColorButton, "tq_transparent_color").get_color()
             assert input_image is not None
             assert transparent_color_v is not None
             transparent_color = (
@@ -296,14 +256,8 @@ class TilequantController:
             if not os.path.exists(input_image):
                 self.error(_("The input image does not exist."), should_report=False)
                 return
-            if (
-                has_second_image
-                and second_input_file is not None
-                and not os.path.exists(second_input_file)
-            ):
-                self.error(
-                    _("The second input image does not exist."), should_report=False
-                )
+            if has_second_image and second_input_file is not None and not os.path.exists(second_input_file):
+                self.error(_("The second input image does not exist."), should_report=False)
                 return
             with open(input_image, "rb") as input_file:
                 try:
@@ -383,9 +337,7 @@ class TilequantController:
     def show_wiki_help(self, *args):
         from skytemple.controller.main import SKYTEMPLE_WIKI_LINK
 
-        webbrowser.open(
-            f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-tilequant"
-        )
+        webbrowser.open(f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-tilequant")
 
     def error(self, msg, should_report=True):
         display_error(sys.exc_info(), msg, should_report=should_report)
