@@ -20,9 +20,7 @@
 from gi.repository import Gtk
 
 
-def on_map_width_chunks_changed(
-    map_wh_link: Gtk.Switch, map_width_tiles: Gtk.Entry, map_width_chunks: Gtk.Entry
-):
+def on_map_width_chunks_changed(map_wh_link: Gtk.Switch, map_width_tiles: Gtk.Entry, map_width_chunks: Gtk.Entry):
     """If the chunk width is changed and the values are linked, also update linked fields"""
     if map_wh_link.get_active():
         try:
@@ -31,9 +29,7 @@ def on_map_width_chunks_changed(
             pass
 
 
-def on_map_height_chunks_changed(
-    map_wh_link: Gtk.Switch, map_height_tiles: Gtk.Entry, map_height_chunks: Gtk.Entry
-):
+def on_map_height_chunks_changed(map_wh_link: Gtk.Switch, map_height_tiles: Gtk.Entry, map_height_chunks: Gtk.Entry):
     """If the chunk height is changed and the values are linked, also update linked fields"""
     if map_wh_link.get_active():
         try:

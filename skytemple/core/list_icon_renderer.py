@@ -44,15 +44,9 @@ class ListIconRenderer:
         self._registered_for_reload = []
         self._loading = True
 
-    def load_icon(
-        self, store, load_fn, target_name, idx, parameters, is_placeholder=False
-    ):
-        self._registered_for_reload.append(
-            (store, idx, (store, load_fn, target_name, idx, parameters, is_placeholder))
-        )
-        return self._get_icon(
-            store, load_fn, target_name, idx, parameters, is_placeholder
-        )
+    def load_icon(self, store, load_fn, target_name, idx, parameters, is_placeholder=False):
+        self._registered_for_reload.append((store, idx, (store, load_fn, target_name, idx, parameters, is_placeholder)))
+        return self._get_icon(store, load_fn, target_name, idx, parameters, is_placeholder)
 
     @typing.no_type_check
     def unload(self):
@@ -63,9 +57,7 @@ class ListIconRenderer:
         self._registered_for_reload = None
         self._loading = True
 
-    def _get_icon(
-        self, store, load_fn, target_name, idx, parameters, is_placeholder=False
-    ):
+    def _get_icon(self, store, load_fn, target_name, idx, parameters, is_placeholder=False):
         was_loading = self._loading
         sprite, x, y, w, h = load_fn(
             *parameters,
@@ -127,9 +119,7 @@ class ListIconRenderer:
     def _reload_icons_in_tree(self):
         try:
             for model, idx, params in self._registered_for_reload:
-                model[get_list_store_iter_by_idx(model, idx)][self.column_id] = (
-                    self._get_icon(*params)
-                )
+                model[get_list_store_iter_by_idx(model, idx)][self.column_id] = self._get_icon(*params)
             self._loading = False
             self._refresh_timer = None
         except (AttributeError, TypeError):

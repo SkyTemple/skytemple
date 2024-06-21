@@ -108,20 +108,14 @@ class RecruitmentListController(ListBaseController):
         pass
 
     def on_cr_location_editing_started(self, renderer, editable, path):
-        editable.set_completion(
-            builder_get_assert(
-                self.builder, Gtk.EntryCompletion, "completion_locations"
-            )
-        )
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, "completion_locations"))
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
         """Propagate changes to list store entries to the lists."""
         if self._loading:
             return
-        a_id, level, location_id, ent_icon, entid, location_name, ent_name = store[
-            path
-        ][:]
+        a_id, level, location_id, ent_icon, entid, location_name, ent_name = store[path][:]
         a_id = int(a_id)
         species_before = self._species[a_id]
         level_before = self._levels[a_id]
@@ -136,21 +130,15 @@ class RecruitmentListController(ListBaseController):
             or level_before != self._levels[a_id]
             or location_before != self._locations[a_id]
         ):
-            self.module.set_recruitment_list(
-                self._species, self._levels, self._locations
-            )
+            self.module.set_recruitment_list(self._species, self._levels, self._locations)
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()
-        self._list_store = assert_not_none(
-            cast(Optional[Gtk.ListStore], tree.get_model())
-        )
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
 
         # Iterate list
-        for idx, (e_species, e_level, e_location) in enumerate(
-            zip(self._species, self._levels, self._locations)
-        ):
+        for idx, (e_species, e_level, e_location) in enumerate(zip(self._species, self._levels, self._locations)):
             self._list_store.append(
                 [
                     str(idx),
@@ -164,13 +152,9 @@ class RecruitmentListController(ListBaseController):
             )
 
     def _init_locations_store(self):
-        locations_store = builder_get_assert(
-            self.builder, Gtk.ListStore, "location_store"
-        )
+        locations_store = builder_get_assert(self.builder, Gtk.ListStore, "location_store")
         for idx in range(0, 256):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.DUNGEON_NAMES_SELECTION, idx
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
             self._location_names[idx] = f"{name} ({idx:04})"
             locations_store.append([self._location_names[idx]])
 

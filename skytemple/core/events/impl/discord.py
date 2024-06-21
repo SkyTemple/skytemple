@@ -114,9 +114,7 @@ class DiscordPresence(AbstractListener):
         view: Union[AbstractController, Gtk.Widget],
         breadcrumbs: list[str],
     ):
-        mod_handler = getattr(
-            self, f"on_view_switch__{module.__class__.__name__}", None
-        )
+        mod_handler = getattr(self, f"on_view_switch__{module.__class__.__name__}", None)
         if mod_handler and callable(mod_handler):
             mod_handler(module, view, breadcrumbs)
         else:
@@ -364,9 +362,7 @@ class DiscordPresence(AbstractListener):
 
     def on_debugger_script_open(self, script_name: str):
         assert self.project is not None
-        self.debugger_script_name = script_name.replace(
-            self.project.get_project_file_manager().dir(), ""
-        )
+        self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), "")
         self._update_current_presence()
 
     def _update_current_presence(self):
@@ -381,19 +377,13 @@ class DiscordPresence(AbstractListener):
             elif self.current_presence == "debugger":
                 self._update_presence(
                     state=self.debugger_script_name,
-                    details=(
-                        "In the debugger"
-                        if self.debugger_script_name is None
-                        else "Editing script"
-                    ),
+                    details=("In the debugger" if self.debugger_script_name is None else "Editing script"),
                     start=self.start,
                     large_text=self.rom_name,
                     small_image="bug",
                 )
             else:  # idle
-                self._update_presence(
-                    state=None, details="Idle", start=None, large_text=self.rom_name
-                )
+                self._update_presence(state=None, details="Idle", start=None, large_text=self.rom_name)
         except BaseException as ex:
             logger.error("Updating the presence failed: ", exc_info=ex)
 

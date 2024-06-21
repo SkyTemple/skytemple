@@ -183,9 +183,7 @@ class ItemTree:
         self._root_node = new_iter
         return ItemTreeEntryRef(self._tree, new_iter)
 
-    def add_entry(
-        self, root: ItemTreeEntryRef | None, entry: ItemTreeEntry
-    ) -> ItemTreeEntryRef:
+    def add_entry(self, root: ItemTreeEntryRef | None, entry: ItemTreeEntry) -> ItemTreeEntryRef:
         """Add a new entry. All kwargs-only parameters in __init__ of ItemTreeEntry are ignored."""
         root_iter = self._root_node
         if root is not None:
@@ -243,9 +241,7 @@ def _recursive_up_item_store_mark_as_modified(row: Gtk.TreeModelRow, modified=Tr
     row[5] = modified
     _generate_item_store_row_label(row)
     if row.parent is not None:
-        _recursive_up_item_store_mark_as_modified(
-            cast(Gtk.TreeModelRow, row.parent), modified
-        )
+        _recursive_up_item_store_mark_as_modified(cast(Gtk.TreeModelRow, row.parent), modified)
 
 
 def _recursive_down_item_store_mark_as_modified(row: Gtk.TreeModelRow, modified=True):

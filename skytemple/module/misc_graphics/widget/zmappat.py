@@ -36,9 +36,7 @@ if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "misc_graphics", "zmappat.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "zmappat.ui"))
 class StMiscGraphicsZMappaTPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsZMappaTPage"
     module: MiscGraphicsModule
@@ -69,15 +67,11 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        cast(Gtk.Menu, w.get_menu()).popup(
-            None, None, None, None, 0, Gtk.get_current_event_time()
-        )
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     @Gtk.Template.Callback()
     def on_button_import_clicked(self, w: Gtk.MenuToolButton):
-        cast(Gtk.Menu, w.get_menu()).popup(
-            None, None, None, None, 0, Gtk.get_current_event_time()
-        )
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     @Gtk.Template.Callback()
     def on_export_minimized_activate(self, *args):
@@ -153,9 +147,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
                 self.zmappat.from_pil_minimized(imgs, masks)
                 self.module.mark_zmappat_as_modified(self.zmappat, self.item_data)
             except Exception as err:
-                display_error(
-                    sys.exc_info(), str(err), _("Error importing minimized zmappat.")
-                )
+                display_error(sys.exc_info(), str(err), _("Error importing minimized zmappat."))
             self._reinit_image()
 
     @Gtk.Template.Callback()
@@ -209,9 +201,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
                 self.zmappat.from_pil(imgs, masks)
                 self.module.mark_zmappat_as_modified(self.zmappat, self.item_data)
             except Exception as err:
-                display_error(
-                    sys.exc_info(), str(err), _("Error importing full zmappat.")
-                )
+                display_error(sys.exc_info(), str(err), _("Error importing full zmappat."))
             self._reinit_image()
 
     def _init_zmappat(self):

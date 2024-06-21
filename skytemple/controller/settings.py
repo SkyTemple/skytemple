@@ -60,9 +60,9 @@ class SettingsController:
         self.builder = builder
         self.settings = settings
 
-        builder_get_assert(
-            self.builder, Gtk.Button, "setting_help_native_enable"
-        ).connect("clicked", self.on_setting_help_native_enable_clicked)
+        builder_get_assert(self.builder, Gtk.Button, "setting_help_native_enable").connect(
+            "clicked", self.on_setting_help_native_enable_clicked
+        )
         builder_get_assert(self.builder, Gtk.Button, "setting_help_async").connect(
             "clicked", self.on_setting_help_async_clicked
         )
@@ -81,9 +81,7 @@ class SettingsController:
 
         # Discord enabled state
         discord_enabled_previous = self.settings.get_integration_discord_enabled()
-        settings_discord_enable = builder_get_assert(
-            self.builder, Gtk.Switch, "setting_discord_enable"
-        )
+        settings_discord_enable = builder_get_assert(self.builder, Gtk.Switch, "setting_discord_enable")
         settings_discord_enable.set_active(discord_enabled_previous)
 
         # Gtk Theme
@@ -120,12 +118,8 @@ class SettingsController:
             cb.set_active(active_i)
 
         # Native file handler
-        native_impl_enabled_previous = (
-            self.settings.get_implementation_type() == ImplementationType.NATIVE
-        )
-        settings_native_enable = builder_get_assert(
-            self.builder, Gtk.Switch, "setting_native_enable"
-        )
+        native_impl_enabled_previous = self.settings.get_implementation_type() == ImplementationType.NATIVE
+        settings_native_enable = builder_get_assert(self.builder, Gtk.Switch, "setting_native_enable")
         settings_native_enable.set_active(native_impl_enabled_previous)
 
         # Async modes
@@ -143,16 +137,12 @@ class SettingsController:
 
         # Sentry
         allow_sentry_previous = self.settings.get_allow_sentry()
-        settings_allow_sentry_enable = builder_get_assert(
-            self.builder, Gtk.Switch, "setting_allow_sentry"
-        )
+        settings_allow_sentry_enable = builder_get_assert(self.builder, Gtk.Switch, "setting_allow_sentry")
         settings_allow_sentry_enable.set_active(allow_sentry_previous)
 
         # CSD
         csd_before = self.settings.csd_enabled()
-        settings_csd_enable = builder_get_assert(
-            self.builder, Gtk.Switch, "setting_csd_enable"
-        )
+        settings_csd_enable = builder_get_assert(self.builder, Gtk.Switch, "setting_csd_enable")
         settings_csd_enable.set_active(csd_before)
 
         response = self.window.run()
@@ -188,9 +178,7 @@ class SettingsController:
             native_impl_enabled = settings_native_enable.get_active()
             if native_impl_enabled != native_impl_enabled_previous:
                 self.settings.set_implementation_type(
-                    ImplementationType.NATIVE
-                    if native_impl_enabled
-                    else ImplementationType.PYTHON
+                    ImplementationType.NATIVE if native_impl_enabled else ImplementationType.PYTHON
                 )
                 have_to_restart = True
 

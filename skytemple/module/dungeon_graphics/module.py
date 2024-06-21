@@ -71,18 +71,14 @@ logger = logging.getLogger(__name__)
 MAIN_VIEW_DUNGEONBG_DATA = StStatusPageData(
     icon_name="skytemple-illust-map",
     title=_("Backgrounds"),
-    description=_(
-        "This section lets you edit the background images that are used for some special dungeon floors."
-    ),
+    description=_("This section lets you edit the background images that are used for some special dungeon floors."),
 )
 
 
 MAIN_VIEW_TILESET_DATA = StStatusPageData(
     icon_name="skytemple-illust-dungeon_tileset",
     title=_("Tilesets"),
-    description=_(
-        "This section lets you edit the tilesets that are used for dungeons."
-    ),
+    description=_("This section lets you edit the tilesets that are used for dungeons."),
 )
 
 
@@ -265,16 +261,12 @@ class DungeonGraphicsModule(AbstractModule):
         # Mark as modified in tree
         if is_background:
             item_id += NUMBER_OF_TILESETS
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[item_id], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
 
     def mark_colvec_as_modified(self):
         self.project.mark_as_modified(DUNGEON_BIN)
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[self._colvec_pos], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[self._colvec_pos], RecursionType.UP)
 
     def nb_tilesets(self):
         return NUMBER_OF_TILESETS
@@ -315,9 +307,7 @@ class DungeonGraphicsModule(AbstractModule):
         )
         self._item_tree.mark_as_modified(self._root_node, RecursionType.UP)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StDungeonGraphicsDungeonBgPage):
             pass  # todo
         if isinstance(open_view, StDungeonGraphicsColvecPage):

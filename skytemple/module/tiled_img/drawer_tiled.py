@@ -65,9 +65,7 @@ class DrawerTiled:
         if tile_mappings is not None:
             self.set_tile_mappings(tile_mappings)
 
-        self.animation_context = AnimationContext(
-            tile_surfaces, bpa_durations, pal_ani_durations
-        )
+        self.animation_context = AnimationContext(tile_surfaces, bpa_durations, pal_ani_durations)
 
         self.scale = 1
 
@@ -156,9 +154,7 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         tile_surfaces: list[list[list[list[cairo.Surface]]]],
         scale,
     ):
-        super().__init__(
-            icon_view, None, bpa_durations, pal_ani_durations, tile_surfaces
-        )
+        super().__init__(icon_view, None, bpa_durations, pal_ani_durations, tile_surfaces)
         super(Gtk.CellRenderer, self).__init__()
 
         self.scale = scale

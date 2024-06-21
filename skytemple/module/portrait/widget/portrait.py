@@ -256,15 +256,11 @@ class StPortraitPortraitPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        cast(Gtk.Menu, w.get_menu()).popup(
-            None, None, None, None, 0, Gtk.get_current_event_time()
-        )
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     @Gtk.Template.Callback()
     def on_button_import_clicked(self, w: Gtk.MenuToolButton):
-        cast(Gtk.Menu, w.get_menu()).popup(
-            None, None, None, None, 0, Gtk.get_current_event_time()
-        )
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     @Gtk.Template.Callback()
     def on_delete_clicked(self, label: Gtk.Label):

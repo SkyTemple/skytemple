@@ -51,12 +51,8 @@ class StListsMenuListPage(Gtk.Box):
     tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     id_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     string_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    id_description: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    string_description: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    id_description: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    string_description: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     action: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_help: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
@@ -170,9 +166,7 @@ class StListsMenuListPage(Gtk.Box):
         tree_store = self.tree_store
         current_id = int(tree_store[path][0])
         if current_id > 0:
-            self._string_provider.get_model(self._current_lang).strings[
-                current_id - 1
-            ] = text
+            self._string_provider.get_model(self._current_lang).strings[current_id - 1] = text
             self._regenerate_list()
             self.module.mark_string_as_modified()
 
@@ -181,17 +175,13 @@ class StListsMenuListPage(Gtk.Box):
         tree_store = self.tree_store
         current_id = int(tree_store[path][2])
         if current_id > 0:
-            self._string_provider.get_model(self._current_lang).strings[
-                current_id - 1
-            ] = text
+            self._string_provider.get_model(self._current_lang).strings[current_id - 1] = text
             self._regenerate_list()
             self.module.mark_string_as_modified()
 
     def _refresh_list(self):
         tree = self.tree
-        self._list_store = assert_not_none(
-            cast(Optional[Gtk.ListStore], tree.get_model())
-        )
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
         # Iterate list
         menu_id = self._get_current_settings()
@@ -208,6 +198,4 @@ class StListsMenuListPage(Gtk.Box):
                 description = str_list[m.description_id - 1]
             else:
                 description = ""
-            tree_store.append(
-                [m.name_id, name, m.description_id, description, m.action]
-            )
+            tree_store.append([m.name_id, name, m.description_id, description, m.action])

@@ -85,9 +85,7 @@ class StSprite(Gtk.DrawingArea):
 
     def reload_sprite(self):
         if self.sprite_data.passed_fn_supports_callback:
-            self.loaded_sprite = self.sprite_data.load_fn(
-                *self.sprite_data.parameters, self.reload_sprite
-            )
+            self.loaded_sprite = self.sprite_data.load_fn(*self.sprite_data.parameters, self.reload_sprite)
         else:
             self.loaded_sprite = self.sprite_data.load_fn(*self.sprite_data.parameters)
 
@@ -115,7 +113,5 @@ class StSprite(Gtk.DrawingArea):
             w * self.sprite_data.scale,
             h * self.sprite_data.scale,
         ):
-            self.set_size_request(
-                w * self.sprite_data.scale, h * self.sprite_data.scale
-            )
+            self.set_size_request(w * self.sprite_data.scale, h * self.sprite_data.scale)
         return True

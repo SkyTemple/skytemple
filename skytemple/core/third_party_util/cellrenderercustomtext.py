@@ -26,9 +26,7 @@ from gi.repository import Gtk, Gdk, GLib, GObject
 class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
     __gtype_name__ = "CustomEditable"
 
-    editing_canceled = GObject.property(
-        type=bool, default=False, flags=GObject.PARAM_READWRITE
-    )
+    editing_canceled = GObject.property(type=bool, default=False, flags=GObject.PARAM_READWRITE)
 
     def __init__(self):
         Gtk.EventBox.__init__(self)
@@ -80,11 +78,7 @@ class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
         mask = event.get_state()
         keyname = Gdk.keyval_name(event.get_keyval()[1])
 
-        accel_masks = (
-            Gdk.ModifierType.CONTROL_MASK
-            | Gdk.ModifierType.SHIFT_MASK
-            | Gdk.ModifierType.MOD1_MASK
-        )
+        accel_masks = Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK | Gdk.ModifierType.MOD1_MASK
         enter_keynames = ("Return", "KP_Enter")
         cancel_keynames = ("Escape",)
         tab_keynames = ("Tab", "ISO_Left_Tab")

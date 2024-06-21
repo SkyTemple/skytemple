@@ -45,12 +45,8 @@ class MinimapProvider:
                         )
                     )
                 )
-        self._secondary = pil_to_cairo_surface(
-            Image.open(os.path.join(data_dir(), "minimap_secondary.png"))
-        )
-        self._buried = pil_to_cairo_surface(
-            Image.open(os.path.join(data_dir(), "minimap_buried.png"))
-        )
+        self._secondary = pil_to_cairo_surface(Image.open(os.path.join(data_dir(), "minimap_secondary.png")))
+        self._buried = pil_to_cairo_surface(Image.open(os.path.join(data_dir(), "minimap_buried.png")))
 
     def get_minimap_tile(self, idx: int) -> cairo.ImageSurface:
         return self._tiles[idx]

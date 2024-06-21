@@ -66,18 +66,14 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
         safe_destroy(self.symbol_window)
 
     @Gtk.Template.Callback()
-    def on_symbol_notebook_switch_page(
-        self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
-    ):
+    def on_symbol_notebook_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         if not self._suppress_signals:
             self._selected_binary = self._all_selected_binaries[page_num]
             self.reset_all()
             self.refresh()
 
     @Gtk.Template.Callback()
-    def on_symbol_notebook_bin_switch_page(
-        self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
-    ):
+    def on_symbol_notebook_bin_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         if not self._suppress_signals:
             self._selected_symbol_type = self._all_symbol_types[page_num]
             self.reset_all()
@@ -85,24 +81,16 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
 
     def reset_all(self):
         symbol_box = self.symbol_box
-        assert_not_none(cast(Optional[Gtk.Container], symbol_box.get_parent())).remove(
-            symbol_box
-        )
+        assert_not_none(cast(Optional[Gtk.Container], symbol_box.get_parent())).remove(symbol_box)
         symbol_window = self.symbol_window
-        assert_not_none(
-            cast(Optional[Gtk.Container], symbol_window.get_parent())
-        ).remove(symbol_window)
+        assert_not_none(cast(Optional[Gtk.Container], symbol_window.get_parent())).remove(symbol_window)
 
     def load(self):
         symbol_notebook = self.symbol_notebook
         symbol_notebook_bin = self.symbol_notebook_bin
         # Fill symbol_notebook_bin
-        symbol_notebook_bin.append_page(
-            Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_("Data"))
-        )
-        symbol_notebook_bin.append_page(
-            Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_("Functions"))
-        )
+        symbol_notebook_bin.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_("Data")))
+        symbol_notebook_bin.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_("Functions")))
         project = RomProject.get_current()
         assert project is not None
         bin_sections = project.get_rom_module().get_static_data().bin_sections
@@ -131,14 +119,10 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
         # ATTACH
         assert self._selected_binary is not None
         assert self._selected_symbol_type is not None
-        bin_page = symbol_notebook_bin.get_nth_page(
-            self._all_symbol_types.index(self._selected_symbol_type)
-        )
+        bin_page = symbol_notebook_bin.get_nth_page(self._all_symbol_types.index(self._selected_symbol_type))
         assert bin_page is not None
         cast(Gtk.Box, bin_page).pack_start(symbol_window, True, True, 0)
-        sym_page = symbol_notebook.get_nth_page(
-            self._all_selected_binaries.index(self._selected_binary)
-        )
+        sym_page = symbol_notebook.get_nth_page(self._all_selected_binaries.index(self._selected_binary))
         assert sym_page is not None
         cast(Gtk.Box, sym_page).pack_start(symbol_box, True, True, 0)
         project = RomProject.get_current()
@@ -150,13 +134,7 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
         bin_load_address = section.loadaddress
         bin_length = section.length
         symbol_description.set_text(section.description.strip())
-        symbol_meta.set_markup(
-            f(
-                _(
-                    "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
-                )
-            )
-        )
+        symbol_meta.set_markup(f(_("<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}")))
         model = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         model.clear()
         if self._selected_symbol_type == "data":
@@ -171,8 +149,7 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
                         [
                             symbol_name,
                             f"0x{symbol.absolute_address:0x}"
-                            if symbol.absolute_addresses is not None
-                            and len(symbol.absolute_addresses) > 0
+                            if symbol.absolute_addresses is not None and len(symbol.absolute_addresses) > 0
                             else "???",
                             str(symbol.length if symbol.length is not None else 1),
                             symbol.description.strip(),

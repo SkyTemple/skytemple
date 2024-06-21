@@ -41,9 +41,7 @@ def default_loglevel():
 
 
 logger = logging.getLogger("system")
-SKYTEMPLE_LOGLEVEL = os.environ.get(
-    "SKYTEMPLE_LOGLEVEL", logging.getLevelName(default_loglevel())
-)
+SKYTEMPLE_LOGLEVEL = os.environ.get("SKYTEMPLE_LOGLEVEL", logging.getLevelName(default_loglevel()))
 
 
 def current_log_level():
@@ -84,17 +82,11 @@ def handle_exception(exc_type, exc_value, exc_traceback):
     logger.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
     try:
         # noinspection PyUnusedLocal
-        traceback_str = "".join(
-            traceback.format_exception(exc_type, exc_value, exc_traceback)
-        )
+        traceback_str = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
         GLib.idle_add(
             lambda: display_error(
                 (exc_type, exc_value, exc_traceback),
-                f(
-                    _(
-                        "An uncaught exception occurred! This shouldn't happen, please report it!"
-                    )
-                )
+                f(_("An uncaught exception occurred! This shouldn't happen, please report it!"))
                 + "\n\n"
                 + traceback_str,
                 _("SkyTemple - Uncaught error!"),
@@ -114,9 +106,7 @@ def setup_logging():
 
     dirn = ProjectFileManager.shared_config_dir()
     os.makedirs(dirn, exist_ok=True)
-    handler = RotatingFileHandler(
-        os.path.join(dirn, "skytemple.log"), maxBytes=100000, backupCount=5
-    )
+    handler = RotatingFileHandler(os.path.join(dirn, "skytemple.log"), maxBytes=100000, backupCount=5)
     logging.basicConfig(
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         handlers=[logging.StreamHandler(), handler],

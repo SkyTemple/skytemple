@@ -98,9 +98,7 @@ class StMonsterMainPage(Gtk.Box):
     group_text_tree_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     progress_dialog: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     export_progress: Gtk.ProgressBar = cast(Gtk.ProgressBar, Gtk.Template.Child())
-    special_personalities_tree_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
+    special_personalities_tree_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     btn_export: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     spin_group_nb: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     group_text_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
@@ -113,9 +111,7 @@ class StMonsterMainPage(Gtk.Box):
     btn_add_dialogue: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_dialogue: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     special_personalities_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    spec_personality: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    spec_personality: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
     def __init__(self, module: MonsterModule, item_data: int):
         super().__init__()
@@ -172,9 +168,7 @@ class StMonsterMainPage(Gtk.Box):
         tree_store = self.special_personalities_tree_store
         tree_store.clear()
         for i in range(TBL_TALK_SPEC_LEN):
-            tree_store.append(
-                [UNIQUE_ACTORS[i], self.module.get_special_personality(i)]
-            )
+            tree_store.append([UNIQUE_ACTORS[i], self.module.get_special_personality(i)])
 
     @Gtk.Template.Callback()
     def on_value_changed(self, *args):
@@ -223,9 +217,7 @@ class StMonsterMainPage(Gtk.Box):
         _, talk_type = self._get_current_settings()
         tree_store = self.group_text_tree_store
         self._string_provider.get_model(self._current_lang).strings[
-            self._string_provider.get_index(
-                MAP_TALK_TYPE[talk_type.value], int(tree_store[path][0])
-            )
+            self._string_provider.get_index(MAP_TALK_TYPE[talk_type.value], int(tree_store[path][0]))
         ] = text
         self._regenerate_list()
         self.module.mark_string_as_modified()
@@ -274,9 +266,7 @@ class StMonsterMainPage(Gtk.Box):
             tree_store.append(
                 [
                     d,
-                    self._string_provider.get_value(
-                        MAP_TALK_TYPE[talk_type.value], d, self._current_lang
-                    ),
+                    self._string_provider.get_value(MAP_TALK_TYPE[talk_type.value], d, self._current_lang),
                 ]
             )
 
@@ -296,9 +286,7 @@ class StMonsterMainPage(Gtk.Box):
             export_moveset = self.export_type_moveset1.get_active()
             export_moveset2 = self.export_type_moveset2.get_active()
             export_portraits = self.export_type_portraits.get_active()
-            expand_poke_list_applied = self.module.project.is_patch_applied(
-                "ExpandPokeList"
-            )
+            expand_poke_list_applied = self.module.project.is_patch_applied("ExpandPokeList")
             num_entities = FileType.MD.properties().num_entities
             save_diag = Gtk.FileChooserNative.new(
                 _("Export Pokémon at..."),
@@ -318,9 +306,7 @@ class StMonsterMainPage(Gtk.Box):
                     if expand_poke_list_applied:
                         max_progress = len(self.module.monster_md.entries)
                     for i, entry in enumerate(self.module.monster_md.entries):
-                        if entry.md_index >= num_entities and (
-                            not expand_poke_list_applied
-                        ):
+                        if entry.md_index >= num_entities and (not expand_poke_list_applied):
                             break
                         (
                             names,
@@ -361,9 +347,7 @@ class StMonsterMainPage(Gtk.Box):
                             portraits = None
                             portraits2 = None
                         xml = monster_xml_export(
-                            self.module.project.get_rom_module()
-                            .get_static_data()
-                            .game_version,
+                            self.module.project.get_rom_module().get_static_data().game_version,
                             md_gender1,
                             md_gender2,
                             names,
@@ -380,14 +364,10 @@ class StMonsterMainPage(Gtk.Box):
                         safe_name = main_name
                         for c in '<>:"/\\|?*':
                             safe_name = safe_name.replace(c, "_")
-                        fn = os.path.join(
-                            directory, f"{entry.md_index:04}_{safe_name}.xml"
-                        )
+                        fn = os.path.join(directory, f"{entry.md_index:04}_{safe_name}.xml")
                         with open_utf8(fn, "w") as file:
                             file.write(prettify(xml))
-                        GLib.idle_add(
-                            lambda: export_progress.set_fraction(i / max_progress)
-                        )
+                        GLib.idle_add(lambda: export_progress.set_fraction(i / max_progress))
                     GLib.idle_add(progress_dialog.hide)
 
                 progress_dialog = self.progress_dialog

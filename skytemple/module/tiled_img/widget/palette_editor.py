@@ -30,9 +30,7 @@ if TYPE_CHECKING:
     from skytemple.module.tiled_img.module import TiledImgModule
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "tiled_img", "palette_editor.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "tiled_img", "palette_editor.ui"))
 class StPaletteEditorDialog(Gtk.Dialog):
     __gtype_name__ = "StPaletteEditorDialog"
     module: TiledImgModule
@@ -58,9 +56,7 @@ class StPaletteEditorDialog(Gtk.Dialog):
         self.set_attached_to(parent_window)
         self.set_transient_for(parent_window)
 
-        self.notebook.add_events(
-            Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK
-        )
+        self.notebook.add_events(Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK)
 
         self.page_boxes: list[Gtk.Box] = []
 
@@ -252,18 +248,14 @@ class StPaletteEditorDialog(Gtk.Dialog):
             if i % grid_w == 0:
                 if previous_row_start_elem:
                     # New row
-                    grid.attach_next_to(
-                        cbx, previous_row_start_elem, Gtk.PositionType.BOTTOM, 1, 1
-                    )
+                    grid.attach_next_to(cbx, previous_row_start_elem, Gtk.PositionType.BOTTOM, 1, 1)
                 else:
                     # First row
                     grid.add(cbx)
                 previous_row_start_elem = cbx
             else:
                 # New cell in next column
-                grid.attach_next_to(
-                    cbx, previous_col_start_elem, Gtk.PositionType.RIGHT, 1, 1
-                )
+                grid.attach_next_to(cbx, previous_col_start_elem, Gtk.PositionType.RIGHT, 1, 1)
 
             previous_col_start_elem = cbx
 

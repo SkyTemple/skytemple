@@ -120,9 +120,7 @@ class StringProvider:
         # TODO: We should probably also check the end offset (overflow check).
         return self._get_string_block(string_type).begin + index
 
-    def get_all(
-        self, string_type: StringType, language: Optional[LanguageLike] = None
-    ) -> list[str]:
+    def get_all(self, string_type: StringType, language: Optional[LanguageLike] = None) -> list[str]:
         """
         Returns all strings of the given type.
         If language is not set, the default ROM language is used.
@@ -139,9 +137,7 @@ class StringProvider:
         return self.project.open_file_in_rom(
             f"{MESSAGE_DIR}/{self.get_language(language).filename}",
             FileType.STR,
-            string_encoding=self.project.get_rom_module()
-            .get_static_data()
-            .string_encoding,
+            string_encoding=self.project.get_rom_module().get_static_data().string_encoding,
         )
 
     def get_languages(self) -> list[Pmd2Language]:
@@ -154,9 +150,7 @@ class StringProvider:
             if self.project.is_opened(fname):
                 self.project.mark_as_modified(fname)
 
-    def get_language(
-        self, language_locale: Optional[LanguageLike] = None
-    ) -> Pmd2Language:
+    def get_language(self, language_locale: Optional[LanguageLike] = None) -> Pmd2Language:
         if isinstance(language_locale, Pmd2Language):
             return language_locale
 

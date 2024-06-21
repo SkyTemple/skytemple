@@ -78,9 +78,7 @@ class StListsTacticsPage(Gtk.Box):
                     [
                         str(idx),
                         str(entry),
-                        self.module.project.get_string_provider().get_value(
-                            StringType.TACTICS_NAMES, idx
-                        )
+                        self.module.project.get_string_provider().get_value(StringType.TACTICS_NAMES, idx)
                         if idx != 11
                         else _("<Not working>"),
                     ]

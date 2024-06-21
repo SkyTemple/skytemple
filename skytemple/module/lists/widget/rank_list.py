@@ -42,23 +42,13 @@ class StListsRankListPage(Gtk.Box):
     module: ListsModule
     item_data: None
     item_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_items: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_items: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     list_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_rank_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_points_needed_next: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_storage_capacity: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_item_awarded: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_rank_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_points_needed_next: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_storage_capacity: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_item_awarded: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
     def __init__(self, module: ListsModule, item_data: None):
         super().__init__()
@@ -143,9 +133,7 @@ class StListsRankListPage(Gtk.Box):
 
     def refresh_list(self):
         tree = self.tree
-        self._list_store = assert_not_none(
-            cast(Optional[Gtk.ListStore], tree.get_model())
-        )
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
         # Iterate list
         sp = self.module.project.get_string_provider()

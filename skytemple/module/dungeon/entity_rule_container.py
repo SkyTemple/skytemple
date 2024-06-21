@@ -40,9 +40,7 @@ class EntityRuleContainer:
         self.tiles = tiles
         self.stats = stats
 
-    def get(
-        self, idx: int
-    ) -> tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats]:
+    def get(self, idx: int) -> tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats]:
         entity = self.entities[idx]
         return (
             self.items[entity.item_id],
@@ -56,8 +54,6 @@ class EntityRuleContainer:
 
     def __iter__(
         self,
-    ) -> Generator[
-        tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None
-    ]:
+    ) -> Generator[tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None]:
         for i in range(0, len(self)):
             yield self.get(i)

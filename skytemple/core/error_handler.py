@@ -45,9 +45,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
-ExceptionInfo = Union[
-    BaseException, tuple[type[BaseException], BaseException, TracebackType]
-]
+ExceptionInfo = Union[BaseException, tuple[type[BaseException], BaseException, TracebackType]]
 
 
 def show_error_web(exc_info):
@@ -70,9 +68,7 @@ def show_error_web(exc_info):
             # Hm... now it's getting ridiculous.
             try:
                 html = "".join(traceback.format_exception(*exc_info))
-                with NamedTemporaryFile(
-                    delete=False, mode="w", suffix=".txt"
-                ) as tmp_file3:
+                with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as tmp_file3:
                     tmp_file3.write(html)
                     webbrowser.open_new_tab(Path(tmp_file3.name).as_uri())
             except BaseException:
@@ -85,9 +81,7 @@ def show_error_web(exc_info):
                     (
                         _("Trying to display the error failed. Wow!")
                         + "\n"
-                        + _(
-                            "You can try opening one of the following file manually in a web browser or text editor: "
-                        )
+                        + _("You can try opening one of the following file manually in a web browser or text editor: ")
                         + "\n - "
                         + (tmp_file1.name if tmp_file1 is not None else "")
                         + "\n - "
@@ -142,18 +136,14 @@ def display_error(
         title=error_title,
     )
     if sentry_event_id is not None or exc_info is not None:
-        button_box: Gtk.Box = Gtk.Box.new(
-            orientation=Gtk.Orientation.HORIZONTAL, spacing=10
-        )
+        button_box: Gtk.Box = Gtk.Box.new(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         if exc_info is not None:
             button = Gtk.Button.new_with_label(_("Error Details"))
             button.connect("clicked", lambda *args: show_error_web(exc_info))
             button_box.pack_start(button, False, True, 0)
         if sentry_event_id is not None:
             button = Gtk.Button.new_with_label(_("Report Error"))
-            button.connect(
-                "clicked", lambda *args: ask_user_report(cast(str, sentry_event_id))
-            )
+            button.connect("clicked", lambda *args: ask_user_report(cast(str, sentry_event_id)))
             button_box.pack_start(button, False, True, 0)
         button_box.set_halign(Gtk.Align.START)
         button_box.show_all()
@@ -164,9 +154,7 @@ def display_error(
     md.destroy()
 
 
-def capture_error(
-    exc_info: Optional[ExceptionInfo], **error_context: Capturable
-) -> Optional[str]:
+def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable) -> Optional[str]:
     from skytemple.core.settings import SkyTempleSettingsStore
 
     try:

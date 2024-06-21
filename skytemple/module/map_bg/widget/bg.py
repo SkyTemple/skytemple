@@ -62,18 +62,10 @@ class StMapBgBgPage(Gtk.Box):
     bg_layers: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     tb_zoom_in: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tb_zoom_out: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    tb_chunk_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tb_tile_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tb_hide_other: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tb_rectangle: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
+    tb_chunk_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tb_tile_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tb_hide_other: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tb_rectangle: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     tb_bg_color: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     tb_goto_scene: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     bg_draw_sw: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
@@ -84,18 +76,10 @@ class StMapBgBgPage(Gtk.Box):
     data_combo_box: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     bg_layers_toolbox_layers: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     bg_chunks_view: Gtk.IconView = cast(Gtk.IconView, Gtk.Template.Child())
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings: Gtk.Dialog = cast(
-        Gtk.Dialog, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings_btn_close: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
-    dialog_palettes_animated_settings_btn_ok: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_palettes_animated_settings: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
+    dialog_palettes_animated_settings_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    dialog_palettes_animated_settings_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     palette_animation_enabled: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     pallete_anim_setting_unk3_p1: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     pallete_anim_setting_unk4_p1: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -129,45 +113,23 @@ class StMapBgBgPage(Gtk.Box):
     pallete_anim_setting_unk4_p15: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     pallete_anim_setting_unk3_p16: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     pallete_anim_setting_unk4_p16: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     dialog_settings: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_settings_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_settings_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     settings_has_data_layer: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     dialog_tiles_animated_export: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
-    dialog_tiles_animated_export_btn_ok: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_export_label_sep: Gtk.Label = cast(
-        Gtk.Label, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_export_radio_sep: Gtk.RadioButton = cast(
-        Gtk.RadioButton, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_export_radio_single: Gtk.RadioButton = cast(
-        Gtk.RadioButton, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_export_select_bpa: Gtk.ComboBox = cast(
-        Gtk.ComboBox, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_export_export_btn: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_export_import_btn: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    dialog_tiles_animated_export_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    dialog_tiles_animated_export_label_sep: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
+    dialog_tiles_animated_export_radio_sep: Gtk.RadioButton = cast(Gtk.RadioButton, Gtk.Template.Child())
+    dialog_tiles_animated_export_radio_single: Gtk.RadioButton = cast(Gtk.RadioButton, Gtk.Template.Child())
+    dialog_tiles_animated_export_select_bpa: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
+    dialog_tiles_animated_export_export_btn: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    dialog_tiles_animated_export_import_btn: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_tiles_animated_settings: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
-    dialog_tiles_animated_settings_btn_close: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
-    dialog_tiles_animated_settings_btn_ok: Gtk.Button = cast(
-        Gtk.Button, Gtk.Template.Child()
-    )
+    dialog_tiles_animated_settings_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    dialog_tiles_animated_settings_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     bpa_enable1: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     bpa_box1: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     bpa_enable2: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
@@ -259,27 +221,19 @@ class StMapBgBgPage(Gtk.Box):
     dialog_chunks_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_chunks_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_chunks_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    chunks_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    chunks_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     chunks_import_palettes: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     dialog_map_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_map_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_map_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     map_import_layer1: Gtk.ButtonBox = cast(Gtk.ButtonBox, Gtk.Template.Child())
-    map_import_layer1_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    map_import_layer1_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     map_import_layer2: Gtk.ButtonBox = cast(Gtk.ButtonBox, Gtk.Template.Child())
-    map_import_layer2_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    map_import_layer2_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     dialog_tiles_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_tiles_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_tiles_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    tiles_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    tiles_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
 
     def __init__(self, module: MapBgModule, item_data: int):
         super().__init__()
@@ -389,12 +343,8 @@ class StMapBgBgPage(Gtk.Box):
                 self.last_bma = self.bma.deepcopy()
             self.bg_draw_is_clicked = True
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
-                snap_x = correct_mouse_x - correct_mouse_x % (
-                    self.bma.tiling_width * BPC_TILE_DIM
-                )
-                snap_y = correct_mouse_y - correct_mouse_y % (
-                    self.bma.tiling_height * BPC_TILE_DIM
-                )
+                snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
+                snap_y = correct_mouse_y - correct_mouse_y % (self.bma.tiling_height * BPC_TILE_DIM)
             else:
                 snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
                 snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
@@ -415,12 +365,8 @@ class StMapBgBgPage(Gtk.Box):
         correct_mouse_y = int(motion.y / self.scale_factor)
         if self.drawer:
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
-                snap_x = correct_mouse_x - correct_mouse_x % (
-                    self.bma.tiling_width * BPC_TILE_DIM
-                )
-                snap_y = correct_mouse_y - correct_mouse_y % (
-                    self.bma.tiling_height * BPC_TILE_DIM
-                )
+                snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
+                snap_y = correct_mouse_y - correct_mouse_y % (self.bma.tiling_height * BPC_TILE_DIM)
                 tilling_x = self.bma.tiling_width * BPC_TILE_DIM
                 tilling_y = self.bma.tiling_height * BPC_TILE_DIM
             else:
@@ -448,20 +394,11 @@ class StMapBgBgPage(Gtk.Box):
                     while y < y_pos[1] + tilling_y:
                         x = x_pos[0]
                         while x < x_pos[1] + tilling_x:
-                            if (
-                                self.drawer.get_interaction_mode()
-                                == DrawerInteraction.CHUNKS
-                            ):
+                            if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                                 self._set_chunk_at_pos(x, y)
-                            elif (
-                                self.drawer.get_interaction_mode()
-                                == DrawerInteraction.COL
-                            ):
+                            elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
                                 self._set_col_at_pos(x, y)
-                            elif (
-                                self.drawer.get_interaction_mode()
-                                == DrawerInteraction.DAT
-                            ):
+                            elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
                                 self._set_data_at_pos(x, y)
                             x += tilling_x
                         y += tilling_y
@@ -477,10 +414,7 @@ class StMapBgBgPage(Gtk.Box):
         if self.drawer:
             chunk_x = int(mouse_x / (self.bma.tiling_width * BPC_TILE_DIM))
             chunk_y = int(mouse_y / (self.bma.tiling_height * BPC_TILE_DIM))
-            if (
-                0 <= chunk_x < self.bma.map_width_chunks
-                and 0 <= chunk_y < self.bma.map_height_chunks
-            ):
+            if 0 <= chunk_x < self.bma.map_width_chunks and 0 <= chunk_y < self.bma.map_height_chunks:
                 # Set chunk at current position
                 self.mark_as_modified()
                 self.bma.place_chunk(
@@ -495,10 +429,7 @@ class StMapBgBgPage(Gtk.Box):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
-            if (
-                0 <= tile_x < self.bma.map_width_camera
-                and 0 <= tile_y < self.bma.map_height_camera
-            ):
+            if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
                 # Set collision at current position
                 self.mark_as_modified()
                 self.bma.place_collision(
@@ -512,15 +443,10 @@ class StMapBgBgPage(Gtk.Box):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
-            if (
-                0 <= tile_x < self.bma.map_width_camera
-                and 0 <= tile_y < self.bma.map_height_camera
-            ):
+            if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
                 # Set data value at current position
                 self.mark_as_modified()
-                self.bma.place_data(
-                    tile_x, tile_y, self.drawer.get_interaction_dat_value()
-                )
+                self.bma.place_data(tile_x, tile_y, self.drawer.get_interaction_dat_value())
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = (icon_view.get_model(), icon_view.get_selected_items())
@@ -577,9 +503,7 @@ class StMapBgBgPage(Gtk.Box):
             associated = self.module.get_associated_script_map(self.item_data)
             if associated is None:
                 raise ValueError()
-            self.module.project.request_open(
-                OpenRequest(REQUEST_TYPE_SCENE, associated.name), True
-            )
+            self.module.project.request_open(OpenRequest(REQUEST_TYPE_SCENE, associated.name), True)
         except ValueError:
             md = SkyTempleMessageDialog(
                 MainController.window(),
@@ -767,10 +691,7 @@ class StMapBgBgPage(Gtk.Box):
                                 break
                         if self.weird_palette:
                             break
-                has_pal_ani = any(
-                    self.bpl.is_palette_affected_by_animation(chunk.pal_idx)
-                    for chunk in chunk_data
-                )
+                has_pal_ani = any(self.bpl.is_palette_affected_by_animation(chunk.pal_idx) for chunk in chunk_data)
                 len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
                 for pal_ani in range(0, len_pal_ani):
                     # For each frame of tile animation...
@@ -779,9 +700,7 @@ class StMapBgBgPage(Gtk.Box):
                     for img in chunk_images:
                         # Switch out the palette with that from the palette animation
                         if has_pal_ani:
-                            pal_for_frame = itertools.chain.from_iterable(
-                                self.bpl.apply_palette_animations(pal_ani)
-                            )
+                            pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
                             img.putpalette(pal_for_frame)
                         # Remove alpha first
                         img_mask = img.copy()
@@ -795,18 +714,14 @@ class StMapBgBgPage(Gtk.Box):
             for bpa in self.bpas:
                 if bpa is not None:
                     single_bpa_duration = (
-                        max(info.duration_per_frame for info in bpa.frame_info)
-                        if len(bpa.frame_info) > 0
-                        else 9999
+                        max(info.duration_per_frame for info in bpa.frame_info) if len(bpa.frame_info) > 0 else 9999
                     )
                     if single_bpa_duration > self.bpa_durations:
                         self.bpa_durations = single_bpa_duration
             # TODO: No BPL animations at different speeds supported at the moment
             self.pal_ani_durations = 0
             if self.bpl.has_palette_animation:
-                self.pal_ani_durations = max(
-                    spec.duration_per_frame for spec in self.bpl.animation_specs
-                )
+                self.pal_ani_durations = max(spec.duration_per_frame for spec in self.bpl.animation_specs)
         self.set_warning_palette()
 
     def _init_drawer(self):
@@ -824,9 +739,7 @@ class StMapBgBgPage(Gtk.Box):
         self.bg_draw_event_box.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
         self.bg_draw_event_box.connect("button-press-event", self.on_bg_draw_click)
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
-        self.bg_draw_event_box.connect(
-            "motion-notify-event", self.on_bg_draw_mouse_move
-        )
+        self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
         self.bg_draw = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
         bg_draw_sw.add(self.bg_draw_event_box)
@@ -889,9 +802,7 @@ class StMapBgBgPage(Gtk.Box):
         icon_view.set_model(store)
         icon_view.pack_start(self.current_icon_view_renderer, True)
         icon_view.add_attribute(self.current_icon_view_renderer, "chunkidx", 0)
-        icon_view.connect(
-            "selection-changed", self.on_current_icon_view_selection_changed
-        )
+        icon_view.connect("selection-changed", self.on_current_icon_view_selection_changed)
         for idx in range(0, len(self.chunks_surfaces[layer_number])):
             store.append([idx])
         siter = store.get_iter_first()
@@ -939,9 +850,7 @@ class StMapBgBgPage(Gtk.Box):
         if page_name == "bg_layer2" and self.bma.number_of_layers < 2:
             # Layer 2: Does not exist
             label: Gtk.Label = Gtk.Label.new(
-                _(
-                    "This map only has one layer.\nYou can add a second layer at Map > Settings."
-                )
+                _("This map only has one layer.\nYou can add a second layer at Map > Settings.")
             )
             label.set_vexpand(True)
             label.show()
@@ -954,28 +863,20 @@ class StMapBgBgPage(Gtk.Box):
             notebook_page.pack_start(layers_box, True, True, 0)
             toolbox_box_child_layers_parent = toolbox_box_child_layers.get_parent()
             if toolbox_box_child_layers_parent:
-                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(
-                    toolbox_box_child_layers
-                )
+                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(toolbox_box_child_layers)
             toolbox_box.pack_start(toolbox_box_child_layers, True, True, 0)
             self._init_chunks_icon_view(0 if page_name == "bg_layer1" else 1)
             self._init_drawer_layer_selected()
         elif page_name == "bg_col1" and self.bma.number_of_collision_layers < 1:
             # Collision 1: Does not exist
-            label = Gtk.Label.new(
-                _(
-                    "This map has no collision.\nYou can add collision at Map > Settings."
-                )
-            )
+            label = Gtk.Label.new(_("This map has no collision.\nYou can add collision at Map > Settings."))
             label.set_vexpand(True)
             label.show()
             notebook_page.add(label)
         elif page_name == "bg_col2" and self.bma.number_of_collision_layers < 2:
             # Collision 2: Does not exist
             label = Gtk.Label.new(
-                _(
-                    "This map has no second collision layer.\nYou can add a second collision layer at Map > Settings."
-                )
+                _("This map has no second collision layer.\nYou can add a second collision layer at Map > Settings.")
             )
             label.set_vexpand(True)
             label.show()
@@ -988,18 +889,12 @@ class StMapBgBgPage(Gtk.Box):
             notebook_page.pack_start(layers_box, True, True, 0)
             toolbox_box_child_layers_parent = toolbox_box_child_layers.get_parent()
             if toolbox_box_child_layers_parent:
-                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(
-                    toolbox_box_child_collision
-                )
+                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(toolbox_box_child_collision)
             toolbox_box.pack_start(toolbox_box_child_collision, True, True, 0)
             self._init_drawer_collision_selected(0 if page_name == "bg_col1" else 1)
         elif page_name == "bg_data" and self.bma.unk6 < 1:
             # Data Layer: Does not exist
-            label = Gtk.Label.new(
-                _(
-                    "This map has no data layer.\nYou can add a data layer at Map > Settings."
-                )
-            )
+            label = Gtk.Label.new(_("This map has no data layer.\nYou can add a data layer at Map > Settings."))
             label.set_vexpand(True)
             label.show()
             notebook_page.add(label)
@@ -1011,9 +906,7 @@ class StMapBgBgPage(Gtk.Box):
             notebook_page.pack_start(layers_box, True, True, 0)
             toolbox_box_child_data_parent = toolbox_box_child_data.get_parent()
             if toolbox_box_child_data_parent:
-                typing.cast(Gtk.Container, toolbox_box_child_data_parent).remove(
-                    toolbox_box_child_data
-                )
+                typing.cast(Gtk.Container, toolbox_box_child_data_parent).remove(toolbox_box_child_data)
             toolbox_box.pack_start(toolbox_box_child_data, True, True, 0)
             self._init_data_layer_combobox()
             self._init_drawer_data_layer_selected()
@@ -1030,9 +923,7 @@ class StMapBgBgPage(Gtk.Box):
         self.filename_bpl.set_text(level_entry.bpl_name + BPL_EXT)
         for i in range(0, 8):
             if level_entry.bpa_names[i] is not None:
-                getattr(self, f"filename_bpa{i + 1}").set_text(
-                    level_entry.bpa_names[i] + BPA_EXT
-                )
+                getattr(self, f"filename_bpa{i + 1}").set_text(level_entry.bpa_names[i] + BPA_EXT)
             else:
                 getattr(self, f"filename_bpa{i + 1}").set_text("n/a")
 
@@ -1040,18 +931,8 @@ class StMapBgBgPage(Gtk.Box):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
         assert self.bg_draw is not None
         self.bg_draw.set_size_request(
-            round(
-                self.bma.map_width_chunks
-                * self.bma.tiling_width
-                * BPC_TILE_DIM
-                * self.scale_factor
-            ),
-            round(
-                self.bma.map_height_chunks
-                * self.bma.tiling_height
-                * BPC_TILE_DIM
-                * self.scale_factor
-            ),
+            round(self.bma.map_width_chunks * self.bma.tiling_width * BPC_TILE_DIM * self.scale_factor),
+            round(self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM * self.scale_factor),
         )
         if self.drawer:
             self.drawer.set_scale(self.scale_factor)
@@ -1095,9 +976,7 @@ class StMapBgBgPage(Gtk.Box):
                 break
         info_bar = self.editor_rest_room_note
         if mode_10_or_11_level:
-            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = (
-                self.module.get_mapping_dungeon_assets()
-            )
+            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
             with dungeon_bin_context as dungeon_bin:
                 mapping = resolve_mapping_for_level(
                     mode_10_or_11_level,
@@ -1109,9 +988,7 @@ class StMapBgBgPage(Gtk.Box):
                 )
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
-                self._tileset_drawer_overlay = MapTilesetOverlay(
-                    dma, dpc, dpci, dpl, fixed_room
-                )
+                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
                 if self.drawer:
                     self.drawer.add_overlay(self._tileset_drawer_overlay)
             else:
@@ -1126,32 +1003,24 @@ class StMapBgBgPage(Gtk.Box):
         if map_list.find_bma(entry.bma_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bma_name, BMA_EXT)
-            self.module.project.create_new_file(
-                new_rom_filename, self.bma, FileType.BMA
-            )
+            self.module.project.create_new_file(new_rom_filename, self.bma, FileType.BMA)
             entry.bma_name = new_name
         if map_list.find_bpl(entry.bpl_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bpl_name, BPL_EXT)
-            self.module.project.create_new_file(
-                new_rom_filename, self.bpl, FileType.BPL
-            )
+            self.module.project.create_new_file(new_rom_filename, self.bpl, FileType.BPL)
             entry.bpl_name = new_name
         if map_list.find_bpc(entry.bpc_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bpc_name, BPC_EXT)
-            self.module.project.create_new_file(
-                new_rom_filename, self.bpc, FileType.BPC
-            )
+            self.module.project.create_new_file(new_rom_filename, self.bpc, FileType.BPC)
             entry.bpc_name = new_name
         for bpa_id, bpa in enumerate(entry.bpa_names):
             if bpa is not None:
                 if map_list.find_bpa(bpa) > 1:
                     self._was_asset_copied = True
                     new_name, new_rom_filename = self._find_new_name(bpa, BPA_EXT)
-                    self.module.project.create_new_file(
-                        new_rom_filename, self.bpas[bpa_id], FileType.BPA
-                    )
+                    self.module.project.create_new_file(new_rom_filename, self.bpas[bpa_id], FileType.BPA)
                     entry.bpa_names[bpa_id] = new_name
 
     def _find_new_name(self, name_upper, ext):

@@ -37,19 +37,13 @@ async def load_view(
     item_data: Any,
     main_controller: MainController,
 ):
-    with record_transaction(
-        f"{module.__class__.__name__}/{view.__name__}", tags={"item-data": item_data}
-    ):
+    with record_transaction(f"{module.__class__.__name__}/{view.__name__}", tags={"item-data": item_data}):
         if issubclass(view, Gtk.Widget):
             try:
                 # We use type: ignore here because there is an implicit contract that widgets used
                 # for views must take these two arguments.
                 view_instance = view(module=module, item_data=item_data)  # type: ignore
-                GLib.idle_add(
-                    lambda: main_controller.on_view_loaded(
-                        module, view_instance, item_data
-                    )
-                )
+                GLib.idle_add(lambda: main_controller.on_view_loaded(module, view_instance, item_data))
             except Exception as ex:
                 GLib.idle_add(lambda ex=ex: main_controller.on_view_loaded_error(ex))
         elif issubclass(view, AbstractController):
@@ -57,11 +51,7 @@ async def load_view(
             try:
                 controller: AbstractController = view(module, item_data)
                 await controller.async_init()
-                GLib.idle_add(
-                    lambda: main_controller.on_view_loaded(
-                        module, controller, item_data
-                    )
-                )
+                GLib.idle_add(lambda: main_controller.on_view_loaded(module, controller, item_data))
             except Exception as ex:
                 GLib.idle_add(lambda ex=ex: main_controller.on_view_loaded_error(ex))
         else:

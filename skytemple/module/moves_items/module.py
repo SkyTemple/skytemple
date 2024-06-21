@@ -132,9 +132,7 @@ class MovesItemsModule(AbstractModule):
 
         logger.debug("Building item tree...")
         for i, _item in enumerate(self.get_item_p().item_list):
-            name = self.project.get_string_provider().get_value(
-                StringType.ITEM_NAMES, i
-            )
+            name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_iters[i] = item_tree.add_entry(
                 root_items,
                 ItemTreeEntry(
@@ -148,9 +146,7 @@ class MovesItemsModule(AbstractModule):
 
         logger.debug("Building move tree...")
         for i, __item in enumerate(self.get_waza_p().moves):
-            name = self.project.get_string_provider().get_value(
-                StringType.MOVE_NAMES, i
-            )
+            name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
             self.move_iters[i] = item_tree.add_entry(
                 root_moves,
                 ItemTreeEntry(
@@ -204,9 +200,7 @@ class MovesItemsModule(AbstractModule):
 
         # Reload item categories:
         conf = self.project.get_rom_module().get_static_data()
-        cats: dict[Pmd2DungeonItemCategory, list[int]] = {
-            x: [] for x in conf.dungeon_data.item_categories.values()
-        }
+        cats: dict[Pmd2DungeonItemCategory, list[int]] = {x: [] for x in conf.dungeon_data.item_categories.values()}
 
         for idx, entry in enumerate(self.get_item_p().item_list):
             cats[conf.dungeon_data.item_categories[entry.category]].append(idx)
@@ -223,17 +217,13 @@ class MovesItemsModule(AbstractModule):
     def get_i2n(self, in_lang: str) -> list[u16]:
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
-        i2n_model = self.project.open_file_in_rom(
-            f"BALANCE/{lang.sort_lists.i2n}", ValListHandler
-        )
+        i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         return i2n_model.get_list()
 
     def set_i2n(self, in_lang: str, values: list[u16]):
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
-        i2n_model = self.project.open_file_in_rom(
-            f"BALANCE/{lang.sort_lists.i2n}", ValListHandler
-        )
+        i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         i2n_model.set_list(values)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.i2n}")
         self._item_tree.mark_as_modified(self._item_keys_tree_iter, RecursionType.UP)
@@ -244,9 +234,7 @@ class MovesItemsModule(AbstractModule):
         # Mark as modified in tree
         self._item_tree.mark_as_modified(self.move_iters[move_id], RecursionType.UP)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StMovesItemsMovePage):
             pass  # todo
         if isinstance(open_view, StMovesItemsItemPage):

@@ -36,11 +36,7 @@ class DungeonPalettesProvider(AbstractTilePalettesProvider):
         return pal_idx >= 10 and self.dpla.has_for_palette(pal_idx - 10)
 
     def animation_length(self):
-        ani_pal_lengths = [
-            self.dpla.get_frame_count_for_palette(x)
-            for x in (0, 1)
-            if self.dpla.has_for_palette(x)
-        ]
+        ani_pal_lengths = [self.dpla.get_frame_count_for_palette(x) for x in (0, 1) if self.dpla.has_for_palette(x)]
         if len(ani_pal_lengths) < 1:
             return 0
         if len(ani_pal_lengths) < 2:

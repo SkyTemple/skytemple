@@ -70,9 +70,7 @@ class SkyTempleSettingsStore:
                 with open_utf8(self.config_file, "r") as f:
                     self.loaded_config.read_file(f)
             except BaseException as err:
-                logger.error(
-                    "Error reading config, falling back to default.", exc_info=err
-                )
+                logger.error("Error reading config, falling back to default.", exc_info=err)
 
     def get_recent_files(self) -> list[str]:
         recents = []
@@ -194,26 +192,14 @@ class SkyTempleSettingsStore:
 
     def get_integration_discord_enabled(self) -> bool:
         if SECT_INTEGRATION_DISCORD in self.loaded_config:
-            if (
-                KEY_INTEGRATION_DISCORD_DISCORD_ENABLED
-                in self.loaded_config[SECT_INTEGRATION_DISCORD]
-            ):
-                return (
-                    int(
-                        self.loaded_config[SECT_INTEGRATION_DISCORD][
-                            KEY_INTEGRATION_DISCORD_DISCORD_ENABLED
-                        ]
-                    )
-                    > 0
-                )
+            if KEY_INTEGRATION_DISCORD_DISCORD_ENABLED in self.loaded_config[SECT_INTEGRATION_DISCORD]:
+                return int(self.loaded_config[SECT_INTEGRATION_DISCORD][KEY_INTEGRATION_DISCORD_DISCORD_ENABLED]) > 0
         return True  # default is enabled.
 
     def set_integration_discord_enabled(self, value: bool):
         if SECT_INTEGRATION_DISCORD not in self.loaded_config:
             self.loaded_config[SECT_INTEGRATION_DISCORD] = {}
-        self.loaded_config[SECT_INTEGRATION_DISCORD][
-            KEY_INTEGRATION_DISCORD_DISCORD_ENABLED
-        ] = "1" if value else "0"
+        self.loaded_config[SECT_INTEGRATION_DISCORD][KEY_INTEGRATION_DISCORD_DISCORD_ENABLED] = "1" if value else "0"
         self._save()
 
     def get_allow_sentry(self) -> bool:
@@ -247,10 +233,7 @@ class SkyTempleSettingsStore:
     def get_implementation_type(self) -> ImplementationType:
         if SECT_GENERAL in self.loaded_config:
             if KEY_USE_NATIVE_FILE_HANDLERS in self.loaded_config[SECT_GENERAL]:
-                if (
-                    int(self.loaded_config[SECT_GENERAL][KEY_USE_NATIVE_FILE_HANDLERS])
-                    <= 0
-                ):
+                if int(self.loaded_config[SECT_GENERAL][KEY_USE_NATIVE_FILE_HANDLERS]) <= 0:
                     return ImplementationType.PYTHON
         return ImplementationType.NATIVE
 
@@ -265,9 +248,7 @@ class SkyTempleSettingsStore:
     def get_async_configuration(self) -> AsyncConfiguration:
         if SECT_GENERAL in self.loaded_config:
             if KEY_ASYNC_CONFIGURATION in self.loaded_config[SECT_GENERAL]:
-                return AsyncConfiguration(
-                    self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION]
-                )
+                return AsyncConfiguration(self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION])
         return AsyncConfiguration.default()
 
     def set_async_configuration(self, value: AsyncConfiguration):

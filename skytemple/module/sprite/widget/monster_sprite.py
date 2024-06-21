@@ -44,9 +44,7 @@ logger = logging.getLogger(__name__)
 FPS = 30
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "sprite", "monster_sprite.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "sprite", "monster_sprite.ui"))
 class StSpriteMonsterSpritePage(Gtk.Box):
     __gtype_name__ = "StSpriteMonsterSpritePage"
     module: SpriteModule
@@ -90,9 +88,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         self._drawing_is_active = 0
         self._draw_area: Gtk.DrawingArea | None = None
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
-        self._rendered_frame_info: list[
-            tuple[int, tuple[cairo.Surface, int, int, int, int]]
-        ] = []
+        self._rendered_frame_info: list[tuple[int, tuple[cairo.Surface, int, int, int, int]]] = []
         assert self.module.is_idx_supported(self.item_data)
         self._draw_area = self.draw_sprite
         if self.module.get_gfxcrunch().is_available():  # noqa: W291
@@ -171,9 +167,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         dialog = Gtk.FileChooserNative.new(
             _("Export spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER
-            if not is_zip
-            else Gtk.FileChooserAction.SAVE,
+            Gtk.FileChooserAction.SELECT_FOLDER if not is_zip else Gtk.FileChooserAction.SAVE,
             _("_Save"),
             None,
         )
@@ -184,30 +178,18 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                monster: WanFile = self.module.get_monster_monster_sprite_chara(
-                    self.item_data
-                )
-                ground: WanFile = self.module.get_monster_ground_sprite_chara(
-                    self.item_data
-                )
-                attack: WanFile = self.module.get_monster_attack_sprite_chara(
-                    self.item_data
-                )
+                monster: WanFile = self.module.get_monster_monster_sprite_chara(self.item_data)
+                ground: WanFile = self.module.get_monster_ground_sprite_chara(self.item_data)
+                attack: WanFile = self.module.get_monster_attack_sprite_chara(self.item_data)
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 merged.sdwSize = self._get_shadow_size_cb()
                 try:
                     animation_names = (
-                        self.module.project.get_rom_module()
-                        .get_static_data()
-                        .animation_names[self.item_data]
+                        self.module.project.get_rom_module().get_static_data().animation_names[self.item_data]
                     )
                 except KeyError:
                     # Fall back to Bulbasaur
-                    animation_names = (
-                        self.module.project.get_rom_module()
-                        .get_static_data()
-                        .animation_names[0]
-                    )
+                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[0]
                 if not is_zip:
                     FileType.WAN.CHARA.export_sheets(fn, merged, animation_names)
                 else:
@@ -224,9 +206,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
                 md.run()
                 md.destroy()
             except BaseException as e:
-                display_error(
-                    sys.exc_info(), str(e), _("Error exporting the spritesheet.")
-                )
+                display_error(sys.exc_info(), str(e), _("Error exporting the spritesheet."))
 
     @Gtk.Template.Callback()
     def on_button_import_clicked(self, w: Gtk.MenuToolButton):
@@ -237,9 +217,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
             Gtk.ButtonsType.OK,
             _("To import select the archive that contains the spritesheets.")
             if self._zip_is_active()
-            else _(
-                "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-            ),
+            else _("To import select the directory of the spritesheets. If it is still zipped, unzip it first."),
             title="SkyTemple",
         )
         md.run()
@@ -258,9 +236,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
             )
             + _("To import select the archive that contains the spritesheets.")
             if self._zip_is_active()
-            else _(
-                "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-            ),
+            else _("To import select the directory of the spritesheets. If it is still zipped, unzip it first."),
             title="SkyTemple",
         )
         response = md.run()
@@ -268,18 +244,14 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         if response == Gtk.ResponseType.OK:
             new_sprite_id = self.module.get_monster_sprite_count()
             if new_sprite_id > -1:
-                self.do_import(
-                    new_sprite_id, lambda: self._assign_new_sprite_id_cb(new_sprite_id)
-                )
+                self.do_import(new_sprite_id, lambda: self._assign_new_sprite_id_cb(new_sprite_id))
 
     def do_import(self, sprite_id: int, cb=lambda: None):
         is_zip = self._zip_is_active()
         dialog = Gtk.FileChooserNative.new(
             _("Import spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER
-            if not is_zip
-            else Gtk.FileChooserAction.OPEN,
+            Gtk.FileChooserAction.SELECT_FOLDER if not is_zip else Gtk.FileChooserAction.OPEN,
             None,
             None,
         )
@@ -313,16 +285,12 @@ class StSpriteMonsterSpritePage(Gtk.Box):
                 else:
                     with ZipFile(fn, "r") as ZipObj:
                         tree = ElementTree.fromstring(ZipObj.read("AnimData.xml"))
-                self._set_shadow_size_cb(
-                    int(assert_not_none(assert_not_none(tree.find("ShadowSize")).text))
-                )
+                self._set_shadow_size_cb(int(assert_not_none(assert_not_none(tree.find("ShadowSize")).text)))
                 # Update/create sprconf.json:
                 anims: Element = assert_not_none(tree.find("Anims"))
                 action_indices = {}
                 for action in anims:
-                    name_normal: str = assert_not_none(
-                        assert_not_none(action.find("Name")).text
-                    )
+                    name_normal: str = assert_not_none(assert_not_none(action.find("Name")).text)
                     action_index = action.find("Index")
                     if action_index is not None:
                         idx = int(assert_not_none(action_index.text))
@@ -332,15 +300,11 @@ class StSpriteMonsterSpritePage(Gtk.Box):
                 self._mark_as_modified_cb()
                 MainController.reload_view()
             except BaseException as e:
-                display_error(
-                    sys.exc_info(), str(e), _("Error importing the spritesheet.")
-                )
+                display_error(sys.exc_info(), str(e), _("Error importing the spritesheet."))
 
     @Gtk.Template.Callback()
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(
-            self.module.get_monster_ground_sprite_chara(self.item_data, raw=True)
-        )
+        self.module.export_a_sprite(self.module.get_monster_ground_sprite_chara(self.item_data, raw=True))
 
     @Gtk.Template.Callback()
     def on_import_ground_clicked(self, w: Gtk.MenuToolButton):
@@ -353,9 +317,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_export_dungeon_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(
-            self.module.get_monster_monster_sprite_chara(self.item_data, raw=True)
-        )
+        self.module.export_a_sprite(self.module.get_monster_monster_sprite_chara(self.item_data, raw=True))
 
     @Gtk.Template.Callback()
     def on_import_dungeon_clicked(self, w: Gtk.MenuToolButton):
@@ -368,9 +330,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_export_attack_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(
-            self.module.get_monster_attack_sprite_chara(self.item_data, raw=True)
-        )
+        self.module.export_a_sprite(self.module.get_monster_attack_sprite_chara(self.item_data, raw=True))
 
     @Gtk.Template.Callback()
     def on_import_attack_clicked(self, w: Gtk.MenuToolButton):
@@ -426,6 +386,4 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
-        return FileType.WAN.deserialize(
-            FileType.PKDPX.deserialize(bin_pack[file_id]).decompress()
-        )
+        return FileType.WAN.deserialize(FileType.PKDPX.deserialize(bin_pack[file_id]).decompress())

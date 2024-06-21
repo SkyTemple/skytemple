@@ -57,9 +57,7 @@ class StListsAnimationsPage(Gtk.Stack):
     general_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     items_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     monster_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_entities: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_entities: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     move_filter: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     moves_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     point_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
@@ -70,24 +68,16 @@ class StListsAnimationsPage(Gtk.Stack):
     box_list: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     animations_notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     general_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    gen_file_type: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    gen_file_type: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     gen_file_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     gen_unk1: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     gen_unk2: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     gen_sfx: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     gen_unk3: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    gen_unk4: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    gen_unk4: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     gen_point: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
-    gen_unk5: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    gen_loop: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    gen_unk5: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    gen_loop: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     btn_add_general: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_general: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     moves_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
@@ -96,39 +86,23 @@ class StListsAnimationsPage(Gtk.Stack):
     move_anim3: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     move_anim4: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     move_dir: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    move_flag1: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    move_flag2: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    move_flag3: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
-    move_flag4: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    move_flag1: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    move_flag2: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    move_flag3: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
+    move_flag4: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     move_speed: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     move_anim: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    move_point: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    move_point: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     move_sfx: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    move_spec_start: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    move_spec_entries: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    move_spec_start: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    move_spec_entries: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_add_move: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_move: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     cb_filter_move: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     spec_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     spec_entity: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     spec_anim: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    spec_point: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    spec_point: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     spec_sfx: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_add_spec: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_spec: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -163,9 +137,7 @@ class StListsAnimationsPage(Gtk.Stack):
         cb_store.clear()
         cb_store.append([-1, _("Show All")])
         for i, v in enumerate(self.animations.move_table):
-            cb_store.append(
-                [i, f"{i}: {self._string_provider.get_value(StringType.MOVE_NAMES, i)}"]
-            )
+            cb_store.append([i, f"{i}: {self._string_provider.get_value(StringType.MOVE_NAMES, i)}"])
         cb.set_active(0)
 
     def _init_trees(self):
@@ -181,9 +153,7 @@ class StListsAnimationsPage(Gtk.Stack):
         tree_store.clear()
         tmp_view = []
         for i, e in enumerate(self.animations.trap_table):
-            tmp_view.append(
-                [i, self._string_provider.get_value(StringType.TRAP_NAMES, i), e.anim]
-            )
+            tmp_view.append([i, self._string_provider.get_value(StringType.TRAP_NAMES, i), e.anim])
         for x in sorted(tmp_view, key=lambda x: x[1]):
             tree_store.append(x)
         tree_store = self.items_store
@@ -280,9 +250,7 @@ class StListsAnimationsPage(Gtk.Stack):
             else:
                 mv = self.animations.move_table[move_id]
                 delta = mv.spec_start
-                data = self.animations.special_move_table[
-                    mv.spec_start : mv.spec_start + mv.spec_entries
-                ]
+                data = self.animations.special_move_table[mv.spec_start : mv.spec_start + mv.spec_entries]
             for i, e in enumerate(data):
                 tree_store.append(
                     [
@@ -377,9 +345,7 @@ class StListsAnimationsPage(Gtk.Stack):
             store_type = self.point_store
             store_spec[treepath][3] = store_type[treeiter][0]
             store_spec[treepath][6] = store_type[treeiter][1]
-            self.animations.special_move_table[
-                store_spec[treepath][0]
-            ].point = AnimPointType(store_type[treeiter][0])  # type: ignore
+            self.animations.special_move_table[store_spec[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
             self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -387,9 +353,7 @@ class StListsAnimationsPage(Gtk.Stack):
         # Deletes all selected entries
         # Allows multiple deletion
         move_id = self._get_move_filter_id()
-        active_rows: list[Gtk.TreePath] = (
-            self.spec_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.spec_tree.get_selection().get_selected_rows()[1]
         store = self.spec_store
         for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             delta = store[v.get_indices()[0]][0]
@@ -497,9 +461,7 @@ class StListsAnimationsPage(Gtk.Stack):
             store_type = self.point_store
             store_move[treepath][13] = store_type[treeiter][0]
             store_move[treepath][17] = store_type[treeiter][1]
-            self.animations.move_table[store_move[treepath][0]].point = AnimPointType(
-                store_type[treeiter][0]
-            )  # type: ignore
+            self.animations.move_table[store_move[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
             self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -518,9 +480,7 @@ class StListsAnimationsPage(Gtk.Stack):
     def on_btn_remove_move_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows: list[Gtk.TreePath] = (
-            self.moves_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.moves_tree.get_selection().get_selected_rows()[1]
         store = self.moves_store
         for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             move_id = store[v.get_indices()[0]][0]
@@ -568,9 +528,7 @@ class StListsAnimationsPage(Gtk.Stack):
             store_type = self.type_store
             store_gen[treepath][1] = store_type[treeiter][0]
             store_gen[treepath][11] = store_type[treeiter][1]
-            self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(
-                store_type[treeiter][0]
-            )  # type: ignore
+            self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(store_type[treeiter][0])  # type: ignore
             self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -605,9 +563,7 @@ class StListsAnimationsPage(Gtk.Stack):
             store_type = self.point_store
             store_gen[treepath][8] = store_type[treeiter][0]
             store_gen[treepath][12] = store_type[treeiter][1]
-            self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(
-                store_type[treeiter][0]
-            )  # type: ignore
+            self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
             self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -622,9 +578,7 @@ class StListsAnimationsPage(Gtk.Stack):
     def on_btn_remove_general_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows: list[Gtk.TreePath] = (
-            self.general_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.general_tree.get_selection().get_selected_rows()[1]
         store = self.general_store
         for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             gen_id = store[v.get_indices()[0]][0]

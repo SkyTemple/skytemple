@@ -80,57 +80,29 @@ class StDungeonFixedPage(Gtk.Notebook):
     __gtype_name__ = "StDungeonFixedPage"
     module: DungeonModule
     item_data: int
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     ovl_add_entity: Gtk.Overlay = cast(Gtk.Overlay, Gtk.Template.Child())
     ovl_add_tile: Gtk.Overlay = cast(Gtk.Overlay, Gtk.Template.Child())
     tab_scene: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     tool_scene_zoom_in: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tool_scene_zoom_out: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    tool_scene_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tool_scene_move: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_add_tile: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_add_entity: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_copy: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
+    tool_scene_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tool_scene_move: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_add_tile: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_add_entity: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_copy: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
     tool_choose_tileset: Gtk.ToolItem = cast(Gtk.ToolItem, Gtk.Template.Child())
     tool_choose_tileset_cb: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     tool_scene_goto_tileset: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tb_info_layer: Gtk.ToolItem = cast(Gtk.ToolItem, Gtk.Template.Child())
-    tb_info_layer_none: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tb_info_layer_tiles: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tb_info_layer_items: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tb_info_layer_monsters: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tb_info_layer_traps: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_fullmap: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
+    tb_info_layer_none: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tb_info_layer_tiles: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tb_info_layer_items: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tb_info_layer_monsters: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tb_info_layer_traps: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_fullmap: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
     utility_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
     utility_default: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     utility_tile_frame: Gtk.Frame = cast(Gtk.Frame, Gtk.Template.Child())
@@ -204,21 +176,15 @@ class StDungeonFixedPage(Gtk.Notebook):
         self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
             self.enemy_settings_name[spawn_type.value] = f"{spawn_type.description}"
-            self.long_enemy_settings_name[spawn_type.value] = (
-                f"{spawn_type.value}: {spawn_type.description}"
-            )
+            self.long_enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
         self.monster_names = {}
         self.long_monster_names = {}
         length = len(self.module.get_monster_md().entries)
         num_entities = FileType.MD.properties().num_entities
         for i, entry in enumerate(self.module.get_monster_md().entries):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, i % num_entities
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % num_entities)
             self.monster_names[i] = f"{name}"
-            self.long_monster_names[i] = (
-                f"{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})"
-            )
+            self.long_monster_names[i] = f"{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})"
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _("(Special?)")
             self.long_monster_names[i] = _("(Special?)") + f" (${i:04})"
@@ -228,9 +194,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         self._bg_draw_is_clicked__drag_active = False
         self._bg_draw_is_clicked__location: tuple[int, int] | None = None
         self._currently_selected = None
-        self.script_data = (
-            self.module.project.get_rom_module().get_static_data().script_data
-        )
+        self.script_data = self.module.project.get_rom_module().get_static_data().script_data
         self._draw = self.fixed_draw
         self._init_comboboxes()
         self._auto_select_tileset()
@@ -266,9 +230,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             self._place()
             # COPY
             if self.drawer.interaction_mode == InteractionMode.COPY:
-                if self.drawer.get_cursor_is_in_bounds(
-                    self.floor.width, self.floor.height, True
-                ):
+                if self.drawer.get_cursor_is_in_bounds(self.floor.width, self.floor.height, True):
                     x, y = self.drawer.get_cursor_pos_in_grid(True)
                     action_to_copy = self.floor.actions[y * self.floor.width + x]
                     if isinstance(action_to_copy, TileRule):
@@ -297,9 +259,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                         )
             # SELECT
             elif self.drawer.interaction_mode == InteractionMode.SELECT:
-                if self.drawer.get_cursor_is_in_bounds(
-                    self.floor.width, self.floor.height, True
-                ):
+                if self.drawer.get_cursor_is_in_bounds(self.floor.width, self.floor.height, True):
                     self._currently_selected = self.drawer.get_cursor_pos_in_grid(True)
         if self._draw:
             self._draw.queue_draw()
@@ -326,13 +286,11 @@ class StDungeonFixedPage(Gtk.Notebook):
                     old_x, old_y = self.drawer.get_selected()
                     # abort if dragging onto same tile
                     if old_x != tile_x or old_y != tile_y:
-                        self.floor.actions[tile_y * self.floor.width + tile_x] = (
-                            self.floor.actions[old_y * self.floor.width + old_x]
-                        )
+                        self.floor.actions[tile_y * self.floor.width + tile_x] = self.floor.actions[
+                            old_y * self.floor.width + old_x
+                        ]
                         # Insert floor at old position
-                        self.floor.actions[old_y * self.floor.width + old_x] = TileRule(
-                            TileRuleType.FLOOR_ROOM, None
-                        )
+                        self.floor.actions[old_y * self.floor.width + old_x] = TileRule(TileRuleType.FLOOR_ROOM, None)
                         self.module.mark_fixed_floor_as_modified(self.item_data)
         self._currently_selected = None
         self._bg_draw_is_clicked__location = None
@@ -357,25 +315,19 @@ class StDungeonFixedPage(Gtk.Notebook):
                     start_x, start_y = self._bg_draw_is_clicked__location
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
-                        abs(start_x - this_x)
-                        > DPC_TILING_DIM * DPCI_TILE_DIM * 0.7 * self._scale_factor
-                        or abs(start_y - this_y)
-                        > DPC_TILING_DIM * DPCI_TILE_DIM * 0.7 * self._scale_factor
+                        abs(start_x - this_x) > DPC_TILING_DIM * DPCI_TILE_DIM * 0.7 * self._scale_factor
+                        or abs(start_y - this_y) > DPC_TILING_DIM * DPCI_TILE_DIM * 0.7 * self._scale_factor
                     ):
                         start_x /= self._scale_factor
                         start_y /= self._scale_factor
                         if self.drawer.get_pos_is_in_bounds(
                             start_x, start_y, self.floor.width, self.floor.height, True
                         ):
-                            self.drawer.set_selected(
-                                self.drawer.get_pos_in_grid(start_x, start_y, True)
-                            )
+                            self.drawer.set_selected(self.drawer.get_pos_in_grid(start_x, start_y, True))
                             self._bg_draw_is_clicked__drag_active = True
                             self.drawer.set_drag_position(
-                                int((start_x - 4) / self._scale_factor)
-                                - self._currently_selected[0],
-                                int((start_y - 4) / self._scale_factor)
-                                - self._currently_selected[1],
+                                int((start_x - 4) / self._scale_factor) - self._currently_selected[0],
+                                int((start_y - 4) / self._scale_factor) - self._currently_selected[1],
                             )
             if self._draw:
                 self._draw.queue_draw()
@@ -393,9 +345,7 @@ class StDungeonFixedPage(Gtk.Notebook):
     @Gtk.Template.Callback()
     def on_btn_goto_entity_editor_clicked(self, *args):
         idx = self.utility_entity_type.get_active()
-        self.module.project.request_open(
-            OpenRequest(REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, idx)
-        )
+        self.module.project.request_open(OpenRequest(REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, idx))
 
     @Gtk.Template.Callback()
     def on_utility_tile_direction_changed(self, *args):
@@ -409,9 +359,7 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     @Gtk.Template.Callback()
     def on_tool_scene_goto_tileset_clicked(self, *args):
-        self.module.project.request_open(
-            OpenRequest(REQUEST_TYPE_DUNGEON_TILESET, self.tileset_id)
-        )
+        self.module.project.request_open(OpenRequest(REQUEST_TYPE_DUNGEON_TILESET, self.tileset_id))
 
     @Gtk.Template.Callback()
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
@@ -495,9 +443,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         self._update_scales()
 
     @Gtk.Template.Callback()
-    def on_tool_fullmap_toggled(
-        self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False
-    ):
+    def on_tool_fullmap_toggled(self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False):
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
             if not ignore_scaling:
@@ -512,12 +458,8 @@ class StDungeonFixedPage(Gtk.Notebook):
                 self.__class__._last_scale_factor = self._scale_factor
             minimap_provider = MinimapProvider(self.module.get_zmappa())
             if self.drawer:
-                self.drawer.set_entity_renderer(
-                    MinimapEntityRenderer(self.drawer, minimap_provider)
-                )
-                self.drawer.set_tileset_renderer(
-                    FixedFloorDrawerMinimap(minimap_provider)
-                )
+                self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
+                self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
         self._update_scales()
         if self._draw:
             self._draw.queue_draw()
@@ -614,9 +556,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         try:
             width = int(self.settings_width.get_text())
             height = int(self.settings_height.get_text())
-            if (
-                width == 0 or height == 0
-            ):  # 0x0 rooms are allowed to be consistent with the fact that they exist
+            if width == 0 or height == 0:  # 0x0 rooms are allowed to be consistent with the fact that they exist
                 width = height = 0
             assert width >= 0 and height >= 0
         except (ValueError, AssertionError):
@@ -634,9 +574,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                 Gtk.DialogFlags.MODAL,
                 Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.YES_NO,
-                _(
-                    "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
-                ),
+                _("You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"),
                 title=_("Warning!"),
             )
             response = md.run()
@@ -650,9 +588,7 @@ class StDungeonFixedPage(Gtk.Notebook):
     @Gtk.Template.Callback()
     def on_btn_help_music_clicked(self, *args):
         self._help(
-            _(
-                "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
-            )
+            _("If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead.")
         )
 
     @Gtk.Template.Callback()
@@ -673,11 +609,7 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     @Gtk.Template.Callback()
     def on_btn_help_defeat_enemies_clicked(self, *args):
-        self._help(
-            _(
-                "If enabled, the floor is exited after all the enemies have been defeated"
-            )
-        )
+        self._help(_("If enabled, the floor is exited after all the enemies have been defeated"))
 
     @Gtk.Template.Callback()
     def on_btn_help_unk5_clicked(self, *args):
@@ -763,9 +695,7 @@ class StDungeonFixedPage(Gtk.Notebook):
     def _init_entity_combobox(self):
         store = Gtk.ListStore(int, str)  # id, name
         reserved_ids = [x.value for x in TileRuleType]
-        for i, (item_spawn, monster_spawn, tile_spawn, stats) in enumerate(
-            self.entity_rule_container
-        ):
+        for i, (item_spawn, monster_spawn, tile_spawn, stats) in enumerate(self.entity_rule_container):
             # Make sure we are not allowing entities which would turn into tile rules upon saving!
             if i + 16 in reserved_ids:
                 continue
@@ -813,20 +743,15 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     def _place(self):
         assert self.floor is not None and self.drawer is not None
-        if (
-            self._bg_draw_is_clicked__press_active
-            and self.drawer.get_cursor_is_in_bounds(
-                self.floor.width, self.floor.height, True
-            )
+        if self._bg_draw_is_clicked__press_active and self.drawer.get_cursor_is_in_bounds(
+            self.floor.width, self.floor.height, True
         ):
             x, y = self.drawer.get_cursor_pos_in_grid(True)
             if (
                 self.drawer.interaction_mode == InteractionMode.PLACE_TILE
                 or self.drawer.interaction_mode == InteractionMode.PLACE_ENTITY
             ):
-                self.floor.actions[y * self.floor.width + x] = (
-                    self.drawer.get_selected()
-                )
+                self.floor.actions[y * self.floor.width + x] = self.drawer.get_selected()
                 self.module.mark_fixed_floor_as_modified(self.item_data)
 
     @staticmethod
@@ -838,9 +763,7 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     def _auto_select_tileset(self):
         cb: Gtk.ComboBox = self.tool_choose_tileset_cb
-        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(
-            self.item_data
-        )
+        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(self.item_data)
         cb.set_active(self.tileset_id)
 
     def _load_settings(self):
@@ -848,9 +771,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         self.settings_music.set_text(str(self.properties.music_track))
         self.settings_moves.set_active(self.properties.moves_enabled)
         self.settings_orbs.set_active(self.properties.orbs_enabled)
-        self.settings_defeat_enemies.set_active(
-            self.properties.exit_floor_when_defeating_enemies
-        )
+        self.settings_defeat_enemies.set_active(self.properties.exit_floor_when_defeating_enemies)
         self.settings_unk4.set_active(self.properties.unk4)
         self.settings_unk5.set_active(self.properties.unk5)
         self.settings_unk8.set_active(self.properties.unk8)
@@ -878,18 +799,12 @@ class StDungeonFixedPage(Gtk.Notebook):
         assert self.drawer is not None
         if self.tileset_id < TILESET_FIRST_BG:
             # Real tileset
-            self.drawer.set_tileset_renderer(
-                FixedFloorDrawerTileset(
-                    *self.module.get_dungeon_tileset(self.tileset_id)
-                )
-            )
+            self.drawer.set_tileset_renderer(FixedFloorDrawerTileset(*self.module.get_dungeon_tileset(self.tileset_id)))
         else:
             # Background to render using dummy tileset
             self.drawer.set_tileset_renderer(
                 FixedFloorDrawerBackground(
-                    *self.module.get_dungeon_background(
-                        self.tileset_id - TILESET_FIRST_BG
-                    ),
+                    *self.module.get_dungeon_background(self.tileset_id - TILESET_FIRST_BG),
                     *self.module.get_dummy_tileset(),
                 )
             )
@@ -908,19 +823,11 @@ class StDungeonFixedPage(Gtk.Notebook):
             self.drawer.set_draw_tile_grid(self.tool_scene_grid.get_active())
 
     def _update_scales(self):
-        assert (
-            self.drawer is not None
-            and self._draw is not None
-            and (self.drawer.tileset_renderer is not None)
-        )
+        assert self.drawer is not None and self._draw is not None and (self.drawer.tileset_renderer is not None)
         assert self.floor is not None
         self._draw.set_size_request(
-            (self.floor.width + 10)
-            * self.drawer.tileset_renderer.chunk_dim()
-            * self._scale_factor,
-            (self.floor.height + 10)
-            * self.drawer.tileset_renderer.chunk_dim()
-            * self._scale_factor,
+            (self.floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
+            (self.floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
         )
         self.drawer.set_scale(self._scale_factor)
         self._draw.queue_draw()
@@ -953,9 +860,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         assert self.drawer is not None
         self.drawer.set_selected(EntityRule(entity_id, dir))
         entity = self.entity_rule_container.entities[entity_id]
-        item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(
-            entity_id
-        )
+        item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(entity_id)
         self.utility_entity_frame_desc_label.set_markup(
             f"<b>Pokémon ({entity.monster_id})</b>:\n{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.long_monster_names, self.long_enemy_settings_name)}\n\n<b>{_('Stats')} ({monster_spawn.stats_entry})</b>:\n{self.module.desc_fixed_floor_stats(monster_spawn.stats_entry, stats)}\n\n<b>{_('Item')} ({entity.item_id})</b>:\n{self.module.desc_fixed_floor_item(item_spawn.item_id)}\n\n<b>{_('Tile Properties')} ({entity.tile_id})</b>:\n{self.module.desc_fixed_floor_tile(tile_spawn)}"
         )
@@ -975,9 +880,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             f"<b>{tile_rule.explanation}</b>\n{_('Type')}: {tile_rule.floor_type.name.capitalize()}\n{tile_rule.room_type.name.capitalize()}\n{_('Impassable')}: {(_('Yes') if tile_rule.impassable else _('No'))}\nAffected by Absolute Mover: {(_('Yes') if tile_rule.absolute_mover else _('No'))}\n\n{tile_rule.notes}"
         )
 
-    def _select_combobox(
-        self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]
-    ):
+    def _select_combobox(self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]):
         cb = getattr(self, cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:

@@ -44,15 +44,9 @@ class StBgpBgpPage(Gtk.Box):
     __gtype_name__ = "StBgpBgpPage"
     module: BgpModule
     item_data: int
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     men_bg_import: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_bg_export: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_tools_tilequant: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
@@ -66,9 +60,7 @@ class StBgpBgpPage(Gtk.Box):
     dialog_bg_import: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_map_import_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     dialog_map_import_btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    bg_import_file: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    bg_import_file: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
 
     def __init__(self, module: BgpModule, item_data: int):
         super().__init__()

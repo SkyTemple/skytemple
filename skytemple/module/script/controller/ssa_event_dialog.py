@@ -111,12 +111,8 @@ class SsaEventDialogController:
 
         self.parent.dialog_event.hide()
         if response == Gtk.ResponseType.OK:
-            script_id = script_store[
-                assert_not_none(self.parent.event_script.get_active_iter())
-            ][0]
-            coroutine_id = routine_store[
-                assert_not_none(self.parent.event_coroutine.get_active_iter())
-            ][0]
+            script_id = script_store[assert_not_none(self.parent.event_script.get_active_iter())][0]
+            coroutine_id = routine_store[assert_not_none(self.parent.event_coroutine.get_active_iter())][0]
             try:
                 unk2 = u16_checked(int(self.parent.event_unk2.get_text()))
             except (ValueError, OverflowError):
@@ -125,9 +121,7 @@ class SsaEventDialogController:
                 unk3 = u16_checked(int(self.parent.event_unk3.get_text()))
             except (ValueError, OverflowError):
                 unk3 = u16(0)
-            self.new_model = SsaTrigger(
-                self.scriptdata, coroutine_id, unk2, unk3, script_id
-            )
+            self.new_model = SsaTrigger(self.scriptdata, coroutine_id, unk2, unk3, script_id)
         return response
 
     def get_event(self) -> SsaTrigger | None:
@@ -141,9 +135,7 @@ class SsaEventDialogController:
         cb.pack_start(renderer_text, True)
         cb.add_attribute(renderer_text, "text", col)
 
-    def _select_in_combobox_where_callback(
-        self, cb: Gtk.ComboBox, callback: Callable[[TreeModelRow], bool]
-    ):
+    def _select_in_combobox_where_callback(self, cb: Gtk.ComboBox, callback: Callable[[TreeModelRow], bool]):
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
             m = cast(Gtk.ListStore, assert_not_none(cb.get_model()))

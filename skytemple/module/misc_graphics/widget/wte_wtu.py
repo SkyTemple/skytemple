@@ -44,30 +44,20 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "misc_graphics", "wte_wtu.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "wte_wtu.ui"))
 class StMiscGraphicsWteWtuPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsWteWtuPage"
     module: MiscGraphicsModule
     item_data: WteOpenSpec
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     image_type_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     png_filter: Gtk.FileFilter = cast(Gtk.FileFilter, Gtk.Template.Child())
     dialog_import_settings: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     btn_cancel: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
-    image_path_setting: Gtk.FileChooserButton = cast(
-        Gtk.FileChooserButton, Gtk.Template.Child()
-    )
+    image_path_setting: Gtk.FileChooserButton = cast(Gtk.FileChooserButton, Gtk.Template.Child())
     clear_image_path: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     image_type_setting: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     chk_discard_palette: Gtk.CheckButton = cast(Gtk.CheckButton, Gtk.Template.Child())
@@ -130,9 +120,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, "png")
             if self.wte.has_image():
-                self.wte.to_pil_canvas(int(self.wte_palette_variant.get_text())).save(
-                    fn
-                )
+                self.wte.to_pil_canvas(int(self.wte_palette_variant.get_text())).save(fn)
             else:
                 self.wte.to_pil_palette().save(fn)
 
@@ -159,9 +147,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
                 try:
                     img_pil = Image.open(img_fn, "r")
                 except Exception as err:
-                    display_error(
-                        sys.exc_info(), str(err), _("Filename not specified.")
-                    )
+                    display_error(sys.exc_info(), str(err), _("Filename not specified."))
                     return
                 titer = cb.get_active_iter()
                 assert titer is not None
@@ -170,9 +156,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
                 try:
                     self.wte.from_pil(img_pil, WteImageType(depth), discard)  # type: ignore
                 except ValueError as err:
-                    display_error(
-                        sys.exc_info(), str(err), _("Imported image size too big.")
-                    )
+                    display_error(sys.exc_info(), str(err), _("Imported image size too big."))
                 except AttributeError as err:
                     display_error(sys.exc_info(), str(err), _("Not an indexed image."))
                 self.module.mark_wte_as_modified(self.item_data, self.wte, self.wtu)
@@ -193,13 +177,9 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
         self.wte_palette_variant.set_range(0, self.wte.nb_palette_variants() - 1)
         dimensions: tuple[int, int] = self.wte.actual_dimensions()
         if self.wte.has_image():
-            self.lbl_canvas_size.set_text(
-                f"{self.wte.width}x{self.wte.height} [{dimensions[0]}x{dimensions[1]}]"
-            )
+            self.lbl_canvas_size.set_text(f"{self.wte.width}x{self.wte.height} [{dimensions[0]}x{dimensions[1]}]")
         else:
-            self.lbl_canvas_size.set_text(
-                f"{self.wte.width}x{self.wte.height} [No image data]"
-            )
+            self.lbl_canvas_size.set_text(f"{self.wte.width}x{self.wte.height} [No image data]")
         self.lbl_image_type.set_text(self.wte.image_type.explanation)
 
     def _init_wtu(self):
@@ -210,9 +190,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
             wtu_stack.set_visible_child(self.wtu_editor)
             wtu_store = self.wtu_store
             for entry in self.wtu.entries:
-                wtu_store.append(
-                    [str(entry.x), str(entry.y), str(entry.width), str(entry.height)]
-                )
+                wtu_store.append([str(entry.x), str(entry.y), str(entry.width), str(entry.height)])
 
     def _reinit_image(self):
         try:
@@ -290,9 +268,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
     def on_btn_remove_clicked(self, *args):
         # Deletes all selected WTU entries
         # Allows multiple deletions
-        active_rows: list[Gtk.TreePath] = (
-            self.wtu_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.wtu_tree.get_selection().get_selected_rows()[1]
         store = self.wtu_store
         for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             del store[x.get_indices()[0]]
@@ -336,9 +312,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
             ctx.paint()
             # Draw rectangles on the WTE image representing the selected WTU entries
             # Allows multiple selections
-            active_rows: list[Gtk.TreePath] = (
-                self.wtu_tree.get_selection().get_selected_rows()[1]
-            )
+            active_rows: list[Gtk.TreePath] = self.wtu_tree.get_selection().get_selected_rows()[1]
             store = self.wtu_store
             for x in active_rows:
                 row = store[x.get_indices()[0]]

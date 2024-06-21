@@ -102,11 +102,7 @@ class EventManager:
     def lost_foucs_check(self):
         """Check if both windows don't have focus."""
         self._will_check_focus = False
-        if (
-            self._a_window_had_focus
-            and not self._debugger_window_focus
-            and not self._main_window_focus
-        ):
+        if self._a_window_had_focus and not self._debugger_window_focus and not self._main_window_focus:
             self._a_window_had_focus = False
             self.trigger(EVT_FOCUS_LOST)
 

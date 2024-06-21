@@ -147,14 +147,10 @@ class RomProject:
                 exc_info = sys.exc_info()
                 cls._current = None
                 if main_controller:
-                    GLib.idle_add(
-                        lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex)
-                    )
+                    GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex))
 
     @classmethod
-    def handle_backup_restore(
-        cls, rom_fn: str, backup_fn: str, main_controller: "MainController"
-    ):
+    def handle_backup_restore(cls, rom_fn: str, backup_fn: str, main_controller: "MainController"):
         dialog: Gtk.MessageDialog = SkyTempleMessageDialog(
             main_controller.window(),
             Gtk.DialogFlags.MODAL,
@@ -234,9 +230,7 @@ class RomProject:
                     raise UserValueError(
                         _("There was an error trying to read the ROM file.")
                         + " "
-                        + _(
-                            'Are you sure you provided a ROM? A ROM usually has the file extension ".nds".'
-                        )
+                        + _('Are you sure you provided a ROM? A ROM usually has the file extension ".nds".')
                     )
             await AsyncTaskDelegator.buffer()
             self._loaded_modules = {}
@@ -245,9 +239,7 @@ class RomProject:
                 self._rom_module = Modules.get_rom_module()(self)
                 self._rom_module.load_rom_data()
                 if transaction is not None:
-                    transaction.set_tag(
-                        "rom-edition", self._rom_module.get_static_data().game_edition
-                    )
+                    transaction.set_tag("rom-edition", self._rom_module.get_static_data().game_edition)
             with record_span("sys", "init-modules"):
                 for name, module in Modules.all().items():
                     logger.debug(f"Loading module {name} for ROM...")
@@ -342,9 +334,7 @@ class RomProject:
     def get_module(self, name: Literal["dungeon"]) -> "DungeonModule": ...
 
     @overload
-    def get_module(
-        self, name: Literal["dungeon_graphics"]
-    ) -> "DungeonGraphicsModule": ...
+    def get_module(self, name: Literal["dungeon_graphics"]) -> "DungeonGraphicsModule": ...
 
     @overload
     def get_module(self, name: Literal["strings"]) -> "StringsModule": ...
@@ -417,9 +407,7 @@ class RomProject:
             with record_span("open-rom-file", file_handler_class.__name__):
                 assert self._rom is not None
                 bin = self._rom.getFileByName(file_path_in_rom)
-                self._opened_files[file_path_in_rom] = file_handler_class.deserialize(
-                    bin, **kwargs
-                )
+                self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin, **kwargs)
                 self._file_handlers[file_path_in_rom] = file_handler_class
                 self._file_handler_kwargs[file_path_in_rom] = kwargs
         return self._open_common(file_path_in_rom, threadsafe)
@@ -445,9 +433,7 @@ class RomProject:
                 assert self._rom is not None
                 bin = self._rom.getFileByName(file_path_in_rom)
                 sir0 = FileType.SIR0.deserialize(bin)
-                self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(
-                    sir0, sir0_serializable_type
-                )
+                self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(sir0, sir0_serializable_type)
                 self._file_handlers[file_path_in_rom] = FileType.SIR0
                 self._file_handler_kwargs[file_path_in_rom] = {}
         return self._open_common(file_path_in_rom, threadsafe)
@@ -468,9 +454,7 @@ class RomProject:
                     f"Tried to open {file_path_in_rom} threadsafe, but it was requested unsafe somewhere else."
                 )
             if file_path_in_rom not in self._opened_files_contexts:
-                self._opened_files_contexts[file_path_in_rom] = ModelContext(
-                    self._opened_files[file_path_in_rom]
-                )
+                self._opened_files_contexts[file_path_in_rom] = ModelContext(self._opened_files[file_path_in_rom])
             return self._opened_files_contexts[file_path_in_rom]
         elif file_path_in_rom in self._files_threadsafe:
             raise ValueError(
@@ -488,9 +472,7 @@ class RomProject:
             if file not in self._modified_files:
                 self._modified_files.append(file)
         else:
-            filename = list(self._opened_files.keys())[
-                list(self._opened_files.values()).index(file)
-            ]
+            filename = list(self._opened_files.keys())[list(self._opened_files.values()).index(file)]
             if filename not in self._modified_files:
                 self._modified_files.append(filename)
 
@@ -550,18 +532,12 @@ class RomProject:
                 await AsyncTaskDelegator.buffer()
                 if main_controller:
                     with record_span("ui", "on-saved"):
-                        GLib.idle_add(
-                            lambda: assert_not_none(main_controller).on_file_saved()
-                        )
+                        GLib.idle_add(lambda: assert_not_none(main_controller).on_file_saved())
 
             except Exception as err:
                 if main_controller:
                     exc_info = sys.exc_info()
-                    GLib.idle_add(
-                        lambda err=err: assert_not_none(
-                            main_controller
-                        ).on_file_saved_error(exc_info, err)
-                    )
+                    GLib.idle_add(lambda err=err: assert_not_none(main_controller).on_file_saved_error(exc_info, err))
 
     def prepare_save_model(self, name, assert_that=None):
         """
@@ -577,19 +553,13 @@ class RomProject:
         with context as model:
             handler = self._file_handlers[name]
             with record_span("prepare-save-model", handler.__name__):
-                logger.debug(
-                    f"Saving {name} in ROM. Model: {model}, Handler: {handler}"
-                )
+                logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
                 if handler == FileType.SIR0:
                     logger.debug("> Saving as Sir0 wrapped data.")
                     model = FileType.SIR0.wrap_obj(model)
                 if assert_that is not None:
-                    assert (
-                        assert_that is model
-                    ), "The model that is being saved must match!"
-                binary_data = handler.serialize(
-                    model, **self._file_handler_kwargs[name]
-                )
+                    assert assert_that is model, "The model that is being saved must match!"
+                binary_data = handler.serialize(model, **self._file_handler_kwargs[name])
                 self._rom.setFileByName(name, binary_data)
 
     def save_as_is(self):
@@ -625,17 +595,13 @@ class RomProject:
         assert self._rom is not None
         return path in self._rom.filenames
 
-    def create_new_file(
-        self, new_filename, model, file_handler_class: type[DataHandler[T]], **kwargs
-    ):
+    def create_new_file(self, new_filename, model, file_handler_class: type[DataHandler[T]], **kwargs):
         """Creates a new file in the ROM and fills it with the model content provided and
         writes the serialized model data there"""
         assert self._rom is not None
         copy_bin = file_handler_class.serialize(model, **kwargs)
         create_file_in_rom(self._rom, new_filename, copy_bin)
-        self._opened_files[new_filename] = file_handler_class.deserialize(
-            copy_bin, **kwargs
-        )
+        self._opened_files[new_filename] = file_handler_class.deserialize(copy_bin, **kwargs)
         self._file_handlers[new_filename] = file_handler_class
         self._file_handler_kwargs[new_filename] = kwargs
         return copy_bin
@@ -681,9 +647,7 @@ class RomProject:
     def get_binary(self, binary: Union[SectionProtocol, BinaryName, str]) -> bytes:
         assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
-            the_binary = getattr(
-                self.get_rom_module().get_static_data().bin_sections, str(binary)
-            )
+            the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
         else:
             the_binary = binary
         return get_binary_from_rom(self._rom, the_binary)
@@ -696,9 +660,7 @@ class RomProject:
         """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""
         assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
-            the_binary = getattr(
-                self.get_rom_module().get_static_data().bin_sections, str(binary)
-            )
+            the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
         else:
             the_binary = binary
         with record_span("modify-binary", the_binary.name):

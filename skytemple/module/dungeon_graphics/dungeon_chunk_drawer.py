@@ -65,9 +65,7 @@ class DungeonChunkDrawer:
 
     # noinspection PyAttributeOutsideInit
     def reset_surfaces(self, chunks_surfaces):
-        self.animation_context = AnimationContext(
-            [chunks_surfaces], 1, self.pal_ani_durations
-        )
+        self.animation_context = AnimationContext([chunks_surfaces], 1, self.pal_ani_durations)
 
     def start(self):
         """Start drawing on the DrawingArea"""
@@ -147,7 +145,5 @@ class DungeonChunkCellDrawer(DungeonChunkDrawer, Gtk.CellRenderer):
     def draw_selection(self, ctx, flags):
         if "GTK_CELL_RENDERER_SELECTED" in str(flags):
             ctx.set_source_rgba(0, 0, 90, 0.3)
-            ctx.rectangle(
-                0, 0, DPC_TILING_DIM * DPCI_TILE_DIM, DPC_TILING_DIM * DPCI_TILE_DIM
-            )
+            ctx.rectangle(0, 0, DPC_TILING_DIM * DPCI_TILE_DIM, DPC_TILING_DIM * DPCI_TILE_DIM)
             ctx.fill()

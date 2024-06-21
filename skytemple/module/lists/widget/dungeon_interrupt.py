@@ -37,9 +37,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "lists", "dungeon_interrupt.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "dungeon_interrupt.ui"))
 class StListsDungeonInterruptPage(Gtk.Stack):
     __gtype_name__ = "StListsDungeonInterruptPage"
     module: ListsModule
@@ -54,17 +52,11 @@ class StListsDungeonInterruptPage(Gtk.Stack):
     btn_help: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     interrupt_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     text_floor: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    combo_type: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    combo_game_var: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    combo_type: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    combo_game_var: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     text_param1: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     text_param2: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
-    continue_music: Gtk.CellRendererToggle = cast(
-        Gtk.CellRendererToggle, Gtk.Template.Child()
-    )
+    continue_music: Gtk.CellRendererToggle = cast(Gtk.CellRendererToggle, Gtk.Template.Child())
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
@@ -91,19 +83,13 @@ class StListsDungeonInterruptPage(Gtk.Stack):
         store = self.var_store
         store.clear()
         self.var_names = []
-        for i, g in enumerate(
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .script_data.game_variables
-        ):
+        for i, g in enumerate(self.module.project.get_rom_module().get_static_data().script_data.game_variables):
             self.var_names.append(g.name)
             store.append([i, g.name])
         store = self.dungeon_store
         store.clear()
         for i in range(len(self.inter_d.list_dungeons)):
-            store.append(
-                [i, self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, i)]
-            )
+            store.append([i, self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, i)])
         cb = self.cb_dungeon
         cb.set_active(0)
 
@@ -185,9 +171,7 @@ class StListsDungeonInterruptPage(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def on_btn_remove_clicked(self, *args):
-        active_rows: list[Gtk.TreePath] = (
-            self.interrupt_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.interrupt_tree.get_selection().get_selected_rows()[1]
         store = self.interrupt_store
         for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             del store[x.get_indices()[0]]

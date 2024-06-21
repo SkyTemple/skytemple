@@ -70,29 +70,21 @@ class StDungeonDungeonPage(Gtk.Box):
     entry_max_rescue_attempts: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_random_movement_chance: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     switch_recruiting_allowed: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    switch_dont_save_before_entering: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    switch_dont_save_before_entering: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     entry_turn_limit: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     switch_enemies_grant_exp: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     switch_leader_can_be_changed: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     switch_enemies_can_drop_chests: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     entry_max_party_members: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    switch_enemies_evolve_when_team_member_koed: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    switch_enemies_evolve_when_team_member_koed: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     switch_money_allowed: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    switch_traps_remain_invisible_on_attack: Gtk.Switch = cast(
-        Gtk.Switch, Gtk.Template.Child()
-    )
+    switch_traps_remain_invisible_on_attack: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     entry_max_items_allowed: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     btn_help_random_movement_chance: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help_enemy_evolution: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     edit_floor_count: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     label_floor_count: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
-    spin_floor_count_adjument: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    spin_floor_count_adjument: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     dialog_adjust_floor_count: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     button1: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     button2: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -108,24 +100,18 @@ class StDungeonDungeonPage(Gtk.Box):
         )
         self.restrictions = None
         if self.item_data.length_can_be_edited:
-            self.restrictions = self.module.get_dungeon_restrictions()[
-                item_data.dungeon_id
-            ]
+            self.restrictions = self.module.get_dungeon_restrictions()[item_data.dungeon_id]
         self._is_loading = True
         self.label_dungeon_name.set_text(self.dungeon_name)
         edit_text = ""
         if not self.item_data.length_can_be_edited:
-            edit_text = _(
-                "\nSince this is a Dojo Dungeon, the floor count can not be changed."
-            )
+            edit_text = _("\nSince this is a Dojo Dungeon, the floor count can not be changed.")
             self.edit_floor_count.set_sensitive(False)
             self.dungeon_restrictions_grid.set_sensitive(False)
         else:
             self._init_dungeon_restrictions()
         floor_count = self.module.get_number_floors(self.item_data.dungeon_id)
-        self.label_floor_count.set_text(
-            f(_("This dungeon has {floor_count} floors.{edit_text}"))
-        )
+        self.label_floor_count.set_text(f(_("This dungeon has {floor_count} floors.{edit_text}")))
         self._init_names()
         self._is_loading = False
 
@@ -141,9 +127,7 @@ class StDungeonDungeonPage(Gtk.Box):
             label_lang = getattr(self, f"label_lang{lang_id}")
             entry_main_lang = getattr(self, f"entry_main_lang{lang_id}")
             entry_selection_lang = getattr(self, f"entry_selection_lang{lang_id}")
-            entry_script_engine_lang = getattr(
-                self, f"entry_script_engine_lang{lang_id}"
-            )
+            entry_script_engine_lang = getattr(self, f"entry_script_engine_lang{lang_id}")
             entry_banner_lang = getattr(self, f"entry_banner_lang{lang_id}")
             if lang_id < len(langs):
                 # We have this language
@@ -192,30 +176,16 @@ class StDungeonDungeonPage(Gtk.Box):
         self.switch_recruiting_allowed.set_active(self.restrictions.recruiting_allowed)
         self.switch_level_reset.set_active(self.restrictions.level_reset)
         self.switch_money_allowed.set_active(not self.restrictions.money_allowed)
-        self.switch_leader_can_be_changed.set_active(
-            self.restrictions.leader_can_be_changed
-        )
-        self.switch_dont_save_before_entering.set_active(
-            not self.restrictions.dont_save_before_entering
-        )
-        self.switch_iq_skills_disabled.set_active(
-            not self.restrictions.iq_skills_disabled
-        )
-        self.switch_traps_remain_invisible_on_attack.set_active(
-            not self.restrictions.traps_remain_invisible_on_attack
-        )
-        self.switch_enemies_can_drop_chests.set_active(
-            self.restrictions.enemies_can_drop_chests
-        )
-        self.entry_max_rescue_attempts.set_text(
-            str(self.restrictions.max_rescue_attempts)
-        )
+        self.switch_leader_can_be_changed.set_active(self.restrictions.leader_can_be_changed)
+        self.switch_dont_save_before_entering.set_active(not self.restrictions.dont_save_before_entering)
+        self.switch_iq_skills_disabled.set_active(not self.restrictions.iq_skills_disabled)
+        self.switch_traps_remain_invisible_on_attack.set_active(not self.restrictions.traps_remain_invisible_on_attack)
+        self.switch_enemies_can_drop_chests.set_active(self.restrictions.enemies_can_drop_chests)
+        self.entry_max_rescue_attempts.set_text(str(self.restrictions.max_rescue_attempts))
         self.entry_max_items_allowed.set_text(str(self.restrictions.max_items_allowed))
         self.entry_max_party_members.set_text(str(self.restrictions.max_party_members))
         self.entry_turn_limit.set_text(str(self.restrictions.turn_limit))
-        self.entry_random_movement_chance.set_text(
-            str(self.restrictions.random_movement_chance)
-        )
+        self.entry_random_movement_chance.set_text(str(self.restrictions.random_movement_chance))
 
     @Gtk.Template.Callback()
     def on_edit_floor_count_clicked(self, *args):
@@ -225,16 +195,12 @@ class StDungeonDungeonPage(Gtk.Box):
         current_floor_count = self.module.get_number_floors(self.item_data.dungeon_id)
         label_floor_count_in_dialog = self.label_floor_count_in_dialog
         spin_floor_count = self.spin_floor_count
-        label_floor_count_in_dialog.set_text(
-            f(_("This dungeon currently has {current_floor_count} floors."))
-        )
+        label_floor_count_in_dialog.set_text(f(_("This dungeon currently has {current_floor_count} floors.")))
         spin_floor_count.set_value(current_floor_count)
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.APPLY:
-            self.module.change_floor_count(
-                self.item_data.dungeon_id, int(spin_floor_count.get_value())
-            )
+            self.module.change_floor_count(self.item_data.dungeon_id, int(spin_floor_count.get_value()))
 
     # <editor-fold desc="HANDLERS NAMES" defaultstate="collapsed">
 
@@ -292,37 +258,27 @@ class StDungeonDungeonPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_entry_script_engine_lang0_changed(self, entry: Gtk.Entry):
-        self._update_lang_from_entry(
-            entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 0
-        )
+        self._update_lang_from_entry(entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 0)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
     def on_entry_script_engine_lang1_changed(self, entry: Gtk.Entry):
-        self._update_lang_from_entry(
-            entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 1
-        )
+        self._update_lang_from_entry(entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 1)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
     def on_entry_script_engine_lang2_changed(self, entry: Gtk.Entry):
-        self._update_lang_from_entry(
-            entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 2
-        )
+        self._update_lang_from_entry(entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 2)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
     def on_entry_script_engine_lang3_changed(self, entry: Gtk.Entry):
-        self._update_lang_from_entry(
-            entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 3
-        )
+        self._update_lang_from_entry(entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 3)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
     def on_entry_script_engine_lang4_changed(self, entry: Gtk.Entry):
-        self._update_lang_from_entry(
-            entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 4
-        )
+        self._update_lang_from_entry(entry, StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER, 4)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -362,9 +318,7 @@ class StDungeonDungeonPage(Gtk.Box):
             self._save_dungeon_restrictions()
 
     @Gtk.Template.Callback()
-    def on_switch_enemies_evolve_when_team_member_koed_state_set(
-        self, w: Gtk.Switch, state: bool, *args
-    ):
+    def on_switch_enemies_evolve_when_team_member_koed_state_set(self, w: Gtk.Switch, state: bool, *args):
         assert self.restrictions is not None
         self.restrictions.enemies_evolve_when_team_member_koed = state
         self._save_dungeon_restrictions()
@@ -394,17 +348,13 @@ class StDungeonDungeonPage(Gtk.Box):
         self._save_dungeon_restrictions()
 
     @Gtk.Template.Callback()
-    def on_switch_leader_can_be_changed_state_set(
-        self, w: Gtk.Switch, state: bool, *args
-    ):
+    def on_switch_leader_can_be_changed_state_set(self, w: Gtk.Switch, state: bool, *args):
         assert self.restrictions is not None
         self.restrictions.leader_can_be_changed = state
         self._save_dungeon_restrictions()
 
     @Gtk.Template.Callback()
-    def on_switch_dont_save_before_entering_state_set(
-        self, w: Gtk.Switch, state: bool, *args
-    ):
+    def on_switch_dont_save_before_entering_state_set(self, w: Gtk.Switch, state: bool, *args):
         assert self.restrictions is not None
         self.restrictions.dont_save_before_entering = not state
         self._save_dungeon_restrictions()
@@ -416,17 +366,13 @@ class StDungeonDungeonPage(Gtk.Box):
         self._save_dungeon_restrictions()
 
     @Gtk.Template.Callback()
-    def on_switch_traps_remain_invisible_on_attack_state_set(
-        self, w: Gtk.Switch, state: bool, *args
-    ):
+    def on_switch_traps_remain_invisible_on_attack_state_set(self, w: Gtk.Switch, state: bool, *args):
         assert self.restrictions is not None
         self.restrictions.traps_remain_invisible_on_attack = not state
         self._save_dungeon_restrictions()
 
     @Gtk.Template.Callback()
-    def on_switch_enemies_can_drop_chests_state_set(
-        self, w: Gtk.Switch, state: bool, *args
-    ):
+    def on_switch_enemies_can_drop_chests_state_set(self, w: Gtk.Switch, state: bool, *args):
         assert self.restrictions is not None
         self.restrictions.enemies_can_drop_chests = state
         self._save_dungeon_restrictions()
@@ -510,18 +456,16 @@ class StDungeonDungeonPage(Gtk.Box):
 
     def _save_dungeon_restrictions(self):
         assert self.restrictions is not None
-        self.module.update_dungeon_restrictions(
-            self.item_data.dungeon_id, self.restrictions
-        )
+        self.module.update_dungeon_restrictions(self.item_data.dungeon_id, self.restrictions)
         self.mark_as_modified()
 
     def _update_lang_from_entry(self, w: Gtk.Entry, string_type, lang_index):
         if not self._is_loading:
             sp = self.module.project.get_string_provider()
             lang = sp.get_languages()[lang_index]
-            sp.get_model(lang).strings[
-                sp.get_index(string_type, self.item_data.dungeon_id)
-            ] = w.get_text().replace("\\n", "\n")
+            sp.get_model(lang).strings[sp.get_index(string_type, self.item_data.dungeon_id)] = w.get_text().replace(
+                "\\n", "\n"
+            )
 
     def _help(self, msg):
         md = SkyTempleMessageDialog(

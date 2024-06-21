@@ -183,9 +183,7 @@ class FixedRoomDrawer:
                     elif action.tr_type.floor_type == FloorType.FLOOR_OR_WALL:
                         row.append(DmaType.WALL)
                 elif isinstance(action, EntityRule):
-                    item, monster, tile, stats = self.entity_rule_container.get(
-                        action.entity_rule_id
-                    )
+                    item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
                     if tile.is_secondary_terrain():
                         row.append(DmaType.WATER)
                     else:
@@ -273,14 +271,9 @@ class FixedRoomDrawer:
                     sx = self.tileset_renderer.chunk_dim() * x
                     sy = self.tileset_renderer.chunk_dim() * y
                     if isinstance(action, EntityRule):
-                        item, monster, tile, stats = self.entity_rule_container.get(
-                            action.entity_rule_id
-                        )
+                        item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
                         # Has trap?
-                        if (
-                            tile.trap_id < 25
-                            and self.info_layer_active == InfoLayer.TRAP
-                        ):
+                        if tile.trap_id < 25 and self.info_layer_active == InfoLayer.TRAP:
                             self._draw_info_trap(
                                 sx,
                                 sy,
@@ -290,23 +283,13 @@ class FixedRoomDrawer:
                                 tile.trap_is_visible(),
                             )
                         # Has item?
-                        if (
-                            item.item_id > 0
-                            and self.info_layer_active == InfoLayer.ITEM
-                        ):
-                            self._draw_info_item(
-                                sx, sy, ctx, self._item_name(item.item_id)
-                            )
+                        if item.item_id > 0 and self.info_layer_active == InfoLayer.ITEM:
+                            self._draw_info_item(sx, sy, ctx, self._item_name(item.item_id))
                         # Has Pokémon?
-                        if (
-                            monster.md_idx > 0
-                            and self.info_layer_active == InfoLayer.MONSTER
-                        ):
+                        if monster.md_idx > 0 and self.info_layer_active == InfoLayer.MONSTER:
                             self._draw_info_monster(sx, sy, ctx, monster.enemy_settings)
                         if self.info_layer_active == InfoLayer.TILE:
-                            self._draw_info_tile(
-                                sx, sy, ctx, tile.room_id, False, False
-                            )
+                            self._draw_info_tile(sx, sy, ctx, tile.room_id, False, False)
                     elif self.info_layer_active == InfoLayer.TILE:
                         self._draw_info_tile(
                             sx,
@@ -338,15 +321,12 @@ class FixedRoomDrawer:
                 assert self.fixed_floor is not None
                 # Draw dragged:
                 selected_x, selected_y = self._selected  # type: ignore
-                selected = self.fixed_floor.actions[
-                    self.fixed_floor.width * selected_y + selected_x
-                ]
+                selected = self.fixed_floor.actions[self.fixed_floor.width * selected_y + selected_x]
                 self._draw_single_tile(ctx, selected, x, y)
                 self._draw_action(ctx, selected, x, y)
         # Tool modes
         elif (
-            self.interaction_mode == InteractionMode.PLACE_TILE
-            or self.interaction_mode == InteractionMode.PLACE_ENTITY
+            self.interaction_mode == InteractionMode.PLACE_TILE or self.interaction_mode == InteractionMode.PLACE_ENTITY
         ):
             self._draw_single_tile(ctx, self._selected, x, y)
             self._draw_action(ctx, self._selected, x, y)
@@ -472,15 +452,11 @@ class FixedRoomDrawer:
 
     def _item_name(self, item_id):
         return (
-            self.string_provider.get_value(StringType.ITEM_NAMES, item_id)
-            if item_id < MAX_ITEMS
-            else _("(Special?)")
+            self.string_provider.get_value(StringType.ITEM_NAMES, item_id) if item_id < MAX_ITEMS else _("(Special?)")
         )
 
     def _draw_name(self, ctx, sx, sy, name, color):
-        ctx.select_font_face(
-            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
-        )
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
         ctx.set_source_rgba(*color)
         ctx.set_font_size(12)
         ctx.move_to(sx, sy - 10)
@@ -496,9 +472,7 @@ class FixedRoomDrawer:
         self._draw_little_text(ctx, sx + 20, sy + 22, color, text)
 
     def _draw_little_text(self, ctx, sx, sy, color, text):
-        ctx.select_font_face(
-            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
-        )
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
         ctx.set_source_rgba(*color)
         ctx.set_font_size(8)
         ctx.move_to(sx, sy)
@@ -520,9 +494,7 @@ class FixedRoomDrawer:
                 type = DmaType.WALL
         else:
             assert self.entity_rule_container is not None
-            item, monster, tile, stats = self.entity_rule_container.get(
-                action.entity_rule_id
-            )
+            item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
             if tile.is_secondary_terrain():
                 type = DmaType.WATER
 

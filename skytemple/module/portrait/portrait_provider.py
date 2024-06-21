@@ -101,10 +101,7 @@ class PortraitProvider:
         """
         with portrait_provider_lock:
             if (entry_id, sub_id) in self._loaded:
-                if allow_fallback or (
-                    not allow_fallback
-                    and not self._loaded__is_fallback[(entry_id, sub_id)]
-                ):
+                if allow_fallback or (not allow_fallback and not self._loaded__is_fallback[(entry_id, sub_id)]):
                     return self._loaded[(entry_id, sub_id)]
                 else:
                     return self.get_error()
@@ -114,9 +111,7 @@ class PortraitProvider:
         return self.get_loader()
 
     def _load(self, entry_id, sub_id, after_load_cb, allow_fallback):
-        AsyncTaskDelegator.run_task(
-            self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback)
-        )
+        AsyncTaskDelegator.run_task(self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback))
 
     async def _load__impl(self, entry_id, sub_id, after_load_cb, allow_fallback):
         is_fallback = False
@@ -125,9 +120,7 @@ class PortraitProvider:
             if kao is None:
                 if allow_fallback:
                     is_fallback = True
-                    kao = self._kao.get(
-                        entry_id % FileType.MD.properties().num_entities, sub_id
-                    )
+                    kao = self._kao.get(entry_id % FileType.MD.properties().num_entities, sub_id)
                     if kao is None:
                         raise RuntimeError()
                 else:

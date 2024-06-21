@@ -52,9 +52,7 @@ class PortraitModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
-        self.kao: KaoProtocol = self.project.open_file_in_rom(
-            PORTRAIT_FILE, FileType.KAO
-        )
+        self.kao: KaoProtocol = self.project.open_file_in_rom(PORTRAIT_FILE, FileType.KAO)
         self._portrait_provider = PortraitProvider(self.kao)
         self._portrait_provider__was_init = False
 

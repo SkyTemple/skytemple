@@ -115,15 +115,9 @@ class StScriptSsaPage(Gtk.Box):
     event_coroutine: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     event_unk2: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     event_unk3: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    dialog_map_import_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
-    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(
-        Gtk.Adjustment, Gtk.Template.Child()
-    )
+    dialog_map_import_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_collision_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
+    dialog_settings_number_layers_adjustment: Gtk.Adjustment = cast(Gtk.Adjustment, Gtk.Template.Child())
     generic_input_dialog: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     generic_input_dialog_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     generic_input_dialog_entry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
@@ -136,24 +130,12 @@ class StScriptSsaPage(Gtk.Box):
     tab_scene: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     tool_scene_zoom_in: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tool_scene_zoom_out: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    tool_scene_grid: Gtk.ToggleToolButton = cast(
-        Gtk.ToggleToolButton, Gtk.Template.Child()
-    )
-    tool_scene_move: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_add_actor: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_add_object: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_add_performer: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
-    tool_scene_add_trigger: Gtk.RadioToolButton = cast(
-        Gtk.RadioToolButton, Gtk.Template.Child()
-    )
+    tool_scene_grid: Gtk.ToggleToolButton = cast(Gtk.ToggleToolButton, Gtk.Template.Child())
+    tool_scene_move: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_add_actor: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_add_object: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_add_performer: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
+    tool_scene_add_trigger: Gtk.RadioToolButton = cast(Gtk.RadioToolButton, Gtk.Template.Child())
     tool_scene_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tool_scene_export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tool_choose_map_bg: Gtk.ToolItem = cast(Gtk.ToolItem, Gtk.Template.Child())
@@ -171,9 +153,7 @@ class StScriptSsaPage(Gtk.Box):
     ssa_utility: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     ssa_right_scene_list1: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     ssa_layers: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    ssa_layers_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    ssa_layers_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     tool_sector_add: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tool_sector_remove: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     ssa_scripts: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
@@ -182,29 +162,19 @@ class StScriptSsaPage(Gtk.Box):
     tool_script_remove: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     ssa_right_scene_list: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     ssa_scenes: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    ssa_scenes_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    ssa_scenes_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     ssa_right_actors: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     ssa_actors: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    ssa_actors_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    ssa_actors_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     ssa_right_objects: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     ssa_objects: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    ssa_objects_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    ssa_objects_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     ssa_right_performers: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     ssa_performers: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    ssa_performers_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    ssa_performers_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     ssa_right_triggers: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     ssa_triggers: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    ssa_triggers_selection: Gtk.TreeSelection = cast(
-        Gtk.TreeSelection, Gtk.Template.Child()
-    )
+    ssa_triggers_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
     po_actor: Gtk.Popover = cast(Gtk.Popover, Gtk.Template.Child())
     po_actor_sector: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     po_actor_kind: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
@@ -272,9 +242,7 @@ class StScriptSsaPage(Gtk.Box):
         self._map_bg_surface: cairo.Surface | None = None
         self._suppress_events = False
         self._currently_open_popover = None
-        self._currently_selected_entity: None | (
-            SsaActor | SsaObject | SsaEvent | SsaPerformer
-        ) = None
+        self._currently_selected_entity: None | (SsaActor | SsaObject | SsaEvent | SsaPerformer) = None
         self._currently_selected_entity_layer: int | None = None
         self._selected_by_map_click = False
         self.drawer: Drawer | None = None
@@ -416,12 +384,8 @@ class StScriptSsaPage(Gtk.Box):
                         tile_y = 0
                     self.drawer.end_drag()
                     self.module.mark_as_modified(self.mapname, self.type, self.filename)
-                    self._currently_selected_entity.pos.x_relative = u16(
-                        math.floor(tile_x)
-                    )
-                    self._currently_selected_entity.pos.y_relative = u16(
-                        math.floor(tile_y)
-                    )
+                    self._currently_selected_entity.pos.x_relative = u16(math.floor(tile_x))
+                    self._currently_selected_entity.pos.y_relative = u16(math.floor(tile_y))
                     if tile_x % 1 != 0:
                         self._currently_selected_entity.pos.x_offset = u16(2)
                     else:
@@ -448,15 +412,12 @@ class StScriptSsaPage(Gtk.Box):
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
                         abs(start_x - motion.x) > BPC_TILE_DIM / 2 * self._scale_factor
-                        or abs(start_y - motion.y)
-                        > BPC_TILE_DIM / 2 * self._scale_factor
+                        or abs(start_y - motion.y) > BPC_TILE_DIM / 2 * self._scale_factor
                     ):
                         self._bg_draw_is_clicked__drag_active = True
                         self.drawer.set_drag_position(
-                            int((start_x - 4) / self._scale_factor)
-                            - self._currently_selected_entity.pos.x_absolute,
-                            int((start_y - 4) / self._scale_factor)
-                            - self._currently_selected_entity.pos.y_absolute,
+                            int((start_x - 4) / self._scale_factor) - self._currently_selected_entity.pos.x_absolute,
+                            int((start_y - 4) / self._scale_factor) - self._currently_selected_entity.pos.y_absolute,
                         )
             self.ssa_draw.queue_draw()
 
@@ -584,18 +545,14 @@ class StScriptSsaPage(Gtk.Box):
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
             elif self.__class__.map_bg_surface_cache[0] == item_id:
-                self._map_bg_surface, bma_width, bma_height = (
-                    self.__class__.map_bg_surface_cache[1:]
-                )
+                self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]
             else:
                 bma = self.map_bg_module.get_bma(item_id)
                 bpl = self.map_bg_module.get_bpl(item_id)
                 bpc = self.map_bg_module.get_bpc(item_id)
                 bpas = self.map_bg_module.get_bpas(item_id)
                 self._map_bg_surface = pil_to_cairo_surface(
-                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[
-                        0
-                    ].convert("RGBA")
+                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert("RGBA")
                 )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
@@ -606,15 +563,11 @@ class StScriptSsaPage(Gtk.Box):
                     bma_height,
                 )
             if self.drawer:
-                self._set_drawer_bg(
-                    assert_not_none(self._map_bg_surface), bma_width, bma_height
-                )
+                self._set_drawer_bg(assert_not_none(self._map_bg_surface), bma_width, bma_height)
 
     @Gtk.Template.Callback()
     def on_tool_scene_goto_bg_clicked(self, *args):
-        self.module.project.request_open(
-            OpenRequest(REQUEST_TYPE_MAP_BG, self.mapbg_id)
-        )
+        self.module.project.request_open(OpenRequest(REQUEST_TYPE_MAP_BG, self.mapbg_id))
 
     # EVENTS TOOLBAR #
 
@@ -664,9 +617,7 @@ class StScriptSsaPage(Gtk.Box):
             self.ssa.triggers.remove(row[0])
             # Update popovers combobox for events
             po_trigger_id = self.po_trigger_id
-            po_store = typing.cast(
-                Gtk.ListStore, assert_not_none(po_trigger_id.get_model())
-            )
+            po_store = typing.cast(Gtk.ListStore, assert_not_none(po_trigger_id.get_model()))
             po_iter = po_store.get_iter_first()
             while po_iter:
                 if po_store[po_iter][0] == row[0]:
@@ -710,9 +661,7 @@ class StScriptSsaPage(Gtk.Box):
                 edit_model.unk3 = new_event.unk3
                 # Update popovers for events
                 po_trigger_id = self.po_trigger_id
-                po_store = typing.cast(
-                    Gtk.ListStore, assert_not_none(po_trigger_id.get_model())
-                )
+                po_store = typing.cast(Gtk.ListStore, assert_not_none(po_trigger_id.get_model()))
                 po_iter = po_store.get_iter_first()
                 while po_iter:
                     if po_store[po_iter][0] == edit_model:
@@ -796,27 +745,19 @@ class StScriptSsaPage(Gtk.Box):
                 for actor in layer.actors:
                     tree, l_iter = self._get_list_tree_and_iter_for(actor)
                     if l_iter is not None:
-                        typing.cast(
-                            Gtk.ListStore, assert_not_none(tree.get_model())
-                        ).remove(l_iter)
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 for object in layer.objects:
                     tree, l_iter = self._get_list_tree_and_iter_for(object)
                     if l_iter is not None:
-                        typing.cast(
-                            Gtk.ListStore, assert_not_none(tree.get_model())
-                        ).remove(l_iter)
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 for performer in layer.performers:
                     tree, l_iter = self._get_list_tree_and_iter_for(performer)
                     if l_iter is not None:
-                        typing.cast(
-                            Gtk.ListStore, assert_not_none(tree.get_model())
-                        ).remove(l_iter)
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 for trigger in layer.events:
                     tree, l_iter = self._get_list_tree_and_iter_for(trigger)
                     if l_iter is not None:
-                        typing.cast(
-                            Gtk.ListStore, assert_not_none(tree.get_model())
-                        ).remove(l_iter)
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 # UPDATE ALL ENTITY LIST LAYER INDICES AFTER THIS ONE!
                 for after_inc, layer in enumerate(self.ssa.layer_list[layer_id + 1 :]):
                     for actor in layer.actors:
@@ -835,9 +776,7 @@ class StScriptSsaPage(Gtk.Box):
                 if self.drawer is not None:
                     self.drawer.sector_removed(layer_id)
                 # Get iter in popover combo box
-                po_store = typing.cast(
-                    Gtk.ListStore, assert_not_none(self.po_actor_sector.get_model())
-                )
+                po_store = typing.cast(Gtk.ListStore, assert_not_none(self.po_actor_sector.get_model()))
                 po_iter = po_store.get_iter_first()
                 found_in_po = False
                 while po_iter:
@@ -885,9 +824,7 @@ class StScriptSsaPage(Gtk.Box):
         model, treeiter = tree.get_selection().get_selected()
         if treeiter is not None and model is not None:
             manager = MainController.debugger_manager()
-            manager.open_ssb(
-                f"SCRIPT/{self.mapname}/{model[treeiter][0]}", MainController.window()
-            )
+            manager.open_ssb(f"SCRIPT/{self.mapname}/{model[treeiter][0]}", MainController.window())
 
     @Gtk.Template.Callback()
     def on_tool_script_add_clicked(self, *args):
@@ -903,9 +840,7 @@ class StScriptSsaPage(Gtk.Box):
             md.destroy()
             return
         # Ask for number to add
-        response, number = self._show_generic_input(
-            _("Script Number"), _("Create Script")
-        )
+        response, number = self._show_generic_input(_("Script Number"), _("Create Script"))
         if response != Gtk.ResponseType.OK:
             return
         try:
@@ -960,9 +895,7 @@ class StScriptSsaPage(Gtk.Box):
         )
         # Update script list
         short_name = self._get_file_shortname(ssb_path)
-        ssa_scripts_store = typing.cast(
-            Gtk.ListStore, assert_not_none(self.ssa_scripts.get_model())
-        )
+        ssa_scripts_store = typing.cast(Gtk.ListStore, assert_not_none(self.ssa_scripts.get_model()))
         # The reason this is the same is because I screwed up when building self.scripts...
         ssa_scripts_store.append([short_name, short_name])
         # Update debugger
@@ -1060,9 +993,9 @@ class StScriptSsaPage(Gtk.Box):
             and (cbiter != [])
             and (self._currently_selected_entity is not None)
         ):
-            self._currently_selected_entity.pos.direction = (
-                self.static_data.script_data.directions__by_ssa_id[model[cbiter][0]]
-            )
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_ssa_id[
+                model[cbiter][0]
+            ]
             self._refresh_for_selected()
 
     @Gtk.Template.Callback()
@@ -1153,9 +1086,9 @@ class StScriptSsaPage(Gtk.Box):
             and (cbiter != [])
             and (self._currently_selected_entity is not None)
         ):
-            self._currently_selected_entity.pos.direction = (
-                self.static_data.script_data.directions__by_ssa_id[model[cbiter][0]]
-            )
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_ssa_id[
+                model[cbiter][0]
+            ]
             self._refresh_for_selected()
 
     @Gtk.Template.Callback()
@@ -1231,9 +1164,9 @@ class StScriptSsaPage(Gtk.Box):
             and (cbiter != [])
             and (self._currently_selected_entity is not None)
         ):
-            self._currently_selected_entity.pos.direction = (
-                self.static_data.script_data.directions__by_ssa_id[model[cbiter][0]]
-            )
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_ssa_id[
+                model[cbiter][0]
+            ]
             self._refresh_for_selected()
 
     @Gtk.Template.Callback()
@@ -1341,45 +1274,29 @@ class StScriptSsaPage(Gtk.Box):
                 assert self.ssa is not None
                 assert self._currently_selected_entity_layer is not None
                 if isinstance(self._currently_selected_entity, SsaActor):
-                    index = self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].actors.index(self._currently_selected_entity)
-                    del self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].actors[index]
-                    self.ssa.layer_list[new_layer_id].actors.append(
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].actors.index(
                         self._currently_selected_entity
                     )
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].actors[index]
+                    self.ssa.layer_list[new_layer_id].actors.append(self._currently_selected_entity)
                 elif isinstance(self._currently_selected_entity, SsaObject):
-                    index = self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].objects.index(self._currently_selected_entity)
-                    del self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].objects[index]
-                    self.ssa.layer_list[new_layer_id].objects.append(
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].objects.index(
                         self._currently_selected_entity
                     )
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].objects[index]
+                    self.ssa.layer_list[new_layer_id].objects.append(self._currently_selected_entity)
                 elif isinstance(self._currently_selected_entity, SsaPerformer):
-                    index = self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].performers.index(self._currently_selected_entity)
-                    del self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].performers[index]
-                    self.ssa.layer_list[new_layer_id].performers.append(
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].performers.index(
                         self._currently_selected_entity
                     )
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].performers[index]
+                    self.ssa.layer_list[new_layer_id].performers.append(self._currently_selected_entity)
                 elif isinstance(self._currently_selected_entity, SsaEvent):
-                    index = self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].events.index(self._currently_selected_entity)
-                    del self.ssa.layer_list[
-                        self._currently_selected_entity_layer
-                    ].events[index]
-                    self.ssa.layer_list[new_layer_id].events.append(
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].events.index(
                         self._currently_selected_entity
                     )
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].events[index]
+                    self.ssa.layer_list[new_layer_id].events.append(self._currently_selected_entity)
                 # Also update the layer list entry for old and new layer
                 self._refresh_layer(self._currently_selected_entity_layer)
                 new_layer_iter = self._refresh_layer(new_layer_id)
@@ -1392,23 +1309,15 @@ class StScriptSsaPage(Gtk.Box):
     def _refresh_layer(self, layer_id):
         ssa_layers = self.ssa_layers
         l_iter = self._find_list_iter(ssa_layers, lambda row: layer_id == row[0])
-        for i, ff in enumerate(
-            self._list_entry_generate_layer(layer_id, self.ssa.layer_list[layer_id])[
-                0:2
-            ]
-        ):
-            typing.cast(Gtk.ListStore, assert_not_none(ssa_layers.get_model()))[l_iter][
-                i
-            ] = ff
+        for i, ff in enumerate(self._list_entry_generate_layer(layer_id, self.ssa.layer_list[layer_id])[0:2]):
+            typing.cast(Gtk.ListStore, assert_not_none(ssa_layers.get_model()))[l_iter][i] = ff
         return l_iter
 
     def _refresh_for_selected(self):
         # Refresh drawing
         self.ssa_draw.queue_draw()
         # Refresh list entries
-        self._refresh_list_entry_for(
-            self._currently_selected_entity, self._currently_selected_entity_layer
-        )
+        self._refresh_list_entry_for(self._currently_selected_entity, self._currently_selected_entity_layer)
         # Mark as modified
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
@@ -1417,26 +1326,16 @@ class StScriptSsaPage(Gtk.Box):
         if l_iter is not None:
             if isinstance(entity, SsaActor):
                 for i, f in enumerate(self._list_entry_generate_actor(layer, entity)):
-                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[
-                        l_iter
-                    ][i] = f
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
             elif isinstance(entity, SsaObject):
                 for i, f in enumerate(self._list_entry_generate_object(layer, entity)):
-                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[
-                        l_iter
-                    ][i] = f
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
             elif isinstance(entity, SsaPerformer):
-                for i, f in enumerate(
-                    self._list_entry_generate_performer(layer, entity)
-                ):
-                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[
-                        l_iter
-                    ][i] = f
+                for i, f in enumerate(self._list_entry_generate_performer(layer, entity)):
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
             elif isinstance(entity, SsaEvent):
                 for i, f in enumerate(self._list_entry_generate_trigger(layer, entity)):
-                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[
-                        l_iter
-                    ][i] = f
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
 
     def _get_list_for(self, entity) -> Gtk.TreeView:
         if isinstance(entity, SsaActor):
@@ -1451,9 +1350,7 @@ class StScriptSsaPage(Gtk.Box):
             raise AssertionError()
         return tree
 
-    def _get_list_tree_and_iter_for(
-        self, selected
-    ) -> tuple[Gtk.TreeView, Gtk.TreeIter | None]:
+    def _get_list_tree_and_iter_for(self, selected) -> tuple[Gtk.TreeView, Gtk.TreeIter | None]:
         tree = self._get_list_for(selected)
         return (tree, self._find_list_iter(tree, lambda row: selected is row[1]))
 
@@ -1476,17 +1373,11 @@ class StScriptSsaPage(Gtk.Box):
             if treeiter is not None and model is not None:
                 filename = model[treeiter][0]
                 if filename[-3:] == "sse":
-                    self.module.project.request_open(
-                        OpenRequest(REQUEST_TYPE_SCENE_SSE, self.mapname)
-                    )
+                    self.module.project.request_open(OpenRequest(REQUEST_TYPE_SCENE_SSE, self.mapname))
                 elif filename[-3:] == "ssa":
-                    self.module.project.request_open(
-                        OpenRequest(REQUEST_TYPE_SCENE_SSA, (self.mapname, filename))
-                    )
+                    self.module.project.request_open(OpenRequest(REQUEST_TYPE_SCENE_SSA, (self.mapname, filename)))
                 elif filename[-3:] == "sss":
-                    self.module.project.request_open(
-                        OpenRequest(REQUEST_TYPE_SCENE_SSS, (self.mapname, filename))
-                    )
+                    self.module.project.request_open(OpenRequest(REQUEST_TYPE_SCENE_SSS, (self.mapname, filename)))
 
     @Gtk.Template.Callback()
     def on_ssa_layers_selection_changed(self, selection: Gtk.TreeSelection, *args):
@@ -1558,9 +1449,7 @@ class StScriptSsaPage(Gtk.Box):
                 self._select(entry[1], entry[0], True)
 
     @Gtk.Template.Callback()
-    def on_ssa_performers_button_press_event(
-        self, tree: Gtk.TreeView, event: Gdk.Event
-    ):
+    def on_ssa_performers_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if treeiter is not None and model is not None:
@@ -1609,23 +1498,12 @@ class StScriptSsaPage(Gtk.Box):
                 popover = self.po_actor
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
-                        *tuple(
-                            x * self._scale_factor
-                            for x in self.drawer.get_bb_actor(selected)
-                        )
+                        *tuple(x * self._scale_factor for x in self.drawer.get_bb_actor(selected))
                     )
-                self._select_in_combobox_where_callback(
-                    "po_actor_kind", lambda r: selected.actor.id == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_actor_sector", lambda r: selected_layer == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_actor_script", lambda r: selected.script_id == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_actor_dir", lambda r: selected.pos.direction.id == r[0]
-                )
+                self._select_in_combobox_where_callback("po_actor_kind", lambda r: selected.actor.id == r[0])
+                self._select_in_combobox_where_callback("po_actor_sector", lambda r: selected_layer == r[0])
+                self._select_in_combobox_where_callback("po_actor_script", lambda r: selected.script_id == r[0])
+                self._select_in_combobox_where_callback("po_actor_dir", lambda r: selected.pos.direction.id == r[0])
                 popover.set_relative_to(self.ssa_draw)
                 rect = Gdk.Rectangle()
                 rect.x = popup_x
@@ -1636,23 +1514,12 @@ class StScriptSsaPage(Gtk.Box):
                 popover = self.po_object
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
-                        *tuple(
-                            x * self._scale_factor
-                            for x in self.drawer.get_bb_object(selected)
-                        )
+                        *tuple(x * self._scale_factor for x in self.drawer.get_bb_object(selected))
                     )
-                self._select_in_combobox_where_callback(
-                    "po_object_kind", lambda r: selected.object.id == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_object_sector", lambda r: selected_layer == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_object_script", lambda r: selected.script_id == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_object_dir", lambda r: selected.pos.direction.id == r[0]
-                )
+                self._select_in_combobox_where_callback("po_object_kind", lambda r: selected.object.id == r[0])
+                self._select_in_combobox_where_callback("po_object_sector", lambda r: selected_layer == r[0])
+                self._select_in_combobox_where_callback("po_object_script", lambda r: selected.script_id == r[0])
+                self._select_in_combobox_where_callback("po_object_dir", lambda r: selected.pos.direction.id == r[0])
                 self.po_object_width.set_text(str(selected.hitbox_w))
                 self.po_object_height.set_text(str(selected.hitbox_h))
                 popover.set_relative_to(self.ssa_draw)
@@ -1665,20 +1532,11 @@ class StScriptSsaPage(Gtk.Box):
                 popover = self.po_performer
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
-                        *tuple(
-                            x * self._scale_factor
-                            for x in self.drawer.get_bb_performer(selected)
-                        )
+                        *tuple(x * self._scale_factor for x in self.drawer.get_bb_performer(selected))
                     )
-                self._select_in_combobox_where_callback(
-                    "po_performer_kind", lambda r: selected.type == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_performer_sector", lambda r: selected_layer == r[0]
-                )
-                self._select_in_combobox_where_callback(
-                    "po_performer_dir", lambda r: selected.pos.direction.id == r[0]
-                )
+                self._select_in_combobox_where_callback("po_performer_kind", lambda r: selected.type == r[0])
+                self._select_in_combobox_where_callback("po_performer_sector", lambda r: selected_layer == r[0])
+                self._select_in_combobox_where_callback("po_performer_dir", lambda r: selected.pos.direction.id == r[0])
                 self.po_performer_width.set_text(str(selected.hitbox_w))
                 self.po_performer_height.set_text(str(selected.hitbox_h))
                 popover.set_relative_to(self.ssa_draw)
@@ -1691,18 +1549,13 @@ class StScriptSsaPage(Gtk.Box):
                 popover = self.po_trigger
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
-                        *tuple(
-                            x * self._scale_factor
-                            for x in self.drawer.get_bb_trigger(selected)
-                        )
+                        *tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected))
                     )
                 self._select_in_combobox_where_callback(
                     "po_trigger_id",
                     lambda r: selected.trigger_id == self.ssa.triggers.index(r[0]),
                 )
-                self._select_in_combobox_where_callback(
-                    "po_trigger_sector", lambda r: selected_layer == r[0]
-                )
+                self._select_in_combobox_where_callback("po_trigger_sector", lambda r: selected_layer == r[0])
                 self.po_trigger_width.set_text(str(selected.trigger_width))
                 self.po_trigger_height.set_text(str(selected.trigger_height))
                 popover.set_relative_to(self.ssa_draw)
@@ -1716,9 +1569,7 @@ class StScriptSsaPage(Gtk.Box):
         self._currently_selected_entity = selected
         self._currently_selected_entity_layer = selected_layer
 
-    def _add_entity_to_list(
-        self, entity: SsaActor | SsaObject | SsaPerformer | SsaEvent, layer: int
-    ):
+    def _add_entity_to_list(self, entity: SsaActor | SsaObject | SsaPerformer | SsaEvent, layer: int):
         tree = self._get_list_for(entity)
         if isinstance(entity, SsaActor):
             typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).append(
@@ -1737,9 +1588,7 @@ class StScriptSsaPage(Gtk.Box):
                 self._list_entry_generate_trigger(layer, entity)
             )
 
-    def _select_in_combobox_where_callback(
-        self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]
-    ):
+    def _select_in_combobox_where_callback(self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]):
         cb = getattr(self, cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
@@ -1767,27 +1616,11 @@ class StScriptSsaPage(Gtk.Box):
         # (obj, coroutine name, script name, unk2, unk3)
         events_list_store = Gtk.ListStore(object, str, str, int, int)
         ssa_events.append_column(
-            resizable(
-                create_tree_view_column(
-                    _("Triggered Script"), Gtk.CellRendererText(), text=2
-                )
-            )
+            resizable(create_tree_view_column(_("Triggered Script"), Gtk.CellRendererText(), text=2))
         )
-        ssa_events.append_column(
-            resizable(
-                create_tree_view_column(_("Coroutine"), Gtk.CellRendererText(), text=1)
-            )
-        )
-        ssa_events.append_column(
-            resizable(
-                create_tree_view_column(_("Unk2"), Gtk.CellRendererText(), text=3)
-            )
-        )
-        ssa_events.append_column(
-            resizable(
-                create_tree_view_column(_("Unk3"), Gtk.CellRendererText(), text=4)
-            )
-        )
+        ssa_events.append_column(resizable(create_tree_view_column(_("Coroutine"), Gtk.CellRendererText(), text=1)))
+        ssa_events.append_column(resizable(create_tree_view_column(_("Unk2"), Gtk.CellRendererText(), text=3)))
+        ssa_events.append_column(resizable(create_tree_view_column(_("Unk3"), Gtk.CellRendererText(), text=4)))
         ssa_events.set_model(events_list_store)
         for event in self.ssa.triggers:
             events_list_store.append(self._list_entry_generate_event(event))
@@ -1795,11 +1628,7 @@ class StScriptSsaPage(Gtk.Box):
         ssa_scripts = self.ssa_scripts
         # (short path (relative to scene), display name)
         scripts_list_store = Gtk.ListStore(str, str)
-        ssa_scripts.append_column(
-            resizable(
-                create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=1)
-            )
-        )
+        ssa_scripts.append_column(resizable(create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=1)))
         ssa_scripts.set_model(scripts_list_store)
         for script in self.scripts:
             scripts_list_store.append([script, self._get_file_shortname(script)])
@@ -1807,11 +1636,7 @@ class StScriptSsaPage(Gtk.Box):
         ssa_scenes = self.ssa_scenes
         # (filename)
         scenes_list_store = Gtk.ListStore(str)
-        ssa_scenes.append_column(
-            resizable(
-                create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=0)
-            )
-        )
+        ssa_scenes.append_column(resizable(create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=0)))
         ssa_scenes.set_model(scenes_list_store)
         select_iter_current_scene = None
         for scene in self.module.get_scenes_for_map(self.mapname):
@@ -1826,76 +1651,32 @@ class StScriptSsaPage(Gtk.Box):
         ssa_actors = self.ssa_actors
         # (layer, entity, kind, script name)
         actors_list_store = Gtk.ListStore(int, object, str, str)
-        ssa_actors.append_column(
-            resizable(
-                create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)
-            )
-        )
-        ssa_actors.append_column(
-            resizable(
-                create_tree_view_column(_("Kind"), Gtk.CellRendererText(), text=2)
-            )
-        )
-        ssa_actors.append_column(
-            resizable(
-                create_tree_view_column(
-                    _("Talk Script"), Gtk.CellRendererText(), text=3
-                )
-            )
-        )
+        ssa_actors.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_actors.append_column(resizable(create_tree_view_column(_("Kind"), Gtk.CellRendererText(), text=2)))
+        ssa_actors.append_column(resizable(create_tree_view_column(_("Talk Script"), Gtk.CellRendererText(), text=3)))
         ssa_actors.set_model(actors_list_store)
         # ssa_objects
         ssa_objects = self.ssa_objects
         # (layer, entity, kind, script name)
         objects_list_store = Gtk.ListStore(int, object, str, str)
-        ssa_objects.append_column(
-            resizable(
-                create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)
-            )
-        )
-        ssa_objects.append_column(
-            resizable(
-                create_tree_view_column(_("Kind"), Gtk.CellRendererText(), text=2)
-            )
-        )
-        ssa_objects.append_column(
-            resizable(
-                create_tree_view_column(
-                    _("Talk Script"), Gtk.CellRendererText(), text=3
-                )
-            )
-        )
+        ssa_objects.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_objects.append_column(resizable(create_tree_view_column(_("Kind"), Gtk.CellRendererText(), text=2)))
+        ssa_objects.append_column(resizable(create_tree_view_column(_("Talk Script"), Gtk.CellRendererText(), text=3)))
         ssa_objects.set_model(objects_list_store)
         # ssa_performers
         ssa_performers = self.ssa_performers
         # (layer, entity, kind)
         performers_list_store = Gtk.ListStore(int, object, str)
-        ssa_performers.append_column(
-            resizable(
-                create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)
-            )
-        )
-        ssa_performers.append_column(
-            resizable(
-                create_tree_view_column(_("Type"), Gtk.CellRendererText(), text=2)
-            )
-        )
+        ssa_performers.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_performers.append_column(resizable(create_tree_view_column(_("Type"), Gtk.CellRendererText(), text=2)))
         ssa_performers.set_model(performers_list_store)
         # ssa_triggers
         ssa_triggers = self.ssa_triggers
         # (layer, entity, event coroutine name)
         triggers_list_store = Gtk.ListStore(int, object, str)
+        ssa_triggers.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
         ssa_triggers.append_column(
-            resizable(
-                create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)
-            )
-        )
-        ssa_triggers.append_column(
-            resizable(
-                create_tree_view_column(
-                    _("Event Script"), Gtk.CellRendererText(), text=2
-                )
-            )
+            resizable(create_tree_view_column(_("Event Script"), Gtk.CellRendererText(), text=2))
         )
         ssa_triggers.set_model(triggers_list_store)
         # POPOVERS
@@ -1923,8 +1704,7 @@ class StScriptSsaPage(Gtk.Box):
         po_script_store = Gtk.ListStore(int, str)  # ID, name
         po_script_store.append([-1, _("None")])
         for s_i, script in [
-            (self._script_id(script, as_int=True), self._get_file_shortname(script))
-            for script in self.scripts
+            (self._script_id(script, as_int=True), self._get_file_shortname(script)) for script in self.scripts
         ]:
             po_script_store.append([s_i, script])
         po_actor_script: Gtk.ComboBox = self.po_actor_script
@@ -1949,9 +1729,7 @@ class StScriptSsaPage(Gtk.Box):
         # TODO: Put into scriptdata when knowing what they do, also
         #       see SsaPerformer model.
         for performer_type in [0, 1, 2, 3, 4, 5]:
-            po_performer_kind_store.append(
-                [performer_type, f(_("Type {performer_type}"))]
-            )
+            po_performer_kind_store.append([performer_type, f(_("Type {performer_type}"))])
         po_performer_kind: Gtk.ComboBox = self.po_performer_kind
         self._fast_set_comboxbox_store(po_performer_kind, po_performer_kind_store, 1)
         # Trigger
@@ -1973,21 +1751,13 @@ class StScriptSsaPage(Gtk.Box):
         renderer_visible.connect(
             "toggled", partial(self.on_ssa_layers_visible_toggled, layer_list_store)
         )  # TRANSLATOR: First letter of 'Visible'
-        ssa_layers.append_column(
-            column_with_tooltip(_("V"), _("Visible"), renderer_visible, "active", 2)
-        )
+        ssa_layers.append_column(column_with_tooltip(_("V"), _("Visible"), renderer_visible, "active", 2))
         renderer_solo = Gtk.CellRendererToggle()
         renderer_solo.connect(
             "toggled", partial(self.on_ssa_layers_solo_toggled, layer_list_store)
         )  # TRANSLATOR: First letter of 'Solo'
-        ssa_layers.append_column(
-            column_with_tooltip(_("S"), _("Solo"), renderer_solo, "active", 3)
-        )
-        ssa_layers.append_column(
-            resizable(
-                create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=1)
-            )
-        )
+        ssa_layers.append_column(column_with_tooltip(_("S"), _("Solo"), renderer_solo, "active", 3))
+        ssa_layers.append_column(resizable(create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=1)))
         ssa_layers.set_model(layer_list_store)
         for i, layer in enumerate(self.ssa.layer_list):
             layer_list_store.append(self._list_entry_generate_layer(i, layer))
@@ -2003,15 +1773,11 @@ class StScriptSsaPage(Gtk.Box):
             # ssa_performers
             for performer in layer.performers:
                 # (layer, entity, kind, script name)
-                performers_list_store.append(
-                    self._list_entry_generate_performer(i, performer)
-                )
+                performers_list_store.append(self._list_entry_generate_performer(i, performer))
             # ssa_triggers
             for trigger in layer.events:
                 # (layer, entity, event coroutine name)
-                triggers_list_store.append(
-                    self._list_entry_generate_trigger(i, trigger)
-                )
+                triggers_list_store.append(self._list_entry_generate_trigger(i, trigger))
             # > PO - Sectors [DATA]
             po_sector_store.append([i, f(_("Sector {i}"))])
         self._suppress_events = False
@@ -2147,9 +1913,7 @@ class StScriptSsaPage(Gtk.Box):
     def _get_performer_name(self, performer: SsaPerformer):
         return f(_("Type {performer.type}"))
 
-    def _get_event_script_name(
-        self, events: list[SsaTrigger], event_id: int, short=False
-    ) -> str:
+    def _get_event_script_name(self, events: list[SsaTrigger], event_id: int, short=False) -> str:
         if len(events) < event_id + 1:
             return f"??? {event_id}"
         name = self._get_talk_script_name(events[event_id].script_id)
@@ -2188,10 +1952,7 @@ class StScriptSsaPage(Gtk.Box):
         return False
 
     def _get_event_dialog_script_names(self):
-        return {
-            self._script_id(script, as_int=True): self._get_file_shortname(script)
-            for script in self.scripts
-        }
+        return {self._script_id(script, as_int=True): self._get_file_shortname(script) for script in self.scripts}
 
     def _build_pos(self, x: float, y: float, dir=True) -> SsaPosition:
         direction = u16(1) if dir else None
@@ -2224,12 +1985,8 @@ class StScriptSsaPage(Gtk.Box):
         dialog.set_transient_for(MainController.window())
         response = dialog.run()
         dialog.hide()
-        assert_not_none(typing.cast(Optional[Gtk.Container], btn.get_parent())).remove(
-            btn
-        )
-        assert_not_none(
-            typing.cast(Optional[Gtk.Container], btn_cancel.get_parent())
-        ).remove(btn_cancel)
+        assert_not_none(typing.cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
+        assert_not_none(typing.cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return (response, entry.get_text())
 
     def _init_rest_room_note(self):
@@ -2239,18 +1996,12 @@ class StScriptSsaPage(Gtk.Box):
                 self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET
                 or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM
             ):
-                mappings, mappa, fixed, dungeon_bin_context, dungeon_list = (
-                    self.module.get_mapping_dungeon_assets()
-                )
+                mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
                 with dungeon_bin_context as dungeon_bin:
-                    mapping = resolve_mapping_for_level(
-                        self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list
-                    )
+                    mapping = resolve_mapping_for_level(self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
                 if mapping:
                     dma, dpc, dpci, dpl, _, fixed_room = mapping
-                    self._tileset_drawer_overlay = MapTilesetOverlay(
-                        dma, dpc, dpci, dpl, fixed_room
-                    )
+                    self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
                 else:
                     info_bar.destroy()
             else:
@@ -2261,7 +2012,5 @@ class StScriptSsaPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
         if self._tileset_drawer_overlay is not None:
-            self._tileset_drawer_overlay.enabled = (
-                not self._tileset_drawer_overlay.enabled
-            )
+            self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
             self.on_tool_choose_map_bg_cb_changed(self.tool_choose_map_bg_cb)

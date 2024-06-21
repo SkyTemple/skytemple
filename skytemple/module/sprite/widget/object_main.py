@@ -52,9 +52,7 @@ class StSpriteObjectMainPage(Gtk.Box):
     def on_btn_add_clicked(self, *args):
         from skytemple.module.sprite.module import GROUND_DIR, WAN_FILE_EXT
 
-        response, name = self._show_generic_input(
-            _("Sprite Name"), _("Create Object Sprite")
-        )
+        response, name = self._show_generic_input(_("Sprite Name"), _("Create Object Sprite"))
         if response != Gtk.ResponseType.OK:
             return
         name = name.lower()
@@ -112,7 +110,5 @@ class StSpriteObjectMainPage(Gtk.Box):
         response = dialog.run()
         dialog.hide()
         assert_not_none(cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
-        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(
-            btn_cancel
-        )
+        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return (response, entry.get_text())

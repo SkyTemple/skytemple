@@ -84,21 +84,13 @@ class MonsterModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
         logger.debug("Preloading MD...")
-        self.monster_md: MdProtocol[MdEntryProtocol] = self.project.open_file_in_rom(
-            MONSTER_MD_FILE, FileType.MD
-        )
+        self.monster_md: MdProtocol[MdEntryProtocol] = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)
         logger.debug("Preloading m_level.bin...")
-        self.m_level_bin: BinPack = self.project.open_file_in_rom(
-            M_LEVEL_BIN, FileType.BIN_PACK
-        )
+        self.m_level_bin: BinPack = self.project.open_file_in_rom(M_LEVEL_BIN, FileType.BIN_PACK)
         logger.debug("Preloading waza_p.bin...")
-        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(
-            WAZA_P_BIN, FileType.WAZA_P
-        )
+        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
         logger.debug("Preloading waza_p2.bin...")
-        self.waza_p2_bin: WazaPProtocol = self.project.open_file_in_rom(
-            WAZA_P2_BIN, FileType.WAZA_P
-        )
+        self.waza_p2_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
         logger.debug("Done preloading.")
 
         self._tbl_talk: Optional[TblTalk] = None
@@ -111,9 +103,7 @@ class MonsterModule(AbstractModule):
     @property
     def tbl_talk(self) -> TblTalk:
         if self._tbl_talk is None:
-            self._tbl_talk = self.project.open_file_in_rom(
-                TBL_TALK_FILE, FileType.TBL_TALK
-            )
+            self._tbl_talk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
         return self._tbl_talk
 
     def load_tree_items(self, item_tree: ItemTree):
@@ -142,12 +132,8 @@ class MonsterModule(AbstractModule):
             monster_entries_by_base_id[getattr(entry, b_attr)].append(entry)
 
         for baseid, entry_list in monster_entries_by_base_id.items():
-            name = self.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, baseid
-            )
-            ent_root = item_tree.add_entry(
-                self._root, self.generate_entry__entity_root(baseid, name)
-            )
+            name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
+            ent_root = item_tree.add_entry(self._root, self.generate_entry__entity_root(baseid, name))
             self._tree_iter__entity_roots[baseid] = ent_root
 
             for entry in entry_list:
@@ -170,17 +156,11 @@ class MonsterModule(AbstractModule):
         b_attr = self.effective_base_attr
 
         entry = self.monster_md.entries[item_id]
-        name = self.project.get_string_provider().get_value(
-            StringType.POKEMON_NAMES, getattr(entry, b_attr)
-        )
+        name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, getattr(entry, b_attr))
         entry_entity = self._tree_iter__entity_roots[getattr(entry, b_attr)]
-        entry_entity.update(
-            self.generate_entry__entity_root(getattr(entry, b_attr), name)
-        )
+        entry_entity.update(self.generate_entry__entity_root(getattr(entry, b_attr), name))
         entry_form = self._tree_iter__entries[item_id]
-        entry_form.update(
-            self.generate_entry__entry(entry.md_index, Gender(entry.gender))
-        )
+        entry_form.update(self.generate_entry__entry(entry.md_index, Gender(entry.gender)))
 
     def generate_entry__entity_root(self, entid, name) -> ItemTreeEntry:
         return ItemTreeEntry(
@@ -204,9 +184,7 @@ class MonsterModule(AbstractModule):
             item_data=i,
         )
 
-    def get_entry_both(
-        self, item_id
-    ) -> tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
+    def get_entry_both(self, item_id) -> tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
         num_entites = FileType.MD.properties().num_entities
         if item_id + num_entites < len(self.monster_md):
             return self.monster_md[item_id], self.monster_md[item_id + num_entites]
@@ -229,9 +207,7 @@ class MonsterModule(AbstractModule):
         if idx > -1 and idx < len(self.m_level_bin):
             raw = self.m_level_bin[idx]
             return FileType.LEVEL_BIN_ENTRY.deserialize(
-                FileType.PKDPX.deserialize(
-                    FileType.SIR0.deserialize(raw).content
-                ).decompress()
+                FileType.PKDPX.deserialize(FileType.SIR0.deserialize(raw).content).decompress()
             )
         return None
 
@@ -240,9 +216,7 @@ class MonsterModule(AbstractModule):
 
     def set_m_level_bin_entry(self, idx: int, entry: LevelBinEntry):
         new_bytes_unpacked = FileType.LEVEL_BIN_ENTRY.serialize(entry)
-        new_bytes_pkdpx = FileType.PKDPX.serialize(
-            FileType.PKDPX.compress(new_bytes_unpacked)
-        )
+        new_bytes_pkdpx = FileType.PKDPX.serialize(FileType.PKDPX.compress(new_bytes_unpacked))
         new_bytes = FileType.SIR0.serialize(FileType.SIR0.wrap(new_bytes_pkdpx, []))
         self.m_level_bin[idx] = new_bytes
         self.project.mark_as_modified(M_LEVEL_BIN)
@@ -259,9 +233,7 @@ class MonsterModule(AbstractModule):
         portrait_module = self.project.get_module("portrait")
         if not portrait_module.is_idx_supported(prt_id):
             return Gtk.Label.new(_("This entry has no portraits."))
-        return portrait_module.get_editor(
-            prt_id, lambda: self.mark_md_as_modified(item_id)
-        )
+        return portrait_module.get_editor(prt_id, lambda: self.mark_md_as_modified(item_id))
 
     def get_sprite_view(self, sprite_id, item_id):
         def set_new_sprite_id(new_sprite_id):
@@ -371,9 +343,7 @@ class MonsterModule(AbstractModule):
     def get_personality_dialogues(self, group: int, dialogue_types: TalkType):
         return self.tbl_talk.get_dialogues(group, dialogue_types)
 
-    def set_personality_dialogues(
-        self, group: int, dialogue_types: TalkType, dialogues: list[u16]
-    ):
+    def set_personality_dialogues(self, group: int, dialogue_types: TalkType, dialogues: list[u16]):
         return self.tbl_talk.set_dialogues(group, dialogue_types, dialogues)
 
     def mark_string_as_modified(self):
@@ -398,9 +368,7 @@ class MonsterModule(AbstractModule):
         self._mark_as_modified_in_tree(item_id)
 
     def _mark_as_modified_in_tree(self, item_id):
-        self._item_tree.mark_as_modified(
-            self._tree_iter__entries[item_id], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_iter__entries[item_id], RecursionType.UP)
 
     def get_pokemon_sprite_data_table(self):
         """Returns the recruitment lists: species, levels, locations"""
@@ -445,17 +413,9 @@ class MonsterModule(AbstractModule):
             portraits,
             portraits2,
             self.get_personality(md_gender1.md_index),
-            (
-                self.get_personality(md_gender2.md_index)
-                if md_gender2 is not None
-                else None
-            ),
+            (self.get_personality(md_gender2.md_index) if md_gender2 is not None else None),
             self.get_idle_anim_type(md_gender1.md_index),
-            (
-                self.get_idle_anim_type(md_gender2.md_index)
-                if md_gender2 is not None
-                else None
-            ),
+            (self.get_idle_anim_type(md_gender2.md_index) if md_gender2 is not None else None),
         )
 
     def update_monster_sort_lists(self, lang):
@@ -465,26 +425,18 @@ class MonsterModule(AbstractModule):
         pre_sorted_list = list(
             enumerate(
                 model.strings[
-                    sp.get_index(StringType.POKEMON_NAMES, 0) : sp.get_index(
-                        StringType.POKEMON_NAMES, 0
-                    )
+                    sp.get_index(StringType.POKEMON_NAMES, 0) : sp.get_index(StringType.POKEMON_NAMES, 0)
                     + FileType.MD.properties().num_entities
                 ]
             )
         )
         pre_sorted_list.sort(key=lambda x: normalize_string(x[1]))
         sorted_list = [x[0] for x in pre_sorted_list]
-        inv_sorted_list = [
-            sorted_list.index(i) for i in range(FileType.MD.properties().max_possible)
-        ]
-        m2n_model = self.project.open_file_in_rom(
-            f"BALANCE/{lang.sort_lists.m2n}", ValListHandler
-        )
+        inv_sorted_list = [sorted_list.index(i) for i in range(FileType.MD.properties().max_possible)]
+        m2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.m2n}", ValListHandler)
         m2n_model.set_list(inv_sorted_list)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.m2n}")
-        n2m_model = self.project.open_file_in_rom(
-            f"BALANCE/{lang.sort_lists.n2m}", ValListHandler
-        )
+        n2m_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.n2m}", ValListHandler)
         n2m_model.set_list(sorted_list)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.n2m}")
 
@@ -547,45 +499,27 @@ class MonsterModule(AbstractModule):
             if md_gender2:
                 if we_are_gender1:
                     if md_gender1_imp_wrapped.personality is not None:
-                        self.set_personality(
-                            md_gender1.md_index, md_gender1_imp_wrapped.personality
-                        )
+                        self.set_personality(md_gender1.md_index, md_gender1_imp_wrapped.personality)
                     if md_gender1_imp_wrapped.idle_anim is not None:
-                        self.set_idle_anim_type(
-                            md_gender1.md_index, md_gender1_imp_wrapped.idle_anim
-                        )
+                        self.set_idle_anim_type(md_gender1.md_index, md_gender1_imp_wrapped.idle_anim)
                 else:
                     if md_gender2_imp_wrapped.personality is not None:
-                        self.set_personality(
-                            md_gender2.md_index, md_gender2_imp_wrapped.personality
-                        )
+                        self.set_personality(md_gender2.md_index, md_gender2_imp_wrapped.personality)
                     if md_gender2_imp_wrapped.idle_anim is not None:
-                        self.set_idle_anim_type(
-                            md_gender2.md_index, md_gender2_imp_wrapped.idle_anim
-                        )
+                        self.set_idle_anim_type(md_gender2.md_index, md_gender2_imp_wrapped.idle_anim)
             else:
                 if md_gender1_imp_wrapped.personality is not None:
-                    self.set_personality(
-                        md_gender1.md_index, md_gender1_imp_wrapped.personality
-                    )
+                    self.set_personality(md_gender1.md_index, md_gender1_imp_wrapped.personality)
                 if md_gender1_imp_wrapped.idle_anim is not None:
-                    self.set_idle_anim_type(
-                        md_gender1.md_index, md_gender1_imp_wrapped.idle_anim
-                    )
+                    self.set_idle_anim_type(md_gender1.md_index, md_gender1_imp_wrapped.idle_anim)
             if stats:
                 self.set_m_level_bin_entry(getattr(entry, b_attr) - 1, stats)
             if names:
                 sp = self.project.get_string_provider()
                 for lang_name, (name, category) in names.items():
                     model = sp.get_model(lang_name)
-                    model.strings[
-                        sp.get_index(StringType.POKEMON_NAMES, getattr(entry, b_attr))
-                    ] = name
-                    model.strings[
-                        sp.get_index(
-                            StringType.POKEMON_CATEGORIES, getattr(entry, b_attr)
-                        )
-                    ] = category
+                    model.strings[sp.get_index(StringType.POKEMON_NAMES, getattr(entry, b_attr))] = name
+                    model.strings[sp.get_index(StringType.POKEMON_CATEGORIES, getattr(entry, b_attr))] = category
                     self.update_monster_sort_lists(lang_name)
                 sp.mark_as_modified()
 
@@ -626,9 +560,7 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(MEVO_FILE)
         self._mark_as_modified_in_tree(item_id)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StMonsterMonsterPage):
             pass  # todo
         return None

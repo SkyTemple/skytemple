@@ -81,9 +81,7 @@ ITEM_LISTS = [
 import os
 
 
-@Gtk.Template(
-    filename=os.path.join(data_dir(), "widget", "moves_items", "item_lists.ui")
-)
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "moves_items", "item_lists.ui"))
 class StMovesItemsItemListsPage(Gtk.Stack):
     __gtype_name__ = "StMovesItemsItemListsPage"
     module: MovesItemsModule
@@ -103,64 +101,30 @@ class StMovesItemsItemListsPage(Gtk.Stack):
     chance_label7: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     chance_label8: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     chance_label9: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
-    completion_item_berries_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_berries: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_foods_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_foods: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_hold_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_hold: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_orbs_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_orbs: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_others_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_others: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_thrown_pierce_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_thrown_pierce: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
-    completion_item_thrown_rock_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    completion_item_thrown_rock: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_item_berries_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_berries: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_foods_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_foods: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_hold_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_hold: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_orbs_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_orbs: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_others_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_others: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_thrown_pierce_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_thrown_pierce: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
+    completion_item_thrown_rock_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    completion_item_thrown_rock: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     completion_item_tms_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    completion_item_tms: Gtk.EntryCompletion = cast(
-        Gtk.EntryCompletion, Gtk.Template.Child()
-    )
+    completion_item_tms: Gtk.EntryCompletion = cast(Gtk.EntryCompletion, Gtk.Template.Child())
     cr_item_cat_name_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_berries_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_foods_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_hold_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_orbs_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_others_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    item_cat_thrown_pierce_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
-    item_cat_thrown_rock_store: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
+    item_cat_thrown_pierce_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
+    item_cat_thrown_rock_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_cat_tms_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     item_categories_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     box_na: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
@@ -168,84 +132,48 @@ class StMovesItemsItemListsPage(Gtk.Stack):
     cb_list_ids: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     sw_item_editor: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
     item_categories_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_name: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_items_cat_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_name: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_items_cat_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_categories_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_categories_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_pierce_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_thrown_pierce_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_thrown_pierce_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_thrown_pierce_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_thrown_pierce_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_thrown_pierce_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_pierce_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_rock_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_thrown_rock_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_thrown_rock_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_thrown_rock_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_thrown_rock_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_thrown_rock_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_thrown_rock_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_berries_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_berries_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_berries_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_berries_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_berries_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_berries_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_berries_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_foods_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_foods_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_foods_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_foods_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_foods_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_foods_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_foods_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_hold_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_hold_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_hold_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_hold_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_hold_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_hold_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_hold_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_tms_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_tms_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_tms_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_tms_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_tms_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_tms_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_tms_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_orbs_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_orbs_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_orbs_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_orbs_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_orbs_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_orbs_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_orbs_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_others_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_items_cat_others_item_name: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
-    cr_items_cat_others_weight: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    cr_items_cat_others_item_name: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    cr_items_cat_others_weight: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_cat_others_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_others_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
@@ -255,11 +183,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         self.item_data = item_data
         self._item_list: MappaItemListProtocol
         self._item_names: dict[int, str] = {}
-        orig_cats = (
-            module.project.get_rom_module()
-            .get_static_data()
-            .dungeon_data.item_categories
-        )
+        orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
         # TODO: Support editing other item categories?
         self.item_categories = {
             0: orig_cats[0],
@@ -366,9 +290,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         available_categories = self._fill_available_categories_into_store(cb_store)
         # Show error if no categories available
         if len(available_categories) < 1:
-            display_error(
-                None, "All categories are already in the list.", "Can not add category"
-            )
+            display_error(None, "All categories are already in the list.", "Can not add category")
             return
         cb.set_active_iter(cb_store.get_iter_first())
         resp = dialog.run()
@@ -401,9 +323,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         self._on_cat_item_name_changed("item_cat_thrown_pierce_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_thrown_pierce_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_thrown_pierce_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_thrown_pierce)
 
     @Gtk.Template.Callback()
@@ -423,9 +343,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         self._on_cat_item_name_changed("item_cat_thrown_rock_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_thrown_rock_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_thrown_rock_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_thrown_rock)
 
     @Gtk.Template.Callback()
@@ -445,9 +363,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         self._on_cat_item_name_changed("item_cat_berries_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_berries_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_berries_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_berries)
 
     @Gtk.Template.Callback()
@@ -547,9 +463,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         self._on_cat_item_name_changed("item_cat_others_store", path, text)
 
     @Gtk.Template.Callback()
-    def on_cr_items_cat_others_item_name_editing_started(
-        self, renderer, editable, path
-    ):
+    def on_cr_items_cat_others_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.completion_item_others)
 
     @Gtk.Template.Callback()
@@ -715,9 +629,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             s.clear()
         il = self._item_list
         # Add item categories
-        relative_weights = self._calculate_relative_weights(
-            list(il.categories.values())
-        )
+        relative_weights = self._calculate_relative_weights(list(il.categories.values()))
         sum_of_all_weights = sum(relative_weights)
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -727,17 +639,13 @@ class StMovesItemsItemListsPage(Gtk.Stack):
                 continue  # TODO: Support editing other item categories?
             name = self.item_categories[category].name_localized
             chance_str = f"{int(relative_weight) / sum_of_all_weights * 100:.3f}%"
-            item_categories_store.append(
-                [category, name, False, chance_str, str(relative_weight)]
-            )
+            item_categories_store.append([category, name, False, chance_str, str(relative_weight)])
         # Add items
         items_by_category = self._split_items_in_list_in_cats(il.items)
         for j, (category_m, store) in enumerate(item_stores.items()):
             item_icon_renderer = ListIconRenderer(5)
             cat_items = items_by_category[category_m.id]
-            relative_weights = self._calculate_relative_weights(
-                [v for v in cat_items.values()]
-            )
+            relative_weights = self._calculate_relative_weights([v for v in cat_items.values()])
             sum_of_all_weights = sum(relative_weights)
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -755,14 +663,10 @@ class StMovesItemsItemListsPage(Gtk.Stack):
                     row_idx,
                     (itm,),
                 )
-                store.append(
-                    [item, name, False, chance_str, str(relative_weight), item_icon]
-                )
+                store.append([item, name, False, chance_str, str(relative_weight), item_icon])
         self._update_cr_item_cat_name_store()
 
-    def _split_items_in_list_in_cats(
-        self, items: dict[int, Probability]
-    ) -> dict[int, dict[int, Probability]]:
+    def _split_items_in_list_in_cats(self, items: dict[int, Probability]) -> dict[int, dict[int, Probability]]:
         out_items: dict[int, dict[int, Probability]] = {}
         for cat in self.item_categories.values():
             out_items[cat.id] = {}
@@ -791,9 +695,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             self.item_categories[8]: completion_item_others_store,
         }
         for i in range(0, MAX_ITEM_ID):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.ITEM_NAMES, i
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self._item_names[i] = f"{name} (#{i:03})"
         for category, store in completion_stores.items():
             for item in category.item_ids():
@@ -827,15 +729,11 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             if sum_of_all_weights == 0:
                 row[chance_idx] = "0.00%"
             else:
-                row[chance_idx] = (
-                    f"{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%"
-                )
+                row[chance_idx] = f"{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%"
 
     def _fill_available_categories_into_store(self, cb_store):
         available_categories = [
-            cat
-            for cat in self.item_categories.values()
-            if cat not in self._item_list.categories.keys()
+            cat for cat in self.item_categories.values() if cat not in self._item_list.categories.keys()
         ]
         # Init combobox
         cb_store.clear()
@@ -866,18 +764,14 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             for row in iter_tree_model(store):
                 rows.append(row[:])
             rows.sort(key=lambda e: e[0])
-            sum_of_weights = sum(
-                int(row[4]) for row in iter_tree_model(store) if row[2] is False
-            )
+            sum_of_weights = sum(int(row[4]) for row in iter_tree_model(store) if row[2] is False)
             last_weight = 0
             last_weight_set_idx = None
             for row in rows:
                 # Add Poké and Link Box items for those categories
                 if not cat:
                     if row[0] == POKE_CATEGORY_ID:
-                        item_weights[
-                            self.item_categories[POKE_CATEGORY_ID].item_ids()[0]
-                        ] = 10000
+                        item_weights[self.item_categories[POKE_CATEGORY_ID].item_ids()[0]] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
                         item_weights[self._get_link_box_item_id()] = 10000
                 was_set = False
@@ -904,9 +798,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
                         category_weights[last_weight_set_idx] = 10000
                     else:
                         item_weights[last_weight_set_idx] = 10000
-        item_weights = {
-            k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])
-        }
+        item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
         il = self._item_list
         il.categories = category_weights
         il.items = item_weights

@@ -133,16 +133,10 @@ class SpecialPcsController(ListBaseController):
         self._update_move(path, text, 10)
 
     def on_cr_move_editing_started(self, renderer, editable, path):
-        editable.set_completion(
-            builder_get_assert(self.builder, Gtk.ListStore, "completion_moves")
-        )
+        editable.set_completion(builder_get_assert(self.builder, Gtk.ListStore, "completion_moves"))
 
     def on_cr_location_editing_started(self, renderer, editable, path):
-        editable.set_completion(
-            builder_get_assert(
-                self.builder, Gtk.EntryCompletion, "completion_locations"
-            )
-        )
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, "completion_locations"))
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
@@ -185,9 +179,7 @@ class SpecialPcsController(ListBaseController):
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()
-        self._list_store = assert_not_none(
-            cast(Optional[Gtk.ListStore], tree.get_model())
-        )
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
 
         # Iterate list
@@ -219,26 +211,18 @@ class SpecialPcsController(ListBaseController):
         self._list_store[path][value_pos] = text
 
     def _init_completions(self):
-        locations_store = builder_get_assert(
-            self.builder, Gtk.ListStore, "location_store"
-        )
+        locations_store = builder_get_assert(self.builder, Gtk.ListStore, "location_store")
         for idx in range(0, 256):
-            name = self.module.project.get_string_provider().get_value(
-                StringType.DUNGEON_NAMES_SELECTION, idx
-            )
+            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
             self._location_names[idx] = f"{name} ({idx:04})"
             locations_store.append([self._location_names[idx]])
 
-        store = builder_get_assert(
-            self.builder, Gtk.ListStore, "store_completion_moves"
-        )
+        store = builder_get_assert(self.builder, Gtk.ListStore, "store_completion_moves")
         for i in range(len(self.move_entries)):
             store.append([self._get_move_display_name(i)])
 
     def _get_move_display_name(self, i: int):
-        name = self.module.project.get_string_provider().get_value(
-            StringType.MOVE_NAMES, i
-        )
+        name = self.module.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
         return f"{name} ({i:03})"
 
     def _get_move_id_from_display_name(self, display_name):

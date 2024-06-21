@@ -32,9 +32,7 @@ from skytemple_files.graphics.dpl.protocol import DplProtocol
 
 
 class FixedFloorDrawerTileset(AbstractTilesetRenderer):
-    def __init__(
-        self, dma: DmaProtocol, dpci: DpciProtocol, dpc: DpcProtocol, dpl: DplProtocol
-    ):
+    def __init__(self, dma: DmaProtocol, dpci: DpciProtocol, dpc: DpcProtocol, dpl: DplProtocol):
         self._cached_rules: Optional[list[list[int]]] = None
         self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.dma = dma
@@ -55,13 +53,9 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
     def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
-            mappings = self.dma_drawer.get_mappings_for_rules(
-                rules, treat_outside_as_wall=True, variation_index=0
-            )
+            mappings = self.dma_drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True, variation_index=0)
             self._cached_dungeon_surface = pil_to_cairo_surface(
-                self.dma_drawer.draw(mappings, self.dpci, self.dpc, self.dpl, None)[
-                    0
-                ].convert("RGBA")
+                self.dma_drawer.draw(mappings, self.dpci, self.dpc, self.dpl, None)[0].convert("RGBA")
             )
             self._cached_rules = rules
         assert self._cached_dungeon_surface is not None
@@ -74,7 +68,5 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
         index = self.dma.get(type, False)[0]
         chunk_dim = DPC_TILING_DIM * DPCI_TILE_DIM
         return pil_to_cairo_surface(
-            chunks.crop(
-                (0, index * chunk_dim, chunk_dim, index * chunk_dim + chunk_dim)
-            ).convert("RGBA")
+            chunks.crop((0, index * chunk_dim, chunk_dim, index * chunk_dim + chunk_dim)).convert("RGBA")
         )

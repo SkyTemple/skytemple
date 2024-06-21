@@ -62,21 +62,15 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
     def get_background(self) -> Optional[cairo.Surface]:
         if not self._cached_bg:
             self._cached_bg = pil_to_cairo_surface(
-                self.dbg.to_pil(
-                    self.dbg_dpc, self.dbg_dpci, self.dbg_dpl.palettes
-                ).convert("RGBA")
+                self.dbg.to_pil(self.dbg_dpc, self.dbg_dpci, self.dbg_dpl.palettes).convert("RGBA")
             )
         return self._cached_bg
 
     def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
-            mappings = self.dma_drawer.get_mappings_for_rules(
-                rules, treat_outside_as_wall=True, variation_index=0
-            )
-            self._cached_dungeon_surface = pil_to_cairo_surface(
-                self._draw_dungeon(mappings)
-            )
+            mappings = self.dma_drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True, variation_index=0)
+            self._cached_dungeon_surface = pil_to_cairo_surface(self._draw_dungeon(mappings))
             self._cached_rules = rules
         assert self._cached_dungeon_surface is not None
         return self._cached_dungeon_surface
@@ -90,17 +84,13 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
         chunk_width = int(self.chunks.width / chunk_dim)
         cy = int(index / chunk_width) * chunk_dim
         cx = index % chunk_width * chunk_dim
-        return pil_to_cairo_surface(
-            self.chunks.crop((cx, cy, cx + chunk_dim, cy + chunk_dim))
-        )
+        return pil_to_cairo_surface(self.chunks.crop((cx, cy, cx + chunk_dim, cy + chunk_dim)))
 
     def _draw_dungeon(self, mappings: list[list[int]]) -> Image.Image:
         chunk_dim = DPCI_TILE_DIM * DPC_TILING_DIM
         chunk_width = int(self.chunks.width / chunk_dim)
 
-        fimg = Image.new(
-            "RGBA", (len(mappings[0]) * chunk_dim, len(mappings) * chunk_dim)
-        )
+        fimg = Image.new("RGBA", (len(mappings[0]) * chunk_dim, len(mappings) * chunk_dim))
 
         def paste(chunk_index, x, y):
             cy = int(chunk_index / chunk_width) * chunk_dim

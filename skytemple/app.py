@@ -57,20 +57,14 @@ class SkyTempleApplication(Gtk.Application):
 
                 itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
                 itheme.append_search_path(os.path.abspath(icons()))  # type: ignore
-                itheme.append_search_path(
-                    os.path.abspath(os.path.join(data_dir(), "icons"))
-                )
-                itheme.append_search_path(
-                    os.path.abspath(os.path.join(get_debugger_data_dir(), "icons"))
-                )
+                itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
+                itheme.append_search_path(os.path.abspath(os.path.join(get_debugger_data_dir(), "icons")))
                 itheme.rescan_if_needed()
 
             with record_span("sys", "load-builder"):
                 # Load Builder and Window
                 builder = make_builder(os.path.join(path, "skytemple.glade"))
-                self.main_window = builder_get_assert(
-                    builder, Gtk.ApplicationWindow, "main_window"
-                )
+                self.main_window = builder_get_assert(builder, Gtk.ApplicationWindow, "main_window")
                 GLib.set_application_name("SkyTemple")
 
             with record_span("sys", "load-css"):
@@ -97,9 +91,7 @@ class SkyTempleApplication(Gtk.Application):
                         discord_listener = DiscordPresence()
                         event_manager.register_listener(discord_listener)
                     except BaseException as exc:
-                        logging.warning(
-                            "Error setting up Discord integration:", exc_info=exc
-                        )
+                        logging.warning("Error setting up Discord integration:", exc_info=exc)
 
             with record_span("sys", "load-modules"):
                 # Load modules
@@ -119,6 +111,4 @@ class SkyTempleApplication(Gtk.Application):
 def _load_theme(settings: SkyTempleSettingsStore):
     gtk_settings = Gtk.Settings.get_default()
     if gtk_settings is not None:
-        gtk_settings.set_property(
-            "gtk-theme-name", settings.get_gtk_theme(default="Arc-Dark")
-        )
+        gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default="Arc-Dark"))

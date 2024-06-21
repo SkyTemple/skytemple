@@ -73,9 +73,7 @@ class Drawer:
         self.width_in_tiles = DBG_WIDTH_AND_HEIGHT * 3
         self.height_in_tiles = DBG_WIDTH_AND_HEIGHT * 3
 
-        self.selection_plugin = SelectionDrawerPlugin(
-            DPCI_TILE_DIM, DPCI_TILE_DIM, self.selection_draw_callback
-        )
+        self.selection_plugin = SelectionDrawerPlugin(DPCI_TILE_DIM, DPCI_TILE_DIM, self.selection_draw_callback)
         self.tile_grid_plugin = GridDrawerPlugin(DPCI_TILE_DIM, DPCI_TILE_DIM)
         self.chunk_grid_plugin = GridDrawerPlugin(
             DPCI_TILE_DIM * self.tiling_width,
@@ -94,9 +92,7 @@ class Drawer:
         else:
             self.mappings = []
 
-        self.animation_context = AnimationContext(
-            [chunks_surfaces], 0, pal_ani_durations
-        )
+        self.animation_context = AnimationContext([chunks_surfaces], 0, pal_ani_durations)
 
     def start(self):
         """Start drawing on the DrawingArea"""
@@ -150,9 +146,7 @@ class Drawer:
                 if (i + 1) % self.width_in_chunks == 0:
                     # Move to beginning of next line
                     if do_translates:
-                        ctx.translate(
-                            -chunk_width * (self.width_in_chunks - 1), chunk_height
-                        )
+                        ctx.translate(-chunk_width * (self.width_in_chunks - 1), chunk_height)
                 else:
                     # Move to next tile in line
                     if do_translates:
@@ -168,9 +162,7 @@ class Drawer:
         size_w //= self.scale
         size_h //= self.scale
         # Selection
-        self.selection_plugin.set_size(
-            self.tiling_width * DPCI_TILE_DIM, self.tiling_height * DPCI_TILE_DIM
-        )
+        self.selection_plugin.set_size(self.tiling_width * DPCI_TILE_DIM, self.tiling_height * DPCI_TILE_DIM)
         self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
 
         # Tile Grid
@@ -185,9 +177,7 @@ class Drawer:
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
         # Draw a chunk
         chunks_at_frame = self.animation_context.current()[0]
-        ctx.set_source_surface(
-            chunks_at_frame[self.interaction_chunks_selected_id], x, y
-        )
+        ctx.set_source_surface(chunks_at_frame[self.interaction_chunks_selected_id], x, y)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
 

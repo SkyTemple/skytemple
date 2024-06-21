@@ -120,9 +120,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
     __gtype_name__ = "StSpritecollabBrowserPage"
     module: SpritecollabModule
     item_data: None
-    sc_store_switcher_combobox: Gtk.ListStore = cast(
-        Gtk.ListStore, Gtk.Template.Child()
-    )
+    sc_store_switcher_combobox: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     sc_paned: Gtk.Paned = cast(Gtk.Paned, Gtk.Template.Child())
     sc_left: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     sc_infobar: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
@@ -188,14 +186,10 @@ class StSpritecollabBrowserPage(Gtk.Window):
         stack = self.sc_stack
         search = self.sc_search
         if self._spritebrowser_url is not None:
-            cast(Gtk.HeaderBar, self.get_titlebar()).set_subtitle(
-                self._spritebrowser_url
-            )
+            cast(Gtk.HeaderBar, self.get_titlebar()).set_subtitle(self._spritebrowser_url)
             external_button.set_sensitive(True)
         else:
-            cast(Gtk.HeaderBar, self.get_titlebar()).set_subtitle(
-                self._spriteserver_url
-            )
+            cast(Gtk.HeaderBar, self.get_titlebar()).set_subtitle(self._spriteserver_url)
             external_button.set_sensitive(False)
         self._store.clear()
         self._filter.refilter()
@@ -219,11 +213,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
             if monster.monster_id not in lists_form_paths:
                 lists_form_paths[monster.monster_id] = []
             lists_form_paths[monster.monster_id].append(monster.form_path)
-            if (
-                monster.form_path == ""
-                or monster.form_path == "0"
-                or monster.form_path == "0000"
-            ):
+            if monster.form_path == "" or monster.form_path == "0" or monster.form_path == "0000":
                 self._store.append(
                     [
                         True,
@@ -240,9 +230,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         info_bar = self.sc_infobar
         display_error(
             error,
-            _(
-                "Failed loading list of Pokémon from the configured SpriteCollab server."
-            ),
+            _("Failed loading list of Pokémon from the configured SpriteCollab server."),
             _("Error Updating Sprites"),
             window=self,
         )
@@ -307,9 +295,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
     def on_sc_help_clicked(self, *args):
         from skytemple.controller.main import SKYTEMPLE_WIKI_LINK
 
-        webbrowser.open(
-            f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-spritecollab-browser"
-        )
+        webbrowser.open(f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-spritecollab-browser")
 
     @Gtk.Template.Callback()
     def on_sc_diag_preset_changed(self, w: Gtk.ComboBox, *args):
@@ -501,9 +487,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         sprite_forms_store = Gtk.ListStore(str)
         sprite_forms_container.set_model(sprite_forms_store)
         renderer = Gtk.CellRendererText.new()
-        sprite_forms_column: Gtk.TreeViewColumn = create_tree_view_column(
-            "", renderer, text=0
-        )
+        sprite_forms_column: Gtk.TreeViewColumn = create_tree_view_column("", renderer, text=0)
         sprite_forms_container.append_column(sprite_forms_column)
         sprite_forms_container.set_headers_visible(False)
         for sprite in sorted(list(form.sprites.keys())):
@@ -515,9 +499,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         sprite_button: Gtk.Button = Gtk.Button.new_with_label(_("Apply Sprites"))
         sprite_button.connect(
             "clicked",
-            lambda *args: self.module.apply_sprites(
-                self, assert_not_none(self._spriteclient), form
-            ),
+            lambda *args: self.module.apply_sprites(self, assert_not_none(self._spriteclient), form),
         )
         new_child.attach(sprite_button, 1, 3, 1, 1)
         credit_child: Gtk.Grid = Gtk.Grid.new()
@@ -540,9 +522,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         portrait_credits.set_justify(Gtk.Justification.LEFT)
         credit_child.attach(portrait_credits, 0, 1, 1, 1)
         portrait_credits_content: Gtk.TextView = Gtk.TextView.new()
-        portrait_credits_content.get_buffer().set_text(
-            self._credits(form.portrait_credits)
-        )
+        portrait_credits_content.get_buffer().set_text(self._credits(form.portrait_credits))
         portrait_credits_content.set_wrap_mode(Gtk.WrapMode.WORD)
         portrait_credits_content.set_hexpand(True)
         credit_child.attach(portrait_credits_content, 1, 1, 1, 1)
@@ -560,9 +540,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         sprite_credits_content.set_hexpand(True)
         credit_child.attach(sprite_credits_content, 1, 2, 1, 1)
         # Button for details
-        details_button: Gtk.Button = Gtk.Button.new_with_label(
-            _("Open Details on Website...")
-        )
+        details_button: Gtk.Button = Gtk.Button.new_with_label(_("Open Details on Website..."))
         if self._spritebrowser_url is not None:
             details_button.connect(
                 "clicked",

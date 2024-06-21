@@ -30,7 +30,5 @@ class AbstractEntityRenderer(ABC):
         self.parent = parent
 
     @abstractmethod
-    def draw_action(
-        self, ctx: cairo.Context, action: FixedFloorActionRule, sx: int, sy: int
-    ):
+    def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, sx: int, sy: int):
         pass

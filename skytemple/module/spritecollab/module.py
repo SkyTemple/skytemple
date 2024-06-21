@@ -77,9 +77,7 @@ class SpritecollabModule(AbstractModule):
                 portraits.save(f)
             portrait_module.import_sheet(prt_idx, fname)
             GLib.idle_add(lambda: MainController.reload_view())
-            GLib.idle_add(
-                lambda: self._msg_success(window, _("Portraits successfully imported."))
-            )
+            GLib.idle_add(lambda: self._msg_success(window, _("Portraits successfully imported.")))
         finally:
             try:
                 if fname is not None:
@@ -87,9 +85,7 @@ class SpritecollabModule(AbstractModule):
             except Exception:
                 pass
 
-    def apply_sprites(
-        self, window: Gtk.Window, client: SpriteCollabClient, form: MonsterFormDetails
-    ):
+    def apply_sprites(self, window: Gtk.Window, client: SpriteCollabClient, form: MonsterFormDetails):
         project = RomProject.get_current()
         monster_idx = self._check_opened(window)
         if monster_idx is None:
@@ -112,9 +108,7 @@ class SpritecollabModule(AbstractModule):
             self._msg_not_supported(window)
             return
 
-        spr_result = asyncio.run(
-            get_sprites(client, (form.monster_id, form.form_path), copy_event_sleep)
-        )
+        spr_result = asyncio.run(get_sprites(client, (form.monster_id, form.form_path), copy_event_sleep))
         try:
             if spr_result is not None:
                 wan_file, pmd2_sprite, shadow_size_id = spr_result
@@ -132,9 +126,7 @@ class SpritecollabModule(AbstractModule):
                 return
 
             GLib.idle_add(lambda: MainController.reload_view())
-            GLib.idle_add(
-                lambda: self._msg_success(window, _("Sprites successfully imported."))
-            )
+            GLib.idle_add(lambda: self._msg_success(window, _("Sprites successfully imported.")))
         except BaseException as e:
             display_error(sys.exc_info(), str(e), _("Error importing the spritesheet."))
 
@@ -179,9 +171,7 @@ class SpritecollabModule(AbstractModule):
         diag.set_parent(window)
         diag.set_transient_for(window)
         diag.set_modal(True)
-        diag.add_buttons(
-            _("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY
-        )
+        diag.add_buttons(_("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY)
         content: Gtk.Box = diag.get_content_area()
         content.set_spacing(10)
         content.set_margin_start(5)
@@ -219,9 +209,7 @@ class SpritecollabModule(AbstractModule):
             return copy_event_sleep.get_active(), new_sprite_id.get_active()
         return None
 
-    def _msg(
-        self, msg: str, window: Gtk.Window, typ=Gtk.MessageType.ERROR, is_success=False
-    ):
+    def _msg(self, msg: str, window: Gtk.Window, typ=Gtk.MessageType.ERROR, is_success=False):
         if typ == Gtk.MessageType.ERROR:
             display_error(None, msg, should_report=False, window=window)
         else:

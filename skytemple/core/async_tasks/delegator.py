@@ -156,20 +156,11 @@ class AsyncTaskDelegator:
                 Now.instance().run_task(coro)
             else:
                 AsyncTaskRunner.instance().run_task(coro)
-        elif (
-            cls.config_type().async_task_runner_type
-            == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING
-        ):
+        elif cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING:
             Now.instance().run_task(coro)
-        elif (
-            cls.config_type().async_task_runner_type
-            == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING_SOON
-        ):
+        elif cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING_SOON:
             GLib.idle_add(lambda: Now.instance().run_task(coro))
-        elif (
-            cls.config_type().async_task_runner_type
-            == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT
-        ):
+        elif cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT:
             asyncio.create_task(coro)
         else:
             raise RuntimeError("Invalid async configuration")
@@ -180,10 +171,7 @@ class AsyncTaskDelegator:
         This is mostly useful for giving the UI loop a chance to catch up during heavy computations.
         This is only supported with AsyncRunnerType.EVENT_LOOP_CONCURRENT, otherwise this does nothing.
         """
-        if (
-            cls.config_type().async_task_runner_type
-            == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT
-        ):
+        if cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT:
             await asyncio.sleep(0.001)
 
     @classmethod
@@ -196,10 +184,7 @@ class AsyncTaskDelegator:
 
     @classmethod
     def support_aio(cls):
-        return (
-            cls.config_type().async_task_runner_type
-            == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT
-        )
+        return cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT
 
     @classmethod
     def event_loop(cls) -> Optional[AbstractEventLoop]:

@@ -86,9 +86,7 @@ MAIN_VIEW_DATA = StStatusPageData(
 
 
 class FontOpenSpec:
-    def __init__(
-        self, font_filename: str, pal_filename: Optional[str], font_type: FontType
-    ):
+    def __init__(self, font_filename: str, pal_filename: Optional[str], font_type: FontType):
         self.font_filename = font_filename
         self.pal_filename = pal_filename
         self.font_type = font_type
@@ -127,30 +125,17 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_w16s = self.project.get_files_with_ext(W16_FILE_EXT)
         self.list_of_wtes = self.project.get_files_with_ext(WTE_FILE_EXT)
         self.list_of_wtus = self.project.get_files_with_ext(WTU_FILE_EXT)
-        self.list_of_font_dats = sorted(
-            list(
-                set(self.project.get_files_with_ext(DAT_FILE_EXT))
-                & VALID_FONT_DAT_FILES
-            )
-        )
+        self.list_of_font_dats = sorted(list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_FONT_DAT_FILES))
         self.list_of_font_sir0s = sorted(
-            list(
-                set(self.project.get_files_with_ext(DAT_FILE_EXT))
-                & VALID_FONT_SIR0_FILES
-            )
+            list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_FONT_SIR0_FILES)
         )
         self.list_of_graphic_fonts = sorted(
-            list(
-                set(self.project.get_files_with_ext(DAT_FILE_EXT))
-                & VALID_GRAPHIC_FONT_FILES
-            )
+            list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_GRAPHIC_FONT_FILES)
         )
         self.list_of_bins = self.project.get_files_with_ext(BIN_FILE_EXT)
         self.list_of_pals = self.project.get_files_with_ext(PAL_FILE_EXT)
         self.list_of_chrs = self.project.get_files_with_ext(CHR_FILE_EXT)
-        self.list_of_banner_fonts = sorted(
-            list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES)
-        )
+        self.list_of_banner_fonts = sorted(list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES))
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
         self.list_of_wtes_dungeon_bin: list[Wte]
         self.list_of_wtus_dungeon_bin: list[Wtu]
@@ -170,9 +155,7 @@ class MiscGraphicsModule(AbstractModule):
         with self.dungeon_bin_context as dungeon_bin:
             self.list_of_wtes_dungeon_bin = dungeon_bin.get_files_with_ext(WTE_FILE_EXT)
             self.list_of_wtus_dungeon_bin = dungeon_bin.get_files_with_ext(WTU_FILE_EXT)
-            self.list_of_zmappats_dungeon_bin = dungeon_bin.get_files_with_ext(
-                ZMAPPAT_FILE_EXT
-            )
+            self.list_of_zmappats_dungeon_bin = dungeon_bin.get_files_with_ext(ZMAPPAT_FILE_EXT)
 
         root = item_tree.add_entry(
             None,
@@ -206,9 +189,7 @@ class MiscGraphicsModule(AbstractModule):
             sorted_entries[name] = False
         for name in self.list_of_wtes:
             sorted_entries[name] = True
-        sorted_entries = {
-            k: v for k, v in sorted(sorted_entries.items(), key=lambda item: item[0])
-        }
+        sorted_entries = {k: v for k, v in sorted(sorted_entries.items(), key=lambda item: item[0])}
 
         for i, (name, is_wte) in enumerate(sorted_entries.items()):
             if not is_wte:
@@ -275,17 +256,15 @@ class MiscGraphicsModule(AbstractModule):
                         if pal_name is None:
                             none_assoc = True
                         spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
-                        self._tree_level_iter[spec.get_row_name()] = (
-                            item_tree.add_entry(
-                                root,
-                                ItemTreeEntry(
-                                    icon="skytemple-e-graphics-symbolic",
-                                    name=spec.get_row_name(),
-                                    module=self,
-                                    view_class=StMiscGraphicsFontPage,
-                                    item_data=spec,
-                                ),
-                            )
+                        self._tree_level_iter[spec.get_row_name()] = item_tree.add_entry(
+                            root,
+                            ItemTreeEntry(
+                                icon="skytemple-e-graphics-symbolic",
+                                name=spec.get_row_name(),
+                                module=self,
+                                view_class=StMiscGraphicsFontPage,
+                                item_data=spec,
+                            ),
                         )
 
         for i, name in enumerate(self.list_of_graphic_fonts):
@@ -349,9 +328,7 @@ class MiscGraphicsModule(AbstractModule):
         w16_filename = self.list_of_w16s[item_id]
         self.project.mark_as_modified(w16_filename)
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[w16_filename], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[w16_filename], RecursionType.UP)
 
     def get_w16(self, item_id):
         w16_filename = self.list_of_w16s[item_id]
@@ -369,26 +346,18 @@ class MiscGraphicsModule(AbstractModule):
         elif spec.font_type == FontType.FONT_SIR0:
             return self.project.open_file_in_rom(spec.font_filename, FileType.FONT_SIR0)
         elif spec.font_type == FontType.BANNER_FONT:
-            font = self.project.open_file_in_rom(
-                spec.font_filename, FileType.BANNER_FONT
-            )
+            font = self.project.open_file_in_rom(spec.font_filename, FileType.BANNER_FONT)
             if spec.pal_filename:
-                font.set_palette(
-                    self.project.open_file_in_rom(spec.pal_filename, FileType.PAL)
-                )
+                font.set_palette(self.project.open_file_in_rom(spec.pal_filename, FileType.PAL))
             return font
         else:
             return None
 
     def get_graphic_font(self, spec: FontOpenSpec) -> Optional[GraphicFont]:
         if spec.font_type == FontType.GRAPHIC_FONT:
-            font = self.project.open_file_in_rom(
-                spec.font_filename, FileType.GRAPHIC_FONT
-            )
+            font = self.project.open_file_in_rom(spec.font_filename, FileType.GRAPHIC_FONT)
             if spec.pal_filename:
-                font.set_palette(
-                    self.project.open_file_in_rom(spec.pal_filename, FileType.PAL)
-                )
+                font.set_palette(self.project.open_file_in_rom(spec.pal_filename, FileType.PAL))
             return font
         else:
             return None
@@ -414,9 +383,7 @@ class MiscGraphicsModule(AbstractModule):
 
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[CART_REMOVED_NAME], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[CART_REMOVED_NAME], RecursionType.UP)
 
     def get_dungeon_bin_file(self, fn):
         with self.dungeon_bin_context as dungeon_bin:
@@ -431,9 +398,7 @@ class MiscGraphicsModule(AbstractModule):
                     pal_name = None
                 if pal_name is not None:
                     spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
-                    self._item_tree.mark_as_modified(
-                        self._tree_level_iter[spec.get_row_name()], RecursionType.UP
-                    )
+                    self._item_tree.mark_as_modified(self._tree_level_iter[spec.get_row_name()], RecursionType.UP)
 
     def mark_font_as_modified(self, item: FontOpenSpec):
         """Mark a specific font as modified"""
@@ -441,9 +406,7 @@ class MiscGraphicsModule(AbstractModule):
         if item.pal_filename:
             self.project.mark_as_modified(item.pal_filename)
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._tree_level_iter[item.get_row_name()], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_iter[item.get_row_name()], RecursionType.UP)
         self._mark_font_assoc_as_modified(item.font_filename)
 
     def mark_zmappat_as_modified(self, zmappat, fn):
@@ -451,9 +414,7 @@ class MiscGraphicsModule(AbstractModule):
             dungeon_bin.set(fn, zmappat)
         self.project.mark_as_modified(DUNGEON_BIN_PATH)
         # Mark as modified in tree
-        self._item_tree.mark_as_modified(
-            self._tree_level_dungeon_iter[fn], RecursionType.UP
-        )
+        self._item_tree.mark_as_modified(self._tree_level_dungeon_iter[fn], RecursionType.UP)
 
     def mark_chr_as_modified(self, fn):
         """Mark a specific chr as modified"""
@@ -470,21 +431,15 @@ class MiscGraphicsModule(AbstractModule):
                     dungeon_bin.set(item.wtu_filename, wtu)
             self.project.mark_as_modified(DUNGEON_BIN_PATH)
             # Mark as modified in tree
-            self._item_tree.mark_as_modified(
-                self._tree_level_dungeon_iter[item.wte_filename], RecursionType.UP
-            )
+            self._item_tree.mark_as_modified(self._tree_level_dungeon_iter[item.wte_filename], RecursionType.UP)
         else:
             self.project.mark_as_modified(item.wte_filename)
             if item.wtu_filename:
                 self.project.mark_as_modified(item.wtu_filename)
             # Mark as modified in tree
-            self._item_tree.mark_as_modified(
-                self._tree_level_iter[item.wte_filename], RecursionType.UP
-            )
+            self._item_tree.mark_as_modified(self._tree_level_iter[item.wte_filename], RecursionType.UP)
 
-    def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StMiscGraphicsCartRemovedPage):
             pass  # todo
         if isinstance(open_view, StMiscGraphicsChrPage):

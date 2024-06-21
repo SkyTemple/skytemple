@@ -38,18 +38,12 @@ class GridDrawerPlugin(AbstractDrawerPlugin):
         self.offset_y = offset_y
         self.offset_x = offset_x
 
-    def draw(
-        self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int
-    ):
+    def draw(self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int):
         ctx.translate(self.offset_x, self.offset_y)
         ctx.set_line_width(1)
         ctx.set_source_rgba(*self.color)
-        width_in_lines = int(size_w / self.dist_x) - int(
-            math.floor(self.offset_x / self.dist_x)
-        )
-        height_in_lines = int(size_h / self.dist_y) - int(
-            math.floor(self.offset_y / self.dist_y)
-        )
+        width_in_lines = int(size_w / self.dist_x) - int(math.floor(self.offset_x / self.dist_x))
+        height_in_lines = int(size_h / self.dist_y) - int(math.floor(self.offset_y / self.dist_y))
         for i in range(0, width_in_lines * height_in_lines):
             ctx.rectangle(0, 0, self.dist_x, self.dist_y)
             ctx.stroke()

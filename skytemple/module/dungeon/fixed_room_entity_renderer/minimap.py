@@ -40,14 +40,10 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
         super().__init__(parent)
         self.minimap_provider = minimap_provider
 
-    def draw_action(
-        self, ctx: cairo.Context, action: FixedFloorActionRule, x: int, y: int
-    ):
+    def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, x: int, y: int):
         if isinstance(action, EntityRule):
             assert self.parent.entity_rule_container is not None
-            item, monster, tile, stats = self.parent.entity_rule_container.get(
-                action.entity_rule_id
-            )
+            item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
             # Has trap?
             if tile.trap_id == MappaTrapType.WONDER_TILE.value:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(7), x, y)
@@ -84,16 +80,10 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
             if action.tr_type == TileRuleType.ATTENDANT3_SPAWN:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(10), x, y)
             # Key walls
-            if (
-                action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C
-                or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D
-            ):
+            if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(9), x, y)
             # Warp zone
-            if (
-                action.tr_type == TileRuleType.WARP_ZONE
-                or action.tr_type == TileRuleType.WARP_ZONE_2
-            ):
+            if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(5), x, y)
         elif isinstance(action, DirectRule):
             if action.tile.typ == TileType.PLAYER_SPAWN:

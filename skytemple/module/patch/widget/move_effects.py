@@ -57,9 +57,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
     box_list: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     effects_notebook: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     moves_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    move_effect_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    move_effect_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_goto_effect: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_fix_nb_items: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     cb_effect_ids: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
@@ -73,9 +71,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
     btn_repo: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_asmeditor: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     metronome_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    metronome_move_id: Gtk.CellRendererText = cast(
-        Gtk.CellRendererText, Gtk.Template.Child()
-    )
+    metronome_move_id: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_add_metronome: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_metronome: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
@@ -99,9 +95,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
 
     def _get_current_move_effect(self) -> int | None:
         tree_store = self.move_effects_store
-        active_rows: list[Gtk.TreePath] = (
-            self.moves_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.moves_tree.get_selection().get_selected_rows()[1]
         move_effect = None
         for x in active_rows:
             move_effect = tree_store[x.get_indices()[0]][2]
@@ -136,9 +130,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
         # Init list
         metronome_store.clear()
         for i in self._metronome_pool:
-            metronome_store.append(
-                [i, self._string_provider.get_value(StringType.MOVE_NAMES, i)]
-            )
+            metronome_store.append([i, self._string_provider.get_value(StringType.MOVE_NAMES, i)])
 
     def _init_combos(self, active=0):
         # Init available effects
@@ -178,14 +170,10 @@ class StPatchMoveEffectsPage(Gtk.Stack):
             try:
                 if fn.split(".")[-1].lower() == "asm":
                     with open_utf8(fn, "r") as file:
-                        self.move_effects.import_armips_effect_code(
-                            self._get_current_effect(), file.read()
-                        )
+                        self.move_effects.import_armips_effect_code(self._get_current_effect(), file.read())
                 else:
                     with open(fn, "rb") as file:
-                        self.move_effects.set_effect_code(
-                            self._get_current_effect(), file.read()
-                        )
+                        self.move_effects.set_effect_code(self._get_current_effect(), file.read())
                 self.module.mark_move_effects_as_modified()
                 md = SkyTempleMessageDialog(
                     MainController.window(),
@@ -205,9 +193,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.move_effects.import_armips_effect_code(
-                self._get_current_effect(), text
-            )
+            self.move_effects.import_armips_effect_code(self._get_current_effect(), text)
             self.module.mark_move_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),
@@ -236,9 +222,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             with open(fn, "wb") as file:
-                file.write(
-                    self.move_effects.get_effect_code(self._get_current_effect())
-                )
+                file.write(self.move_effects.get_effect_code(self._get_current_effect()))
 
     @Gtk.Template.Callback()
     def on_btn_help_import_clicked(self, *args):
@@ -286,9 +270,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
             tree_store = self.metronome_store
             new = int(text)
             tree_store[path][0] = new
-            tree_store[path][1] = self._string_provider.get_value(
-                StringType.MOVE_NAMES, new
-            )
+            tree_store[path][1] = self._string_provider.get_value(StringType.MOVE_NAMES, new)
         except ValueError:
             return
         self._metronome_pool[int(path)] = new
@@ -301,9 +283,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
     @Gtk.Template.Callback()
     def on_btn_add_metronome_clicked(self, *args):
         metronome_store = self.metronome_store
-        metronome_store.append(
-            [0, self._string_provider.get_value(StringType.MOVE_NAMES, 0)]
-        )
+        metronome_store.append([0, self._string_provider.get_value(StringType.MOVE_NAMES, 0)])
         self._metronome_pool.append(0)
         self._push_metronome_pool()
 
@@ -311,9 +291,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
     def on_btn_remove_metronome_clicked(self, *args):
         # Deletes all selected metronome entries
         # Allows multiple deletions
-        active_rows: list[Gtk.TreePath] = (
-            self.metronome_tree.get_selection().get_selected_rows()[1]
-        )
+        active_rows: list[Gtk.TreePath] = self.metronome_tree.get_selection().get_selected_rows()[1]
         metronome_store = self.metronome_store
         for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             index = x.get_indices()[0]

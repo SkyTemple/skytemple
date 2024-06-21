@@ -48,9 +48,7 @@ class Now(AsyncTaskRunnerProtocol):
                     self._cancel_all_tasks()
                     self._loop.run_until_complete(self._loop.shutdown_asyncgens())
                     if hasattr(self._loop, "shutdown_default_executor"):
-                        self._loop.run_until_complete(
-                            self._loop.shutdown_default_executor()
-                        )
+                        self._loop.run_until_complete(self._loop.shutdown_default_executor())
                 finally:
                     asyncio.set_event_loop(None)
                     self._loop.close()

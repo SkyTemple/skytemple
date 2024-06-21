@@ -41,22 +41,12 @@ class StListsDungeonMusicPage(Gtk.Box):
     store_tracks: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     nb_sl: Gtk.Notebook = cast(Gtk.Notebook, Gtk.Template.Child())
     tree_tracks: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_tracks_track: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    cr_tracks_track: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
     tree_random_tracks: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
-    cr_random_track1: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_random_track2: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_random_track3: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
-    cr_random_track4: Gtk.CellRendererCombo = cast(
-        Gtk.CellRendererCombo, Gtk.Template.Child()
-    )
+    cr_random_track1: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_random_track2: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_random_track3: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
+    cr_random_track4: Gtk.CellRendererCombo = cast(Gtk.CellRendererCombo, Gtk.Template.Child())
 
     def __init__(self, module: ListsModule, item_data: None):
         super().__init__()
@@ -145,11 +135,7 @@ class StListsDungeonMusicPage(Gtk.Box):
             self.module.set_dungeon_music(self._music_list, self._random_list)
 
     def _init_cr_stores(self):
-        music_entries = (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .script_data.bgms__by_id
-        )
+        music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
         cb_store = self.store_track_name
         cb_store.clear()
         cb_store.append([999, _("Invalid? (#999)"), False])
@@ -163,11 +149,7 @@ class StListsDungeonMusicPage(Gtk.Box):
             cb_store.append([idx, track.name + f" (#{idx:03})"])
 
     def _init_values(self):
-        music_entries = (
-            self.module.project.get_rom_module()
-            .get_static_data()
-            .script_data.bgms__by_id
-        )
+        music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
         cb_store = self.store_tracks
         cb_store.clear()
         for idx, track in enumerate(self._music_list):
@@ -178,10 +160,7 @@ class StListsDungeonMusicPage(Gtk.Box):
             elif track.track_or_ref >= len(music_entries):
                 name = _("INVALID!!!") + f" (#{idx:03})"
             else:
-                name = (
-                    music_entries[track.track_or_ref].name
-                    + f" (#{track.track_or_ref:03})"
-                )
+                name = music_entries[track.track_or_ref].name + f" (#{track.track_or_ref:03})"
             cb_store.append([str(idx), name])
         cb_store = self.store_random_tracks
         cb_store.clear()
