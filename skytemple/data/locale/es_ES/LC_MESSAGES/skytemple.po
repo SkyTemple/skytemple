@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-06-21 18:58+0000\n"
-"PO-Revision-Date: 2024-06-21 19:49\n"
+"POT-Creation-Date: 2024-06-28 21:14+0000\n"
+"PO-Revision-Date: 2024-06-28 21:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -924,54 +924,54 @@ msgstr ""
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
 msgstr ""
 
-#: explorerscript/explorerscript/macro.py:85
+#: explorerscript/explorerscript/macro.py:105
 #, python-brace-format
 msgid "Value for macro variable {var_name} not provided."
 msgstr "Valor no proporcionado para la variable de la macro {var_name}."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_adventure_log.py:42
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_adventure_log.py:44
 msgid "No value for adventure_log set."
 msgstr "No se ha definido ningún valor para adventure_log."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:44
 msgid "No variable for clear."
 msgstr "No hay variable para 'clear'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No variable for dungeon_mode set."
 msgstr "No hay ninguna variable establecida para dungeon_mode."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:47
 msgid "No value for dungeon_mode set."
 msgstr "No se ha definido ningún valor para dungeon_mode."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:44
 msgid "No variable for init."
 msgstr "No hay variable para 'init'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:48
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:46
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:60
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:63
 msgid "No variable for assignment."
 msgstr "Variable no establecida para la asignación."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:50
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:62
 msgid "No operator set for assignment."
 msgstr "Operador no establecido para la asignación."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:52
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:64
 msgid "No value set for assignment."
 msgstr "Valor no establecido para la asignación."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:71
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
 msgstr "'value(X)' no puede usarse con asignaciones basadas en índices (línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:47
 msgid "No target for reset."
 msgstr "Objetivo no establecido para 'reset'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_scenario.py:43
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_scenario.py:45
 msgid "No variable for assignment set."
 msgstr "Variable no establecida para la asignación."
 
@@ -983,208 +983,208 @@ msgstr "'scn()' necesita una variable."
 msgid "value() without a variable."
 msgstr "'value()' necesita una variable."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:53
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:74
 msgid "No target ID set for with(){} block."
 msgstr "ID de destino no establecido para el bloque 'with(){}'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:55
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:76
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:126
 msgid "A with(){} block needs exactly one statement."
 msgstr "Un bloque 'with(){}' necesita exactamente una sentencia."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:65
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:86
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
 msgstr "Argumento 'with(){{}}' inválido para el tipo de destino '{for_type}'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:70
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:93
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
 msgstr "Un bloque 'with(){}' necesita exactamente una operación binaria. El manipulador para él ha generado múltiples operaciones."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:87
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:115
 msgid "A with(){} block can not contain labels."
 msgstr "Un bloque with(){} no puede contener etiquetas."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:45
 msgid "No variable in if condition."
 msgstr "No se ha definido ninguna variable en la condición 'if'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:60
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
 msgstr "La variable {var_target_name} no puede usarse con 'not' (línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:61
 msgid "No variable for if condition."
 msgstr "No se ha definido ninguna variable para la condición 'if'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:49
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:46
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:63
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:60
 msgid "No operator set for if condition."
 msgstr "No se ha definido ningún operador para la condición 'if'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:51
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:43
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:48
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:65
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:54
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:62
 msgid "No value set for if condition."
 msgstr "No se ha definido ningún valor para la condición 'if'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:48
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:68
 #, python-brace-format
 msgid "The only supported operators for scn if conditions are ==,<,<=,>,>= (line {self.ctx.start.line})"
 msgstr "Los únicos operadores soportados para las condiciones 'scn if' son ==, <, <=, >, >= (línea {self.ctx.start.line})"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:60
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:76
 msgid "Invalid content for an if-header"
 msgstr "Contenido inválido para 'if-header'"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:64
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:80
 #, python-brace-format
 msgid "Invalid operation for if condition: {op.op_code.name} (line {self.ctx.start.line})"
 msgstr "Operación no válida para la condición 'if': {op.op_code.name} (línea {self.ctx.start.line})"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:78
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:91
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
 msgstr "Operación 'if' desconocida en la línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:57
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:72
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:49
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:63
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:69
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:85
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:60
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:75
 msgid "Invalid message switch case call."
 msgstr "Llamada inválida a caso de 'message switch'."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:58
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:76
 msgid "Unknown case operation."
 msgstr "Operación 'case' desconocida."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:55
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:74
 msgid "Invalid message switch."
 msgstr "'Message switch' inválido."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:59
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:79
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:92
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
 msgstr "Un 'message_switch' solo puede contener casos con cadenas (línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:63
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:83
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
 msgstr "Tipo de 'case' inválido para un message_switch (línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:105
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
 msgstr "Un bloque 'switch' solo puede tener un único caso 'default' (línea {self.ctx.start.line})"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:84
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
 msgstr "Un 'switch case' debe contener una lista de sentencias (línea{self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:132
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
 msgstr "Final inesperado de 'switch' (línea {self.ctx.start.line})"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:146
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
 msgstr "Un bloque 'switch' solo puede tener un único caso 'default' (línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:80
 msgid "Invalid content for a switch-header"
 msgstr "Contenido inválido para un 'switch-header'"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:72
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:87
 msgid "Unknown switch operation."
 msgstr "Operación 'switch' desconocida."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:42
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:44
 msgid "No dungeon id set for dungeon_mode switch condition."
 msgstr "ID de territorio no establecido para la condición switch de dungeon_mode."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:42
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:44
 msgid "No value set for random switch condition."
 msgstr "Valor no establecido para la condición aleatoria de switch."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:43
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:45
 msgid "No variable set for scn switch condition."
 msgstr "Variable no establecida para la condición aleatoria de scn."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:52
 #, python-brace-format
 msgid "Index for scn() if condition must be 0 or 1 (line {self.ctx.start.line})."
 msgstr "El índice para la condición 'scn() if' debe ser 0 o 1 (línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:47
 #, python-brace-format
 msgid "Macro {name} not found."
 msgstr "Macro {name} no encontrada."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:89
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:93
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:95
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:100
 msgid "Dependency cycle detected while trying to resolve macros (for macro '{v['name']}')."
 msgstr "Ciclo de dependencias detectado al intentar resolver macros (para la macro '{v['name']}')."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:78
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:88
 msgid "Macros can not alias."
 msgstr "Las macros no pueden tener alias."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:285
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:325
 msgid "Fatal compilation error: Unexpected compilation handler on stack."
 msgstr "Error fatal de compilación: manipulador de compilación inesperado en la pila."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:286
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:326
 msgid "Fatal compilation error: Stack error."
 msgstr "Error de compilación fatal: error de pila."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:55
+#: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:59
 #, python-brace-format
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
 msgstr "La etiqueta {label_id} no existe, pero hay un salto a ella (elimínala)."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:129
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
 msgstr "'continue' inesperado en la línea {ctx.start.line}"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:107
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:135
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
 msgstr "'Break_loop' inesperado en la línea {ctx.start.line}"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:113
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:141
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
 msgstr "'break' inesperado en la línea {ctx.start.line}"
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:136
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:181
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
 msgstr "Se ha detectado una recursión infinita al intentar cargar un archivo ExplorerScript desde {subfile_path}.\n"
 "Archivo de origen: {file_name}."
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:162
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:221
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
 msgstr "{fn}: Los scripts de macros no deben contener ninguna rutina."
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:208
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:222
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:263
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:285
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
 msgstr "No se encontró el archivo a importar ('{import_file}')."
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:214
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:272
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
 msgstr "Importación inválida: '{import_file}'. Las importaciones no absolutas/relativas no pueden contener rutas relativas."
 
-#: explorerscript/explorerscript/syntax_error_listener.py:38
+#: explorerscript/explorerscript/syntax_error_listener.py:42
 #, python-brace-format
 msgid "line {self.line}:{self.column}: {self.msg}"
 msgstr "línea {self.line}:{self.column}: {self.msg}"
@@ -1351,6 +1351,10 @@ msgstr "Izquierda"
 msgid "Down Left"
 msgstr "Abajo izquierda"
 
+#: skytemple-files/skytemple_files/common/rw_value.py:440
+msgid "'{str(value)}' cannot be encoded as a shifted immediate."
+msgstr ""
+
 #: skytemple-files/skytemple_files/common/tiled_image.py:52
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
 msgstr "No se puede procesar el mapeado de tiles. El número de tiles referenciado ({idx}) es mayor que el máximo ({0x3FF}). Si estás importando una imagen, por favor intenta tener menos tiles únicos."
@@ -1385,32 +1389,32 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({len_final_tiles} tiles, pero el máximo permitido es 1024).\n"
 "Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
-#: skytemple-files/skytemple_files/common/util.py:489
+#: skytemple-files/skytemple_files/common/util.py:493
 msgid "The file you tried to open does not seem to be a valid NDS ROM file."
 msgstr "El archivo que intentaste abrir no es un archivo ROM NDS válido."
 
-#: skytemple-files/skytemple_files/common/util.py:498
+#: skytemple-files/skytemple_files/common/util.py:502
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Esta ROM no está soportada por SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:568
-#: skytemple-files/skytemple_files/common/util.py:587
+#: skytemple-files/skytemple_files/common/util.py:572
+#: skytemple-files/skytemple_files/common/util.py:591
 #, python-brace-format
 msgid "Binary {binary.name} not found."
 msgstr "Binario {binary.name} no encontrado."
 
-#: skytemple-files/skytemple_files/common/util.py:608
-#: skytemple-files/skytemple_files/common/util.py:639
+#: skytemple-files/skytemple_files/common/util.py:612
+#: skytemple-files/skytemple_files/common/util.py:643
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "La carpeta {dir_name} no existe."
 
-#: skytemple-files/skytemple_files/common/util.py:611
+#: skytemple-files/skytemple_files/common/util.py:615
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "El archivo {file_name} ya existe en esta carpeta."
 
-#: skytemple-files/skytemple_files/common/util.py:634
+#: skytemple-files/skytemple_files/common/util.py:638
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "La carpeta {path} ya existe."
