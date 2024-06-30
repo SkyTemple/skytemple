@@ -301,7 +301,7 @@ class StPortraitPortraitPage(Gtk.Box):
             Gtk.ButtonsType.OK,
             f(
                 _(
-                    "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\nwill be imported, where XX is a number between 0 and 40."
+                    "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\nwill be imported, where XX is a number between 0 and 39."
                 )
             ),
             title=_("Import Portraits"),
