@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-06-28 21:14+0000\n"
-"PO-Revision-Date: 2024-06-28 21:35\n"
+"POT-Creation-Date: 2024-06-30 11:35+0000\n"
+"PO-Revision-Date: 2024-06-30 11:52\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -1146,17 +1146,17 @@ msgstr ""
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:129
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:132
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:135
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:138
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:141
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:144
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
 msgstr ""
@@ -12755,7 +12755,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:304
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\n"
-"will be imported, where XX is a number between 0 and 40."
+"will be imported, where XX is a number between 0 and 39."
 msgstr ""
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:307
