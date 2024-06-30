@@ -82,6 +82,7 @@ music =             "skytemple.module.music.module:MusicModule"
 dungeon =           "skytemple.module.dungeon.module:DungeonModule"
 dungeon_graphics =  "skytemple.module.dungeon_graphics.module:DungeonGraphicsModule"
 strings =           "skytemple.module.strings.module:StringsModule"
+symbols =           "skytemple.module.symbols.module:SymbolsModule"
 spritecollab =      "skytemple.module.spritecollab.module:SpritecollabModule"
 
 [tool.setuptools.packages.find]
