@@ -118,8 +118,9 @@ class StSymbolsMainPage(Gtk.Box):
 
         self.module = module
         self.item_data = item_data
-        self.project = RomProject.get_current()
-        assert self.project is not None
+        project = RomProject.get_current()
+        assert project is not None
+        self.project = project
         self.symbol_data_getter = BinaryDataGetter(self.project.get_rom_module().get_static_data())
         self.binaries = []
         self.entry_list = SymbolEntryList(self.project, self.symbols_treestore)

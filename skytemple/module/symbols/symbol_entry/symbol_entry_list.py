@@ -35,7 +35,7 @@ class SymbolEntryList:
 
     rom_project: RomProject
     tree_store: Gtk.TreeStore
-    entries: List[SymbolEntry | None]
+    entries: List[Optional[SymbolEntry]]
     current_id: int
 
     def __init__(self, rom_project: RomProject, tree_store: Gtk.TreeStore):
@@ -92,7 +92,7 @@ class SymbolEntryList:
                 binary_id, binary_protocol, parent_iter)
 
     def get_by_id(self, unique_id: int) -> SymbolEntry:
-        return self.entries[unique_id]
+        return self.entries[unique_id]  # type: ignore
 
     def clear(self):
         """
