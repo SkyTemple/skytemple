@@ -83,9 +83,13 @@ class SimpleSymbolEntry(SymbolEntry):
         """
         Creates a new simple symbol entry. The name, description and type to display will be pulled from the provided
         Symbol instance.
+        :raises ValueError If the provided symbol has no type
         """
-        return cls(rom_project, binary_protocol, unique_id, tree_store, parent_iter, rw_symbol, symbol.name,
-            CType.from_str(symbol.c_type), symbol.description, binary_id)
+        if symbol.c_type is None:
+            raise ValueError("Cannot create a symbol entry from a symbol with no type")
+        else:
+            return cls(rom_project, binary_protocol, unique_id, tree_store, parent_iter, rw_symbol, symbol.name,
+                CType.from_str(symbol.c_type), symbol.description, binary_id)
 
     def set_value(self, value: str) -> bool:
         """

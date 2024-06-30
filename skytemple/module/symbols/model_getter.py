@@ -127,10 +127,7 @@ class ModelGetter:
         """
         Creates a new instance of a model given its associated type. It is assumed that the type is supported.
         """
-        # noinspection PyArgumentList
-        # The type hint incorrectly states that this function takes 2 parameters.
-        # Source: https://lazka.github.io/pgi-docs/Gtk-3.0/classes/ListStore.html#Gtk.ListStore.new
-        result = Gtk.ListStore.new([int, str])
+        result = Gtk.ListStore(int, str)  # id, display string
 
         if c_type in DYNAMIC_ENUM_TYPES:
             # There has to be a better way of getting all the valid values of all these types than scraping existing
@@ -140,7 +137,7 @@ class ModelGetter:
                     name = self.project.get_string_provider().get_value(
                         StringType.POKEMON_NAMES, i % FileType.MD.properties().num_entities
                     )
-                    result.append([i, f"{name} ({Gender(entry.gender).print_name}) (${i:04})"])
+                    result.append([i, f"{name} ({Gender(entry.gender).print_name}) (${i:04})"])  # type: ignore
             elif c_type == "enum item_id":
                 for i, name in enumerate(self.project.get_string_provider().get_all(StringType.ITEM_NAMES)):
                     result.append([i, f"{name} (#{i:04})"])

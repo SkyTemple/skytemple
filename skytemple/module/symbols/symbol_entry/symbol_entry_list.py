@@ -57,6 +57,8 @@ class SymbolEntryList:
         new_id = self._get_and_increment_id()
         self.entries.append(None)
 
+        entry: SymbolEntry
+
         # This needs to be here to avoid a circular import
         from skytemple.module.symbols.symbol_entry.array_symbol_entry import ArraySymbolEntry
         from skytemple.module.symbols.symbol_entry.struct_symbol_entry import StructSymbolEntry
@@ -81,9 +83,13 @@ class SymbolEntryList:
         """
         Shorthand for new_entry() that uses a Symbol instance to determine the name, type, and description strings to
         display.
+        :raises ValueError If the provided symbol has no type
         """
-        return self.new_entry(symbol.name, CType.from_str(symbol.c_type), symbol.description, rw_symbol,
-            binary_id, binary_protocol, parent_iter)
+        if symbol.c_type is None:
+            raise ValueError("Cannot create a symbol entry from a symbol with no type")
+        else:
+            return self.new_entry(symbol.name, CType.from_str(symbol.c_type), symbol.description, rw_symbol,
+                binary_id, binary_protocol, parent_iter)
 
     def get_by_id(self, unique_id: int) -> SymbolEntry:
         return self.entries[unique_id]

@@ -86,7 +86,7 @@ BINARIES_DISPLAY_TEXT = {
 
 # Regex used to extract IDs from the values used in text completion entries. Should match the format used by
 # ModelGetter._create_model() when creating dynamic entries.
-COMPLETION_ENTRY_REGEX = re.compile("\([$#](\d+)\)$")
+COMPLETION_ENTRY_REGEX = re.compile(r"\([$#](\d+)\)$")
 
 
 @Gtk.Template(filename=os.path.join(data_dir(), "widget", "symbols", "main.ui"))

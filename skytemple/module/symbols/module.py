@@ -61,5 +61,11 @@ class SymbolsModule(AbstractModule):
         """
         Graphically displays the "unsaved changes" asterisk on the left menu. Should be called after changes have
         been made to the data handled by this module.
+        Requires that load_tree_items() has been called first.
+        :raises RuntimeError If this method is called fefore load_tree_items().
         """
-        self.item_tree.mark_as_modified(self.item_tree_entry, RecursionType.UP)
+        if self.item_tree is None or self.item_tree_entry is None:
+            raise RuntimeError("Cannot mark as modified before tree items are initialized. "
+                "Call load_tree_items() first.")
+        else:
+            self.item_tree.mark_as_modified(self.item_tree_entry, RecursionType.UP)
