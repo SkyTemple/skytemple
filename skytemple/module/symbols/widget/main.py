@@ -81,7 +81,7 @@ BINARIES_DISPLAY_TEXT = {
     "overlay32": "Overlay 32 (Unused)",
     "overlay33": "Overlay 33 (Unused)",
     "overlay34": "Overlay 34 (Game start)",
-    "overlay35": "Overlay 35 (Unused)"
+    "overlay35": "Overlay 35 (Unused)",
 }
 
 
@@ -177,11 +177,13 @@ class StSymbolsMainPage(Gtk.Box):
                     # Symbol not supported, skip
                     continue
 
-                symbol_entry = SymbolEntryBuilder() \
-                    .set_rom_project(self.project) \
-                    .set_name_type_desc_from_symbol(symbol) \
-                    .set_rw_data(rw_symbol, binary_id, protocol) \
+                symbol_entry = (
+                    SymbolEntryBuilder()
+                    .set_rom_project(self.project)
+                    .set_name_type_desc_from_symbol(symbol)
+                    .set_rw_data(rw_symbol, binary_id, protocol)
                     .build()
+                )
                 symbol_entry.register(self.entry_list, self.symbols_treestore)
 
     # noinspection PyUnusedLocal

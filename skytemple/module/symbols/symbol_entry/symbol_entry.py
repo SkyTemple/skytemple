@@ -27,6 +27,7 @@ from skytemple_files.common.rw_value import DATA_PROCESSING_INSTRUCTION_TYPE
 from skytemple_files.hardcoded.symbols.c_type import CType
 from skytemple_files.hardcoded.symbols.manual.equivalent_types import get_enum_equivalent_type
 from skytemple_files.hardcoded.symbols.rw_symbol import RWSymbol, RWSimpleSymbol, RWArraySymbol, RWStructSymbol
+
 # noinspection PyProtectedMember
 from skytemple_files.common.i18n_util import _
 
@@ -40,6 +41,7 @@ class SymbolEntry:
     Class used to represent a single entry on the symbol list. It contains enough information to set the required values
     on the UI model, as well as to update the underlying data when a callback takes place.
     """
+
     rom_project: RomProject
 
     name: str
@@ -58,9 +60,19 @@ class SymbolEntry:
     # List of children entries. They will be registered alongside this one when the register() method is called.
     children: List["SymbolEntry"]
 
-    def __init__(self, rom_project: RomProject, name: str, c_type: CType, description: str, rw_symbol: RWSymbol,
-            binary_id: str, binary_protocol: SectionProtocol, value_type: SymbolEntryValueType,
-            enable_display_type_overrides: bool, children: List["SymbolEntry"]):
+    def __init__(
+        self,
+        rom_project: RomProject,
+        name: str,
+        c_type: CType,
+        description: str,
+        rw_symbol: RWSymbol,
+        binary_id: str,
+        binary_protocol: SectionProtocol,
+        value_type: SymbolEntryValueType,
+        enable_display_type_overrides: bool,
+        children: List["SymbolEntry"],
+    ):
         """
         Directly creates an instance of the class by providing all its required data. It is recommended to use a
         SymbolEntryBuilder instead.
@@ -91,8 +103,12 @@ class SymbolEntry:
         else:
             raise ValueError("Unknown RWSymbol type")
 
-    def register(self, symbol_entry_list: List["SymbolEntry"], tree_store: Gtk.TreeStore,
-            parent_iter: Optional[Gtk.TreeIter] = None):
+    def register(
+        self,
+        symbol_entry_list: List["SymbolEntry"],
+        tree_store: Gtk.TreeStore,
+        parent_iter: Optional[Gtk.TreeIter] = None,
+    ):
         """
         Adds this entry to the specified symbol list and to the specified tree store. This will add the entry to the
         UI and assign it a unique ID that can be used to locate it when a callback happens.
@@ -123,8 +139,9 @@ class SymbolEntry:
         if isinstance(self.rw_symbol, RWSimpleSymbol):
             rw_symbol = self.rw_symbol
             try:
-                self.rom_project.modify_binary(self.binary_protocol, lambda binary:
-                    rw_symbol.get_rw_value().write_str(binary, value))
+                self.rom_project.modify_binary(
+                    self.binary_protocol, lambda binary: rw_symbol.get_rw_value().write_str(binary, value)
+                )
                 return True
             except ValueError as e:
                 md = SkyTempleMessageDialog(
@@ -141,8 +158,9 @@ class SymbolEntry:
         else:
             raise ValueError("Cannot set the value of a symbol entry that does not contain a simple symbol.")
 
-    def _append_to_tree_store(self, tree_store: Gtk.TreeStore, model_getter: ModelGetter, unique_id: int,
-            parent_iter: Optional[Gtk.TreeIter]):
+    def _append_to_tree_store(
+        self, tree_store: Gtk.TreeStore, model_getter: ModelGetter, unique_id: int, parent_iter: Optional[Gtk.TreeIter]
+    ):
         """
         Appends this entry to the tree store that contains symbol data
         """
@@ -163,9 +181,24 @@ class SymbolEntry:
             model_combo_and_completion = None
 
         # Append new entry. Values are set below.
-        self.tree_iter = tree_store.append(parent_iter, [self.name, type_str, self.description, "",
-            False, "", unique_id, self.binary_id, show_value_text, show_value_bool, show_value_combo,
-            show_value_completion, model_combo_and_completion])
+        self.tree_iter = tree_store.append(
+            parent_iter,
+            [
+                self.name,
+                type_str,
+                self.description,
+                "",
+                False,
+                "",
+                unique_id,
+                self.binary_id,
+                show_value_text,
+                show_value_bool,
+                show_value_combo,
+                show_value_completion,
+                model_combo_and_completion,
+            ],
+        )
 
         # Set the value using the designated method to ensure all relevant columns are updated
         store_entry = tree_store[self.tree_iter]

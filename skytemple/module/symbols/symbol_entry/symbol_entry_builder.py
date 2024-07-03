@@ -31,6 +31,7 @@ class SymbolEntryBuilder:
     Class used to create SymbolEntry instances. It supports multiple ways of creating them, as well as some
     pre-creation operations that will affect the data that goes into the final object.
     """
+
     _rom_project: Optional[RomProject]
     _name: str
     _c_type: Optional[CType]
@@ -101,7 +102,9 @@ class SymbolEntryBuilder:
             self._description = symbol.description
         return self
 
-    def set_rw_data(self, rw_symbol: RWSymbol, binary_id: str, binary_protocol: SectionProtocol) -> "SymbolEntryBuilder":
+    def set_rw_data(
+        self, rw_symbol: RWSymbol, binary_id: str, binary_protocol: SectionProtocol
+    ) -> "SymbolEntryBuilder":
         """
         Sets the values that will allow the resulting symbol entry to read and write its value to its corresponding
         binary.
@@ -132,13 +135,27 @@ class SymbolEntryBuilder:
         C type, R/W Symbol, Binary ID, and Binary protocol.
         :raises ValueError If at least one of the required fields has not been initialized
         """
-        if self._rom_project is not None and self._c_type is not None and self._rw_symbol is not None and \
-                self._binary_id != "" and self._binary_protocol is not None:
+        if (
+            self._rom_project is not None
+            and self._c_type is not None
+            and self._rw_symbol is not None
+            and self._binary_id != ""
+            and self._binary_protocol is not None
+        ):
             value_type = self._get_value_column_type()
 
-            return SymbolEntry(self._rom_project, self._name, self._c_type, self._description, self._rw_symbol,
-                self._binary_id, self._binary_protocol, value_type, self.enable_display_type_overrides,
-                self._get_children())
+            return SymbolEntry(
+                self._rom_project,
+                self._name,
+                self._c_type,
+                self._description,
+                self._rw_symbol,
+                self._binary_id,
+                self._binary_protocol,
+                value_type,
+                self.enable_display_type_overrides,
+                self._get_children(),
+            )
         else:
             raise ValueError("At least one required fields was not set")
 
@@ -168,27 +185,34 @@ class SymbolEntryBuilder:
             if len(self._c_type.dim_sizes) == 1:
                 # Simple array, create a simple entry for each element
                 for i in range(self._c_type.dim_sizes[0]):
-                    new_child = SymbolEntryBuilder() \
-                        .set_rom_project(self._rom_project) \
-                        .set_name(self._name + "[" + str(i) + "]") \
-                        .set_c_type(child_type) \
-                        .set_description("") \
-                        .set_rw_data(self._rw_symbol.elements[self._rw_array_symbol_index + i], self._binary_id,
-                            self._binary_protocol) \
+                    new_child = (
+                        SymbolEntryBuilder()
+                        .set_rom_project(self._rom_project)
+                        .set_name(self._name + "[" + str(i) + "]")
+                        .set_c_type(child_type)
+                        .set_description("")
+                        .set_rw_data(
+                            self._rw_symbol.elements[self._rw_array_symbol_index + i],
+                            self._binary_id,
+                            self._binary_protocol,
+                        )
                         .build()
+                    )
                     result.append(new_child)
             else:
                 # Multi-dimensional array, create an array entry for each element
                 for i in range(self._c_type.dim_sizes[0]):
                     child_rw_array_symbol_index = self._rw_array_symbol_index + child_type.get_total_num_elements() * i
-                    new_child = SymbolEntryBuilder() \
-                        ._set_rw_array_symbol_index(child_rw_array_symbol_index) \
-                        .set_rom_project(self._rom_project) \
-                        .set_name(self._name + "[" + str(i) + "]") \
-                        .set_c_type(child_type) \
-                        .set_description("") \
-                        .set_rw_data(self._rw_symbol, self._binary_id, self._binary_protocol) \
+                    new_child = (
+                        SymbolEntryBuilder()
+                        ._set_rw_array_symbol_index(child_rw_array_symbol_index)
+                        .set_rom_project(self._rom_project)
+                        .set_name(self._name + "[" + str(i) + "]")
+                        .set_c_type(child_type)
+                        .set_description("")
+                        .set_rw_data(self._rw_symbol, self._binary_id, self._binary_protocol)
                         .build()
+                    )
                     result.append(new_child)
             return result
         elif isinstance(self._rw_symbol, RWStructSymbol):
@@ -196,13 +220,15 @@ class SymbolEntryBuilder:
             struct_fields = get_struct_fields(str(self._c_type))
             for field in struct_fields:
                 child_rw_symbol = self._rw_symbol.fields[field.name]
-                new_child = SymbolEntryBuilder() \
-                    .set_rom_project(self._rom_project) \
-                    .set_name(self._name + "." + field.name) \
-                    .set_c_type(CType.from_str(field.type)) \
-                    .set_description("") \
-                    .set_rw_data(child_rw_symbol, self._binary_id, self._binary_protocol) \
+                new_child = (
+                    SymbolEntryBuilder()
+                    .set_rom_project(self._rom_project)
+                    .set_name(self._name + "." + field.name)
+                    .set_c_type(CType.from_str(field.type))
+                    .set_description("")
+                    .set_rw_data(child_rw_symbol, self._binary_id, self._binary_protocol)
                     .build()
+                )
                 result.append(new_child)
             return result
         else:

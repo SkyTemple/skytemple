@@ -19,7 +19,9 @@ from typing import Optional
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.item_tree import (
     ItemTree,
-    ItemTreeEntry, ItemTreeEntryRef, RecursionType,
+    ItemTreeEntry,
+    ItemTreeEntryRef,
+    RecursionType,
 )
 from skytemple.core.rom_project import RomProject
 from skytemple.module.symbols.widget.main import StSymbolsMainPage
@@ -67,7 +69,8 @@ class SymbolsModule(AbstractModule):
         :raises RuntimeError If this method is called fefore load_tree_items().
         """
         if self.item_tree is None or self.item_tree_entry is None:
-            raise RuntimeError("Cannot mark as modified before tree items are initialized. "
-                "Call load_tree_items() first.")
+            raise RuntimeError(
+                "Cannot mark as modified before tree items are initialized. " "Call load_tree_items() first."
+            )
         else:
             self.item_tree.mark_as_modified(self.item_tree_entry, RecursionType.UP)

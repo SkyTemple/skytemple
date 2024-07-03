@@ -32,13 +32,7 @@ _instance: "ModelGetter | None" = None
 
 # List of enum types that are handled dynamically. Their list of possible values is pulled from the ROM rather than
 # from a fixed list of values
-DYNAMIC_ENUM_TYPES = [
-    "enum monster_id",
-    "enum item_id",
-    "enum move_id",
-    "enum music_id",
-    "enum dungeon_id"
-]
+DYNAMIC_ENUM_TYPES = ["enum monster_id", "enum item_id", "enum move_id", "enum music_id", "enum dungeon_id"]
 
 
 class ModelGetter:

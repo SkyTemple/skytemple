@@ -30,29 +30,24 @@ ENUM_TYPES_DROPDOWN = [
 ]
 
 # List of enum types that should be displayed using a text with completion box
-ENUM_TYPES_COMPLETION = [
-    "enum monster_id",
-    "enum item_id",
-    "enum move_id",
-    "enum music_id",
-    "enum dungeon_id"
-]
+ENUM_TYPES_COMPLETION = ["enum monster_id", "enum item_id", "enum move_id", "enum music_id", "enum dungeon_id"]
 
 
 class SymbolEntryValueType(Enum):
     """
     Used to identify the different types of value cells that symbol UI entries can have
     """
+
     # No value is shown
-    EMPTY = auto(),
+    EMPTY = auto()
     # The value is displayed as an editable string
-    TEXT = auto(),
+    TEXT = auto()
     # The value is displayed as an editable boolean switch
-    BOOLEAN = auto(),
+    BOOLEAN = auto()
     # The value is displayed as a dropdown
-    DROPDOWN = auto(),
+    DROPDOWN = auto()
     # The value is displayed as a text field with a list of autocomplete values
-    COMPLETION = auto(),
+    COMPLETION = auto()
 
     @classmethod
     def from_c_type(cls, c_type: str) -> "SymbolEntryValueType":
