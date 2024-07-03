@@ -56,7 +56,7 @@ class SymbolEntryBuilder:
         self._rw_symbol = None
         self._binary_id = ""
         self._binary_protocol = None
-        self.enable_display_type_overrides = True
+        self._enable_display_type_overrides = True
 
         self._rw_array_symbol_index = 0
 
@@ -153,7 +153,7 @@ class SymbolEntryBuilder:
                 self._binary_id,
                 self._binary_protocol,
                 value_type,
-                self.enable_display_type_overrides,
+                self._enable_display_type_overrides,
                 self._get_children(),
             )
         else:
@@ -176,60 +176,73 @@ class SymbolEntryBuilder:
         """
         Creates all children for the current symbol entry. The resulting list will be empty if the entry is not
         an array or struct entry.
+        The same mandatory fields listed in build() must have been initialized before this method can be called.
+        :raises ValueError If at least one of the required fields has not been initialized
         """
-        if isinstance(self._rw_symbol, RWSimpleSymbol):
-            return []
-        elif isinstance(self._rw_symbol, RWArraySymbol):
-            result = []
-            child_type = CType.dim_down_array_type(self._c_type)
-            if len(self._c_type.dim_sizes) == 1:
-                # Simple array, create a simple entry for each element
-                for i in range(self._c_type.dim_sizes[0]):
-                    new_child = (
-                        SymbolEntryBuilder()
-                        .set_rom_project(self._rom_project)
-                        .set_name(self._name + "[" + str(i) + "]")
-                        .set_c_type(child_type)
-                        .set_description("")
-                        .set_rw_data(
-                            self._rw_symbol.elements[self._rw_array_symbol_index + i],
-                            self._binary_id,
-                            self._binary_protocol,
+        if (
+            self._rom_project is not None
+            and self._c_type is not None
+            and self._rw_symbol is not None
+            and self._binary_id != ""
+            and self._binary_protocol is not None
+        ):
+            if isinstance(self._rw_symbol, RWSimpleSymbol):
+                return []
+            elif isinstance(self._rw_symbol, RWArraySymbol):
+                result = []
+                child_type = CType.dim_down_array_type(self._c_type)
+                if len(self._c_type.dim_sizes) == 1:
+                    # Simple array, create a simple entry for each element
+                    for i in range(self._c_type.dim_sizes[0]):
+                        new_child = (
+                            SymbolEntryBuilder()
+                            .set_rom_project(self._rom_project)
+                            .set_name(self._name + "[" + str(i) + "]")
+                            .set_c_type(child_type)
+                            .set_description("")
+                            .set_rw_data(
+                                self._rw_symbol.elements[self._rw_array_symbol_index + i],
+                                self._binary_id,
+                                self._binary_protocol,
+                            )
+                            .build()
                         )
-                        .build()
-                    )
-                    result.append(new_child)
-            else:
-                # Multi-dimensional array, create an array entry for each element
-                for i in range(self._c_type.dim_sizes[0]):
-                    child_rw_array_symbol_index = self._rw_array_symbol_index + child_type.get_total_num_elements() * i
+                        result.append(new_child)
+                else:
+                    # Multi-dimensional array, create an array entry for each element
+                    for i in range(self._c_type.dim_sizes[0]):
+                        child_rw_array_symbol_index = (
+                            self._rw_array_symbol_index + child_type.get_total_num_elements() * i
+                        )
+                        new_child = (
+                            SymbolEntryBuilder()
+                            ._set_rw_array_symbol_index(child_rw_array_symbol_index)
+                            .set_rom_project(self._rom_project)
+                            .set_name(self._name + "[" + str(i) + "]")
+                            .set_c_type(child_type)
+                            .set_description("")
+                            .set_rw_data(self._rw_symbol, self._binary_id, self._binary_protocol)
+                            .build()
+                        )
+                        result.append(new_child)
+                return result
+            elif isinstance(self._rw_symbol, RWStructSymbol):
+                result = []
+                struct_fields = get_struct_fields(str(self._c_type))
+                for field in struct_fields:
+                    child_rw_symbol = self._rw_symbol.fields[field.name]
                     new_child = (
                         SymbolEntryBuilder()
-                        ._set_rw_array_symbol_index(child_rw_array_symbol_index)
                         .set_rom_project(self._rom_project)
-                        .set_name(self._name + "[" + str(i) + "]")
-                        .set_c_type(child_type)
+                        .set_name(self._name + "." + field.name)
+                        .set_c_type(CType.from_str(field.type))
                         .set_description("")
-                        .set_rw_data(self._rw_symbol, self._binary_id, self._binary_protocol)
+                        .set_rw_data(child_rw_symbol, self._binary_id, self._binary_protocol)
                         .build()
                     )
                     result.append(new_child)
-            return result
-        elif isinstance(self._rw_symbol, RWStructSymbol):
-            result = []
-            struct_fields = get_struct_fields(str(self._c_type))
-            for field in struct_fields:
-                child_rw_symbol = self._rw_symbol.fields[field.name]
-                new_child = (
-                    SymbolEntryBuilder()
-                    .set_rom_project(self._rom_project)
-                    .set_name(self._name + "." + field.name)
-                    .set_c_type(CType.from_str(field.type))
-                    .set_description("")
-                    .set_rw_data(child_rw_symbol, self._binary_id, self._binary_protocol)
-                    .build()
-                )
-                result.append(new_child)
-            return result
+                return result
+            else:
+                raise ValueError("Unknown RWSymbol subtype")
         else:
-            raise ValueError("Unknown RWSymbol subtype")
+            raise ValueError("At least one required fields was not set")
