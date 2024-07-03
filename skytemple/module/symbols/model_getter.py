@@ -115,6 +115,7 @@ class ModelGetter:
         columns: one with the numeric ID of the value and another one with the string value.
         :param c_type C type
         :raises UnsupportedTypeError If the given C type is not supported
+        :return Model instance associated to the given type
         """
         if self.is_type_supported(c_type):
             if c_type not in self.models:

@@ -60,6 +60,8 @@ class SymbolEntryValueType(Enum):
         Given a C type, returns the type of value cell that should be used to represent it.
         For enum types, if the type is not supported by ModelGetter or it's not listed in ENUM_TYPES_DROPDOWN or
         ENUM_TYPES_COMPLETION, returns TEXT.
+        Warning! This method does not perform any type checks or conversions. Array and struct types will return TEXT,
+        as they aren't directly supported.
         """
         if c_type == "bool":
             return cls.BOOLEAN

@@ -14,95 +14,162 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from abc import ABC
-from typing import Optional
+from typing import Optional, List
 
 from pmdsky_debug_py.protocol import SectionProtocol
-
-from gi.repository import Gtk
-
+from skytemple.controller.main import MainController
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import RomProject
 from skytemple.module.symbols.model_getter import ModelGetter
 from skytemple.module.symbols.store_entry_value_setter import StoreEntryValueSetter
 from skytemple.module.symbols.symbol_entry.symbol_entry_value_type import SymbolEntryValueType
+from skytemple_files.common.rw_value import DATA_PROCESSING_INSTRUCTION_TYPE
+from skytemple_files.hardcoded.symbols.c_type import CType
+from skytemple_files.hardcoded.symbols.manual.equivalent_types import get_enum_equivalent_type
+from skytemple_files.hardcoded.symbols.rw_symbol import RWSymbol, RWSimpleSymbol, RWArraySymbol, RWStructSymbol
+# noinspection PyProtectedMember
+from skytemple_files.common.i18n_util import _
+
+from gi.repository import Gtk
+
+SHIFTED_IMMEDIATE_DISPLAY_TYPE = "Shifted Immediate"
 
 
-class SymbolEntry(ABC):
+class SymbolEntry:
     """
-    Class used to represent a single entry on the symbol list. It's responsible for setting the required values
-    on the UI model when created, as well as updating the underlying data when a callback takes place.
+    Class used to represent a single entry on the symbol list. It contains enough information to set the required values
+    on the UI model, as well as to update the underlying data when a callback takes place.
     """
-
     rom_project: RomProject
+
+    name: str
+    c_type: CType
+    description: str
+
+    rw_symbol: RWSymbol
+    binary_id: str
     binary_protocol: SectionProtocol
-    # Unique identifier for this instance. Needed as a workaround, since it doesn't look like Gtk allows storing
-    # references to objects in TreStore instances.
-    unique_id: int
 
-    model_getter: ModelGetter
+    # The prefered value type for this entry. The entry might end up using a different value if this one cannot
+    # be used for some reason.
+    value_type: SymbolEntryValueType
+    enable_display_type_overrides: bool
 
-    # - UI elements -
-    # The TreeStore used to hold the data linked to the UI
-    tree_store: Gtk.TreeStore
-    # The TreeIter that points to the data row that corresponds to this entry
-    tree_iter: Gtk.TreeIter
-    # The TreeIter that points to the data row that corresponds to the parent of this entry, or None if this is a
-    # root entry in the tree.
-    parent_iter: Optional[Gtk.TreeIter]
+    # List of children entries. They will be registered alongside this one when the register() method is called.
+    children: List["SymbolEntry"]
 
-    def __init__(self, rom_project: RomProject, binary_protocol: SectionProtocol, unique_id: int,
-            tree_store: Gtk.TreeStore, parent_iter: Optional[Gtk.TreeIter]):
+    def __init__(self, rom_project: RomProject, name: str, c_type: CType, description: str, rw_symbol: RWSymbol,
+            binary_id: str, binary_protocol: SectionProtocol, value_type: SymbolEntryValueType,
+            enable_display_type_overrides: bool, children: List["SymbolEntry"]):
         """
-        Creates a new symbol entry. The provided TreeStore will have a new entry added to it. Its corresponding
-        UI element will be modified as needed by this entry.
-        :param rom_project Current ROM project
-        :param binary_protocol Protocol for the binary where the provided symbol is located
-        :param unique_id Unique ID value for this instance. Must be different than the value passed to any other
-        instances of this class.
-        :param tree_store TreeStore that contains the underlying data for the symbol entry
-        :param parent_iter TreeIter that points to the data row that corresponds to the parent of this entry, or None
-        if this is a root entry in the tree.
+        Directly creates an instance of the class by providing all its required data. It is recommended to use a
+        SymbolEntryBuilder instead.
         """
         self.rom_project = rom_project
+        self.name = name
+        self.c_type = c_type
+        self.description = description
+        self.rw_symbol = rw_symbol
+        self.binary_id = binary_id
         self.binary_protocol = binary_protocol
-        self.unique_id = unique_id
+        self.value_type = value_type
+        self.enable_display_type_overrides = enable_display_type_overrides
+        self.children = children
 
-        self.model_getter = ModelGetter.get_or_create(self.rom_project)
-
-        self.tree_store = tree_store
-        self.parent_iter = parent_iter
-
-    def _append_to_tree_store(self, symbol_name: str, type_str: str, description: str, value: str,
-            unique_id: int, binary_id: str, value_type: SymbolEntryValueType):
+    def get_str_value(self) -> str:
         """
-        Appends a new entry to the tree store that contains symbol data. Should be called by the subclasses at the
-        end of their constructors.
-        :param symbol_name Display name
-        :param type_str Display type
-        :param description Description to show
-        :param value Value to show
-        :param unique_id Unique ID for this entry
-        :param binary_id ID of the binary this symbol belongs to
-        :param value_type Type of value cell to display
+        :return The current value of this entry pulled from its associated binary, as a string. If the entry is an
+        array or a struct, returns an empty string.
+        """
+        if isinstance(self.rw_symbol, RWSimpleSymbol):
+            binary = self.rom_project.get_binary(self.binary_protocol)
+            return self.rw_symbol.get_rw_value().read_str(binary)
+        elif isinstance(self.rw_symbol, RWArraySymbol):
+            return ""
+        elif isinstance(self.rw_symbol, RWStructSymbol):
+            return ""
+        else:
+            raise ValueError("Unknown RWSymbol type")
+
+    def register(self, symbol_entry_list: List["SymbolEntry"], tree_store: Gtk.TreeStore,
+            parent_iter: Optional[Gtk.TreeIter] = None):
+        """
+        Adds this entry to the specified symbol list and to the specified tree store. This will add the entry to the
+        UI and assign it a unique ID that can be used to locate it when a callback happens.
+        Currently, the ID is simply the index on the symbol list.
+        Children entries of this entry will be recursively registered as well.
+        :param symbol_entry_list List that contains all the currently registered symbol entries
+        :param tree_store Tree store where UI entries are stored
+        :param parent_iter If this entry has a parent, TreeIter of the parent entry. None otherwise.
+        """
+        model_getter = ModelGetter.get_or_create(self.rom_project)
+
+        symbol_entry_list.append(self)
+        unique_id = len(symbol_entry_list) - 1
+
+        self._append_to_tree_store(tree_store, model_getter, unique_id, parent_iter)
+
+        for child in self.children:
+            child.register(symbol_entry_list, tree_store, self.tree_iter)
+
+    def set_value(self, value: str) -> bool:
+        """
+        Updates the underlying value of the entry on the corresponding binary. The RWsymbol stored by this instance
+        must be a regular symbol (not an array or a struct).
+        If the operation raises an error, it is displayed to the user.
+        :return True if the value was successfully changed, false otherwise
+        :raises ValueError If the RWSymbol contained by this instance is not a RWSimpleSymbol
+        """
+        if isinstance(self.rw_symbol, RWSimpleSymbol):
+            rw_symbol = self.rw_symbol
+            try:
+                self.rom_project.modify_binary(self.binary_protocol, lambda binary:
+                    rw_symbol.get_rw_value().write_str(binary, value))
+                return True
+            except ValueError as e:
+                md = SkyTempleMessageDialog(
+                    MainController.window(),
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.OK,
+                    _("The value could not be saved: " + str(e)),
+                    title=_("Invalid value"),
+                )
+                md.run()
+                md.destroy()
+                return False
+        else:
+            raise ValueError("Cannot set the value of a symbol entry that does not contain a simple symbol.")
+
+    def _append_to_tree_store(self, tree_store: Gtk.TreeStore, model_getter: ModelGetter, unique_id: int,
+            parent_iter: Optional[Gtk.TreeIter]):
+        """
+        Appends this entry to the tree store that contains symbol data
         """
 
-        show_value_text = value_type == SymbolEntryValueType.TEXT
-        show_value_bool = value_type == SymbolEntryValueType.BOOLEAN
-        show_value_combo = value_type == SymbolEntryValueType.DROPDOWN
-        show_value_completion = value_type == SymbolEntryValueType.COMPLETION
+        type_str = str(self.c_type)
+        if self.enable_display_type_overrides:
+            type_str = self.apply_display_type_overrides()
+        type_str = get_enum_equivalent_type(type_str)
 
-        if value_type == SymbolEntryValueType.DROPDOWN or value_type == SymbolEntryValueType.COMPLETION:
-            model_combo_and_completion = self.model_getter.get_model(type_str)
+        show_value_text = self.value_type == SymbolEntryValueType.TEXT
+        show_value_bool = self.value_type == SymbolEntryValueType.BOOLEAN
+        show_value_combo = self.value_type == SymbolEntryValueType.DROPDOWN
+        show_value_completion = self.value_type == SymbolEntryValueType.COMPLETION
+
+        if self.value_type == SymbolEntryValueType.DROPDOWN or self.value_type == SymbolEntryValueType.COMPLETION:
+            model_combo_and_completion = model_getter.get_model(type_str)
         else:
             model_combo_and_completion = None
 
-        # Append new entry. The value is set below.
-        self.tree_iter = self.tree_store.append(self.parent_iter, [symbol_name, type_str, description, "",
-            False, "", unique_id, binary_id, show_value_text, show_value_bool, show_value_combo, show_value_completion,
-            model_combo_and_completion])
+        # Append new entry. Values are set below.
+        self.tree_iter = tree_store.append(parent_iter, [self.name, type_str, self.description, "",
+            False, "", unique_id, self.binary_id, show_value_text, show_value_bool, show_value_combo,
+            show_value_completion, model_combo_and_completion])
 
         # Set the value using the designated method to ensure all relevant columns are updated
-        store_entry = self.tree_store[self.tree_iter]
+        store_entry = tree_store[self.tree_iter]
+        value = self.get_str_value()
         try:
             StoreEntryValueSetter.set_value(store_entry, value)
         except IndexError:
@@ -120,3 +187,16 @@ class SymbolEntry(ABC):
 
             # Try again
             StoreEntryValueSetter.set_value(store_entry, value)
+
+    def apply_display_type_overrides(self) -> str:
+        """
+        Applies display type overrides to the type of this entry. Type display overrides simplifies the display of
+        some C types to make them easier to understand (for example, "struct data_processing_instruction" gets turned
+        into "Shifted Immediate".
+        :retrun Type of this entry after applying display type overrides, as a string
+        """
+        if self.c_type.base_type == DATA_PROCESSING_INSTRUCTION_TYPE:
+            # Since we only edit the shifted immediate part of instructions, we use a different display type for these
+            return SHIFTED_IMMEDIATE_DISPLAY_TYPE
+        else:
+            return str(self.c_type)

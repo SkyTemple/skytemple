@@ -26,9 +26,10 @@ from pmdsky_debug_py.protocol import Symbol
 
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import data_dir
+from skytemple.module.symbols.model_getter import ModelGetter
+from skytemple.module.symbols.symbol_entry.symbol_entry import SymbolEntry
+from skytemple.module.symbols.symbol_entry.symbol_entry_builder import SymbolEntryBuilder
 from skytemple.module.symbols.store_entry_value_setter import StoreEntryValueSetter
-from skytemple.module.symbols.symbol_entry.simple_symbol_entry import SimpleSymbolEntry
-from skytemple.module.symbols.symbol_entry.symbol_entry_list import SymbolEntryList
 from skytemple_files.hardcoded.symbols.binary_data_getter import BinaryDataGetter
 from skytemple_files.hardcoded.symbols.rw_symbol import RWSymbol
 from skytemple_files.hardcoded.symbols.unsupported_type_error import UnsupportedTypeError
@@ -104,7 +105,7 @@ class StSymbolsMainPage(Gtk.Box):
     # IDs of all the binaries that have at least one data symbol
     binaries: List[str]
     # List used to create and store SymbolEntry instances
-    entry_list: SymbolEntryList
+    entry_list: List[SymbolEntry]
 
     # UI elements
     binary_combobox: Gtk.ComboBoxText = cast(Gtk.ComboBoxText, Gtk.Template.Child())
@@ -123,9 +124,13 @@ class StSymbolsMainPage(Gtk.Box):
         self.project = project
         self.symbol_data_getter = BinaryDataGetter(self.project.get_rom_module().get_static_data())
         self.binaries = []
-        self.entry_list = SymbolEntryList(self.project, self.symbols_treestore)
+        self.entry_list = []
 
         self.symbols_treefilter.set_visible_func(filter_callback, self)
+
+        # Create the ModelGetter instance now so we can call ModelGetter.get() later without having to worry about
+        # passing self.project around
+        ModelGetter.get_or_create(project)
 
         self._fill_binary_list()
         self._fill_entries()
@@ -159,7 +164,7 @@ class StSymbolsMainPage(Gtk.Box):
             symbols += [(s, binary_id) for s in self.symbol_data_getter.get_data_symbols(binary_id)]
         symbols.sort(key=lambda _entry: _entry[0].name)
 
-        # Loop symbols and create RWInstances and UI elements for each one that has a type
+        # Loop symbols and create RWSymbol instances and UI elements for each one that has a type
         for entry in symbols:
             symbol = entry[0]
             binary_id = entry[1]
@@ -172,7 +177,12 @@ class StSymbolsMainPage(Gtk.Box):
                     # Symbol not supported, skip
                     continue
 
-                self.entry_list.new_entry_from_symbol(symbol, rw_symbol, binary_id, protocol, None)
+                symbol_entry = SymbolEntryBuilder() \
+                    .set_rom_project(self.project) \
+                    .set_name_type_desc_from_symbol(symbol) \
+                    .set_rw_data(rw_symbol, binary_id, protocol) \
+                    .build()
+                symbol_entry.register(self.entry_list, self.symbols_treestore)
 
     # noinspection PyUnusedLocal
     @Gtk.Template.Callback()
@@ -212,7 +222,13 @@ class StSymbolsMainPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_cr_combo_value_changed(self, widget: Gtk.CellRendererCombo, path: str, new_iter: Gtk.TreeIter, *args):
         # Retrieve the numeric ID of the new value
-        new_value = widget.props.model[new_iter][0]
+
+        # WORKAROUND: For some reason, model-linked properties in the widget are None sometimes when this method
+        # is called, even if they are set in the model (in particular, this happens only if the entry is part of
+        # a struct).
+        # To fix this, we pull the model directly from the TreeFilter.
+        model = self.symbols_treefilter[path][12]
+        new_value = model[new_iter][0]
         self.on_value_changed(path, str(new_value), new_iter)
 
     # noinspection PyUnusedLocal
@@ -233,12 +249,9 @@ class StSymbolsMainPage(Gtk.Box):
         """
         store_entry = self.symbols_treefilter[path]
         symbol_entry_id = store_entry[6]
-        symbol_entry = self.entry_list.get_by_id(symbol_entry_id)
+        symbol_entry = self.entry_list[symbol_entry_id]
 
-        # If a callback was triggered, that means a text input in the symbol entry was modified. Only regular
-        # entries have those inputs, so we can cast here.
-        simple_symbol_entry = cast(SimpleSymbolEntry, symbol_entry)
-        if simple_symbol_entry.set_value(new_value):
+        if symbol_entry.set_value(new_value):
             StoreEntryValueSetter.set_value(store_entry, new_value, model_iter)
             self.module.graphical_mark_as_modified()
 
