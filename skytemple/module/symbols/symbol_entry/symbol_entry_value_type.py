@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 from enum import Enum, auto
 
 from skytemple.module.symbols.model_getter import ModelGetter
@@ -50,7 +51,7 @@ class SymbolEntryValueType(Enum):
     COMPLETION = auto()
 
     @classmethod
-    def from_c_type(cls, c_type: str) -> "SymbolEntryValueType":
+    def from_c_type(cls, c_type: str) -> SymbolEntryValueType:
         """
         Given a C type, returns the type of value cell that should be used to represent it.
         For enum types, if the type is not supported by ModelGetter or it's not listed in ENUM_TYPES_DROPDOWN or

@@ -25,6 +25,7 @@ from gi.repository import Gtk
 from pmdsky_debug_py.protocol import Symbol
 
 from skytemple.core.rom_project import RomProject
+from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ui_utils import data_dir
 from skytemple.module.symbols.model_getter import ModelGetter
 from skytemple.module.symbols.symbol_entry.symbol_entry import SymbolEntry
@@ -91,7 +92,7 @@ COMPLETION_ENTRY_REGEX = re.compile(r"\([$#](\d+)\)$")
 
 
 @Gtk.Template(filename=os.path.join(data_dir(), "widget", "symbols", "main.ui"))
-class StSymbolsMainPage(Gtk.Box):
+class StSymbolsMainPage(Gtk.Stack):
     """
     Represents the main widget for the symbol editing screen
     """
@@ -99,6 +100,7 @@ class StSymbolsMainPage(Gtk.Box):
     __gtype_name__ = "StSymbolsMainPage"
 
     module: SymbolsModule
+    settings: SkyTempleSettingsStore
     item_data: None
     project: RomProject
     symbol_data_getter: BinaryDataGetter
@@ -108,6 +110,8 @@ class StSymbolsMainPage(Gtk.Box):
     entry_list: List[SymbolEntry]
 
     # UI elements
+    content_box: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
+    check_show_warning: Gtk.CheckButton = cast(Gtk.CheckButton, Gtk.Template.Child())
     binary_combobox: Gtk.ComboBoxText = cast(Gtk.ComboBoxText, Gtk.Template.Child())
     symbols_search: Gtk.SearchEntry = cast(Gtk.SearchEntry, Gtk.Template.Child())
     symbols_treestore: Gtk.TreeStore = cast(Gtk.TreeStore, Gtk.Template.Child())
@@ -118,6 +122,7 @@ class StSymbolsMainPage(Gtk.Box):
         super().__init__()
 
         self.module = module
+        self.settings = SkyTempleSettingsStore()
         self.item_data = item_data
         project = RomProject.get_current()
         assert project is not None
@@ -127,6 +132,7 @@ class StSymbolsMainPage(Gtk.Box):
         self.entry_list = []
 
         self.symbols_treefilter.set_visible_func(filter_callback, self)
+        self.set_check_show_warning()
 
         # Create the ModelGetter instance now so we can call ModelGetter.get() later without having to worry about
         # passing self.project around
@@ -137,6 +143,16 @@ class StSymbolsMainPage(Gtk.Box):
 
         # Default to "all binaries"
         self.binary_combobox.set_active(0)
+
+    def set_check_show_warning(self):
+        """
+        Checks the config to know whether the warning screen should be shown or not. Sets the state of the checkbox
+        accordingly. If it should not be shown, directly shows the content box.
+        """
+        show_warning = self.settings.get_show_symbols_screen_warning()
+        self.check_show_warning.set_active(show_warning)
+        if not show_warning:
+            self.set_visible_child(self.content_box)
 
     def _fill_binary_list(self):
         """
@@ -256,6 +272,14 @@ class StSymbolsMainPage(Gtk.Box):
         if symbol_entry.set_value(new_value):
             StoreEntryValueSetter.set_value(store_entry, new_value, model_iter)
             self.module.graphical_mark_as_modified()
+
+    # noinspection PyUnusedLocal
+    @Gtk.Template.Callback()
+    def on_btn_proceed_clicked(self, widget: Gtk.Button, *args):
+        self.set_visible_child(self.content_box)
+        show_warning = self.check_show_warning.get_active()
+        if not show_warning:
+            self.settings.set_show_symbols_screen_warning(False)
 
 
 def get_binary_display_text(binary_id: str) -> str:

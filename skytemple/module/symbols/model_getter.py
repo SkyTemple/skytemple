@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 from typing import Dict, List
 
 from skytemple_files.data.md.protocol import Gender
@@ -28,10 +29,10 @@ from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.symbols.manual.enums import get_enum_values, get_all_enum_types
 from skytemple_files.hardcoded.symbols.unsupported_type_error import UnsupportedTypeError
 
-_instance: "ModelGetter | None" = None
+_instance: ModelGetter | None = None
 
 # List of enum types that are handled dynamically. Their list of possible values is pulled from the ROM rather than
-# from a fixed list of values
+# from a fixed list of values.
 DYNAMIC_ENUM_TYPES = ["enum monster_id", "enum item_id", "enum move_id", "enum music_id", "enum dungeon_id"]
 
 
@@ -61,7 +62,7 @@ class ModelGetter:
         self.models = {}
 
     @classmethod
-    def get_or_create(cls, rom_project: RomProject) -> "ModelGetter":
+    def get_or_create(cls, rom_project: RomProject) -> ModelGetter:
         """
         Gets the current instance of this class. If it has not been created yet, creates it first.
         """
@@ -71,7 +72,7 @@ class ModelGetter:
         return _instance
 
     @classmethod
-    def get(cls) -> "ModelGetter":
+    def get(cls) -> ModelGetter:
         """
         Returns the current instance of this class. If it has not been created yet, raises ValueError
         """

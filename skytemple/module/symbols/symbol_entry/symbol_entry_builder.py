@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 from typing import Optional, List
 
 from pmdsky_debug_py.protocol import SectionProtocol, Symbol
@@ -60,21 +61,21 @@ class SymbolEntryBuilder:
 
         self._rw_array_symbol_index = 0
 
-    def set_rom_project(self, rom_project: RomProject) -> "SymbolEntryBuilder":
+    def set_rom_project(self, rom_project: RomProject) -> SymbolEntryBuilder:
         """
         Sets the ROM project used to retrieve ROM data
         """
         self._rom_project = rom_project
         return self
 
-    def set_name(self, name: str) -> "SymbolEntryBuilder":
+    def set_name(self, name: str) -> SymbolEntryBuilder:
         """
         Sets the disaplay name of the entry
         """
         self._name = name
         return self
 
-    def set_c_type(self, c_type: CType) -> "SymbolEntryBuilder":
+    def set_c_type(self, c_type: CType) -> SymbolEntryBuilder:
         """
         Sets the C tpye of the entry. The type is used to determine the type string to show, as well as to determine
         which child elements to create.
@@ -82,14 +83,14 @@ class SymbolEntryBuilder:
         self._c_type = c_type
         return self
 
-    def set_description(self, description: str) -> "SymbolEntryBuilder":
+    def set_description(self, description: str) -> SymbolEntryBuilder:
         """
         Sets the display description of the entry
         """
         self._description = description
         return self
 
-    def set_name_type_desc_from_symbol(self, symbol: Symbol) -> "SymbolEntryBuilder":
+    def set_name_type_desc_from_symbol(self, symbol: Symbol) -> SymbolEntryBuilder:
         """
         Sets the name, type, and description of this entry with data from the given symbol
         :raises ValueError If the provided symbol has no type
@@ -104,7 +105,7 @@ class SymbolEntryBuilder:
 
     def set_rw_data(
         self, rw_symbol: RWSymbol, binary_id: str, binary_protocol: SectionProtocol
-    ) -> "SymbolEntryBuilder":
+    ) -> SymbolEntryBuilder:
         """
         Sets the values that will allow the resulting symbol entry to read and write its value to its corresponding
         binary.
@@ -114,7 +115,7 @@ class SymbolEntryBuilder:
         self._binary_protocol = binary_protocol
         return self
 
-    def enable_display_type_overrides(self, enable: bool) -> "SymbolEntryBuilder":
+    def enable_display_type_overrides(self, enable: bool) -> SymbolEntryBuilder:
         """
         Sets whether display type overrides should be enabled for the resulting object. If enabled, some C types
         will be displayed with an alternative text to make them easier to understand.
@@ -124,7 +125,7 @@ class SymbolEntryBuilder:
         self._enable_display_type_overrides = enable
         return self
 
-    def _set_rw_array_symbol_index(self, rw_array_symbol_index: int) -> "SymbolEntryBuilder":
+    def _set_rw_array_symbol_index(self, rw_array_symbol_index: int) -> SymbolEntryBuilder:
         self._rw_array_symbol_index = rw_array_symbol_index
         return self
 

@@ -45,21 +45,19 @@
   <object class="GtkTreeModelFilter" id="symbols_treefilter">
     <property name="child-model">symbols_treestore</property>
   </object>
-  <template class="StSymbolsMainPage" parent="GtkBox">
+  <template class="StSymbolsMainPage" parent="GtkStack">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="orientation">vertical</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="warning_box">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-bottom">15</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-top">20</property>
+            <property name="margin-top">64</property>
             <property name="label" translatable="yes">Symbols</property>
             <style>
               <class name="skytemple-view-main-label"/>
@@ -68,7 +66,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -78,6 +76,24 @@
             <property name="margin-top">5</property>
             <property name="label" translatable="yes">On this screen, you can find some internal values that are hardcoded into the binaries of the game.
 You may change their values, but elements cannot be added or removed.</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">50</property>
+            <property name="label" translatable="yes">&lt;b&gt;Warning!&lt;/b&gt;
+
+This is an advanced feature.
+The game needs these values to work properly. If you make reckless changes, you could break it!
+ Proceed with caution, and remember to make backups!</property>
+            <property name="use-markup">True</property>
             <property name="justify">center</property>
           </object>
           <packing>
@@ -86,23 +102,88 @@ You may change their values, but elements cannot be added or removed.</property>
             <property name="position">2</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkCheckButton" id="check_show_warning">
+            <property name="label" translatable="yes">Show this warning when trying to access this screen</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="halign">center</property>
+            <property name="margin-top">10</property>
+            <property name="active">True</property>
+            <property name="draw-indicator">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_proceed">
+            <property name="label" translatable="yes">Proceed</property>
+            <property name="width-request">200</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="halign">center</property>
+            <property name="margin-top">10</property>
+            <signal name="clicked" handler="on_btn_proceed_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
       </object>
       <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
+        <property name="name">page0</property>
+        <property name="title" translatable="yes">page0</property>
       </packing>
     </child>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="content_box">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-end">10</property>
-            <property name="label" translatable="yes">Select binary:</property>
+            <property name="margin-bottom">15</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="label" translatable="yes">Symbols</property>
+                <style>
+                  <class name="skytemple-view-main-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
+                <property name="label" translatable="yes">On this screen, you can find some internal values that are hardcoded into the binaries of the game.
+You may change their values, but elements cannot be added or removed.</property>
+                <property name="justify">center</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -111,10 +192,34 @@ You may change their values, but elements cannot be added or removed.</property>
           </packing>
         </child>
         <child>
-          <object class="GtkComboBoxText" id="binary_combobox">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <signal name="changed" handler="on_binary_list_changed" swapped="no"/>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-end">10</property>
+                <property name="label" translatable="yes">Select binary:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="binary_combobox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <signal name="changed" handler="on_binary_list_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -122,160 +227,162 @@ You may change their values, but elements cannot be added or removed.</property>
             <property name="position">1</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-end">10</property>
+                <property name="label" translatable="yes">Search:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSearchEntry" id="symbols_search">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="primary-icon-name">edit-find-symbolic</property>
+                <property name="primary-icon-activatable">False</property>
+                <property name="primary-icon-sensitive">False</property>
+                <signal name="search-changed" handler="on_search_input_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="vexpand">True</property>
+            <property name="shadow-type">in</property>
+            <property name="propagate-natural-height">True</property>
+            <child>
+              <object class="GtkTreeView" id="symbols_treeview">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="model">symbols_treefilter</property>
+                <property name="enable-search">False</property>
+                <property name="search-column">0</property>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Name</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cr_name"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Type</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cr_type"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Description</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cr_description">
+                        <property name="wrap-mode">word</property>
+                        <property name="wrap-width">500</property>
+                      </object>
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Value</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cr_value_text">
+                        <property name="editable">True</property>
+                        <signal name="edited" handler="on_cr_text_value_changed" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">8</attribute>
+                        <attribute name="text">3</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererToggle" id="cr_value_bool">
+                        <property name="xalign">0</property>
+                        <signal name="toggled" handler="on_cr_bool_value_changed" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">9</attribute>
+                        <attribute name="active">4</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererCombo" id="cr_value_combo">
+                        <property name="editable">True</property>
+                        <property name="text-column">1</property>
+                        <signal name="changed" handler="on_cr_combo_value_changed" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">10</attribute>
+                        <attribute name="text">5</attribute>
+                        <attribute name="model">12</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererText" id="cr_value_completion">
+                        <property name="editable">True</property>
+                        <signal name="edited" handler="on_cr_completion_value_changed" swapped="no"/>
+                        <signal name="editing-started" handler="on_cr_value_completion_editing_started" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">11</attribute>
+                        <attribute name="text">5</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
       </object>
       <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
+        <property name="name">page1</property>
+        <property name="title" translatable="yes">page1</property>
         <property name="position">1</property>
       </packing>
     </child>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-end">10</property>
-            <property name="label" translatable="yes">Search:</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSearchEntry" id="symbols_search">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="primary-icon-name">edit-find-symbolic</property>
-            <property name="primary-icon-activatable">False</property>
-            <property name="primary-icon-sensitive">False</property>
-            <signal name="search-changed" handler="on_search_input_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">2</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkScrolledWindow">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="shadow-type">in</property>
-        <property name="propagate-natural-height">True</property>
-        <child>
-          <object class="GtkTreeView" id="symbols_treeview">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="model">symbols_treefilter</property>
-            <property name="enable-search">False</property>
-            <property name="search-column">0</property>
-            <child internal-child="selection">
-              <object class="GtkTreeSelection"/>
-            </child>
-            <child>
-              <object class="GtkTreeViewColumn">
-                <property name="title" translatable="yes">Name</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cr_name"/>
-                  <attributes>
-                    <attribute name="text">0</attribute>
-                  </attributes>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkTreeViewColumn">
-                <property name="title" translatable="yes">Type</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cr_type"/>
-                  <attributes>
-                    <attribute name="text">1</attribute>
-                  </attributes>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkTreeViewColumn">
-                <property name="title" translatable="yes">Description</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cr_description">
-                    <property name="wrap-mode">word</property>
-                    <property name="wrap-width">500</property>
-                  </object>
-                  <attributes>
-                    <attribute name="text">2</attribute>
-                  </attributes>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkTreeViewColumn">
-                <property name="title" translatable="yes">Value</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cr_value_text">
-                    <property name="editable">True</property>
-                    <signal name="edited" handler="on_cr_text_value_changed" swapped="no"/>
-                  </object>
-                  <attributes>
-                    <attribute name="visible">8</attribute>
-                    <attribute name="text">3</attribute>
-                  </attributes>
-                </child>
-                <child>
-                  <object class="GtkCellRendererToggle" id="cr_value_bool">
-                    <property name="xalign">0</property>
-                    <signal name="toggled" handler="on_cr_bool_value_changed" swapped="no"/>
-                  </object>
-                  <attributes>
-                    <attribute name="visible">9</attribute>
-                    <attribute name="active">4</attribute>
-                  </attributes>
-                </child>
-                <child>
-                  <object class="GtkCellRendererCombo" id="cr_value_combo">
-                    <property name="editable">True</property>
-                    <property name="text-column">1</property>
-                    <signal name="changed" handler="on_cr_combo_value_changed" swapped="no"/>
-                  </object>
-                  <attributes>
-                    <attribute name="visible">10</attribute>
-                    <attribute name="text">5</attribute>
-                    <attribute name="model">12</attribute>
-                  </attributes>
-                </child>
-                <child>
-                  <object class="GtkCellRendererText" id="cr_value_completion">
-                    <property name="editable">True</property>
-                    <signal name="edited" handler="on_cr_completion_value_changed" swapped="no"/>
-                    <signal name="editing-started" handler="on_cr_value_completion_editing_started" swapped="no"/>
-                  </object>
-                  <attributes>
-                    <attribute name="visible">11</attribute>
-                    <attribute name="text">5</attribute>
-                  </attributes>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">3</property>
-      </packing>
-    </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="sps"/>
+    </style>
   </template>
 </interface>

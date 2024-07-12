@@ -48,6 +48,7 @@ KEY_ALLOW_SENTRY = "send_error_reports"
 KEY_SENTRY_USER_ID = "error_reports_user_id"
 KEY_ENABLE_CSD = "enable_csd"
 KEY_APPROVED_PLUGINS = "approved_plugins"
+KEY_SHOW_SYMBOLS_SCREEN_WARNING = "symbols_warning"
 
 KEY_WINDOW_SIZE_X = "width"
 KEY_WINDOW_SIZE_Y = "height"
@@ -282,6 +283,18 @@ class SkyTempleSettingsStore:
         if SECT_GENERAL not in self.loaded_config:
             self.loaded_config[SECT_GENERAL] = {}
         self.loaded_config[SECT_GENERAL][KEY_APPROVED_PLUGINS] = ",".join(plugin_names)
+        self._save()
+
+    def get_show_symbols_screen_warning(self) -> bool:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_SHOW_SYMBOLS_SCREEN_WARNING in self.loaded_config[SECT_GENERAL]:
+                return int(self.loaded_config[SECT_GENERAL][KEY_SHOW_SYMBOLS_SCREEN_WARNING]) > 0
+        return True
+
+    def set_show_symbols_screen_warning(self, value: bool):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_SHOW_SYMBOLS_SCREEN_WARNING] = "1" if value else "0"
         self._save()
 
     def _save(self):

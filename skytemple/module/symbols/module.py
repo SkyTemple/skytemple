@@ -41,7 +41,7 @@ class SymbolsModule(AbstractModule):
 
     @classmethod
     def sort_order(cls):
-        return 15
+        return 850
 
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
@@ -70,7 +70,7 @@ class SymbolsModule(AbstractModule):
         """
         if self.item_tree is None or self.item_tree_entry is None:
             raise RuntimeError(
-                "Cannot mark as modified before tree items are initialized. " "Call load_tree_items() first."
+                "Cannot mark as modified before tree items are initialized. Call load_tree_items() first."
             )
         else:
             self.item_tree.mark_as_modified(self.item_tree_entry, RecursionType.UP)
