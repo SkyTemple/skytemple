@@ -188,6 +188,7 @@ class ActorListController(ListBaseController):
             or unk3_before != actor.unk3
             or unk4_before != actor.unk4
         ):
+            self.module.project.get_rom_module().get_static_data().script_data.level_entities = self._list.list
             self.module.mark_actors_as_modified()
 
     def refresh_list(self):
