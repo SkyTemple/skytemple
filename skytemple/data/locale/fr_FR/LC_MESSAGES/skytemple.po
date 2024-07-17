@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-06-30 11:35+0000\n"
-"PO-Revision-Date: 2024-06-30 11:51\n"
+"POT-Creation-Date: 2024-07-17 07:22+0000\n"
+"PO-Revision-Date: 2024-07-17 07:29\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -983,25 +983,30 @@ msgstr "scn() utilisé sans variable."
 msgid "value() without a variable."
 msgstr "value() utilisé sans variable."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:74
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:88
 msgid "No target ID set for with(){} block."
 msgstr "Aucun ID cible défini pour le bloc with(){}."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:76
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:126
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:90
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:150
 msgid "A with(){} block needs exactly one statement."
 msgstr "Un bloc with(){} ne doit contenir qu'une seule instruction."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:86
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:100
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:75
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
 msgstr "Type de la cible du bloc with(){} « {for_type} » invalide."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:93
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:111
+msgid "Operations inside with(){} blocks cannot contain an inline `actor`, `object` or `performer` context."
+msgstr ""
+
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:117
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
 msgstr "Un bloc with(){} ne peut contenir qu'une seule opération en binaire. Le gestionnaire pour ce bloc en a généré plusieurs."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:115
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:139
 msgid "A with(){} block can not contain labels."
 msgstr "Un bloc with(){} ne peut pas contenir d'étiquette."
 
@@ -1124,6 +1129,10 @@ msgstr "L'index pour la condition de if scn() doit être 0 ou 1 (ligne {self.ctx
 msgid "Macro {name} not found."
 msgstr "Macro {name} introuvable."
 
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:66
+msgid "No target ID set for inline actor/object/performer context."
+msgstr ""
+
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:95
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:100
 msgid "Dependency cycle detected while trying to resolve macros (for macro '{v['name']}')."
@@ -1183,6 +1192,10 @@ msgstr "Fichier à importer (« {import_file} ») introuvable."
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
 msgstr "Importation invalide : « {import_file} ». Les importations non absolues/relatives ne doivent pas contenir de chemins relatifs."
+
+#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_listener.py:148
+msgid "Operations in SSBScript cannot contain an inline context."
+msgstr ""
 
 #: explorerscript/explorerscript/syntax_error_listener.py:42
 #, python-brace-format
@@ -1255,99 +1268,99 @@ msgstr "Erreur dans le fichier XML : la durée et/ou les couleurs d'une palette 
 msgid "No match found for rule {orig_rule}. Input set correct?"
 msgstr "Aucune correspondance trouvée pour la règle {orig_rule}. Le jeu de tuiles importé est-il correct ?"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:139
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:140
 msgid "One Layer (#00)"
 msgstr "Un calque (#00)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:140
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:141
 msgid "One Layer (#01)"
 msgstr "Un calque (#01)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:141
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:142
 msgid "One Layer (#02)"
 msgstr "Un calque (#02)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:142
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
 msgid "One Layer (#03)"
 msgstr "Un calque (#03)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:144
 msgid "One Layer (#04)"
 msgstr "Un calque (#04)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:144
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:145
 msgid "Two Layers (#05)"
 msgstr "Deux calques (#05)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:145
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:146
 msgid "Two Layers (#06)"
 msgstr "Deux calques (#06)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:146
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:147
 msgid "Two Layers (#07)"
 msgstr "Deux calques (#07)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:147
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:148
 msgid "Two Layers (#08)"
 msgstr "Deux calques (#08)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:148
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:149
 msgid "Two Layers (#09)"
 msgstr "Deux calques (#09)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:149
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:150
 msgid "Dungeon Tileset (#10)"
 msgstr "Set de tuiles de Donjon (#10)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:150
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:151
 msgid "Use Fixed Room (#11)"
 msgstr "Utiliser la Salle Prédéfinie (#11)"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:271
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:272
 msgid "This function has no description."
 msgstr "La fonction n'a pas de description."
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:313
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:314
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:29
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:14
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:14
 msgid "Down"
 msgstr "Bas"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:315
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:316
 msgid "Down Right"
 msgstr "En bas à droite"
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:317
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:318
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:26
 msgid "Right"
 msgstr "Droite"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:319
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:320
 msgid "Up Right"
 msgstr "En haut à droite"
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:321
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:322
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:28
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:18
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:18
 msgid "Up"
 msgstr "Haut"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:323
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:324
 msgid "Up Left"
 msgstr "En haut à gauche"
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:325
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:326
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:27
 msgid "Left"
 msgstr "Gauche"
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:327
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:328
 msgid "Down Left"
 msgstr "En bas à gauche"
 
