@@ -103,9 +103,7 @@ class SymbolEntryBuilder:
             self._description = symbol.description
         return self
 
-    def set_rw_data(
-        self, rw_symbol: RWSymbol, binary_id: str, binary_protocol: SectionProtocol
-    ) -> SymbolEntryBuilder:
+    def set_rw_data(self, rw_symbol: RWSymbol, binary_id: str, binary_protocol: SectionProtocol) -> SymbolEntryBuilder:
         """
         Sets the values that will allow the resulting symbol entry to read and write its value to its corresponding
         binary.

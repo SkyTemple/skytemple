@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 from typing import Optional, List
 
 from pmdsky_debug_py.protocol import SectionProtocol
@@ -21,7 +22,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import RomProject
 from skytemple.module.symbols.model_getter import ModelGetter
-from skytemple.module.symbols.store_entry_value_setter import StoreEntryValueSetter
+from skytemple.module.symbols.store_entry_value_setter import StoreEntryValueSetter, FONT_WEIGHT_SAVED
 from skytemple.module.symbols.symbol_entry.symbol_entry_value_type import SymbolEntryValueType
 from skytemple_files.common.rw_value import DATA_PROCESSING_INSTRUCTION_TYPE
 from skytemple_files.hardcoded.symbols.c_type import CType
@@ -52,7 +53,7 @@ class SymbolEntry:
     binary_id: str
     binary_protocol: SectionProtocol
 
-    # The prefered value type for this entry. The entry might end up using a different value if this one cannot
+    # The preferred value type for this entry. The entry might end up using a different value if this one cannot
     # be used for some reason.
     value_type: SymbolEntryValueType
     enable_display_type_overrides: bool
@@ -197,6 +198,7 @@ class SymbolEntry:
                 show_value_combo,
                 show_value_completion,
                 model_combo_and_completion,
+                FONT_WEIGHT_SAVED,
             ],
         )
 
@@ -204,7 +206,7 @@ class SymbolEntry:
         store_entry = tree_store[self.tree_iter]
         value = self.get_str_value()
         try:
-            StoreEntryValueSetter.set_value(store_entry, value)
+            StoreEntryValueSetter.set_value(store_entry, value, False)
         except IndexError:
             # This means that the value is out of bounds for the entry's enum type.
             # This can happen if:
@@ -219,7 +221,7 @@ class SymbolEntry:
             store_entry[12] = None  # model_combo_and_completion = None
 
             # Try again
-            StoreEntryValueSetter.set_value(store_entry, value)
+            StoreEntryValueSetter.set_value(store_entry, value, False)
 
     def apply_display_type_overrides(self) -> str:
         """

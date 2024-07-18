@@ -29,8 +29,6 @@ from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.symbols.manual.enums import get_enum_values, get_all_enum_types
 from skytemple_files.hardcoded.symbols.unsupported_type_error import UnsupportedTypeError
 
-_instance: ModelGetter | None = None
-
 # List of enum types that are handled dynamically. Their list of possible values is pulled from the ROM rather than
 # from a fixed list of values.
 DYNAMIC_ENUM_TYPES = ["enum monster_id", "enum item_id", "enum move_id", "enum music_id", "enum dungeon_id"]
@@ -44,43 +42,35 @@ class ModelGetter:
     are requested.
     """
 
-    _instantiation_string = "Do not instantiate this"
+    _instance: ModelGetter | None = None
 
     project: RomProject
     # Dict that maps C types to their associated model instances
     models: Dict[str, Gtk.ListStore]
 
-    def __init__(self, rom_project: RomProject, do_not_instantiate: str):
-        """
-        Creates a new instance of the class. Should not be called from outside the class, use get_or_create() or
-        get() instead.
-        """
-        if do_not_instantiate != self._instantiation_string:
-            raise ValueError("This class cannot be directly instantiated")
-
-        self.project = rom_project
-        self.models = {}
+    def __new__(cls, rom_project: RomProject):
+        if cls._instance is None:
+            cls._instance = super(ModelGetter, cls).__new__(cls)
+            cls._instance.project = rom_project
+            cls._instance.models = {}
+        return cls._instance
 
     @classmethod
     def get_or_create(cls, rom_project: RomProject) -> ModelGetter:
         """
         Gets the current instance of this class. If it has not been created yet, creates it first.
         """
-        global _instance
-        if _instance is None:
-            _instance = cls(rom_project, cls._instantiation_string)
-        return _instance
+        return cls(rom_project)
 
     @classmethod
     def get(cls) -> ModelGetter:
         """
         Returns the current instance of this class. If it has not been created yet, raises ValueError
         """
-        global _instance
-        if _instance is None:
+        if cls._instance is None:
             raise ValueError("Global instance not yet created. Call get_or_create() instead.")
         else:
-            return _instance
+            return cls._instance
 
     def is_type_supported(self, c_type: str) -> bool:
         """

@@ -40,6 +40,8 @@
       <column type="gboolean"/>
       <!-- column-name model_combo_and_completion -->
       <column type="GObject"/>
+      <!-- column-name font_weight -->
+      <column type="gint"/>
     </columns>
   </object>
   <object class="GtkTreeModelFilter" id="symbols_treefilter">
@@ -280,6 +282,9 @@ You may change their values, but elements cannot be added or removed.</property>
                 <property name="model">symbols_treefilter</property>
                 <property name="enable-search">False</property>
                 <property name="search-column">0</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
                 <child>
                   <object class="GtkTreeViewColumn">
                     <property name="title" translatable="yes">Name</property>
@@ -287,6 +292,7 @@ You may change their values, but elements cannot be added or removed.</property>
                       <object class="GtkCellRendererText" id="cr_name"/>
                       <attributes>
                         <attribute name="text">0</attribute>
+                        <attribute name="weight">13</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -298,6 +304,7 @@ You may change their values, but elements cannot be added or removed.</property>
                       <object class="GtkCellRendererText" id="cr_type"/>
                       <attributes>
                         <attribute name="text">1</attribute>
+                        <attribute name="weight">13</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -312,6 +319,7 @@ You may change their values, but elements cannot be added or removed.</property>
                       </object>
                       <attributes>
                         <attribute name="text">2</attribute>
+                        <attribute name="weight">13</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -327,6 +335,7 @@ You may change their values, but elements cannot be added or removed.</property>
                       <attributes>
                         <attribute name="visible">8</attribute>
                         <attribute name="text">3</attribute>
+                        <attribute name="weight">13</attribute>
                       </attributes>
                     </child>
                     <child>

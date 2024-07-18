@@ -269,8 +269,12 @@ class StSymbolsMainPage(Gtk.Stack):
         symbol_entry_id = store_entry[6]
         symbol_entry = self.entry_list[symbol_entry_id]
 
+        if new_value == symbol_entry.get_str_value():
+            # No need to write the data again or mark the row as unsaved
+            return
+
         if symbol_entry.set_value(new_value):
-            StoreEntryValueSetter.set_value(store_entry, new_value, model_iter)
+            StoreEntryValueSetter.set_value(store_entry, new_value, True, model_iter)
             self.module.graphical_mark_as_modified()
 
     # noinspection PyUnusedLocal

@@ -14,9 +14,16 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 from typing import Optional
 
 from gi.repository import Gtk
+
+
+# Font weight to use when a row has unsaved changes
+FONT_WEIGHT_UNSAVED = 700
+# Font weight to use when a row does not have unsaved changes
+FONT_WEIGHT_SAVED = 400
 
 
 class StoreEntryValueSetter:
@@ -25,13 +32,16 @@ class StoreEntryValueSetter:
     """
 
     @staticmethod
-    def set_value(store_entry: Gtk.TreeModelRow, value: str, model_iter: Optional[Gtk.TreeIter] = None):
+    def set_value(
+        store_entry: Gtk.TreeModelRow, value: str, mark_unsaved: bool, model_iter: Optional[Gtk.TreeIter] = None
+    ):
         """
         Sets the value of one of the entries in the TreeStore
         Using this method will update all the value columns, which ensures their consistency.
         :param store_entry Entry to update
         :param value Base value to set for all fields. Should be a string containing the numerical representation
         of the value.
+        :param mark_unsaved If true, the entire row will be bolded to mark that the value is unsaved.
         :param model_iter If specified and the entry uses a model to get its list of possible values, the model entry
         specified by this iter will be updated. Useful to avoid potentially having to search for the given value
         among all the options in the model.
@@ -52,6 +62,10 @@ class StoreEntryValueSetter:
                 combo_and_completion_value = model[model_iter][1]
 
         store_entry[5] = combo_and_completion_value
+
+        if mark_unsaved:
+            # Make the text on this entry bold to mark unsaved changes
+            store_entry[13] = FONT_WEIGHT_UNSAVED
 
     @staticmethod
     def get_list_store_entry_by_key(list_store: Gtk.ListStore, _id: int) -> str:
