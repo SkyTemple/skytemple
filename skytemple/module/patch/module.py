@@ -33,7 +33,6 @@ from skytemple.module.patch.widget.asm import StPatchAsmPage
 from skytemple.module.patch.widget.cot import StPatchCotPage
 from skytemple.module.patch.widget.item_effects import StPatchItemEffectsPage
 from skytemple.module.patch.widget.move_effects import StPatchMoveEffectsPage
-from skytemple.module.patch.widget.pmdsky_debug import StPatchPmdSkyDebugPage
 from skytemple.module.patch.widget.sp_effects import StPatchSPEffectsPage
 
 SP_EFFECTS = "BALANCE/process.bin"
@@ -137,17 +136,6 @@ class PatchModule(AbstractModule):
                 name=_("C / Rust"),
                 module=self,
                 view_class=StPatchCotPage,
-                item_data=0,
-            ),
-        )
-
-        item_tree.add_entry(
-            root,
-            ItemTreeEntry(
-                icon="skytemple-e-patch-symbolic",
-                name=_("Symbols"),
-                module=self,
-                view_class=StPatchPmdSkyDebugPage,
                 item_data=0,
             ),
         )
