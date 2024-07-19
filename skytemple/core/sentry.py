@@ -107,8 +107,8 @@ def init(skytemple_settings: SkyTempleSettingsStore):
             )
             sentry_sdk.init(
                 SENTRY_ENDPOINT,
-                traces_sample_rate=1.0 if is_dev else 0.7,
-                profiles_sample_rate=1.0 if is_dev else 0.1,
+                traces_sample_rate=1.0 if is_dev else 0.2,
+                profiles_sample_rate=1.0 if is_dev else 0.01,
                 release=release_version(is_dev),
                 integrations=[sentry_logging],
                 server_name="n/a",
