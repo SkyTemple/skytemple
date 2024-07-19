@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-19 15:20+0000\n"
-"PO-Revision-Date: 2024-07-19 15:25\n"
+"POT-Creation-Date: 2024-07-19 20:47+0000\n"
+"PO-Revision-Date: 2024-07-19 21:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -920,7 +920,35 @@ msgstr ""
 msgid "Dungeon Cleared Dialog Strings"
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:57
+#: explorerscript/explorerscript/common_syntax.py:100
+#: explorerscript/explorerscript/common_syntax.py:188
+msgid "Integer not allowed at this position."
+msgstr ""
+
+#: explorerscript/explorerscript/common_syntax.py:104
+#: explorerscript/explorerscript/common_syntax.py:190
+msgid "Decimal not allowed at this position."
+msgstr ""
+
+#: explorerscript/explorerscript/common_syntax.py:115
+msgid "Constant not allowed at this position."
+msgstr ""
+
+#: explorerscript/explorerscript/common_syntax.py:126
+#: explorerscript/explorerscript/common_syntax.py:192
+msgid "Variable or constant not allowed at this position."
+msgstr ""
+
+#: explorerscript/explorerscript/common_syntax.py:130
+#: explorerscript/explorerscript/common_syntax.py:195
+msgid "String not allowed at this position."
+msgstr ""
+
+#: explorerscript/explorerscript/common_syntax.py:228
+msgid "Invalid target for routine."
+msgstr ""
+
+#: explorerscript/explorerscript/common_syntax.py:257
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
 msgstr ""
 
@@ -983,54 +1011,52 @@ msgstr ""
 msgid "value() without a variable."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:88
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:83
 msgid "No target ID set for with(){} block."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:90
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:150
-msgid "A with(){} block needs exactly one statement."
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:86
+msgid "A with(){} block needs at least one statement."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:100
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:75
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:111
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:108
 msgid "Operations inside with(){} blocks cannot contain an inline `actor`, `object` or `performer` context."
 msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:117
-msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
+msgid "Each statement inside a with(){} block needs to contain exactly one binary operation. The handler for it generated multiple operations."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:139
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:138
 msgid "A with(){} block can not contain labels."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:45
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:43
 msgid "No variable in if condition."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:60
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:58
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:61
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:59
 msgid "No variable for if condition."
+msgstr ""
+
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:61
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:58
+msgid "No operator set for if condition."
 msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:63
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:60
-msgid "No operator set for if condition."
-msgstr ""
-
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:65
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:54
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:62
 msgid "No value set for if condition."
 msgstr ""
 
@@ -1054,32 +1080,44 @@ msgid "Unknown if operation in line {self.ctx.start.line})."
 msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:69
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:85
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:60
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:84
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:61
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:75
 msgid "Invalid message switch case call."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:76
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:74
 msgid "Unknown case operation."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:74
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:54
+msgid "No value set for case menu condition."
+msgstr ""
+
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:59
+msgid "Value for case menu condition must be a string."
+msgstr ""
+
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:62
+msgid "Value for case menu2 condition must not be a string."
+msgstr ""
+
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:71
 msgid "Invalid message switch."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:79
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:92
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:76
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:89
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:83
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:80
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:105
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:109
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
 msgstr ""
@@ -1133,20 +1171,20 @@ msgstr ""
 msgid "No target ID set for inline actor/object/performer context."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:95
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:100
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:99
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:104
 msgid "Dependency cycle detected while trying to resolve macros (for macro '{v['name']}')."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:88
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:95
 msgid "Macros can not alias."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:325
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:324
 msgid "Fatal compilation error: Unexpected compilation handler on stack."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:326
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:325
 msgid "Fatal compilation error: Stack error."
 msgstr ""
 
@@ -1155,44 +1193,44 @@ msgstr ""
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:132
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:195
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:138
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:201
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:144
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:207
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:181
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:191
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:221
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:239
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:263
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:285
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:283
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:305
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:272
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:292
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_listener.py:148
+#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_listener.py:142
 msgid "Operations in SSBScript cannot contain an inline context."
 msgstr ""
 
