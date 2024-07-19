@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-19 15:18+0000\n"
+"POT-Creation-Date: 2024-07-19 15:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5274,7 +5274,6 @@ msgid "Statements"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:34
-#: skytemple/skytemple/module/patch/widget/pmdsky_debug.py:93
 msgid "Functions"
 msgstr ""
 
@@ -9701,7 +9700,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:57
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:137
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:284
-#: skytemple/skytemple/module/patch/module.py:115
+#: skytemple/skytemple/module/patch/module.py:114
 msgid "Item Effects"
 msgstr ""
 
@@ -9792,7 +9791,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:65
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:146
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:325
-#: skytemple/skytemple/module/patch/module.py:126
+#: skytemple/skytemple/module/patch/module.py:125
 msgid "Move Effects"
 msgstr ""
 
@@ -9859,7 +9858,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:53
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:133
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:283
-#: skytemple/skytemple/module/patch/module.py:104
+#: skytemple/skytemple/module/patch/module.py:103
 msgid "Special Process Effects"
 msgstr ""
 
@@ -10316,7 +10315,6 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:63
 #: skytemple/skytemple/data/widget/symbols/main.ui:163
-#: skytemple/skytemple/module/patch/module.py:148
 #: skytemple/skytemple/module/symbols/module.py:58
 msgid "Symbols"
 msgstr ""
@@ -12888,12 +12886,12 @@ msgstr ""
 msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:47
+#: skytemple/skytemple/module/patch/module.py:46
 #: skytemple/skytemple/module/patch/widget/asm.py:45
 msgid "Patches"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:49
+#: skytemple/skytemple/module/patch/module.py:48
 msgid ""
 "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
 "item-, move- and special process effects written in Assembler.\n"
@@ -12905,11 +12903,11 @@ msgid ""
 "in the game known to SkyTemple."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:93
+#: skytemple/skytemple/module/patch/module.py:92
 msgid "ASM"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:137
+#: skytemple/skytemple/module/patch/module.py:136
 msgid "C / Rust"
 msgstr ""
 
@@ -13086,15 +13084,6 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/move_effects.py:321
 msgid "Fix Number of Moves"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/widget/pmdsky_debug.py:92
-msgid "Data"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/widget/pmdsky_debug.py:137
-#, python-brace-format
-msgid "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/sp_effects.py:122
