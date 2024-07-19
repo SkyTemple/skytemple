@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-17 07:22+0000\n"
-"PO-Revision-Date: 2024-07-17 07:29\n"
+"POT-Creation-Date: 2024-07-19 15:20+0000\n"
+"PO-Revision-Date: 2024-07-19 15:25\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -1574,6 +1574,7 @@ msgstr "Pokémon"
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:292
 #: skytemple/skytemple/data/widget/script/main.ui:353
 #: skytemple/skytemple/data/widget/script/ssa.ui:2118
+#: skytemple/skytemple/data/widget/symbols/main.ui:302
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:199
 #: skytemple/skytemple/module/lists/controller/object_list.glade:193
 #: skytemple/skytemple/module/script/widget/ssa.py:1671
@@ -4154,6 +4155,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:498
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:897
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:342
+#: skytemple/skytemple/data/widget/symbols/main.ui:290
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:183
 #: skytemple/skytemple/module/lists/controller/object_list.glade:177
 #: skytemple/skytemple/module/script/widget/ssa.py:1631
@@ -4164,6 +4166,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:51
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:55
+#: skytemple/skytemple/data/widget/symbols/main.ui:329
 msgid "Value"
 msgstr ""
 
@@ -5114,6 +5117,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:109
 #: skytemple/skytemple/data/widget/script/main.ui:463
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:210
+#: skytemple/skytemple/data/widget/symbols/main.ui:144
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:104
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:806
 #: skytemple/skytemple/module/lists/controller/object_list.glade:98
@@ -5223,7 +5227,6 @@ msgid "Statements"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:34
-#: skytemple/skytemple/module/patch/widget/pmdsky_debug.py:93
 msgid "Functions"
 msgstr ""
 
@@ -6097,6 +6100,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:808
 #: skytemple/skytemple/data/widget/script/main.ui:275
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:236
+#: skytemple/skytemple/data/widget/symbols/main.ui:388
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:444
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:191
 #: skytemple/skytemple/module/lists/controller/object_list.glade:346
@@ -9479,6 +9483,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:416
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:384
+#: skytemple/skytemple/data/widget/symbols/main.ui:314
 msgid "Description"
 msgstr ""
 
@@ -9508,7 +9513,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:57
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:137
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:284
-#: skytemple/skytemple/module/patch/module.py:115
+#: skytemple/skytemple/module/patch/module.py:114
 msgid "Item Effects"
 msgstr ""
 
@@ -9594,7 +9599,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:65
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:146
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:325
-#: skytemple/skytemple/module/patch/module.py:126
+#: skytemple/skytemple/module/patch/module.py:125
 msgid "Move Effects"
 msgstr ""
 
@@ -9655,7 +9660,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:53
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:133
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:283
-#: skytemple/skytemple/module/patch/module.py:104
+#: skytemple/skytemple/module/patch/module.py:103
 msgid "Special Process Effects"
 msgstr ""
 
@@ -10085,6 +10090,41 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/strings/strings.ui:99
 msgid "column"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:63
+#: skytemple/skytemple/data/widget/symbols/main.ui:163
+#: skytemple/skytemple/module/symbols/module.py:58
+msgid "Symbols"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:79
+#: skytemple/skytemple/data/widget/symbols/main.ui:179
+msgid "On this screen, you can find some internal values that are hardcoded into the binaries of the game.\n"
+"You may change their values, but elements cannot be added or removed."
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:93
+msgid "<b>Warning!</b>\n\n"
+"This is an advanced feature.\n"
+"The game needs these values to work properly. If you make reckless changes, you could break it!\n"
+" Proceed with caution, and remember to make backups!"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:109
+msgid "Show this warning when trying to access this screen"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:126
+msgid "Proceed"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:205
+msgid "Select binary:"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/symbols/main.ui:241
+msgid "Search:"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
@@ -12524,12 +12564,12 @@ msgstr ""
 msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:47
+#: skytemple/skytemple/module/patch/module.py:46
 #: skytemple/skytemple/module/patch/widget/asm.py:45
 msgid "Patches"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:49
+#: skytemple/skytemple/module/patch/module.py:48
 msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
 "item-, move- and special process effects written in Assembler.\n\n"
 "You will also find information on how to write your own\n"
@@ -12538,16 +12578,12 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "in the game known to SkyTemple."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:93
+#: skytemple/skytemple/module/patch/module.py:92
 msgid "ASM"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:137
+#: skytemple/skytemple/module/patch/module.py:136
 msgid "C / Rust"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/module.py:148
-msgid "Symbols"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/asm.py:116
@@ -12715,15 +12751,6 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/move_effects.py:321
 msgid "Fix Number of Moves"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/widget/pmdsky_debug.py:92
-msgid "Data"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/widget/pmdsky_debug.py:137
-#, python-brace-format
-msgid "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/sp_effects.py:122
@@ -13305,6 +13332,14 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:198
 msgid "Export strings as..."
+msgstr ""
+
+#: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:153
+msgid "The value could not be saved: "
+msgstr ""
+
+#: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:154
+msgid "Invalid value"
 msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:83
