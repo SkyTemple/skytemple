@@ -23,6 +23,12 @@ cp $icons_path/512x512/apps/skytemple.png skytemple.iconset/icon_512x512.png
 iconutil -c icns skytemple.iconset
 rm -rf skytemple.iconset
 
+# Install themes
+curl https://skytemple.org/build_deps/Arc.zip -O
+unzip Arc.zip > /dev/null
+curl https://skytemple.org/build_deps/ZorinBlue.zip -O
+unzip ZorinBlue.zip > /dev/null
+
 # Build the app
 pyinstaller --log-level=DEBUG skytemple-mac.spec --noconfirm
 

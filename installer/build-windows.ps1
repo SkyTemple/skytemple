@@ -11,6 +11,12 @@ if (test-path dist) {
 # Download armips and other binary depedencies
 curl https://skytemple.org/build_deps/armips.exe -O
 
+# Install themes
+curl https://skytemple.org/build_deps/Arc.zip -O
+unzip Arc.zip
+curl https://skytemple.org/build_deps/ZorinBlue.zip -O
+unzip ZorinBlue.zip
+
 # SDL2
 curl https://skytemple.org/build_deps/SDL2.dll -O
 
