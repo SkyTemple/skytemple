@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-19 20:47+0000\n"
+"POT-Creation-Date: 2024-07-20 09:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -919,35 +919,35 @@ msgstr ""
 msgid "Dungeon Cleared Dialog Strings"
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:100
-#: explorerscript/explorerscript/common_syntax.py:188
+#: explorerscript/explorerscript/common_syntax.py:99
+#: explorerscript/explorerscript/common_syntax.py:187
 msgid "Integer not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:104
-#: explorerscript/explorerscript/common_syntax.py:190
+#: explorerscript/explorerscript/common_syntax.py:103
+#: explorerscript/explorerscript/common_syntax.py:189
 msgid "Decimal not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:115
+#: explorerscript/explorerscript/common_syntax.py:114
 msgid "Constant not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:126
-#: explorerscript/explorerscript/common_syntax.py:192
+#: explorerscript/explorerscript/common_syntax.py:125
+#: explorerscript/explorerscript/common_syntax.py:191
 msgid "Variable or constant not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:130
-#: explorerscript/explorerscript/common_syntax.py:195
+#: explorerscript/explorerscript/common_syntax.py:129
+#: explorerscript/explorerscript/common_syntax.py:194
 msgid "String not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:228
+#: explorerscript/explorerscript/common_syntax.py:227
 msgid "Invalid target for routine."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:257
+#: explorerscript/explorerscript/common_syntax.py:256
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
 msgstr ""
 
@@ -1078,10 +1078,10 @@ msgstr ""
 msgid "Unknown if operation in line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:69
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:84
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:61
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:75
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:67
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:82
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:59
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:73
 msgid "Invalid message switch case call."
 msgstr ""
 
@@ -1179,11 +1179,11 @@ msgstr ""
 msgid "Macros can not alias."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:324
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:322
 msgid "Fatal compilation error: Unexpected compilation handler on stack."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:325
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:323
 msgid "Fatal compilation error: Stack error."
 msgstr ""
 
@@ -1192,49 +1192,49 @@ msgstr ""
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:195
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:193
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:201
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:199
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:207
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:205
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:191
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:190
 #, python-brace-format
 msgid ""
 "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:239
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:240
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:283
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:305
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:284
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:306
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:292
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:293
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_listener.py:142
+#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_visitor.py:147
 msgid "Operations in SSBScript cannot contain an inline context."
 msgstr ""
 
-#: explorerscript/explorerscript/syntax_error_listener.py:42
+#: explorerscript/explorerscript/syntax_error_listener.py:41
 #, python-brace-format
 msgid "line {self.line}:{self.column}: {self.msg}"
 msgstr ""
