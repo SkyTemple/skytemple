@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-19 20:47+0000\n"
-"PO-Revision-Date: 2024-07-19 21:13\n"
+"PO-Revision-Date: 2024-07-20 09:39\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: /dev/fd/63:51 /dev/fd/63:268
 msgid "Dungeon Menu Strings (Primary)"
-msgstr ""
+msgstr "Dungeon-Menüstrings (primär)"
 
 #: /dev/fd/63:52 /dev/fd/63:269
 msgid "Dungeon Status Effect Strings"
@@ -233,7 +233,7 @@ msgstr ""
 
 #: /dev/fd/63:54 /dev/fd/63:271
 msgid "Dungeon Menu Strings (Secondary)"
-msgstr ""
+msgstr "Dungeon-Menüstrings (sekundär)"
 
 #: /dev/fd/63:55
 msgid "Dungeon Defeated Dialogue Strings"
@@ -923,30 +923,30 @@ msgstr ""
 #: explorerscript/explorerscript/common_syntax.py:100
 #: explorerscript/explorerscript/common_syntax.py:188
 msgid "Integer not allowed at this position."
-msgstr ""
+msgstr "Eine Ganzzahl ist an dieser Position nicht zulässig."
 
 #: explorerscript/explorerscript/common_syntax.py:104
 #: explorerscript/explorerscript/common_syntax.py:190
 msgid "Decimal not allowed at this position."
-msgstr ""
+msgstr "Eine Fixkommazahl ist an dieser Position nicht zulässig."
 
 #: explorerscript/explorerscript/common_syntax.py:115
 msgid "Constant not allowed at this position."
-msgstr ""
+msgstr "Eine Konstante ist an dieser Position nicht zulässig."
 
 #: explorerscript/explorerscript/common_syntax.py:126
 #: explorerscript/explorerscript/common_syntax.py:192
 msgid "Variable or constant not allowed at this position."
-msgstr ""
+msgstr "Eine Variable oder Konstante ist an dieser Position nicht zulässig."
 
 #: explorerscript/explorerscript/common_syntax.py:130
 #: explorerscript/explorerscript/common_syntax.py:195
 msgid "String not allowed at this position."
-msgstr ""
+msgstr "Eine Zeichenfolge ist an dieser Position nicht zulässig."
 
 #: explorerscript/explorerscript/common_syntax.py:228
 msgid "Invalid target for routine."
-msgstr ""
+msgstr "Ungültiges Ziel für Routine."
 
 #: explorerscript/explorerscript/common_syntax.py:257
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
@@ -1017,7 +1017,7 @@ msgstr "Keine Ziel-ID gesetzt für \"with() {}\" Block."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:86
 msgid "A with(){} block needs at least one statement."
-msgstr ""
+msgstr "Ein \"width() {}\" Block muss mindestens eine Anweisung enthalten."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:75
@@ -1092,15 +1092,15 @@ msgstr "Unbekannte \"Case\"-Operation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:54
 msgid "No value set for case menu condition."
-msgstr ""
+msgstr "Kein Wert für \"case menu\"-Bedingung gesetzt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:59
 msgid "Value for case menu condition must be a string."
-msgstr ""
+msgstr "Wert für \"case menu\"-Bedingung muss eine Zeichenkette sein."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:62
 msgid "Value for case menu2 condition must not be a string."
-msgstr ""
+msgstr "Wert für \"case menu2\"-Bedingung darf keine Zeichenkette sein."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:71
 msgid "Invalid message switch."
@@ -1169,7 +1169,7 @@ msgstr "Das Makro {name} wurde nicht gefunden."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:66
 msgid "No target ID set for inline actor/object/performer context."
-msgstr ""
+msgstr "Keine Ziel-ID für Inline-Akteur/Objekt/Performer-Kontext gesetzt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:99
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:104
@@ -1233,7 +1233,7 @@ msgstr "Ungültiger Import: '{import_file}'. Nicht absolute oder relative Import
 
 #: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_listener.py:142
 msgid "Operations in SSBScript cannot contain an inline context."
-msgstr ""
+msgstr "Operationen in SSBScript können keinen Inline-Kontext enthalten."
 
 #: explorerscript/explorerscript/syntax_error_listener.py:42
 #, python-brace-format
@@ -3414,7 +3414,7 @@ msgstr "Reduziert die Zeit, die das Spiel wartet, wenn es den Fokus auf ein ande
 
 #: skytemple-files/skytemple_files/patch/handler/remove_body_size_check.py:48
 msgid "Removes the total body size check before entering a dungeon."
-msgstr ""
+msgstr "Entfernt die Überprüfung der Gesamtkörpergröße vor dem Betreten eines Dungeons."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:48
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -4988,15 +4988,15 @@ msgstr "Textüberlaufprüfung (macht nichts)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1748
 msgid "No Cheat Check (does nothing)"
-msgstr ""
+msgstr "Kein Cheat Check (macht nichts)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1773
 msgid "No Plunge Check (does nothing)"
-msgstr ""
+msgstr "Kein Plunge Check (macht nichts)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1798
 msgid "Reuse Dungeon Quicksaves"
-msgstr ""
+msgstr "Dungeon-Schnellspeicherung wiederverwenden"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1813
 msgid "Enable Debug Menus (does nothing)"
@@ -10474,30 +10474,34 @@ msgstr "Symbole"
 #: skytemple/skytemple/data/widget/symbols/main.ui:179
 msgid "On this screen, you can find some internal values that are hardcoded into the binaries of the game.\n"
 "You may change their values, but elements cannot be added or removed."
-msgstr ""
+msgstr "Auf diesem Bildschirm findest du einige interne Werte, die fest in die Binärdateien des Spiels einprogrammiert sind.\n"
+"Du kannst ihre Werte ändern, aber Elemente können nicht hinzugefügt oder entfernt werden."
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:93
 msgid "<b>Warning!</b>\n\n"
 "This is an advanced feature.\n"
 "The game needs these values to work properly. If you make reckless changes, you could break it!\n"
 " Proceed with caution, and remember to make backups!"
-msgstr ""
+msgstr "<b>Warnung!</b>\n\n"
+"Dieser Bereich ist nur für Fortgeschrittene!\n"
+"Das Spiel braucht diese Werte, um richtig zu funktionieren. Wenn du leichtsinnige Änderungen vornimmst, kannst du es kaputt machen!\n"
+" Gehe mit Vorsicht vor und denke daran, Sicherungskopien zu erstellen!"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:109
 msgid "Show this warning when trying to access this screen"
-msgstr ""
+msgstr "Diese Warnung beim Zugriff auf diese Funktion anzeigen"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:126
 msgid "Proceed"
-msgstr ""
+msgstr "Fortfahren"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:205
 msgid "Select binary:"
-msgstr ""
+msgstr "Datei:"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:241
 msgid "Search:"
-msgstr ""
+msgstr "Suchen:"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
 msgid "Chunk Editor"
@@ -10936,7 +10940,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:789
 msgid "The value stored in the ROM is actually what you write here divided by 5. Because of this, your input will be rounded to the next multiple of 5."
-msgstr ""
+msgstr "In der ROM wird der hier angegebene Wert geteilt durch 5 gespeichert. Daher wird beim Speichern der hier angegebene Wert zum nächsten Vielfachen von 5 gerundet."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:795
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
@@ -13154,7 +13158,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:553
 msgid "Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select the strings after that (offsets)."
-msgstr ""
+msgstr "Text, der angezeigt werden soll, um den Wirkungsradius der Attacke zu beschreiben. 0 verwendet die Textzeichenfolge 10095/10097 (US/EU). Höhere Werte wählen die Zeichenfolgen danach aus."
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:50
 msgid "Settings for the \"{}\" Patch"
@@ -13421,7 +13425,7 @@ msgstr "Alle Portraits als PNGs exportieren..."
 #: skytemple/skytemple/module/portrait/widget/portrait.py:304
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 39."
-msgstr ""
+msgstr "Um zu importieren, wähle einen Ordner aus. Dateien nach dem Muster '{self.item_data + 1}_XX.png' werden importiert. Dabei muss XX eine Zahl zwischen 0 und 39 sein."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:307
 msgid "Import Portraits"
@@ -13987,11 +13991,11 @@ msgstr "Zeichenketten exportieren..."
 
 #: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:153
 msgid "The value could not be saved: "
-msgstr ""
+msgstr "Der Wert konnte nicht gespeichert werden: "
 
 #: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:154
 msgid "Invalid value"
-msgstr ""
+msgstr "Ungültiger Wert"
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:83
 msgid "Only 1x1 or 3x3 supported."
