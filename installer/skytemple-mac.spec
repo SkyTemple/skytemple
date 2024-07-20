@@ -1,7 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
 import sys
-import shutil
 from pathlib import PurePosixPath, Path
 from PyInstaller.utils.hooks import collect_entry_point, copy_metadata
 
@@ -93,9 +92,7 @@ additional_binaries = [
         ".",
     ),  # Gets installed with Enchant
     (
-        os.path.join(
-            homebrew_path, "lib", "enchant-2", "enchant_applespell.so"
-        ),
+        os.path.join(homebrew_path, "lib", "enchant-2", "enchant_applespell.so"),
         ".",
     ),  # Gets installed with Enchant
     (
@@ -203,5 +200,5 @@ app = BUNDLE(
     name="SkyTemple.app",
     icon="skytemple.icns",
     version=os.getenv("PACKAGE_VERSION", "0.0.0"),
-    bundle_identifier="de.parakoopa.skytemple",
+    bundle_identifier="org.skytemple.SkyTemple",
 )

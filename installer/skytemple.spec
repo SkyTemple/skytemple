@@ -120,7 +120,7 @@ a = Analysis(
         "skytemple.module.spritecollab.module",
     ]
     + st_hiddenimports,
-    hookspath=[os.path.abspath(os.path.join(".", "hooks"))],
+    hookspath=None,
     hooksconfig={
         "gi": {
             "module-versions": {
