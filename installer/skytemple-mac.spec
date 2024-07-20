@@ -74,7 +74,6 @@ additional_datas = [
 ]
 
 additional_binaries = [
-    (os.path.join(site_packages, "desmume", "libdesmume.dylib"), "."),
     (
         os.path.join(homebrew_path, "lib", "libSDL-1.2.0.dylib"),
         ".",
