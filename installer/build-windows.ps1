@@ -11,6 +11,9 @@ if (test-path dist) {
 # Download armips and other binary depedencies
 curl https://skytemple.org/build_deps/armips.exe -O
 
+# SDL2
+curl https://skytemple.org/build_deps/SDL2.dll -O
+
 # Install NSIS
 curl https://skytemple.org/build_deps/nsis.zip -O
 unzip -o nsis.zip -d "C:\Program Files (x86)\NSIS"
