@@ -39,7 +39,7 @@ def on_map_height_chunks_changed(map_wh_link: Gtk.Switch, map_height_tiles: Gtk.
 
 
 def on_map_wh_link_state_set(
-    map_wh_link_target: Gtk.Switch,
+    map_wh_link_target: Gtk.Widget,
     map_width_tiles: Gtk.Entry,
     map_height_tiles: Gtk.Entry,
     map_width_chunks: Gtk.Entry,

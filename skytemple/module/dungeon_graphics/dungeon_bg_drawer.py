@@ -17,10 +17,10 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import Union
+from typing import Union, Optional
 from collections.abc import Iterable
 
-from gi.repository import GLib, Gtk
+from gi.repository import GLib, Gtk, Gdk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 
@@ -218,7 +218,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
         self.chunkidx = 0
 
-    def do_get_size(self, widget, cell_area):
+    def do_get_size(self, widget: Widget, cell_area: Optional[Gdk.Rectangle] = None) -> tuple[int, int, int, int]:
         return (
             0,
             0,

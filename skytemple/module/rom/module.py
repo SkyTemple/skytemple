@@ -47,7 +47,7 @@ class RomModule(AbstractModule):
         self._item_tree: Optional[ItemTree] = None
         self._root_node: Optional[ItemTreeEntryRef] = None
         self._static_data: Optional[Pmd2Data] = None
-        self._rom = Optional[NintendoDSRom]
+        self._rom: Optional[NintendoDSRom] = None
 
     def set_rom(self, rom: NintendoDSRom):
         self._rom = rom

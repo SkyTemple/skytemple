@@ -22,7 +22,7 @@ Tile based instead of chunk based.
 
 from typing import Optional
 
-from gi.repository import GLib, Gtk
+from gi.repository import GLib, Gtk, Gdk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 
@@ -169,7 +169,7 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         self.all_mappings = all_mappings
         self.tileidx = 0
 
-    def do_get_size(self, widget, cell_area):
+    def do_get_size(self, widget: Widget, cell_area: Optional[Gdk.Rectangle] = None) -> tuple[int, int, int, int]:
         return (
             0,
             0,

@@ -20,7 +20,7 @@ from enum import Enum, auto
 from typing import Union, Optional
 from collections.abc import Iterable, Sequence
 
-from gi.repository import GLib, Gtk
+from gi.repository import GLib, Gtk, Gdk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 from range_typed_integers import u8
@@ -412,7 +412,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
         self.chunkidx = 0
 
-    def do_get_size(self, widget, cell_area):
+    def do_get_size(self, widget: Widget, cell_area: Optional[Gdk.Rectangle] = None) -> tuple[int, int, int, int]:
         return (
             0,
             0,

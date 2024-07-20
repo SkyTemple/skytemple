@@ -173,9 +173,9 @@ class StPosMarkEditorDialog(Gtk.Dialog):
                         self._bg_draw_is_clicked__drag_active = True
                         self.drawer.set_drag_position(
                             int((start_x - 4) / self._scale_factor)
-                            - (self._currently_selected_mark.x_with_offset * BPC_TILE_DIM),
+                            - int(self._currently_selected_mark.x_with_offset * BPC_TILE_DIM),
                             int((start_y - 4) / self._scale_factor)
-                            - (self._currently_selected_mark.y_with_offset * BPC_TILE_DIM),
+                            - int(self._currently_selected_mark.y_with_offset * BPC_TILE_DIM),
                         )
 
             self.ssa_draw.queue_draw()
