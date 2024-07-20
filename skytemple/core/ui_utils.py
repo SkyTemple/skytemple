@@ -147,11 +147,6 @@ def version(*, ignore_dev=False) -> str:
     try:
         return importlib_metadata.metadata("skytemple")["version"]
     except importlib_metadata.PackageNotFoundError:
-        # Try reading from a VERSION file instead
-        version_file = os.path.join(data_dir(), "VERSION")
-        if os.path.exists(version_file):
-            with open(version_file) as f:
-                return f.read()
         return "unknown"
 
 
