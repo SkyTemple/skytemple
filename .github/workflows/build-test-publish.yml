@@ -84,7 +84,8 @@ jobs:
         run: |
           installer/generate-mo.sh
       - name: Build wheels
-        run:
+        run: |
+          python3 -m pip install --upgrade pip build
           python3 -m build
       - name: Upload wheels
         uses: actions/upload-artifact@v4
