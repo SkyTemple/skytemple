@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-19 20:47+0000\n"
-"PO-Revision-Date: 2024-07-19 21:13\n"
+"POT-Creation-Date: 2024-07-20 14:18+0000\n"
+"PO-Revision-Date: 2024-07-20 14:36\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -920,35 +920,35 @@ msgstr ""
 msgid "Dungeon Cleared Dialog Strings"
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:100
-#: explorerscript/explorerscript/common_syntax.py:188
+#: explorerscript/explorerscript/common_syntax.py:99
+#: explorerscript/explorerscript/common_syntax.py:187
 msgid "Integer not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:104
-#: explorerscript/explorerscript/common_syntax.py:190
+#: explorerscript/explorerscript/common_syntax.py:103
+#: explorerscript/explorerscript/common_syntax.py:189
 msgid "Decimal not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:115
+#: explorerscript/explorerscript/common_syntax.py:114
 msgid "Constant not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:126
-#: explorerscript/explorerscript/common_syntax.py:192
+#: explorerscript/explorerscript/common_syntax.py:125
+#: explorerscript/explorerscript/common_syntax.py:191
 msgid "Variable or constant not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:130
-#: explorerscript/explorerscript/common_syntax.py:195
+#: explorerscript/explorerscript/common_syntax.py:129
+#: explorerscript/explorerscript/common_syntax.py:194
 msgid "String not allowed at this position."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:228
+#: explorerscript/explorerscript/common_syntax.py:227
 msgid "Invalid target for routine."
 msgstr ""
 
-#: explorerscript/explorerscript/common_syntax.py:257
+#: explorerscript/explorerscript/common_syntax.py:256
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
 msgstr ""
 
@@ -1079,10 +1079,10 @@ msgstr "Operación no válida para la condición 'if': {op.op_code.name} (línea
 msgid "Unknown if operation in line {self.ctx.start.line})."
 msgstr "Operación 'if' desconocida en la línea {self.ctx.start.line})."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:69
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:84
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:61
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:75
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:67
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:82
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:59
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:73
 msgid "Invalid message switch case call."
 msgstr "Llamada inválida a caso de 'message switch'."
 
@@ -1180,11 +1180,11 @@ msgstr "Ciclo de dependencias detectado al intentar resolver macros (para la mac
 msgid "Macros can not alias."
 msgstr "Las macros no pueden tener alias."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:324
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:322
 msgid "Fatal compilation error: Unexpected compilation handler on stack."
 msgstr "Error fatal de compilación: manipulador de compilación inesperado en la pila."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:325
+#: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:323
 msgid "Fatal compilation error: Stack error."
 msgstr "Error de compilación fatal: error de pila."
 
@@ -1193,49 +1193,49 @@ msgstr "Error de compilación fatal: error de pila."
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
 msgstr "La etiqueta {label_id} no existe, pero hay un salto a ella (elimínala)."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:195
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:193
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
 msgstr "'continue' inesperado en la línea {ctx.start.line}"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:201
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:199
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
 msgstr "'Break_loop' inesperado en la línea {ctx.start.line}"
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:207
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:205
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
 msgstr "'break' inesperado en la línea {ctx.start.line}"
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:191
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:190
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
 msgstr "Se ha detectado una recursión infinita al intentar cargar un archivo ExplorerScript desde {subfile_path}.\n"
 "Archivo de origen: {file_name}."
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:239
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:240
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
 msgstr "{fn}: Los scripts de macros no deben contener ninguna rutina."
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:283
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:305
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:284
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:306
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
 msgstr "No se encontró el archivo a importar ('{import_file}')."
 
-#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:292
+#: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:293
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
 msgstr "Importación inválida: '{import_file}'. Las importaciones no absolutas/relativas no pueden contener rutas relativas."
 
-#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_listener.py:142
+#: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_visitor.py:147
 msgid "Operations in SSBScript cannot contain an inline context."
 msgstr ""
 
-#: explorerscript/explorerscript/syntax_error_listener.py:42
+#: explorerscript/explorerscript/syntax_error_listener.py:41
 #, python-brace-format
 msgid "line {self.line}:{self.column}: {self.msg}"
 msgstr "línea {self.line}:{self.column}: {self.msg}"
@@ -2159,7 +2159,7 @@ msgid "Attendant3 Spawn Floor"
 msgstr "Posición del Acompañante 3"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/_python_impl/floor.py:95
-#: skytemple-rust/src/st_mappa_bin/minimize.rs:211
+#: skytemple-rust/src/st_mappa_bin/minimize.rs:212
 msgid "Could not save floor: It contains too much empty data.\n"
 "This probably happened because a lot of spawn lists are empty.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
@@ -2477,7 +2477,7 @@ msgid "Can not import map background: Height of both images must match the curre
 msgstr "No se puede importar el fondo del mapa: la altura ambas imágenes debe coincidir con la altura actual del mapa: {expected_height}px"
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:207
-#: skytemple-rust/src/st_bpa.rs:234
+#: skytemple-rust/src/st_bpa.rs:238
 msgid "The dimensions of all images must be the same."
 msgstr "Las dimensiones de todas las imágenes deben ser iguales."
 
@@ -2511,7 +2511,7 @@ msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr "Un fondo de un territorio o tilemap no puede tener más de 400 chunks."
 
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
-#: skytemple-rust/src/st_dpla.rs:130
+#: skytemple-rust/src/st_dpla.rs:129
 msgid "This palette has no animation."
 msgstr "Esta paleta no tiene animación."
 
@@ -3548,226 +3548,98 @@ msgstr "DungeonMode inválido: {string}"
 msgid "Unknown constant {constant_as_string}."
 msgstr "Constante desconocida: {constant_as_string}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:149
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:163
 msgid "The routine data lists for the decompiler must have the same lengths."
 msgstr "Las listas de datos de rutina para el descompilador deben tener las mismas longitudes."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:162
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:176
 #, python-brace-format
 msgid "Routine {i} not found."
 msgstr "Rutina {i} no encontrada."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:181
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:196
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
 msgstr "El script debe contener exactamente {len(self.rom_data.script_data.common_routine_info)} corrutinas."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:186
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:203
 msgid "The script must not contain any duplicate coroutines."
 msgstr "El script no puede contener ninguna corrutina duplicada."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:193
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:211
 #, python-brace-format
 msgid "Unknown coroutine {err}"
 msgstr "Corrutina desconocida: {err}"
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:206
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:225
 msgid "Coroutines and regular routines can not be mixed in a script file."
 msgstr "Las corrutinas y las rutinas no pueden mezclarse en un script."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:227
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:238
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
 msgstr "Operación desconocida: {in_op.op_code.name}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:243
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:255
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr "El número de parámetros para {normal_op_code.name} debe ser de al menos {normal_op_code.params}, pero tiene {self._correct_param_list_len(in_op.params)}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:262
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:276
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr "El número de parámetros para {op_code.name} debe ser de {op_code.params}, pero tiene {self._correct_param_list_len(in_op.params)}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:352
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:373
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr "Idioma desconocido para la cadena: {lang}"
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:356
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:377
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr "Parámetro inválido para una operación: {param}"
 
-#: skytemple-files/skytemple_files/script/ssb/writer.py:168
+#: skytemple-files/skytemple_files/script/ssb/ssb_number.py:94
+msgid "enc: 0x{:0x}, The value '{}' can not be saved. Please use a value between -64.0 and 63.996 for fixed point numbers."
+msgstr ""
+
+#: skytemple-files/skytemple_files/script/ssb/writer.py:169
 msgid "Could not compile script: All languages must have the same amount of strings."
 msgstr "No se ha podido compilar el script: Todos los idiomas deben tener la misma cantidad de cadenas."
 
-#: skytemple-rust/src/dse/st_smdl/eoc.rs:37
-#: skytemple-rust/src/dse/st_smdl/trk.rs:116
-msgid "SMDL file too short (EOC EOF)."
-msgstr "Archivo SMDL demasiado corto (EOC EOF)."
-
-#: skytemple-rust/src/dse/st_smdl/eoc.rs:40
-msgid "Invalid SMDL/EOC header."
-msgstr "SMDL inválido/Encabezado de EOC."
-
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:202
-msgid "SMDL file too short (Header EOF)."
-msgstr "Archivo SMDL demasiado corto (Encabezado EOF)."
-
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:207
-msgid "Invalid SMDL/Header header."
-msgstr "SMDL inválido/Encabezado del encabezado."
-
-#: skytemple-rust/src/dse/st_smdl/song.rs:94
-msgid "SMDL file too short (Song EOF)."
-msgstr "Archivo SMDL demasiado corto (Canción EOF)."
-
-#: skytemple-rust/src/dse/st_smdl/song.rs:97
-msgid "Invalid SMDL/Song header."
-msgstr "SMDL inválido/Encabezado de canción."
-
-#: skytemple-rust/src/dse/st_smdl/trk.rs:68
-msgid "SMDL file too short (Track EOF)."
-msgstr "Archivo SMDL demasiado corto (Pista EOF)."
-
-#: skytemple-rust/src/dse/st_smdl/trk.rs:71
-msgid "Invalid SMDL/Track header."
-msgstr "SMDL inválido/Encabezado de pista."
-
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:43
-msgid "SWDL file too short (Keygroup EOF)."
-msgstr "Archivo SWDL demasiado corto (Grupo de claves EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:80
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:89
-msgid "SWDL file too short (Kgrp EOF)."
-msgstr "Archivo SWDL demasiado corto (Grupo de claves EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:83
-msgid "Invalid SWDL/Kgrp header."
-msgstr "SWDL inválido/Encabezado del grupo de claves."
-
-#: skytemple-rust/src/dse/st_swdl/pcmd.rs:37
-#: skytemple-rust/src/dse/st_swdl/pcmd.rs:46
-msgid "SWDL file too short (Pcmd EOF)."
-msgstr "Archivo SWDL demasiado corto (Pcmd EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/pcmd.rs:40
-msgid "Invalid SWDL/Pcmd header."
-msgstr "SWDL inválido/Encabezado de Pcmd."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:47
-msgid "SWDL file too short (LFO EOF)."
-msgstr "Archivo SWDL demasiado corto (LFO EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:124
-msgid "SWDL file too short (Split EOF)."
-msgstr "Archivo SWDL demasiado corto (Split EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:135
-msgid "SWDL file: Invalid lowkey duplicate (Split EOF)."
-msgstr "Archivo SWDL: duplicado lowkey no válido (Split EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:139
-msgid "SWDL file: Invalid hikey duplicate (Split EOF)."
-msgstr "Archivo SWDL: duplicado hikey no válido (Split EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:145
-msgid "SWDL file: Invalid lolevel duplicate (Split EOF)."
-msgstr "Archivo SWDL: duplicado lolevel no válido (Split EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:149
-msgid "SWDL file: Invalid hilevel duplicate (Split EOF)."
-msgstr "Archivo SWDL: duplicado hilevel no válido (Split EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:287
-msgid "SWDL file too short (PRG EOF)."
-msgstr "Archivo SWDL demasiado corto (PRG EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:362
-msgid "SWDL file too short (Prgi EOF)."
-msgstr "Archivo SWDL demasiado corto (Prgi EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:365
-msgid "Invalid PRGI/Prgi header."
-msgstr "PRGI inválido/Encabezado de Prgi."
-
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:375
-msgid "SWDL Prgi length invalid; tried to read past EOF."
-msgstr "La longitud de SWDL Prgi no es válida; se ha intentado leer el EOF previo."
-
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:52
-msgid "SWDL file too short (SwdlPcmdLen EOF)."
-msgstr "Archivo SWDL demasiado corto (SwdlPcmdLen EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:139
-msgid "SWDL file too short (Header EOF)."
-msgstr "Archivo SWDL demasiado corto (Encabezado EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:144
-msgid "Invalid SWDL/Header header."
-msgstr "SWDL inválido/Encabezado del encabezado."
-
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:250
-msgid "Swdl read error (inconsistent Wavi length)"
-msgstr "Error de lectura de SWDL (longitud de Wavi inconsistente)"
-
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:284
-msgid "Swdl read: Invalid sample data"
-msgstr "Lectura de SWDL: datos de muestra inválidos"
-
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:105
-msgid "SWDL file too short (Sample Table EOF)."
-msgstr "Archivo SWDL demasiado corto (Tabla de muestras EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:262
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:281
-msgid "SWDL file too short (Wavi EOF)."
-msgstr "Archivo SWDL demasiado corto (Wavi EOF)."
-
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:265
-msgid "Invalid SWDL/Wavi header."
-msgstr "SWDL inválido/Encabezado de Wavi."
-
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:275
-msgid "SWDL Wavi length invalid; tried to read past EOF."
-msgstr "La longitud de SWDL Wavi no es válida; se ha intentado leer el EOF previo."
-
-#: skytemple-rust/src/image/tiled.rs:230
+#: skytemple-rust/src/image/tiled.rs:232
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({} tiles, pero el máximo permitido es 1024).\n"
 "Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
-#: skytemple-rust/src/python_image.rs:53
+#: skytemple-rust/src/python_image.rs:54
 msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:100
+#: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
 msgstr "La suma de comprobación de encabezado de la ROM no coincide con el contenido."
 
-#: skytemple-rust/src/romfs.rs:109
+#: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
 msgstr "Error al leer el sistema de archivos de la ROM: {}"
 
-#: skytemple-rust/src/st_bma.rs:468
+#: skytemple-rust/src/st_bma.rs:466
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
 msgstr "No se puede importar el fondo del mapa: la anchura de ambas imágenes debe coincidir con la anchura actual del mapa: {}px"
 
-#: skytemple-rust/src/st_bma.rs:480
+#: skytemple-rust/src/st_bma.rs:478
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
 msgstr "No se puede importar el fondo del mapa: la altura de ambas imágenes debe coincidir con la anchura actual del mapa: {}px"
 
-#: skytemple-rust/src/st_bpc.rs:539
+#: skytemple-rust/src/st_bpc.rs:542
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr "el nuevo mapeo de tiles para este chunk debe contener {} tiles."
 
-#: skytemple-rust/src/st_dbg.rs:129
+#: skytemple-rust/src/st_dbg.rs:123
 msgid "Can not import map background: Width of image must match the expected width: {}px"
 msgstr "No se puede importar el fondo del mapa: la anchura de la imagen debe coincidir con el ancho esperado: {}px"
 
-#: skytemple-rust/src/st_dbg.rs:135
+#: skytemple-rust/src/st_dbg.rs:129
 msgid "Can not import map background: Height of image must match the expected height: {}px"
 msgstr "No se puede importar el fondo del mapa: la altura de la imagen debe coincidir con la altura esperada: {}px"
 
@@ -3775,20 +3647,20 @@ msgstr "No se puede importar el fondo del mapa: la altura de la imagen debe coin
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
 msgstr "La imagen a importar solo puede usar las 12 primeras paletas. Se ha intentado usar la paleta {}"
 
-#: skytemple-rust/src/st_dpla.rs:109
+#: skytemple-rust/src/st_dpla.rs:110
 msgid "Palette is invalid."
 msgstr "La paleta no es válida."
 
-#: skytemple-rust/src/st_dpla.rs:115 skytemple-rust/src/st_dpla.rs:175
-#: skytemple-rust/src/st_dpla.rs:212 skytemple-rust/src/st_dpla.rs:220
+#: skytemple-rust/src/st_dpla.rs:115 skytemple-rust/src/st_dpla.rs:172
+#: skytemple-rust/src/st_dpla.rs:208 skytemple-rust/src/st_dpla.rs:216
 msgid "Palette index out of range."
 msgstr "Índice de paleta fuera de rango."
 
-#: skytemple-rust/src/st_dpla.rs:267
+#: skytemple-rust/src/st_dpla.rs:265
 msgid "Frame durations out of range while trying to build color."
 msgstr "La duración de los fotogramas está fuera del rango al intentar crear color."
 
-#: skytemple-rust/src/st_kao.rs:97
+#: skytemple-rust/src/st_kao.rs:99
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Este retrato no se comprime bien, el tamaño resultante es superior a 800 bytes ({} en total).\n"
