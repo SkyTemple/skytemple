@@ -247,16 +247,12 @@ class SkyTempleSettingsStore:
         self._save()
 
     def get_async_configuration(self) -> AsyncConfiguration:
-        if SECT_GENERAL in self.loaded_config:
-            if KEY_ASYNC_CONFIGURATION in self.loaded_config[SECT_GENERAL]:
-                return AsyncConfiguration(self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION])
+        # Not supported to be configured anymore.
         return AsyncConfiguration.default()
 
-    def set_async_configuration(self, value: AsyncConfiguration):
-        if SECT_GENERAL not in self.loaded_config:
-            self.loaded_config[SECT_GENERAL] = {}
-        self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION] = value.value
-        self._save()
+    def set_async_configuration(self, _value: AsyncConfiguration):
+        # Not supported to be configured anymore.
+        pass
 
     def csd_enabled(self) -> bool:
         if SECT_GENERAL in self.loaded_config:

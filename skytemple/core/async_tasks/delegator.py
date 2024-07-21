@@ -102,8 +102,6 @@ class AsyncConfiguration(Enum):
 
     @classmethod
     def default(cls) -> "AsyncConfiguration":
-        if AsyncConfiguration.GBULB.available():
-            return AsyncConfiguration.GBULB
         return AsyncConfiguration.BLOCKING_SOON
 
 

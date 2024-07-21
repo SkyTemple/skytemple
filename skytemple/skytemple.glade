@@ -259,7 +259,7 @@ the top-right of the main window.</property>
           </packing>
         </child>
         <child>
-          <!-- n-columns=3 n-rows=12 -->
+          <!-- n-columns=3 n-rows=11 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -447,54 +447,6 @@ the top-right of the main window.</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Async Operations</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">7</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBox" id="setting_async">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="model">async_store</property>
-                <property name="id-column">0</property>
-                <child>
-                  <object class="GtkCellRendererText"/>
-                  <attributes>
-                    <attribute name="text">1</attribute>
-                  </attributes>
-                </child>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">7</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="setting_help_async">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="valign">center</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="icon-name">skytemple-help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">7</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
               </object>
               <packing>
                 <property name="left-attach">2</property>
@@ -534,7 +486,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">9</property>
+                <property name="top-attach">8</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -546,7 +498,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">10</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -562,7 +514,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">11</property>
+                <property name="top-attach">10</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -575,7 +527,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">10</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -585,7 +537,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">2</property>
-                <property name="top-attach">10</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -596,7 +548,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
             <child>
@@ -608,7 +560,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
             <child>
@@ -829,12 +781,6 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
         <property name="position">1</property>
       </packing>
     </child>
-  </object>
-  <object class="GtkImage" id="skytemple_kofi">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="margin-end">5</property>
-    <property name="icon-name">skytemple-support-symbolic</property>
   </object>
   <object class="GtkApplicationWindow" id="main_window">
     <property name="can-focus">False</property>
@@ -1449,7 +1395,7 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
     <property name="program-name">SkyTemple</property>
     <property name="comments" translatable="yes">Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky</property>
     <property name="website">https://skytemple.org</property>
-    <property name="website-label" translatable="no">skytemple.org</property>
+    <property name="website-label">skytemple.org</property>
     <property name="authors">Project Lead:
 Marco "Capypara" Köpcke https://github.com/theCapypara
 
@@ -1683,6 +1629,12 @@ This is used so we can improve SkyTemple.</property>
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="skytemple_kofi">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="margin-end">5</property>
+    <property name="icon-name">skytemple-support-symbolic</property>
   </object>
   <object class="GtkAdjustment" id="tq_dither_level_scale">
     <property name="upper">1</property>

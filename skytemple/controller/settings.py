@@ -23,7 +23,6 @@ from typing import Optional
 
 from gi.repository import Gtk, GLib
 
-from skytemple.core.async_tasks.delegator import AsyncConfiguration
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.i18n_util import _
@@ -62,9 +61,6 @@ class SettingsController:
 
         builder_get_assert(self.builder, Gtk.Button, "setting_help_native_enable").connect(
             "clicked", self.on_setting_help_native_enable_clicked
-        )
-        builder_get_assert(self.builder, Gtk.Button, "setting_help_async").connect(
-            "clicked", self.on_setting_help_async_clicked
         )
         builder_get_assert(self.builder, Gtk.Label, "setting_help_privacy").connect(
             "activate-link", self.on_help_privacy_activate_link
@@ -122,19 +118,6 @@ class SettingsController:
         settings_native_enable = builder_get_assert(self.builder, Gtk.Switch, "setting_native_enable")
         settings_native_enable.set_active(native_impl_enabled_previous)
 
-        # Async modes
-        cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_async")
-        store = builder_get_assert(self.builder, Gtk.ListStore, "async_store")
-        store.clear()
-        active = None
-        for mode in AsyncConfiguration:
-            if mode.available():
-                store.append([mode.value, mode.name_localized])
-                if mode == self.settings.get_async_configuration():
-                    active = mode.value
-        if active is not None:
-            cb.set_active_id(str(active))
-
         # Sentry
         allow_sentry_previous = self.settings.get_allow_sentry()
         settings_allow_sentry_enable = builder_get_assert(self.builder, Gtk.Switch, "setting_allow_sentry")
@@ -182,16 +165,6 @@ class SettingsController:
                 )
                 have_to_restart = True
 
-            # Async modes
-            cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_async")
-            cb_iter = cb.get_active_iter()
-            assert cb_iter is not None
-            async_mode = AsyncConfiguration(cb.get_model()[cb_iter][0])
-            before_async = self.settings.get_async_configuration()
-            if before_async != async_mode:
-                self.settings.set_async_configuration(async_mode)
-                have_to_restart = True
-
             # Sentry
             allow_sentry_enabled = settings_allow_sentry_enable.get_active()
             if allow_sentry_enabled != allow_sentry_previous:
@@ -234,28 +207,6 @@ class SettingsController:
                 "If this is enabled a new and faster (but slightly experimental) codebase is "
                 "used to load and manipulate game files. Try to disable this if you run into "
                 "crashes or other issues."
-            ),
-        )
-        md.run()
-        md.destroy()
-
-    def on_setting_help_async_clicked(self, *args):
-        md = SkyTempleMessageDialog(
-            self.window,
-            Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.INFO,
-            Gtk.ButtonsType.OK,
-            _(
-                "This changes the way SkyTemple behaves when asynchronous operations are done "
-                "(eg. loading files and views). You usually don't want to change this, "
-                "unless you know what you are doing or are running into crashes or other issues.\n\n\n"
-                "Thread-based: SkyTemple spawns an extra thread to run asynchronous operations. "
-                "This could lead to thread safety issues, but is the 'smoothest' loading experience.\n\n"
-                "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
-                "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. "
-                "before they are run.\n\n"
-                "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferred"
-                "option if available."
             ),
         )
         md.run()
