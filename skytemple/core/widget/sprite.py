@@ -80,6 +80,7 @@ class StSprite(Gtk.DrawingArea):
         assert isinstance(sprite_data, StSpriteData)
 
         self.sprite_data = sprite_data
+        self.loaded_sprite = None
 
         self.reload_sprite()
 
@@ -88,6 +89,7 @@ class StSprite(Gtk.DrawingArea):
             self.loaded_sprite = self.sprite_data.load_fn(*self.sprite_data.parameters, self.reload_sprite)
         else:
             self.loaded_sprite = self.sprite_data.load_fn(*self.sprite_data.parameters)
+        self.queue_draw()
 
     @Gtk.Template.Callback()
     def on_draw(self, _, ctx: cairo.Context):

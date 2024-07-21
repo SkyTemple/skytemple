@@ -383,6 +383,8 @@ class StMonsterMonsterPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(i16)
     def on_entry_sprite_index_changed(self, w, *args):
+        if self._is_loading:
+            return
         try:
             val = i16_checked(int(w.get_text()))
         except ValueError:
