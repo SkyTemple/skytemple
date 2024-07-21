@@ -34,14 +34,11 @@ curl https://skytemple.org/build_deps/ZorinBlue.zip -O
 unzip ZorinBlue.zip > /dev/null
 mkdir -p share/themes
 python3 -c "from gi.repository import GLib; print(GLib.get_system_data_dirs())"
-export XDG_DATA_DIRS="$(pwd)/share:$XDG_DATA_DIRS"
+export XDG_DATA_DIRS="$(pwd)/share/:/usr/local/share/:/usr/share/:$XDG_DATA_DIRS"
 cp -a Arc share/themes/Arc
 cp -a Arc-Dark share/themes/Arc-Dark
 cp -a ZorinBlue-Light share/themes/ZorinBlue-Light
 cp -a ZorinBlue-Dark share/themes/ZorinBlue-Dark
-brew install tree
-tree share
-exit 1
 
 # Build the app
 pyinstaller --log-level=DEBUG skytemple-mac.spec --noconfirm
