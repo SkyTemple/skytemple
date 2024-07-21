@@ -33,7 +33,6 @@ unzip Arc.zip > /dev/null
 curl https://skytemple.org/build_deps/ZorinBlue.zip -O
 unzip ZorinBlue.zip > /dev/null
 mkdir -p share/themes
-python3 -c "from gi.repository import GLib; print(GLib.get_system_data_dirs())"
 export XDG_DATA_DIRS="$(pwd)/share/:/usr/local/share/:/usr/share/:$XDG_DATA_DIRS"
 cp -a Arc share/themes/Arc
 cp -a Arc-Dark share/themes/Arc-Dark
