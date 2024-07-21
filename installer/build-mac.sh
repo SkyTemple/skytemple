@@ -23,10 +23,6 @@ cp $icons_path/512x512/apps/skytemple.png skytemple.iconset/icon_512x512.png
 iconutil -c icns skytemple.iconset
 rm -rf skytemple.iconset
 
-# Download armips
-curl https://skytemple.org/build_deps/mac/armips -O
-chmod +x armips
-
 # Install themes
 curl https://skytemple.org/build_deps/Arc.zip -O
 unzip Arc.zip > /dev/null
