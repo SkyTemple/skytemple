@@ -33,6 +33,16 @@ unzip Arc.zip > /dev/null
 curl https://skytemple.org/build_deps/ZorinBlue.zip -O
 unzip ZorinBlue.zip > /dev/null
 
+# :(((((((((( PIL ships an old harfbuzz version and PyInstaller is being dumb dumb
+ARCH=$(uname -m)
+if [ "$ARCH" = "arm64" ]; then
+    # ARM homebrew path
+    cp -f /opt/homebrew/Cellar/harfbuzz/*/lib/libharfbuzz.0.dylib "$VIRTUAL_ENV/lib/python3.12/site-packages/PIL/.dylibs/libharfbuzz.0.dylib"
+else
+    # Intel homebrew path
+    cp -f /usr/local/Cellar/harfbuzz/*/lib/libharfbuzz.0.dylib "$VIRTUAL_ENV/lib/python3.12/site-packages/PIL/.dylibs/libharfbuzz.0.dylib"
+fi
+
 # Build the app
 pyinstaller --log-level=DEBUG skytemple-mac.spec --noconfirm
 
