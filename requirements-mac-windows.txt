@@ -10,7 +10,7 @@ pycairo==1.18.2; sys_platform != "win32"
 natsort==8.4.0
 tilequant==1.1.0
 # TODO: Replace before release: skytemple-ssb-debugger==1.8.0
-skytemple_ssb_debugger @ git+https://github.com/skytemple/skytemple-ssb-debugger@simplify
+skytemple_ssb_debugger @ git+https://github.com/skytemple/skytemple-ssb-debugger@master
 skytemple-eventserver==1.6.0
 pypresence==4.3.0
 pygal==3.0.4
