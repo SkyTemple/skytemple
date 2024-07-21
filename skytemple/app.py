@@ -53,7 +53,7 @@ class SkyTempleApplication(Gtk.Application):
 
                     # The search path is wrong if SkyTemple is executed as an .app bundle
                     if getattr(sys, "frozen", False):
-                        path = os.path.dirname(sys.executable)
+                        path = os.path.join(os.path.dirname(sys.executable), "..", "Resources")
 
                 itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
                 itheme.append_search_path(os.path.abspath(icons()))  # type: ignore
