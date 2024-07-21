@@ -118,9 +118,10 @@ a = Analysis(
         "skytemple.module.dungeon_graphics.module",
         "skytemple.module.strings.module",
         "skytemple.module.spritecollab.module",
+        "skytemple.module.symbols.module",
     ]
     + st_hiddenimports,
-    hookspath=[os.path.abspath(os.path.join(".", "hooks"))],
+    hookspath=None,
     hooksconfig={
         "gi": {
             "module-versions": {

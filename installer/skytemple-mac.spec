@@ -1,7 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
 import sys
-import shutil
 from pathlib import PurePosixPath, Path
 from PyInstaller.utils.hooks import collect_entry_point, copy_metadata
 
@@ -60,10 +59,6 @@ additional_datas = [
     ),
     (os.path.join(site_packages, "skytemple_dtef", "template.png"), "skytemple_dtef"),
     (os.path.join(".", "armips"), "skytemple_files/_resources"),
-    (os.path.join(site_packages, "cairocffi", "VERSION"), "cairocffi"),
-    (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
-    (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
-    (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
     (os.path.join(site_packages, "gtkspellcheck", "_pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), "pygal/css"),
     (os.path.join(site_packages, "certifi", "cacert.pem"), "certifi"),
@@ -75,7 +70,6 @@ additional_datas = [
 ]
 
 additional_binaries = [
-    (os.path.join(site_packages, "desmume", "libdesmume.dylib"), "."),
     (
         os.path.join(homebrew_path, "lib", "libSDL-1.2.0.dylib"),
         ".",
@@ -93,9 +87,7 @@ additional_binaries = [
         ".",
     ),  # Gets installed with Enchant
     (
-        os.path.join(
-            homebrew_path, "lib", "enchant-2", "enchant_applespell.so"
-        ),
+        os.path.join(homebrew_path, "lib", "enchant-2", "enchant_applespell.so"),
         ".",
     ),  # Gets installed with Enchant
     (
@@ -155,6 +147,7 @@ a = Analysis(
         "skytemple.module.dungeon_graphics.module",
         "skytemple.module.strings.module",
         "skytemple.module.spritecollab.module",
+        "skytemple.module.symbols.module",
     ]
     + st_hiddenimports,
     hookspath=[],
@@ -203,5 +196,5 @@ app = BUNDLE(
     name="SkyTemple.app",
     icon="skytemple.icns",
     version=os.getenv("PACKAGE_VERSION", "0.0.0"),
-    bundle_identifier="de.parakoopa.skytemple",
+    bundle_identifier="org.skytemple.SkyTemple",
 )

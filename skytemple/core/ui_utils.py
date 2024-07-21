@@ -21,6 +21,7 @@ from __future__ import annotations
 import functools
 import os
 import pathlib
+import platform
 import sys
 from tempfile import NamedTemporaryFile
 from typing import overload, TypeVar, Any
@@ -121,9 +122,15 @@ def add_dialog_csv_filter(dialog):
     dialog.add_filter(filter)
 
 
-def data_dir() -> str:
+def data_dir():
     if getattr(sys, "frozen", False):
-        return os.path.join(os.path.dirname(sys.executable), "data")
+        system = platform.system()
+        if system == "Windows":
+            return os.path.join(os.path.dirname(sys.executable), "_internal", "data")
+        elif system == "Darwin":
+            return os.path.join(os.path.dirname(sys.executable), "..", "Resources", "data")
+        else:
+            return os.path.join(os.path.dirname(sys.executable), "data")
     return os.path.join(os.path.dirname(__file__), "..", "data")
 
 
@@ -147,11 +154,6 @@ def version(*, ignore_dev=False) -> str:
     try:
         return importlib_metadata.metadata("skytemple")["version"]
     except importlib_metadata.PackageNotFoundError:
-        # Try reading from a VERSION file instead
-        version_file = os.path.join(data_dir(), "VERSION")
-        if os.path.exists(version_file):
-            with open(version_file) as f:
-                return f.read()
         return "unknown"
 
 

@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import os
+import platform
 import sys
 import locale
 import gettext
@@ -156,9 +157,21 @@ from importlib import reload
 reload(ui_utils)
 
 
-if getattr(sys, "frozen", False):
-    # Running via PyInstaller. Fix SSL configuration
-    os.environ["SSL_CERT_FILE"] = os.path.join(os.path.dirname(sys.executable), "certifi", "cacert.pem")
+if getattr(sys, "frozen", False) and platform.system() in ["Windows", "Darwin"]:
+    ca_bundle_path = os.path.abspath(os.path.join(data_dir(), "..", "certifi", "cacert.pem"))
+    assert os.path.exists(ca_bundle_path)
+    print("Certificates at: ", ca_bundle_path)
+    os.environ["SSL_CERT_FILE"] = ca_bundle_path
+    os.environ["REQUESTS_CA_BUNDLE"] = ca_bundle_path
+    if platform.system() == "Windows":
+        import ctypes
+
+        ctypes.cdll.msvcrt._putenv(f"SSL_CERT_FILE={ca_bundle_path}")
+        ctypes.cdll.msvcrt._putenv(f"REQUESTS_CA_BUNDLE={ca_bundle_path}")
+    else:
+        # Make sure armips can be found.
+        base_path = os.path.abspath(os.path.join(data_dir(), ".."))
+        os.environ["PATH"] = f"{base_path}/skytemple_files/_resources:{os.environ['PATH']}"
 
 
 import gi
