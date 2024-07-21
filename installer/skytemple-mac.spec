@@ -62,6 +62,11 @@ additional_datas = [
     (os.path.join(site_packages, "gtkspellcheck", "_pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), "pygal/css"),
     (os.path.join(site_packages, "certifi", "cacert.pem"), "certifi"),
+    # Themes
+    ("Arc", "share/themes/Arc"),
+    ("Arc-Dark", "share/themes/Arc-Dark"),
+    ("ZorinBlue-Light", "share/themes/ZorinBlue-Light"),
+    ("ZorinBlue-Dark", "share/themes/ZorinBlue-Dark"),
 ]
 
 additional_binaries = [
