@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-21 21:03\n"
+"PO-Revision-Date: 2024-07-22 18:32\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -5293,15 +5293,15 @@ msgstr ""
 
 #: skytemple/skytemple/controller/main.py:304
 msgid "Open ROM..."
-msgstr ""
+msgstr "Открыть ROM..."
 
 #: skytemple/skytemple/controller/main.py:415
 msgid "Error opening the ROM"
-msgstr ""
+msgstr "Ошибка открытия ROM"
 
 #: skytemple/skytemple/controller/main.py:437
 msgid "Error saving the ROM"
-msgstr ""
+msgstr "Ошибка сохранения ROM"
 
 #: skytemple/skytemple/controller/main.py:602
 #: skytemple/skytemple/controller/main.py:661
@@ -5310,53 +5310,53 @@ msgstr ""
 
 #: skytemple/skytemple/controller/main.py:675
 msgid "'spritecollab' module must be installed to use this."
-msgstr ""
+msgstr "Модуль 'spritecollab' должен быть установлен для использования этого."
 
 #: skytemple/skytemple/controller/main.py:733
 #: skytemple/skytemple/controller/main.py:734
 msgid "Open a ROM"
-msgstr ""
+msgstr "Открыть ROM"
 
 #: skytemple/skytemple/controller/main.py:759
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
-msgstr ""
+msgstr "Загрузка ROM \"{rom_name}\"..."
 
 #: skytemple/skytemple/controller/main.py:761
 #, python-brace-format
 msgid "Opening {filename}."
-msgstr ""
+msgstr "Открытие {filename}."
 
 #: skytemple/skytemple/controller/main.py:941
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
-msgstr ""
+msgstr "Сохранение ROM \"{rom_name}\"..."
 
 #: skytemple/skytemple/controller/main.py:943
 #, python-brace-format
 msgid "Saving {rom.filename}."
-msgstr ""
+msgstr "Сохранение {rom.filename}."
 
 #: skytemple/skytemple/controller/main.py:957
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
-msgstr ""
+msgstr "Хотите ли вы сохранить изменения в файле {rom_name}?"
 
 #: skytemple/skytemple/controller/settings.py:35
 msgid "Detect automatically"
-msgstr ""
+msgstr "Определять автоматически"
 
 #: skytemple/skytemple/controller/settings.py:39
 msgid "Portuguese, Brazilian"
-msgstr ""
+msgstr "Португальский (Бразилия)"
 
 #: skytemple/skytemple/controller/settings.py:100
 msgid "<i>Use System Settings to set this under Linux.</i>"
-msgstr ""
+msgstr "<i>Используйте Системные Настройки для настройки этого параметра в Linux.</i>"
 
 #: skytemple/skytemple/controller/settings.py:194
 msgid "You need to restart SkyTemple to apply some of the settings."
-msgstr ""
+msgstr "Чтобы применить некоторые настройки, вам необходимо перезапустить SkyTemple."
 
 #: skytemple/skytemple/controller/settings.py:207
 msgid "If this is enabled a new and faster (but slightly experimental) codebase is used to load and manipulate game files. Try to disable this if you run into crashes or other issues."
@@ -5365,17 +5365,17 @@ msgstr ""
 #: skytemple/skytemple/controller/tilequant_dialog.py:55
 #: skytemple/skytemple/core/ui_utils.py:103
 msgid "PNG image (*.png)"
-msgstr ""
+msgstr "Изображение PNG (*.png)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:60
 msgid "JPEG image (*.jpg, *.jpeg)"
-msgstr ""
+msgstr "Изображение JPEG (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:66
 #: skytemple/skytemple/core/ui_utils.py:88
 #: skytemple/skytemple/module/monster/widget/level_up.py:614
 msgid "Any files"
-msgstr ""
+msgstr "Любые файлы"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:84
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
@@ -5409,31 +5409,31 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:179
 msgid "Save first image as (PNG)..."
-msgstr ""
+msgstr "Сохранить первое изображение как (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:203
 msgid "Save second image as (PNG)..."
-msgstr ""
+msgstr "Сохранить второе изображение как (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:254
 msgid "You entered invalid numbers."
-msgstr ""
+msgstr "Вы ввели недопустимые числа."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:257
 msgid "The input image does not exist."
-msgstr ""
+msgstr "Входного изображения не существует."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:260
 msgid "The second input image does not exist."
-msgstr ""
+msgstr "Второго входного изображения не существует."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:283
 msgid "The input image is not a supported format."
-msgstr ""
+msgstr "Формат входного изображения не поддерживается."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:320
 msgid "Image was converted."
-msgstr ""
+msgstr "Изображение было преобразовано."
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:56
 msgid "Thread-based"
