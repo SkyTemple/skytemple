@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-22 18:32\n"
+"PO-Revision-Date: 2024-07-22 19:49\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -5401,11 +5401,11 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:162
 msgid "Please select an input image."
-msgstr ""
+msgstr "Пожалуйста, выберите входное изображение."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:171
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
-msgstr ""
+msgstr "Поскольку вы выбрали два изображения для преобразования, вас спросят куда сохранить оба изображения."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:179
 msgid "Save first image as (PNG)..."
@@ -5533,28 +5533,29 @@ msgstr ""
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:280
 msgid "SkyTemple Script Engine Debugger - Error!"
-msgstr ""
+msgstr "SkyTemple Script Engine Debugger - Ошибка!"
 
 #: skytemple/skytemple/core/ui_utils.py:95
 msgid "GIF image (*.gif)"
-msgstr ""
+msgstr "GIF-изображения (*.gif)"
 
 #: skytemple/skytemple/core/ui_utils.py:111
 msgid "XML document (*.xml)"
-msgstr ""
+msgstr "XML-документ (*.xml)"
 
 #: skytemple/skytemple/core/ui_utils.py:119
 msgid "CSV file (*.csv)"
-msgstr ""
+msgstr "Файл CSV (*.csv)"
 
 #: skytemple/skytemple/core/ui_utils.py:233
 msgid "The value you entered is invalid.\n\n"
 "Valid values must be in the range [{},{}]."
-msgstr ""
+msgstr "Введенное вами значение является недопустимым.\n\n"
+"Допустимые значения должны быть в диапазоне [{},{}]."
 
 #: skytemple/skytemple/core/ui_utils.py:236
 msgid "SkyTemple - Value out of range"
-msgstr ""
+msgstr "SkyTemple - Значение вне диапазона"
 
 #: skytemple/skytemple/core/widget/user_feedback.py:78
 msgid "Please include a comment in your report. You don't need to submit empty reports, we receive all errors automatically. Your comments help us to understand the issue, but they are not required. If you don't want to submit comments, hit Cancel."
@@ -5563,7 +5564,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:35
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1094
 msgid "Background"
-msgstr ""
+msgstr "Фон"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:44
 msgid "Import..."
@@ -5578,7 +5579,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1635
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4714
 msgid "Tools"
-msgstr ""
+msgstr "Инструменты"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:76
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1266
@@ -5598,7 +5599,11 @@ msgid "This will export the background as one image.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Это экспортирует фон как одно изображение.\n\n"
+"Вы можете редактировать и импортировать фон снова.\n"
+"Обратите внимание, что вам может понадобиться преобразовать его, \n"
+"чтобы его можно было использовать. \n"
+"Дополнительную информацию см. в диалоге импорта."
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:219
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:368
@@ -5626,7 +5631,9 @@ msgstr ""
 msgid "This will import the entire background from an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Эта функция импортирует весь фон из изображения.\n\n"
+"Возможно, вам потребуется сначала преобразовать входное изображение,\n"
+"прежде чем вы сможете его использовать. См. раздел \"Детали формата\"."
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:351
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2002
@@ -5636,11 +5643,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6091
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6317
 msgid "Converter"
-msgstr ""
+msgstr "Преобразователь"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:407
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:13
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:13
@@ -5657,7 +5664,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:128
 msgid "Main Name"
-msgstr ""
+msgstr "Основное имя"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:139
 msgid "Selection Name"
@@ -5675,38 +5682,39 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/main.ui:160
 #: skytemple/skytemple/data/widget/monster/monster.ui:216
 msgid "Names"
-msgstr ""
+msgstr "Имена"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:450
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:602
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:823
 msgid "Direction:"
-msgstr ""
+msgstr "Направление:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:522
 msgid "Level reset to 1:"
-msgstr ""
+msgstr "Сброс уровня до 1:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:535
 msgid "IQ skills enabled:"
-msgstr ""
+msgstr "Включены навыки IQ:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:548
 msgid "Max. rescue attempts\n"
 "(-1 = none):"
-msgstr ""
+msgstr "Макс. количество попыток спасения\n"
+"(-1 = нет):"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:562
 msgid "Random movement chance:"
-msgstr ""
+msgstr "Вероятность случайного перемещения:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:629
 msgid "Turn limit:"
-msgstr ""
+msgstr "Лимит ходов:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:642
 msgid "Force game save:"
-msgstr ""
+msgstr "Принудительное сохранение игры:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:655
 msgid "Recruiting enabled:"
@@ -5734,7 +5742,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:840
 msgid "Money reset to 0:"
-msgstr ""
+msgstr "Сброс денег до 0:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:853
 msgid "Reveal traps by attack:"
@@ -5742,27 +5750,27 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:866
 msgid "Max. items allowed:"
-msgstr ""
+msgstr "Макс. допустимое количество предметов:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:979
 msgid "Add / Remove Floors"
-msgstr ""
+msgstr "Добавить/удалить этажи"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:997
 msgid "This dungeon has XXX floors."
-msgstr ""
+msgstr "В этом подземелье XXX этажей."
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:1035
 msgid "Change Floor Count"
-msgstr ""
+msgstr "Изменить количество этажей"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:1096
 msgid "This dungeon currently has X floors."
-msgstr ""
+msgstr "Сейчас в этом подземелье X этажей."
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:1113
 msgid "New floor count:"
-msgstr ""
+msgstr "Новое количество этажей:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:110
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2930
@@ -5771,7 +5779,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:69
 #: skytemple/skytemple/data/widget/script/ssa.ui:441
 msgid "Zoom In"
-msgstr ""
+msgstr "Приблизить"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:111
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2931
@@ -5780,7 +5788,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:70
 #: skytemple/skytemple/data/widget/script/ssa.ui:442
 msgid "Zoom +"
-msgstr ""
+msgstr "Масштаб +"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:125
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2945
@@ -5789,14 +5797,14 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:84
 #: skytemple/skytemple/data/widget/script/ssa.ui:456
 msgid "Zoom Out"
-msgstr ""
+msgstr "Отдалить"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:126
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2946
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:85
 #: skytemple/skytemple/data/widget/script/ssa.ui:457
 msgid "Zoom -"
-msgstr ""
+msgstr "Масштаб -"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:140
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2960
@@ -6059,19 +6067,19 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1504
 msgid "Apply new size"
-msgstr ""
+msgstr "Применить новый размер"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1621
 msgid "Music:"
-msgstr ""
+msgstr "Музыка:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1633
 msgid "Moves allowed:"
-msgstr ""
+msgstr "Приёмы разрешены:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1645
 msgid "Orbs allowed:"
-msgstr ""
+msgstr "Орбы разрешены:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1657
 msgid "Fixed Room to load \n"
@@ -6080,39 +6088,39 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1670
 msgid "Width:"
-msgstr ""
+msgstr "Ширина:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1682
 msgid "Height:"
-msgstr ""
+msgstr "Высота:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1694
 msgid "Allow \"Item Stealing\""
-msgstr ""
+msgstr "Разрешить \"Кражу предметов\""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1706
 msgid "Allow warp effects:"
-msgstr ""
+msgstr "Разрешите эффекты телепортации:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1718
 msgid "Allow certain traps:"
-msgstr ""
+msgstr "Разрешить определенные ловушки:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1730
 msgid "Darkness disabled:"
-msgstr ""
+msgstr "Темнота отключена:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1742
 msgid "Exit floor when defeating all enemies:"
-msgstr ""
+msgstr "Выход с этажа после победы над всеми врагами:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1754
 msgid "Is Whole Floor: "
-msgstr ""
+msgstr "Является целым этажом: "
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1766
 msgid "Is Boss Fight: "
-msgstr ""
+msgstr "Является сражением с боссом: "
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1778
 msgid "Is Free Layout: "
@@ -6130,17 +6138,18 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/monster.ui:3560
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:298
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:201
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:34
 msgid "Fixed Rooms"
-msgstr ""
+msgstr "Фиксированные комнаты"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:217
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
 "They are usually used for boss fights or other special floors."
-msgstr ""
+msgstr "В этом разделе вы можете редактировать фиксированные комнаты. Фиксированные комнаты могут быть настроены на появление на этажах подземелья.\n"
+"Обычно они используются для боев с боссами или других особых этажей."
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:251
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
@@ -6169,15 +6178,15 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1799
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1953
 msgid "Item"
-msgstr ""
+msgstr "Предмет"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:401
 msgid "Go To Pokémon"
-msgstr ""
+msgstr "Перейти к покемону"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:447
 msgid "Go To Item"
-msgstr ""
+msgstr "Перейти к предмету"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:493
 msgid "Go To Tile"
@@ -6186,11 +6195,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:570
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3672
 msgid "Trap"
-msgstr ""
+msgstr "Ловушка"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:586
 msgid "Unbreakable?"
-msgstr ""
+msgstr "Неразрушаемый?"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:599
 msgid "Unk11"
@@ -6222,7 +6231,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:704
 msgid "Trap Visible?"
-msgstr ""
+msgstr "Ловушка видна?"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:717
 msgid "Unk31"
@@ -6457,12 +6466,12 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1160
 msgid "Dungeon Name"
-msgstr ""
+msgstr "Название подземелья"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1173
 #: skytemple/skytemple/data/widget/script/main.ui:556
 msgid "Floor Number"
-msgstr ""
+msgstr "Номер этажа"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1196
 msgid "Tileset"
@@ -6472,11 +6481,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/music/main.ui:40
 #: skytemple/skytemple/module/music/module.py:45
 msgid "Music"
-msgstr ""
+msgstr "Музыка"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1218
 msgid "Fixed Room"
-msgstr ""
+msgstr "Фиксированная комната"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1297
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:49
@@ -6499,7 +6508,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/sprite/object.ui:106
 #: skytemple/skytemple/data/widget/strings/strings.ui:152
 msgid "Import"
-msgstr ""
+msgstr "Импортировать"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1342
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:64
@@ -6522,7 +6531,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/sprite/object.ui:151
 #: skytemple/skytemple/data/widget/strings/strings.ui:197
 msgid "Export"
-msgstr ""
+msgstr "Экспортировать"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1393
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1438
@@ -6531,11 +6540,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:262
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:234
 msgid "Go To"
-msgstr ""
+msgstr "Перейти"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1602
 msgid "Structure Type:"
-msgstr ""
+msgstr "Тип структуры:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1614
 msgid "Floor connectivity:"
@@ -6551,11 +6560,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1726
 msgid "Dead Ends?:"
-msgstr ""
+msgstr "Тупики?:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1807
 msgid "Structure"
-msgstr ""
+msgstr "Структура"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1841
 msgid "Secondary T. enabled?:"
@@ -6575,15 +6584,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1945
 msgid "Darkness Level:"
-msgstr ""
+msgstr "Уровень темноты:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1957
 msgid "Weather:"
-msgstr ""
+msgstr "Погода:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2003
 msgid "(no. of rooms)"
-msgstr ""
+msgstr "(количество комнат)"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2023
 msgid "Terrain Settings"
@@ -6603,7 +6612,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2094
 msgid "Max coin amount:"
-msgstr ""
+msgstr "Максимальное количество монет:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2106
 msgid "Initial enemy density:"
@@ -6615,15 +6624,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2332
 msgid "Kecleon Shop:"
-msgstr ""
+msgstr "Магазин Кеклеона:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2344
 msgid "Hidden Stairs:"
-msgstr ""
+msgstr "Скрытая лестница:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2356
 msgid "Monster House:"
-msgstr ""
+msgstr "Засада монстров:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2368
 msgid "Empty Monster House:"
@@ -6631,15 +6640,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2380
 msgid "Unused:"
-msgstr ""
+msgstr "Не используется:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2392
 msgid "Sticky Items:"
-msgstr ""
+msgstr "Липкие предметы:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2592
 msgid "Chances"
-msgstr ""
+msgstr "Вероятности"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2627
 msgid "Unknown E:"
@@ -6775,15 +6784,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5347
 msgid "Items<span size=\"small\"> - Only Items with IDs smaller than 363 can be added.</span>"
-msgstr ""
+msgstr "Предметы<span size=\"small\"> - Можно добавить только предметы с ID меньше 363.</span>"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5404
 msgid "Shop"
-msgstr ""
+msgstr "Магазин"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5434
 msgid "Monster House"
-msgstr ""
+msgstr "Засада монстров"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5464
 msgid "Buried"
@@ -6795,7 +6804,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5524
 msgid "Secret Room"
-msgstr ""
+msgstr "Потайная комната"
 
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:72
 msgid "This dungeon is currently invalid. \n"
@@ -6808,13 +6817,13 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:106
 msgid "Go To \"Dungeons\""
-msgstr ""
+msgstr "Перейти к разделу \"Подземелья\""
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:53
 #: skytemple/skytemple/module/dungeon/widget/main.py:44
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:407
 msgid "Dungeons"
-msgstr ""
+msgstr "Подземелья"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:69
 msgid "This section lets you edit the layouts of dungeons in the game."
@@ -6825,32 +6834,33 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/main.py:150
 #: skytemple/skytemple/module/dungeon/widget/main.py:159
 msgid "Fix Dungeon Errors"
-msgstr ""
+msgstr "Исправить ошибки подземелий"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:105
 msgid "Edit Groups"
-msgstr ""
+msgstr "Изменить группы"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:235
 msgid "Fix"
-msgstr ""
+msgstr "Исправить"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:259
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:270
 msgid "Details"
-msgstr ""
+msgstr "Подробности"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:281
 msgid "Solution"
-msgstr ""
+msgstr "Решение"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:304
 msgid "Clicking apply will fix all selected errors and additionally\n"
 "correct the floor counts of all dungeons."
-msgstr ""
+msgstr "Нажатие кнопки \"Применить\" исправит все выбранные ошибки, а также\n"
+"исправит количество этажей во всех подземельях."
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:340
 msgid "Edit Dungeon Groups"
@@ -6876,7 +6886,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:238
 msgid "Weather: "
-msgstr ""
+msgstr "Погода: "
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:268
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:245
@@ -6884,7 +6894,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:319
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:317
 msgid "More Info: "
-msgstr ""
+msgstr "Подробнее: "
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:328
 #: skytemple/skytemple/module/dungeon_graphics/module.py:200
@@ -6907,112 +6917,112 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:224
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:717
 msgid "Color #0"
-msgstr ""
+msgstr "Цвет #0"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:142
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:635
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:235
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:728
 msgid "Color #2"
-msgstr ""
+msgstr "Цвет #2"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:153
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:646
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:246
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:739
 msgid "Color #1"
-msgstr ""
+msgstr "Цвет #1"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:164
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:657
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:257
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:750
 msgid "Color #3"
-msgstr ""
+msgstr "Цвет #3"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:175
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:668
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:268
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:761
 msgid "Color #5"
-msgstr ""
+msgstr "Цвет #5"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:186
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:679
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:279
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:772
 msgid "Color #6"
-msgstr ""
+msgstr "Цвет #6"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:197
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:690
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:290
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:783
 msgid "Color #4"
-msgstr ""
+msgstr "Цвет #4"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:208
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:701
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:301
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:794
 msgid "Color #7"
-msgstr ""
+msgstr "Цвет #7"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:219
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:712
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:312
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:805
 msgid "Color #8"
-msgstr ""
+msgstr "Цвет #8"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:230
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:723
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:323
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:816
 msgid "Color #10"
-msgstr ""
+msgstr "Цвет #10"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:241
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:734
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:334
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:827
 msgid "Color #9"
-msgstr ""
+msgstr "Цвет #9"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:252
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:745
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:345
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:838
 msgid "Color #11"
-msgstr ""
+msgstr "Цвет #11"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:263
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:756
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:356
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:849
 msgid "Color #12"
-msgstr ""
+msgstr "Цвет #12"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:274
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:767
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:367
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:860
 msgid "Color #14"
-msgstr ""
+msgstr "Цвет #14"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:285
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:778
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:378
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:871
 msgid "Color #15"
-msgstr ""
+msgstr "Цвет #15"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:296
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:789
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:389
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:882
 msgid "Color #13"
-msgstr ""
+msgstr "Цвет #13"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:552
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1045
@@ -7028,11 +7038,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1103
 msgid "Export Background to Image..."
-msgstr ""
+msgstr "Экспортировать фон в изображение..."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1112
 msgid "Import Background from Image..."
-msgstr ""
+msgstr "Импортировать фон из изображения..."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1125
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1347
@@ -7254,11 +7264,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:198
 msgid "Weather"
-msgstr ""
+msgstr "Погода"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:213
 msgid "Underwater?"
-msgstr ""
+msgstr "Под водой?"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:238
 msgid "Tileset and Background Properties:"
@@ -7357,11 +7367,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2130
 msgid "These are extra rules. The purpose of them is currently unknown, so be careful when you edit them."
-msgstr ""
+msgstr "Это дополнительные правила. В настоящее время их назначение неизвестно, поэтому будьте осторожны при их редактировании."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2172
 msgid "Extra Rules"
-msgstr ""
+msgstr "Дополнительные правила"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2192
 msgid "Dungeon Tileset X Rules"
@@ -7416,7 +7426,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:80
 msgid "Import palettes?\n"
 "Note that this will affect all images."
-msgstr ""
+msgstr "Импортировать палитры?\n"
+"Обратите внимание: это повлияет на все изображения."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:105
 msgid "Insert as NEW image instead of replacing current."
@@ -7424,7 +7435,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:116
 msgid "Import settings:"
-msgstr ""
+msgstr "Параметры импортирования:"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:211
 #: skytemple/skytemple/data/widget/misc_graphics/graphic_font.ui:154
@@ -7438,7 +7449,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:301
 msgid "Palette: "
-msgstr ""
+msgstr "Палитра: "
 
 #: skytemple/skytemple/data/widget/gfxcrunch/gfxcrunch.ui:6
 msgid "gfxcrunch"
@@ -7446,12 +7457,12 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/gfxcrunch/gfxcrunch.ui:83
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
-msgstr ""
+msgstr "Импортирование или экспортирование спрайтов осуществляется с помощью <a href=\"gfxcrunch\">gfxcrunch</a>."
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:178
 #: skytemple/skytemple/module/lists/module.py:218
 msgid "Animations"
-msgstr ""
+msgstr "Анимации"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:194
 msgid "Edits the animation tables used by the game."
@@ -7473,11 +7484,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:317
 msgid "File Type"
-msgstr ""
+msgstr "Тип файла"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:333
 msgid "File ID"
-msgstr ""
+msgstr "ID файла"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:347
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
