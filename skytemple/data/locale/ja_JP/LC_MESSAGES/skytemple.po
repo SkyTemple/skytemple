@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-21 21:03\n"
+"PO-Revision-Date: 2024-07-22 04:34\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -3250,7 +3250,8 @@ msgstr "[CS:S]コントロールモード：[CR] [CS:E]マニュアル[CR][CS:S]
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:119
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by Frostbyte before applying this patch."
-msgstr ""
+msgstr "ダンジョン内でSTARTボタンを押すと、オートモードとマニュアルモードを切り替えることができます。マニュアルモードでは、仲間の行動を操作することができます。 \n"
+"このパッチを適用するには、Frostbyte が作成した追加オーバーレイを適用する必要があります。"
 
 #: skytemple-files/skytemple_files/patch/handler/compress_iq_data.py:50
 msgid "Optimizes the way the list of IQ skills learnt by each IQ group is stored, removing the limit of max 25 skills per group."
