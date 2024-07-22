@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-22 04:34\n"
+"PO-Revision-Date: 2024-07-22 07:16\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -573,7 +573,7 @@ msgstr ""
 
 #: /dev/fd/63:139 /dev/fd/63:358
 msgid "Debug Strings (Mission)"
-msgstr ""
+msgstr "デバッグ文字列 (依頼)"
 
 #: /dev/fd/63:140 /dev/fd/63:359
 msgid "Debug Strings (Switch)"
@@ -581,7 +581,7 @@ msgstr ""
 
 #: /dev/fd/63:141 /dev/fd/63:360
 msgid "Debug Strings (Data)"
-msgstr ""
+msgstr "デバッグ文字列 (データ)"
 
 #: /dev/fd/63:142 /dev/fd/63:361
 msgid "Debug Strings (Checks)"
@@ -589,7 +589,7 @@ msgstr ""
 
 #: /dev/fd/63:143 /dev/fd/63:362
 msgid "Debug Strings (General)"
-msgstr ""
+msgstr "デバッグ文字列 (全般)"
 
 #: /dev/fd/63:144 /dev/fd/63:363
 msgid "Debug Strings (Manipulation)"
@@ -597,23 +597,23 @@ msgstr ""
 
 #: /dev/fd/63:145 /dev/fd/63:364
 msgid "Debug Strings (Testing)"
-msgstr ""
+msgstr "デバッグ文字列 (テスト)"
 
 #: /dev/fd/63:146 /dev/fd/63:365
 msgid "Debug Strings (Scripts)"
-msgstr ""
+msgstr "デバッグ文字列 (スクリプト)"
 
 #: /dev/fd/63:147 /dev/fd/63:366
 msgid "Debug Strings (Menu)"
-msgstr ""
+msgstr "デバッグ文字列 (メニュー)"
 
 #: /dev/fd/63:148 /dev/fd/63:367
 msgid "Debug Strings (Status)"
-msgstr ""
+msgstr "デバッグ文字列 (ステータス)"
 
 #: /dev/fd/63:149 /dev/fd/63:368
 msgid "Debug Strings (Dungeon 1)"
-msgstr ""
+msgstr "デバッグ文字列 (ダンジョン1)"
 
 #: /dev/fd/63:150 /dev/fd/63:369
 msgid "Portrait Names"
@@ -689,7 +689,7 @@ msgstr "ダンジョン名 (バナー)"
 
 #: /dev/fd/63:168 /dev/fd/63:387
 msgid "Staff Roll 1"
-msgstr ""
+msgstr "スタッフロール 1"
 
 #: /dev/fd/63:169 /dev/fd/63:388
 msgid "Special Mission Strings"
@@ -709,19 +709,19 @@ msgstr "「たんけんリサイクル」の文字列"
 
 #: /dev/fd/63:173 /dev/fd/63:392
 msgid "Staff Roll 2"
-msgstr ""
+msgstr "スタッフロール 2"
 
 #: /dev/fd/63:174 /dev/fd/63:393
 msgid "Staff Roll 3"
-msgstr ""
+msgstr "スタッフロール 3"
 
 #: /dev/fd/63:175 /dev/fd/63:394
 msgid "New Pokemon Names"
-msgstr ""
+msgstr "新規ポケモン名"
 
 #: /dev/fd/63:176 /dev/fd/63:395
 msgid "New Pokemon Categories"
-msgstr ""
+msgstr "新規分類名"
 
 #: /dev/fd/63:177 /dev/fd/63:396
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4164
@@ -922,11 +922,11 @@ msgstr "スペイン語"
 
 #: /dev/fd/63:274
 msgid "Dungeon Defeated Dialog Strings"
-msgstr ""
+msgstr "ダンジョン失敗時のダイアログ文字列"
 
 #: /dev/fd/63:275
 msgid "Dungeon Cleared Dialog Strings"
-msgstr ""
+msgstr "ダンジョンクリア時のダイアログ文字列"
 
 #: explorerscript/explorerscript/common_syntax.py:99
 #: explorerscript/explorerscript/common_syntax.py:187
@@ -1112,7 +1112,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:71
 msgid "Invalid message switch."
-msgstr "無効なメッセージスイッチです。"
+msgstr "無効な message switch です。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:76
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:89
@@ -1128,30 +1128,30 @@ msgstr "Message_ switch ({self.ctx.start.line}行目) のケースタイプが�
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:109
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr "スイッチブロックにはデフォルトケースを 1 つだけ指定できます ({self.ctx.start.line}行目"
+msgstr "switch ブロックには default case を 1 つだけ指定できます ({self.ctx.start.line}行目"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:84
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
-msgstr "Switch caseにはステートメントのリストが含まれている必要があります ( {self.ctx.start.line}行目)。"
+msgstr "switch case にはステートメントのリストが含まれている必要があります ( {self.ctx.start.line}行目)。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:132
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr "予期しないswitch終了 ( {self.ctx.start.line}行目)"
+msgstr "予期しない switch の終了 ( {self.ctx.start.line}行目)"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:146
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr "Switchブロックには、デフォルトケースを 1 つだけ指定できます ( {self.ctx.start.line}行目)。"
+msgstr "switch ブロックには default case を 1 つだけ指定できます ({self.ctx.start.line}行目)."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:80
 msgid "Invalid content for a switch-header"
-msgstr "Switch-headerの内容が無効です"
+msgstr "switch-header の内容が無効です"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:87
 msgid "Unknown switch operation."
-msgstr "不明なswitch操作。"
+msgstr "不明な switch 操作。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:44
 msgid "No dungeon id set for dungeon_mode switch condition."
@@ -1735,7 +1735,7 @@ msgstr "道具"
 #: skytemple-files/skytemple_files/data/md/protocol.py:456
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:150
 msgid "Recruited"
-msgstr ""
+msgstr "勧誘済み"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:457
 msgid "No Main Requirement"
@@ -3159,7 +3159,7 @@ msgstr "このパッチは再適用できません。"
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:104
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:112
 msgid "The source data specification was not found in the configuration."
-msgstr "ソースデータの仕様が構成に見つかりません。"
+msgstr "指定したソースデータが構成内に存在しません。"
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:127
 msgid "\n\n"
@@ -3242,7 +3242,7 @@ msgstr "性格診断で主人公を選択するメニューを追加します。
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:104
 msgid "[CS:S]Control mode set to[CR] [CS:C]automatic[CR][CS:S].[CR]"
-msgstr "[CS:S]コントロールモード：[CR] [CS:C]じどう[CR][CS:S][CR]"
+msgstr "[CS:S]コントロールモード：[CR] [CS:C]オート[CR][CS:S][CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:107
 msgid "[CS:S]Control mode set to[CR] [CS:E]manual[CR][CS:S].[CR]"
@@ -3281,7 +3281,9 @@ msgstr ""
 msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
-msgstr ""
+msgstr "チームメンバーで経験値を共有します (マグナゲート方式)。\n"
+"スペシャルエピソードやレベル1ダンジョン、経験値が手に入らないダンジョンでは無効になります。\n"
+"このパッチを利用するには ExtractDungeonData パッチを適用する必要があります。"
 
 #: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:115
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
@@ -3295,13 +3297,16 @@ msgstr "許可されるポケモンのエントリを2048に拡張し、すべ�
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
 "This patch is useless on its own, unless you have a too big mappa file."
-msgstr ""
+msgstr "mappa_t/mappa_y/mappa_s の各種データを完全にロードするのではなく、ファイルストリームを使ってアクセスするように変更します。\n"
+"このパッチは、サイズが大きい mappa ファイルがある場合に有効です。"
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_waza.py:49
 msgid "Use filestreams to access waza_p/waza_p2 data instead of loading them entirely.\n"
 "This patch is useless on its own.\n"
 "Depends on the ActorAndLevelLoader patch, as it needs some space provided by this one."
-msgstr ""
+msgstr "waza_p/waza_p2 のデータを完全にロードするのではなく、ファイルストリームを使ってアクセスするように変更します。\n"
+"このパッチ単体では機能しません。\n"
+"ActorAndLevelLoader パッチに依存しています。"
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:50
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
@@ -3327,7 +3332,8 @@ msgstr "道具効果コードを抽出し、ファイルに入れます。"
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:65
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
-msgstr "依頼の報酬/宝箱のコンテンツやカクレオン商店の道具に使用されるハードコードされた道具リストを抽出し、ファイルに入れます。ROM ファイルシステムからの読み取りをサポートします。"
+msgstr "依頼の報酬/宝箱のコンテンツやカクレオン商店の道具に使用されるハードコードされた道具リストを抽出し、ファイルに格納します。\n"
+"ROM ファイルシステムからの読み取りをサポートします。"
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:139
 msgid "Don't have enough space to put filenames! "
@@ -3335,11 +3341,11 @@ msgstr "ファイル名を入れるスペースが足りません。 "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:80
 msgid "Extracts move effects code and put it in files."
-msgstr "道具効果コードを抽出し、ファイルに入れます。"
+msgstr "道具効果コードを抽出し、ファイルに格納します。"
 
 #: skytemple-files/skytemple_files/patch/handler/extract_sp_code.py:72
 msgid "Extracts special processes code and put it in files."
-msgstr ""
+msgstr "特殊処理コードを抽出し、ファイルに格納します。"
 
 #: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:113
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
@@ -3377,7 +3383,8 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:49
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
-msgstr "技のショートカット (L+A) を GtI や Super (L+A/B/X/Y) のようなショートカット機能に置き換えます。このパッチを適用する前に ExtraSpace パッチを適用する必要があります。"
+msgstr "技のショートカット (L+A) をマグナゲートや超ポケダン方式のショートカット機能 (L+A/B/X/Y) に置き換えます。\n"
+"このパッチを利用するには ExtraSpace パッチを適用する必要があります。"
 
 #: skytemple-files/skytemple_files/patch/handler/negative_enemy_density.py:49
 msgid "Makes negative enemy density values work as intended (the absolute value of the density is used, without adding a random variation)."
@@ -3416,7 +3423,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/remove_body_size_check.py:48
 msgid "Removes the total body size check before entering a dungeon."
-msgstr ""
+msgstr "ダンジョン突入前に「からだのおおきさ」をチェックする処理を削除します。"
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:48
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -3574,7 +3581,7 @@ msgstr "不明なコルーチン {err}"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:225
 msgid "Coroutines and regular routines can not be mixed in a script file."
-msgstr ""
+msgstr "コルーチンと通常のルーチンをスクリプトファイルに混在させることはできません。"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:238
 #, python-brace-format
@@ -3702,7 +3709,7 @@ msgstr "A: "
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:165
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:904
 msgid "Select : "
-msgstr "Select: "
+msgstr "SELECT: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:183
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:886
@@ -3727,7 +3734,7 @@ msgstr "デバッグ: "
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:248
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1107
 msgid "Start : "
-msgstr "Start: "
+msgstr "START: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:264
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1158
@@ -3873,7 +3880,7 @@ msgstr "ゲームの実行中はジョイスティックを設定できません
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:317
 #, python-brace-format
 msgid "Do you want to save changes to {filename}?"
-msgstr ""
+msgstr "{filename} に変更を保存しますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:319
 #: skytemple/skytemple/controller/main.py:959
@@ -3906,13 +3913,15 @@ msgstr "保存(_S)"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:323
 #: skytemple/skytemple/controller/main.py:963
 msgid "If you don't save, your changes will be lost."
-msgstr ""
+msgstr "保存しない場合、変更した内容は失われます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:334
 msgid "The file is still loaded in RAM! Currently you are still able to debug using the old cached information stored in the editor.\n"
 "If you close the editor, you won't be able to debug this file until it is reloaded in RAM.\n\n"
 "Do you still want to close this file?"
-msgstr ""
+msgstr "ファイルはメモリ上にロードされています。現在、エディタ上に保存されている古いキャッシュ情報を使ってデバッグすることができます。\n"
+"エディタを閉じると、このファイルはメモリに再度読み込まれるまでデバッグできなくなります。\n\n"
+"このファイルを閉じますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:337
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1659
@@ -4554,7 +4563,7 @@ msgstr "エラー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:310
 msgid "Unable to load variables!"
-msgstr ""
+msgstr "変数を読み込めません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:164
 msgid "_File"
@@ -4667,7 +4676,7 @@ msgstr "ヘルプ(_H)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "ExplorerScript documentation"
@@ -4702,11 +4711,11 @@ msgstr "エンティティ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:999
 msgid "Ground Engine State"
-msgstr ""
+msgstr "グラウンドエンジン状態"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1019
 msgid "Ground State"
-msgstr ""
+msgstr "グラウンド状態"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1098
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2807
@@ -4745,7 +4754,7 @@ msgstr "ロード"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1262
 msgid "Reload current variables"
-msgstr ""
+msgstr "変数を再読み込み"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1266
 msgid "Sometimes the values get out\n"
@@ -4762,7 +4771,8 @@ msgstr "グローバル変数"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1417
 msgid "Debugger is \n"
 "not halting."
-msgstr ""
+msgstr "デバッガーは \n"
+"停止していません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1383
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1460
@@ -4829,15 +4839,15 @@ msgstr "メッセージリミットチェック (機能しない)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1748
 msgid "No Cheat Check (does nothing)"
-msgstr ""
+msgstr "チートチェックカット (機能しない)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1773
 msgid "No Plunge Check (does nothing)"
-msgstr ""
+msgstr "とつにゅうチェックカット (機能しない)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1798
 msgid "Reuse Dungeon Quicksaves"
-msgstr ""
+msgstr "ダンジョンむげんふっき"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1813
 msgid "Enable Debug Menus (does nothing)"
@@ -5295,11 +5305,11 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:52
 msgid "Save _As"
-msgstr ""
+msgstr "名前を付けて保存 (_A)"
 
 #: skytemple/skytemple/_i18n.py:53
 msgid "Select _All"
-msgstr ""
+msgstr "すべて選択 (_A)"
 
 #: skytemple/skytemple/_i18n.py:54
 msgid "_Undo"
