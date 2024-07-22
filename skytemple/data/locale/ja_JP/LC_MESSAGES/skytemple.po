@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-22 07:16\n"
+"PO-Revision-Date: 2024-07-22 08:32\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -3946,7 +3946,7 @@ msgstr "利用可能"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:36
 msgid "Static"
-msgstr "せいでんき"
+msgstr "静的"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:37
 msgid "Block"
@@ -4286,7 +4286,7 @@ msgstr "ゲームを停止しました。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1388
 msgid "The game is paused."
-msgstr "ゲームを一時停止しました。"
+msgstr "ゲームを一時停止中。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1493
 #, python-brace-format
@@ -4388,11 +4388,11 @@ msgstr "ブレークを無効化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
-msgstr "再開"
+msgstr "再開。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:45
 msgid "Resume"
-msgstr ""
+msgstr "再開"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:60
 msgid "Step over the current instruction."
@@ -4519,7 +4519,7 @@ msgstr "ダンジョンの初期値"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:61
 msgid "World Map"
-msgstr "ワールドマップ"
+msgstr "ふしぎなちず"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:62
 msgid "Specific"
@@ -4870,12 +4870,12 @@ msgstr "ダンジョン"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1888
 msgid "Ground"
-msgstr "じめん"
+msgstr "グラウンド"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1920
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3152
 msgid "Script Debug"
-msgstr ""
+msgstr "スクリプトデバッグ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1936
 msgid "Script Supervision"
@@ -5002,7 +5002,7 @@ msgstr "リロード"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2422
 msgid "Allocated Memory"
-msgstr "割り当て済みメモリ"
+msgstr "割り当てメモリ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2437
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2457
@@ -5018,7 +5018,8 @@ msgid "Welcome to \n"
 msgstr "SkyTemple\n"
 "Script Engine Debugger\n"
 "へようこそ。\n\n"
-" ファイルからゲームのROMファイルを\n"
+"「ファイル」メニューから\n"
+"ゲームのROMファイルを\n"
 "ロードしてください。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2558
@@ -5027,7 +5028,7 @@ msgstr "Script Engineは現在実行されていません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Run the game from the start or stop the emulator."
-msgstr ""
+msgstr "ゲームを最初から実行するか、エミュレーターを停止します。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2718
 msgid "Pause the emulator."
@@ -5933,11 +5934,11 @@ msgstr "タ"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:383
 msgid "Show Item Info"
-msgstr "アイテム情報を表示"
+msgstr "道具情報を表示"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:384
 msgid "I"
-msgstr "ア"
+msgstr "道"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:399
 msgid "Show Pokémon Info"
@@ -5949,11 +5950,11 @@ msgstr "ポ"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:415
 msgid "Show Trap Info"
-msgstr "トラップ情報を表示"
+msgstr "罠情報を表示"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:416
 msgid "Tr"
-msgstr "ト"
+msgstr "罠"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:441
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2986
@@ -5997,7 +5998,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:644
 msgid "Add new tile"
-msgstr ""
+msgstr "新しいタイルを追加"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:703
 msgid "<b>Entity ID</b>\n\n"
@@ -6022,7 +6023,7 @@ msgstr "エンティティ:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:848
 msgid "Add new entity"
-msgstr "新規エンティティ追加"
+msgstr "新しいエンティティを追加"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:857
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:931
@@ -6102,7 +6103,7 @@ msgstr "一般"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1285
 msgid "Overrides"
-msgstr ""
+msgstr "上書き"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1344
 msgid "Dimensions"
@@ -6118,11 +6119,11 @@ msgstr "BGM:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1633
 msgid "Moves allowed:"
-msgstr ""
+msgstr "技の使用を許可:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1645
 msgid "Orbs allowed:"
-msgstr ""
+msgstr "ふしぎだまを許可:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1657
 msgid "Fixed Room to load \n"
@@ -6139,41 +6140,43 @@ msgstr "高さ:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1694
 msgid "Allow \"Item Stealing\""
-msgstr ""
+msgstr "泥棒の許可"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1706
 msgid "Allow warp effects:"
-msgstr ""
+msgstr "ワープ効果を許可:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1718
 msgid "Allow certain traps:"
-msgstr ""
+msgstr "特定の罠を許可:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1730
 msgid "Darkness disabled:"
-msgstr ""
+msgstr "フロアを明るくする:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1742
 msgid "Exit floor when defeating all enemies:"
-msgstr ""
+msgstr "敵を全員倒すと次のフロアへ進む:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1754
 msgid "Is Whole Floor: "
-msgstr ""
+msgstr "フロア全体: "
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1766
 msgid "Is Boss Fight: "
-msgstr ""
+msgstr "ボス戦: "
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1778
 msgid "Is Free Layout: "
-msgstr ""
+msgstr "フリーレイアウト: "
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1790
 msgid "PLEASE NOTE: \n"
 "The game has some hardcoded checks for those settings when the patch \"ChangeFixedFloorProperties\" is not applied.\n"
 "Please check the help for each setting for more information."
-msgstr ""
+msgstr "注意: \n"
+"パッチ \"ChangeFixedFloorProperties\" が適用されていない場合、ゲームはこれらの設定に対していくつかのハードコードされたチェックを行っています。\n"
+"詳しくは各設定のヘルプを確認してください。"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1849
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4371
@@ -6241,7 +6244,7 @@ msgstr "トラップ"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:586
 msgid "Unbreakable?"
-msgstr ""
+msgstr "壊れない？"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:599
 msgid "Unk11"
@@ -6273,7 +6276,7 @@ msgstr "不明17"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:704
 msgid "Trap Visible?"
-msgstr ""
+msgstr "可視化された罠？"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:717
 msgid "Unk31"
@@ -6285,7 +6288,7 @@ msgstr "不明32"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:743
 msgid "Secondary Terrain?"
-msgstr ""
+msgstr "二次地形？"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:756
 msgid "Unk34"
@@ -6314,7 +6317,7 @@ msgstr "タイル"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:866
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:961
 #: skytemple/skytemple/data/widget/monster/level_up.ui:380
@@ -6334,7 +6337,7 @@ msgstr "HP"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1117
 msgid "Exp. Yield"
-msgstr "けいけんち"
+msgstr "基礎経験値"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1131
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:598
@@ -6366,7 +6369,7 @@ msgstr "ポケモンのステータス"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1232
 msgid "Spawn Lists"
-msgstr ""
+msgstr "スポーンリスト"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:43
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:14
@@ -6423,11 +6426,11 @@ msgstr "カテゴリー:"
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1834
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1988
 msgid "Chance"
-msgstr "チャンス"
+msgstr "確率"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:399
 msgid "Export Dungeon Floor"
-msgstr ""
+msgstr "ダンジョンフロアをエクスポート"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:596
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3280
@@ -6590,19 +6593,19 @@ msgstr "構造体タイプ:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1614
 msgid "Floor connectivity:"
-msgstr ""
+msgstr "フロアの接続性:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1626
 msgid "Extra Hallway density:"
-msgstr ""
+msgstr "追加の通路密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1714
 msgid "Room Density:"
-msgstr ""
+msgstr "部屋の密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1726
 msgid "Dead Ends?:"
-msgstr ""
+msgstr "行き止まり:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1807
 msgid "Structure"
@@ -6610,31 +6613,31 @@ msgstr "構造体"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1841
 msgid "Secondary T. enabled?:"
-msgstr ""
+msgstr "二次地形を有効:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1853
 msgid "Secondary Terrain:"
-msgstr ""
+msgstr "二次地形:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1865
 msgid "Secondary T. density:"
-msgstr ""
+msgstr "二次地形の密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1877
 msgid "Imperfect rooms?:"
-msgstr ""
+msgstr "不完全な部屋を生成:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1945
 msgid "Darkness Level:"
-msgstr ""
+msgstr "フロアの暗さレベル:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1957
 msgid "Weather:"
-msgstr "天気:"
+msgstr "天候:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2003
 msgid "(no. of rooms)"
-msgstr ""
+msgstr "(部屋数)"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2023
 msgid "Terrain Settings"
@@ -6642,55 +6645,55 @@ msgstr "地形設定"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2058
 msgid "Floor item density:"
-msgstr ""
+msgstr "道具の密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2070
 msgid "Buried item density:"
-msgstr ""
+msgstr "壁に埋まった道具の密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2082
 msgid "Trap density:"
-msgstr ""
+msgstr "罠の密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2094
 msgid "Max coin amount:"
-msgstr ""
+msgstr "最大ポケ数:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2106
 msgid "Initial enemy density:"
-msgstr ""
+msgstr "敵の初期密度:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2275
 msgid "Items, Traps & Enemies"
-msgstr ""
+msgstr "道具・罠・敵"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2332
 msgid "Kecleon Shop:"
-msgstr ""
+msgstr "カクレオンの店:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2344
 msgid "Hidden Stairs:"
-msgstr ""
+msgstr "ひみつのかいだん:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2356
 msgid "Monster House:"
-msgstr ""
+msgstr "モンスターハウス:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2368
 msgid "Empty Monster House:"
-msgstr ""
+msgstr "空のモンスターハウス:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2380
 msgid "Unused:"
-msgstr ""
+msgstr "未使用:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2392
 msgid "Sticky Items:"
-msgstr ""
+msgstr "ネバついた道具:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2592
 msgid "Chances"
-msgstr "チャンス"
+msgstr "確率"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2627
 msgid "Unknown E:"
@@ -6710,15 +6713,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2675
 msgid "Hidden Stairs Type:"
-msgstr ""
+msgstr "ひみつのかいだんの種類:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2687
 msgid "Floor Rank:"
-msgstr ""
+msgstr "フロアランク:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2699
 msgid "No Missions: "
-msgstr ""
+msgstr "依頼なし: "
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2903
 msgid "IQ and Misc."
@@ -6771,7 +6774,7 @@ msgstr "ヘルプ"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3522
 msgid "Kecleon Level "
-msgstr ""
+msgstr "カクレオンのレベル "
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3689
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3884
@@ -6834,19 +6837,19 @@ msgstr "ショップ"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5434
 msgid "Monster House"
-msgstr ""
+msgstr "モンスターハウス"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5464
 msgid "Buried"
-msgstr ""
+msgstr "壁内"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5494
 msgid "Grab Bag"
-msgstr ""
+msgstr "福袋"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5524
 msgid "Secret Room"
-msgstr ""
+msgstr "ひみつのへや"
 
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:72
 msgid "This dungeon is currently invalid. \n"
@@ -6869,18 +6872,18 @@ msgstr "ダンジョン"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:69
 msgid "This section lets you edit the layouts of dungeons in the game."
-msgstr ""
+msgstr "このセクションでは、ゲーム内のダンジョンのレイアウトを編集できます。"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:87
 #: skytemple/skytemple/data/widget/dungeon/main.ui:158
 #: skytemple/skytemple/module/dungeon/widget/main.py:150
 #: skytemple/skytemple/module/dungeon/widget/main.py:159
 msgid "Fix Dungeon Errors"
-msgstr ""
+msgstr "ダンジョンエラーを修正"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:105
 msgid "Edit Groups"
-msgstr ""
+msgstr "グループの編集"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:235
 msgid "Fix"
@@ -7490,11 +7493,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:301
 msgid "Palette: "
-msgstr ""
+msgstr "パレット: "
 
 #: skytemple/skytemple/data/widget/gfxcrunch/gfxcrunch.ui:6
 msgid "gfxcrunch"
-msgstr ""
+msgstr "gfxcrunch"
 
 #: skytemple/skytemple/data/widget/gfxcrunch/gfxcrunch.ui:83
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
@@ -7534,25 +7537,25 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/animations.ui:347
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
 msgid "Unk 1"
-msgstr ""
+msgstr "不明 1"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:361
 msgid "Unk 2"
-msgstr ""
+msgstr "不明 2"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:375
 #: skytemple/skytemple/data/widget/lists/animations.ui:749
 #: skytemple/skytemple/data/widget/lists/animations.ui:993
 msgid "SFX"
-msgstr ""
+msgstr "SFX"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:389
 msgid "Unk 3"
-msgstr ""
+msgstr "不明 3"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:403
 msgid "Unk 4"
-msgstr ""
+msgstr "不明 4"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:416
 #: skytemple/skytemple/data/widget/lists/animations.ui:733
@@ -7562,51 +7565,51 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:432
 msgid "Unk 5"
-msgstr ""
+msgstr "不明 5"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:445
 msgid "Loop"
-msgstr ""
+msgstr "ループ"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:583
 msgid "Anim 1 ID"
-msgstr ""
+msgstr "アニメ 1 ID"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:597
 msgid "Anim 2 ID"
-msgstr ""
+msgstr "アニメ 2 ID"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:611
 msgid "Anim 3 ID"
-msgstr ""
+msgstr "アニメ 3 ID"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:625
 msgid "Anim 4 ID"
-msgstr ""
+msgstr "アニメ 4 ID"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:639
 msgid "Dir"
-msgstr ""
+msgstr "向き"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:653
 msgid "Flag 1"
-msgstr ""
+msgstr "フラグ 1"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:666
 msgid "Flag 2"
-msgstr ""
+msgstr "フラグ 2"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:679
 msgid "Flag 3"
-msgstr ""
+msgstr "フラグ 3"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:692
 msgid "Flag 4"
-msgstr ""
+msgstr "フラグ 4"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:705
 msgid "Speed"
-msgstr ""
+msgstr "速度"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:719
 #: skytemple/skytemple/data/widget/lists/animations.ui:963
@@ -7631,15 +7634,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1114
 msgid "Anim ID"
-msgstr ""
+msgstr "アニメ ID"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1171
 msgid "Use Anim ID"
-msgstr ""
+msgstr "使用アニメ ID"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1185
 msgid "Throw Anim ID"
-msgstr ""
+msgstr "投擲アニメ ID"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:72
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:149
@@ -7660,7 +7663,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:189
 msgid "Dungeon: "
-msgstr ""
+msgstr "ダンジョン: "
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:251
 msgid "Interruptions: "
@@ -7668,15 +7671,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:308
 msgid "Game Variable"
-msgstr ""
+msgstr "ゲーム変数"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:324
 msgid "Param 1"
-msgstr ""
+msgstr "値 1"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:338
 msgid "Param 2"
-msgstr ""
+msgstr "値 2"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:352
 msgid "Continue Music"
@@ -7685,7 +7688,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:79
 #: skytemple/skytemple/module/lists/module.py:228
 msgid "Dungeon Music"
-msgstr ""
+msgstr "ダンジョンBGM"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:95
 msgid "Here you can edit the tracks selectable for dungeon floors. The tracks can either be assigned to single music tracks or to sets of four random tracks."
@@ -7722,19 +7725,19 @@ msgstr "ランダムBGM"
 #: skytemple/skytemple/data/widget/lists/iq.ui:128
 #: skytemple/skytemple/data/widget/lists/iq.ui:155
 msgid "IQ Gain"
-msgstr ""
+msgstr "かしこさ上昇量"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:196
 msgid "Belly Heal"
-msgstr ""
+msgstr "おなか回復量"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:249
 msgid "IQ Points"
-msgstr ""
+msgstr "かしこさ値"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:264
 msgid "Restriction Group"
-msgstr ""
+msgstr "制限グループ"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:291
 msgid "If 9999 IQ Points are required, the skill is unused.\n"
@@ -7747,27 +7750,29 @@ msgstr "必要なかしこさ値が「9999」の場合、未使用のかしこ�
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:313
 msgid "IQ Skills"
-msgstr ""
+msgstr "かしこさ"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:338
 msgid "Min. IQ required by enemies to learn \n"
 "Exclusive Move-User:"
-msgstr ""
+msgstr "敵が「わざだけつかう」を\n"
+"習得するようになるかしこさ値:"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:352
 msgid "Min. IQ required by enemies to learn \n"
 "Item Master:"
-msgstr ""
+msgstr "敵が「どうぐマスター」を\n"
+"習得するようになるかしこさ値:"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:366
 msgid "Intimidator activation chance (%):"
-msgstr ""
+msgstr "「いあつかん」の発動率 (%):"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:419
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:33
 #: skytemple/skytemple/module/lists/module.py:278
 msgid "Misc. Settings"
-msgstr ""
+msgstr "その他の設定"
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:54
 msgid "Menu Lists"
@@ -7785,99 +7790,101 @@ msgstr "言語: "
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:159
 msgid "Name ID"
-msgstr ""
+msgstr "名前ID"
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:174
 msgid "Name String"
-msgstr ""
+msgstr "名前"
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:188
 msgid "Description ID"
-msgstr ""
+msgstr "説明ID"
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:202
 msgid "Description String"
-msgstr ""
+msgstr "説明文"
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:216
 msgid "Action"
-msgstr ""
+msgstr "動作"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:70
 msgid "General:"
-msgstr ""
+msgstr "全般:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:88
 msgid "Dungeon:"
-msgstr ""
+msgstr "ダンジョン:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:106
 msgid "Conditions:"
-msgstr ""
+msgstr "状態:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:249
 msgid "Items:"
-msgstr ""
+msgstr "道具:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:310
 msgid "Text Speed (debug mode uses 4):"
-msgstr ""
+msgstr "テキスト速度 (デバッグモードでは4を使用)"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:322
 msgid "Normal spawn delay (turns):"
-msgstr ""
+msgstr "通常のスポーン間隔 (ターン):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:334
 msgid "Spawn delay (turns) after stealing \n"
 "from shop:"
-msgstr ""
+msgstr "泥棒時のスポーン間隔 (ターン):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:348
 msgid "Main menu music track:"
-msgstr ""
+msgstr "トップメニューBGM:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:360
 msgid "Belly points lost when \n"
 "walking through walls, per turn:"
-msgstr ""
+msgstr "壁を通り抜けた時に消費するおなか値:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:374
 msgid "Burn damage delay (turns):"
-msgstr ""
+msgstr "やけど状態でダメージを受ける間隔 (ターン):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:387
 msgid "Poison damage delay (turns):"
-msgstr ""
+msgstr "どく状態でダメージを受ける間隔 (ターン):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:400
 msgid "Bad poison damage delay (turns):"
-msgstr ""
+msgstr "もうどく状態でダメージを受ける間隔 (ターン):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:413
 msgid "Belly points lost, per turn:"
-msgstr ""
+msgstr "1ターン毎に消費するおなか値:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:426
 msgid "1/1000 belly points lost when \n"
 "walking through walls, per turn:"
-msgstr ""
+msgstr "壁を通り抜けた時に消費するおなか値を\n"
+"1ターンにつき1/1000にする:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:440
 msgid "Chance of Ginseng increasing \n"
 "a move's power by 3 (%):"
-msgstr ""
+msgstr "カテキンを飲んだ時に\n"
+"修正値が3増加する確率 (%):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:454
 msgid "Life Seed Max HP increase:"
-msgstr ""
+msgstr "いのちのタネの最大HP増加量:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:467
 msgid "Oran Berry HP heal amount:"
-msgstr ""
+msgstr "オレンのみのHP回復量:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:480
 msgid "Sitrus Berry HP heal amount:"
-msgstr ""
+msgstr "オボンのみのHP回復量:"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:59
 #: skytemple/skytemple/module/lists/module.py:188
@@ -7886,29 +7893,30 @@ msgstr "探検隊ランク"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:102
 msgid "Points for next Rank"
-msgstr ""
+msgstr "次のランクに必要なポイント"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:116
 msgid "Storage Capacity"
-msgstr ""
+msgstr "倉庫の容量"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:130
 msgid "Item Reward"
-msgstr ""
+msgstr "報酬"
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:35
 #: skytemple/skytemple/module/lists/module.py:258
 msgid "Tactics"
-msgstr ""
+msgstr "作戦"
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:51
 msgid "These are the levels at which tactics are unlocked."
-msgstr ""
+msgstr "作戦が解禁されるレベル。"
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:128
 msgid "-1 means unlocked by default.\n"
 "999 means unused."
-msgstr ""
+msgstr "-1は最初から解禁されていることを意味します。\n"
+"999は未使用を意味します。"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:75
 msgid "Map:"
@@ -7916,29 +7924,30 @@ msgstr "マップ:"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:107
 msgid "Reference / Use another marker"
-msgstr ""
+msgstr "参照/別のマーカーを使用"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:133
 msgid "Select the position on the map"
-msgstr ""
+msgstr "地図上の位置を選択"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:168
 msgid "Please don't select a marker that already references another marker.\n"
 "The behavior for this is undefined."
-msgstr ""
+msgstr "既に別のマーカーを参照しているマーカーを選択しないでください。\n"
+"この場合の動作は定義されません。"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:281
 #: skytemple/skytemple/module/lists/module.py:178
 msgid "World Map Markers"
-msgstr ""
+msgstr "マップマーカー"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:343
 msgid "Edit Map Background"
-msgstr ""
+msgstr "マップ背景を編集"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:364
 msgid "Preview"
-msgstr ""
+msgstr "プレビュー"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:417
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4362
@@ -7948,7 +7957,7 @@ msgstr "マップ"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:429
 msgid "Position"
-msgstr ""
+msgstr "位置"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:484
 msgid "Edit Selected"
@@ -7956,11 +7965,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:92
 msgid "Hide Other Layers"
-msgstr ""
+msgstr "他のレイヤーを非表示"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:93
 msgid "Hide Other"
-msgstr ""
+msgstr "その他を非表示"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:117
 msgid "Draw filled rectangles when holding down the left mouse button"
@@ -13304,7 +13313,7 @@ msgstr "(すべて)"
 
 #: skytemple/skytemple/module/strings/widget/strings.py:108
 msgid "String"
-msgstr ""
+msgstr "文字列"
 
 #: skytemple/skytemple/module/strings/widget/strings.py:146
 msgid "Import is done from a CSV file with the following specifications:\n"
@@ -13314,7 +13323,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:152
 msgid "Import strings from..."
-msgstr ""
+msgstr "文字列をインポート..."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:174
 msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}."
@@ -13322,7 +13331,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:182
 msgid "Error importing the strings."
-msgstr ""
+msgstr "文字列のインポートに失敗しました。"
 
 #: skytemple/skytemple/module/strings/widget/strings.py:192
 msgid "Export is done to a CSV file with the following specifications:\n"
@@ -13332,7 +13341,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:198
 msgid "Export strings as..."
-msgstr ""
+msgstr "文字列をエクスポート..."
 
 #: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:153
 msgid "The value could not be saved: "
@@ -13390,7 +13399,7 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 msgstr "<span size=\"large\">SkyTemple へようこそ！</span>\n\n"
 "このツールでは、「ポケモン不思議のダンジョン 空の探検隊」のROMに含まれる様々な要素を編集できます。\n\n"
 "このアプリの使用方法についての詳細は、<a href=\"wiki\">SkyTemple wiki</a>でご確認いただけます。\n"
-"また、アプリのトップにある \"?\" アイコンから、現在のセクションに関するWikiページにアクセスできます。"
+"また、アプリの上部にある \"?\" アイコンから、現在のセクションに関するWikiページにアクセスできます。"
 
 #: skytemple/skytemple/skytemple.glade:103
 msgid "Can we add a \"Created with SkyTemple\" message\n"
