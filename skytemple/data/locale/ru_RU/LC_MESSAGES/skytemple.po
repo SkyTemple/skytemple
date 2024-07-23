@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-23 22:29\n"
+"PO-Revision-Date: 2024-07-23 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -9362,43 +9362,45 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:250
 msgid "A compatibility issue was detected while loading one or more patches."
-msgstr ""
+msgstr "При загрузке одного или нескольких патчей была обнаружена проблема совместимости."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:263
 msgid "A compatibility issue was detected while applying this patch. \n"
 "But it was still applied successfully."
-msgstr ""
+msgstr "При применении этого патча была обнаружена проблема совместимости. \n"
+"Но он все равно был успешно применен."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:277
 msgid "One or more patches failed to be loaded."
-msgstr ""
+msgstr "Не удалось загрузить один или несколько патчей."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:290
 msgid "There was an error while applying the patch."
-msgstr ""
+msgstr "Произошла ошибка при применении патча."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:303
 msgid "This patch will stop working in a future version of SkyTemple, \n"
 "unless the author updates the patch."
-msgstr ""
+msgstr "Этот патч перестанет работать в будущей версии SkyTemple, \n"
+"если автор не обновит патч."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:324
 msgid "Details:"
-msgstr ""
+msgstr "Подробности:"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:403
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:416
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:384
 #: skytemple/skytemple/data/widget/symbols/main.ui:314
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:432
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: skytemple/skytemple/data/widget/patch/cot.ui:25
 msgid "c-of-time & Rust of Darkness"
@@ -9778,48 +9780,48 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:835
 #: skytemple/skytemple/data/widget/script/ssa.ui:1189
 msgid "Scene"
-msgstr ""
+msgstr "Сцена"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:879
 #: skytemple/skytemple/data/widget/script/ssa.ui:1004
 #: skytemple/skytemple/data/widget/script/ssa.ui:1128
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:893
 #: skytemple/skytemple/data/widget/script/ssa.ui:1018
 #: skytemple/skytemple/data/widget/script/ssa.ui:1142
 msgid "Remove"
-msgstr ""
+msgstr "Удалить"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:933
 msgid "Events"
-msgstr ""
+msgstr "События"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:1048
 msgid "Sectors (Layers)"
-msgstr ""
+msgstr "Секторы (слои)"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:1104
 msgid "Edit Script"
-msgstr ""
+msgstr "Редактировать сценарий"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:1240
 msgid "Scenes for this map"
-msgstr ""
+msgstr "Сцены для этой карты"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:1778
 #: skytemple/skytemple/data/widget/script/ssa.ui:1930
 #: skytemple/skytemple/module/script/widget/ssa.py:1656
 #: skytemple/skytemple/module/script/widget/ssa.py:1664
 msgid "Talk Script"
-msgstr ""
+msgstr "Сценарий разговора"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:1791
 #: skytemple/skytemple/data/widget/script/ssa.ui:1943
 #: skytemple/skytemple/data/widget/script/ssa.ui:2187
 msgid "Direction"
-msgstr ""
+msgstr "Направление"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:2023
 #: skytemple/skytemple/data/widget/script/ssa.ui:2212
@@ -9841,7 +9843,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:2307
 msgid "Event"
-msgstr ""
+msgstr "Событие"
 
 #: skytemple/skytemple/data/widget/script/ssb.ui:59
 msgid "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
@@ -9904,7 +9906,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:560
 msgid "Add new Sprite"
-msgstr ""
+msgstr "Добавить новый спрайт"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:574
 msgid "Use a ZIP archive instead of a folder."
@@ -9912,7 +9914,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:597
 msgid "-- or --"
-msgstr ""
+msgstr "-- или --"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:645
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
@@ -9979,7 +9981,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:438
 msgid "Server URL:"
-msgstr ""
+msgstr "URL сервера:"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:449
 msgid "Frontend URL:"
@@ -9987,7 +9989,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:481
 msgid "(optional)"
-msgstr ""
+msgstr "(необязательно)"
 
 #: skytemple/skytemple/data/widget/strings/strings.ui:44
 msgid "<LANG> Text Strings"
@@ -9995,7 +9997,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/strings/strings.ui:72
 msgid "Categories:"
-msgstr ""
+msgstr "Категории:"
 
 #: skytemple/skytemple/data/widget/strings/strings.ui:99
 msgid "column"
@@ -10005,7 +10007,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/symbols/main.ui:163
 #: skytemple/skytemple/module/symbols/module.py:58
 msgid "Symbols"
-msgstr ""
+msgstr "Символы"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:79
 #: skytemple/skytemple/data/widget/symbols/main.ui:179
@@ -10117,35 +10119,40 @@ msgstr ""
 msgid "We are very sorry you ran into an issue while using SkyTemple!\n"
 "We already collected some error information and will have a look at it. \n"
 "You can help us fix this issue by providing some additional information below."
-msgstr ""
+msgstr "Нам очень жаль, что вы столкнулись с проблемой при использовании SkyTemple!\n"
+"Мы уже собрали информацию об ошибке и рассмотрим ее. \n"
+"Вы можете помочь нам решить эту проблему, предоставив дополнительную информацию ниже."
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:54
 msgid "Send"
-msgstr ""
+msgstr "Отправить"
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:93
 msgid "Your name\n"
 "<small><i>eg. your Discord username, email address, etc.</i></small>"
-msgstr ""
+msgstr "Ваше имя\n"
+"<small><i>например, ваше имя пользователя в Discord, адрес электронной почты и т. д.</i></small>"
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:134
 msgid "Your comments\n"
 "<small><i>What were you trying to do when this error happened? \n"
 "What else can you tell us that might help fixing the issue?</i></small>"
-msgstr ""
+msgstr "Ваши комментарии\n"
+"<small><i>Что вы делали когда произошла ошибка?\n"
+"Что ещё вы можете сказать, что может помочь нам решить проблему?</i></small>"
 
 #: skytemple/skytemple/main.py:201
 msgid "PyGObject compiled without Cairo support. Can't start!"
-msgstr ""
+msgstr "PyGObject скомпилирован без поддержки Cairo. Невозможно запустить!"
 
 #: skytemple/skytemple/module/bgp/module.py:41
 #: skytemple/skytemple/module/dungeon_graphics/module.py:73
 msgid "Backgrounds"
-msgstr ""
+msgstr "Фоны"
 
 #: skytemple/skytemple/module/bgp/module.py:42
 msgid "This section lets you edit static backgrounds used in various places of the game."
-msgstr ""
+msgstr "Этот раздел позволяет вам редактировать статичные фоны, используемые в различных местах в игре."
 
 #: skytemple/skytemple/module/bgp/widget/bgp.py:36
 msgid "- The image is a 256-color indexed PNG.\n"
@@ -10159,7 +10166,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/bgp/widget/bgp.py:120
 msgid "Error importing the image."
-msgstr ""
+msgstr "Ошибка при импорте изображения."
 
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:455
 #: skytemple/skytemple/module/dungeon/module.py:899
@@ -10168,7 +10175,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:136
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:142
 msgid "(Special?)"
-msgstr ""
+msgstr "(Особое?)"
 
 #: skytemple/skytemple/module/dungeon/module.py:130
 msgid "Dojo Dungeons are the dungeons used in the Marowak Dojo.\n"
@@ -10192,16 +10199,16 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/module.py:541
 msgid "Some dungeons were missing in the new group list. This is a bug."
-msgstr ""
+msgstr "Некоторые подземелья отсутствует в новом списке групп. Это баг."
 
 #: skytemple/skytemple/module/dungeon/module.py:571
 #, python-brace-format
 msgid "\"{dname}\" Group"
-msgstr ""
+msgstr "Группа \"{dname}\""
 
 #: skytemple/skytemple/module/dungeon/module.py:578
 msgid "Floor {floor_i + 1}"
-msgstr ""
+msgstr "Этаж {floor_i + 1}"
 
 #: skytemple/skytemple/module/dungeon/module.py:885
 msgid "Secondary"
@@ -10233,12 +10240,12 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:114
 #, python-brace-format
 msgid "This dungeon has {floor_count} floors.{edit_text}"
-msgstr ""
+msgstr "Это подземелье имеет {floor_count} этажей.{edit_text}"
 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:198
 #, python-brace-format
 msgid "This dungeon currently has {current_floor_count} floors."
-msgstr ""
+msgstr "В настоящее время это подземелье имеет {current_floor_count} этажей."
 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:439
 msgid "Chance of setting the random movement flag on an enemy when spawning it.\n"
@@ -10340,63 +10347,63 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:148
 msgid "E Rank"
-msgstr ""
+msgstr "Ранг E"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:149
 msgid "D Rank"
-msgstr ""
+msgstr "Ранг D"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:150
 msgid "C Rank"
-msgstr ""
+msgstr "Ранг C"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:151
 msgid "B Rank"
-msgstr ""
+msgstr "Ранг B"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:152
 msgid "A Rank"
-msgstr ""
+msgstr "Ранг A"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:153
 msgid "S Rank"
-msgstr ""
+msgstr "Ранг S"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:154
 msgid "★1 Rank"
-msgstr ""
+msgstr "Ранг ★1"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:155
 msgid "★2 Rank"
-msgstr ""
+msgstr "Ранг ★2"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:156
 msgid "★3 Rank"
-msgstr ""
+msgstr "Ранг ★3"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:157
 msgid "★4 Rank"
-msgstr ""
+msgstr "Ранг ★4"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:158
 msgid "★5 Rank"
-msgstr ""
+msgstr "Ранг ★5"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:159
 msgid "★6 Rank"
-msgstr ""
+msgstr "Ранг ★6"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:160
 msgid "★7 Rank"
-msgstr ""
+msgstr "Ранг ★7"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:161
 msgid "★8 Rank"
-msgstr ""
+msgstr "Ранг ★8"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:162
 msgid "★9 Rank"
-msgstr ""
+msgstr "Ранг ★9"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:542
 msgid "This attribute is the base rank of this floor. \n"
@@ -11496,7 +11503,8 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/widget/bg.py:897
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
-msgstr ""
+msgstr "У этой карты нет слоя данных.\n"
+"Вы можете добавить слой данных в меню Карта > Настройки."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:1046
 msgid "Map backgrounds can be used as primary or secondary.\n"
@@ -11508,11 +11516,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:1048
 msgid "Background Palettes"
-msgstr ""
+msgstr "Палитры фона"
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:57
 msgid "Create Background"
-msgstr ""
+msgstr "Создать фон"
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:57
 msgid "Map Background Name"
@@ -13104,11 +13112,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/module.py:157
 msgid "Could not apply the sprites, since no sprite data is available."
-msgstr ""
+msgstr "Не удалось применить спрайты, так как данные спрайта недоступны."
 
 #: skytemple/skytemple/module/spritecollab/module.py:164
 msgid "This Pokémon does not support portraits and/or sprites."
-msgstr ""
+msgstr "Этот покемон не может иметь портреты и/или спрайты."
 
 #: skytemple/skytemple/module/spritecollab/module.py:183
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
@@ -13151,11 +13159,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:425
 msgid "Failed loading this Pokémon."
-msgstr ""
+msgstr "Не удалось загрузить этого покемона."
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:426
 msgid "Error Loading Pokémon"
-msgstr ""
+msgstr "Ошибка загрузки покемона"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:443
 msgid "Normal"
