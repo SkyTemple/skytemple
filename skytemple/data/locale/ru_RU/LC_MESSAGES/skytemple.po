@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-22 19:49\n"
+"PO-Revision-Date: 2024-07-23 08:19\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -7791,42 +7791,45 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:348
 msgid "Main menu music track:"
-msgstr ""
+msgstr "Музыка главного меню:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:360
 msgid "Belly points lost when \n"
 "walking through walls, per turn:"
-msgstr ""
+msgstr "Сытость, теряемая при \n"
+"прохождении сквозь стены каждый ход:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:374
 msgid "Burn damage delay (turns):"
-msgstr ""
+msgstr "Задержка урона от ожога (ходов):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:387
 msgid "Poison damage delay (turns):"
-msgstr ""
+msgstr "Задержка урона от яда (ходов):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:400
 msgid "Bad poison damage delay (turns):"
-msgstr ""
+msgstr "Задержка урона от тяжёлого отравления (ходов):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:413
 msgid "Belly points lost, per turn:"
-msgstr ""
+msgstr "Потеря сытости каждый ход:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:426
 msgid "1/1000 belly points lost when \n"
 "walking through walls, per turn:"
-msgstr ""
+msgstr "1/1000 сытости, теряемая при \n"
+"прохождении сквозь стены каждый ход:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:440
 msgid "Chance of Ginseng increasing \n"
 "a move's power by 3 (%):"
-msgstr ""
+msgstr "Шанс увеличения Женьшенем \n"
+"силы приема на 3 (%):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:454
 msgid "Life Seed Max HP increase:"
-msgstr ""
+msgstr "Увеличение Зерном Жизни максимального ОЗ:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:467
 msgid "Oran Berry HP heal amount:"
@@ -7839,37 +7842,38 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:59
 #: skytemple/skytemple/module/lists/module.py:188
 msgid "Rank List"
-msgstr ""
+msgstr "Лист рангов"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:102
 msgid "Points for next Rank"
-msgstr ""
+msgstr "Очков до следующего ранга"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:116
 msgid "Storage Capacity"
-msgstr ""
+msgstr "Вместимость хранилища"
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:130
 msgid "Item Reward"
-msgstr ""
+msgstr "Предмет в награду"
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:35
 #: skytemple/skytemple/module/lists/module.py:258
 msgid "Tactics"
-msgstr ""
+msgstr "Тактики"
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:51
 msgid "These are the levels at which tactics are unlocked."
-msgstr ""
+msgstr "Это уровни, при которых разблокируются тактики."
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:128
 msgid "-1 means unlocked by default.\n"
 "999 means unused."
-msgstr ""
+msgstr "-1 - разблокировано по умолчанию. \n"
+"999 - не используется."
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:75
 msgid "Map:"
-msgstr ""
+msgstr "Карта:"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:107
 msgid "Reference / Use another marker"
@@ -7877,17 +7881,18 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:133
 msgid "Select the position on the map"
-msgstr ""
+msgstr "Выберите местоположение на карте"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:168
 msgid "Please don't select a marker that already references another marker.\n"
 "The behavior for this is undefined."
-msgstr ""
+msgstr "Не выбирайте метку, ссылающийся на другую метку.\n"
+"Поведение игры при этом не определено."
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:281
 #: skytemple/skytemple/module/lists/module.py:178
 msgid "World Map Markers"
-msgstr ""
+msgstr "Метки на карте мира"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:343
 msgid "Edit Map Background"
