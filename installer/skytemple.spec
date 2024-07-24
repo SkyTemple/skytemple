@@ -2,6 +2,7 @@
 import os
 import sys
 from pathlib import PurePosixPath, Path
+
 from PyInstaller.utils.hooks import collect_entry_point, copy_metadata
 
 pkg_path = os.path.abspath(os.path.join("..", "skytemple"))
@@ -48,9 +49,7 @@ additional_datas = [
         "skytemple_files/_resources",
     ),
     (
-        os.path.join(
-            site_packages, "skytemple_files", "graphics", "chara_wan", "Shadow.png"
-        ),
+        os.path.join(site_packages, "skytemple_files", "graphics", "chara_wan", "Shadow.png"),
         "skytemple_files/graphics/chara_wan",
     ),
     (os.path.join(site_packages, "skytemple_dtef", "template.png"), "skytemple_dtef"),
@@ -70,9 +69,7 @@ for path, directories, filenames in os.walk(os.path.join(pkg_path, "module")):
     for filename in filenames:
         if filename.endswith(".glade"):
             rp = str(PurePosixPath(Path(path.replace(pkg_path + "\\", ""))))
-            additional_datas.append(
-                (os.path.abspath(os.path.join("..", path, filename)), f"skytemple/{rp}")
-            )
+            additional_datas.append((os.path.abspath(os.path.join("..", path, filename)), f"skytemple/{rp}"))
 
 additional_binaries = [
     ("SDL2.dll", "."),
@@ -85,6 +82,9 @@ block_cipher = None
 st_metadatas = copy_metadata("skytemple")
 st_datas, st_hiddenimports = collect_entry_point("skytemple")
 
+options = [
+    ("X utf8", None, "OPTION"),  # force UTF-8 mode on
+]
 
 a = Analysis(
     [os.path.join("..", "skytemple", "main.py")],
@@ -143,7 +143,7 @@ pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 exe = EXE(
     pyz,
     a.scripts,
-    [],
+    options,
     exclude_binaries=True,
     name="skytemple",
     debug=False,
