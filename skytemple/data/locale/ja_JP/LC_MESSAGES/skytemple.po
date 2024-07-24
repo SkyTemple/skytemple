@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-21 21:02+0000\n"
-"PO-Revision-Date: 2024-07-22 10:00\n"
+"PO-Revision-Date: 2024-07-24 03:58\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -931,30 +931,30 @@ msgstr "ダンジョンクリア時のダイアログ文字列"
 #: explorerscript/explorerscript/common_syntax.py:99
 #: explorerscript/explorerscript/common_syntax.py:187
 msgid "Integer not allowed at this position."
-msgstr ""
+msgstr "この位置では整数は使用できません。"
 
 #: explorerscript/explorerscript/common_syntax.py:103
 #: explorerscript/explorerscript/common_syntax.py:189
 msgid "Decimal not allowed at this position."
-msgstr ""
+msgstr "この位置では小数は使用できません。"
 
 #: explorerscript/explorerscript/common_syntax.py:114
 msgid "Constant not allowed at this position."
-msgstr ""
+msgstr "この位置では定数は使用できません。"
 
 #: explorerscript/explorerscript/common_syntax.py:125
 #: explorerscript/explorerscript/common_syntax.py:191
 msgid "Variable or constant not allowed at this position."
-msgstr ""
+msgstr "この位置では変数または定数は使用できません。"
 
 #: explorerscript/explorerscript/common_syntax.py:129
 #: explorerscript/explorerscript/common_syntax.py:194
 msgid "String not allowed at this position."
-msgstr ""
+msgstr "この位置では文字列は使用できません。"
 
 #: explorerscript/explorerscript/common_syntax.py:227
 msgid "Invalid target for routine."
-msgstr ""
+msgstr "ルーチンの対象が無効です。"
 
 #: explorerscript/explorerscript/common_syntax.py:256
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
@@ -5586,7 +5586,7 @@ msgstr "SkyTemple Script Engine Debugger - エラー"
 
 #: skytemple/skytemple/core/ui_utils.py:95
 msgid "GIF image (*.gif)"
-msgstr "GIF 画像 (*.png)"
+msgstr "GIF 画像 (*.gif)"
 
 #: skytemple/skytemple/core/ui_utils.py:111
 msgid "XML document (*.xml)"
