@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-24 17:23+0000\n"
-"PO-Revision-Date: 2024-07-24 17:43\n"
+"PO-Revision-Date: 2024-07-24 21:11\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1242,7 +1242,7 @@ msgstr "インポートが無効です ('{import_file}') 。\n"
 
 #: explorerscript/explorerscript/ssb_script/ssb_converting/compiler/compiler_visitor.py:147
 msgid "Operations in SSBScript cannot contain an inline context."
-msgstr ""
+msgstr "SSBScript の操作にインラインコンテキストを含めることはできません。"
 
 #: explorerscript/explorerscript/syntax_error_listener.py:41
 #, python-brace-format
@@ -1452,7 +1452,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/common/util.py:493
 msgid "The file you tried to open does not seem to be a valid NDS ROM file."
-msgstr ""
+msgstr "このファイルは有効な NDS ROM ファイルではありません。"
 
 #: skytemple-files/skytemple_files/common/util.py:502
 msgid "This ROM is not supported by SkyTemple."
@@ -1559,12 +1559,12 @@ msgstr "WBA"
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:72
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:176
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
-msgstr ""
+msgstr "ARMIPSが見つかりません。'armips' が環境変数の PATH 内にあることを確認してください。"
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:78
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:188
 msgid "ARMIPS reported an error while applying the patch."
-msgstr ""
+msgstr "ARMIPS によるパッチの適用中にエラーが発生しました。"
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:89
 #, python-brace-format
@@ -1577,7 +1577,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:36
 msgid "Always"
-msgstr ""
+msgstr "常時"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:37
 msgid "Flag Not Set"
@@ -2142,19 +2142,19 @@ msgstr "タイルフラグ 0xA は 1 に設定されています (これがど�
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:166
 msgid "F/W, Room; Key Door"
-msgstr ""
+msgstr "床/壁 (部屋) - 鍵ドア"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:172
 msgid "Spawns a locked Key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "ロックされた鍵ドアを生成します。固定フロアIDが 0xA5 未満の場合、これは壁になります。そうでない場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:178
 msgid "F/W, Room; Key Door (Escort)"
-msgstr ""
+msgstr "床/壁 (部屋) - 鍵ドア (護衛)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:184
 msgid "Spawns a locked Key Door (meant to be opened by an escort mission client). If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "ロックされた鍵ドア (護衛中の依頼主が開けるためのもの) を生成します。固定部屋IDが 0xA5 未満の場合、これは壁になります。そうでない場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:208
 msgid "Attendant1 Spawn Floor"
@@ -3108,7 +3108,7 @@ msgstr "立ちアニメーション(1フレーム目)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:90
 msgid "Special"
-msgstr ""
+msgstr "特殊"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:91
 msgid "Walking Animation (1st frame)"
@@ -3165,7 +3165,9 @@ msgstr "指定したソースデータが構成内に存在しません。"
 msgid "\n\n"
 "The list was extracted anyway.\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
-msgstr ""
+msgstr "\n\n"
+"リストを抽出しました。\n"
+"SkyTempleで編集することができますが、パッチを正しく適用するまでゲーム上では使用されません。"
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
@@ -3590,11 +3592,11 @@ msgstr "不明な操作 ({in_op.op_code.name}) です。"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:255
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
-msgstr ""
+msgstr "{normal_op_code.name} のパラメータ数は {normal_op_code.params} 以上でなければなりません。現在のパラメータ数は {self._correct_param_list_len(in_op.params)} です。"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:276
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
-msgstr ""
+msgstr "{op_code.name} のパラメータ数は {op_code.params} である必要があります。現在のパラメータ数は {self._correct_param_list_len(in_op.params)} です。"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:373
 #, python-brace-format
@@ -3612,7 +3614,8 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:169
 msgid "Could not compile script: All languages must have the same amount of strings."
-msgstr ""
+msgstr "スクリプトをコンパイルできませんでした。\n"
+"すべての言語で文字列の数が同じである必要があります。"
 
 #: skytemple-rust/src/image/tiled.rs:232
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
@@ -3649,11 +3652,11 @@ msgstr "このチャンクの新しいタイルマッピングには {} タイ�
 
 #: skytemple-rust/src/st_dbg.rs:123
 msgid "Can not import map background: Width of image must match the expected width: {}px"
-msgstr ""
+msgstr "マップの背景をインポートできません。画像の幅は {}px である必要があります。"
 
 #: skytemple-rust/src/st_dbg.rs:129
 msgid "Can not import map background: Height of image must match the expected height: {}px"
-msgstr ""
+msgstr "マップの背景をインポートできません。画像の高さは {}px である必要があります。"
 
 #: skytemple-rust/src/st_dpc.rs:149
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
