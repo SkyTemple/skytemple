@@ -48,6 +48,7 @@ from skytemple.core.ui_utils import (
     safe_destroy,
 )
 from skytemple.core.widget.sprite import StSprite, StSpriteData
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
@@ -79,7 +80,7 @@ MAX_EGGS = 6
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "monster", "monster.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "monster", "monster.ui"))
 class StMonsterMonsterPage(Gtk.Box):
     __gtype_name__ = "StMonsterMonsterPage"
     module: MonsterModule
@@ -1281,6 +1282,7 @@ class StMonsterMonsterPage(Gtk.Box):
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
+
         # Update inconsistent state for all parents
 
         def mark_inconsistent_recurse(titer: Gtk.TreeIter, force_inconstent=False):
@@ -1306,6 +1308,7 @@ class StMonsterMonsterPage(Gtk.Box):
                 mark_inconsistent_recurse(parent, should_be_inconsistent)
 
         mark_inconsistent_recurse(store.get_iter(path))
+
         # Update state for all children
 
         def mark_active_recurse(titer: Gtk.TreeIter):

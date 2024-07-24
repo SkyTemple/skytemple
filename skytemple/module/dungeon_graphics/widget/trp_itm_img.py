@@ -34,6 +34,8 @@ from skytemple_files.common.util import (
 from skytemple_files.graphics.img_itm.model import ImgItm
 from skytemple_files.graphics.img_trp.model import ImgTrp
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 import os
@@ -48,7 +50,7 @@ IMAGE_ZOOM = 4
 MAX_ENTRIES = 10000
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "trp_itm_img.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "trp_itm_img.ui"))
 class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsTrpItmImgPage"
     module: DungeonGraphicsModule

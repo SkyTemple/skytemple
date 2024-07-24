@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING, cast
 from gi.repository import Gtk
 from skytemple.core.ui_utils import glib_async, assert_not_none, data_dir
 from skytemple.core.string_provider import StringType
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.lists.controller.base import PATTERN_MD_ENTRY
 from skytemple_files.data.anim import (
     SPECIAL_MOVE_DATA_SIZE,
@@ -49,7 +50,7 @@ mapping = {
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "animations.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "animations.ui"))
 class StListsAnimationsPage(Gtk.Stack):
     __gtype_name__ = "StListsAnimationsPage"
     module: ListsModule

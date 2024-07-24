@@ -31,12 +31,14 @@ from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "zmappat.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "misc_graphics", "zmappat.ui"))
 class StMiscGraphicsZMappaTPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsZMappaTPage"
     module: MiscGraphicsModule

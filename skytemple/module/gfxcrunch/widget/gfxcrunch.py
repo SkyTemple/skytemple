@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import logging
 import os
 import subprocess
@@ -22,13 +23,15 @@ import tempfile
 from enum import Enum, auto
 from subprocess import Popen
 from typing import TYPE_CHECKING, cast
-from gi.repository import Gtk, GLib
 
-from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import data_dir, make_builder
-from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
+from gi.repository import Gtk, GLib
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.user_error import make_user_err
+
+from skytemple.controller.main import MainController
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
+from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import make_builder, LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.gfxcrunch.module import GfxcrunchModule
@@ -51,7 +54,7 @@ IMGS = {
 }
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "gfxcrunch", "gfxcrunch.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "gfxcrunch", "gfxcrunch.ui"))
 class StGfxcrunchDialog(Gtk.Dialog):
     __gtype_name__ = "StGfxcrunchDialog"
     module: GfxcrunchModule

@@ -15,19 +15,23 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import re
 from typing import TYPE_CHECKING, cast
+
 from gi.repository import Gtk
-from range_typed_integers import u8, u8_checked, u16_checked, u16
+from range_typed_integers import u8, u8_checked, u16, u16_checked
+from skytemple_files.common.i18n_util import _
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.protocol import Gender
-from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow, data_dir
-from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
-from skytemple_files.common.i18n_util import _
+
+from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow, data_dir, glib_async
+from skytemple.init_locale import LocalePatchedGtkTemplate
+from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
@@ -36,7 +40,7 @@ PATTERN = re.compile(".*\\([#$](\\d+)\\).*")
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "fixed_rooms.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon", "fixed_rooms.ui"))
 class StDungeonFixedRoomsPage(Gtk.Box):
     __gtype_name__ = "StDungeonFixedRoomsPage"
     module: DungeonModule

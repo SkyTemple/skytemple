@@ -24,6 +24,7 @@ from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import data_dir, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import (
     Drawer,
@@ -54,7 +55,7 @@ INFO_IMEXPORT_ENTIRE = _(
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "dungeon_bg.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "dungeon_bg.ui"))
 class StDungeonGraphicsDungeonBgPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsDungeonBgPage"
     module: DungeonGraphicsModule

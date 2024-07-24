@@ -38,6 +38,8 @@ from skytemple_files.common.util import add_extension_if_missing, open_utf8
 from skytemple_files.data.str.model import Str
 from skytemple_files.common.i18n_util import f, _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.strings.module import StringsModule
 ORANGE = "orange"
@@ -47,7 +49,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "strings", "strings.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "strings", "strings.ui"))
 class StStringsStringsPage(Gtk.Box):
     __gtype_name__ = "StStringsStringsPage"
     module: StringsModule

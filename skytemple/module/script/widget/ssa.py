@@ -49,6 +49,7 @@ from skytemple.core.ui_utils import (
     data_dir,
     safe_destroy,
 )
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple.controller.main import MainController as SkyTempleMainController
@@ -103,7 +104,7 @@ def popover_position(x, y, w, h):
     return int(x + w / 2), y - BPC_TILE_DIM
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "ssa.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "script", "ssa.ui"))
 class StScriptSsaPage(Gtk.Box):
     __gtype_name__ = "StScriptSsaPage"
     module: ScriptModule

@@ -29,6 +29,7 @@ from skytemple_files.common.warnings import DeprecatedToBeRemovedWarning
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog, IMG_SAD
 from skytemple.core.ui_utils import open_dir, data_dir, assert_not_none, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.patch.controller.param_dialog import (
     ParamDialogController,
     PatchCanceledError,
@@ -55,7 +56,7 @@ ErrorsTuple = tuple[
 ]
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "patch", "asm.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "patch", "asm.ui"))
 class StPatchAsmPage(Gtk.Box):
     __gtype_name__ = "StPatchAsmPage"
     module: PatchModule

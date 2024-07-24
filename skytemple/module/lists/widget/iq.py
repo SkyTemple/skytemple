@@ -43,6 +43,8 @@ from skytemple_files.common.i18n_util import _
 from skytemple_files.data.md.protocol import IQGroup
 from skytemple_files.hardcoded.iq import HardcodedIq, IqGroupsSkills
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 PATTERN_ITEM_ENTRY = re.compile(".*\\(#(\\d+)\\).*")
@@ -61,7 +63,7 @@ class IqGainOtherItem(Enum):
     JUICE_BAR_NECTAR = auto()
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "iq.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "iq.ui"))
 class StListsIqPage(Gtk.Box):
     __gtype_name__ = "StListsIqPage"
     module: ListsModule

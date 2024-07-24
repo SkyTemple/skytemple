@@ -31,13 +31,15 @@ from skytemple_files.hardcoded.dungeons import (
     TilesetProperties,
 )
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 DUNGEON_GRAPHICS_NAME = _("Dungeon Graphics")
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "main.ui"))
 class StDungeonGraphicsMainPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsMainPage"
     module: DungeonGraphicsModule

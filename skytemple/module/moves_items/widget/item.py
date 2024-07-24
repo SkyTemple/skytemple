@@ -31,6 +31,7 @@ from skytemple_files.data.md.protocol import PokeType
 import os
 
 from skytemple.core.widget.sprite import StSprite, StSpriteData
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 
 class UseType(Enum):
@@ -77,7 +78,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "moves_items", "item.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "moves_items", "item.ui"))
 class StMovesItemsItemPage(Gtk.Box):
     __gtype_name__ = "StMovesItemsItemPage"
     module: MovesItemsModule

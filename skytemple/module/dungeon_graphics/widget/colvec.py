@@ -37,13 +37,15 @@ from skytemple_files.graphics.dpci.protocol import DpciProtocol
 from skytemple_files.graphics.dpl.protocol import DplProtocol
 from skytemple_files.graphics.dpla.protocol import DplaProtocol
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "colvec.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "colvec.ui"))
 class StDungeonGraphicsColvecPage(Gtk.Paned):
     __gtype_name__ = "StDungeonGraphicsColvecPage"
     module: DungeonGraphicsModule

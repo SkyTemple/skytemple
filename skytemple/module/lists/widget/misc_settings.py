@@ -28,6 +28,8 @@ from skytemple_files.hardcoded.main_menu_music import HardcodedMainMenuMusic
 from skytemple_files.hardcoded.spawn_rate import HardcodedSpawnRate
 from skytemple_files.hardcoded.text_speed import HardcodedTextSpeed
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 PATTERN_ITEM_ENTRY = re.compile(".*\\(#(\\d+)\\).*")
@@ -35,7 +37,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "misc_settings.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "misc_settings.ui"))
 class StListsMiscSettingsPage(Gtk.Box):
     __gtype_name__ = "StListsMiscSettingsPage"
     module: ListsModule

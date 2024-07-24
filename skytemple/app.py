@@ -19,14 +19,16 @@ import os
 import sys
 
 from gi.repository import Gtk, Gdk, GLib
+from skytemple_icons import icons
+from skytemple_ssb_debugger.main import get_debugger_data_dir
+
 from skytemple.controller.main import MainController
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
 from skytemple.core.profiling import record_transaction, record_span
 from skytemple.core.settings import SkyTempleSettingsStore
-from skytemple.core.ui_utils import data_dir, builder_get_assert, make_builder
-from skytemple_icons import icons
-from skytemple_ssb_debugger.main import get_debugger_data_dir
+from skytemple.core.ui_utils import data_dir, builder_get_assert
+from skytemple.init_locale import make_builder
 
 
 class SkyTempleApplication(Gtk.Application):

@@ -31,6 +31,7 @@ from skytemple.core.ui_utils import (
     iter_tree_model,
     data_dir,
 )
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import (
     AbstractTileGraphicsProvider,
 )
@@ -48,7 +49,7 @@ if TYPE_CHECKING:
 TILE_DIM = 8
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "tiled_img", "chunk_editor.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "tiled_img", "chunk_editor.ui"))
 class StChunkEditorDialog(Gtk.Dialog):
     __gtype_name__ = "StChunkEditorDialog"
     module: TiledImgModule

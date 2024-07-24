@@ -39,13 +39,15 @@ from skytemple_files.hardcoded.dungeons import HardcodedDungeons
 from skytemple_files.hardcoded.ground_dungeon_tilesets import GroundTilesetMapping
 from skytemple_files.list.level.model import LevelListBin
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.script.module import ScriptModule
 SCRIPT_SCENES = _("Script Scenes")
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "script", "main.ui"))
 class StScriptMainPage(Gtk.Box):
     __gtype_name__ = "StScriptMainPage"
     module: ScriptModule

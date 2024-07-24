@@ -22,12 +22,13 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.script.module import ScriptModule
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "ssb.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "script", "ssb.ui"))
 class StScriptSsbPage(Gtk.Box):
     __gtype_name__ = "StScriptSsbPage"
 

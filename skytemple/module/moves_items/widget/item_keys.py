@@ -32,6 +32,8 @@ from skytemple.core.ui_utils import (
 )
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.moves_items.module import MovesItemsModule
 PATTERN_ITEM_ENTRY = re.compile(".*\\(#(\\d+)\\).*")
@@ -39,7 +41,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "moves_items", "item_keys.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "moves_items", "item_keys.ui"))
 class StMovesItemsItemKeysPage(Gtk.Box):
     __gtype_name__ = "StMovesItemsItemKeysPage"
     module: MovesItemsModule

@@ -32,6 +32,7 @@ from skytemple.core.open_request import (
 )
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow, data_dir, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.dungeon import (
     COUNT_VALID_TILESETS,
     TILESET_FIRST_BG,
@@ -75,7 +76,7 @@ if TYPE_CHECKING:
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "fixed.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon", "fixed.ui"))
 class StDungeonFixedPage(Gtk.Notebook):
     __gtype_name__ = "StDungeonFixedPage"
     module: DungeonModule

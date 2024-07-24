@@ -24,6 +24,8 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async, catch_overflow, data_dir
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 PATTERN_LOCATION_ENTRY = re.compile(".*\\((\\d+)\\).*")
@@ -32,7 +34,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "tactics.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "tactics.ui"))
 class StListsTacticsPage(Gtk.Box):
     __gtype_name__ = "StListsTacticsPage"
     module: ListsModule

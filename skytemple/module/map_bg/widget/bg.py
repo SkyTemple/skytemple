@@ -28,6 +28,7 @@ from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE
 from skytemple.core.ui_utils import data_dir, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType
@@ -54,7 +55,7 @@ INFO_IMEXPORT_ENTIRE = _(
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "map_bg", "bg.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "map_bg", "bg.ui"))
 class StMapBgBgPage(Gtk.Box):
     __gtype_name__ = "StMapBgBgPage"
     module: MapBgModule

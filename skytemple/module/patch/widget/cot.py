@@ -21,13 +21,14 @@ from typing import TYPE_CHECKING, cast
 from gi.repository import Gtk, Gdk, GLib
 from skytemple.controller.main import MainController
 from skytemple.core.ui_utils import data_dir, assert_not_none
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "patch", "cot.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "patch", "cot.ui"))
 class StPatchCotPage(Gtk.Box):
     __gtype_name__ = "StPatchCotPage"
     module: PatchModule

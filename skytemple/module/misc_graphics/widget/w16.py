@@ -32,12 +32,14 @@ from gi.repository import Gtk
 from skytemple.controller.main import MainController
 from skytemple_files.common.i18n_util import f, _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule
 logger = logging.getLogger(__name__)
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "w16.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "misc_graphics", "w16.ui"))
 class StMiscGraphicsW16Page(Gtk.Box):
     __gtype_name__ = "StMiscGraphicsW16Page"
     module: MiscGraphicsModule

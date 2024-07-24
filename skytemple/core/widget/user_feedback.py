@@ -23,11 +23,12 @@ from skytemple_files.common.i18n_util import _
 from skytemple.core import sentry_ext
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 EMAIL_TO_USE = "_reporter@skytemple.org"
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "user_feedback.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "user_feedback.ui"))
 class StUserFeedbackWindow(Gtk.Window):
     """
     A window that asks the user for feedback on an error that just happened and sends this to Sentry.

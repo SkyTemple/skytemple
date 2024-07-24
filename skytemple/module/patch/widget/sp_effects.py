@@ -34,13 +34,15 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.util import open_utf8
 from skytemple_files.data.data_cd.model import DataCD
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
 logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "patch", "sp_effects.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "patch", "sp_effects.ui"))
 class StPatchSPEffectsPage(Gtk.Stack):
     __gtype_name__ = "StPatchSPEffectsPage"
     module: PatchModule

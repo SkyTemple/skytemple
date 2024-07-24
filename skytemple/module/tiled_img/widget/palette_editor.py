@@ -15,22 +15,24 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import os
 from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import ResponseType
+from skytemple_files.common.i18n_util import _
+from skytemple_files.common.util import make_palette_colors_unique
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import data_dir
-from skytemple_files.common.util import make_palette_colors_unique
-from skytemple_files.common.i18n_util import _
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.tiled_img.module import TiledImgModule
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "tiled_img", "palette_editor.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "tiled_img", "palette_editor.ui"))
 class StPaletteEditorDialog(Gtk.Dialog):
     __gtype_name__ = "StPaletteEditorDialog"
     module: TiledImgModule
