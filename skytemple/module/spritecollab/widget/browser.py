@@ -39,6 +39,7 @@ from skytemple_files.common.spritecollab.schema import Credit
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.list_icon_renderer import ListIconRenderer
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.spritecollab.module import SpritecollabModule
@@ -115,7 +116,7 @@ async def entry_loader_impl(
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "spritecollab", "browser.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "spritecollab", "browser.ui"))
 class StSpritecollabBrowserPage(Gtk.Window):
     __gtype_name__ = "StSpritecollabBrowserPage"
     module: SpritecollabModule

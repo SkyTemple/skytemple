@@ -27,6 +27,7 @@ from pmdsky_debug_py.protocol import Symbol
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.symbols.model_getter import ModelGetter
 from skytemple.module.symbols.symbol_entry.symbol_entry import SymbolEntry
 from skytemple.module.symbols.symbol_entry.symbol_entry_builder import SymbolEntryBuilder
@@ -37,7 +38,6 @@ from skytemple_files.hardcoded.symbols.unsupported_type_error import Unsupported
 
 if TYPE_CHECKING:
     from skytemple.module.symbols.module import SymbolsModule
-
 
 ALL_BINARIES_ID = "all"
 
@@ -85,13 +85,12 @@ BINARIES_DISPLAY_TEXT = {
     "overlay35": "Overlay 35 (Unused)",
 }
 
-
 # Regex used to extract IDs from the values used in text completion entries. Should match the format used by
 # ModelGetter._create_model() when creating dynamic entries.
 COMPLETION_ENTRY_REGEX = re.compile(r"\([$#](\d+)\)$")
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "symbols", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "symbols", "main.ui"))
 class StSymbolsMainPage(Gtk.Stack):
     """
     Represents the main widget for the symbol editing screen

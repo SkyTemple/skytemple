@@ -36,6 +36,7 @@ from skytemple.core.ui_utils import (
     iter_tree_model,
     data_dir,
 )
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.monster.level_up_graph import LevelUpGraphProvider
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import open_utf8, add_extension_if_missing
@@ -62,7 +63,7 @@ def render_graph_template(title, svg):
     return f'<!DOCTYPE html>\n<html>\n  <head>\n    <script type="text/javascript">{polyfill}</script>\n    <script type="text/javascript" src="https://raw.githubusercontent.com/rogodec/svg-innerhtml-polyfill/master/index.js"></script>\n    <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>\n    <title>{title}</title>\n  </head>\n  <body style="margin:0">\n    <figure style="margin:0">\n      {svg}\n    </figure>\n  </body>\n</html>\n    '
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "monster", "level_up.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "monster", "level_up.ui"))
 class StMonsterLevelUpPage(Gtk.Notebook):
     __gtype_name__ = "StMonsterLevelUpPage"
     module: MonsterModule

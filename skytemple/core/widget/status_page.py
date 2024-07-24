@@ -21,6 +21,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 
 class StStatusPageData:
@@ -35,7 +36,7 @@ class StStatusPageData:
         self.description = description
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "status_page.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "status_page.ui"))
 class StStatusPage(Gtk.Box):
     """
     An base view widget that presents a single large icon and a description text.

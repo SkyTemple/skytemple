@@ -30,6 +30,8 @@ from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.bgp.module import BgpModule  # noqa: W291
 INFO_IMEXPORT_ENTIRE = _(
@@ -39,7 +41,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "bgp", "bgp.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "bgp", "bgp.ui"))
 class StBgpBgpPage(Gtk.Box):
     __gtype_name__ = "StBgpBgpPage"
     module: BgpModule

@@ -59,6 +59,7 @@ from skytemple.core.ui_utils import (
     data_dir,
     safe_destroy,
 )
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
 from skytemple.module.dungeon.fixed_room_entity_renderer.full_map import (
@@ -190,7 +191,7 @@ class SpawnEntry:
     relative_weight_mh: int
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "floor.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon", "floor.ui"))
 class StDungeonFloorPage(Gtk.Box):
     __gtype_name__ = "StDungeonFloorPage"
     module: DungeonModule
@@ -1830,6 +1831,7 @@ class StDungeonFloorPage(Gtk.Box):
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
+
         # Update inconsistent state for all parents
 
         def mark_inconsistent_recurse(titer: Gtk.TreeIter, force_inconstent=False):
@@ -1855,6 +1857,7 @@ class StDungeonFloorPage(Gtk.Box):
                 mark_inconsistent_recurse(parent, should_be_inconsistent)
 
         mark_inconsistent_recurse(store.get_iter(path))
+
         # Update state for all children
 
         def mark_active_recurse(titer: Gtk.TreeIter):

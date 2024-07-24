@@ -22,6 +22,7 @@ from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.i18n_util import _
 from gi.repository import Gtk, GLib
 from skytemple.controller.main import MainController
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.sprite.module import SpriteModule
@@ -29,7 +30,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "sprite", "object.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "sprite", "object.ui"))
 class StSpriteObjectPage(Gtk.Box):
     __gtype_name__ = "StSpriteObjectPage"
     module: SpriteModule

@@ -33,6 +33,7 @@ from skytemple.core.ui_utils import (
     data_dir,
     safe_destroy,
 )
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple_dtef import get_template_file
 from skytemple_dtef.explorers_dtef import ExplorersDtef, VAR0_FN, VAR2_FN, VAR1_FN
@@ -62,7 +63,7 @@ if TYPE_CHECKING:
 URL_HELP = "https://github.com/SkyTemple/skytemple-dtef/blob/main/docs/SkyTemple.rst"
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "tileset.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon_graphics", "tileset.ui"))
 class StDungeonGraphicsTilesetPage(Gtk.Box):
     __gtype_name__ = "StDungeonGraphicsTilesetPage"
     module: DungeonGraphicsModule

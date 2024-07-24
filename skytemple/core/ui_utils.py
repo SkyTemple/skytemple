@@ -23,10 +23,8 @@ import os
 import pathlib
 import platform
 import sys
-from tempfile import NamedTemporaryFile
-from typing import overload, TypeVar, Any
 from collections.abc import Iterable
-from xml.etree import ElementTree
+from typing import overload, TypeVar, Any
 
 import gi
 from gi.repository import GObject
@@ -155,29 +153,6 @@ def version(*, ignore_dev=False) -> str:
         return importlib_metadata.metadata("skytemple")["version"]
     except importlib_metadata.PackageNotFoundError:
         return "unknown"
-
-
-def make_builder(gui_file) -> Gtk.Builder:
-    """
-    GTK under Windows does not detect the locale. So we have to translate manually.
-
-    :deprecated: Use GtkTemplate instead.
-    """
-    if sys.platform == "win32":
-        tree = ElementTree.parse(gui_file)
-        for node in tree.iter():
-            if "translatable" in node.attrib:
-                node.text = _(node.text)
-        with NamedTemporaryFile(delete=False) as temp_file:
-            tree.write(temp_file.file, encoding="utf-8", xml_declaration=True)
-        builder = Gtk.Builder.new_from_file(temp_file.name)
-        os.unlink(temp_file.name)
-    else:
-        builder = Gtk.Builder()
-        builder.set_translation_domain(APP)
-        builder.add_from_file(gui_file)
-
-    return builder
 
 
 def glib_async(f):

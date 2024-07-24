@@ -38,6 +38,7 @@ from skytemple_files.hardcoded.dungeons import DungeonDefinition
 from skytemple.controller.main import MainController as MainSkyTempleController
 from skytemple_files.common.i18n_util import _
 from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
@@ -46,7 +47,7 @@ DND_TARGETS = [Gtk.TargetEntry.new("MY_TREE_MODEL_ROW", Gtk.TargetFlags.SAME_WID
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon", "main.ui"))
 class StDungeonMainPage(Gtk.Box):
     __gtype_name__ = "StDungeonMainPage"
     module: DungeonModule

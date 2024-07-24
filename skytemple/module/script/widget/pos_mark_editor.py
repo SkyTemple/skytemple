@@ -29,6 +29,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.script.drawer import Drawer
 from skytemple_files.common.ppmdu_config.script_data import (
     Pmd2ScriptLevel,
@@ -45,7 +46,7 @@ if TYPE_CHECKING:
 SIZE_REQUEST_NONE = 500
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "pos_mark_editor.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "script", "pos_mark_editor.ui"))
 class StPosMarkEditorDialog(Gtk.Dialog):
     __gtype_name__ = "StPosMarkEditorDialog"
     ssa_draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())

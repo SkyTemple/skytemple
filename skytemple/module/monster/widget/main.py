@@ -31,6 +31,8 @@ from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
 from skytemple_files.data.tbl_talk.model import TalkType
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
 MONSTER_NAME = "Pokémon"
@@ -80,7 +82,7 @@ UNIQUE_ACTORS = (
 )
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "monster", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "monster", "main.ui"))
 class StMonsterMainPage(Gtk.Box):
     __gtype_name__ = "StMonsterMainPage"
     module: MonsterModule

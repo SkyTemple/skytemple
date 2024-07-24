@@ -38,13 +38,15 @@ from skytemple_files.graphics.wan_wat.model import Wan
 from skytemple_files.common.i18n_util import _
 from gi.repository import Gtk, GLib
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.sprite.module import SpriteModule
 logger = logging.getLogger(__name__)
 FPS = 30
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "sprite", "monster_sprite.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "sprite", "monster_sprite.ui"))
 class StSpriteMonsterSpritePage(Gtk.Box):
     __gtype_name__ = "StSpriteMonsterSpritePage"
     module: SpriteModule

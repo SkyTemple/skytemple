@@ -20,13 +20,14 @@ from gi.repository import Gtk
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEONS
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonViewInfo
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "invalid.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon", "invalid.ui"))
 class StDungeonInvalidDungeonPage(Gtk.Box):
     __gtype_name__ = "StDungeonInvalidDungeonPage"
     module: DungeonModule

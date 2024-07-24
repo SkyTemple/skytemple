@@ -22,12 +22,13 @@ from typing import TYPE_CHECKING
 from gi.repository import Gtk
 
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.music.module import MusicModule
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "music", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "music", "main.ui"))
 class StMusicMainPage(Gtk.Box):
     __gtype_name__ = "StMusicMainPage"
 

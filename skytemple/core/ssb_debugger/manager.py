@@ -20,14 +20,15 @@ import os
 from typing import Optional
 
 from gi.repository import Gtk
-
-from skytemple.core.rom_project import RomProject
-from skytemple.core.ssb_debugger.context import SkyTempleMainDebuggerControlContext
-from skytemple.core.ui_utils import make_builder, builder_get_assert
 from skytemple_ssb_debugger.controller.main import (
     MainController as DebuggerMainController,
 )
 from skytemple_ssb_debugger.main import get_debugger_package_dir
+
+from skytemple.core.rom_project import RomProject
+from skytemple.core.ssb_debugger.context import SkyTempleMainDebuggerControlContext
+from skytemple.core.ui_utils import builder_get_assert
+from skytemple.init_locale import make_builder
 
 
 class DebuggerManager:

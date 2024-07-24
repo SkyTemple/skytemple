@@ -31,6 +31,8 @@ from skytemple.core.ui_utils import (
 from skytemple_files.hardcoded.menus import MenuEntry, MenuType
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 PATTERN_ITEM_ENTRY = re.compile(".*\\(#(\\d+)\\).*")
@@ -38,7 +40,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "menu_list.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "menu_list.ui"))
 class StListsMenuListPage(Gtk.Box):
     __gtype_name__ = "StListsMenuListPage"
     module: ListsModule

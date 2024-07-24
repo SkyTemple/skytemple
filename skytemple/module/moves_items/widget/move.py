@@ -35,13 +35,15 @@ from skytemple_files.data.waza_p.protocol import (
     WazaMoveProtocol,
 )
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.moves_items.module import MovesItemsModule
 logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "moves_items", "move.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "moves_items", "move.ui"))
 class StMovesItemsMovePage(Gtk.Box):
     __gtype_name__ = "StMovesItemsMovePage"
     module: MovesItemsModule

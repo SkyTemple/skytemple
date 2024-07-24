@@ -23,6 +23,8 @@ from skytemple.core.ui_utils import glib_async, data_dir
 from skytemple_files.common.i18n_util import _
 from skytemple_files.hardcoded.dungeon_music import DungeonMusicEntry
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 PATTERN_ITEM_ENTRY = re.compile(".*\\(#(\\d+)\\).*")
@@ -30,7 +32,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "dungeon_music.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "dungeon_music.ui"))
 class StListsDungeonMusicPage(Gtk.Box):
     __gtype_name__ = "StListsDungeonMusicPage"
     module: ListsModule

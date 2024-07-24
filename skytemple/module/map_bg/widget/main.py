@@ -15,21 +15,25 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import os
 from typing import TYPE_CHECKING, cast
+
 from gi.repository import Gtk
-from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import data_dir, assert_not_none, safe_destroy
 from skytemple_files.common.i18n_util import _
-from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.types.file_types import FileType
+
+from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.ui_utils import assert_not_none, data_dir, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 MAPBG_NAME = _("Map Backgrounds")
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "map_bg", "main.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "map_bg", "main.ui"))
 class StMapBgMainPage(Gtk.Box):
     __gtype_name__ = "StMapBgMainPage"
     module: MapBgModule

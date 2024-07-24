@@ -30,6 +30,8 @@ from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.common.i18n_util import _
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule, FontOpenSpec
@@ -37,7 +39,7 @@ IMAGE_ZOOM = 4
 MAX_ENTRIES = 10000
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "misc_graphics", "graphic_font.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "misc_graphics", "graphic_font.ui"))
 class StMiscGraphicsGraphicFontPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsGraphicFontPage"
     module: MiscGraphicsModule

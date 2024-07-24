@@ -32,6 +32,7 @@ from skytemple.core.ui_utils import (
     data_dir,
     safe_destroy,
 )
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.dungeon.widget.floor import (
     POKE_CATEGORY_ID,
     LINKBOX_CATEGORY_ID,
@@ -81,7 +82,7 @@ ITEM_LISTS = [
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "moves_items", "item_lists.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "moves_items", "item_lists.ui"))
 class StMovesItemsItemListsPage(Gtk.Stack):
     __gtype_name__ = "StMovesItemsItemListsPage"
     module: MovesItemsModule

@@ -22,13 +22,14 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import data_dir, assert_not_none, safe_destroy
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.script.module import ScriptModule
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "script", "map.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "script", "map.ui"))
 class StScriptMapPage(Gtk.Box):
     __gtype_name__ = "StScriptMapPage"
     module: ScriptModule

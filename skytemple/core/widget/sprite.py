@@ -25,6 +25,7 @@ from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.sprite_provider import SpriteAndOffsetAndDims
 from skytemple.core.ui_utils import data_dir
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 ORANGE_RGB = (1, 0.65, 0)
 
@@ -61,7 +62,7 @@ class StSpriteData:
         self.scale = scale
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "sprite.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "sprite.ui"))
 class StSprite(Gtk.DrawingArea):
     """
     Draws a sprite using SpriteProvider (or any compatible loading function). While it is loading,

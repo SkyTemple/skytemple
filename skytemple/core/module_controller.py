@@ -28,7 +28,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.ui_utils import make_builder
+from skytemple.init_locale import make_builder
 
 logger = logging.getLogger(__name__)
 

@@ -15,23 +15,27 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 from typing import TYPE_CHECKING, cast
+
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 from range_typed_integers import i8, i8_checked, i16, i16_checked
+from skytemple_files.common.i18n_util import _, f
+from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
+
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow, data_dir, safe_destroy
-from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
-from skytemple_files.common.i18n_util import _, f
+from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonViewInfo
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "dungeon.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "dungeon", "dungeon.ui"))
 class StDungeonDungeonPage(Gtk.Box):
     __gtype_name__ = "StDungeonDungeonPage"
     module: DungeonModule

@@ -25,6 +25,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir, safe_destroy
+from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.lists.controller import WORLD_MAP_DEFAULT_ID
 from skytemple.module.lists.world_map_drawer import WorldMapDrawer
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
@@ -41,7 +42,7 @@ logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "world_map.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "world_map.ui"))
 class StListsWorldMapPage(Gtk.Box):
     __gtype_name__ = "StListsWorldMapPage"
     module: ListsModule

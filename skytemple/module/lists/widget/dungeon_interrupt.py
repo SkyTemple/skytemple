@@ -31,13 +31,15 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
 from skytemple_files.data.inter_d.model import InterDEntry, InterDEntryType
 
+from skytemple.init_locale import LocalePatchedGtkTemplate
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 logger = logging.getLogger(__name__)
 import os
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "dungeon_interrupt.ui"))
+@LocalePatchedGtkTemplate(filename=os.path.join(data_dir(), "widget", "lists", "dungeon_interrupt.ui"))
 class StListsDungeonInterruptPage(Gtk.Stack):
     __gtype_name__ = "StListsDungeonInterruptPage"
     module: ListsModule
