@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-24 17:23+0000\n"
-"PO-Revision-Date: 2024-07-24 17:43\n"
+"PO-Revision-Date: 2024-07-24 21:11\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1035,11 +1035,11 @@ msgstr "Ungültiger \"with(){{}}\" Ziel-Typ '{for_type}'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:108
 msgid "Operations inside with(){} blocks cannot contain an inline `actor`, `object` or `performer` context."
-msgstr ""
+msgstr "Operationen innerhalb von with(){} Blöcken können keinen inline `actor`, `object` oder `performer` Kontext enthalten."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:117
 msgid "Each statement inside a with(){} block needs to contain exactly one binary operation. The handler for it generated multiple operations."
-msgstr ""
+msgstr "Jede Anweisung in einem \"with() {}\" Block muss exakt eine binäre Operation beinhalten. Es wurden mehrere Operationen generiert."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:138
 msgid "A with(){} block can not contain labels."
@@ -1412,7 +1412,7 @@ msgstr "Unten links"
 
 #: skytemple-files/skytemple_files/common/rw_value.py:440
 msgid "'{str(value)}' cannot be encoded as a shifted immediate."
-msgstr ""
+msgstr "'{str(value)}' kann nicht als Shifted Immediate kodiert werden."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:52
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
@@ -3606,7 +3606,7 @@ msgstr "Ungültiger Parameter angegeben für Operation: {param}"
 
 #: skytemple-files/skytemple_files/script/ssb/ssb_number.py:94
 msgid "The value '{}' can not be saved. Please use a value between -64.0 and 63.996 for fixed point numbers."
-msgstr ""
+msgstr "Der Wert '{}' kann nicht gespeichert werden. Bitte verwende einen Wert zwischen -64.0 und 63.996 für Festkommazahlen."
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:169
 msgid "Could not compile script: All languages must have the same amount of strings."
@@ -10565,7 +10565,8 @@ msgstr "Dieser Dungeon hat aktuell {current_floor_count} Ebenen."
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:443
 msgid "Chance of setting the random movement flag on an enemy when spawning it.\n"
 "Enemies with this flag set will move randomly inside rooms, instead of heading towards one of the exits."
-msgstr ""
+msgstr "Chance, die Flag für zufällige Bewegung bei einem Gegner zu setzen, wenn er gespawnt wird.\n"
+"Feinde mit dieser Flag bewegen sich zufällig innerhalb von Räumen, anstatt auf einen der Ausgänge zuzusteuern."
 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:451
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
@@ -10777,7 +10778,7 @@ msgstr "Der endgültige Wert wird vom Spiel basierend au dem Wert für \"Dichte\
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:782
 msgid "The final value is randomized between density / 2 and density - 1. If the value is negative and the NegativeEnemyDensity patch is applied, the absolute value of the density is used instead (no random variation is applied in this case). If the value is 0, no enemies will spawn on the floor, even as turns pass."
-msgstr ""
+msgstr "Der endgültige Wert wird nach dem Zufallsprinzip zwischen Dichte / 2 und Dichte - 1 bestimmt. Wenn der Wert negativ ist und der NegativeEnemyDensity-Patch angewendet ist, wird stattdessen der absolute Wert der Dichte verwendet (in diesem Fall wird keine Zufallsvariation angewendet). Wenn der Wert 0 ist, spawnen keine Gegner auf der Ebene, auch nicht im Laufe der Zeit."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:790
 msgid "The value stored in the ROM is actually what you write here divided by 5. Because of this, your input will be rounded to the next multiple of 5."
