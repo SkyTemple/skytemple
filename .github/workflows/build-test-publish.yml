@@ -361,7 +361,7 @@ jobs:
           if [ -n "$IS_DEV_BUILD" ]; then
             IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           fi
-          pip3 install -r requirements-mac-windows.txt
+          pip3 install -r requirements-frozen.txt
           # Generate MO localization files
           installer/generate-mo.sh
           pip3 install '.[eventserver]'
@@ -437,7 +437,7 @@ jobs:
           if [ -n "$IS_DEV_BUILD" ]; then
             IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           fi
-          pip3 install -r requirements-mac-windows.txt
+          pip3 install -r requirements-frozen.txt
           # Generate MO localization files
           installer/generate-mo.sh
           pip3 install '.[eventserver]'

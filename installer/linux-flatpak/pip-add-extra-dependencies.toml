@@ -1,0 +1,107 @@
+# The pip helper can't detect any build dependencies, and it also just doesn't detect some
+# depdendencies for some reason. Add them manually here. `generator.py` will add them.
+[_remove]
+# All of these will already be installed in modules before the main pip modules. Or they are dev dependencies
+modules = ["python3-explorerscript", "python3-skytemple_rust", "python3-skytemple-ssb-emulator", "python3-pycairo", "python3-ruff", "python3-pygobject-stubs"]
+dependencies = ["igraph", "explorerscript", "skytemple_rust", "skytemple_ssb_emulator"]
+
+[[_group.packaging]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/51/65/50db4dda066951078f0a96cf12f4b9ada6e4b811516bf0262c0f4f7064d4/packaging-24.1.tar.gz"
+sha256 = "026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"
+
+[[_group.setuptools]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/32/c0/5b8013b5a812701c72e3b1e2b378edaa6514d06bee6704a5ab0d7fa52931/setuptools-71.1.0.tar.gz"
+sha256 = "032d42ee9fb536e33087fb66cac5f840eb9391ed05637b3f2a76a7c8fb477936"
+
+[[_group.setuptools]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/b8/d6/ac9cd92ea2ad502ff7c1ab683806a9deb34711a1e2bd8a59814e8fc27e69/wheel-0.43.0.tar.gz"
+sha256 = "465ef92c69fa5c5da2d1cf8ac40559a8c940886afcef87dcf14b9470862f1d85"
+
+[[_group.flit]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/38/45/618e84e49a6c51e5dd15565ec2fcd82ab273434f236b8f108f065ded517a/flit_core-3.9.0-py3-none-any.whl"
+sha256 = "7aada352fb0c7f5538c4fafeddf314d3a6a92ee8e2b1de70482329e42de70301"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/a3/51/8a4a67a8174ce59cf49e816e38e9502900aea9b4af672d0127df8e10d3b0/hatchling-1.25.0.tar.gz"
+sha256 = "7064631a512610b52250a4d3ff1bd81551d6d1431c4eb7b72e734df6c74f4262"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/f5/c9/54bb4fa27b4e4a014ef3bb17710cdf692b3aa2cbc7953da885f1bf7e06ea/hatch_vcs-0.4.0.tar.gz"
+sha256 = "093810748fe01db0d451fabcf2c1ac2688caefd232d4ede967090b1c1b07d9f7"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/ca/bc/f35b8446f4531a7cb215605d100cd88b7ac6f44ab3fc94870c120ab3adbf/pathspec-0.12.1.tar.gz"
+sha256 = "a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/96/2d/02d4312c973c6050a18b314a5ad0b3210edb65a906f868e31c111dede4a6/pluggy-1.5.0.tar.gz"
+sha256 = "2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/78/c9/83f915c3f6f94f4c862c7470284fd714f312cce8e3cf98361312bc02493d/trove_classifiers-2024.7.2.tar.gz"
+sha256 = "8328f2ac2ce3fd773cbb37c765a0ed7a83f89dc564c7d452f039b69249d0ac35"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/b5/00/96cbed7c019c49ee04b8a08357a981983db7698ae6de402e57097cefc9ad/calver-2022.6.26.tar.gz"
+sha256 = "e05493a3b17517ef1748fbe610da11f10485faa7c416b9d33fd4a52d74894f8b"
+
+[[_group.hatchling]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/4f/a4/00a9ac1b555294710d4a68d2ce8dfdf39d72aa4d769a7395d05218d88a42/setuptools_scm-8.1.0.tar.gz"
+sha256 = "42dea1b65771cba93b7a515d65a65d8246e560768a66b9106a592c8e7f26c8a7"
+
+[[_group.scikit-build]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/06/c7/46b4becf16d6164f46f26cfd3c8b192a994b2a90bd731df1974b788fb391/scikit_build_core-0.9.8.tar.gz"
+sha256 = "c8ff2582f94d2d9e650a9869015704e77c35baf691b6228ce87fd062a21063b1"
+
+[[_group.scikit-build]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/ca/bc/f35b8446f4531a7cb215605d100cd88b7ac6f44ab3fc94870c120ab3adbf/pathspec-0.12.1.tar.gz"
+sha256 = "a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712"
+
+[[_group.setuptools-rust]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/f7/7f/8b1c33598b03ad612b8ced223f9ca54076b789fabf5a66ce37cc096d9cf7/setuptools_rust-1.9.0-py3-none-any.whl"
+sha256 = "409caf49dcf7ad9bd510b4bf4011fbad504e745fae98f57fe1c06f3a97719638"
+
+[[_group.setuptools-rust]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/6a/23/8146aad7d88f4fcb3a6218f41a60f6c2d4e3a72de72da1825dc7c8f7877c/semantic_version-2.10.0-py2.py3-none-any.whl"
+sha256 = "de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177"
+
+[[_group.pybind11]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/98/50/a8dc5a7b9fbb9a90dfc9003b3eecc046b9f64dc9b8d464119064c0344a83/pybind11-2.13.1.tar.gz"
+sha256 = "65be498b1cac516161add1508e65375674916bebf2570d057dc9c3c7bcbbc7b0"
+
+[_all]
+groups = ["setuptools", "flit"]
+
+[[python3-skytemple_files.modules]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/64/9e/7e638579cce7dc346632f020914141a164a872be813481f058883ee8d421/Pillow-10.0.1.tar.gz"
+sha256 = "d72967b06be9300fed5cfbc8b5bafceec48bf7cdc7dab66b1d2549035287191d"
+
+[python3-gql]
+groups = ["packaging", "hatchling"]
+
+[[python3-gql.modules]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/2b/a5/46d1f58edcae1d632fafdfee313e378240e002ae45d26502bac938bd8751/expandvars-0.12.0.tar.gz"
+sha256 = "7d1adfa55728cf4b5d812ece3d087703faea953e0c0a1a78415de9df5024d844"
+
+[[python3-gql.modules]]
+type = "file"
+url = "https://files.pythonhosted.org/packages/d5/f7/2fdd9205a2eedee7d9b0abbf15944a1151eb943001dbdc5233b1d1cfc34e/Cython-3.0.10.tar.gz"
+sha256 = "dcc96739331fb854dcf503f94607576cfe8488066c61ca50dfd55836f132de99"

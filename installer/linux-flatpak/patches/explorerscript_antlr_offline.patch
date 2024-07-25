@@ -1,0 +1,8 @@
+--- a/explorerscript/antlr4/runtime/Cpp/runtime/CMakeLists.txt
++++ b/explorerscript/antlr4/runtime/Cpp/runtime/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-option(ANTLR_BUILD_CPP_TESTS "Build C++ tests." ON)
++option(ANTLR_BUILD_CPP_TESTS "Build C++ tests." OFF)
+ option(TRACE_ATN "Trace ATN simulation" OFF)
+ option(ANTLR_BUILD_SHARED "Build the shared library of the ANTLR runtime" ON)
+ option(ANTLR_BUILD_STATIC "Build the static library of the ANTLR runtime" ON)
