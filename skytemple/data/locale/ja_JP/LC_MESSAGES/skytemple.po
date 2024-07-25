@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-24 17:23+0000\n"
-"PO-Revision-Date: 2024-07-25 01:11\n"
+"PO-Revision-Date: 2024-07-25 02:06\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2513,7 +2513,7 @@ msgstr "マップ背景をインポートできません。画像の高さは{ex
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:124
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
-msgstr ""
+msgstr "インポートする画像は最初の 12 パレットのみ使用できます。パレット {tm.pal_idx} を使用することはできません。"
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:161
 #: skytemple-rust/src/st_dpc.rs:221
@@ -3421,7 +3421,7 @@ msgstr "ダンジョンで仲間を押す機能を実装します。\n"
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:50
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "とおくのなかまの設定を「ちゅうもく」にした時など、ゲームが一時停止する時間を60フレームから12フレームに減らします。この変更は CompleteTeamControl パッチに含まれています。"
 
 #: skytemple-files/skytemple_files/patch/handler/remove_body_size_check.py:48
 msgid "Removes the total body size check before entering a dungeon."
@@ -3660,7 +3660,7 @@ msgstr "マップの背景をインポートできません。画像の高さは
 
 #: skytemple-rust/src/st_dpc.rs:149
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
-msgstr ""
+msgstr "インポートする画像は最初の 12 パレットのみ使用できます。パレット {} を使用することはできません。"
 
 #: skytemple-rust/src/st_dpla.rs:111
 msgid "Palette is invalid."
