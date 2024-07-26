@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-24 17:23+0000\n"
+"POT-Creation-Date: 2024-07-26 20:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4316,22 +4316,22 @@ msgstr ""
 msgid "You will not be able to restore it."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:253
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:255
 msgid "Parse error: "
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:256
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:258
 #, python-brace-format
 msgid ""
 "The script file {self.filename} could not be saved.\n"
 "{prefix}{err}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:258
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:260
 msgid "Error saving the script."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:321
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:325
 #, python-brace-format
 msgid ""
 "There was an error while loading the ExplorerScript source code. The source will not be available.\n"
@@ -4340,31 +4340,31 @@ msgid ""
 "{exception}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:395
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:399
 msgid "An old version of this script is still loaded in RAM. Debugging is disabled for this file, until it is reloaded."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:639
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:646
 #, python-brace-format
 msgid "Search and Replace in {self.filename}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:787
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:794
 msgid ""
 "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:790
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:797
 msgid "ExplorerScript Inconsistency"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:792
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:799
 msgid "Reload from ROM"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:793
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:800
 msgid "Keep ExplorerScript source code"
 msgstr ""
 
@@ -5475,15 +5475,15 @@ msgstr ""
 msgid "Image was converted."
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:56
+#: skytemple/skytemple/core/async_tasks/delegator.py:53
 msgid "Thread-based"
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:62
+#: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:74
+#: skytemple/skytemple/core/async_tasks/delegator.py:71
 msgid "Using Gbulb event loop"
 msgstr ""
 
