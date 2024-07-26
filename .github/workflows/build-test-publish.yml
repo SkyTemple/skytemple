@@ -248,12 +248,13 @@ jobs:
           cache-key: flatpak-builder-${{ github.sha }}
       - uses: flatpak/flatpak-github-actions/flat-manager@v6
         name: Deploy to SkyTemple Repo
+        if: github.ref == 'refs/heads/master'
         with:
           repository: nightly
           flat-manager-url: https://flatpak.skytemple.org/
           token: ${{ secrets.SKYTEMPLE_FLATPAK_REPO_TOKEN }}
   package-linux-flatpak-stable:
-    # TODO: if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/')
     name: Linux Flatpak Stable
     runs-on: ubuntu-latest
     container:
