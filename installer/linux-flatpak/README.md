@@ -13,7 +13,7 @@ stable manifest (which can be used for the Flathub repo).
 Versions are pulled from `requirements-frozen.txt` in the root of the repo for stable and from `requirements.txt` for
 nightly.
 
-To run the Makefile you need to be in a Python (3.11+) environment with the requirements from the `requirements.txt` in
+To run the Makefile you need to be in a Python (3.12+) environment with the requirements from the `requirements.txt` in
 this directory installed.
 
 - App ID: `org.skytemple.SkyTemple`
