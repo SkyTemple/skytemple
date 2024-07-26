@@ -3263,7 +3263,7 @@ msgstr "Implementiert Dungeon-Unterbrechungen. "
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
 msgstr "Ermöglicht das Platzieren spezieller statischer Raum-Entitäten #124 -127 (Feinde des Explorer-Labyrinths) in einen statischen Raum, ohne dass das Spiel abstürzt."
 
-#: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:49
+#: skytemple-files/skytemple_files/patch/handler/edit_guest_pokemon.py:49
 msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
 msgstr "Ändert die Art und Weise, wie das Spiel bestimmt, wann dem Team zusätzliche Pokémon hinzugefügt werden, damit diese Information einfacher bearbeitet werden kann"
 
@@ -11421,7 +11421,7 @@ msgstr "Bearbeitet, welche Dungeon Gast-Pokémon zu deinem Team hinzufügen, sow
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
-"To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
+"To view and edit guest Pokémon data, please apply the \"EditGuestPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr "<Nicht verfügbar>\n\n"

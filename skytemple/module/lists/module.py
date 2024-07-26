@@ -336,8 +336,8 @@ class ListsModule(AbstractModule):
         # Mark as modified in tree
         self._item_tree.mark_as_modified(self._actor_tree_iter, RecursionType.UP)
 
-    def has_edit_extra_pokemon(self):
-        return self.project.is_patch_applied("EditExtraPokemon")
+    def has_edit_guest_pokemon(self):
+        return self.project.is_patch_applied("EditGuestPokemon")
 
     def mark_str_as_modified(self):
         self.project.get_string_provider().mark_as_modified()
