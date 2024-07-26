@@ -5,9 +5,11 @@ File to generate the Flatpak manifest files and pip/cargo source files. See READ
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import textwrap
@@ -17,11 +19,12 @@ from functools import partial
 from io import StringIO
 from shutil import which
 from tempfile import TemporaryDirectory
-from typing import TypedDict, Literal, Required, cast, Iterator
+from typing import Iterator, Literal, Required, TypedDict, cast
+from urllib.request import urlretrieve
 
 import requirements
 import yaml
-from jinja2 import Environment, DictLoader
+from jinja2 import DictLoader, Environment
 from requirements.requirement import Requirement
 
 
@@ -232,10 +235,18 @@ def clone_repo_for_generator(req: Requirement, git_url: str) -> Iterator[str]:
         run_git("clone", git_url, tmp_dir)
         if tag is not None:
             run_git("-C", tmp_dir, "checkout", tag)
+        elif req.revision is not None:
+            run_git("-C", tmp_dir, "checkout", req.revision)
         yield tmp_dir
 
 
-def add_extra_pip_dependencies(out_json_path: str, extras: dict) -> None:
+def get_pkgname_and_version_from_repo(req: Requirement, git_url: str) -> tuple[str, str]:
+    with clone_repo_for_generator(req, git_url) as tmp_dir:
+        return get_pkgname_and_version_from_pyproject_toml(os.path.join(tmp_dir, "pyproject.toml"))
+
+
+def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> None:
+    print_t("Fixing up requirements JSON file and adding additional dependencies")
     with open(out_json_path, "r") as f:
         modules = json.load(f)
 
@@ -249,6 +260,10 @@ def add_extra_pip_dependencies(out_json_path: str, extras: dict) -> None:
         mod for mod in modules["modules"] if not remove_module(mod["name"], extras["_remove"]["modules"])
     ]
 
+    version_cache = {}
+    checksum_cache = {}
+    names_cache = {}
+
     for module in modules["modules"]:
         module["sources"] += extras["_all"].get("modules", [])
         for group in extras["_all"].get("groups", []):
@@ -260,7 +275,39 @@ def add_extra_pip_dependencies(out_json_path: str, extras: dict) -> None:
         module["sources"] = [
             s for s in module["sources"] if not remove_dependency(s["url"], extras["_remove"]["dependencies"])
         ]
+        # The pip generator doesn't properly parse the @ part of VCS dependencies, always trying to attribute
+        # it as a commit. Sigh.
+        # Also installing Git repos only works for one single depedency, so use download tar.gz instead.
+        for source_i, source in enumerate(module["sources"]):
+            if "commit" in source:
+                if source["commit"] is None:
+                    branch = "master"
+                else:
+                    branch = source["commit"]
+                giturl = source["url"]
+                if giturl not in version_cache or giturl not in names_cache:
+                    names_cache[giturl], version_cache[giturl] = get_pkgname_and_version_from_repo(
+                        Requirement.parse_line(f"{giturl} @ {giturl}@{branch}"), giturl
+                    )
+                # Make sure to install the requirement from the downloaded tar instead
+                if source_i == 0 and module["build-commands"][0].endswith('"."'):
+                    module["build-commands"][0] = (
+                        module["build-commands"][0].removesuffix('"."') + f'"{names_cache[giturl]}"'
+                    )
+                source["type"] = "file"
+                del source["commit"]
+                source["url"] = source["url"] + f"/archive/refs/heads/{branch}.tar.gz"
+                if source["url"] not in checksum_cache:
+                    # download to get checksum
+                    with TemporaryDirectory() as tmp_dir:
+                        print_t(f"Fetching {source["url"]} for hashsum.")
+                        fpath = os.path.join(tmp_dir, "file")
+                        urlretrieve(source["url"], fpath)
+                        with open(fpath, "rb", buffering=0) as f9:
+                            checksum_cache[source["url"]] = hashlib.file_digest(f9, "sha256").hexdigest()  # type: ignore
 
+                source["sha256"] = checksum_cache[source["url"]]
+                source["dest-filename"] = f"{names_cache[giturl]}-{version_cache[giturl]}.tar.gz"
     with open(out_json_path, "w") as f3:
         json.dump(modules, f3, indent=4)
 
@@ -288,7 +335,7 @@ def generate(out_dir: str, reqs_file: str, *, tag: str | None = None) -> None:
 
     jinja_env.filters["pip_add_group"] = partial(pip_add_group, extras)
 
-    skytemple_rust_req = reqs["skytemple_rust"]
+    skytemple_rust_req = reqs["skytemple-rust"]
     skytemple_ssb_emulator_req = reqs["skytemple-ssb-emulator"]
     explorerscript_req = reqs["explorerscript"]
 
@@ -317,7 +364,7 @@ def generate(out_dir: str, reqs_file: str, *, tag: str | None = None) -> None:
                     os.path.join(path_ssb_emulator, "Cargo.lock"),
                     os.path.join(out_dir, "cargo-sources-ssb-emulator.json"),
                 )
-                add_extra_pip_dependencies(os.path.join(out_dir, "requirements-skytemple.json"), extras)
+                fixup_and_add_extra_pip_dependencies(os.path.join(out_dir, "requirements-skytemple.json"), extras)
 
     print_t("Writing manifest file...")
     with open(os.path.join(out_dir, OUT_MANIFEST_FILE), "w") as f:
@@ -328,9 +375,9 @@ def parse_reqs_with_skytemple_files_reqs(req_file_path_skytemple: str) -> dict[s
     """Concat the requirement files of SkyTemple, SkyTemple Files and SkyTemple Ssb Debugger"""
     print_t("Collecting requirements of SkyTemple and its requested SkyTemple Files version")
     reqs = parse_reqs(req_file_path_skytemple)
-    with clone_repo_for_generator(reqs["skytemple_files"], SKYTEMPLE_FILES_GIT_URL) as path:
+    with clone_repo_for_generator(reqs["skytemple-files"], SKYTEMPLE_FILES_GIT_URL) as path:
         reqs_files = parse_reqs(os.path.join(path, "requirements.txt"))
-    with clone_repo_for_generator(reqs["skytemple_ssb_debugger"], SKYTEMPLE_SSB_DEBUGGER_GIT_URL) as path:
+    with clone_repo_for_generator(reqs["skytemple-ssb-debugger"], SKYTEMPLE_SSB_DEBUGGER_GIT_URL) as path:
         reqs_debugger = parse_reqs(os.path.join(path, "requirements.txt"))
     return {**reqs_files, **reqs_debugger, **reqs}
 
@@ -352,15 +399,23 @@ def parse_reqs(req_file_path: str) -> dict[str, Requirement]:
 
 
 def create_stable_dir() -> str:
-    raise NotImplementedError()
-    stable_dir = None
+    stable_dir = os.path.join(BASE_DIR, "stable")
+    shutil.rmtree(stable_dir, ignore_errors=True)
+    os.makedirs(stable_dir, exist_ok=True)
     print_t(f"Using directory for stable: {stable_dir}")
+    shutil.copytree(os.path.join(BASE_DIR, "assets"), os.path.join(BASE_DIR, "stable", "assets"))
+    shutil.copytree(os.path.join(BASE_DIR, "patches"), os.path.join(BASE_DIR, "stable", "patches"))
     return stable_dir
 
 
+def get_pkgname_and_version_from_pyproject_toml(path: str) -> tuple[str, str]:
+    with open(path, "rb") as f:
+        pyproject = tomllib.load(f)
+    return pyproject["project"]["name"], pyproject["project"]["version"]
+
+
 def stable_tag() -> str:
-    raise NotImplementedError()
-    tag = None
+    tag = get_pkgname_and_version_from_pyproject_toml(SKYTEMPLE_PYPROJECT_FILE)[1]
     print_i(f"SkyTemple Tag: {tag}")
     return tag
 

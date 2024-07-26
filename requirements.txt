@@ -1,16 +1,16 @@
 ndspy==4.1.0
 skytemple-rust @ git+https://github.com/skytemple/skytemple-rust
-skytemple_files[spritecollab] @ git+https://github.com/skytemple/skytemple-files
+skytemple-files[spritecollab] @ git+https://github.com/skytemple/skytemple-files
 pmdsky-debug-py
-skytemple_dtef==1.6.1
-skytemple_icons==1.3.2
+skytemple-dtef==1.6.1
+skytemple-icons==1.3.2
 range-typed-integers >= 1.0.0
 pygobject==3.48.2
 pycairo==1.18.2; sys_platform != "win32"
 natsort==8.4.0
 tilequant==1.1.0
-skytemple_ssb_debugger @ git+https://github.com/skytemple/skytemple-ssb-debugger
-skytemple_eventserver==1.6.0
+skytemple-ssb-debugger @ git+https://github.com/skytemple/skytemple-ssb-debugger
+skytemple-eventserver==1.6.0
 pypresence==4.3.0
 pygal==3.0.4
 CairoSVG==2.7.1

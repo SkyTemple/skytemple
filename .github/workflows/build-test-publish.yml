@@ -283,12 +283,6 @@ jobs:
         with:
           bundle: org.skytemple.SkyTemple.flatpak
           manifest-path: installer/linux-flatpak/stable/org.skytemple.SkyTemple.yml
-      - uses: flatpak/flatpak-github-actions/flat-manager@v6
-        name: Deploy to SkyTemple Repo
-        with:
-          repository: stable
-          flat-manager-url: https://flatpak.skytemple.org/
-          token: ${{ secrets.SKYTEMPLE_FLATPAK_REPO_TOKEN }}
       - name: Checkout Flathub GH Repo
         uses: actions/checkout@v4
         with:
