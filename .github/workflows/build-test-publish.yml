@@ -278,11 +278,11 @@ jobs:
       - name: Run generator
         run: |
           python3 -u installer/linux-flatpak/generator.py stable
-      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
-        name: Build Flatpak
-        with:
-          bundle: org.skytemple.SkyTemple.flatpak
-          manifest-path: installer/linux-flatpak/stable/org.skytemple.SkyTemple.yml
+      #- uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      #  name: Build Flatpak
+      #  with:
+      #    bundle: org.skytemple.SkyTemple.flatpak
+      #    manifest-path: installer/linux-flatpak/stable/org.skytemple.SkyTemple.yml
       - name: Checkout Flathub GH Repo
         uses: actions/checkout@v4
         with:
