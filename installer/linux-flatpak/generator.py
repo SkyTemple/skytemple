@@ -278,7 +278,7 @@ def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> No
         # The pip generator doesn't properly parse the @ part of VCS dependencies, always trying to attribute
         # it as a commit. Sigh.
         # Also installing Git repos only works for one single depedency, so use download tar.gz instead.
-        for source_i, source in enumerate(module["sources"]):
+        for source in module["sources"]:
             if "commit" in source:
                 if source["commit"] is None:
                     branch = "master"
@@ -290,7 +290,7 @@ def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> No
                         Requirement.parse_line(f"{giturl} @ {giturl}@{branch}"), giturl
                     )
                 # Make sure to install the requirement from the downloaded tar instead
-                if source_i == 0 and module["build-commands"][0].endswith('"."'):
+                if f"python3-{names_cache[giturl]}" == module["name"]:
                     module["build-commands"][0] = (
                         module["build-commands"][0].removesuffix('"."') + f'"{names_cache[giturl]}"'
                     )
