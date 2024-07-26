@@ -1,21 +1,27 @@
-ndspy==4.1.0
-skytemple-rust @ git+https://github.com/skytemple/skytemple-rust
-skytemple-files[spritecollab] @ git+https://github.com/skytemple/skytemple-files
-pmdsky-debug-py
+# Requirements for the stable Linux, macOS and Windows releases
+# TODO: Bump
+skytemple-rust==1.6.5
+# TODO: Bump
+skytemple-files[spritecollab]==1.7.0
+# TODO: Replace before release: skytemple-ssb-debugger==1.8.0
+skytemple-ssb-debugger @ git+https://github.com/skytemple/skytemple-ssb-debugger
+skytemple-ssb-emulator==1.8.0
+skytemple-eventserver==1.6.0
 skytemple-dtef==1.6.1
 skytemple-icons==1.3.2
+explorerscript==0.2.1.post2
+tilequant==1.1.0
+pmdsky-debug-py
+ndspy==4.1.0
 range-typed-integers >= 1.0.0
-pygobject==3.48.2
 pycairo==1.18.2; sys_platform != "win32"
 natsort==8.4.0
-tilequant==1.1.0
-skytemple-ssb-debugger @ git+https://github.com/skytemple/skytemple-ssb-debugger
-skytemple-eventserver==1.6.0
 pypresence==4.3.0
 pygal==3.0.4
 CairoSVG==2.7.1
 psutil==5.9.8
 sentry-sdk==2.10.0
+cairocffi>=1.6.1
 packaging
 wheel
 importlib_metadata>=4.6; python_version < "3.10"

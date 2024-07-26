@@ -37,7 +37,7 @@ pip3 install -U certifi
 bash .\generate-mo.sh
 
 # install SkyTemple
-pip install -r ../requirements-mac-windows.txt
+pip install -r ../requirements-frozen.txt
 pip install '..[eventserver]'
 # pip likes to troll us. Force reinstall the proper PyGObject versions
 pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygobject\dist\PyGObject*.whl)

@@ -24,31 +24,31 @@ jobs:
       matrix:
         python-version: [ "3.9", "3.10", "3.11", "3.12" ]
     steps:
-    - uses: actions/checkout@v4
-    - uses: theCapypara/mypy-check@rust-support
-      name: Run type checks
-      with:
-        mypy_flags: '--config-file mypy.ini'
-        requirements: '-r requirements_type_checks.txt'
-        python_version: '${{ matrix.python-version }}'
+      - uses: actions/checkout@v4
+      - uses: theCapypara/mypy-check@rust-support
+        name: Run type checks
+        with:
+          mypy_flags: '--config-file mypy.ini'
+          requirements: '-r requirements-dev.txt'
+          python_version: '${{ matrix.python-version }}'
 
   linting:
     runs-on: ubuntu-latest
     name: Linting
     steps:
-    - uses: actions/checkout@v4
-    - name: Install gobject-introspection
-      run: sudo apt-get install -y gobject-introspection libgirepository1.0-dev
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt ruff
-    - name: Lint with ruff
-      run: ruff check --output-format=github skytemple
+      - uses: actions/checkout@v4
+      - name: Install gobject-introspection
+        run: sudo apt-get install -y gobject-introspection libgirepository1.0-dev
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+      - name: Lint with ruff
+        run: ruff check --output-format=github skytemple
 
   code-formatting:
     runs-on: ubuntu-latest
@@ -99,6 +99,7 @@ jobs:
       - package-windows
       - package-mac
       - package-mac-arm64
+      - package-linux-flatpak-stable
     runs-on: ubuntu-latest
     name: Deploy wheels to PyPI
     steps:
@@ -121,7 +122,7 @@ jobs:
         run: |
           twine upload *.whl
   deploy-to-artifact-storage:
-    runs-on: [self-hosted, artifact-storage]
+    runs-on: [ self-hosted, artifact-storage ]
     name: Upload artifacts
     needs:
       - build
@@ -176,7 +177,7 @@ jobs:
           cp -f "$PATH_MACOS_ARM" "/mnt/dist/skytemple/skytemple-arm64-$REF.dmg"
   deploy-to-skytemple-dist:
     if: startsWith(github.ref, 'refs/tags/')
-    runs-on: [self-hosted, skytemple-dist]
+    runs-on: [ self-hosted, skytemple-dist ]
     name: Upload to Deposit Box
     needs:
       - build
@@ -215,6 +216,97 @@ jobs:
           dist.py "$PATH_WIN" "skytemple/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-win-install.exe"
           dist.py "$PATH_MACOS" "skytemple/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-mac-install-x86-64.dmg"
           dist.py "$PATH_MACOS_ARM" "skytemple/$GITHUB_REF_NAME/skytemple-$GITHUB_REF_NAME-mac-install-arm64.dmg"
+  package-linux-flatpak-nightly:
+    name: Linux Flatpak Nightly
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-46
+      options: --privileged
+    steps:
+      # Most of these are needed because of a bug in pip download, which causes pip download to attempt to build all build dependencies..
+      - name: Install dependencies
+        run: |
+          sudo yum install -y perl python3 python3-pip python3-devel gobject-introspection-devel meson cmake pkg-config cairo-devel cairo-gobject-devel make automake gcc gcc-c++
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install generator dependencies
+        run: |
+          pip3 install -r installer/linux-flatpak/requirements.txt
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: |
+          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+${GITHUB_SHA::8}\"/" pyproject.toml
+      - name: Run generator
+        run: |
+          python3 -u installer/linux-flatpak/generator.py nightly
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        name: Build Flatpak
+        with:
+          bundle: org.skytemple.SkyTemple.flatpak
+          manifest-path: installer/linux-flatpak/org.skytemple.SkyTemple.yml
+          cache-key: flatpak-builder-${{ github.sha }}
+      - uses: flatpak/flatpak-github-actions/flat-manager@v6
+        name: Deploy to SkyTemple Repo
+        if: github.ref == 'refs/heads/master'
+        with:
+          repository: nightly
+          flat-manager-url: https://flatpak.skytemple.org/
+          token: ${{ secrets.SKYTEMPLE_FLATPAK_REPO_TOKEN }}
+  package-linux-flatpak-stable:
+    if: startsWith(github.ref, 'refs/tags/')
+    name: Linux Flatpak Stable
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-46
+      options: --privileged
+    steps:
+      # Most of these are needed because of a bug in pip download, which causes pip download to attempt to build all build dependencies..
+      - name: Install dependencies
+        run: |
+          sudo yum install -y python3 python3-pip python3-devel jq gobject-introspection-devel meson cmake pkg-config cairo-devel cairo-gobject-devel make automake gcc gcc-c++
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install generator dependencies
+        run: |
+          pip3 install -r installer/linux-flatpak/requirements.txt tomlq
+      - name: Note version
+        run: |
+          echo "PACKAGE_VERSION=$(tomlq '.project.version' pyproject.toml -r)" >> $GITHUB_ENV
+      - name: Run generator
+        run: |
+          python3 -u installer/linux-flatpak/generator.py stable
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        name: Build Flatpak
+        with:
+          bundle: org.skytemple.SkyTemple.flatpak
+          manifest-path: installer/linux-flatpak/stable/org.skytemple.SkyTemple.yml
+      - name: Checkout Flathub GH Repo
+        uses: actions/checkout@v4
+        with:
+          repository: flathub/org.skytemple.SkyTemple
+          path: flathub
+          token: ${{ secrets.FLATHUB_GITHUB_TOKEN }}
+      - name: Delete all old files
+        run: |
+          git rm -rf .
+          git clean -fxd
+        working-directory: flathub
+      - name: Copy stable build to FlatHub Repo
+        run: |
+          cp -a installer/linux-flatpak/stable/. flathub/
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: .
+          title: New Release ${{ env.PACKAGE_VERSION }}
+          body: Autogenerated by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          commit-message: New Release ${{ env.PACKAGE_VERSION }}
+          path: flathub
+          token: ${{ secrets.FLATHUB_GITHUB_TOKEN }}
+          branch: release/${{ env.PACKAGE_VERSION }}
+          delete-branch: true
   package-windows:
     # This is partly based on https://github.com/wingtk/gvsbuild/blob/main/.github/workflows/ci.yml
     runs-on: windows-2022
@@ -257,7 +349,7 @@ jobs:
           echo "PIPX_BIN_DIR=C:\pipx_bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
           $env:path = "C:\pipx_bin;" + $env:path
-      
+          
           python -m pip install --user pipx
           python -m pipx ensurepath
           pipx install "git+https://github.com/theCapypara/gvsbuild@pango-patch"
@@ -361,7 +453,7 @@ jobs:
           if [ -n "$IS_DEV_BUILD" ]; then
             IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           fi
-          pip3 install -r requirements-mac-windows.txt
+          pip3 install -r requirements-frozen.txt
           # Generate MO localization files
           installer/generate-mo.sh
           pip3 install '.[eventserver]'
@@ -437,7 +529,7 @@ jobs:
           if [ -n "$IS_DEV_BUILD" ]; then
             IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           fi
-          pip3 install -r requirements-mac-windows.txt
+          pip3 install -r requirements-frozen.txt
           # Generate MO localization files
           installer/generate-mo.sh
           pip3 install '.[eventserver]'

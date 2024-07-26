@@ -1,0 +1,152 @@
+app-id: org.skytemple.SkyTemple
+runtime: org.gnome.Platform
+runtime-version: '46'
+sdk: org.gnome.Sdk
+command: run.sh
+finish-args:
+  - "--share=network"
+  - "--socket=fallback-x11"
+  - "--socket=wayland"
+  - "--socket=pulseaudio"
+  - "--share=ipc"
+  - "--filesystem=host"
+  - "--filesystem=xdg-run/app/com.discordapp.Discord:create"
+  - "--filesystem=xdg-run/discord-ipc-0:create"
+  - "--device=all" # input
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+cleanup:
+  - /bin/pcap-config
+  - /include
+  - /lib/libpcap.a
+  - /lib/pkgconfig
+  - /share/man
+modules:
+
+  - name: armips
+    buildsystem: cmake-ninja
+    no-make-install: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    post-install:
+      - install -Dm755 armips /app/bin/armips
+    sources:
+      - type: archive
+        url: https://github.com/Kingcom/armips/archive/v0.11.0.tar.gz
+        sha256: c94e29dfda3bdf853590d825562b9c73a3d8e8e995555e021c6b2a6451572681
+      - type: patch
+        path: patches/armips.patch
+
+  # This needs to be done separately due to some Cargo packages required.
+  - name: python3-skytemple-rust
+    buildsystem: simple
+    build-commands:
+      - . /usr/lib/sdk/rust-stable/enable.sh && CARGO_NET_OFFLINE=1 pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "./skytemple-rust"
+    build-options:
+      env:
+        CARGO_HOME: /run/build/python3-skytemple-rust/cargo
+    sources:
+      - cargo-sources-skytemple-rust.json
+      {{ "setuptools"|pip_add_group }}
+      {{ "setuptools-rust"|pip_add_group }}
+      {{ "flit"|pip_add_group }}
+      - {{ skytemple_rust_ref }}
+      - type: file
+        url: https://files.pythonhosted.org/packages/2e/49/565350c6fab3f5a3e2c46633290117060e70e2501544cdf3bde1d1d5d0fe/range_typed_integers-1.0.1-py3-none-any.whl
+        sha256: 35d39a41642503c5c5117e26798713f081b1beece1b2afd8f1ba70c8d90f63c5
+
+  # This is required by desmume-rs.
+  - name: pcap
+    buildsystem: autotools
+    config-opts:
+      - "--disable-shared"
+      - "--disable-dbus"
+    sources:
+      - type: archive
+        url: https://www.tcpdump.org/release/libpcap-1.10.1.tar.gz
+        sha512: 56c314f19c2b857742bf8abcb1e78066986aaa95cec339b75a3c8b70a9fa2b5167da98708352f9ec97a1cea2700cfb4e040bda108d58ac46cec9b7deab88d171
+
+  # This needs to be done separately due to some Cargo packages required.
+  - name: python3-skytemple-ssb-emulator
+    buildsystem: simple
+    build-commands:
+      - . /usr/lib/sdk/rust-stable/enable.sh && CARGO_NET_OFFLINE=1 pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "./ssb-emulator"
+    build-options:
+      env:
+        CARGO_HOME: /run/build/python3-skytemple-ssb-emulator/cargo
+    sources:
+      - cargo-sources-ssb-emulator.json
+      {{ "setuptools"|pip_add_group }}
+      {{ "setuptools-rust"|pip_add_group }}
+      {{ "flit"|pip_add_group }}
+      - {{ skytemple_ssb_emulator_ref }}
+      - type: file
+        url: https://files.pythonhosted.org/packages/2e/49/565350c6fab3f5a3e2c46633290117060e70e2501544cdf3bde1d1d5d0fe/range_typed_integers-1.0.1-py3-none-any.whl
+        sha256: 35d39a41642503c5c5117e26798713f081b1beece1b2afd8f1ba70c8d90f63c5
+      - type: file
+        url: https://files.pythonhosted.org/packages/c4/cd/47e45d3abada2e1edb9e2ca9334be186d2e7f97a01b09b5b82799c4d7bd3/meson-1.5.0-py3-none-any.whl
+        sha256: 52b34f4903b882df52ad0d533146d4b992c018ea77399f825579737672ae7b20
+
+  # This needs to be done separately due to some patches and just overall complexity.
+  - name: python3-explorerscript
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "./explorerscript"
+    sources:
+      {{ "packaging"|pip_add_group }}
+      {{ "setuptools"|pip_add_group }}
+      {{ "scikit-build"|pip_add_group }}
+      {{ "pybind11"|pip_add_group }}
+      {{ "hatchling"|pip_add_group }}
+      {{ "flit"|pip_add_group }}
+      - {{ explorerscript_ref }}
+      - type: file
+        url: https://files.pythonhosted.org/packages/5f/a0/1f70c34a96dcb0acf428319e83655e92ab2955d73a33f711852a5fb79681/igraph-0.11.6.tar.gz
+        sha256: 837f233256c3319f2a35a6a80d94eafe47b43791ef4c6f9e9871061341ac8e28
+      - type: file
+        url: https://files.pythonhosted.org/packages/24/99/4772b8e00a136f3e01236de33b0efda31ee7077203ba5967fcc76da94d65/texttable-1.7.0-py2.py3-none-any.whl
+        sha256: 72227d592c82b3d7f672731ae73e4d1f88cd8e2ef5b075a7a7f01a23a3743917
+      - type: patch
+        path: patches/explorerscript_antlr_offline.patch
+
+  - requirements-skytemple.json
+
+  # Somehow not recognized by the builder tools
+  - name: python3-wheel
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --ignore-installed --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wheel==0.43.0 "
+    sources:
+      {{ "setuptools"|pip_add_group }}
+      {{ "flit"|pip_add_group }}
+
+  - name: gtksourceview4
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gtksourceview/4.8/gtksourceview-4.8.4.tar.xz
+        sha256: 7ec9d18fb283d1f84a3a3eff3b7a72b09a10c9c006597b3fbabbb5958420a87d
+
+  - name: skytemple
+    buildsystem: simple
+    build-commands:
+      - installer/generate-mo.sh
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}/links" --prefix=${FLATPAK_DEST} --no-deps .
+      # Icons
+      - install -Dm644 skytemple/data/icons/hicolor/16x16/apps/skytemple.png /app/share/icons/hicolor/16x16/apps/org.skytemple.SkyTemple.png
+      - install -Dm644 skytemple/data/icons/hicolor/32x32/apps/skytemple.png /app/share/icons/hicolor/32x32/apps/org.skytemple.SkyTemple.png
+      - install -Dm644 skytemple/data/icons/hicolor/64x64/apps/skytemple.png /app/share/icons/hicolor/64x64/apps/org.skytemple.SkyTemple.png
+      - install -Dm644 skytemple/data/icons/hicolor/128x128/apps/skytemple.png /app/share/icons/hicolor/128x128/apps/org.skytemple.SkyTemple.png
+      - install -Dm644 skytemple/data/icons/hicolor/256x256/apps/skytemple.png /app/share/icons/hicolor/256x256/apps/org.skytemple.SkyTemple.png
+      - install -Dm644 skytemple/data/icons/hicolor/512x512/apps/skytemple.png /app/share/icons/hicolor/512x512/apps/org.skytemple.SkyTemple.png
+      # Runner
+      - install -Dm755 run.sh /app/bin/run.sh
+      # Desktop file, appstream
+      - install -Dm644 org.skytemple.SkyTemple.desktop /app/share/applications/org.skytemple.SkyTemple.desktop
+      - install -Dm644 org.skytemple.SkyTemple.appdata.xml /app/share/metainfo/org.skytemple.SkyTemple.appdata.xml
+    sources:
+      - {{ skytemple_ref }}
+      - type: file
+        path: assets/run.sh
+      {{ "setuptools"|pip_add_group("links") }}
+      {{ "flit"|pip_add_group("links") }}

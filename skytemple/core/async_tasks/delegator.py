@@ -14,21 +14,18 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import asyncio
 import sys
 from asyncio import AbstractEventLoop
-
-from skytemple.core.logger import async_handle_exeception
-from skytemple_files.common.i18n_util import _
-import asyncio
-from typing import Optional
 from collections.abc import Coroutine
 from enum import Enum, auto
+from typing import Optional
 
-import gbulb
 from gi.repository import GLib, Gio
+from skytemple_files.common.i18n_util import _
+from skytemple_files.common.task_runner import AsyncTaskRunner
 
 from skytemple.core.async_tasks.now import Now
-from skytemple_files.common.task_runner import AsyncTaskRunner
 
 
 class AsyncEventLoopType(Enum):
@@ -117,14 +114,17 @@ class AsyncTaskDelegator:
             if cls.config_type().event_loop_type == AsyncEventLoopType.GLIB_ONLY:
                 exit_code = app.run(sys.argv)
             elif cls.config_type().event_loop_type == AsyncEventLoopType.GBULB:
-                gbulb.install(gtk=True)
-                gbulb.get_event_loop().set_exception_handler(async_handle_exeception)
-                from skytemple.core.events.manager import EventManager
+                # TODO: No longer supported ATM
+                # gbulb.install(gtk=True)
+                # gbulb.get_event_loop().set_exception_handler(async_handle_exeception)
+                # from skytemple.core.events.manager import EventManager
 
-                GLib.idle_add(EventManager.instance().async_init)
-                loop = asyncio.get_event_loop()
-                assert isinstance(loop, gbulb.GLibEventLoop)
-                loop.run_forever(application=app, argv=sys.argv)
+                # GLib.idle_add(EventManager.instance().async_init)
+                # loop = asyncio.get_event_loop()
+                # assert isinstance(loop, gbulb.GLibEventLoop)
+                # loop.run_forever(application=app, argv=sys.argv)
+                # FALL BACK TO GLIB_ONLY:
+                exit_code = app.run(sys.argv)
             else:
                 raise RuntimeError("Invalid async configuration")
         except OSError as ex:
