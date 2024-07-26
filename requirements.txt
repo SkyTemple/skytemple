@@ -1,4 +1,5 @@
 ndspy==4.1.0
+skytemple-rust @ git+https://github.com/skytemple/skytemple-rust
 skytemple_files[spritecollab] @ git+https://github.com/skytemple/skytemple-files
 pmdsky-debug-py
 skytemple_dtef==1.6.1
@@ -17,9 +18,6 @@ psutil==5.9.8
 sentry-sdk==2.10.0
 packaging
 wheel
-types-setuptools
-ruff
-pygobject-stubs #--config-settings=config=Gtk3,Gdk3,GtkSource4
 importlib_metadata>=4.6; python_version < "3.10"
 # Below is just a crutch since the Flatpak pip helper has problems with detecting extra dependencies.
 # These are the dependencies of SkyTemple Files spritecollab extra:
