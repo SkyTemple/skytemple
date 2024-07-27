@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-24 17:23+0000\n"
-"PO-Revision-Date: 2024-07-24 17:43\n"
+"POT-Creation-Date: 2024-07-27 08:57+0000\n"
+"PO-Revision-Date: 2024-07-27 09:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3892,7 +3892,7 @@ msgstr "_Cancelar"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:997
 #: skytemple/skytemple/_i18n.py:51
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:112
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:276
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:275
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:80
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:66
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:80
@@ -3925,9 +3925,9 @@ msgstr "El archivo sigue cargado en la memoria RAM. Todavía puede depurarse uti
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:579
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:342
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:359
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:562
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:838
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:868
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:561
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:837
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:867
 #: skytemple/skytemple/module/script/widget/ssa.py:721
 msgid "Warning!"
 msgstr "¡Advertencia!"
@@ -4324,22 +4324,22 @@ msgstr "Cancelar"
 msgid "You will not be able to restore it."
 msgstr "No podrás restaurarlo."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:253
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:255
 msgid "Parse error: "
 msgstr "Error de sintaxis: "
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:256
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:258
 #, python-brace-format
 msgid "The script file {self.filename} could not be saved.\n"
 "{prefix}{err}"
 msgstr "No se ha podido guardar el script {self.filename}.\n"
 "{prefix}{err}"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:258
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:260
 msgid "Error saving the script."
 msgstr "Error al guardar el script."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:321
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:325
 #, python-brace-format
 msgid "There was an error while loading the ExplorerScript source code. The source will not be available.\n"
 "Please close and reopen the tab.\n\n"
@@ -4348,16 +4348,16 @@ msgstr "Se ha producido un error al cargar el código fuente del ExplorerScript.
 "Por favor, cierra la pestaña y vuélvela a abrir.\n\n"
 "{exception}"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:395
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:399
 msgid "An old version of this script is still loaded in RAM. Debugging is disabled for this file, until it is reloaded."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:639
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:646
 #, python-brace-format
 msgid "Search and Replace in {self.filename}"
 msgstr "Buscar y reemplazar en {self.filename}"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:787
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:794
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
@@ -4365,15 +4365,15 @@ msgstr "El código fuente de ExplorerScript no coincide con el script compilado 
 "¿Quieres mantener tu código fuente de ExplorerScript o recargarlo (descompilarlo) desde la ROM?\n"
 "Advertencia: Si decides recargar, perderás tu archivo, incluyendo todos los comentarios en él."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:790
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:797
 msgid "ExplorerScript Inconsistency"
 msgstr "Inconsistencia en ExplorerScript"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:792
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:799
 msgid "Reload from ROM"
 msgstr "Recargar desde ROM"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:793
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:800
 msgid "Keep ExplorerScript source code"
 msgstr "Mantener código fuente de ExplorerScript"
 
@@ -5490,15 +5490,15 @@ msgstr "La imagen de entrada no es un formato compatible."
 msgid "Image was converted."
 msgstr "Se ha convertido la imagen."
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:56
+#: skytemple/skytemple/core/async_tasks/delegator.py:53
 msgid "Thread-based"
 msgstr "Basado en hilos"
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:62
+#: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
 msgstr "Síncrono"
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:74
+#: skytemple/skytemple/core/async_tasks/delegator.py:71
 msgid "Using Gbulb event loop"
 msgstr "Usar bucle de eventos Gbulb"
 
@@ -10994,7 +10994,7 @@ msgid "Export PNG of map..."
 msgstr "Exportar PNG del mapa..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:153
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:897
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:896
 msgid "Export PNG of chunks..."
 msgstr "Exportar PNG de chunks..."
 
@@ -11006,8 +11006,8 @@ msgstr "Error al exportar el tileset."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:195
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:262
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:937
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:999
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:936
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:998
 msgid "An image must be selected."
 msgstr "Se debe seleccionar una imagen."
 
@@ -11018,13 +11018,13 @@ msgid "Error importing the tileset."
 msgstr "Error al importar el tileset."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:220
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:961
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:960
 msgid "Export PNG of tiles..."
 msgstr "Exportar PNG de tiles..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:341
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:561
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:837
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:836
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr "Algunos valores no eran válidos (no son números). Han sido reemplazados por 0."
 
@@ -11674,84 +11674,84 @@ msgstr "Debes seleccionar un mapa."
 msgid "You need to select a reference."
 msgstr "Necesitas seleccionar una referencia."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:220
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:219
 msgid "Incorrect values.\n"
 "Only enter numbers from 1 to 255 for chunks and tiles dimensions."
 msgstr "Valores incorrectos.\n"
 "Introduce números del 1 al 255 para las dimensiones de tiles y chunks."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:233
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:232
 msgid "Save GIF of map..."
 msgstr "Guardar GIF del mapa..."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:273
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:272
 msgid "Export PNGs of map..."
 msgstr "Exportar PNGs del mapa..."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:332
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:331
 msgid "The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:343
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:342
 msgid "The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
 msgstr "La imagen de la segunda capa tiene menos de 256 colores. Asegúrate de que la imagen contenga 256 colores, incluso si se utilicen menos."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:489
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:488
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
 msgstr "Este BPA no tiene fotogramas.\n"
 "Activa el BPA e importa imágenes para que un BPA añada fotogramas."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:575
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:574
 msgid "This map has no BPA for animated tiles activated."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:576
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:575
 msgid "No animated tiles"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:616
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:615
 msgid "Export animated tiles (BPA)"
 msgstr "Exportar tiles animados (BPA)"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:651
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:650
 msgid "The animated tiles were successfully exported."
 msgstr "Los tiles animados se han exportado correctamente."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:652
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:717
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:651
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:716
 msgid "SkyTemple - Success!"
 msgstr "SkyTemple - ¡Éxito!"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:658
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:657
 msgid "Error during BPA export"
 msgstr "Error durante la exportación de BPA"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:670
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:669
 msgid "Import animated tiles (BPA)"
 msgstr "Importar tiles animados (BPA)"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:714
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:713
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr "Los tiles animados se han importado con éxito, utilizando los archivos: "
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:723
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:722
 msgid "Error during BPA import"
 msgstr "Error durante la importación de BPA"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:805
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:804
 msgid "All \"number of frames\" values were invalid or 0. No values were saved."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:820
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:819
 msgid "All \"frame time\" values were invalid or 0. No values were saved."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:867
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:866
 msgid "Palette Animation is not enabled."
 msgstr "La animación de paleta no está activada."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1018
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1017
 msgid "This map has no second layer."
 msgstr "Este mapa no tiene segunda capa."
 
