@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-27 09:26+0000\n"
-"PO-Revision-Date: 2024-07-27 21:55\n"
+"PO-Revision-Date: 2024-07-27 23:01\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -505,7 +505,7 @@ msgstr "Описание ловушек"
 
 #: /dev/fd/63:122 /dev/fd/63:341
 msgid "Status Names and Descriptions"
-msgstr ""
+msgstr "Названия и описания статусов"
 
 #: /dev/fd/63:123 /dev/fd/63:342
 msgid "Auxiliary Move Descriptions"
@@ -513,23 +513,23 @@ msgstr ""
 
 #: /dev/fd/63:124 /dev/fd/63:343
 msgid "Type Names"
-msgstr ""
+msgstr "Названия типов"
 
 #: /dev/fd/63:125 /dev/fd/63:344
 msgid "Ability Names"
-msgstr ""
+msgstr "Названия способностей"
 
 #: /dev/fd/63:126 /dev/fd/63:345
 msgid "Ability Descriptions"
-msgstr ""
+msgstr "Описания способностей"
 
 #: /dev/fd/63:127 /dev/fd/63:346
 msgid "Wireless Connection Strings"
-msgstr ""
+msgstr "Строки беспроводного подключения"
 
 #: /dev/fd/63:128 /dev/fd/63:347
 msgid "Friend Code Strings"
-msgstr ""
+msgstr "Строки кода друга"
 
 #: /dev/fd/63:129 /dev/fd/63:348
 msgid "Email Strings"
@@ -689,7 +689,7 @@ msgstr ""
 
 #: /dev/fd/63:168 /dev/fd/63:387
 msgid "Staff Roll 1"
-msgstr ""
+msgstr "Титры 1"
 
 #: /dev/fd/63:169 /dev/fd/63:388
 msgid "Special Mission Strings"
@@ -709,11 +709,11 @@ msgstr ""
 
 #: /dev/fd/63:173 /dev/fd/63:392
 msgid "Staff Roll 2"
-msgstr ""
+msgstr "Титры 2"
 
 #: /dev/fd/63:174 /dev/fd/63:393
 msgid "Staff Roll 3"
-msgstr ""
+msgstr "Титры 3"
 
 #: /dev/fd/63:175 /dev/fd/63:394
 msgid "New Pokemon Names"
@@ -922,16 +922,16 @@ msgstr "Испанский"
 
 #: /dev/fd/63:274
 msgid "Dungeon Defeated Dialog Strings"
-msgstr ""
+msgstr "Строки диалогов при поражении в подземелии"
 
 #: /dev/fd/63:275
 msgid "Dungeon Cleared Dialog Strings"
-msgstr ""
+msgstr "Строки диалогов при успешном завершении подземелья"
 
 #: explorerscript/explorerscript/common_syntax.py:99
 #: explorerscript/explorerscript/common_syntax.py:187
 msgid "Integer not allowed at this position."
-msgstr ""
+msgstr "Целое число недопустимо в этой позиции."
 
 #: explorerscript/explorerscript/common_syntax.py:103
 #: explorerscript/explorerscript/common_syntax.py:189
@@ -954,7 +954,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/common_syntax.py:227
 msgid "Invalid target for routine."
-msgstr ""
+msgstr "Недопустимая цель для рутины."
 
 #: explorerscript/explorerscript/common_syntax.py:256
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
@@ -1025,7 +1025,7 @@ msgstr "Не указан ID цели для блока with(){}."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:86
 msgid "A with(){} block needs at least one statement."
-msgstr ""
+msgstr "В блоке with(){} должна быть по крайней мере одна команда."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:75
@@ -1138,7 +1138,7 @@ msgstr "В case switch-сообщения должен быть список в�
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:132
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Неожиданное окончание switch(строка {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:146
 #, python-brace-format
@@ -1204,12 +1204,12 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:193
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
-msgstr ""
+msgstr "Неожиданный continue; в строке {ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:199
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
-msgstr ""
+msgstr "Неожиданный break_loop; в строке {ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:205
 #, python-brace-format
@@ -1245,7 +1245,7 @@ msgstr ""
 #: explorerscript/explorerscript/syntax_error_listener.py:41
 #, python-brace-format
 msgid "line {self.line}:{self.column}: {self.msg}"
-msgstr ""
+msgstr "строка {self.line}:{self.column}: {self.msg}"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:89
 #, python-brace-format
