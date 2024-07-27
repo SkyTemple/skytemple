@@ -62,7 +62,7 @@ class GuestPokemonController(ListBaseController):
         self._list_store = builder_get_assert(self.builder, Gtk.ListStore, "store_tree_guest_pokemon_data")
         stack = builder_get_assert(self.builder, Gtk.Stack, "list_stack")
 
-        if not self.module.has_edit_extra_pokemon():
+        if not self.module.has_edit_guest_pokemon():
             stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, "box_na"))
             return stack
 
