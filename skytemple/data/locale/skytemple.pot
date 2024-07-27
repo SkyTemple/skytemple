@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-26 20:33+0000\n"
+"POT-Creation-Date: 2024-07-27 09:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3269,8 +3269,8 @@ msgstr ""
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:49
-msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
+#: skytemple-files/skytemple_files/patch/handler/edit_guest_pokemon.py:49
+msgid "Changes the way the game determines when to add guest pokémon to the team so it can be edited more easily"
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/exp_share.py:59
@@ -3881,7 +3881,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:997
 #: skytemple/skytemple/_i18n.py:51
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:112
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:276
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:275
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:80
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:66
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:80
@@ -3914,9 +3914,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:579
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:342
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:359
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:562
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:838
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:868
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:561
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:837
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:867
 #: skytemple/skytemple/module/script/widget/ssa.py:721
 msgid "Warning!"
 msgstr ""
@@ -10869,7 +10869,7 @@ msgid "Export PNG of map..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:153
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:897
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:896
 msgid "Export PNG of chunks..."
 msgstr ""
 
@@ -10881,8 +10881,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:195
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:262
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:937
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:999
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:936
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:998
 msgid "An image must be selected."
 msgstr ""
 
@@ -10893,13 +10893,13 @@ msgid "Error importing the tileset."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:220
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:961
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:960
 msgid "Export PNG of tiles..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:341
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:561
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:837
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:836
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr ""
 
@@ -11108,7 +11108,7 @@ msgstr ""
 msgid ""
 "<Not available>\n"
 "\n"
-"To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
+"To view and edit guest Pokémon data, please apply the \"EditGuestPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr ""
@@ -11495,84 +11495,84 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:220
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:219
 msgid ""
 "Incorrect values.\n"
 "Only enter numbers from 1 to 255 for chunks and tiles dimensions."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:233
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:232
 msgid "Save GIF of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:273
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:272
 msgid "Export PNGs of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:332
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:331
 msgid "The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:343
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:342
 msgid "The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:489
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:488
 msgid ""
 "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:575
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:574
 msgid "This map has no BPA for animated tiles activated."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:576
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:575
 msgid "No animated tiles"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:616
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:615
 msgid "Export animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:651
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:650
 msgid "The animated tiles were successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:652
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:717
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:651
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:716
 msgid "SkyTemple - Success!"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:658
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:657
 msgid "Error during BPA export"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:670
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:669
 msgid "Import animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:714
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:713
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:723
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:722
 msgid "Error during BPA import"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:805
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:804
 msgid "All \"number of frames\" values were invalid or 0. No values were saved."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:820
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:819
 msgid "All \"frame time\" values were invalid or 0. No values were saved."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:867
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:866
 msgid "Palette Animation is not enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1018
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1017
 msgid "This map has no second layer."
 msgstr ""
 
