@@ -280,8 +280,9 @@ class StMonsterMonsterPage(Gtk.Box):
             self.lbl_unk_1_1.set_text(_("Spinda Recruit"))
             self.lbl_unk_1_2.set_text(_("Don't appear in Missions"))
             self.lbl_unk_1_3.set_text(_("Don't appear in Missions during story"))
-            self.lbl_unk_17.set_text(_("Sprite Size"))
-            self.lbl_unk_18.set_text(_("Sprite File Size"))
+        if self.module.project.is_patch_applied("SpriteSizeInMonsterData"):
+            self.lbl_unk_17.set_text(_("Sprite Size: "))
+            self.lbl_unk_18.set_text(_("Sprite File Size: "))
         self._ent_names: dict[int, str] = {}
         self._init_monster_store()
         stack = self.evo_stack
@@ -1682,7 +1683,7 @@ class StMonsterMonsterPage(Gtk.Box):
                     md_gender2=md_gender2,
                     monster_bin=monster_bin,
                     sprite_size_table=sprite_size_table,
-                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("ExpandPokeList"),
+                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("SpriteSizeInMonsterData"),
                 )
             if changed:
                 self._set_entry("entry_unk17", self.entry.unk17)
@@ -1696,7 +1697,7 @@ class StMonsterMonsterPage(Gtk.Box):
                         Gtk.ButtonsType.OK,
                         _(
                             "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\nSkyTemple automatically corrected it."
-                        ),
+                        )+"\n"+"\n".join([f"{fn}: {ov} to {nv}" for fn, ov, nv in changed]),
                     )
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
