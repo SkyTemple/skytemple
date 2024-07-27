@@ -47,8 +47,7 @@ MAIN_VIEW_DATA = StStatusPageData(
     description=_(
         "In this section you can apply built-in ASM patches, your own ASM patches and custom\nitem-, move- and "
         "special process effects written in Assembler.\n\nYou will also find information on how to write your own\n"
-        "patches and effects in the C and Rust programming languages.\n\nAdditionally you can browse all symbols "
-        "and functions\nin the game known to SkyTemple."
+        "patches and effects in the C and Rust programming languages."
     ),
 )
 
