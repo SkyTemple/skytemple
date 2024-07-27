@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-27 08:57+0000\n"
-"PO-Revision-Date: 2024-07-27 09:14\n"
+"POT-Creation-Date: 2024-07-27 09:26+0000\n"
+"PO-Revision-Date: 2024-07-27 11:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -3264,8 +3264,8 @@ msgstr ""
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:49
-msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
+#: skytemple-files/skytemple_files/patch/handler/edit_guest_pokemon.py:49
+msgid "Changes the way the game determines when to add guest pokémon to the team so it can be edited more easily"
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/exp_share.py:59
@@ -10888,7 +10888,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
-"To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
+"To view and edit guest Pokémon data, please apply the \"EditGuestPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr ""
