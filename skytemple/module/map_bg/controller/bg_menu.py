@@ -17,27 +17,22 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import logging
 import os
 import re
 import sys
 from collections import OrderedDict
+from collections.abc import MutableSequence
 from functools import partial
 from typing import TYPE_CHECKING, cast
-from collections.abc import MutableSequence
 
+from PIL import Image
+from gi.repository import Gtk
+from gi.repository.Gtk import ResponseType
+from natsort import ns, natsorted
 from range_typed_integers import u16, u16_checked
-from skytemple_files.user_error import UserValueError
-
-from skytemple.core.error_handler import display_error
-from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider import (
-    MapBgStaticTileProvider,
-    MapBgAnimatedTileProvider,
-)
-from skytemple.module.map_bg.chunk_editor_data_provider.tile_palettes_provider import (
-    MapBgPaletteProvider,
-)
+from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.protocol import TilemapEntryProtocol
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import add_extension_if_missing
@@ -45,17 +40,21 @@ from skytemple_files.graphics.bg_list_dat import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
 from skytemple_files.graphics.bpl.protocol import BplProtocol, BplAnimationSpecProtocol
-from skytemple_files.common.i18n_util import _, f
-
-from PIL import Image
-from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType
-from natsort import ns, natsorted
+from skytemple_files.user_error import UserValueError
 
 from skytemple.controller.main import MainController
+from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import (
     add_dialog_gif_filter,
     add_dialog_png_filter,
+)
+from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider import (
+    MapBgStaticTileProvider,
+    MapBgAnimatedTileProvider,
+)
+from skytemple.module.map_bg.chunk_editor_data_provider.tile_palettes_provider import (
+    MapBgPaletteProvider,
 )
 from skytemple.module.map_bg.controller.bg_menu_dialogs.map_width_height import (
     on_map_width_chunks_changed,
@@ -590,7 +589,7 @@ class BgMenuController:
 
         for i, bpa in enumerate(self.parent.bpas):
             if bpa is not None:
-                store.append([f"BPA{i+1}", i])
+                store.append([f"BPA{i + 1}", i])
         cb.set_model(store)
         if len(cb.get_cells()) < 1:
             cell = Gtk.CellRendererText()
@@ -690,7 +689,7 @@ class BgMenuController:
                         self.parent.bpc.process_bpa_change(active_bpa_index, active_bpa.number_of_tiles)
                 else:
                     r = re.compile(
-                        rf"{self.parent.module.bgs.level[self.parent.item_data].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
+                        rf"{self.parent.module.bgs.level[self.parent.item_data].bma_name}_bpa{active_bpa_index + 1}_\d+\.png",
                         re.IGNORECASE,
                     )
                     filenames_base = natsorted(filter(r.match, os.listdir(fn)), alg=ns.IGNORECASE)
@@ -748,10 +747,10 @@ class BgMenuController:
         self.on_palette_animation_enabled_state_set(self.parent.bpl.has_palette_animation)
         if self.parent.bpl.has_palette_animation:
             for i, spec in enumerate(self.parent.bpl.animation_specs):
-                cast(Gtk.Entry, getattr(self.parent, f"pallete_anim_setting_unk3_p{i+1}")).set_text(
+                cast(Gtk.Entry, getattr(self.parent, f"pallete_anim_setting_unk3_p{i + 1}")).set_text(
                     str(spec.duration_per_frame)
                 )
-                cast(Gtk.Entry, getattr(self.parent, f"pallete_anim_setting_unk4_p{i+1}")).set_text(
+                cast(Gtk.Entry, getattr(self.parent, f"pallete_anim_setting_unk4_p{i + 1}")).set_text(
                     str(spec.number_of_frames)
                 )
 
@@ -967,7 +966,7 @@ class BgMenuController:
 
             add_dialog_png_filter(fdialog)
 
-            response = dialog.run()
+            response = fdialog.run()
             fn = fdialog.get_filename()
             fdialog.destroy()
 
