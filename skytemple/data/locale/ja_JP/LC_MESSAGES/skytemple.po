@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-27 08:57+0000\n"
-"PO-Revision-Date: 2024-07-27 09:13\n"
+"POT-Creation-Date: 2024-07-27 09:26+0000\n"
+"PO-Revision-Date: 2024-07-27 11:36\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -3275,8 +3275,8 @@ msgstr "ダンジョンの中断を実装します。 "
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
 msgstr "ゲームをクラッシュさせることなく、任意の固定フロアに特別な固定フロアエンティティ #124 -127 (たんけんたいのまの敵) を配置できます。"
 
-#: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:49
-msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
+#: skytemple-files/skytemple_files/patch/handler/edit_guest_pokemon.py:49
+msgid "Changes the way the game determines when to add guest pokémon to the team so it can be edited more easily"
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/exp_share.py:59
@@ -10947,13 +10947,10 @@ msgstr "パーティーにゲストポケモンを追加するダンジョンを
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
-"To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
+"To view and edit guest Pokémon data, please apply the \"EditGuestPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr "<Not available>\n\n"
-"ゲストポケモンデータを表示および編集するには、「パッチ」>「ASM」メニューから「EditExtraPokemon」\n"
-"ASM パッチを適用してください。\n"
-"すでに適用している場合は、最新のバージョンを使用するために再度適用してください。"
+msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:215
 msgid "Dungeon Guest Pokémon"
