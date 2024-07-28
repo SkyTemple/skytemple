@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-27 09:26+0000\n"
-"PO-Revision-Date: 2024-07-27 11:36\n"
+"POT-Creation-Date: 2024-07-28 06:56+0000\n"
+"PO-Revision-Date: 2024-07-28 07:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -9403,7 +9403,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:57
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:137
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:284
-#: skytemple/skytemple/module/patch/module.py:114
+#: skytemple/skytemple/module/patch/module.py:113
 msgid "Item Effects"
 msgstr ""
 
@@ -9491,7 +9491,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:65
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:146
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:325
-#: skytemple/skytemple/module/patch/module.py:125
+#: skytemple/skytemple/module/patch/module.py:124
 msgid "Move Effects"
 msgstr ""
 
@@ -9552,7 +9552,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:53
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:133
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:283
-#: skytemple/skytemple/module/patch/module.py:103
+#: skytemple/skytemple/module/patch/module.py:102
 msgid "Special Process Effects"
 msgstr "特殊处理效果"
 
@@ -12468,21 +12468,14 @@ msgstr "补丁"
 msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
 "item-, move- and special process effects written in Assembler.\n\n"
 "You will also find information on how to write your own\n"
-"patches and effects in the C and Rust programming languages.\n\n"
-"Additionally you can browse all symbols and functions\n"
-"in the game known to SkyTemple."
-msgstr "您可在这里应用内置的 ASM 补丁和您自己的 ASM 补丁，以及使用汇编语言编写\n"
-"的自定义道具、招式和特殊处理效果。\n\n"
-"您也能了解到有关如何用 C 和 Rust 编程语言编写自己的\n"
-"补丁和效果的信息。\n\n"
-"此外，您还可以浏览 SkyTemple 已知的游戏中的所有\n"
-"符号和函数。"
+"patches and effects in the C and Rust programming languages."
+msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:92
+#: skytemple/skytemple/module/patch/module.py:91
 msgid "ASM"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:136
+#: skytemple/skytemple/module/patch/module.py:135
 msgid "C / Rust"
 msgstr ""
 
