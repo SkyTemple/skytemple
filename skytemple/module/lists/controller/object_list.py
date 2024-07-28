@@ -137,7 +137,9 @@ class ObjectListController(ListBaseController):
         obj.unk3 = int(flag)
         logger.debug(f"Updated object {o_id}: {obj}")
 
-        self.module.project.get_rom_module().get_static_data().script_data.objects = self._list.list
+        with self.module.project.get_rom_module().get_static_data().script_data.modify() as storage:
+            storage.objects = self._list.list
+
         self.module.mark_objects_as_modified()
 
     def refresh_list(self):
