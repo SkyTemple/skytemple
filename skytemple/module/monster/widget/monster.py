@@ -52,7 +52,7 @@ from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import add_extension_if_missing, MONSTER_BIN
+from skytemple_files.common.util import add_extension_if_missing, MONSTER_BIN, M_ATTACK_BIN
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.protocol import (
     Gender,
@@ -245,6 +245,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self.item_data = item_data
         self.entry: MdEntryProtocol = self.module.get_entry(self.item_data)
         self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+        self._m_attack_bin = self.module.project.open_file_in_rom(M_ATTACK_BIN, FileType.BIN_PACK, threadsafe=True)
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -1677,14 +1678,16 @@ class StMonsterMonsterPage(Gtk.Box):
         sprite_size_table = self.module.get_pokemon_sprite_data_table()
         try:
             with self._monster_bin as monster_bin:
-                changed = check_and_correct_monster_sprite_size(
-                    self.entry,
-                    md_gender1=md_gender1,
-                    md_gender2=md_gender2,
-                    monster_bin=monster_bin,
-                    sprite_size_table=sprite_size_table,
-                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("SpriteSizeInMonsterData"),
-                )
+                with self._m_attack_bin as m_attack_bin:
+                    changed = check_and_correct_monster_sprite_size(
+                        self.entry,
+                        md_gender1=md_gender1,
+                        md_gender2=md_gender2,
+                        monster_bin=monster_bin,
+                        m_attack_bin=m_attack_bin,
+                        sprite_size_table=sprite_size_table,
+                        is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("SpriteSizeInMonsterData"),
+                    )
             if changed:
                 self._set_entry("entry_unk17", self.entry.unk17)
                 self._set_entry("entry_unk18", self.entry.unk18)
