@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-28 11:36+0000\n"
-"PO-Revision-Date: 2024-07-28 11:37\n"
+"PO-Revision-Date: 2024-07-28 11:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3296,7 +3296,8 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
-msgstr ""
+msgstr "Erweitert die Anzahl der erlaubten Pokémon auf 2048 und macht alle Einträge unabhängig voneinander. Benötigt die Patches ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile und SpriteSizeInMonsterData.\n"
+"Es wird dringend empfohlen alle Dungeon-Fehler zu beheben, bevor dieser Patch angewendet wird, und ein Backup deiner ROM zu erstellen."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
@@ -3447,7 +3448,7 @@ msgstr "Überspringt das Persönlichkeitsquiz. Der Spieler wird nur nach dem Ges
 
 #: skytemple-files/skytemple_files/patch/handler/sprite_size.py:49
 msgid "Changes Sprite Size and Sprite File Size values to be in each Pokémon's data."
-msgstr ""
+msgstr "Ändert Sprite-Größe und Sprite-Dateigröße-Werte, damit sie in den Daten jedes Pokémon enthalten sind."
 
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:68
 msgid "Replaces old move stats display with bars.\n"
@@ -12469,11 +12470,11 @@ msgstr "Erscheint während der Story nicht in Missionen"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:284
 msgid "Sprite Size: "
-msgstr ""
+msgstr "Sprite-Größe: "
 
 #: skytemple/skytemple/module/monster/widget/monster.py:285
 msgid "Sprite File Size: "
-msgstr ""
+msgstr "Sprite-Dateigröße: "
 
 #: skytemple/skytemple/module/monster/widget/monster.py:665
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
