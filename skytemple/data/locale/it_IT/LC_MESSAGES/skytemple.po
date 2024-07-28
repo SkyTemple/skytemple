@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-28 06:56+0000\n"
-"PO-Revision-Date: 2024-07-28 07:36\n"
+"POT-Creation-Date: 2024-07-28 11:36+0000\n"
+"PO-Revision-Date: 2024-07-28 11:37\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -1413,6 +1413,14 @@ msgstr ""
 msgid "'{str(value)}' cannot be encoded as a shifted immediate."
 msgstr ""
 
+#: skytemple-files/skytemple_files/common/sprite_util.py:91
+msgid "Sprite Size"
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/sprite_util.py:98
+msgid "Sprite File Size"
+msgstr ""
+
 #: skytemple-files/skytemple_files/common/tiled_image.py:52
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
 msgstr ""
@@ -1686,7 +1694,7 @@ msgstr "Neutro"
 #: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/data/md/protocol.py:428
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:158
-#: skytemple/skytemple/module/monster/widget/monster.py:1477
+#: skytemple/skytemple/module/monster/widget/monster.py:1478
 msgid "Unused"
 msgstr "Inutilizzato"
 
@@ -2707,10 +2715,10 @@ msgstr "Terremoto"
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:356
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:357
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:359
-#: skytemple/skytemple/module/monster/widget/monster.py:1664
 #: skytemple/skytemple/module/monster/widget/monster.py:1665
 #: skytemple/skytemple/module/monster/widget/monster.py:1666
 #: skytemple/skytemple/module/monster/widget/monster.py:1667
+#: skytemple/skytemple/module/monster/widget/monster.py:1668
 msgid "???"
 msgstr ""
 
@@ -3271,7 +3279,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:115
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
-"Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
+"Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
 msgstr ""
@@ -3409,6 +3417,10 @@ msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/sprite_size.py:49
+msgid "Changes Sprite Size and Sprite File Size values to be in each Pokémon's data."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:68
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
@@ -3423,72 +3435,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:232
-#: skytemple-files/skytemple_files/patch/patches.py:242
+#: skytemple-files/skytemple_files/patch/patches.py:234
+#: skytemple-files/skytemple_files/patch/patches.py:244
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:249
+#: skytemple-files/skytemple_files/patch/patches.py:251
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:255
+#: skytemple-files/skytemple_files/patch/patches.py:257
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:265
+#: skytemple-files/skytemple_files/patch/patches.py:267
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:268
+#: skytemple-files/skytemple_files/patch/patches.py:270
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:273
-#: skytemple-files/skytemple_files/patch/patches.py:279
-#: skytemple-files/skytemple_files/patch/patches.py:285
-#: skytemple-files/skytemple_files/patch/patches.py:293
-#: skytemple-files/skytemple_files/patch/patches.py:307
+#: skytemple-files/skytemple_files/patch/patches.py:275
+#: skytemple-files/skytemple_files/patch/patches.py:281
+#: skytemple-files/skytemple_files/patch/patches.py:287
+#: skytemple-files/skytemple_files/patch/patches.py:295
+#: skytemple-files/skytemple_files/patch/patches.py:309
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:281
+#: skytemple-files/skytemple_files/patch/patches.py:283
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:287
+#: skytemple-files/skytemple_files/patch/patches.py:289
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:394
+#: skytemple-files/skytemple_files/patch/patches.py:396
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:396
+#: skytemple-files/skytemple_files/patch/patches.py:398
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:406
+#: skytemple-files/skytemple_files/patch/patches.py:408
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:408
+#: skytemple-files/skytemple_files/patch/patches.py:410
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:413
+#: skytemple-files/skytemple_files/patch/patches.py:415
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:419
+#: skytemple-files/skytemple_files/patch/patches.py:421
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:426
+#: skytemple-files/skytemple_files/patch/patches.py:428
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -6733,7 +6745,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1666
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1820
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1974
-#: skytemple/skytemple/module/monster/widget/monster.py:840
+#: skytemple/skytemple/module/monster/widget/monster.py:841
 msgid "Weight"
 msgstr ""
 
@@ -8677,7 +8689,7 @@ msgid "Stat Growth"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/main.ui:245
-#: skytemple/skytemple/module/monster/widget/monster.py:1552
+#: skytemple/skytemple/module/monster/widget/monster.py:1553
 msgid "Portraits"
 msgstr ""
 
@@ -11931,24 +11943,24 @@ msgstr ""
 msgid "Don't appear in Missions during story"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:283
-msgid "Sprite Size"
-msgstr ""
-
 #: skytemple/skytemple/module/monster/widget/monster.py:284
-msgid "Sprite File Size"
+msgid "Sprite Size: "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:664
+#: skytemple/skytemple/module/monster/widget/monster.py:285
+msgid "Sprite File Size: "
+msgstr ""
+
+#: skytemple/skytemple/module/monster/widget/monster.py:665
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:666
+#: skytemple/skytemple/module/monster/widget/monster.py:667
 msgid "Idle Animation Types"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:679
+#: skytemple/skytemple/module/monster/widget/monster.py:680
 msgid "Value depends on Main Requirement:\n"
 "- Not an Evolved Form: Unused\n"
 "- Level: Level required to evolve\n"
@@ -11958,20 +11970,20 @@ msgid "Value depends on Main Requirement:\n"
 "- No Main Requirement: Unused"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:681
+#: skytemple/skytemple/module/monster/widget/monster.py:682
 msgid "Evolution Parameters"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:694
+#: skytemple/skytemple/module/monster/widget/monster.py:695
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:696
+#: skytemple/skytemple/module/monster/widget/monster.py:697
 msgid "Base Form Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:709
+#: skytemple/skytemple/module/monster/widget/monster.py:710
 msgid "This value indicates the previous evolution of the pokémon.\n"
 "The game use this in several cases: \n"
 "1 - For evolution purposes.\n"
@@ -11981,11 +11993,11 @@ msgid "This value indicates the previous evolution of the pokémon.\n"
 "If the ChangeEvoSystem patch is applied, only point 2 applies, the other points are handled with other data."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:711
+#: skytemple/skytemple/module/monster/widget/monster.py:712
 msgid "Pre Evolution Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:724
+#: skytemple/skytemple/module/monster/widget/monster.py:725
 msgid "The values are actually percentages.\n"
 "10 -> 1.0%,\n"
 "100 -> 10.0%,\n"
@@ -11994,157 +12006,157 @@ msgid "The values are actually percentages.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:726
+#: skytemple/skytemple/module/monster/widget/monster.py:727
 msgid "Recruit Rate"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:739
+#: skytemple/skytemple/module/monster/widget/monster.py:740
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:741
+#: skytemple/skytemple/module/monster/widget/monster.py:742
 msgid "HP Regeneration"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:753
+#: skytemple/skytemple/module/monster/widget/monster.py:754
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:754
+#: skytemple/skytemple/module/monster/widget/monster.py:755
 msgid "Can Move?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:766
+#: skytemple/skytemple/module/monster/widget/monster.py:767
 msgid "Whether or not the Pokémon can throw any items."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:767
+#: skytemple/skytemple/module/monster/widget/monster.py:768
 msgid "Can Throw Items?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:780
+#: skytemple/skytemple/module/monster/widget/monster.py:781
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:782
+#: skytemple/skytemple/module/monster/widget/monster.py:783
 msgid "Chests drop rates"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:795
+#: skytemple/skytemple/module/monster/widget/monster.py:796
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:797
+#: skytemple/skytemple/module/monster/widget/monster.py:798
 msgid "Can Evolve?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:810
+#: skytemple/skytemple/module/monster/widget/monster.py:811
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:812
+#: skytemple/skytemple/module/monster/widget/monster.py:813
 msgid "Item Required for spawning?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:825
+#: skytemple/skytemple/module/monster/widget/monster.py:826
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:827
+#: skytemple/skytemple/module/monster/widget/monster.py:828
 msgid "Spawn Threshold"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:839
+#: skytemple/skytemple/module/monster/widget/monster.py:840
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:852
+#: skytemple/skytemple/module/monster/widget/monster.py:853
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:853
+#: skytemple/skytemple/module/monster/widget/monster.py:854
 msgid "Size"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1222
+#: skytemple/skytemple/module/monster/widget/monster.py:1223
 msgid "Export Pokémon as..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1265
+#: skytemple/skytemple/module/monster/widget/monster.py:1266
 msgid "Import Pokémon from..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1549
+#: skytemple/skytemple/module/monster/widget/monster.py:1550
 msgid "Stats and Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1564
+#: skytemple/skytemple/module/monster/widget/monster.py:1565
 msgid "Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1602
+#: skytemple/skytemple/module/monster/widget/monster.py:1603
 msgid "??? Enter a valid parameter (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1621
+#: skytemple/skytemple/module/monster/widget/monster.py:1622
 msgid "??? Enter a valid Base ID (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1638
+#: skytemple/skytemple/module/monster/widget/monster.py:1639
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1698
+#: skytemple/skytemple/module/monster/widget/monster.py:1699
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1736
+#: skytemple/skytemple/module/monster/widget/monster.py:1739
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1738
+#: skytemple/skytemple/module/monster/widget/monster.py:1741
 msgid "Entity ID"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1751
+#: skytemple/skytemple/module/monster/widget/monster.py:1754
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1753
+#: skytemple/skytemple/module/monster/widget/monster.py:1756
 msgid "Children Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1766
+#: skytemple/skytemple/module/monster/widget/monster.py:1769
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1768
+#: skytemple/skytemple/module/monster/widget/monster.py:1771
 msgid "Evolution Bonus Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1876
+#: skytemple/skytemple/module/monster/widget/monster.py:1879
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1880
+#: skytemple/skytemple/module/monster/widget/monster.py:1883
 msgid "Too much evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1886
+#: skytemple/skytemple/module/monster/widget/monster.py:1889
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1890
+#: skytemple/skytemple/module/monster/widget/monster.py:1893
 msgid "Too much children."
 msgstr ""
 
