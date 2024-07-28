@@ -1697,7 +1697,9 @@ class StMonsterMonsterPage(Gtk.Box):
                         Gtk.ButtonsType.OK,
                         _(
                             "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\nSkyTemple automatically corrected it."
-                        )+"\n"+"\n".join([f"{fn}: {ov} → {nv}" for fn, ov, nv in changed]),
+                        )
+                        + "\n"
+                        + "\n".join([f"{fn}: {ov} → {nv}" for fn, ov, nv in changed]),
                     )
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
