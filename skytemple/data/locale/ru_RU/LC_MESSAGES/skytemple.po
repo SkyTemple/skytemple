@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-27 09:26+0000\n"
-"PO-Revision-Date: 2024-07-28 06:29\n"
+"POT-Creation-Date: 2024-07-28 06:56+0000\n"
+"PO-Revision-Date: 2024-07-28 07:36\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1220,18 +1220,19 @@ msgstr "Неожиданный break; в строке {ctx.start.line}"
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
-msgstr ""
+msgstr "Обнаружена бесконечная рекурсия при попытке загрузить файл ExplorerScript из {subfile_path}.\n"
+"Была попытка загрузить из: {file_name}."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:240
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
-msgstr ""
+msgstr "{fn}: Макросы не должны содержать никаких рутин."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:284
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:306
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
-msgstr ""
+msgstr "Импортируемый файл ('{import_file}') не найден."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:293
 #, python-brace-format
@@ -1254,7 +1255,7 @@ msgstr ""
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:113
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
-msgstr ""
+msgstr "Недопустимая анимация: анимация поддерживается только для палитр 10 и 11."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:127
 #, python-brace-format
@@ -1280,15 +1281,15 @@ msgstr ""
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:149
 #, python-brace-format
 msgid "Logic error: Tileset file {fn} was not loaded."
-msgstr ""
+msgstr "Ошибка логики: файл набора плиток {fn} не был загружен."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:152
 msgid "Image '{fn}' is too small ({tileset.width}x{tileset.height}px), must be at least {bx+w}x{by+h}px."
-msgstr ""
+msgstr "Изображение '{fn}' слишком маленькое ({tileset.width}x{tileset.height} пикселей), должно быть не менее {bx+w}x{by+h} пикселей."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:157
 msgid "A rule is missing in the import set"
-msgstr ""
+msgstr "В импортируемом наборе отсутствует правило"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:233
 #, python-brace-format
@@ -1302,7 +1303,7 @@ msgstr ""
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:280
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
-msgstr ""
+msgstr "Ошибка в XML: Один из кадров анимации содержит менее 16 цветов. Каждый кадр должен иметь значение для каждого цвета."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:288
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
@@ -1311,7 +1312,7 @@ msgstr ""
 #: skytemple-dtef/skytemple_dtef/rules.py:119
 #, python-brace-format
 msgid "No match found for rule {orig_rule}. Input set correct?"
-msgstr ""
+msgstr "Не найдено совпадений для правила {orig_rule}. Импортируемый набор верен?"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:140
 msgid "One Layer (#00)"
@@ -1355,11 +1356,11 @@ msgstr "Два слоя (#09)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:150
 msgid "Dungeon Tileset (#10)"
-msgstr ""
+msgstr "Набор плиток подземелья (#10)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:151
 msgid "Use Fixed Room (#11)"
-msgstr ""
+msgstr "Использовать фиксированную комнату (#11)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:272
 msgid "This function has no description."
@@ -1371,7 +1372,7 @@ msgstr "У этой функции нет описания."
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:14
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:14
 msgid "Down"
-msgstr ""
+msgstr "Вниз"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:316
 msgid "Down Right"
@@ -1625,15 +1626,15 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/object_list.glade:193
 #: skytemple/skytemple/module/script/widget/ssa.py:1672
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:71
 msgid "The Pokemon may hatch holding the item."
-msgstr ""
+msgstr "Покемон может вылупиться, держа предмет."
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:78
 msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
-msgstr ""
+msgstr "? (Только эволюции Иви и линия эволюции Тайрога имеют предметы с этим типом!)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:68
 #: skytemple/skytemple/module/lists/controller/starters_list.py:34
@@ -1653,7 +1654,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/starters_list.py:62
 #: skytemple/skytemple/module/lists/controller/starters_list.py:64
 msgid "Male"
-msgstr ""
+msgstr "Мужской"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:69
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3568
@@ -1674,11 +1675,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/starters_list.py:63
 #: skytemple/skytemple/module/lists/controller/starters_list.py:65
 msgid "Female"
-msgstr ""
+msgstr "Женский"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:70
 msgid "Genderless"
-msgstr ""
+msgstr "Без пола"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:422
 #: skytemple-files/skytemple_files/data/md/protocol.py:423
@@ -1688,11 +1689,11 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:158
 #: skytemple/skytemple/module/monster/widget/monster.py:1477
 msgid "Unused"
-msgstr ""
+msgstr "Неиспользованный"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:452
 msgid "Not an Evolved Form."
-msgstr ""
+msgstr "Не эволюционировавшая форма."
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:453
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1089
@@ -1706,7 +1707,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:135
 #: skytemple/skytemple/module/monster/widget/level_up.py:52
 msgid "Level"
-msgstr ""
+msgstr "Уровень"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:454
 #: skytemple/skytemple/data/widget/lists/iq.ui:47
@@ -1714,7 +1715,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:238
 #: skytemple/skytemple/module/lists/module.py:268
 msgid "IQ"
-msgstr ""
+msgstr "IQ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:455
 #: skytemple/skytemple/controller/main.py:258
@@ -1726,20 +1727,20 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:82
 #: skytemple/skytemple/module/moves_items/module.py:60
 msgid "Items"
-msgstr ""
+msgstr "Предметы"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:456
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:150
 msgid "Recruited"
-msgstr ""
+msgstr "Рекрутирован"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:457
 msgid "No Main Requirement"
-msgstr ""
+msgstr "Нет главного требования"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:481
 msgid "Link Cable"
-msgstr ""
+msgstr "Кабель связи"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:482
 msgid "Attack > Defense"
@@ -1755,47 +1756,47 @@ msgstr "Атака равна защиты"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:485
 msgid "Sun Ribbon"
-msgstr ""
+msgstr "Солнечная лента"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:486
 msgid "Lunar Ribbon"
-msgstr ""
+msgstr "Лунная лента"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:487
 msgid "Beauty Scarf"
-msgstr ""
+msgstr "Шарф красоты"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:488
 msgid "Internal Value 0x1 = 1"
-msgstr ""
+msgstr "Внутреннее значение 0x1 = 1"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:489
 msgid "Internal Value 0x1 = 0"
-msgstr ""
+msgstr "Внутреннее значение 0x1 = 0"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:490
 msgid "Male (1st form)"
-msgstr ""
+msgstr "Мужской (1-я форма)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:491
 msgid "Female (2nd form)"
-msgstr ""
+msgstr "Женский (2-я форма)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:492
 msgid "Knows AncientPower"
-msgstr ""
+msgstr "Знает Древнюю Силу"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:493
 msgid "Knows Rollout"
-msgstr ""
+msgstr "Знает Накат"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:494
 msgid "Knows Double Hit"
-msgstr ""
+msgstr "Знает Двойной Удар"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:495
 msgid "Knows Mimic"
-msgstr ""
+msgstr "Знает Имитацию"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:518
 msgid "Standard"
@@ -5460,26 +5461,26 @@ msgstr ""
 #: skytemple/skytemple/core/error_handler.py:113
 #: skytemple/skytemple/main.py:106
 msgid "SkyTemple - Error!"
-msgstr ""
+msgstr "SkyTemple - Ошибка!"
 
 #: skytemple/skytemple/core/error_handler.py:141
 msgid "Error Details"
-msgstr ""
+msgstr "Детали ошибки"
 
 #: skytemple/skytemple/core/error_handler.py:145
 #: skytemple/skytemple/core/widget/user_feedback.py:53
 #: skytemple/skytemple/core/widget/user_feedback.py:81
 #: skytemple/skytemple/skytemple.glade:1163
 msgid "Report Error"
-msgstr ""
+msgstr "Сообщить об ошибке"
 
 #: skytemple/skytemple/core/logger.py:89
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
-msgstr ""
+msgstr "Возникло неперехваченное исключение! Этого не должно происходить, пожалуйста, сообщите об этом!"
 
 #: skytemple/skytemple/core/logger.py:92
 msgid "SkyTemple - Uncaught error!"
-msgstr ""
+msgstr "SkyTemple - неперехваченная ошибка!"
 
 #: skytemple/skytemple/core/modules.py:99
 #, python-brace-format
@@ -5491,20 +5492,20 @@ msgstr ""
 
 #: skytemple/skytemple/core/rom_project.py:160
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
-msgstr ""
+msgstr "Найден файл резервной копии этого ROM. Это означает, что ROM был повреждён когда SkyTemple пытался сохранить его в последний раз."
 
 #: skytemple/skytemple/core/rom_project.py:163
 msgid "No, load ROM as-is"
-msgstr ""
+msgstr "Нет, загрузить ROM как есть"
 
 #: skytemple/skytemple/core/rom_project.py:165
 msgid "Yes, load backup"
-msgstr ""
+msgstr "Да, загрузить резервную копию"
 
 #: skytemple/skytemple/core/rom_project.py:167
 #: skytemple/skytemple/core/rom_project.py:171
 msgid "Last modified: {} - Size: {}"
-msgstr ""
+msgstr "Последнее изменение: {} - размер: {}"
 
 #: skytemple/skytemple/core/rom_project.py:178
 msgid "Do you want to restore the backup?\n"
@@ -5512,15 +5513,19 @@ msgid "Do you want to restore the backup?\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
 "Original ROM: {}\n"
 "Backup ROM: {}"
-msgstr ""
+msgstr "Хотите ли вы восстановить резервную копию?\n"
+"Если вы выберете \"Да, загрузить резервную копию\", резервная копия заменит ROM файл и будет загружена.\n"
+"Если вы выберете \"Нет, загрузить ROM как есть\", резервная копия будет удалена, и SkyTemple попытается загрузить (потенциально) поврежденный ROM файл.\n\n"
+"Оригинальный ROM: {}\n"
+"Резервная копия: {}"
 
 #: skytemple/skytemple/core/rom_project.py:231
 msgid "There was an error trying to read the ROM file."
-msgstr ""
+msgstr "Произошла ошибка при попытке прочесть ROM файл."
 
 #: skytemple/skytemple/core/rom_project.py:233
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
-msgstr ""
+msgstr "Вы уверены, что вы предоставили ROM? ROM обычно имеет расширение файла \".nds\"."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:195
 #: skytemple/skytemple/core/ssb_debugger/context.py:214
@@ -9428,7 +9433,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:57
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:137
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:284
-#: skytemple/skytemple/module/patch/module.py:114
+#: skytemple/skytemple/module/patch/module.py:113
 msgid "Item Effects"
 msgstr ""
 
@@ -9514,7 +9519,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:65
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:146
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:325
-#: skytemple/skytemple/module/patch/module.py:125
+#: skytemple/skytemple/module/patch/module.py:124
 msgid "Move Effects"
 msgstr ""
 
@@ -9575,7 +9580,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:53
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:133
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:283
-#: skytemple/skytemple/module/patch/module.py:103
+#: skytemple/skytemple/module/patch/module.py:102
 msgid "Special Process Effects"
 msgstr ""
 
@@ -12494,16 +12499,14 @@ msgstr ""
 msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
 "item-, move- and special process effects written in Assembler.\n\n"
 "You will also find information on how to write your own\n"
-"patches and effects in the C and Rust programming languages.\n\n"
-"Additionally you can browse all symbols and functions\n"
-"in the game known to SkyTemple."
+"patches and effects in the C and Rust programming languages."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:92
+#: skytemple/skytemple/module/patch/module.py:91
 msgid "ASM"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/module.py:136
+#: skytemple/skytemple/module/patch/module.py:135
 msgid "C / Rust"
 msgstr ""
 
