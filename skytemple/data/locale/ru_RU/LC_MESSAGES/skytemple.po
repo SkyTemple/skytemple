@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-28 06:56+0000\n"
-"PO-Revision-Date: 2024-07-28 08:33\n"
+"PO-Revision-Date: 2024-07-28 09:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1465,7 +1465,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/util.py:643
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
-msgstr ""
+msgstr "Папка {dir_name} не существует."
 
 #: skytemple-files/skytemple_files/common/util.py:615
 #, python-brace-format
@@ -1480,12 +1480,12 @@ msgstr "Папка {path} уже существует."
 #: skytemple-files/skytemple_files/common/xml_util.py:34
 #, python-brace-format
 msgid "Invalid XML. Expected tag {tag}, got tag {ele.tag}."
-msgstr ""
+msgstr "Недопустимый XML. Ожидался тег {tag}, получен тег {ele.tag}."
 
 #: skytemple-files/skytemple_files/common/xml_util.py:40
 #, python-brace-format
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
-msgstr ""
+msgstr "Недопустимый XML. Ожидался атрибут {attrib} для тега XML {ele.tag}."
 
 #: skytemple-files/skytemple_files/data/anim/model.py:45
 msgid "Head"
@@ -1574,27 +1574,27 @@ msgstr "Чтобы удалить этот эффект, ни один объе�
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:36
 msgid "Always"
-msgstr ""
+msgstr "Всегда"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:37
 msgid "Flag Not Set"
-msgstr ""
+msgstr "Флаг не активен"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:38
 msgid "Flag Set"
-msgstr ""
+msgstr "Флаг активен"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:39
 msgid "Scenario Equals"
-msgstr ""
+msgstr "Сценарий равен"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:40
 msgid "Scenario Below or Equal"
-msgstr ""
+msgstr "Сценарий меньше или равен"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:41
 msgid "Scenario Greater or Equal"
-msgstr ""
+msgstr "Сценарий больше или равен"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:37
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:347
@@ -1955,7 +1955,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:64
 msgid "Two-turn move"
-msgstr ""
+msgstr "Приём в два хода"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:65
 msgid "Everyone except user"
@@ -1963,7 +1963,7 @@ msgstr "Все, кроме пользователя"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:66
 msgid "All allies except user"
-msgstr ""
+msgstr "Все союзники кроме пользователя"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:67
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:68
@@ -1997,15 +1997,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:98
 msgid "In front"
-msgstr ""
+msgstr "Спереди"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:99
 msgid "In front + adjacent (like Wide Slash)"
-msgstr ""
+msgstr "Спереди + по сторонам (как Широкий Порез)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:100
 msgid "8 tiles around user"
-msgstr ""
+msgstr "8 плиток вокруг пользователя"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:101
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:690
@@ -2014,11 +2014,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:104
 msgid "Two tiles away"
-msgstr ""
+msgstr "На расстоянии двух плиток"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:106
 msgid "Straight line"
-msgstr ""
+msgstr "Прямая линия"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:107
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1154
@@ -2030,7 +2030,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:109
 msgid "In front; cuts corners"
-msgstr ""
+msgstr "Спереди, срезая углы"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:110
 msgid "Two tiles away; cuts corners"
