@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-27 09:26+0000\n"
-"PO-Revision-Date: 2024-07-27 23:01\n"
+"PO-Revision-Date: 2024-07-28 06:29\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -739,13 +739,13 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4496
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1303
 msgid "Berries, Seeds, Vitamins"
-msgstr ""
+msgstr "Ягоды, семена, витамины"
 
 #: /dev/fd/63:180 /dev/fd/63:399
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4663
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1457
 msgid "Foods, Gummies"
-msgstr ""
+msgstr "Еда, желе"
 
 #: /dev/fd/63:181 /dev/fd/63:400
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4830
@@ -761,11 +761,11 @@ msgstr ""
 
 #: /dev/fd/63:183 /dev/fd/63:402
 msgid "Poké (Money)"
-msgstr ""
+msgstr "Поке (Деньги)"
 
 #: /dev/fd/63:184 /dev/fd/63:403
 msgid "Unknown 7"
-msgstr ""
+msgstr "Неизвестно 7"
 
 #: /dev/fd/63:185 /dev/fd/63:404
 #: skytemple/skytemple/data/widget/monster/monster.ui:3543
@@ -785,7 +785,7 @@ msgstr ""
 
 #: /dev/fd/63:188 /dev/fd/63:407
 msgid "Used TM"
-msgstr ""
+msgstr "Использованный TM"
 
 #: /dev/fd/63:189 /dev/fd/63:408
 msgid "Treasure Box 1"
@@ -802,7 +802,7 @@ msgstr ""
 #: /dev/fd/63:192 /dev/fd/63:411
 #: skytemple/skytemple/data/widget/monster/monster.ui:2831
 msgid "Exclusive Items"
-msgstr ""
+msgstr "Эксклюзивные предметы"
 
 #: /dev/fd/63:193 /dev/fd/63:412
 msgid "Red component"
@@ -958,7 +958,7 @@ msgstr "Недопустимая цель для рутины."
 
 #: explorerscript/explorerscript/common_syntax.py:256
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
-msgstr ""
+msgstr "Аргументы маркера позиции должен быть целым числом или десятичным числом с '.5' в десятичном разряде."
 
 #: explorerscript/explorerscript/macro.py:105
 #, python-brace-format
@@ -1100,15 +1100,15 @@ msgstr "Неверная операция case."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:54
 msgid "No value set for case menu condition."
-msgstr ""
+msgstr "Для case menu-условия не указано значение."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:59
 msgid "Value for case menu condition must be a string."
-msgstr ""
+msgstr "Значение для условия case menu должно быть строкой."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:62
 msgid "Value for case menu2 condition must not be a string."
-msgstr ""
+msgstr "Значение для условия case menu2 не должно быть строкой."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:71
 msgid "Invalid message switch."
@@ -1143,11 +1143,11 @@ msgstr "Неожиданное окончание switch(строка {self.ctx.
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:146
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Блок switch может иметь только один default (строка {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:80
 msgid "Invalid content for a switch-header"
-msgstr ""
+msgstr "Неверное содержимое switch-заголовка"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:87
 msgid "Unknown switch operation."
@@ -1159,7 +1159,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:44
 msgid "No value set for random switch condition."
-msgstr ""
+msgstr "Для случайного switch-условия не установлено значение."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:45
 msgid "No variable set for scn switch condition."
@@ -1194,12 +1194,12 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:323
 msgid "Fatal compilation error: Stack error."
-msgstr ""
+msgstr "Фатальная ошибка компиляции: Ошибка стека."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:59
 #, python-brace-format
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
-msgstr ""
+msgstr "Ярлык {label_id} не существует, но переход к нему существует (удалите его)."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:193
 #, python-brace-format
