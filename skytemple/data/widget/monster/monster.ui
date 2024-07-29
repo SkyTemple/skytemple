@@ -1,38 +1,39 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.22" />
+  <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="egg_store">
     <columns>
       <!-- column-name id -->
-      <column type="guint" />
+      <column type="guint"/>
       <!-- column-name name -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkListStore" id="evo_store">
     <columns>
       <!-- column-name id -->
-      <column type="guint" />
+      <column type="guint"/>
       <!-- column-name name -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkTreeStore" id="export_dialog_store">
     <columns>
       <!-- column-name md_idx -->
-      <column type="gint" />
+      <column type="gint"/>
       <!-- column-name unused -->
-      <column type="gint" />
+      <column type="gint"/>
       <!-- column-name is_monster_form -->
-      <column type="gboolean" />
+      <column type="gboolean"/>
       <!-- column-name icon -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
       <!-- column-name name -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
       <!-- column-name selected -->
-      <column type="gboolean" />
+      <column type="gboolean"/>
       <!-- column-name inconsistent -->
-      <column type="gboolean" />
+      <column type="gboolean"/>
     </columns>
   </object>
   <object class="GtkDialog" id="export_dialog">
@@ -117,9 +118,9 @@
                           <object class="GtkSwitch" id="export_type_current_gender">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -130,9 +131,9 @@
                           <object class="GtkSwitch" id="export_type_other_gender">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -143,9 +144,9 @@
                           <object class="GtkSwitch" id="export_type_names">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -156,9 +157,9 @@
                           <object class="GtkSwitch" id="export_type_moveset1">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -169,9 +170,9 @@
                           <object class="GtkSwitch" id="export_type_moveset2">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -271,7 +272,7 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="halign">start</property>
                             <property name="label" translatable="yes">** This data is not editable in SkyTemple, but you can export and import it.</property>
                             <attributes>
-                              <attribute name="style" value="italic" />
+                              <attribute name="style" value="italic"/>
                             </attributes>
                           </object>
                           <packing>
@@ -312,9 +313,9 @@ If you choose to export both genders, upon import the matching gender entry will
                           <object class="GtkSwitch" id="export_type_portraits_other_gender">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -325,9 +326,9 @@ If you choose to export both genders, upon import the matching gender entry will
                           <object class="GtkSwitch" id="export_type_stats">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -352,9 +353,9 @@ If you choose to export both genders, upon import the matching gender entry will
                           <object class="GtkSwitch" id="export_type_portraits_current_gender">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="active">True</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active">True</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -373,7 +374,7 @@ If you choose to export both genders, upon import the matching gender entry will
                     <property name="margin-bottom">5</property>
                     <property name="label" translatable="yes">1. Choose what to export</property>
                     <attributes>
-                      <attribute name="weight" value="bold" />
+                      <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                 </child>
@@ -441,7 +442,7 @@ If you choose to export both genders, upon import the matching gender entry will
                         <property name="margin-bottom">5</property>
                         <property name="label" translatable="yes">2a. Export to file</property>
                         <attributes>
-                          <attribute name="weight" value="bold" />
+                          <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                     </child>
@@ -478,14 +479,14 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="model">export_dialog_store</property>
                                 <property name="search-column">0</property>
                                 <child internal-child="selection">
-                                  <object class="GtkTreeSelection" />
+                                  <object class="GtkTreeSelection"/>
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn">
                                     <property name="title" translatable="yes">S</property>
                                     <child>
                                       <object class="GtkCellRendererToggle" id="cr_export_selected">
-                                        <signal name="toggled" handler="on_cr_export_selected_toggled" swapped="no" />
+                                        <signal name="toggled" handler="on_cr_export_selected_toggled" swapped="no"/>
                                       </object>
                                       <attributes>
                                         <attribute name="active">5</attribute>
@@ -498,13 +499,13 @@ If you choose to export both genders, upon import the matching gender entry will
                                   <object class="GtkTreeViewColumn">
                                     <property name="title" translatable="yes">Pokémon</property>
                                     <child>
-                                      <object class="GtkCellRendererPixbuf" />
+                                      <object class="GtkCellRendererPixbuf"/>
                                       <attributes>
                                         <attribute name="icon-name">3</attribute>
                                       </attributes>
                                     </child>
                                     <child>
-                                      <object class="GtkCellRendererText" />
+                                      <object class="GtkCellRendererText"/>
                                       <attributes>
                                         <attribute name="text">4</attribute>
                                       </attributes>
@@ -558,14 +559,14 @@ If you choose to export both genders, upon import the matching gender entry will
   <object class="GtkListStore" id="monster_store">
     <columns>
       <!-- column-name name -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkEntryCompletion" id="completion_entities">
     <property name="model">monster_store</property>
     <property name="text-column">0</property>
     <child>
-      <object class="GtkCellRendererText" />
+      <object class="GtkCellRendererText"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
@@ -574,14 +575,14 @@ If you choose to export both genders, upon import the matching gender entry will
   <object class="GtkListStore" id="store_completion_items">
     <columns>
       <!-- column-name label -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkEntryCompletion" id="completion_items">
     <property name="model">store_completion_items</property>
     <property name="text-column">0</property>
     <child>
-      <object class="GtkCellRendererText" />
+      <object class="GtkCellRendererText"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
@@ -591,7 +592,7 @@ If you choose to export both genders, upon import the matching gender entry will
     <property name="model">store_completion_items</property>
     <property name="text-column">0</property>
     <child>
-      <object class="GtkCellRendererText" />
+      <object class="GtkCellRendererText"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
@@ -601,7 +602,7 @@ If you choose to export both genders, upon import the matching gender entry will
     <property name="model">store_completion_items</property>
     <property name="text-column">0</property>
     <child>
-      <object class="GtkCellRendererText" />
+      <object class="GtkCellRendererText"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
@@ -611,7 +612,7 @@ If you choose to export both genders, upon import the matching gender entry will
     <property name="model">store_completion_items</property>
     <property name="text-column">0</property>
     <child>
-      <object class="GtkCellRendererText" />
+      <object class="GtkCellRendererText"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
@@ -621,7 +622,7 @@ If you choose to export both genders, upon import the matching gender entry will
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
-    <signal name="destroy" handler="on_self_destroy" swapped="no" />
+    <signal name="destroy" handler="on_self_destroy" swapped="no"/>
     <child>
       <object class="GtkBox" id="box_main">
         <property name="visible">True</property>
@@ -691,7 +692,7 @@ If you choose to export both genders, upon import the matching gender entry will
               <object class="GtkComboBox" id="cb_type_primary">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <signal name="changed" handler="on_cb_type_primary_changed" swapped="no" />
+                <signal name="changed" handler="on_cb_type_primary_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -702,7 +703,7 @@ If you choose to export both genders, upon import the matching gender entry will
               <object class="GtkComboBox" id="cb_type_secondary">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <signal name="changed" handler="on_cb_type_secondary_changed" swapped="no" />
+                <signal name="changed" handler="on_cb_type_secondary_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">2</property>
@@ -738,7 +739,7 @@ If you choose to export both genders, upon import the matching gender entry will
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="width-chars">3</property>
-                <signal name="changed" handler="on_entry_national_pokedex_number_changed" swapped="no" />
+                <signal name="changed" handler="on_entry_national_pokedex_number_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -750,7 +751,7 @@ If you choose to export both genders, upon import the matching gender entry will
               <object class="GtkComboBox" id="cb_gender">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <signal name="changed" handler="on_cb_gender_changed" swapped="no" />
+                <signal name="changed" handler="on_cb_gender_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -764,7 +765,7 @@ If you choose to export both genders, upon import the matching gender entry will
                 <property name="can-focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <signal name="draw" handler="on_draw_portrait_draw" swapped="no" />
+                <signal name="draw" handler="on_draw_portrait_draw" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -813,7 +814,7 @@ If you choose to export both genders, upon import the matching gender entry will
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="width-chars">3</property>
-                <signal name="changed" handler="on_entry_entid_changed" swapped="no" />
+                <signal name="changed" handler="on_entry_entid_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -825,7 +826,7 @@ If you choose to export both genders, upon import the matching gender entry will
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="width-chars">3</property>
-                <signal name="changed" handler="on_entry_sprite_index_changed" swapped="no" />
+                <signal name="changed" handler="on_entry_sprite_index_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -846,7 +847,7 @@ If you choose to export both genders, upon import the matching gender entry will
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <signal name="clicked" handler="on_btn_import_clicked" swapped="no" />
+                    <signal name="clicked" handler="on_btn_import_clicked" swapped="no"/>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -891,7 +892,7 @@ If you choose to export both genders, upon import the matching gender entry will
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <signal name="clicked" handler="on_btn_export_clicked" swapped="no" />
+                    <signal name="clicked" handler="on_btn_export_clicked" swapped="no"/>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -945,7 +946,7 @@ If you choose to export both genders, upon import the matching gender entry will
                 <property name="receives-default">True</property>
                 <property name="halign">start</property>
                 <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_entid_clicked" swapped="no" />
+                <signal name="clicked" handler="on_btn_help_entid_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
@@ -960,8 +961,8 @@ If you choose to export both genders, upon import the matching gender entry will
               </packing>
             </child>
             <style>
-              <class name="back_illust" />
-              <class name="monsters" />
+              <class name="back_illust"/>
+              <class name="monsters"/>
             </style>
           </object>
           <packing>
@@ -974,7 +975,7 @@ If you choose to export both genders, upon import the matching gender entry will
           <object class="GtkNotebook" id="main_notebook">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
-            <signal name="switch-page" handler="on_main_notebook_switch_page" swapped="no" />
+            <signal name="switch-page" handler="on_main_notebook_switch_page" swapped="no"/>
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
@@ -1065,7 +1066,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang1_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang1_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1077,7 +1078,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang2_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang2_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1089,7 +1090,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang3_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang3_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1101,7 +1102,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang4_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang4_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1113,7 +1114,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang5_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang5_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1127,7 +1128,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="halign">start</property>
                                 <property name="label" translatable="yes">Name:</property>
                                 <attributes>
-                                  <attribute name="weight" value="bold" />
+                                  <attribute name="weight" value="bold"/>
                                 </attributes>
                               </object>
                               <packing>
@@ -1143,7 +1144,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="halign">start</property>
                                 <property name="label" translatable="yes">Category:</property>
                                 <attributes>
-                                  <attribute name="weight" value="bold" />
+                                  <attribute name="weight" value="bold"/>
                                 </attributes>
                               </object>
                               <packing>
@@ -1217,7 +1218,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang1_cat_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang1_cat_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1229,7 +1230,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang2_cat_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang2_cat_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1241,7 +1242,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang3_cat_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang3_cat_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1253,7 +1254,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang4_cat_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang4_cat_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1265,7 +1266,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_lang5_cat_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_lang5_cat_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1273,40 +1274,40 @@ If you choose to export both genders, upon import the matching gender entry will
                               </packing>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                           </object>
                         </child>
@@ -1321,12 +1322,12 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <!-- n-columns=4 n-rows=8 -->
+                          <!-- n-columns=4 n-rows=7 -->
                           <object class="GtkGrid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="margin-left">5</property>
-                            <property name="margin-right">5</property>
+                            <property name="margin-right">4</property>
                             <property name="margin-start">5</property>
                             <property name="margin-end">5</property>
                             <property name="margin-top">5</property>
@@ -1338,7 +1339,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
-                                <property name="label" translatable="yes">Body Size:</property>
+                                <property name="label" translatable="yes">Movement:</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
@@ -1346,15 +1347,15 @@ If you choose to export both genders, upon import the matching gender entry will
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel">
+                              <object class="GtkComboBox" id="cb_movement_type">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">Movement:</property>
+                                <signal name="changed" handler="on_cb_movement_type_changed" swapped="no"/>
                               </object>
                               <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">1</property>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">0</property>
+                                <property name="width">3</property>
                               </packing>
                             </child>
                             <child>
@@ -1366,7 +1367,19 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">2</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBox" id="cb_iq_group">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <signal name="changed" handler="on_cb_iq_group_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">1</property>
+                                <property name="width">3</property>
                               </packing>
                             </child>
                             <child>
@@ -1378,7 +1391,30 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">3</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBox" id="cb_ability_primary">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <signal name="changed" handler="on_cb_ability_primary_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBox" id="cb_ability_secondary">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <signal name="changed" handler="on_cb_ability_secondary_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">2</property>
+                                <property name="width">2</property>
                               </packing>
                             </child>
                             <child>
@@ -1390,7 +1426,20 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">4</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_exp_yield">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_exp_yield_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">3</property>
+                                <property name="width">3</property>
                               </packing>
                             </child>
                             <child>
@@ -1402,7 +1451,51 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">5</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_recruit_rate1">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_recruit_rate1_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_recruit_rate2">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_recruit_rate2_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_recruit_rate">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_recruit_rate_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">3</property>
+                                <property name="top-attach">4</property>
                               </packing>
                             </child>
                             <child>
@@ -1414,91 +1507,6 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">6</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_body_size">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_body_size_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">0</property>
-                                <property name="width">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="cb_movement_type">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_movement_type_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">1</property>
-                                <property name="width">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="cb_iq_group">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_iq_group_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">2</property>
-                                <property name="width">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="cb_ability_primary">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_ability_primary_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_exp_yield">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_exp_yield_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">4</property>
-                                <property name="width">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_recruit_rate1">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_recruit_rate1_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">5</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_recruit_rate2">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_recruit_rate2_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">2</property>
                                 <property name="top-attach">5</property>
                               </packing>
                             </child>
@@ -1507,44 +1515,12 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_personality_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_personality_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="top-attach">6</property>
-                                <property name="width">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_help_recruit_rate">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_recruit_rate_clicked" swapped="no" />
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">skytemple-help-about-symbolic</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">3</property>
                                 <property name="top-attach">5</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="cb_ability_secondary">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_ability_secondary_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">2</property>
-                                <property name="top-attach">3</property>
-                                <property name="width">2</property>
+                                <property name="width">3</property>
                               </packing>
                             </child>
                             <child>
@@ -1556,7 +1532,19 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">7</property>
+                                <property name="top-attach">6</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBox" id="cb_idle_anim">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <signal name="changed" handler="on_cb_idle_anim_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">6</property>
+                                <property name="width">2</property>
                               </packing>
                             </child>
                             <child>
@@ -1565,7 +1553,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_idle_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_idle_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -1576,19 +1564,7 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">3</property>
-                                <property name="top-attach">7</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="cb_idle_anim">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_idle_anim_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">7</property>
-                                <property name="width">2</property>
+                                <property name="top-attach">6</property>
                               </packing>
                             </child>
                           </object>
@@ -1613,7 +1589,7 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="margin-left">5</property>
-                            <property name="margin-right">5</property>
+                            <property name="margin-right">10</property>
                             <property name="margin-start">5</property>
                             <property name="margin-end">5</property>
                             <property name="margin-top">5</property>
@@ -1721,7 +1697,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_hp_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_hp_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1734,7 +1710,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_weight_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_weight_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1746,7 +1722,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_atk_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_atk_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1759,7 +1735,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_sp_atk_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_sp_atk_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1772,7 +1748,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_def_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_def_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1785,7 +1761,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_sp_def_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_sp_def_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1798,7 +1774,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_size_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_size_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1810,7 +1786,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_movement_speed_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_movement_speed_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1824,7 +1800,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_weight_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_weight_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -1844,7 +1820,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_size_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_size_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -1940,7 +1916,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_evo_param1_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_evo_param1_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -1953,7 +1929,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_evo_params_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_evo_params_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -1972,7 +1948,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_base_form_index_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_base_form_index_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2008,7 +1984,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_pre_evo_index_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_pre_evo_index_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2019,7 +1995,7 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkComboBox" id="cb_evo_method">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_evo_method_changed" swapped="no" />
+                                <signal name="changed" handler="on_cb_evo_method_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2031,7 +2007,7 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkComboBox" id="cb_evo_param2">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_evo_param2_changed" swapped="no" />
+                                <signal name="changed" handler="on_cb_evo_param2_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2069,7 +2045,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_base_form_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_base_form_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -2089,7 +2065,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_pre_evo_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_pre_evo_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -2161,13 +2137,13 @@ If you choose to export both genders, upon import the matching gender entry will
                                                     <property name="model">egg_store</property>
                                                     <property name="search-column">0</property>
                                                     <child internal-child="selection">
-                                                      <object class="GtkTreeSelection" />
+                                                      <object class="GtkTreeSelection"/>
                                                     </child>
                                                     <child>
                                                       <object class="GtkTreeViewColumn">
                                                         <property name="title" translatable="yes">ID</property>
                                                         <child>
-                                                          <object class="GtkCellRendererText" />
+                                                          <object class="GtkCellRendererText"/>
                                                           <attributes>
                                                             <attribute name="text">0</attribute>
                                                           </attributes>
@@ -2181,8 +2157,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                                         <child>
                                                           <object class="GtkCellRendererText" id="egg_species">
                                                             <property name="editable">True</property>
-                                                            <signal name="edited" handler="on_egg_species_edited" swapped="no" />
-                                                            <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no" />
+                                                            <signal name="edited" handler="on_egg_species_edited" swapped="no"/>
+                                                            <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no"/>
                                                           </object>
                                                           <attributes>
                                                             <attribute name="text">1</attribute>
@@ -2210,7 +2186,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                                     <property name="can-focus">True</property>
                                                     <property name="receives-default">True</property>
                                                     <property name="tooltip-text" translatable="yes">Reload</property>
-                                                    <signal name="clicked" handler="on_btn_add_egg_clicked" swapped="no" />
+                                                    <signal name="clicked" handler="on_btn_add_egg_clicked" swapped="no"/>
                                                     <child>
                                                       <object class="GtkImage">
                                                         <property name="visible">True</property>
@@ -2232,7 +2208,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                                     <property name="can-focus">True</property>
                                                     <property name="receives-default">True</property>
                                                     <property name="tooltip-text" translatable="yes">Reload</property>
-                                                    <signal name="clicked" handler="on_btn_remove_egg_clicked" swapped="no" />
+                                                    <signal name="clicked" handler="on_btn_remove_egg_clicked" swapped="no"/>
                                                     <child>
                                                       <object class="GtkImage">
                                                         <property name="visible">True</property>
@@ -2269,7 +2245,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="halign">start</property>
                                             <property name="label" translatable="yes">Evolves Into: </property>
                                             <attributes>
-                                              <attribute name="weight" value="bold" />
+                                              <attribute name="weight" value="bold"/>
                                             </attributes>
                                           </object>
                                           <packing>
@@ -2300,13 +2276,13 @@ If you choose to export both genders, upon import the matching gender entry will
                                                     <property name="model">evo_store</property>
                                                     <property name="search-column">0</property>
                                                     <child internal-child="selection">
-                                                      <object class="GtkTreeSelection" />
+                                                      <object class="GtkTreeSelection"/>
                                                     </child>
                                                     <child>
                                                       <object class="GtkTreeViewColumn">
                                                         <property name="title" translatable="yes">ID</property>
                                                         <child>
-                                                          <object class="GtkCellRendererText" />
+                                                          <object class="GtkCellRendererText"/>
                                                           <attributes>
                                                             <attribute name="text">0</attribute>
                                                           </attributes>
@@ -2320,8 +2296,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                                         <child>
                                                           <object class="GtkCellRendererText" id="evo_species">
                                                             <property name="editable">True</property>
-                                                            <signal name="edited" handler="on_evo_species_edited" swapped="no" />
-                                                            <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no" />
+                                                            <signal name="edited" handler="on_evo_species_edited" swapped="no"/>
+                                                            <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no"/>
                                                           </object>
                                                           <attributes>
                                                             <attribute name="text">1</attribute>
@@ -2349,7 +2325,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                                     <property name="can-focus">True</property>
                                                     <property name="receives-default">True</property>
                                                     <property name="tooltip-text" translatable="yes">Reload</property>
-                                                    <signal name="clicked" handler="on_btn_add_evo_clicked" swapped="no" />
+                                                    <signal name="clicked" handler="on_btn_add_evo_clicked" swapped="no"/>
                                                     <child>
                                                       <object class="GtkImage">
                                                         <property name="visible">True</property>
@@ -2371,7 +2347,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                                     <property name="can-focus">True</property>
                                                     <property name="receives-default">True</property>
                                                     <property name="tooltip-text" translatable="yes">Reload</property>
-                                                    <signal name="clicked" handler="on_btn_remove_evo_clicked" swapped="no" />
+                                                    <signal name="clicked" handler="on_btn_remove_evo_clicked" swapped="no"/>
                                                     <child>
                                                       <object class="GtkImage">
                                                         <property name="visible">True</property>
@@ -2408,7 +2384,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="halign">start</property>
                                             <property name="label" translatable="yes">Children: </property>
                                             <attributes>
-                                              <attribute name="weight" value="bold" />
+                                              <attribute name="weight" value="bold"/>
                                             </attributes>
                                           </object>
                                           <packing>
@@ -2423,7 +2399,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
                                             <property name="valign">center</property>
-                                            <signal name="clicked" handler="on_btn_help_evo_egg_clicked" swapped="no" />
+                                            <signal name="clicked" handler="on_btn_help_evo_egg_clicked" swapped="no"/>
                                             <child>
                                               <object class="GtkImage">
                                                 <property name="visible">True</property>
@@ -2444,7 +2420,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="halign">start</property>
                                             <property name="label" translatable="yes">Evolution Bonus: </property>
                                             <attributes>
-                                              <attribute name="weight" value="bold" />
+                                              <attribute name="weight" value="bold"/>
                                             </attributes>
                                           </object>
                                           <packing>
@@ -2459,7 +2435,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
                                             <property name="valign">center</property>
-                                            <signal name="clicked" handler="on_btn_help_evo_stats_clicked" swapped="no" />
+                                            <signal name="clicked" handler="on_btn_help_evo_stats_clicked" swapped="no"/>
                                             <child>
                                               <object class="GtkImage">
                                                 <property name="visible">True</property>
@@ -2490,7 +2466,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="width-chars">10</property>
-                                            <signal name="changed" handler="on_entry_entry_hp_bonus_changed" swapped="no" />
+                                            <signal name="changed" handler="on_entry_entry_hp_bonus_changed" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left-attach">1</property>
@@ -2550,7 +2526,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="width-chars">10</property>
-                                            <signal name="changed" handler="on_entry_entry_atk_bonus_changed" swapped="no" />
+                                            <signal name="changed" handler="on_entry_entry_atk_bonus_changed" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left-attach">1</property>
@@ -2562,7 +2538,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="width-chars">10</property>
-                                            <signal name="changed" handler="on_entry_entry_spatk_bonus_changed" swapped="no" />
+                                            <signal name="changed" handler="on_entry_entry_spatk_bonus_changed" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left-attach">1</property>
@@ -2574,7 +2550,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="width-chars">10</property>
-                                            <signal name="changed" handler="on_entry_entry_def_bonus_changed" swapped="no" />
+                                            <signal name="changed" handler="on_entry_entry_def_bonus_changed" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left-attach">1</property>
@@ -2586,7 +2562,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="width-chars">10</property>
-                                            <signal name="changed" handler="on_entry_entry_spdef_bonus_changed" swapped="no" />
+                                            <signal name="changed" handler="on_entry_entry_spdef_bonus_changed" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left-attach">1</property>
@@ -2668,8 +2644,8 @@ If you choose to export both genders, upon import the matching gender entry will
                                   </packing>
                                 </child>
                                 <style>
-                                  <class name="back_illust" />
-                                  <class name="bboard" />
+                                  <class name="back_illust"/>
+                                  <class name="bboard"/>
                                 </style>
                               </object>
                               <packing>
@@ -2761,7 +2737,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">20</property>
                                 <property name="completion">completion_items</property>
-                                <signal name="changed" handler="on_entry_exclusive_item1_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_exclusive_item1_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2774,7 +2750,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">20</property>
                                 <property name="completion">completion_items1</property>
-                                <signal name="changed" handler="on_entry_exclusive_item2_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_exclusive_item2_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2787,7 +2763,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">20</property>
                                 <property name="completion">completion_items2</property>
-                                <signal name="changed" handler="on_entry_exclusive_item3_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_exclusive_item3_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2800,7 +2776,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">20</property>
                                 <property name="completion">completion_items3</property>
-                                <signal name="changed" handler="on_entry_exclusive_item4_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_exclusive_item4_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2808,16 +2784,16 @@ If you choose to export both genders, upon import the matching gender entry will
                               </packing>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                             <child>
-                              <placeholder />
+                              <placeholder/>
                             </child>
                           </object>
                           <packing>
@@ -2836,7 +2812,191 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <!-- n-columns=3 n-rows=20 -->
+                          <!-- n-columns=3 n-rows=4 -->
+                          <object class="GtkGrid">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="row-spacing">5</property>
+                            <property name="column-spacing">5</property>
+                            <child>
+                              <object class="GtkEntry" id="entry_unk17">
+                                <property name="visible">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_unk17_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="lbl_unk_18">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Sprite File Size:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_unk18">
+                                <property name="visible">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_unk18_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="lbl_unk_17">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Sprite VRAM Size:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Body Size:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_body_size">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_body_size_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_unk17">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_unk17_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_unk18">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_unk18_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_body_size">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_body_size_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Shadow Size:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBox" id="cb_shadow_size">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <signal name="changed" handler="on_cb_shadow_size_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">5</property>
+                            <property name="tab-fill">False</property>
+                          </packing>
+                        </child>
+                        <child type="tab">
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Sprite Info</property>
+                          </object>
+                          <packing>
+                            <property name="position">5</property>
+                            <property name="tab-fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <!-- n-columns=3 n-rows=17 -->
                           <object class="GtkGrid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
@@ -2875,7 +3035,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk31_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_unk31_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2900,155 +3060,11 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk21_h_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_unk21_h_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
                                 <property name="top-attach">9</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="lbl_unk_17">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">Unk 17:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">10</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_unk17">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk17_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">10</property>
-                                <property name="width">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="lbl_unk_18">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">Unk 18:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">11</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">Shadow Size:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">12</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_unk18">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk18_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">11</property>
-                                <property name="width">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="cb_shadow_size">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_shadow_size_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">12</property>
-                                <property name="width">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">Chance to spawn asleep:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">13</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_chance_spawn_asleep">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_chance_spawn_asleep_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">13</property>
-                                <property name="width">2</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">HP Regeneration:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">14</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_hp_regeneration">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_hp_regeneration_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">14</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_help_hp_regeneration">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_hp_regeneration_clicked" swapped="no" />
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="margin-left">1</property>
-                                    <property name="icon-name">skytemple-help-about-symbolic</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">2</property>
-                                <property name="top-attach">14</property>
                               </packing>
                             </child>
                             <child>
@@ -3141,7 +3157,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_item_required_for_spawning_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_item_required_for_spawning_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -3161,7 +3177,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_can_evolve_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_can_evolve_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -3181,7 +3197,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_can_move_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_can_move_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -3199,9 +3215,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_bitfield1_0">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_bitfield1_0_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_bitfield1_0_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3212,9 +3228,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_bitfield1_1">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_bitfield1_1_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_bitfield1_1_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3225,9 +3241,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_bitfield1_2">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_bitfield1_2_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_bitfield1_2_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3238,9 +3254,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_bitfield1_3">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_bitfield1_3_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_bitfield1_3_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3251,9 +3267,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_can_move">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_can_move_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_can_move_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3264,9 +3280,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_bitfield1_5">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_bitfield1_5_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_bitfield1_5_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3277,9 +3293,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_can_evolve">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_can_evolve_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_can_evolve_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3290,9 +3306,9 @@ If you choose to export both genders, upon import the matching gender entry will
                               <object class="GtkSwitch" id="switch_item_required_for_spawning">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <signal name="state-set" handler="on_switch_item_required_for_spawning_state_set" swapped="no" />
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
+                                <signal name="state-set" handler="on_switch_item_required_for_spawning_state_set" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -3305,7 +3321,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_unk21_h_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_unk21_h_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -3325,7 +3341,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_can_throw_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_help_can_throw_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -3344,23 +3360,24 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
-                                <property name="label" translatable="yes">Chest with type 2 exclusive items:</property>
+                                <property name="label" translatable="yes">Chance to spawn asleep:</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">19</property>
+                                <property name="top-attach">10</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="entry_unk30">
+                              <object class="GtkEntry" id="entry_chance_spawn_asleep">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk30_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_chance_spawn_asleep_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="top-attach">19</property>
+                                <property name="top-attach">10</property>
+                                <property name="width">2</property>
                               </packing>
                             </child>
                             <child>
@@ -3368,71 +3385,44 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
-                                <property name="label" translatable="yes">Chest with type 1 exclusive items:</property>
+                                <property name="label" translatable="yes">HP Regeneration:</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">18</property>
+                                <property name="top-attach">11</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="entry_unk29">
+                              <object class="GtkEntry" id="entry_hp_regeneration">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk29_changed" swapped="no" />
+                                <signal name="changed" handler="on_entry_hp_regeneration_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="top-attach">18</property>
+                                <property name="top-attach">11</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">Chest with normal items:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">17</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_unk28">
+                              <object class="GtkButton" id="btn_help_hp_regeneration">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk28_changed" swapped="no" />
+                                <property name="receives-default">True</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_hp_regeneration_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-left">1</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
                               </object>
                               <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">17</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="halign">end</property>
-                                <property name="label" translatable="yes">No drop:</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">16</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_unk27">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="width-chars">10</property>
-                                <signal name="changed" handler="on_entry_unk27_changed" swapped="no" />
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">16</property>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">11</property>
                               </packing>
                             </child>
                             <child>
@@ -3442,13 +3432,33 @@ If you choose to export both genders, upon import the matching gender entry will
                                 <property name="halign">start</property>
                                 <property name="label" translatable="yes">Chest Drop Rates:</property>
                                 <attributes>
-                                  <attribute name="weight" value="bold" />
+                                  <attribute name="weight" value="bold"/>
                                 </attributes>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
-                                <property name="top-attach">15</property>
+                                <property name="top-attach">12</property>
                                 <property name="width">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_chest_drop">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_chest_drop_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">12</property>
                               </packing>
                             </child>
                             <child>
@@ -3460,7 +3470,7 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="top-attach">16</property>
+                                <property name="top-attach">13</property>
                               </packing>
                             </child>
                             <child>
@@ -3472,7 +3482,7 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="top-attach">17</property>
+                                <property name="top-attach">14</property>
                               </packing>
                             </child>
                             <child>
@@ -3484,7 +3494,7 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="top-attach">18</property>
+                                <property name="top-attach">15</property>
                               </packing>
                             </child>
                             <child>
@@ -3496,44 +3506,120 @@ If you choose to export both genders, upon import the matching gender entry will
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="top-attach">19</property>
+                                <property name="top-attach">16</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btn_help_chest_drop">
+                              <object class="GtkEntry" id="entry_unk27">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_chest_drop_clicked" swapped="no" />
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">skytemple-help-about-symbolic</property>
-                                  </object>
-                                </child>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_unk27_changed" swapped="no"/>
                               </object>
                               <packing>
-                                <property name="left-attach">2</property>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">13</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_unk28">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_unk28_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">14</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_unk29">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_unk29_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
                                 <property name="top-attach">15</property>
                               </packing>
                             </child>
                             <child>
-                              <placeholder />
+                              <object class="GtkEntry" id="entry_unk30">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="width-chars">10</property>
+                                <signal name="changed" handler="on_entry_unk30_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">16</property>
+                              </packing>
                             </child>
                             <child>
-                              <placeholder />
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">No drop:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">13</property>
+                              </packing>
                             </child>
                             <child>
-                              <placeholder />
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Chest with normal items:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">14</property>
+                              </packing>
                             </child>
                             <child>
-                              <placeholder />
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Chest with type 1 exclusive items:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">15</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">end</property>
+                                <property name="label" translatable="yes">Chest with type 2 exclusive items:</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">16</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
                             </child>
                           </object>
                           <packing>
-                            <property name="position">5</property>
+                            <property name="position">6</property>
                           </packing>
                         </child>
                         <child type="tab">
@@ -3543,7 +3629,7 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="label" translatable="yes">Other</property>
                           </object>
                           <packing>
-                            <property name="position">5</property>
+                            <property name="position">6</property>
                             <property name="tab-fill">False</property>
                           </packing>
                         </child>
@@ -3588,7 +3674,7 @@ If you choose to export both genders, upon import the matching gender entry will
             <property name="spacing">6</property>
             <property name="layout-style">end</property>
             <child>
-              <placeholder />
+              <placeholder/>
             </child>
           </object>
           <packing>
