@@ -1473,8 +1473,9 @@ class StMonsterMonsterPage(Gtk.Box):
         self._set_entry("entry_base_sp_def", self.entry.base_sp_def)
         self._set_entry("entry_weight", self.entry.weight)
         self._set_entry("entry_size", self.entry.size)
-        self._set_entry("entry_unk17", self.entry.unk17)
-        self._set_entry("entry_unk18", self.entry.unk18)
+        if self.module.project.is_patch_applied("SpriteSizeInMonsterData"):
+            self._set_entry("entry_unk17", self.entry.unk17)
+            self._set_entry("entry_unk18", self.entry.unk18)
         self._set_cb("cb_shadow_size", self.entry.shadow_size)
         self._set_entry("entry_chance_spawn_asleep", self.entry.chance_spawn_asleep)
         self._set_entry("entry_hp_regeneration", self.entry.hp_regeneration)

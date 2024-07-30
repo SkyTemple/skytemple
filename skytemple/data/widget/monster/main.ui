@@ -977,9 +977,10 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                         <property name="halign">start</property>
                         <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Here you can check and fix sprite values.
-The "Fix Sprite Values" button fixes all inconsistencies between all sprite values for all Pokémon.
-The "Check Body Sizes" only checks all your Pokémon Body Size but DO NOT perform any edit.</property>
+                        <property name="label" translatable="yes">Here you can run automatic checks and fixes on the Sprite Info values for all Pokémon.
+"Fix Sprite Info" runs automatic fixes for the Sprite VRAM Size, Sprite File Size and Body Size.
+"Check Body Size" compares each Pokémon's Body Size to an "ideal" value based on the Sprite VRAM Size. Please note that this "ideal" value is only an helper value and SHOULD NOT be treated as an absolute fix.
+More info about Sprite Info values and how they interact can be found on the Sprite Info tab of each Pokémon.</property>
                         <property name="wrap">True</property>
                       </object>
                       <packing>
@@ -1007,7 +1008,7 @@ The "Check Body Sizes" only checks all your Pokémon Body Size but DO NOT perfor
                                 <property name="halign">start</property>
                                 <property name="margin-top">5</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Fix Sprite Values</property>
+                                <property name="label" translatable="yes">Fix Sprite Info</property>
                                 <property name="wrap">True</property>
                               </object>
                             </child>

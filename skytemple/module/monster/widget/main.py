@@ -318,7 +318,7 @@ class StMonsterMainPage(Gtk.Box):
                                   f"ERROR: Body Size is {entry.body_size}, must be at least {ideal_bs}."])
             elif entry.body_size > ideal_bs:
                 tree_store.append([f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})",
-                                  f"Body Size is {entry.body_size}, could be lowered to {ideal_bs}."])
+                                  f"Body Size is {entry.body_size}, this could be lowered to {ideal_bs}."])
 
     def _refresh_list(self):
         group, talk_type = self._get_current_settings()
