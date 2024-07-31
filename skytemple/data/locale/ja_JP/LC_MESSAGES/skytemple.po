@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-07-28 20:57+0000\n"
-"PO-Revision-Date: 2024-07-31 05:20\n"
+"PO-Revision-Date: 2024-07-31 07:05\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -25,11 +25,11 @@ msgstr "英語"
 
 #: /dev/fd/63:2 /dev/fd/63:221
 msgid "Friend Rescue Set Phrases"
-msgstr ""
+msgstr "友達救助 フレーズ"
 
 #: /dev/fd/63:3 /dev/fd/63:222
 msgid "Friend Rescue Message Input Strings"
-msgstr ""
+msgstr "友達救助 依頼文文字列"
 
 #: /dev/fd/63:4 /dev/fd/63:223
 msgid "Debug Strings (Game Init)"
@@ -37,7 +37,7 @@ msgstr "デバッグ文字列 (ゲーム開始時)"
 
 #: /dev/fd/63:5 /dev/fd/63:224
 msgid "Util Strings"
-msgstr ""
+msgstr "ユーティリティ文字列"
 
 #: /dev/fd/63:6 /dev/fd/63:225
 msgid "Chapter and Special Episode Strings"
@@ -665,7 +665,7 @@ msgstr "ゲームとダンジョンのヒント"
 
 #: /dev/fd/63:162 /dev/fd/63:381
 msgid "Adventure Log Entries"
-msgstr ""
+msgstr "かつやくのあとエントリ"
 
 #: /dev/fd/63:163 /dev/fd/63:382
 msgid "Ground Map Names"
@@ -693,11 +693,11 @@ msgstr "スタッフロール 1"
 
 #: /dev/fd/63:169 /dev/fd/63:388
 msgid "Special Mission Strings"
-msgstr ""
+msgstr "特別任務文字列"
 
 #: /dev/fd/63:170 /dev/fd/63:389
 msgid "Super Hasbrello and Bidoof Family"
-msgstr ""
+msgstr "スーパーハスブレロ、ビッパの家族"
 
 #: /dev/fd/63:171 /dev/fd/63:390
 msgid "Spinda's Juice Bar Strings"
@@ -3300,7 +3300,9 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
-msgstr ""
+msgstr "ポケモンエントリを 2048 に拡張し、すべてのエントリを独立させます。\n"
+"ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData パッチが必要です。\n"
+"このパッチの適用前にダンジョンエラーを修正し、ROM のバックアップを行うことを強く推奨します。"
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
@@ -3387,7 +3389,12 @@ msgid "Implements move growth (PoC/Unfinished). \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
+msgstr "技の成長を実装します (試験的/未完成)。\n"
+"ActorAndLevelLoader, ExtractAnimData, ChangeMoveStatsDisplay パッチが必要です。 \n"
+"MoveShortcuts パッチと併用する場合、このパッチは MoveShortcuts パッチよりも後に適用 (または再適用) する必要があります。 \n"
+"また、ChangeMoveStatsDisplay パッチは最新バージョンを使用する必要があります。\n"
+"makefont.dat が変更されている場合は互換性が無くなる可能性があります。\n"
+"パッチ適用後以降のすべてのセーブファイルには互換性が無くなります。 "
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:49
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
@@ -3726,7 +3733,7 @@ msgstr "SELECT: "
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:183
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:886
 msgid "Lid : "
-msgstr "ふた: "
+msgstr "スリープ: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:201
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:922
@@ -3879,7 +3886,7 @@ msgstr "ブースト"
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:36
 msgid "Lid"
-msgstr "ふた"
+msgstr "スリープ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:62
 msgid "You don't have any joypads!"
@@ -5470,15 +5477,15 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:179
 msgid "Save first image as (PNG)..."
-msgstr ""
+msgstr "1つ目の画像を (PNG) として保存..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:203
 msgid "Save second image as (PNG)..."
-msgstr ""
+msgstr "2つ目の画像を (PNG) として保存..."
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:254
 msgid "You entered invalid numbers."
-msgstr ""
+msgstr "入力された数値は無効です。"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:257
 msgid "The input image does not exist."
@@ -5502,11 +5509,11 @@ msgstr ""
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
-msgstr ""
+msgstr "同期"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:71
 msgid "Using Gbulb event loop"
-msgstr ""
+msgstr "Gbulb イベントループを使用"
 
 #: skytemple/skytemple/core/error_handler.py:82
 msgid "Trying to display the error failed. Wow!"
@@ -5523,14 +5530,14 @@ msgstr "SkyTemple - エラー"
 
 #: skytemple/skytemple/core/error_handler.py:141
 msgid "Error Details"
-msgstr ""
+msgstr "エラー詳細"
 
 #: skytemple/skytemple/core/error_handler.py:145
 #: skytemple/skytemple/core/widget/user_feedback.py:53
 #: skytemple/skytemple/core/widget/user_feedback.py:81
 #: skytemple/skytemple/skytemple.glade:1163
 msgid "Report Error"
-msgstr ""
+msgstr "エラーを報告"
 
 #: skytemple/skytemple/core/logger.py:89
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
@@ -5538,7 +5545,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/logger.py:92
 msgid "SkyTemple - Uncaught error!"
-msgstr ""
+msgstr "SkyTemple - 未知のエラー"
 
 #: skytemple/skytemple/core/modules.py:99
 #, python-brace-format
@@ -5546,24 +5553,28 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Do you want to continue with these plugins? These plugins contain code which will run on your computer once you accept this dialog with 'Yes'.\n"
 "Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
-msgstr ""
+msgstr "plugins ディレクトリ({plugin_dir}) から以下のプラグインが見つかりました。\n\n"
+"このプラグインにはあなたのコンピューター上で実行されるコードが含まれています。\n"
+"悪意のあるコードによりコンピューターがハッキングされたり、情報が盗まれる可能性があります。\n"
+"このプラグインを信頼しますか？\n\n"
+"「はい」をクリックすると、次回以降このダイアログは再度表示されません。"
 
 #: skytemple/skytemple/core/rom_project.py:160
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
-msgstr ""
+msgstr "この ROM のバックアップファイルが見つかりました。これは SkyTemple によって保存が行われた際に ROM が破損したことを示しています。"
 
 #: skytemple/skytemple/core/rom_project.py:163
 msgid "No, load ROM as-is"
-msgstr ""
+msgstr "ROM をそのまま読み込む"
 
 #: skytemple/skytemple/core/rom_project.py:165
 msgid "Yes, load backup"
-msgstr ""
+msgstr "バックアップを読み込む"
 
 #: skytemple/skytemple/core/rom_project.py:167
 #: skytemple/skytemple/core/rom_project.py:171
 msgid "Last modified: {} - Size: {}"
-msgstr ""
+msgstr "最終更新日: {} - サイズ: {}"
 
 #: skytemple/skytemple/core/rom_project.py:178
 msgid "Do you want to restore the backup?\n"
@@ -5571,11 +5582,15 @@ msgid "Do you want to restore the backup?\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
 "Original ROM: {}\n"
 "Backup ROM: {}"
-msgstr ""
+msgstr "バックアップを復元しますか？\n"
+"「バックアップを読み込む」を選択すると、バックアップが ROM ファイルに置き換えられて読み込まれます。\n"
+"「ROM をそのまま読み込む」を選択すると、バックアップは削除され、SkyTemple は破損した可能性のある ROM ファイルを読み込みます。\n\n"
+"元のROM: {}\n"
+"バックアップROM: {}"
 
 #: skytemple/skytemple/core/rom_project.py:231
 msgid "There was an error trying to read the ROM file."
-msgstr ""
+msgstr "ROM ファイルの読み込み中にエラーが発生しました。"
 
 #: skytemple/skytemple/core/rom_project.py:233
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
@@ -5611,7 +5626,8 @@ msgstr "CSV ファイル (*.csv)"
 #: skytemple/skytemple/core/ui_utils.py:208
 msgid "The value you entered is invalid.\n\n"
 "Valid values must be in the range [{},{}]."
-msgstr ""
+msgstr "入力された値は無効です。\n\n"
+"有効な値は [{},{}] の範囲でなければなりません。"
 
 #: skytemple/skytemple/core/ui_utils.py:211
 msgid "SkyTemple - Value out of range"
@@ -5651,7 +5667,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:141
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5500
 msgid "Map Layer Export"
-msgstr ""
+msgstr "マップレイヤーのエクスポート"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:204
 msgid "This will export the background as one image.\n\n"
@@ -5676,12 +5692,12 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6108
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6334
 msgid "Format Details"
-msgstr ""
+msgstr "フォーマットの詳細"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:264
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6003
 msgid "Map Layer Import"
-msgstr ""
+msgstr "マップレイヤーのインポート"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:333
 msgid "This will import the entire background from an image.\n\n"
@@ -5746,72 +5762,73 @@ msgstr "方向:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:522
 msgid "Level reset to 1:"
-msgstr ""
+msgstr "Lv1 から開始:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:535
 msgid "IQ skills enabled:"
-msgstr ""
+msgstr "かしこさ有効:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:548
 msgid "Max. rescue attempts\n"
 "(-1 = none):"
-msgstr ""
+msgstr "最大救助回数\n"
+"(-1 = 救助不可):"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:562
 msgid "Random movement chance:"
-msgstr ""
+msgstr "ランダム移動の確率:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:629
 msgid "Turn limit:"
-msgstr ""
+msgstr "ターン制限:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:642
 msgid "Force game save:"
-msgstr ""
+msgstr "強制セーブ:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:655
 msgid "Recruiting enabled:"
-msgstr ""
+msgstr "仲間の勧誘:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:721
 msgid "Max. party members:"
-msgstr ""
+msgstr "チーム最大人数:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:734
 msgid "Enemies drop Boxes:"
-msgstr ""
+msgstr "敵の宝箱ドロップ:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:747
 msgid "Can switch leader:"
-msgstr ""
+msgstr "リーダーチェンジ:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:760
 msgid "Exp. enabled:"
-msgstr ""
+msgstr "経験値の獲得:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:827
 msgid "Enemy evolution enabled:"
-msgstr ""
+msgstr "敵の進化:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:840
 msgid "Money reset to 0:"
-msgstr ""
+msgstr "ポケ持ち込み不可:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:853
 msgid "Reveal traps by attack:"
-msgstr ""
+msgstr "空振りで罠発見:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:866
 msgid "Max. items allowed:"
-msgstr ""
+msgstr "道具の最大数:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:979
 msgid "Add / Remove Floors"
-msgstr ""
+msgstr "フロアの追加/削除"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:997
 msgid "This dungeon has XXX floors."
-msgstr ""
+msgstr "このダンジョンは XXX 階あります。"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:1035
 msgid "Change Floor Count"
@@ -5819,7 +5836,7 @@ msgstr "フロア数を変更"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:1096
 msgid "This dungeon currently has X floors."
-msgstr "このダンジョンには現在Xフロアがあります。"
+msgstr "このダンジョンは現在 X 階あります。"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:1113
 msgid "New floor count:"
@@ -5866,7 +5883,7 @@ msgstr "ズーム -"
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:99
 #: skytemple/skytemple/data/widget/script/ssa.ui:471
 msgid "Show Tiles Grid"
-msgstr ""
+msgstr "タイルグリッドを表示"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:141
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2961
@@ -5878,7 +5895,7 @@ msgstr "タイルグリッド"
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:166
 #: skytemple/skytemple/data/widget/script/ssa.ui:497
 msgid "Move / Select"
-msgstr ""
+msgstr "移動/選択"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:167
 #: skytemple/skytemple/data/widget/lists/animations.ui:864
@@ -5887,7 +5904,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/level_up.ui:669
 #: skytemple/skytemple/data/widget/script/ssa.ui:498
 msgid "Move"
-msgstr ""
+msgstr "移動"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:182
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:183
@@ -5902,7 +5919,7 @@ msgstr "エンティティを追加"
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:226
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:227
 msgid "Copy Tile / Entity"
-msgstr ""
+msgstr "タイル/エンティティのコピー"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:253
 msgid "Change the tileset or dungeon background (editor preview only)"
@@ -7394,11 +7411,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1721
 msgid "Wall"
-msgstr ""
+msgstr "壁"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1722
 msgid "Water / Lava"
-msgstr ""
+msgstr "水/マグマ"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1749
 msgid "Has Liquid / Wall"
@@ -10317,7 +10334,9 @@ msgstr ""
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
 "The evolution will not happen if the target is revived, if the evolved form of the enemy cannot spawn in the current floor or if the sprite of the evolved form is bigger than the sprite of the enemy.\n"
 "Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."
-msgstr ""
+msgstr "有効にすると、チームメンバーを倒した後に敵が進化します。\n"
+"倒した相手が復活、敵の進化形が現在のフロアでスポーンできない、進化形の「からだのおおきさ」が進化する敵よりも大きい、これらのいずれかに当てはまる場合進化しません。\n"
+"この動作の一部は、BetterEnemyEvolution パッチを適用することで変更できます。"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:566
 msgid "Width and height must be numbers >= 0."
