@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-07-28 20:57+0000\n"
-"PO-Revision-Date: 2024-07-31 20:23\n"
+"POT-Creation-Date: 2024-08-02 21:00+0000\n"
+"PO-Revision-Date: 2024-08-02 21:28\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -5461,24 +5461,19 @@ msgstr ""
 msgid "Using Gbulb event loop"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:82
+#: skytemple/skytemple/core/error_handler.py:66
 msgid "Trying to display the error failed. Wow!"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:84
-msgid "You can try opening one of the following file manually in a web browser or text editor: "
-msgstr ""
-
-#: skytemple/skytemple/core/error_handler.py:113
-#: skytemple/skytemple/main.py:106
+#: skytemple/skytemple/core/error_handler.py:91 skytemple/skytemple/main.py:106
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - Ошибка!"
 
-#: skytemple/skytemple/core/error_handler.py:141
+#: skytemple/skytemple/core/error_handler.py:119
 msgid "Error Details"
 msgstr "Детали ошибки"
 
-#: skytemple/skytemple/core/error_handler.py:145
+#: skytemple/skytemple/core/error_handler.py:123
 #: skytemple/skytemple/core/widget/user_feedback.py:53
 #: skytemple/skytemple/core/widget/user_feedback.py:81
 #: skytemple/skytemple/skytemple.glade:1163
