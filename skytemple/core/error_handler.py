@@ -63,6 +63,7 @@ def show_error_web(exc_info):
             html = cgitb.text(exc_info)
             with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as tmp_file2:
                 tmp_file2.write(html)
+                tmp_file2.flush()
                 webbrowser.open_new_tab(Path(tmp_file2.name).as_uri())
         except BaseException:
             # Hm... now it's getting ridiculous.
@@ -70,6 +71,7 @@ def show_error_web(exc_info):
                 html = "".join(traceback.format_exception(*exc_info))
                 with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as tmp_file3:
                     tmp_file3.write(html)
+                    tmp_file3.flush()
                     webbrowser.open_new_tab(Path(tmp_file3.name).as_uri())
             except BaseException:
                 # Yikes!
@@ -109,6 +111,9 @@ def display_error(
     """
     :param should_report: Whether or not the error should be reported. UserValueErrors are never to be reported.
     """
+    if isinstance(exc_info, Exception):
+        exc_info = (type(exc_info), exc_info, exc_info.__traceback__)
+
     if error_title is None:
         error_title = _("SkyTemple - Error!")
     # In case the current working directory is corrupted. Yes, this may happen.
