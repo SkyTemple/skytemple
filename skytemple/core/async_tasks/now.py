@@ -37,12 +37,13 @@ class Now(AsyncTaskRunnerProtocol):
     def __init__(self):
         self._loop: AbstractEventLoop = None  # type: ignore
 
-    def run_task(self, coro: Coroutine):
+    def run_task(self, coro: Coroutine) -> bool:
         if self._loop is None:
             self._loop = asyncio.new_event_loop()
             try:
                 asyncio.set_event_loop(self._loop)
-                return self._loop.run_until_complete(coro)
+                self._loop.run_until_complete(coro)
+                return True
             finally:
                 try:
                     self._cancel_all_tasks()
@@ -53,9 +54,13 @@ class Now(AsyncTaskRunnerProtocol):
                     asyncio.set_event_loop(None)
                     self._loop.close()
                     self._loop = None
+                    return True
         else:
-            # NOTE: This requires nested asyncio to be possible.
-            return self._loop.run_until_complete(coro)
+            if self._loop.is_running():
+                # This is not supported
+                return False
+            self._loop.run_until_complete(coro)
+            return True
 
     # stolen straight from asyncio core :)
     def _cancel_all_tasks(self):

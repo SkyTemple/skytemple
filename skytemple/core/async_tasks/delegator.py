@@ -151,13 +151,22 @@ class AsyncTaskDelegator:
         """
         if cls.config_type().async_task_runner_type == AsyncTaskRunnerType.THREAD_BASED:
             if not threadsafe:
-                Now.instance().run_task(coro)
+                if not Now.instance().run_task(coro):
+                    raise RuntimeError("Failed to run task.")
             else:
                 AsyncTaskRunner.instance().run_task(coro)
         elif cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING:
-            Now.instance().run_task(coro)
+            if not Now.instance().run_task(coro):
+                raise RuntimeError("Failed to run task.")
         elif cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_BLOCKING_SOON:
-            GLib.idle_add(lambda: Now.instance().run_task(coro))
+
+            def try_run_glib_soon(coro):
+                if not Now.instance().run_task(coro):
+                    # Try to defer the task slightly.
+                    GLib.timeout_add(100, lambda: try_run_glib_soon(coro))
+                return False
+
+            GLib.idle_add(lambda: try_run_glib_soon(coro))
         elif cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT:
             asyncio.create_task(coro)
         else:

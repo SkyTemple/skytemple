@@ -15,8 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import abstractmethod
-from typing import Protocol
 from collections.abc import Coroutine
+from typing import Protocol
 
 
 class AsyncTaskRunnerProtocol(Protocol):
@@ -26,5 +26,5 @@ class AsyncTaskRunnerProtocol(Protocol):
         pass
 
     @abstractmethod
-    def run_task(self, coro: Coroutine):
-        """Runs an asynchronous task"""
+    def run_task(self, coro: Coroutine) -> bool:
+        """Runs an asynchronous task. Returns True if the task was run."""
