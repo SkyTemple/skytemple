@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-08-02 21:00+0000\n"
-"PO-Revision-Date: 2024-08-02 21:28\n"
+"POT-Creation-Date: 2024-08-04 10:11+0000\n"
+"PO-Revision-Date: 2024-08-04 10:54\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -768,7 +768,7 @@ msgid "Unknown 7"
 msgstr "Unbekannt 7"
 
 #: /dev/fd/63:185 /dev/fd/63:404
-#: skytemple/skytemple/data/widget/monster/monster.ui:3543
+#: skytemple/skytemple/data/widget/monster/monster.ui:3633
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1398
 msgid "Other"
 msgstr "Anderes"
@@ -800,7 +800,7 @@ msgid "Treasure Box 3"
 msgstr "Schatzbox 3"
 
 #: /dev/fd/63:192 /dev/fd/63:411
-#: skytemple/skytemple/data/widget/monster/monster.ui:2831
+#: skytemple/skytemple/data/widget/monster/monster.ui:2807
 msgid "Exclusive Items"
 msgstr "Exklusive Items"
 
@@ -1414,11 +1414,18 @@ msgstr "Unten links"
 msgid "'{str(value)}' cannot be encoded as a shifted immediate."
 msgstr "'{str(value)}' kann nicht als Shifted Immediate kodiert werden."
 
-#: skytemple-files/skytemple_files/common/sprite_util.py:91
-msgid "Sprite Size"
-msgstr "Sprite Größe"
+#: skytemple-files/skytemple_files/common/sprite_util.py:94
+#: skytemple/skytemple/module/monster/widget/monster.py:880
+msgid "Sprite VRAM Size"
+msgstr ""
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:98
+#: skytemple/skytemple/module/monster/widget/monster.py:865
+msgid "Body Size"
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/sprite_util.py:105
+#: skytemple/skytemple/module/monster/widget/monster.py:895
 msgid "Sprite File Size"
 msgstr "Sprite Dateigröße"
 
@@ -1456,32 +1463,32 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "Ein Bild, das importiert werden sollte, ist zu komplex. Es hat zu viele einzigartige Kacheln ({len_final_tiles}). Maximal sind 1024 erlaubt.\n"
 "Versuche, weniger einzigartige Kacheln im Bild zu haben. Einzigartige Kacheln sind 8x8 Bereiche im Bild, die nirgendwo sonst im Bild vorkommen (inklusive gedrehter oder gespiegelter Variationen oder mit einer anderen Palette)."
 
-#: skytemple-files/skytemple_files/common/util.py:493
+#: skytemple-files/skytemple_files/common/util.py:494
 msgid "The file you tried to open does not seem to be a valid NDS ROM file."
 msgstr "Die zu öffnende Datei scheint keine gültige NDS-ROM-Datei zu sein."
 
-#: skytemple-files/skytemple_files/common/util.py:502
+#: skytemple-files/skytemple_files/common/util.py:503
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Diese ROM wird nicht unterstützt von SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:572
-#: skytemple-files/skytemple_files/common/util.py:591
+#: skytemple-files/skytemple_files/common/util.py:573
+#: skytemple-files/skytemple_files/common/util.py:592
 #, python-brace-format
 msgid "Binary {binary.name} not found."
 msgstr "Binärdatei {binary.name} wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/common/util.py:612
-#: skytemple-files/skytemple_files/common/util.py:643
+#: skytemple-files/skytemple_files/common/util.py:613
+#: skytemple-files/skytemple_files/common/util.py:644
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "Ordner {dir_name} existiert nicht."
 
-#: skytemple-files/skytemple_files/common/util.py:615
+#: skytemple-files/skytemple_files/common/util.py:616
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "Datei {file_name} existiert in diesem Ordner bereits."
 
-#: skytemple-files/skytemple_files/common/util.py:638
+#: skytemple-files/skytemple_files/common/util.py:639
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "Ordner {path} existiert bereits."
@@ -1611,10 +1618,10 @@ msgstr "Szenario größer oder gleich"
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1055
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3314
 #: skytemple/skytemple/data/widget/lists/animations.ui:948
-#: skytemple/skytemple/data/widget/monster/main.ui:421
-#: skytemple/skytemple/data/widget/monster/monster.ui:499
-#: skytemple/skytemple/data/widget/monster/monster.ui:2180
-#: skytemple/skytemple/data/widget/monster/monster.ui:2319
+#: skytemple/skytemple/data/widget/monster/main.ui:430
+#: skytemple/skytemple/data/widget/monster/monster.ui:500
+#: skytemple/skytemple/data/widget/monster/monster.ui:2156
+#: skytemple/skytemple/data/widget/monster/monster.ui:2295
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:215
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:97
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:113
@@ -1696,7 +1703,7 @@ msgstr "Geschlechtslos"
 #: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/data/md/protocol.py:428
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:158
-#: skytemple/skytemple/module/monster/widget/monster.py:1478
+#: skytemple/skytemple/module/monster/widget/monster.py:1520
 msgid "Unused"
 msgstr "Unbenutzt"
 
@@ -2720,10 +2727,10 @@ msgstr "Erdbeben"
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:356
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:357
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:359
-#: skytemple/skytemple/module/monster/widget/monster.py:1665
-#: skytemple/skytemple/module/monster/widget/monster.py:1666
-#: skytemple/skytemple/module/monster/widget/monster.py:1667
-#: skytemple/skytemple/module/monster/widget/monster.py:1668
+#: skytemple/skytemple/module/monster/widget/monster.py:1707
+#: skytemple/skytemple/module/monster/widget/monster.py:1708
+#: skytemple/skytemple/module/monster/widget/monster.py:1709
+#: skytemple/skytemple/module/monster/widget/monster.py:1710
 msgid "???"
 msgstr "???"
 
@@ -3997,9 +4004,9 @@ msgstr "Hanger"
 #: skytemple/skytemple/data/widget/lists/iq.ui:226
 #: skytemple/skytemple/data/widget/lists/tactics.ui:78
 #: skytemple/skytemple/data/widget/lists/world_map.ui:394
-#: skytemple/skytemple/data/widget/monster/main.ui:634
-#: skytemple/skytemple/data/widget/monster/monster.ui:2168
-#: skytemple/skytemple/data/widget/monster/monster.ui:2307
+#: skytemple/skytemple/data/widget/monster/main.ui:643
+#: skytemple/skytemple/data/widget/monster/monster.ui:2144
+#: skytemple/skytemple/data/widget/monster/monster.ui:2283
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:190
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:446
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:199
@@ -4111,7 +4118,7 @@ msgstr "Positionsmarker"
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:88
 #: skytemple/skytemple/data/widget/lists/tactics.ui:89
 #: skytemple/skytemple/data/widget/lists/world_map.ui:405
-#: skytemple/skytemple/data/widget/monster/monster.ui:1317
+#: skytemple/skytemple/data/widget/monster/monster.ui:1318
 #: skytemple/skytemple/data/widget/patch/asm.ui:390
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:201
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:457
@@ -4990,12 +4997,14 @@ msgstr "Exportiere ausgewählten Block"
 #: skytemple/skytemple/data/widget/misc_graphics/font.ui:254
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:733
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:755
-#: skytemple/skytemple/data/widget/monster/main.ui:793
-#: skytemple/skytemple/data/widget/monster/main.ui:815
-#: skytemple/skytemple/data/widget/monster/monster.ui:2212
-#: skytemple/skytemple/data/widget/monster/monster.ui:2234
-#: skytemple/skytemple/data/widget/monster/monster.ui:2351
-#: skytemple/skytemple/data/widget/monster/monster.ui:2373
+#: skytemple/skytemple/data/widget/monster/main.ui:802
+#: skytemple/skytemple/data/widget/monster/main.ui:824
+#: skytemple/skytemple/data/widget/monster/main.ui:1002
+#: skytemple/skytemple/data/widget/monster/main.ui:1027
+#: skytemple/skytemple/data/widget/monster/monster.ui:2188
+#: skytemple/skytemple/data/widget/monster/monster.ui:2210
+#: skytemple/skytemple/data/widget/monster/monster.ui:2327
+#: skytemple/skytemple/data/widget/monster/monster.ui:2349
 #: skytemple/skytemple/data/widget/patch/asm.ui:93
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:362
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:384
@@ -5069,7 +5078,7 @@ msgstr "Emulator"
 #: skytemple/skytemple/data/widget/misc_graphics/graphic_font.ui:159
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:631
 #: skytemple/skytemple/data/widget/monster/level_up.ui:106
-#: skytemple/skytemple/data/widget/monster/monster.ui:2129
+#: skytemple/skytemple/data/widget/monster/monster.ui:2105
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:562
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:113
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:122
@@ -5742,8 +5751,8 @@ msgid "Banner"
 msgstr "Banner"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:420
-#: skytemple/skytemple/data/widget/monster/main.ui:160
-#: skytemple/skytemple/data/widget/monster/monster.ui:216
+#: skytemple/skytemple/data/widget/monster/main.ui:161
+#: skytemple/skytemple/data/widget/monster/monster.ui:217
 msgid "Names"
 msgstr "Namen"
 
@@ -6064,7 +6073,7 @@ msgstr "Neue Entität hinzufügen"
 #: skytemple/skytemple/data/widget/misc_graphics/graphic_font.ui:199
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:796
 #: skytemple/skytemple/data/widget/monster/level_up.ui:120
-#: skytemple/skytemple/data/widget/monster/monster.ui:2666
+#: skytemple/skytemple/data/widget/monster/monster.ui:2642
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:2122
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:820
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:1006
@@ -6127,7 +6136,7 @@ msgstr "Legende der Fallen-Ebene"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1183
 #: skytemple/skytemple/data/widget/lists/animations.ui:531
-#: skytemple/skytemple/data/widget/monster/monster.ui:1603
+#: skytemple/skytemple/data/widget/monster/monster.ui:1579
 #: skytemple/skytemple/data/widget/moves_items/item.ui:931
 #: skytemple/skytemple/data/widget/moves_items/move.ui:766
 #: skytemple/skytemple/skytemple.glade:277
@@ -6215,7 +6224,7 @@ msgstr "BITTE BEACHTEN: \n"
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1849
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4371
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4636
-#: skytemple/skytemple/data/widget/monster/monster.ui:3560
+#: skytemple/skytemple/data/widget/monster/monster.ui:3650
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:298
 msgid "Settings"
 msgstr "Einstellungen"
@@ -6412,7 +6421,7 @@ msgid "Add category"
 msgstr "Kategorie hinzufügen"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:106
-#: skytemple/skytemple/data/widget/monster/monster.ui:1144
+#: skytemple/skytemple/data/widget/monster/monster.ui:1145
 #: skytemple/skytemple/data/widget/moves_items/item.ui:97
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:77
 #: skytemple/skytemple/data/widget/moves_items/move.ui:171
@@ -6506,22 +6515,22 @@ msgid "Secret Room Item Spawns"
 msgstr "Item (Geheimer Raum) Spawns"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:731
-#: skytemple/skytemple/data/widget/monster/monster.ui:374
+#: skytemple/skytemple/data/widget/monster/monster.ui:375
 msgid "1. Choose what to export"
 msgstr "1. Wähle aus, was exportiert werden soll"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:781
-#: skytemple/skytemple/data/widget/monster/monster.ui:424
+#: skytemple/skytemple/data/widget/monster/monster.ui:425
 msgid " Export to file"
 msgstr " Exportiere nach Datei"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:799
-#: skytemple/skytemple/data/widget/monster/monster.ui:442
+#: skytemple/skytemple/data/widget/monster/monster.ui:443
 msgid "2a. Export to file"
 msgstr "2a. Exportiere in Datei"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:841
-#: skytemple/skytemple/data/widget/monster/monster.ui:485
+#: skytemple/skytemple/data/widget/monster/monster.ui:486
 #: skytemple/skytemple/module/script/widget/ssa.py:1760
 msgid "S"
 msgstr "S"
@@ -6579,7 +6588,7 @@ msgstr "Statischer Raum"
 #: skytemple/skytemple/data/widget/misc_graphics/w16.ui:18
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:315
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:41
-#: skytemple/skytemple/data/widget/monster/monster.ui:872
+#: skytemple/skytemple/data/widget/monster/monster.ui:873
 #: skytemple/skytemple/data/widget/portrait/portrait.ui:219
 #: skytemple/skytemple/data/widget/rom/main.ui:152
 #: skytemple/skytemple/data/widget/script/ssa.ui:591
@@ -6602,7 +6611,7 @@ msgstr "Import"
 #: skytemple/skytemple/data/widget/misc_graphics/w16.ui:33
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:330
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:78
-#: skytemple/skytemple/data/widget/monster/monster.ui:917
+#: skytemple/skytemple/data/widget/monster/monster.ui:918
 #: skytemple/skytemple/data/widget/portrait/portrait.ui:258
 #: skytemple/skytemple/data/widget/rom/main.ui:106
 #: skytemple/skytemple/data/widget/script/ssa.ui:606
@@ -6836,7 +6845,7 @@ msgstr "Kecleon Level "
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1666
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1820
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1974
-#: skytemple/skytemple/module/monster/widget/monster.py:841
+#: skytemple/skytemple/module/monster/widget/monster.py:837
 msgid "Weight"
 msgstr "Gewichtung"
 
@@ -7917,7 +7926,7 @@ msgid "Menu: "
 msgstr "Menü: "
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:107
-#: skytemple/skytemple/data/widget/monster/main.ui:692
+#: skytemple/skytemple/data/widget/monster/main.ui:701
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:161
 msgid "Language: "
 msgstr "Sprache: "
@@ -8912,12 +8921,12 @@ msgstr "VM/TM Attacken"
 msgid "Egg Moves"
 msgstr "Attacken durch Vererbbarkeit"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:22
-#: skytemple/skytemple/data/widget/monster/monster.ui:40
+#: skytemple/skytemple/data/widget/monster/main.ui:23
+#: skytemple/skytemple/data/widget/monster/monster.ui:41
 msgid "Export Pokémon"
 msgstr "Pokémon exportieren"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:91
+#: skytemple/skytemple/data/widget/monster/main.ui:92
 msgid "This will export the data of all Pokémon to XML files into a directory \n"
 "you choose.\n"
 "You can select below what data will be included in these files.\n\n"
@@ -8934,416 +8943,451 @@ msgstr "Alle Pokémon werden in XML-Dateien exportiert, in den Ordner, \n"
 "Wenn der Patch nicht angewendet ist, werden männliche und weibliche\n"
 "Formen eine eine gemeinsame Datei exportiert."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:174
-#: skytemple/skytemple/data/widget/monster/monster.ui:230
+#: skytemple/skytemple/data/widget/monster/main.ui:175
+#: skytemple/skytemple/data/widget/monster/monster.ui:231
 msgid "Moveset EoS"
 msgstr "Attacken in Himmel"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:188
-#: skytemple/skytemple/data/widget/monster/monster.ui:244
+#: skytemple/skytemple/data/widget/monster/main.ui:189
+#: skytemple/skytemple/data/widget/monster/monster.ui:245
 msgid "Moveset EoT / EoD**"
 msgstr "Attacken in Zeit / Dunkelheit**"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:200
-#: skytemple/skytemple/data/widget/monster/monster.ui:272
+#: skytemple/skytemple/data/widget/monster/main.ui:201
+#: skytemple/skytemple/data/widget/monster/monster.ui:273
 msgid "** This data is not editable in SkyTemple, but you can export and import it."
 msgstr "** Diese Daten können in SkyTemple nicht bearbeitet werden, aber du kannst sie exportieren und importieren."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:218
-#: skytemple/skytemple/data/widget/monster/monster.ui:304
+#: skytemple/skytemple/data/widget/monster/main.ui:219
+#: skytemple/skytemple/data/widget/monster/monster.ui:305
 msgid "Stat Growth"
 msgstr "Statuswerte-Anstieg"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:245
-#: skytemple/skytemple/module/monster/widget/monster.py:1553
+#: skytemple/skytemple/data/widget/monster/main.ui:246
+#: skytemple/skytemple/module/monster/widget/monster.py:1595
 msgid "Portraits"
 msgstr "Portraits"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:347
+#: skytemple/skytemple/data/widget/monster/main.ui:348
 msgid "Exporting..."
 msgstr "Exportiere..."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:437
+#: skytemple/skytemple/data/widget/monster/main.ui:446
 msgid "This section lets you edit data for Pokémon in the game.\n"
 "This includes stats and the portrait images."
 msgstr "In diesem Abschnitt kannst du Daten für Pokémon im Spiel bearbeiten.\n"
 "Dies beinhaltet die Statuswerte und die Portraits."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:466
+#: skytemple/skytemple/data/widget/monster/main.ui:475
 msgid "Choose a Pokémon form on the left to edit it's data.\n"
 "You can use the button below to export data of multiple Pokémon forms at once."
 msgstr "Wähle links eine Pokémon-Form aus, um sie zu bearbeiten.\n"
 "Über die Schaltfläche unter diesem Text kannst du mehrere Pokémon-Formen auf einmal exportieren."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:508
+#: skytemple/skytemple/data/widget/monster/main.ui:517
 msgid "Bulk Export"
 msgstr "Massenexport"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:538
+#: skytemple/skytemple/data/widget/monster/main.ui:547
 msgid "Pokémon Data"
 msgstr "Pokémon-Daten"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:561
+#: skytemple/skytemple/data/widget/monster/main.ui:570
 msgid "Here you can edit the different personality groups."
 msgstr "Hier kannst Du die verschiedenen Persönlichkeitsgruppen bearbeiten."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:584
+#: skytemple/skytemple/data/widget/monster/main.ui:593
 msgid "Group: "
 msgstr "Gruppe: "
 
-#: skytemple/skytemple/data/widget/monster/main.ui:648
+#: skytemple/skytemple/data/widget/monster/main.ui:657
 #: skytemple/skytemple/data/widget/moves_items/item.ui:724
 #: skytemple/skytemple/data/widget/moves_items/move.ui:553
 msgid "Text"
 msgstr "Text"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:722
+#: skytemple/skytemple/data/widget/monster/main.ui:731
 msgid "Type: "
 msgstr "Typ: "
 
-#: skytemple/skytemple/data/widget/monster/main.ui:740
+#: skytemple/skytemple/data/widget/monster/main.ui:749
 msgid "Remove Group"
 msgstr "Gruppe entfernen"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:761
+#: skytemple/skytemple/data/widget/monster/main.ui:770
 msgid "Add Group"
 msgstr "Gruppe hinzufügen"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:854
+#: skytemple/skytemple/data/widget/monster/main.ui:863
 msgid "Personality Groups"
 msgstr "Persönlichkeitsgruppen"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:877
+#: skytemple/skytemple/data/widget/monster/main.ui:886
 msgid "Here you can edit special personalities, used by unique actors."
 msgstr "Hier kannst du spezielle Persönlichkeiten bearbeiten, die von besonderen Akteuren verwendet werden."
 
-#: skytemple/skytemple/data/widget/monster/main.ui:905
+#: skytemple/skytemple/data/widget/monster/main.ui:914
 msgid "Actor"
 msgstr "Akteur"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:916
+#: skytemple/skytemple/data/widget/monster/main.ui:925
 msgid "Personality"
 msgstr "Persönlichkeit"
 
-#: skytemple/skytemple/data/widget/monster/main.ui:946
+#: skytemple/skytemple/data/widget/monster/main.ui:955
 msgid "Special Personalities"
 msgstr "Besondere Persönlichkeiten"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:188
+#: skytemple/skytemple/data/widget/monster/main.ui:980
+msgid "Here you can run automatic checks and fixes on the Sprite Info values for all Pokémon.\n"
+"\"Fix Sprite Info\" runs automatic fixes for the Sprite VRAM Size, Sprite File Size and Body Size.\n"
+"\"Check Body Size\" compares each Pokémon's Body Size to an \"ideal\" value based on the Sprite VRAM Size. Please note that this \"ideal\" value is only an helper value and SHOULD NOT be treated as an absolute fix.\n"
+"More info about Sprite Info values and how they interact can be found on the Sprite Info tab of each Pokémon."
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/main.ui:1011
+msgid "Fix Sprite Info"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/main.ui:1036
+msgid "Check Body Sizes"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/main.ui:1061
+msgid "List of fixes/oddities"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/main.ui:1086
+msgid "Monster"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/main.ui:1097
+msgid "Detail of Fix"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/main.ui:1126
+msgid "Sprite Checker"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:189
 msgid "Current Gender Form Settings*"
 msgstr "Einstellungen der aktuellen Geschlechterform*"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:202
+#: skytemple/skytemple/data/widget/monster/monster.ui:203
 msgid "Other Gender Form Settings*"
 msgstr "Einstellungen der anderen Geschlechterform*"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:256
+#: skytemple/skytemple/data/widget/monster/monster.ui:257
 msgid "<i>*If you choose to export only one gender, the data of this gender will be used when importing again.\n"
 "If you choose to export both genders, upon import the matching gender entry will be used (second gender will be imported using the second gender entry).</i>"
 msgstr "<i>*Wenn du nur ein Geschlecht exportierst, dann werden die Daten dieser Form beim Import verwendet.\n"
 "Falls du beide Formen exportierst, werden diese beim Import automatisch zugewiesen (der zweiten Geschlechterform wird automatisch der Eintrag für die zweite Form zugewiesen).</i>"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:290
+#: skytemple/skytemple/data/widget/monster/monster.ui:291
 msgid "Portraits of other Gender Form*"
 msgstr "Portraits der aktuellen Geschlechterform*"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:344
+#: skytemple/skytemple/data/widget/monster/monster.ui:345
 msgid "Portraits of current Gender Form*"
 msgstr "Portraits der anderen Geschlechterform*"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:526
+#: skytemple/skytemple/data/widget/monster/monster.ui:527
 msgid "(and/or) <b>2b. Copy to other Pokémon</b>"
 msgstr "(und/oder) <b>2b. Kopiere zu anderen Pokémon</b>"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:645
+#: skytemple/skytemple/data/widget/monster/monster.ui:646
 msgid "$<ID Number>: <Eng. Name>"
 msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:658
+#: skytemple/skytemple/data/widget/monster/monster.ui:659
 msgid "#<Base ID>"
 msgstr "#<Basis-ID>"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:671
+#: skytemple/skytemple/data/widget/monster/monster.ui:672
 msgid "Base ID:"
 msgstr "Basis-ID:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:683
+#: skytemple/skytemple/data/widget/monster/monster.ui:684
 #: skytemple/skytemple/data/widget/moves_items/move.ui:51
 msgid "Type:"
 msgstr "Typ:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:717
+#: skytemple/skytemple/data/widget/monster/monster.ui:718
 msgid "Gender:"
 msgstr "Geschlecht:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:729
+#: skytemple/skytemple/data/widget/monster/monster.ui:730
 msgid "Pokédex:"
 msgstr "Pokédex:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:792
+#: skytemple/skytemple/data/widget/monster/monster.ui:793
 msgid "Entity ID:"
 msgstr "Entität-ID:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:804
+#: skytemple/skytemple/data/widget/monster/monster.ui:805
 #: skytemple/skytemple/data/widget/moves_items/item.ui:121
 msgid "Sprite ID:"
 msgstr "Sprite-ID:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1128
+#: skytemple/skytemple/data/widget/monster/monster.ui:1129
 #: skytemple/skytemple/data/widget/moves_items/item.ui:391
 #: skytemple/skytemple/data/widget/moves_items/move.ui:356
 msgid "Name:"
 msgstr "Name:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1341
-msgid "Body Size:"
-msgstr "Körpergröße:"
-
-#: skytemple/skytemple/data/widget/monster/monster.ui:1353
+#: skytemple/skytemple/data/widget/monster/monster.ui:1342
 msgid "Movement:"
 msgstr "Bewegungstyp:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1365
+#: skytemple/skytemple/data/widget/monster/monster.ui:1366
 msgid "IQ Group:"
 msgstr "IQ Gruppe:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1377
+#: skytemple/skytemple/data/widget/monster/monster.ui:1390
 msgid "Ability:"
 msgstr "Fähigkeit:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1389
+#: skytemple/skytemple/data/widget/monster/monster.ui:1425
 msgid "Exp. Yield:"
 msgstr "Erfahrungspunkte:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1401
+#: skytemple/skytemple/data/widget/monster/monster.ui:1450
 msgid "Recruit Rate:"
 msgstr "Rekrutierungsrate:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1413
+#: skytemple/skytemple/data/widget/monster/monster.ui:1506
 msgid "Talk Group:"
 msgstr "Sprech-Gruppe:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1555
+#: skytemple/skytemple/data/widget/monster/monster.ui:1531
 msgid "Idle Animation Type:"
 msgstr "Stillstand-Animationstyp:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1628
+#: skytemple/skytemple/data/widget/monster/monster.ui:1604
 msgid "Base HP:"
 msgstr "Basis-KP:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1640
+#: skytemple/skytemple/data/widget/monster/monster.ui:1616
 msgid "Weight:"
 msgstr "Gewicht:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1652
+#: skytemple/skytemple/data/widget/monster/monster.ui:1628
 msgid "Base Atk:"
 msgstr "Basis Angr.:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1664
+#: skytemple/skytemple/data/widget/monster/monster.ui:1640
 msgid "Base Sp. Atk:"
 msgstr "Basis Sp. Angr.:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1676
+#: skytemple/skytemple/data/widget/monster/monster.ui:1652
 msgid "Base Def:"
 msgstr "Basis Vert.:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1688
+#: skytemple/skytemple/data/widget/monster/monster.ui:1664
 msgid "Base Sp. Def:"
 msgstr "Basis Sp. Vert.:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1700
+#: skytemple/skytemple/data/widget/monster/monster.ui:1676
 msgid "Size:"
 msgstr "Größe:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1712
+#: skytemple/skytemple/data/widget/monster/monster.ui:1688
 msgid "Movement Speed:"
 msgstr "Bewegungsgeschwindigkeit:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1870
+#: skytemple/skytemple/data/widget/monster/monster.ui:1846
 msgid "Base Stats"
 msgstr "Basis-Statuswerte"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1895
+#: skytemple/skytemple/data/widget/monster/monster.ui:1871
 msgid "Base Form Index:"
 msgstr "Basis-Form Index:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1907
+#: skytemple/skytemple/data/widget/monster/monster.ui:1883
 msgid "Pre Evolution:"
 msgstr "Vorstufe:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1919
+#: skytemple/skytemple/data/widget/monster/monster.ui:1895
 msgid "Main Requirement:"
 msgstr "Hauptvoraussetzung:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1931
+#: skytemple/skytemple/data/widget/monster/monster.ui:1907
 msgid "Parameter:"
 msgstr "Parameter:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1987
+#: skytemple/skytemple/data/widget/monster/monster.ui:1963
 msgid "label_base_form_index"
 msgstr "label_base_form_index"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:1999
+#: skytemple/skytemple/data/widget/monster/monster.ui:1975
 msgid "label_pre_evo_index"
 msgstr "label_pre_evo_index"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2047
+#: skytemple/skytemple/data/widget/monster/monster.ui:2023
 msgid "label_param"
 msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2059
+#: skytemple/skytemple/data/widget/monster/monster.ui:2035
 msgid "Additional Requirement:"
 msgstr "Zusätzliche Voraussetzung:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2270
+#: skytemple/skytemple/data/widget/monster/monster.ui:2246
 msgid "Evolves Into: "
 msgstr "Entwickelt sich zu: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2409
+#: skytemple/skytemple/data/widget/monster/monster.ui:2385
 msgid "Children: "
 msgstr "Kinder: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2445
+#: skytemple/skytemple/data/widget/monster/monster.ui:2421
 msgid "Evolution Bonus: "
 msgstr "Entwicklungsbonus: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2481
+#: skytemple/skytemple/data/widget/monster/monster.ui:2457
 msgid "HP: "
 msgstr "KP: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2505
+#: skytemple/skytemple/data/widget/monster/monster.ui:2481
 msgid "Atk: "
 msgstr "Angr: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2517
+#: skytemple/skytemple/data/widget/monster/monster.ui:2493
 msgid "Sp. Atk: "
 msgstr "Sp. Angr: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2529
+#: skytemple/skytemple/data/widget/monster/monster.ui:2505
 msgid "Def: "
 msgstr "Vert: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2541
+#: skytemple/skytemple/data/widget/monster/monster.ui:2517
 msgid "Sp. Def: "
 msgstr "Sp. Vert: "
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2690
+#: skytemple/skytemple/data/widget/monster/monster.ui:2666
 msgid "Evolution"
 msgstr "Entwicklung"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2715
+#: skytemple/skytemple/data/widget/monster/monster.ui:2691
 msgid "Item 1:"
 msgstr "Item 1:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2727
+#: skytemple/skytemple/data/widget/monster/monster.ui:2703
 msgid "Item 2:"
 msgstr "Item 2:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2739
+#: skytemple/skytemple/data/widget/monster/monster.ui:2715
 msgid "Item 3:"
 msgstr "Item 3:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2751
+#: skytemple/skytemple/data/widget/monster/monster.ui:2727
 msgid "Item 4:"
 msgstr "Item 4:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2854
-msgid "Unk 1.0:"
-msgstr "Unb 1.0:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:2843
+msgid "Sprite File Size:"
+msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2866
-msgid "Unk 31:"
-msgstr "Unb 31:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:2868
+msgid "Sprite VRAM Size:"
+msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2891
-msgid "Spawn Threshold:"
-msgstr "Spawn Schwelle:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:2880
+msgid "Body Size:"
+msgstr "Körpergröße:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2915
-msgid "Unk 17:"
-msgstr "Unb 17:"
-
-#: skytemple/skytemple/data/widget/monster/monster.ui:2940
-msgid "Unk 18:"
-msgstr "Unb 18:"
-
-#: skytemple/skytemple/data/widget/monster/monster.ui:2952
+#: skytemple/skytemple/data/widget/monster/monster.ui:2964
 msgid "Shadow Size:"
 msgstr "Schattengröße:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:2989
-msgid "Chance to spawn asleep:"
-msgstr "Chance schlafend zu spawnen:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:2995
+msgid "Sprite Info"
+msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3014
-msgid "HP Regeneration:"
-msgstr "KP Regeneration:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:3018
+msgid "Unk 1.0:"
+msgstr "Unb 1.0:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3059
+#: skytemple/skytemple/data/widget/monster/monster.ui:3030
+msgid "Unk 31:"
+msgstr "Unb 31:"
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:3055
+msgid "Spawn Threshold:"
+msgstr "Spawn Schwelle:"
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:3079
 msgid "Unk 1.1:"
 msgstr "Unb 1.1:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3071
+#: skytemple/skytemple/data/widget/monster/monster.ui:3091
 msgid "Unk 1.2:"
 msgstr "Unb 1.2:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3083
+#: skytemple/skytemple/data/widget/monster/monster.ui:3103
 msgid "Unk 1.3:"
 msgstr "Unb 1.3:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3095
+#: skytemple/skytemple/data/widget/monster/monster.ui:3115
 msgid "Can move:"
 msgstr "Kann sich bewegen:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3107
+#: skytemple/skytemple/data/widget/monster/monster.ui:3127
 msgid "Can throw items:"
 msgstr "Kann Items werfen:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3119
+#: skytemple/skytemple/data/widget/monster/monster.ui:3139
 msgid "Can evolve:"
 msgstr "Kann sich entwickeln:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3131
+#: skytemple/skytemple/data/widget/monster/monster.ui:3151
 msgid "Item req. for spawn:"
 msgstr "Ben. Item für Entw.:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3347
-msgid "Chest with type 2 exclusive items:"
-msgstr "Truhe mit Typ 2 exklusiven Items:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:3367
+msgid "Chance to spawn asleep:"
+msgstr "Chance schlafend zu spawnen:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3371
-msgid "Chest with type 1 exclusive items:"
-msgstr "Truhe mit Typ 1 exklusiven Items:"
+#: skytemple/skytemple/data/widget/monster/monster.ui:3392
+msgid "HP Regeneration:"
+msgstr "KP Regeneration:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3395
-msgid "Chest with normal items:"
-msgstr "Truhen mit normalen Items:"
-
-#: skytemple/skytemple/data/widget/monster/monster.ui:3419
-msgid "No drop:"
-msgstr "Kein Drop:"
-
-#: skytemple/skytemple/data/widget/monster/monster.ui:3443
+#: skytemple/skytemple/data/widget/monster/monster.ui:3437
 msgid "Chest Drop Rates:"
 msgstr "Truhen-Drop-Raten:"
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3459
+#: skytemple/skytemple/data/widget/monster/monster.ui:3473
 msgid "label_chance_no_drop"
 msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3471
+#: skytemple/skytemple/data/widget/monster/monster.ui:3485
 msgid "label_chance_normal_items"
 msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3483
+#: skytemple/skytemple/data/widget/monster/monster.ui:3497
 msgid "label_chance_exclusive1"
 msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3495
+#: skytemple/skytemple/data/widget/monster/monster.ui:3509
 msgid "label_chance_exclusive2"
 msgstr ""
 
-#: skytemple/skytemple/data/widget/monster/monster.ui:3608
+#: skytemple/skytemple/data/widget/monster/monster.ui:3569
+msgid "No drop:"
+msgstr "Kein Drop:"
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:3581
+msgid "Chest with normal items:"
+msgstr "Truhen mit normalen Items:"
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:3593
+msgid "Chest with type 1 exclusive items:"
+msgstr "Truhe mit Typ 1 exklusiven Items:"
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:3605
+msgid "Chest with type 2 exclusive items:"
+msgstr "Truhe mit Typ 2 exklusiven Items:"
+
+#: skytemple/skytemple/data/widget/monster/monster.ui:3698
 msgid "This Pokémon has no stats and/or level up moves. It can only be used in cutscenes. \n"
 "Trying to use it in dungeons will not work."
 msgstr "Dieses Pokémon hat keine Statuswerte und/oder Attacken durch Levelaufstieg. Es kann nur in Zwischensequenzen verwendet werden. \n"
@@ -12279,15 +12323,15 @@ msgstr "Sp. Vert."
 msgid "at level {x[0]}"
 msgstr "auf Level {x[0]}"
 
-#: skytemple/skytemple/module/monster/module.py:235
+#: skytemple/skytemple/module/monster/module.py:237
 msgid "This entry has no portraits."
 msgstr "Dieser Eintrag hat keine Portraits."
 
-#: skytemple/skytemple/module/monster/module.py:284
+#: skytemple/skytemple/module/monster/module.py:286
 msgid "Stats and moves are only editable for base forms."
 msgstr "Statuswerte und Attacken sind nur für Basis-Formen editierbar."
 
-#: skytemple/skytemple/module/monster/module.py:574
+#: skytemple/skytemple/module/monster/module.py:576
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
 msgstr "Jedes Pokémon hat zwei Geschlechterformen (auch wenn es nur ein Geschlecht hat).\n"
@@ -12353,134 +12397,134 @@ msgstr "Dieses Pokémon hat keine Attacken."
 msgid "CSV (*.csv)"
 msgstr "CSV (*.csv)"
 
-#: skytemple/skytemple/module/monster/widget/main.py:52
+#: skytemple/skytemple/module/monster/widget/main.py:57
 msgid "Partner 1"
 msgstr "Partner 1"
 
-#: skytemple/skytemple/module/monster/widget/main.py:53
+#: skytemple/skytemple/module/monster/widget/main.py:58
 msgid "Partner 2"
 msgstr "Partner 2"
 
-#: skytemple/skytemple/module/monster/widget/main.py:54
+#: skytemple/skytemple/module/monster/widget/main.py:59
 msgid "Partner 3"
 msgstr "Partner 3"
 
-#: skytemple/skytemple/module/monster/widget/main.py:55
+#: skytemple/skytemple/module/monster/widget/main.py:60
 msgid "Grovyle"
 msgstr "Reptain"
 
-#: skytemple/skytemple/module/monster/widget/main.py:56
+#: skytemple/skytemple/module/monster/widget/main.py:61
 msgid "Chatot"
 msgstr "Plaudagei"
 
-#: skytemple/skytemple/module/monster/widget/main.py:57
+#: skytemple/skytemple/module/monster/widget/main.py:62
 msgid "Bidoof"
 msgstr "Bidiza"
 
-#: skytemple/skytemple/module/monster/widget/main.py:58
-#: skytemple/skytemple/module/monster/widget/main.py:71
+#: skytemple/skytemple/module/monster/widget/main.py:63
+#: skytemple/skytemple/module/monster/widget/main.py:76
 msgid "Celebi"
 msgstr "Celebi"
 
-#: skytemple/skytemple/module/monster/widget/main.py:59
+#: skytemple/skytemple/module/monster/widget/main.py:64
 msgid "Cresselia"
 msgstr "Cresselia"
 
-#: skytemple/skytemple/module/monster/widget/main.py:61
-#: skytemple/skytemple/module/monster/widget/main.py:80
+#: skytemple/skytemple/module/monster/widget/main.py:66
+#: skytemple/skytemple/module/monster/widget/main.py:85
 #, python-format
 msgid "Unknown Actor %02d"
 msgstr "Unbekannter Akteur %02d"
 
-#: skytemple/skytemple/module/monster/widget/main.py:63
+#: skytemple/skytemple/module/monster/widget/main.py:68
 msgid "Shaymin"
 msgstr "Shaymin"
 
-#: skytemple/skytemple/module/monster/widget/main.py:64
+#: skytemple/skytemple/module/monster/widget/main.py:69
 msgid "Snover"
 msgstr "Shnebedeck"
 
-#: skytemple/skytemple/module/monster/widget/main.py:65
+#: skytemple/skytemple/module/monster/widget/main.py:70
 msgid "Armaldo"
 msgstr "Armaldo"
 
-#: skytemple/skytemple/module/monster/widget/main.py:66
+#: skytemple/skytemple/module/monster/widget/main.py:71
 msgid "Banette"
 msgstr "Banette"
 
-#: skytemple/skytemple/module/monster/widget/main.py:67
+#: skytemple/skytemple/module/monster/widget/main.py:72
 msgid "Skorupi"
 msgstr "Pionskora"
 
-#: skytemple/skytemple/module/monster/widget/main.py:68
+#: skytemple/skytemple/module/monster/widget/main.py:73
 msgid "Medicham"
 msgstr "Meditalis"
 
-#: skytemple/skytemple/module/monster/widget/main.py:69
+#: skytemple/skytemple/module/monster/widget/main.py:74
 msgid "Gardevoir"
 msgstr "Guardevoir"
 
-#: skytemple/skytemple/module/monster/widget/main.py:70
+#: skytemple/skytemple/module/monster/widget/main.py:75
 msgid "Unknown Actor 20"
 msgstr "Unbekannter Akteur 20"
 
-#: skytemple/skytemple/module/monster/widget/main.py:72
-#: skytemple/skytemple/module/monster/widget/main.py:73
-#: skytemple/skytemple/module/monster/widget/main.py:74
-#: skytemple/skytemple/module/monster/widget/main.py:75
-#: skytemple/skytemple/module/monster/widget/main.py:76
 #: skytemple/skytemple/module/monster/widget/main.py:77
 #: skytemple/skytemple/module/monster/widget/main.py:78
+#: skytemple/skytemple/module/monster/widget/main.py:79
+#: skytemple/skytemple/module/monster/widget/main.py:80
+#: skytemple/skytemple/module/monster/widget/main.py:81
+#: skytemple/skytemple/module/monster/widget/main.py:82
+#: skytemple/skytemple/module/monster/widget/main.py:83
 msgid "Dusknoir"
 msgstr "Zwirrfinst"
 
-#: skytemple/skytemple/module/monster/widget/main.py:81
+#: skytemple/skytemple/module/monster/widget/main.py:86
 msgid "Loudred"
 msgstr "Krakeelo"
 
-#: skytemple/skytemple/module/monster/widget/main.py:81
+#: skytemple/skytemple/module/monster/widget/main.py:86
 msgid "Unknown Actor 35"
 msgstr "Unbekannter Akteur 35"
 
-#: skytemple/skytemple/module/monster/widget/main.py:294
+#: skytemple/skytemple/module/monster/widget/main.py:329
+msgid "ERROR: Body Size is {}, must be at least {}."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/widget/main.py:336
+msgid "Body Size is {}, this could be lowered to {}."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/widget/main.py:372
 msgid "Export Pokémon at..."
 msgstr "Pokémon exportieren als..."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:279
+#: skytemple/skytemple/module/monster/widget/monster.py:278
 msgid "Spinda Egg"
 msgstr "Pandir-Ei"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:280
+#: skytemple/skytemple/module/monster/widget/monster.py:279
 msgid "Spinda Recruit"
 msgstr "Pandir-Rekrut"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:281
+#: skytemple/skytemple/module/monster/widget/monster.py:280
 msgid "Don't appear in Missions"
 msgstr "Erscheint nicht in Missionen"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:282
+#: skytemple/skytemple/module/monster/widget/monster.py:281
 msgid "Don't appear in Missions during story"
 msgstr "Erscheint während der Story nicht in Missionen"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:284
-msgid "Sprite Size: "
-msgstr "Sprite-Größe: "
-
-#: skytemple/skytemple/module/monster/widget/monster.py:285
-msgid "Sprite File Size: "
-msgstr "Sprite-Dateigröße: "
-
-#: skytemple/skytemple/module/monster/widget/monster.py:665
+#: skytemple/skytemple/module/monster/widget/monster.py:661
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
 msgstr "Dieser Wert kann nur mit dem ChangePokemonGroundAnim-Patch bearbeitet werden. \n"
 "Dies gibt an, wie Animationen im Stillstand für jedes Pokémon gehandhabt werden sollten. "
 
-#: skytemple/skytemple/module/monster/widget/monster.py:667
+#: skytemple/skytemple/module/monster/widget/monster.py:663
 msgid "Idle Animation Types"
 msgstr "Stillstand-Animationstypen"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:680
+#: skytemple/skytemple/module/monster/widget/monster.py:676
 msgid "Value depends on Main Requirement:\n"
 "- Not an Evolved Form: Unused\n"
 "- Level: Level required to evolve\n"
@@ -12496,21 +12540,21 @@ msgstr "Der Wert hängt von der Hauptvoraussetzung ab:\n"
 "- Angeworben: ID des Pokémon, dass zuvor angeworben werden muss\n"
 "- Keine Hauptvoraussetzung: Unbenutzt"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:682
+#: skytemple/skytemple/module/monster/widget/monster.py:678
 msgid "Evolution Parameters"
 msgstr "Entwicklungsparameter"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:695
+#: skytemple/skytemple/module/monster/widget/monster.py:691
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
 msgstr "Dieser Wert legt die Familie eines Pokémon fest.\n"
 "Dieser wird von bestimmten Typen von exklusiven Items benutzt, die dieser Familie zugeordnet sind."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:697
+#: skytemple/skytemple/module/monster/widget/monster.py:693
 msgid "Base Form Info"
 msgstr "Basis-Form Info"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:710
+#: skytemple/skytemple/module/monster/widget/monster.py:706
 msgid "This value indicates the previous evolution of the pokémon.\n"
 "The game use this in several cases: \n"
 "1 - For evolution purposes.\n"
@@ -12525,11 +12569,11 @@ msgstr "Dieser Wert bestimmt die vorherigen Entwicklung der Pokémon.\n"
 "3 - Für Missionen bei denen es Eier als Belohnung gibt, enthält das Ei ein zufälliges Pokémon basierend auf der Spawn-Listn der Missions-Ebene. Die Pokémon die gewählt werden, sind die Pokémon ohne Vorstufen oder die Vorstufen, die hier definiert werden (tiefste Vorstufen).\n"
 "Falls der ChangeEvoSystem Patch angewendet wird, trifft nur Punkt 2 zu. Die anderen Punkte werden über andere Daten abgebildet."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:712
+#: skytemple/skytemple/module/monster/widget/monster.py:708
 msgid "Pre Evolution Info"
 msgstr "Info zur Vorstufe"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:725
+#: skytemple/skytemple/module/monster/widget/monster.py:721
 msgid "The values are actually percentages.\n"
 "10 -> 1.0%,\n"
 "100 -> 10.0%,\n"
@@ -12543,118 +12587,135 @@ msgstr "Die Werte sind in Wirklichkeit Prozentwerte.\n"
 "Falls die Frage im Persönlichkeitstest, ob der Spieler bereits Zeit oder Dunkelheit gespielt hat, mit Ja beantwortet wurde und das jeweilige Pokémon noch nicht rekrutiert wurde, wird stattdessen der zweite Rekrutierungswert verwendet.\n"
 "Wenn das betroffene Pokémon bereits rekrutiert wurde, wird die Quote halbiert (nur wenn sie positiv ist)."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:727
+#: skytemple/skytemple/module/monster/widget/monster.py:723
 msgid "Recruit Rate"
 msgstr "Rekrutierungsrate"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:740
+#: skytemple/skytemple/module/monster/widget/monster.py:736
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
 msgstr "Der Prozentsatz der KP, den dieses Pokémon am Ende jeder Runde regeneriert, entspricht vor Anwendung von Modifikatoren 1/(Wert * 2).\n"
 "Der endgültige Wert ist zwischen 1/30 und 1/500 begrenzt"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:742
+#: skytemple/skytemple/module/monster/widget/monster.py:738
 msgid "HP Regeneration"
 msgstr "KP Regeneration"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:754
+#: skytemple/skytemple/module/monster/widget/monster.py:750
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
 msgstr "Ob die Gegner-KI dieses Pokémon im Dungeon bewegt."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:755
+#: skytemple/skytemple/module/monster/widget/monster.py:751
 msgid "Can Move?"
 msgstr "Kann sich bewegen?"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:767
+#: skytemple/skytemple/module/monster/widget/monster.py:763
 msgid "Whether or not the Pokémon can throw any items."
 msgstr "Ob das Pokémon irgendwelche Gegenstände werfen kann oder nicht."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:768
+#: skytemple/skytemple/module/monster/widget/monster.py:764
 msgid "Can Throw Items?"
 msgstr "Kann Items werfen?"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:781
+#: skytemple/skytemple/module/monster/widget/monster.py:777
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
 msgstr "Steuert die Drop-Raten von verschiedenen Arten von Boxen.\n"
 "Für jeden Drop-Typen X muss eine Chance von (Rate X)/(Summer aller Raten) ausgewählt werden."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:783
+#: skytemple/skytemple/module/monster/widget/monster.py:779
 msgid "Chests drop rates"
 msgstr "Drop-Daten für Truhen"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:796
+#: skytemple/skytemple/module/monster/widget/monster.py:792
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
 msgstr "Ob sich dieses Pokémon bei der Glitzerquelle entwickeln kann (falls deaktiviert kann es sich nicht entwickeln, selbst wenn Daten für die Entwicklung definiert sind)."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:798
+#: skytemple/skytemple/module/monster/widget/monster.py:794
 msgid "Can Evolve?"
 msgstr "Entwicklung möglich?"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:811
+#: skytemple/skytemple/module/monster/widget/monster.py:807
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
 msgstr "Ob du einen speziellen Gegenstand in der Tasche (Geheimteil/Geheimtafel) benötigst, damit dieses Pokémon in Dungeons spawnen kann"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:813
+#: skytemple/skytemple/module/monster/widget/monster.py:809
 msgid "Item Required for spawning?"
 msgstr "Item zum Spawnen benötigt?"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:826
+#: skytemple/skytemple/module/monster/widget/monster.py:822
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
 msgstr "Wenn der aktuelle Wert von $SCENARIO_BALANCE_FLAG niedriger ist als diese Zahl, wird das Pokémon nicht in Dungeons spawnen."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:828
+#: skytemple/skytemple/module/monster/widget/monster.py:824
 msgid "Spawn Threshold"
 msgstr "Spawn-Schwellwert"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:840
+#: skytemple/skytemple/module/monster/widget/monster.py:836
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
 msgstr "Beeinflusst den Schaden, den das Pokémon nimmt, wenn es mit Strauchler angegriffen wird."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:853
+#: skytemple/skytemple/module/monster/widget/monster.py:849
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr "Beeinflusst den Schaden, den das Pokémon nimmt, wenn es mit einem Proportorb angegriffen wird."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:854
+#: skytemple/skytemple/module/monster/widget/monster.py:850
 msgid "Size"
 msgstr "Größe"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1223
+#: skytemple/skytemple/module/monster/widget/monster.py:863
+msgid "Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\n"
+"The minimal body size needed for a Pokémon is the smallest value such that Body Size x 6 is equal to or higher than Sprite VRAM Size."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/widget/monster.py:878
+msgid "Effective only when SpriteSizeInMonsterData is applied.\n"
+"Sprite VRAM Size deals with Pokemon fitting onto the party in dungeons. The limit is 36 units of Sprite VRAM Size in total for the whole party. If this is exceeded, Pokemon from the party are cut off from spawning on the dungeon floor one by one until the sum of Sprite VRAM Size is 36 or less (but will still be counted as being on the party in the team menu).\n"
+"This is computed automatically and cannot be changed."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/widget/monster.py:893
+msgid "Effective only when SpriteSizeInMonsterData is applied.\n"
+"Sprite File Size describes the actual size of the sprite file, and deals with enemies and NPCs in dungeons (all Pokemon not on the player's party). The Sprite File Size is expressed in blocks of 512 bytes. The limit for all enemies and allied NPCs on a dungeon floor is 352 kB (704 Sprite File Size) in total, counting by species present on the floor.\n"
+"This is computed automatically and cannot be changed."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/widget/monster.py:1264
 msgid "Export Pokémon as..."
 msgstr "Pokémon exportieren als..."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1266
+#: skytemple/skytemple/module/monster/widget/monster.py:1307
 msgid "Import Pokémon from..."
 msgstr "Pokémon importieren aus..."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1550
+#: skytemple/skytemple/module/monster/widget/monster.py:1592
 msgid "Stats and Moves"
 msgstr "Statuswerte und Attacken"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1565
+#: skytemple/skytemple/module/monster/widget/monster.py:1607
 msgid "Sprites"
 msgstr "Sprites"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1603
+#: skytemple/skytemple/module/monster/widget/monster.py:1645
 msgid "??? Enter a valid parameter (#)"
 msgstr "??? Bitte eine gültigen Parameter (#) eingeben"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1622
+#: skytemple/skytemple/module/monster/widget/monster.py:1664
 msgid "??? Enter a valid Base ID (#)"
 msgstr "??? Bitte eine gültige Basis-ID (#) eingeben"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1639
+#: skytemple/skytemple/module/monster/widget/monster.py:1681
 msgid "??? Enter a valid Entry ID ($)"
 msgstr "??? Bitte eine gültige Eintrags-ID ($) eingeben"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1699
+#: skytemple/skytemple/module/monster/widget/monster.py:1746
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr "Der Wert für die Größe des Sprites vom Pokémon war inkonsistent.\n"
 "SkyTemple hat den Wert automatisch korrigiert."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1739
+#: skytemple/skytemple/module/monster/widget/monster.py:1786
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
@@ -12662,45 +12723,45 @@ msgstr "Falls der \"ExpandPokeList\" Patch nicht angewendet ist, ist dieser Wert
 "Nachdem der Patch angewendet ist, definiert dieser Wert die Basis-ID und damit wie Pokémon gruppiert sind.\n"
 "Lade das Projekt neu, nachdem du diesen Wert geändert hast, sodass der Wert auch im Dateibaum links aktualisiert wird."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1741
+#: skytemple/skytemple/module/monster/widget/monster.py:1788
 msgid "Entity ID"
 msgstr "Entität-ID"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1754
+#: skytemple/skytemple/module/monster/widget/monster.py:1801
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr "Für Missionen mit einem Ei als Belohnung enthält das Ei ein zufälliges Pokémon, das unter den Kinder-Pokémon der Spawnliste der Missions-Ebene ausgewählt wird.\n"
 "Diese Liste zeigt die Kinder dieses Pokémons an. Wenn keine Kinder existieren, wird das Spiel standardmäßig auf diese Pokémon-Spezies auswählen. "
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1756
+#: skytemple/skytemple/module/monster/widget/monster.py:1803
 msgid "Children Info"
 msgstr "Kind-Info"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1769
+#: skytemple/skytemple/module/monster/widget/monster.py:1816
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr "Dies sind die Boni, die auf Statuswerte angewendet werden, wenn sich ein Poémon in diese Spezies entwickelt.\n"
 "Negative Werte sind erlaubt."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1771
+#: skytemple/skytemple/module/monster/widget/monster.py:1818
 msgid "Evolution Bonus Info"
 msgstr "Entwicklungsbonus Info"
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1879
+#: skytemple/skytemple/module/monster/widget/monster.py:1926
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr "Ein Pokémon kann sich nicht zu mehr als {MAX_EVOS} Entwicklungen entwickeln."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1883
+#: skytemple/skytemple/module/monster/widget/monster.py:1930
 msgid "Too much evolutions."
 msgstr "Zu viele Entwicklungen."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1889
+#: skytemple/skytemple/module/monster/widget/monster.py:1936
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr "Ein Pokémon kann nicht mehr als {MAX_EGGS} Kinder haben."
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1893
+#: skytemple/skytemple/module/monster/widget/monster.py:1940
 msgid "Too much children."
 msgstr "Zu viele Kinder."
 
