@@ -1,4 +1,12 @@
 # Requirements for the stable Linux, macOS and Windows releases
+# XXX:
+# Below is just a crutch since the Flatpak pip helper has problems with detecting extra dependencies.
+# These are the dependencies of SkyTemple Files spritecollab extra:
+gql[aiohttp] >= 3.5.0
+graphql-core >= 3.2.0
+aiohttp[speedups]
+lru-dict >= 1.1.8
+# Actual dependencies of SkyTemple itself:
 skytemple-rust==1.8.2
 skytemple-files[spritecollab]==1.8.1
 skytemple-ssb-debugger==1.8.0
@@ -22,9 +30,3 @@ cairocffi>=1.6.1
 packaging
 wheel
 importlib_metadata>=4.6; python_version < "3.10"
-# Below is just a crutch since the Flatpak pip helper has problems with detecting extra dependencies.
-# These are the dependencies of SkyTemple Files spritecollab extra:
-gql[aiohttp] >= 3.5.0
-graphql-core >= 3.2.0
-aiohttp[speedups]
-lru-dict >= 1.1.8
