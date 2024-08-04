@@ -15,25 +15,27 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import math
 import os
 from typing import TYPE_CHECKING, cast
+
 from gi.repository import Gtk, GLib
-from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
-from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.i18n_util import _
 from skytemple_files.common.sprite_util import check_and_correct_monster_sprite_size
-from skytemple_files.common.util import open_utf8, MONSTER_BIN, M_ATTACK_BIN
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.util import open_utf8
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.protocol import Gender
 from skytemple_files.data.monster_xml import monster_xml_export
+from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
+from skytemple_files.data.tbl_talk.model import TalkType
+
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
-from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
-from skytemple_files.data.tbl_talk.model import TalkType
-from skytemple_files.common.i18n_util import _
-
+from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
 from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
@@ -282,7 +284,9 @@ class StMonsterMainPage(Gtk.Box):
                             monster_bin=monster_bin,
                             m_attack_bin=m_attack_bin,
                             sprite_size_table=sprite_size_table,
-                            is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("SpriteSizeInMonsterData"),
+                            is_expand_poke_list_patch_applied=self.module.project.is_patch_applied(
+                                "SpriteSizeInMonsterData"
+                            ),
                         )
                 if changed:
                     if not self.module.project.is_patch_applied("ExpandPokeList"):
@@ -291,7 +295,12 @@ class StMonsterMainPage(Gtk.Box):
                         idx = entry.md_index
                     self.module.mark_md_as_modified(entry.md_index)
                     name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
-                    tree_store.append([f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})", "\n".join([f"{fn}: {ov} → {nv}" for fn, ov, nv in changed])])
+                    tree_store.append(
+                        [
+                            f"${entry.md_index:04d}: {name} ({Gender(entry.gender).print_name[0]})",  # type: ignore
+                            "\n".join([f"{fn}: {ov} → {nv}" for fn, ov, nv in changed]),
+                        ]
+                    )
             except BaseException as ex:
                 pass
         self.module.set_pokemon_sprite_data_table(sprite_size_table)
@@ -312,13 +321,21 @@ class StMonsterMainPage(Gtk.Box):
             else:
                 idx = entry.md_index
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
-            ideal_bs = math.ceil(check_value/6)
+            ideal_bs = math.ceil(check_value / 6)
             if entry.body_size < ideal_bs:
-                tree_store.append([f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})",
-                                  f"ERROR: Body Size is {entry.body_size}, must be at least {ideal_bs}."])
+                tree_store.append(
+                    [
+                        f"${entry.md_index:04d}: {name} ({Gender(entry.gender).print_name[0]})",  # type: ignore
+                        _("ERROR: Body Size is {}, must be at least {}.").format(entry.body_size, ideal_bs),
+                    ]
+                )
             elif entry.body_size > ideal_bs:
-                tree_store.append([f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})",
-                                  f"Body Size is {entry.body_size}, this could be lowered to {ideal_bs}."])
+                tree_store.append(
+                    [
+                        f"${entry.md_index:04d}: {name} ({Gender(entry.gender).print_name[0]})",  # type: ignore
+                        _("Body Size is {}, this could be lowered to {}.").format(entry.body_size, ideal_bs),
+                    ]
+                )
 
     def _refresh_list(self):
         group, talk_type = self._get_current_settings()

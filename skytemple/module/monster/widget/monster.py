@@ -859,7 +859,9 @@ class StMonsterMonsterPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\nThe minimal body size needed for a Pokémon is the smallest value such that Body Size x 6 is equal to or higher than Sprite VRAM Size."),
+            _(
+                "Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\nThe minimal body size needed for a Pokémon is the smallest value such that Body Size x 6 is equal to or higher than Sprite VRAM Size."
+            ),
             title=_("Body Size"),
         )
         md.run()
@@ -872,7 +874,9 @@ class StMonsterMonsterPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Effective only when SpriteSizeInMonsterData is applied.\nSprite VRAM Size deals with Pokemon fitting onto the party in dungeons. The limit is 36 units of Sprite VRAM Size in total for the whole party. If this is exceeded, Pokemon from the party are cut off from spawning on the dungeon floor one by one until the sum of Sprite VRAM Size is 36 or less (but will still be counted as being on the party in the team menu).\nThis is computed automatically and cannot be changed."),
+            _(
+                "Effective only when SpriteSizeInMonsterData is applied.\nSprite VRAM Size deals with Pokemon fitting onto the party in dungeons. The limit is 36 units of Sprite VRAM Size in total for the whole party. If this is exceeded, Pokemon from the party are cut off from spawning on the dungeon floor one by one until the sum of Sprite VRAM Size is 36 or less (but will still be counted as being on the party in the team menu).\nThis is computed automatically and cannot be changed."
+            ),
             title=_("Sprite VRAM Size"),
         )
         md.run()
@@ -885,7 +889,9 @@ class StMonsterMonsterPage(Gtk.Box):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Effective only when SpriteSizeInMonsterData is applied.\nSprite File Size describes the actual size of the sprite file, and deals with enemies and NPCs in dungeons (all Pokemon not on the player's party). The Sprite File Size is expressed in blocks of 512 bytes. The limit for all enemies and allied NPCs on a dungeon floor is 352 kB (704 Sprite File Size) in total, counting by species present on the floor.\nThis is computed automatically and cannot be changed."),
+            _(
+                "Effective only when SpriteSizeInMonsterData is applied.\nSprite File Size describes the actual size of the sprite file, and deals with enemies and NPCs in dungeons (all Pokemon not on the player's party). The Sprite File Size is expressed in blocks of 512 bytes. The limit for all enemies and allied NPCs on a dungeon floor is 352 kB (704 Sprite File Size) in total, counting by species present on the floor.\nThis is computed automatically and cannot be changed."
+            ),
             title=_("Sprite File Size"),
         )
         md.run()
@@ -1721,7 +1727,9 @@ class StMonsterMonsterPage(Gtk.Box):
                         monster_bin=monster_bin,
                         m_attack_bin=m_attack_bin,
                         sprite_size_table=sprite_size_table,
-                        is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("SpriteSizeInMonsterData"),
+                        is_expand_poke_list_patch_applied=self.module.project.is_patch_applied(
+                            "SpriteSizeInMonsterData"
+                        ),
                     )
             if changed:
                 self._set_entry("entry_body_size", self.entry.body_size)
