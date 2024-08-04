@@ -6,14 +6,14 @@ build-backend = "setuptools.build_meta"
 name = "skytemple"
 version = "1.8.0"
 authors = [
-    {name = 'Marco "Capypara" Köpcke', email = "hello@capypara.de"},
+    { name = 'Marco "Capypara" Köpcke', email = "hello@capypara.de" },
     # see About dialog or GitHub contributors list for additional people.
 ]
 description = "GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky"
 readme = "README.rst"
 requires-python = ">=3.9"
 keywords = ["rom-hacking", "game-modding", "skytemple", "gtk"]
-license = {text = "GPL-3.0-or-later"}
+license = { text = "GPL-3.0-or-later" }
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
@@ -25,9 +25,8 @@ classifiers = [
 ]
 dependencies = [
     "ndspy >= 3.0.0",
-    # TODO: Change to >= 1.8.0, < 1.9.0 before release.
-    "skytemple-files[spritecollab] >= 1.7.0, < 1.9.0",
-    "pmdsky-debug-py",  #  Whatever version skytemple-files requires.
+    "skytemple-files[spritecollab] >= 1.8.0, < 1.9.0",
+    "pmdsky-debug-py", #  Whatever version skytemple-files requires.
     "skytemple-dtef >= 1.6.1, < 1.9.0",
     "skytemple-icons >= 1.3.2, < 1.7.0",
     "range-typed-integers >= 1.0.0",
@@ -35,8 +34,7 @@ dependencies = [
     "pycairo >= 1.16.0",
     "natsort >= 7.0.0",
     "tilequant >= 1.1.0",
-    # TODO: Change to >= 1.8.0, < 1.9.0 before release.
-    "skytemple-ssb-debugger >= 1.7.0, < 1.9.0",
+    "skytemple-ssb-debugger >= 1.8.0, < 1.9.0",
     "pygal >= 2.4.0",
     "CairoSVG >= 2.4.2",
     "psutil >= 5.9.0",
@@ -64,25 +62,25 @@ eventserver = ["skytemple-eventserver >= 1.6.0, < 1.7.0"]
 skytemple = "skytemple.main:main"
 
 [project.entry-points."skytemple.module"]
-rom =               "skytemple.module.rom.module:RomModule"
-bgp =               "skytemple.module.bgp.module:BgpModule"
-tiled_img =         "skytemple.module.tiled_img.module:TiledImgModule"
-map_bg =            "skytemple.module.map_bg.module:MapBgModule"
-script =            "skytemple.module.script.module:ScriptModule"
-gfxcrunch =         "skytemple.module.gfxcrunch.module:GfxcrunchModule"
-sprite =            "skytemple.module.sprite.module:SpriteModule"
-monster =           "skytemple.module.monster.module:MonsterModule"
-portrait =          "skytemple.module.portrait.module:PortraitModule"
-patch =             "skytemple.module.patch.module:PatchModule"
-lists =             "skytemple.module.lists.module:ListsModule"
-moves_items =       "skytemple.module.moves_items.module:MovesItemsModule"
-misc_graphics =     "skytemple.module.misc_graphics.module:MiscGraphicsModule"
-music =             "skytemple.module.music.module:MusicModule"
-dungeon =           "skytemple.module.dungeon.module:DungeonModule"
-dungeon_graphics =  "skytemple.module.dungeon_graphics.module:DungeonGraphicsModule"
-strings =           "skytemple.module.strings.module:StringsModule"
-symbols =           "skytemple.module.symbols.module:SymbolsModule"
-spritecollab =      "skytemple.module.spritecollab.module:SpritecollabModule"
+rom = "skytemple.module.rom.module:RomModule"
+bgp = "skytemple.module.bgp.module:BgpModule"
+tiled_img = "skytemple.module.tiled_img.module:TiledImgModule"
+map_bg = "skytemple.module.map_bg.module:MapBgModule"
+script = "skytemple.module.script.module:ScriptModule"
+gfxcrunch = "skytemple.module.gfxcrunch.module:GfxcrunchModule"
+sprite = "skytemple.module.sprite.module:SpriteModule"
+monster = "skytemple.module.monster.module:MonsterModule"
+portrait = "skytemple.module.portrait.module:PortraitModule"
+patch = "skytemple.module.patch.module:PatchModule"
+lists = "skytemple.module.lists.module:ListsModule"
+moves_items = "skytemple.module.moves_items.module:MovesItemsModule"
+misc_graphics = "skytemple.module.misc_graphics.module:MiscGraphicsModule"
+music = "skytemple.module.music.module:MusicModule"
+dungeon = "skytemple.module.dungeon.module:DungeonModule"
+dungeon_graphics = "skytemple.module.dungeon_graphics.module:DungeonGraphicsModule"
+strings = "skytemple.module.strings.module:StringsModule"
+symbols = "skytemple.module.symbols.module:SymbolsModule"
+spritecollab = "skytemple.module.spritecollab.module:SpritecollabModule"
 
 [tool.setuptools.packages.find]
 exclude = ["installer", "docs"]
@@ -91,9 +89,9 @@ exclude = ["installer", "docs"]
 line-length = 120
 
 [tool.ruff.lint]
-select = [ "W", "E", "F"]
+select = ["W", "E", "F"]
 ignore = [
-  "E402",  # Module level import not at top of file -> gi imports may come after gi.require_version.
-  "E501",  # Line too long. Maybe enable later.
-  "F841",  # Unused variable: f-string magic
+    "E402", # Module level import not at top of file -> gi imports may come after gi.require_version.
+    "E501", # Line too long. Maybe enable later.
+    "F841", # Unused variable: f-string magic
 ]
