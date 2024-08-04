@@ -1,20 +1,21 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.22" />
+  <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="cb_store_lang">
     <columns>
       <!-- column-name locale -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
       <!-- column-name name -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkListStore" id="cb_store_types">
     <columns>
       <!-- column-name id_type -->
-      <column type="guint" />
+      <column type="guint"/>
       <!-- column-name description -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkDialog" id="export_dialog">
@@ -115,9 +116,9 @@ combined XML file.</property>
                       <object class="GtkSwitch" id="export_type_names">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="active">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
+                        <property name="active">True</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -128,9 +129,9 @@ combined XML file.</property>
                       <object class="GtkSwitch" id="export_type_moveset1">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="active">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
+                        <property name="active">True</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -141,9 +142,9 @@ combined XML file.</property>
                       <object class="GtkSwitch" id="export_type_moveset2">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="active">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
+                        <property name="active">True</property>
                       </object>
                       <packing>
                         <property name="left-attach">2</property>
@@ -199,7 +200,7 @@ combined XML file.</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">** This data is not editable in SkyTemple, but you can export and import it.</property>
                         <attributes>
-                          <attribute name="style" value="italic" />
+                          <attribute name="style" value="italic"/>
                         </attributes>
                       </object>
                       <packing>
@@ -226,9 +227,9 @@ combined XML file.</property>
                       <object class="GtkSwitch" id="export_type_stats">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="active">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
+                        <property name="active">True</property>
                       </object>
                       <packing>
                         <property name="left-attach">2</property>
@@ -253,9 +254,9 @@ combined XML file.</property>
                       <object class="GtkSwitch" id="export_type_portraits">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="active">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
+                        <property name="active">True</property>
                       </object>
                       <packing>
                         <property name="left-attach">0</property>
@@ -263,10 +264,10 @@ combined XML file.</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder />
+                      <placeholder/>
                     </child>
                     <child>
-                      <placeholder />
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -299,9 +300,9 @@ combined XML file.</property>
   <object class="GtkListStore" id="group_text_tree_store">
     <columns>
       <!-- column-name id_text -->
-      <column type="guint" />
+      <column type="guint"/>
       <!-- column-name string_text -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkDialog" id="progress_dialog">
@@ -317,10 +318,10 @@ combined XML file.</property>
             <property name="can-focus">False</property>
             <property name="layout-style">end</property>
             <child>
-              <placeholder />
+              <placeholder/>
             </child>
             <child>
-              <placeholder />
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -377,16 +378,24 @@ combined XML file.</property>
   <object class="GtkListStore" id="special_personalities_tree_store">
     <columns>
       <!-- column-name actor -->
-      <column type="gchararray" />
+      <column type="gchararray"/>
       <!-- column-name personality -->
-      <column type="guint" />
+      <column type="guint"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="sprite_checker_tree_store">
+    <columns>
+      <!-- column-name monster -->
+      <column type="gchararray"/>
+      <!-- column-name detail -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <template class="StMonsterMainPage" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
-    <signal name="destroy" handler="on_self_destroy" swapped="no" />
+    <signal name="destroy" handler="on_self_destroy" swapped="no"/>
     <child>
       <object class="GtkAlignment">
         <property name="visible">True</property>
@@ -420,7 +429,7 @@ combined XML file.</property>
                 <property name="margin-top">20</property>
                 <property name="label" translatable="yes">Pokémon</property>
                 <style>
-                  <class name="skytemple-view-main-label" />
+                  <class name="skytemple-view-main-label"/>
                 </style>
               </object>
               <packing>
@@ -483,7 +492,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
-                            <signal name="clicked" handler="on_btn_export_clicked" swapped="no" />
+                            <signal name="clicked" handler="on_btn_export_clicked" swapped="no"/>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
@@ -592,7 +601,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                           <object class="GtkSpinButton" id="spin_group_nb">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <signal name="value-changed" handler="on_value_changed" swapped="no" />
+                            <signal name="value-changed" handler="on_value_changed" swapped="no"/>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
@@ -635,7 +644,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                     <child>
                                       <object class="GtkCellRendererText" id="id_text">
                                         <property name="editable">True</property>
-                                        <signal name="edited" handler="on_id_text_edited" swapped="no" />
+                                        <signal name="edited" handler="on_id_text_edited" swapped="no"/>
                                       </object>
                                       <attributes>
                                         <attribute name="text">0</attribute>
@@ -649,7 +658,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                     <child>
                                       <object class="GtkCellRendererText" id="string_text">
                                         <property name="editable">True</property>
-                                        <signal name="edited" handler="on_string_text_edited" swapped="no" />
+                                        <signal name="edited" handler="on_string_text_edited" swapped="no"/>
                                       </object>
                                       <attributes>
                                         <attribute name="text">1</attribute>
@@ -671,9 +680,9 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="model">cb_store_lang</property>
-                            <signal name="changed" handler="on_lang_changed" swapped="no" />
+                            <signal name="changed" handler="on_lang_changed" swapped="no"/>
                             <child>
-                              <object class="GtkCellRendererText" />
+                              <object class="GtkCellRendererText"/>
                               <attributes>
                                 <attribute name="text">1</attribute>
                               </attributes>
@@ -701,9 +710,9 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="model">cb_store_types</property>
-                            <signal name="changed" handler="on_value_changed" swapped="no" />
+                            <signal name="changed" handler="on_value_changed" swapped="no"/>
                             <child>
-                              <object class="GtkCellRendererText" />
+                              <object class="GtkCellRendererText"/>
                               <attributes>
                                 <attribute name="text">1</attribute>
                               </attributes>
@@ -738,7 +747,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="tooltip-text" translatable="yes">Remove Group</property>
-                                <signal name="clicked" handler="on_btn_remove_group_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_remove_group_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -759,7 +768,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="tooltip-text" translatable="yes">Add Group</property>
-                                <signal name="clicked" handler="on_btn_add_group_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_add_group_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -791,7 +800,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="tooltip-text" translatable="yes">Reload</property>
-                                <signal name="clicked" handler="on_btn_add_dialogue_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_add_dialogue_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -813,7 +822,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="tooltip-text" translatable="yes">Reload</property>
-                                <signal name="clicked" handler="on_btn_remove_dialogue_clicked" swapped="no" />
+                                <signal name="clicked" handler="on_btn_remove_dialogue_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -904,7 +913,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                               <object class="GtkTreeViewColumn">
                                 <property name="title" translatable="yes">Actor</property>
                                 <child>
-                                  <object class="GtkCellRendererText" />
+                                  <object class="GtkCellRendererText"/>
                                   <attributes>
                                     <attribute name="text">0</attribute>
                                   </attributes>
@@ -917,7 +926,7 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                                 <child>
                                   <object class="GtkCellRendererText" id="spec_personality">
                                     <property name="editable">True</property>
-                                    <signal name="edited" handler="on_spec_personality_edited" swapped="no" />
+                                    <signal name="edited" handler="on_spec_personality_edited" swapped="no"/>
                                   </object>
                                   <attributes>
                                     <attribute name="text">1</attribute>
@@ -947,6 +956,177 @@ You can use the button below to export data of multiple Pokémon forms at once.<
                   </object>
                   <packing>
                     <property name="position">2</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="label" translatable="yes">Here you can run automatic checks and fixes on the Sprite Info values for all Pokémon.
+"Fix Sprite Info" runs automatic fixes for the Sprite VRAM Size, Sprite File Size and Body Size.
+"Check Body Size" compares each Pokémon's Body Size to an "ideal" value based on the Sprite VRAM Size. Please note that this "ideal" value is only an helper value and SHOULD NOT be treated as an absolute fix.
+More info about Sprite Info values and how they interact can be found on the Sprite Info tab of each Pokémon.</property>
+                        <property name="wrap">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkButton" id="btn_sprite_checker_fix">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Reload</property>
+                            <signal name="clicked" handler="on_btn_sprite_checker_fix_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">Fix Sprite Info</property>
+                                <property name="wrap">True</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_sprite_checker_body_size">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Reload</property>
+                            <signal name="clicked" handler="on_btn_sprite_checker_body_size_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">Check Body Sizes</property>
+                                <property name="wrap">True</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="label" translatable="yes">List of fixes/oddities</property>
+                        <property name="wrap">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="sprite_checker_tree">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">sprite_checker_tree_store</property>
+                            <property name="rules-hint">True</property>
+                            <property name="search-column">0</property>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Monster</property>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Detail of Fix</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="spec_personality1">
+                                    <property name="editable">True</property>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Sprite Checker</property>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
                     <property name="tab-fill">False</property>
                   </packing>
                 </child>

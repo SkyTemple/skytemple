@@ -15,22 +15,27 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
+import math
 import os
 from typing import TYPE_CHECKING, cast
+
 from gi.repository import Gtk, GLib
-from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
+from skytemple_files.common.i18n_util import _
+from skytemple_files.common.sprite_util import check_and_correct_monster_sprite_size
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import open_utf8
 from skytemple_files.common.xml_util import prettify
+from skytemple_files.data.md.protocol import Gender
 from skytemple_files.data.monster_xml import monster_xml_export
+from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
+from skytemple_files.data.tbl_talk.model import TalkType
+
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
-from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
-from skytemple_files.data.tbl_talk.model import TalkType
-from skytemple_files.common.i18n_util import _
-
+from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
 from skytemple.init_locale import LocalePatchedGtkTemplate
 
 if TYPE_CHECKING:
@@ -114,6 +119,9 @@ class StMonsterMainPage(Gtk.Box):
     btn_remove_dialogue: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     special_personalities_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     spec_personality: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
+    btn_sprite_checker_fix: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    btn_sprite_checker_body_size: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
+    sprite_checker_tree_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
     def __init__(self, module: MonsterModule, item_data: int):
         super().__init__()
@@ -258,6 +266,76 @@ class StMonsterMainPage(Gtk.Box):
             self.spin_group_nb.set_text(str(max(group - 1, 0)))
             self.module.mark_tbl_talk_as_modified()
             self._refresh_list()
+
+    @Gtk.Template.Callback()
+    def on_btn_sprite_checker_fix_clicked(self, *args):
+        tree_store = self.sprite_checker_tree_store
+        tree_store.clear()
+        sprite_size_table = self.module.get_pokemon_sprite_data_table()
+        for entry in self.module.monster_md.entries:
+            try:
+                md_gender1, md_gender2 = self.module.get_entry_both(getattr(entry, self.module.effective_base_attr))
+                with self.module.monster_bin as monster_bin:
+                    with self.module.m_attack_bin as m_attack_bin:
+                        changed = check_and_correct_monster_sprite_size(
+                            entry,
+                            md_gender1=md_gender1,
+                            md_gender2=md_gender2,
+                            monster_bin=monster_bin,
+                            m_attack_bin=m_attack_bin,
+                            sprite_size_table=sprite_size_table,
+                            is_expand_poke_list_patch_applied=self.module.project.is_patch_applied(
+                                "SpriteSizeInMonsterData"
+                            ),
+                        )
+                if changed:
+                    if not self.module.project.is_patch_applied("ExpandPokeList"):
+                        idx = entry.md_index_base
+                    else:
+                        idx = entry.md_index
+                    self.module.mark_md_as_modified(entry.md_index)
+                    name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
+                    tree_store.append(
+                        [
+                            f"${entry.md_index:04d}: {name} ({Gender(entry.gender).print_name[0]})",  # type: ignore
+                            "\n".join([f"{fn}: {ov} → {nv}" for fn, ov, nv in changed]),
+                        ]
+                    )
+            except BaseException as ex:
+                pass
+        self.module.set_pokemon_sprite_data_table(sprite_size_table)
+
+    @Gtk.Template.Callback()
+    def on_btn_sprite_checker_body_size_clicked(self, *args):
+        tree_store = self.sprite_checker_tree_store
+        tree_store.clear()
+        for entry in self.module.monster_md.entries:
+            if self.module.project.is_patch_applied("SpriteSizeInMonsterData"):
+                check_value = entry.unk17
+            else:
+                sprite_size_table = self.module.get_pokemon_sprite_data_table()
+                check_value = sprite_size_table[entry.md_index_base].sprite_tile_slots
+
+            if not self.module.project.is_patch_applied("ExpandPokeList"):
+                idx = entry.md_index_base
+            else:
+                idx = entry.md_index
+            name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
+            ideal_bs = math.ceil(check_value / 6)
+            if entry.body_size < ideal_bs:
+                tree_store.append(
+                    [
+                        f"${entry.md_index:04d}: {name} ({Gender(entry.gender).print_name[0]})",  # type: ignore
+                        _("ERROR: Body Size is {}, must be at least {}.").format(entry.body_size, ideal_bs),
+                    ]
+                )
+            elif entry.body_size > ideal_bs:
+                tree_store.append(
+                    [
+                        f"${entry.md_index:04d}: {name} ({Gender(entry.gender).print_name[0]})",  # type: ignore
+                        _("Body Size is {}, this could be lowered to {}.").format(entry.body_size, ideal_bs),
+                    ]
+                )
 
     def _refresh_list(self):
         group, talk_type = self._get_current_settings()

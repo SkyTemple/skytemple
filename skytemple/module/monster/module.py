@@ -54,7 +54,7 @@ from skytemple_files.hardcoded.monster_sprite_data_table import (
     IdleAnimType,
 )
 from skytemple_files.common.i18n_util import _
-from skytemple_files.common.util import normalize_string
+from skytemple_files.common.util import normalize_string, MONSTER_BIN, M_ATTACK_BIN
 
 from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.monster.widget.main import StMonsterMainPage, MONSTER_NAME
@@ -91,6 +91,8 @@ class MonsterModule(AbstractModule):
         self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
         logger.debug("Preloading waza_p2.bin...")
         self.waza_p2_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
+        self.monster_bin = self.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+        self.m_attack_bin = self.project.open_file_in_rom(M_ATTACK_BIN, FileType.BIN_PACK, threadsafe=True)
         logger.debug("Done preloading.")
 
         self._tbl_talk: Optional[TblTalk] = None

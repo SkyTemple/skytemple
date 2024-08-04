@@ -52,7 +52,7 @@ from skytemple.init_locale import LocalePatchedGtkTemplate
 from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import add_extension_if_missing, MONSTER_BIN
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.protocol import (
     Gender,
@@ -244,7 +244,6 @@ class StMonsterMonsterPage(Gtk.Box):
         self.module = module
         self.item_data = item_data
         self.entry: MdEntryProtocol = self.module.get_entry(self.item_data)
-        self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -280,9 +279,6 @@ class StMonsterMonsterPage(Gtk.Box):
             self.lbl_unk_1_1.set_text(_("Spinda Recruit"))
             self.lbl_unk_1_2.set_text(_("Don't appear in Missions"))
             self.lbl_unk_1_3.set_text(_("Don't appear in Missions during story"))
-        if self.module.project.is_patch_applied("SpriteSizeInMonsterData"):
-            self.lbl_unk_17.set_text(_("Sprite Size: "))
-            self.lbl_unk_18.set_text(_("Sprite File Size: "))
         self._ent_names: dict[int, str] = {}
         self._init_monster_store()
         stack = self.evo_stack
@@ -852,6 +848,51 @@ class StMonsterMonsterPage(Gtk.Box):
             Gtk.ButtonsType.OK,
             _("Affects the damage the Pokémon takes when attacked with a Sizebust Orb."),
             title=_("Size"),
+        )
+        md.run()
+        md.destroy()
+
+    @Gtk.Template.Callback()
+    def on_btn_help_body_size_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _(
+                "Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\nThe minimal body size needed for a Pokémon is the smallest value such that Body Size x 6 is equal to or higher than Sprite VRAM Size."
+            ),
+            title=_("Body Size"),
+        )
+        md.run()
+        md.destroy()
+
+    @Gtk.Template.Callback()
+    def on_btn_help_unk17_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _(
+                "Effective only when SpriteSizeInMonsterData is applied.\nSprite VRAM Size deals with Pokemon fitting onto the party in dungeons. The limit is 36 units of Sprite VRAM Size in total for the whole party. If this is exceeded, Pokemon from the party are cut off from spawning on the dungeon floor one by one until the sum of Sprite VRAM Size is 36 or less (but will still be counted as being on the party in the team menu).\nThis is computed automatically and cannot be changed."
+            ),
+            title=_("Sprite VRAM Size"),
+        )
+        md.run()
+        md.destroy()
+
+    @Gtk.Template.Callback()
+    def on_btn_help_unk18_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _(
+                "Effective only when SpriteSizeInMonsterData is applied.\nSprite File Size describes the actual size of the sprite file, and deals with enemies and NPCs in dungeons (all Pokemon not on the player's party). The Sprite File Size is expressed in blocks of 512 bytes. The limit for all enemies and allied NPCs on a dungeon floor is 352 kB (704 Sprite File Size) in total, counting by species present on the floor.\nThis is computed automatically and cannot be changed."
+            ),
+            title=_("Sprite File Size"),
         )
         md.run()
         md.destroy()
@@ -1438,8 +1479,9 @@ class StMonsterMonsterPage(Gtk.Box):
         self._set_entry("entry_base_sp_def", self.entry.base_sp_def)
         self._set_entry("entry_weight", self.entry.weight)
         self._set_entry("entry_size", self.entry.size)
-        self._set_entry("entry_unk17", self.entry.unk17)
-        self._set_entry("entry_unk18", self.entry.unk18)
+        if self.module.project.is_patch_applied("SpriteSizeInMonsterData"):
+            self._set_entry("entry_unk17", self.entry.unk17)
+            self._set_entry("entry_unk18", self.entry.unk18)
         self._set_cb("cb_shadow_size", self.entry.shadow_size)
         self._set_entry("entry_chance_spawn_asleep", self.entry.chance_spawn_asleep)
         self._set_entry("entry_hp_regeneration", self.entry.hp_regeneration)
@@ -1676,16 +1718,21 @@ class StMonsterMonsterPage(Gtk.Box):
         md_gender1, md_gender2 = self.module.get_entry_both(getattr(self.entry, self.module.effective_base_attr))
         sprite_size_table = self.module.get_pokemon_sprite_data_table()
         try:
-            with self._monster_bin as monster_bin:
-                changed = check_and_correct_monster_sprite_size(
-                    self.entry,
-                    md_gender1=md_gender1,
-                    md_gender2=md_gender2,
-                    monster_bin=monster_bin,
-                    sprite_size_table=sprite_size_table,
-                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("SpriteSizeInMonsterData"),
-                )
+            with self.module.monster_bin as monster_bin:
+                with self.module.m_attack_bin as m_attack_bin:
+                    changed = check_and_correct_monster_sprite_size(
+                        self.entry,
+                        md_gender1=md_gender1,
+                        md_gender2=md_gender2,
+                        monster_bin=monster_bin,
+                        m_attack_bin=m_attack_bin,
+                        sprite_size_table=sprite_size_table,
+                        is_expand_poke_list_patch_applied=self.module.project.is_patch_applied(
+                            "SpriteSizeInMonsterData"
+                        ),
+                    )
             if changed:
+                self._set_entry("entry_body_size", self.entry.body_size)
                 self._set_entry("entry_unk17", self.entry.unk17)
                 self._set_entry("entry_unk18", self.entry.unk18)
                 self.module.set_pokemon_sprite_data_table(sprite_size_table)
