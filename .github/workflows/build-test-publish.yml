@@ -39,7 +39,7 @@ jobs:
           pip install -r requirements-dev.txt mypy
       - name: Run type checks
         run: |
-          mypy --config-file mypy.ini
+          mypy --config-file mypy.ini skytemple
 
   linting:
     runs-on: ubuntu-latest
