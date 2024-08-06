@@ -20,7 +20,6 @@ Tile based instead of chunk based.
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-
 from gi.repository import GLib, Gtk, Gdk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
