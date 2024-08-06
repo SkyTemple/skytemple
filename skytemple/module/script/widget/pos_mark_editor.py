@@ -19,7 +19,7 @@
 from __future__ import annotations
 import math
 import os
-from typing import Optional, TYPE_CHECKING, cast
+from typing import TYPE_CHECKING, cast
 
 import cairo
 from gi.repository import Gtk, Gdk
@@ -81,16 +81,16 @@ class StPosMarkEditorDialog(Gtk.Dialog):
         self.mapbg_id = self.level.mapid
 
         self._scale_factor: float = 1.0
-        self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
+        self._bg_draw_is_clicked__location: tuple[int, int] | None = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
-        self._map_bg_surface: Optional[cairo.Surface] = None
-        self._currently_selected_mark: Optional[SourceMapPositionMark] = None
+        self._map_bg_surface: cairo.Surface | None = None
+        self._currently_selected_mark: SourceMapPositionMark | None = None
 
-        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+        self._tileset_drawer_overlay: MapTilesetOverlay | None = None
 
-        self.drawer: Optional[Drawer] = None
+        self.drawer: Drawer | None = None
 
         self.set_transient_for(parent_window)
         self.set_attached_to(parent_window)

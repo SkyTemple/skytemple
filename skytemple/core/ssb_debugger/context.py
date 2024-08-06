@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from threading import Lock
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 from collections.abc import Iterable
 
 from gi.repository import Gtk
@@ -69,7 +69,7 @@ save_lock = Lock()
 class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def __init__(self, manager: "DebuggerManager"):
         self._manager = manager
-        self._special_words_cache: Optional[set[str]] = None
+        self._special_words_cache: set[str] | None = None
 
     def allows_interactive_file_management(self) -> bool:
         return False
@@ -262,7 +262,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return False
 
     @property
-    def _project_fm(self) -> Optional[ProjectFileManager]:
+    def _project_fm(self) -> ProjectFileManager | None:
         current = RomProject.get_current()
         assert current is not None
         return current.get_project_file_manager()
@@ -273,7 +273,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         error_message,
         error_title="SkyTemple Script Engine Debugger - Error",
         *,
-        context: Optional[dict[str, Capturable]] = None,
+        context: dict[str, Capturable] | None = None,
         should_report=True,
     ):
         if error_title is None:
@@ -287,7 +287,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             should_report=should_report,
         )
 
-    def capture_error(self, exc_info, *, context: Optional[dict[str, Capturable]] = None):
+    def capture_error(self, exc_info, *, context: dict[str, Capturable] | None = None):
         if context is None:
             context = {}
         capture_error(exc_info, **context)
@@ -311,7 +311,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     @staticmethod
     def message_dialog(
-        parent: Optional[Gtk.Window],
+        parent: Gtk.Window | None,
         dialog_flags: Gtk.DialogFlags,
         message_type: Gtk.MessageType,
         buttons_type: Gtk.ButtonsType,

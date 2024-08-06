@@ -19,7 +19,6 @@
 from __future__ import annotations
 
 import os
-import sys
 import logging
 from typing import TYPE_CHECKING
 from collections.abc import Sequence
@@ -33,10 +32,7 @@ from skytemple.core.profiling import record_span
 from skytemple.core.settings import SkyTempleSettingsStore
 from gi.repository import Gtk
 
-if sys.version_info >= (3, 10):
-    import importlib.metadata as importlib_metadata
-else:
-    import importlib_metadata
+import importlib.metadata as importlib_metadata
 
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule

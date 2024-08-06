@@ -21,18 +21,16 @@ import os
 import shutil
 import struct
 import sys
-from collections.abc import Iterator
-from datetime import datetime
 from enum import Enum, auto
 from typing import (
-    Union,
     TYPE_CHECKING,
     Optional,
-    Callable,
     Any,
     overload,
     Literal,
 )
+from collections.abc import Callable, Iterator
+from datetime import datetime
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
@@ -98,7 +96,7 @@ class BinaryName(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: str, xml_name: Optional[str] = None):
+    def __init__(self, _: str, xml_name: str | None = None):
         self._xml_name_ = xml_name
 
     def __str__(self):
@@ -189,11 +187,11 @@ class RomProject:
 
     def __init__(self, filename: str, cb_open_view: Callable[[ItemTreeEntryRef], None]):
         self.filename = filename
-        self._rom: Optional[NintendoDSRom] = None
+        self._rom: NintendoDSRom | None = None
         self._rom_module: Optional["RomModule"] = None
         self._loaded_modules: dict[str, AbstractModule] = {}
-        self._sprite_renderer: Optional[SpriteProvider] = None
-        self._string_provider: Optional[StringProvider] = None
+        self._sprite_renderer: SpriteProvider | None = None
+        self._string_provider: StringProvider | None = None
         # Dict of filenames -> models
         self._opened_files: dict[str, Any] = {}
         self._opened_files_contexts: dict[str, ModelContext] = {}
@@ -210,12 +208,12 @@ class RomProject:
         self._cb_open_view: Callable[[ItemTreeEntryRef], None] = cb_open_view
         self._project_fm = ProjectFileManager(filename)
 
-        self._icon_banner: Optional[IconBanner] = None
+        self._icon_banner: IconBanner | None = None
 
         # Lazy
-        self._patcher: Optional[Patcher] = None
+        self._patcher: Patcher | None = None
 
-    async def load(self, transaction: Optional[TaggableContext] = None):
+    async def load(self, transaction: TaggableContext | None = None):
         """Load the ROM into memory and initialize all modules"""
         with record_span("rom", "load"):
             with record_span("rom", "open-file"):
@@ -463,7 +461,7 @@ class RomProject:
     def is_opened(self, filename):
         return filename in self._opened_files
 
-    def mark_as_modified(self, file: Union[str, object]):
+    def mark_as_modified(self, file: str | object):
         """Mark a file as modified, either by filename or model. TODO: Input checking"""
         if isinstance(file, str):
             assert file in self._opened_files
@@ -574,7 +572,7 @@ class RomProject:
         if os.path.exists(backup_fn):
             os.unlink(backup_fn)
 
-    def get_files_with_ext(self, ext, folder_name: Optional[str] = None):
+    def get_files_with_ext(self, ext, folder_name: str | None = None):
         assert self._rom is not None
         if folder_name is None:
             return get_files_from_rom_with_extension(self._rom, ext)
@@ -642,7 +640,7 @@ class RomProject:
             self._patcher = Patcher(self._rom, self.get_rom_module().get_static_data())
         return self._patcher
 
-    def get_binary(self, binary: Union[SectionProtocol, BinaryName, str]) -> bytes:
+    def get_binary(self, binary: SectionProtocol | BinaryName | str) -> bytes:
         assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
             the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
@@ -652,7 +650,7 @@ class RomProject:
 
     def modify_binary(
         self,
-        binary: Union[SectionProtocol, BinaryName, str],
+        binary: SectionProtocol | BinaryName | str,
         modify_cb: Callable[[bytearray], None],
     ):
         """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""

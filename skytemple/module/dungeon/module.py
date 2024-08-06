@@ -19,7 +19,7 @@ import os
 import sys
 from functools import reduce
 from math import gcd
-from typing import Optional, Union, Literal
+from typing import Literal
 from collections.abc import Iterable, Sequence
 from xml.etree.ElementTree import Element
 
@@ -164,19 +164,19 @@ class DungeonModule(AbstractModule):
         return 210
 
     def __init__(self, rom_project: RomProject):
-        self._errored: Union[Literal[False], tuple] = False
+        self._errored: Literal[False] | tuple = False
         try:
             self.project = rom_project
 
             self._item_tree: ItemTree
-            self._root_iter: Optional[ItemTreeEntryRef] = None
+            self._root_iter: ItemTreeEntryRef | None = None
             self._dungeon_iters: dict[DungeonDefinition, ItemTreeEntryRef] = {}
             self._dungeon_floor_iters: dict[int, dict[int, ItemTreeEntryRef]] = {}
             self._fixed_floor_iters: list[ItemTreeEntryRef] = []
             self._fixed_floor_root_iter: ItemTreeEntryRef
             self._fixed_floor_data: FixedBin
             self._dungeon_bin_context: ModelContext[DungeonBinPack]
-            self._cached_dungeon_list: Optional[list[DungeonDefinition]] = None
+            self._cached_dungeon_list: list[DungeonDefinition] | None = None
 
             # Preload mappa
             logger.debug("Preloading Mappa...")
@@ -274,7 +274,7 @@ class DungeonModule(AbstractModule):
                                 RecursionType.UP,
                             )
 
-    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
+    def handle_request(self, request: OpenRequest) -> ItemTreeEntryRef | None:
         if request.type == REQUEST_TYPE_DUNGEONS:
             return self._root_iter
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR:
@@ -454,7 +454,7 @@ class DungeonModule(AbstractModule):
                 ),
             )
 
-    def load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
+    def load_dungeons(self) -> Iterable[DungeonGroup | int]:
         """
         Returns the dungeons, grouped by the same mappa_index. The dungeons and groups are overall sorted
         by their IDs.
@@ -490,7 +490,7 @@ class DungeonModule(AbstractModule):
                         [lst[idx].start_after for idx in groups[dungeon.mappa_index]],
                     )
 
-    def regroup_dungeons(self, new_groups: Iterable[Union[DungeonGroup, int]]):
+    def regroup_dungeons(self, new_groups: Iterable[DungeonGroup | int]):
         """
         Apply new dungeon groups.
         This updates the dungeon list file, the mappa files and the UI tree.
@@ -500,7 +500,7 @@ class DungeonModule(AbstractModule):
         """
         mappa = self.get_mappa()
         old_floor_lists = mappa.floor_lists
-        reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]] = []
+        reorder_list: list[list[tuple[int, int | None, int | None]]] = []
         dojo_floors = list(old_floor_lists[DOJO_MAPPA_ENTRY])
         new_floor_lists: list[list[MappaFloorProtocol]] = []
         dungeons = self.get_dungeon_list()
@@ -609,7 +609,7 @@ class DungeonModule(AbstractModule):
 
         dungeon_definitions = self.get_dungeon_list()
 
-        is_group: Union[Literal[False], DungeonGroup] = False
+        is_group: Literal[False] | DungeonGroup = False
         for dungeon_or_group in self.load_dungeons():
             if dungeon_or_group == dungeon_id:
                 break
@@ -736,7 +736,7 @@ class DungeonModule(AbstractModule):
             f_ranks.extend_nb_floors(group_id, start_floor + 1, nb_floors, rank)
 
     def reorder_floors_ranks(
-        self, reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]]
+        self, reorder_list: list[list[tuple[int, int | None, int | None]]]
     ):  # (old_group_id, start_floor, end_floor)
         if self.has_floor_ranks():
             f_ranks = self.project.open_file_in_rom(FLOOR_RANKS, FloorAttributeHandler)
@@ -747,7 +747,7 @@ class DungeonModule(AbstractModule):
             f_ranks = self.project.open_file_in_rom(FLOOR_RANKS, FloorAttributeHandler)
             f_ranks.adjust_nb_floors(group_id, nb_floors + 1)
 
-    def get_floor_rank(self, dungeon_id: int, floor_id: int) -> Optional[int]:
+    def get_floor_rank(self, dungeon_id: int, floor_id: int) -> int | None:
         if self.has_floor_ranks():
             group_id = self._get_dungeon_group(dungeon_id)
             f_ranks = self.project.open_file_in_rom(FLOOR_RANKS, FloorAttributeHandler)
@@ -769,7 +769,7 @@ class DungeonModule(AbstractModule):
             f_mission.extend_nb_floors(group_id, start_floor + 1, nb_floors, forbidden)
 
     def reorder_floors_mf(
-        self, reorder_list: list[list[tuple[int, Optional[int], Optional[int]]]]
+        self, reorder_list: list[list[tuple[int, int | None, int | None]]]
     ):  # (old_group_id, start_floor, end_floor)
         if self.has_floor_ranks():
             f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
@@ -780,7 +780,7 @@ class DungeonModule(AbstractModule):
             f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
             f_mission.adjust_nb_floors(group_id, nb_floors + 1)
 
-    def get_floor_mf(self, dungeon_id: int, floor_id: int) -> Optional[int]:
+    def get_floor_mf(self, dungeon_id: int, floor_id: int) -> int | None:
         if self.has_mission_forbidden():
             group_id = self._get_dungeon_group(dungeon_id)
             f_mission = self.project.open_file_in_rom(FLOOR_MISSION_FORBIDDEN, FloorAttributeHandler)
@@ -950,7 +950,7 @@ class DungeonModule(AbstractModule):
         with self._dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get("minimap.zmappat")
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StDungeonDungeonPage):
             pass  # todo
         if isinstance(open_view, StDungeonFloorPage):

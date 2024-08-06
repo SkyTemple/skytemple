@@ -22,7 +22,6 @@
 import logging
 import os
 from abc import ABC, abstractmethod
-from typing import Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
@@ -61,7 +60,7 @@ class AbstractController(ABC):
         view switch.
         """
         # Delete all toplevel widgets introduced:
-        builder: Optional[Gtk.Builder] = None
+        builder: Gtk.Builder | None = None
         if hasattr(self, "builder"):
             builder = getattr(self, "builder")
         if hasattr(self, "_builder"):

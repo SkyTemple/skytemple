@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import threading
-from typing import Optional
 
 import cairo
 from gi.repository import Gdk, GdkPixbuf, Gtk
@@ -39,8 +38,8 @@ class PortraitProvider:
 
     def __init__(self, kao: KaoProtocol):
         self._kao = kao
-        self._loader_surface: Optional[cairo.ImageSurface] = None
-        self._error_surface: Optional[cairo.ImageSurface] = None
+        self._loader_surface: cairo.ImageSurface | None = None
+        self._error_surface: cairo.ImageSurface | None = None
 
         self._loaded: dict[tuple[int, int], cairo.Surface] = {}
         self._loaded__is_fallback: dict[tuple[int, int], bool] = {}

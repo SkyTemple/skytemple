@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional
 from collections.abc import Iterable, Sequence
 
 import cairo
@@ -38,7 +37,7 @@ class MapTilesetOverlay:
         dpc: DpcProtocol,
         dpci: DpciProtocol,
         dpl: DplProtocol,
-        fixed_room: Optional[FixedFloor],
+        fixed_room: FixedFloor | None,
     ):
         self.dma = dma
         self.dpc = dpc
@@ -46,8 +45,8 @@ class MapTilesetOverlay:
         self.dpl = dpl
         self.fixed_room = fixed_room
         self.enabled = True
-        self._cached: Optional[cairo.ImageSurface] = None
-        self._cached__bma_chunk_width: Optional[int] = None
+        self._cached: cairo.ImageSurface | None = None
+        self._cached__bma_chunk_width: int | None = None
         self._cached__bma_chunks: list[int] = []
 
     def draw_full(

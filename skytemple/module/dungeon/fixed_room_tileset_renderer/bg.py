@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional
 
 import cairo
 from PIL import Image
@@ -50,16 +49,16 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
         self.dma = dma
         self.chunks = chunks
         self.dma_drawer = DmaDrawer(self.dma)
-        self._cached_bg: Optional[cairo.ImageSurface] = None
+        self._cached_bg: cairo.ImageSurface | None = None
         self._cached_rules: list[list[int]] = []
-        self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
+        self._cached_dungeon_surface: cairo.ImageSurface | None = None
         self.single_tiles = {
             DmaType.FLOOR: self._single_tile(DmaType.FLOOR),
             DmaType.WALL: self._single_tile(DmaType.WALL),
             DmaType.WATER: self._single_tile(DmaType.WATER),
         }
 
-    def get_background(self) -> Optional[cairo.Surface]:
+    def get_background(self) -> cairo.Surface | None:
         if not self._cached_bg:
             self._cached_bg = pil_to_cairo_surface(
                 self.dbg.to_pil(self.dbg_dpc, self.dbg_dpci, self.dbg_dpl.palettes).convert("RGBA")

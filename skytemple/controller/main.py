@@ -20,7 +20,7 @@ import sys
 import traceback
 import webbrowser
 from threading import current_thread
-from typing import Optional, TYPE_CHECKING, cast, Union
+from typing import Optional, TYPE_CHECKING, cast
 import packaging.version
 
 import gi
@@ -108,7 +108,7 @@ class MainController:
         cls._instance._lock_trees()
         # Show loading stack page in editor stack
         cls._instance._editor_stack.set_visible_child(builder_get_assert(cls._instance.builder, Gtk.Box, "es_loading"))
-        view_cls: Union[AbstractController, Gtk.Widget] = assert_not_none(cls._instance._current_view)  # type: ignore
+        view_cls: AbstractController | Gtk.Widget = assert_not_none(cls._instance._current_view)  # type: ignore
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(
             load_view(
@@ -124,9 +124,9 @@ class MainController:
     def view_info(
         cls,
     ) -> tuple[
-        Optional[AbstractModule],
-        Union[type[AbstractController], type[Gtk.Widget], type[None]],
-        Optional[int],
+        AbstractModule | None,
+        type[AbstractController] | type[Gtk.Widget] | type[None],
+        int | None,
     ]:
         """Returns the currently loaded view info in SkyTemple."""
         return (
@@ -149,9 +149,9 @@ class MainController:
         self.recent_files = self.settings.get_recent_files()
 
         # Created on demand
-        self._loading_dialog: Optional[Gtk.Dialog] = None
-        self._main_item_list: Optional[Gtk.TreeView] = None
-        self._main_item_filter: Optional[Gtk.TreeModel] = None
+        self._loading_dialog: Gtk.Dialog | None = None
+        self._main_item_list: Gtk.TreeView | None = None
+        self._main_item_filter: Gtk.TreeModel | None = None
 
         self._recent_files_store = builder_get_assert(self.builder, Gtk.ListStore, "recent_files_store")
         self._item_store = builder_get_assert(self.builder, Gtk.TreeStore, "item_store")
@@ -161,15 +161,15 @@ class MainController:
         builder.connect_signals(self)
         window.connect("destroy", self.on_destroy)
 
-        self._search_text: Optional[str] = None
-        self._current_view_module: Optional[AbstractModule] = None
-        self._current_view: Union[AbstractController, Gtk.Widget, None] = None
-        self._current_view_item_id: Optional[int] = None
-        self._resize_timeout_id: Optional[int] = None
+        self._search_text: str | None = None
+        self._current_view_module: AbstractModule | None = None
+        self._current_view: AbstractController | Gtk.Widget | None = None
+        self._current_view_item_id: int | None = None
+        self._resize_timeout_id: int | None = None
         self._loaded_map_bg_module: Optional["MapBgModule"] = None
         self._current_breadcrumbs: list[str] = []
         self._after_save_action = None
-        self._view_load_sentry_event_id: Optional[str] = None
+        self._view_load_sentry_event_id: str | None = None
         self.csd_enabled = self.settings.csd_enabled()
 
         if not sys.platform.startswith("darwin"):
@@ -487,7 +487,7 @@ class MainController:
     def on_view_loaded(
         self,
         module: AbstractModule,
-        in_view: Union[AbstractController, Gtk.Widget],
+        in_view: AbstractController | Gtk.Widget,
         item_id: int,
     ):
         """A new module view was loaded! Present it!"""
@@ -625,7 +625,7 @@ class MainController:
             return True
 
         about.connect("activate-link", activate_link)
-        header_bar: Optional[Gtk.HeaderBar] = about.get_header_bar()
+        header_bar: Gtk.HeaderBar | None = about.get_header_bar()
         if header_bar is not None:
             # Cool bug??? And it only works on the left as well, wtf?
             header_bar.set_decoration_layout("close")

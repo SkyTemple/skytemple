@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import Optional
 from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
@@ -44,10 +43,10 @@ class RomModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Main ROM metadata management module."""
         self.project = rom_project
-        self._item_tree: Optional[ItemTree] = None
-        self._root_node: Optional[ItemTreeEntryRef] = None
-        self._static_data: Optional[Pmd2Data] = None
-        self._rom: Optional[NintendoDSRom] = None
+        self._item_tree: ItemTree | None = None
+        self._root_node: ItemTreeEntryRef | None = None
+        self._static_data: Pmd2Data | None = None
+        self._rom: NintendoDSRom | None = None
 
     def set_rom(self, rom: NintendoDSRom):
         self._rom = rom

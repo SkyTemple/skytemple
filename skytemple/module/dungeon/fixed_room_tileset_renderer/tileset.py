@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional
 
 import cairo
 
@@ -33,8 +32,8 @@ from skytemple_files.graphics.dpl.protocol import DplProtocol
 
 class FixedFloorDrawerTileset(AbstractTilesetRenderer):
     def __init__(self, dma: DmaProtocol, dpci: DpciProtocol, dpc: DpcProtocol, dpl: DplProtocol):
-        self._cached_rules: Optional[list[list[int]]] = None
-        self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
+        self._cached_rules: list[list[int]] | None = None
+        self._cached_dungeon_surface: cairo.ImageSurface | None = None
         self.dma = dma
         self.dpci = dpci
         self.dpc = dpc
@@ -47,7 +46,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
             DmaType.WATER: self._single_tile(chunks, DmaType.WATER),
         }
 
-    def get_background(self) -> Optional[cairo.Surface]:
+    def get_background(self) -> cairo.Surface | None:
         return None
 
     def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:

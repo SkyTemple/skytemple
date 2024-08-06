@@ -23,7 +23,7 @@ import webbrowser
 from os.path import expanduser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import Union, Any, Optional, cast
+from typing import Union, Any, cast
 
 from skytemple_files.common.util import Capturable
 from skytemple_files.user_error import USER_ERROR_MARK
@@ -78,7 +78,7 @@ def display_error(
     window=None,
     log=True,
     *,
-    context: Optional[dict[str, Capturable]] = None,
+    context: dict[str, Capturable] | None = None,
     should_report=True,
 ):
     """
@@ -132,7 +132,7 @@ def display_error(
     md.destroy()
 
 
-def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable) -> Optional[str]:
+def capture_error(exc_info: ExceptionInfo | None, **error_context: Capturable) -> str | None:
     from skytemple.core.settings import SkyTempleSettingsStore
 
     try:
@@ -146,7 +146,7 @@ def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable
     return None
 
 
-def should_be_reported(exc_info: Optional[ExceptionInfo]):
+def should_be_reported(exc_info: ExceptionInfo | None):
     if exc_info is None:
         return True
     if isinstance(exc_info, tuple):

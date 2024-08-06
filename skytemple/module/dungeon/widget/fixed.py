@@ -16,7 +16,8 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 import sys
-from typing import TYPE_CHECKING, Callable, cast
+from typing import TYPE_CHECKING, cast
+from collections.abc import Callable
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u32_checked, u32, u8
 from skytemple_files.common.types.file_types import FileType

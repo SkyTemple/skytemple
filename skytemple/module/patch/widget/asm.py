@@ -465,7 +465,7 @@ class StPatchAsmPage(Gtk.Box):
                         ">> ",
                     )
                     if isinstance(issue.message, DeprecatedToBeRemovedWarning):
-                        text += f">> ! This will break in SkyTemple Files {'.'.join((str(x) for x in issue.message.expected_removal))}\n"
+                        text += f">> ! This will break in SkyTemple Files {'.'.join(str(x) for x in issue.message.expected_removal)}\n"
                     text += "\n"
                 text += "\n"
             buffer.set_text(text)
