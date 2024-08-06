@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-08-04 10:11+0000\n"
-"PO-Revision-Date: 2024-08-06 16:48\n"
+"POT-Creation-Date: 2024-08-06 17:01+0000\n"
+"PO-Revision-Date: 2024-08-06 17:55\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3350,6 +3350,10 @@ msgstr ""
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/fast_chimecho.py:47
+msgid "Shorten Chimecho Team Assembly menu interactions. Adding, removing and making leader are now fast interactions that immediately go back to the team member selection menu."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:45
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr ""
@@ -3443,79 +3447,79 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:234
-#: skytemple-files/skytemple_files/patch/patches.py:244
+#: skytemple-files/skytemple_files/patch/patches.py:236
+#: skytemple-files/skytemple_files/patch/patches.py:246
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:251
+#: skytemple-files/skytemple_files/patch/patches.py:253
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:257
+#: skytemple-files/skytemple_files/patch/patches.py:259
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:267
+#: skytemple-files/skytemple_files/patch/patches.py:269
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:270
+#: skytemple-files/skytemple_files/patch/patches.py:272
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:275
-#: skytemple-files/skytemple_files/patch/patches.py:281
-#: skytemple-files/skytemple_files/patch/patches.py:287
-#: skytemple-files/skytemple_files/patch/patches.py:295
-#: skytemple-files/skytemple_files/patch/patches.py:309
+#: skytemple-files/skytemple_files/patch/patches.py:277
+#: skytemple-files/skytemple_files/patch/patches.py:283
+#: skytemple-files/skytemple_files/patch/patches.py:289
+#: skytemple-files/skytemple_files/patch/patches.py:297
+#: skytemple-files/skytemple_files/patch/patches.py:311
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:283
+#: skytemple-files/skytemple_files/patch/patches.py:285
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:289
+#: skytemple-files/skytemple_files/patch/patches.py:291
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:396
+#: skytemple-files/skytemple_files/patch/patches.py:398
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:398
+#: skytemple-files/skytemple_files/patch/patches.py:400
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:408
+#: skytemple-files/skytemple_files/patch/patches.py:410
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:410
+#: skytemple-files/skytemple_files/patch/patches.py:412
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:415
+#: skytemple-files/skytemple_files/patch/patches.py:417
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:421
+#: skytemple-files/skytemple_files/patch/patches.py:423
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:428
+#: skytemple-files/skytemple_files/patch/patches.py:430
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:109
 msgid "Unknown or extra XML element '{}' in scene data."
-msgstr ""
+msgstr "Неизвестный или лишний элемент XML '{}' в данных сцены."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:110
 msgid "'{}' missing in scene data."
@@ -3527,7 +3531,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:542
 msgid "Unknown direction value."
-msgstr ""
+msgstr "Неизвестное значение направления."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/writer.py:57
 msgid "Can not save a scene event without a defined triggered script."
@@ -3545,29 +3549,29 @@ msgstr "Неизвестная константа {constant_as_string}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:163
 msgid "The routine data lists for the decompiler must have the same lengths."
-msgstr ""
+msgstr "Списки данных рутин для декомпилятора должны иметь одинаковую длину."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:176
 #, python-brace-format
 msgid "Routine {i} not found."
-msgstr ""
+msgstr "Рутина {i} не найдена."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:196
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
-msgstr ""
+msgstr "Скрипт должен содержать ровно {len(self.rom_data.script_data.common_routine_info)} сопрограмм."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:203
 msgid "The script must not contain any duplicate coroutines."
-msgstr ""
+msgstr "Скрипт не должен содержать повторяющихся корутин."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:211
 #, python-brace-format
 msgid "Unknown coroutine {err}"
-msgstr ""
+msgstr "Неизвестная корутина {err}"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:225
 msgid "Coroutines and regular routines can not be mixed in a script file."
-msgstr ""
+msgstr "Корутины и обычные рутины нельзя смешивать в файле сценария."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:238
 #, python-brace-format
@@ -3659,11 +3663,11 @@ msgid "This portrait does not compress well, the result size is greater than 800
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:169
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:172
 msgid "BOOST"
 msgstr "УСКОРЕНО"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:172
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "Debugging disabled."
 msgstr "Отладка отключена."
 
@@ -4256,11 +4260,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1230
 msgid "Unable to save savestate!"
-msgstr ""
+msgstr "Невозможно создать быстрое сохранение!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1266
 msgid "Unable to load savestate!"
-msgstr ""
+msgstr "Невозможно загрузить быстрое сохранение!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1379
 msgid "The game is stopped."
@@ -4757,7 +4761,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1383
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1460
 msgid "Local Variables"
-msgstr ""
+msgstr "Локальные переменные"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1433
 msgid "Macro Variables"
@@ -4773,7 +4777,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1557
 msgid "Enable Debugging Mode"
-msgstr ""
+msgstr "Включить режим отладки"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1561
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1578
@@ -4782,16 +4786,16 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1574
 msgid "Dungeons: Auto Next Floor"
-msgstr ""
+msgstr "Пропуск этажей в подземельях"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1602
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2143
 msgid "Debug Flags"
-msgstr ""
+msgstr "Флаги отладки"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1617
 msgid "Message Speed Up"
-msgstr ""
+msgstr "Увеличить скорость текста"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1633
 msgid "Disable Screen Fade"
@@ -4925,7 +4929,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2323
 msgid "Unk1"
-msgstr ""
+msgstr "Неизв1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2334
 #: skytemple/skytemple/module/script/widget/ssa.py:1623
@@ -4989,7 +4993,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2437
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2457
 msgid "State / Debugging"
-msgstr ""
+msgstr "Состояние / Отладка"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2508
 msgid "Welcome to \n"
@@ -4997,7 +5001,11 @@ msgid "Welcome to \n"
 "Script Engine Debugger.\n\n"
 "Please load a game ROM\n"
 "via the File menu."
-msgstr ""
+msgstr "Добро пожаловать в \n"
+"SkyTemple\n"
+"Script Engine Debugger.\n\n"
+"Пожалуйста, загрузите ROM игры\n"
+"через меню File."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2558
 msgid "The Script Engine is currently not running."
@@ -5005,23 +5013,23 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Run the game from the start or stop the emulator."
-msgstr ""
+msgstr "Запустить игру с самого начала или остановить эмулятор."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2718
 msgid "Pause the emulator."
-msgstr ""
+msgstr "Приостановить эмулятор."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2735
 msgid "Reset the emulator."
-msgstr ""
+msgstr "Перезагрузить эмулятор."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2971
 msgid "Savestate"
-msgstr ""
+msgstr "Быстрое сохранение"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3023
 msgid "Emulator"
-msgstr ""
+msgstr "Эмулятор"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3037
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:653
@@ -5063,7 +5071,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3228
 msgid "Debug Log"
-msgstr ""
+msgstr "Журнал отладки"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3255
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
@@ -5168,19 +5176,19 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:23
 msgid "_Add"
-msgstr ""
+msgstr "_Добавить"
 
 #: skytemple/skytemple/_i18n.py:24
 msgid "_Apply"
-msgstr ""
+msgstr "_Применить"
 
 #: skytemple/skytemple/_i18n.py:26
 msgid "_Close"
-msgstr ""
+msgstr "_Закрыть"
 
 #: skytemple/skytemple/_i18n.py:27
 msgid "_Copy"
-msgstr ""
+msgstr "_Копировать"
 
 #: skytemple/skytemple/_i18n.py:28
 msgid "Cu_t"
@@ -5590,11 +5598,11 @@ msgstr "Фон"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:44
 msgid "Import..."
-msgstr ""
+msgstr "Импортировать..."
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:53
 msgid "Export..."
-msgstr ""
+msgstr "Экспортировать..."
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:66
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1256
@@ -5608,7 +5616,7 @@ msgstr "Инструменты"
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1645
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4724
 msgid "Convert image to PMD2 indexed PNG..."
-msgstr ""
+msgstr "Преобразовать изображение в PMD2-индексированный PNG..."
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:141
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5500
@@ -5756,7 +5764,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:760
 msgid "Exp. enabled:"
-msgstr ""
+msgstr "Опыт включен:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:827
 msgid "Enemy evolution enabled:"
@@ -6225,31 +6233,31 @@ msgstr "Неразрушаемый?"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:599
 msgid "Unk11"
-msgstr ""
+msgstr "Неизв11"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:612
 msgid "Unk12"
-msgstr ""
+msgstr "Неизв12"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:625
 msgid "Unk13"
-msgstr ""
+msgstr "Неизв13"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:638
 msgid "Unk14"
-msgstr ""
+msgstr "Неизв14"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:651
 msgid "Unk15"
-msgstr ""
+msgstr "Неизв15"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:664
 msgid "Unk16"
-msgstr ""
+msgstr "Неизв16"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:677
 msgid "Unk17"
-msgstr ""
+msgstr "Неизв17"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:704
 msgid "Trap Visible?"
@@ -9796,7 +9804,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:83
 #: skytemple/skytemple/module/script/widget/ssa.py:1622
 msgid "Coroutine"
-msgstr ""
+msgstr "Корутина"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:94
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:79
@@ -9908,7 +9916,9 @@ msgstr "Событие"
 msgid "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
 "In addition to that, there is also \"COMMON/unionall.ssb\", which contains the game's coroutines (main scripts).\n\n"
 "To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.\n"
-msgstr ""
+msgstr "У каждой сцены есть как минимум один сценарий, который запускается при загрузке сцены.\n"
+"Кроме того, существует файл \"COMMON/unionall.ssb\", который содержит корутины игры (основные скрипты).\n\n"
+"Чтобы отредактировать скрипты игры, откройте Script Engine Debugger. Вы также можете сделать это, нажав на значок жука в правом верхнем углу.\n"
 
 #: skytemple/skytemple/data/widget/script/ssb.ui:75
 msgid "Open Script Engine Debugger"
@@ -11272,7 +11282,18 @@ msgid "Here you can edit dungeon interruptions. \n"
 " - Scenario Equals: scenario, level\n"
 " - Scenario Below or Equal: scenario, level\n"
 " - Scenario Greater or Equal: scenario, level"
-msgstr ""
+msgstr "Здесь вы можете редактировать прерывания в подземелиях. \n"
+"Прерывания могут возникать при переходе на следующий этаж (например, для прерывания, заданного на этаже 3, оно возникнет при переходе с этажа 2 на 3). \n"
+"Со стороны скрипта это работает точно так же, как если бы вы закончили подземелье (вызов корутин GETOUT_SCENARIO_DUNGEON или GETOUT_REQUEST_DUNGEON). \n"
+"На каждом этаже разрешено только одно прерывание. \n"
+"Для каждого прерывания может быть определено одно условие. Если оно не выполняется, игра переходит на следующий этаж как обычно. \n"
+"Параметры зависят от типа проверки: \n"
+" - Всегда: 0, 0\n"
+" - Флаг не установлен: flag_id, 0\n"
+" - Флаг установлен: flag_id, 0\n"
+" - Сценарий равен: сценарий, уровень\n"
+" - Сценарий меньше или равен: сценарий, уровень\n"
+" - Сценарий больше или равен: сценарий, уровень"
 
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:143
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:161
