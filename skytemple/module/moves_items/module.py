@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional, Union
 
 from range_typed_integers import u16
 
@@ -182,7 +181,7 @@ class MovesItemsModule(AbstractModule):
     def get_item_s_p(self) -> ItemSP:
         return self.project.open_file_in_rom(ITEM_S_FILE, FileType.ITEM_SP)
 
-    def get_item(self, item_id) -> tuple[ItemPEntryProtocol, Optional[ItemSPEntry]]:
+    def get_item(self, item_id) -> tuple[ItemPEntryProtocol, ItemSPEntry | None]:
         if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
             return (
                 self.get_item_p().item_list[item_id],
@@ -234,7 +233,7 @@ class MovesItemsModule(AbstractModule):
         # Mark as modified in tree
         self._item_tree.mark_as_modified(self.move_iters[move_id], RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StMovesItemsMovePage):
             pass  # todo
         if isinstance(open_view, StMovesItemsItemPage):

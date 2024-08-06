@@ -23,7 +23,8 @@ import re
 import sys
 import tempfile
 import webbrowser
-from typing import TYPE_CHECKING, Any, Callable, cast
+from typing import TYPE_CHECKING, Any, cast
+from collections.abc import Callable
 import cairosvg
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf
 from range_typed_integers import u8, u16, i32, i32_checked, u16_checked, u8_checked, u32
