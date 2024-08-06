@@ -215,7 +215,7 @@ def source_ref_explorerscript(req: Requirement, commit: str) -> FlatpakSourceRef
             "commit": commit,
             "dest": "explorerscript",
         }
-    return print_and_return_ref("skytemple-ssb-emulator", ref)
+    return print_and_return_ref("explorerscript", ref)
 
 
 def source_ref_skytemple(git_tag: str | None) -> FlatpakSourceRef:
