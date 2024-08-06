@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-06 17:55\n"
+"PO-Revision-Date: 2024-08-06 18:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4934,7 +4934,7 @@ msgstr "Неизв1"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2334
 #: skytemple/skytemple/module/script/widget/ssa.py:1623
 msgid "Unk2"
-msgstr ""
+msgstr "Неизв2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 msgid "Available"
@@ -6265,11 +6265,11 @@ msgstr "Ловушка видна?"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:717
 msgid "Unk31"
-msgstr ""
+msgstr "Неизв31"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:730
 msgid "Unk32"
-msgstr ""
+msgstr "Неизв32"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:743
 msgid "Secondary Terrain?"
@@ -6277,19 +6277,19 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:756
 msgid "Unk34"
-msgstr ""
+msgstr "Неизв34"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:769
 msgid "Unk35"
-msgstr ""
+msgstr "Неизв35"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:782
 msgid "Unk36"
-msgstr ""
+msgstr "Неизв36"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:795
 msgid "Unk37"
-msgstr ""
+msgstr "Неизв37"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:817
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1171
@@ -6736,11 +6736,15 @@ msgid "The random floor generator failed generating the floor\n"
 "settings can not generate valid floors.\n"
 "If it doesn't the game uses a 1-room floorwide \n"
 "Monster House instead."
-msgstr ""
+msgstr "Генератор случайных этажей не смог сгенерировать этаж\n"
+"три раза подряд. Это, вероятно, означает, что текущие настройки\n"
+"не могут генерировать правильные этажи.\n"
+"Если это не так, игра использует 1-комнатную \n"
+"засаду монстров."
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3399
 msgid "MH Chance"
-msgstr ""
+msgstr "Шансы в ЗМ"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3451
 msgid "Use same spawn weights for Monster Houses"
@@ -6755,11 +6759,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:318
 #: skytemple/skytemple/skytemple.glade:1325
 msgid "Help"
-msgstr ""
+msgstr "Справка"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3522
 msgid "Kecleon Level "
-msgstr ""
+msgstr "Уровень Кеклеона "
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3689
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3884
@@ -6788,18 +6792,18 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/animations.ui:1137
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:84
 msgid "Traps"
-msgstr ""
+msgstr "Ловушки"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3868
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:714
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:52
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3981
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:827
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4056
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4218
@@ -6904,11 +6908,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:90
 msgid "Tileset: "
-msgstr ""
+msgstr "Набор плиток: "
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:135
 msgid "Tileset Example:"
-msgstr ""
+msgstr "Пример набора плиток:"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:147
 msgid "Color Map:"
@@ -7120,34 +7124,34 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1581
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4668
 msgid "Palettes"
-msgstr ""
+msgstr "Палитры"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1211
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1590
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4677
 msgid "Edit Palettes"
-msgstr ""
+msgstr "Изменить палитры"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1226
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1605
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4692
 msgid "Animation Settings"
-msgstr ""
+msgstr "Настройки анимации"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1235
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1613
 msgid "Edit Animation Palette 10"
-msgstr ""
+msgstr "Редактировать анимацию палитры 10"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1244
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1622
 msgid "Edit Animation Palette 11"
-msgstr ""
+msgstr "Редактировать анимацию палитры 11"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1321
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:34
 msgid "Zoom-"
-msgstr ""
+msgstr "Масштаб -"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1345
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:58
@@ -7180,7 +7184,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1653
 msgid "Background Export"
-msgstr ""
+msgstr "Экспорт фона"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1716
 msgid "This will export the entire background an image.\n\n"
@@ -7188,7 +7192,11 @@ msgid "This will export the entire background an image.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Это экспортирует фон как одно изображение.\n\n"
+"Вы можете редактировать и импортировать фон снова.\n"
+"Обратите внимание, что вам может понадобиться преобразовать его, \n"
+"чтобы его можно было использовать. \n"
+"Дополнительную информацию см. в диалоге импорта."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1768
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:6
@@ -10921,7 +10929,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:254
 msgid "Unk4"
-msgstr ""
+msgstr "Неизв4"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:344
 msgid "If \"Text String for Name\" is not 0, the Text String with this ID will be used as the name for the actor. \n"
@@ -11024,7 +11032,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
 #: skytemple/skytemple/module/script/widget/ssa.py:1624
 msgid "Unk3"
-msgstr ""
+msgstr "Неизв3"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:668
 msgid "Exp"
@@ -11061,11 +11069,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:209
 msgid "Unk2_1"
-msgstr ""
+msgstr "Неизв2_1"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:225
 msgid "Unk2_2"
-msgstr ""
+msgstr "Неизв2_2"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:322
 msgid "The Name is used by the game to determine if a ground sprite should be used. \n"
