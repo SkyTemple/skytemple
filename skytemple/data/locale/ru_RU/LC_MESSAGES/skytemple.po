@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-08 13:48\n"
+"PO-Revision-Date: 2024-08-08 16:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1427,7 +1427,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/sprite_util.py:105
 #: skytemple/skytemple/module/monster/widget/monster.py:895
 msgid "Sprite File Size"
-msgstr ""
+msgstr "Размер файла спрайта"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:52
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
@@ -1846,7 +1846,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/md/protocol.py:547
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:73
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:548
 msgid "Large"
@@ -2003,7 +2003,7 @@ msgstr "Все союзники кроме пользователя"
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:158
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:159
 msgid "Invalid "
-msgstr ""
+msgstr "Недопустимый "
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:75
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:116
@@ -2311,7 +2311,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:102
 msgid "Sandstorm"
-msgstr ""
+msgstr "Песчаная буря"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:103
 msgid "Cloudy"
@@ -2323,11 +2323,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:105
 msgid "Hail"
-msgstr ""
+msgstr "Град"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:106
 msgid "Fog"
-msgstr ""
+msgstr "Туман"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:107
 msgid "Snow"
@@ -2533,7 +2533,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
 #: skytemple-rust/src/st_dpla.rs:130
 msgid "This palette has no animation."
-msgstr ""
+msgstr "Эта палитра не имеет анимации."
 
 #: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:96
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/model.py:98
@@ -2597,7 +2597,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:40
 msgid "Palette Only"
-msgstr ""
+msgstr "Только палитра"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:41
 msgid "2 bits per pixel (4 colors)"
@@ -2732,7 +2732,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:330
 msgid "Sleep"
-msgstr "Сон"
+msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:333
 msgid "Speed -1"
@@ -2824,7 +2824,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:118
 msgid "Outlaw"
-msgstr ""
+msgstr "Преступник"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:120
 msgid "Outlaw Enemy"
@@ -2852,7 +2852,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:141
 msgid "Helping Ally"
-msgstr ""
+msgstr "Союзник"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:144
 msgid "Other Game Team Leader"
@@ -3126,7 +3126,7 @@ msgstr "Анимация ходьбы (1-й кадр)"
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:219
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
-msgstr ""
+msgstr "Ошибка при применении патча: {ex}"
 
 #: skytemple-files/skytemple_files/patch/category.py:27
 msgid "Improvements and Tweaks"
@@ -3134,7 +3134,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/category.py:31
 msgid "New Mechanics"
-msgstr ""
+msgstr "Новые механики"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:33
@@ -3153,7 +3153,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/module.py:179
 #: skytemple/skytemple/module/script/module.py:217
 msgid "Others"
-msgstr "Другое"
+msgstr "Прочее"
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
@@ -3427,7 +3427,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:58
 msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
-msgstr ""
+msgstr "Пропускает викторину, оставляя только вопрос о поле.\n"
+"Требуется применение патча ChooseStarter. "
 
 #: skytemple-files/skytemple_files/patch/handler/sprite_size.py:49
 msgid "Changes Sprite Size and Sprite File Size values to be in each Pokémon's data."
@@ -3451,12 +3452,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:246
 #, python-brace-format
 msgid "The patch '{name}' was not found."
-msgstr ""
+msgstr "Патч '{name}' не найден."
 
 #: skytemple-files/skytemple_files/patch/patches.py:253
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
-msgstr ""
+msgstr "Перед применением '{name}' необходимо применить патч '{patch_name}'."
 
 #: skytemple-files/skytemple_files/patch/patches.py:259
 #: skytemple/skytemple/module/patch/widget/asm.py:376
@@ -4056,7 +4057,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:1479
 #: skytemple/skytemple/module/lists/module.py:158
 msgid "Objects"
-msgstr ""
+msgstr "Объекты"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:277
 #: skytemple/skytemple/data/widget/script/ssa.ui:1560
@@ -4109,7 +4110,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:55
 #: skytemple/skytemple/data/widget/symbols/main.ui:329
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
 #: skytemple/skytemple/core/ui_utils.py:80
@@ -5091,7 +5092,8 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3297
 #: skytemple/skytemple/skytemple.glade:1439
 msgid "translator-credits"
-msgstr "Сергей (sergey_the_piplup)"
+msgstr "Сергей (sergey_the_piplup)\n"
+"FantoM (fantom.69)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3369
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3105
@@ -5480,7 +5482,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/error_handler.py:66
 msgid "Trying to display the error failed. Wow!"
-msgstr ""
+msgstr "Попытка отобразить ошибку не удалась. Ого!"
 
 #: skytemple/skytemple/core/error_handler.py:91 skytemple/skytemple/main.py:106
 msgid "SkyTemple - Error!"
@@ -6359,7 +6361,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:43
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:14
 msgid "Add category"
-msgstr ""
+msgstr "Добавить категорию"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:106
 #: skytemple/skytemple/data/widget/monster/monster.ui:1145
@@ -6367,7 +6369,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:77
 #: skytemple/skytemple/data/widget/moves_items/move.ui:171
 msgid "Category:"
-msgstr ""
+msgstr "Категория:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:149
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:158
@@ -6694,7 +6696,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2663
 msgid "Shop item positions:"
-msgstr ""
+msgstr "Расположение предметов в магазине:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2675
 msgid "Hidden Stairs Type:"
@@ -6706,7 +6708,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2699
 msgid "No Missions: "
-msgstr ""
+msgstr "Нет миссий: "
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2903
 msgid "IQ and Misc."
@@ -6714,7 +6716,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3018
 msgid "Seed:"
-msgstr ""
+msgstr "Ключ генерации:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3073
 msgid "Refresh"
@@ -7282,7 +7284,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:123
 msgid "Minimap Color"
-msgstr ""
+msgstr "Цвет Мини-карты"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:138
 msgid "Stirring Effect"
@@ -7375,7 +7377,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1721
 msgid "Wall"
-msgstr ""
+msgstr "Стена"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1722
 msgid "Water / Lava"
@@ -8193,7 +8195,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3773
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3896
 msgid "Enabled"
-msgstr ""
+msgstr "Включено"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3079
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3198
@@ -8648,13 +8650,13 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/level_up.ui:225
 #: skytemple/skytemple/module/monster/widget/level_up.py:53
 msgid "Exp. Points"
-msgstr ""
+msgstr "Очки Опыта"
 
 #. TRANSLATORS: Experience Points
 #: skytemple/skytemple/data/widget/monster/level_up.ui:239
 #: skytemple/skytemple/module/monster/widget/level_up.py:54
 msgid "HP+"
-msgstr ""
+msgstr "ОЗ+"
 
 #. TRANSLATORS: Health Points+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:253
@@ -8910,7 +8912,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1342
 msgid "Movement:"
-msgstr ""
+msgstr "Движение:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1366
 msgid "IQ Group:"
@@ -8918,7 +8920,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1390
 msgid "Ability:"
-msgstr ""
+msgstr "Способность:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1425
 msgid "Exp. Yield:"
@@ -9018,7 +9020,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2457
 msgid "HP: "
-msgstr ""
+msgstr "ОЗ: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2481
 msgid "Atk: "
@@ -9038,7 +9040,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2666
 msgid "Evolution"
-msgstr ""
+msgstr "Эволюция"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2691
 msgid "Item 1:"
@@ -9102,15 +9104,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3115
 msgid "Can move:"
-msgstr ""
+msgstr "Может двигаться:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3127
 msgid "Can throw items:"
-msgstr ""
+msgstr "Может бросать предметы:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3139
 msgid "Can evolve:"
-msgstr ""
+msgstr "Может эволюционировать:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3151
 msgid "Item req. for spawn:"
@@ -9118,7 +9120,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3367
 msgid "Chance to spawn asleep:"
-msgstr ""
+msgstr "Шанс появиться спящим:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3392
 msgid "HP Regeneration:"
@@ -9414,7 +9416,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:25
 msgid "ASM Patches"
-msgstr ""
+msgstr "Патчи ASM"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:42
 msgid "Apply ASM (assembler) patches to the game."
@@ -9428,12 +9430,12 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:45
 #: skytemple/skytemple/module/spritecollab/module.py:174
 msgid "Apply"
-msgstr ""
+msgstr "Применить"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:177
 msgctxt "Issues as in problems"
 msgid "Show Issues"
-msgstr ""
+msgstr "Показать проблемы"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:250
 msgid "A compatibility issue was detected while loading one or more patches."
@@ -9703,7 +9705,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/rom/main.ui:39
 msgid "Rom Settings"
-msgstr ""
+msgstr "Настройки Rom"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:192
 msgid "Internal name:"
@@ -10665,7 +10667,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1826
 msgid "Error importing the floor."
-msgstr ""
+msgstr "Ошибка при импорте этажа."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2474
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:147
@@ -10689,11 +10691,12 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/main.py:149
 msgid "Dungeon Errors were fixed.\n"
 "However there are still errors left. Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"
-msgstr ""
+msgstr "Ошибки подземелий были исправлены.\n"
+"Однако ошибки еще остались. Откройте диалоговое окно ещё раз, чтобы исправить остальные. Если они все еще не исправлены, пожалуйста, сообщите об ошибке!"
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:159
 msgid "Dungeon Errors were successfully fixed."
-msgstr ""
+msgstr "Ошибки подземелий успешно исправлены."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:180
 msgid "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
@@ -10710,7 +10713,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:210
 msgid "An internal error occurred: "
-msgstr ""
+msgstr "Произошла внутренняя ошибка: "
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:462
 #: skytemple/skytemple/module/dungeon/widget/main.py:466
@@ -10742,7 +10745,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:239
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:312
 msgid "Error exporting the tileset."
-msgstr ""
+msgstr "Ошибка при экспорте набора плиток."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:195
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:262
@@ -10755,7 +10758,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:271
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:272
 msgid "Error importing the tileset."
-msgstr ""
+msgstr "Ошибка при импорте набора плиток."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:220
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:960
@@ -10909,7 +10912,7 @@ msgstr ""
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:162
 #, python-brace-format
 msgid "!! Process exited with error. Exit code: {return_code} !!"
-msgstr ""
+msgstr "!! Процесс завершился с ошибкой. Код выхода: {return_code} !!"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:51
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:128
@@ -12984,7 +12987,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/widget/ssa.py:501
 msgid "Error importing the scene."
-msgstr ""
+msgstr "Ошибка при импорте сцены."
 
 #: skytemple/skytemple/module/script/widget/ssa.py:508
 msgid "Export scene as..."
@@ -13107,11 +13110,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:234
 msgid "Error importing the sprite."
-msgstr ""
+msgstr "Ошибка при импорте спрайта."
 
 #: skytemple/skytemple/module/sprite/module.py:254
 msgid "Error exporting the sprite."
-msgstr ""
+msgstr "Ошибка при экспорте спрайта."
 
 #: skytemple/skytemple/module/sprite/module.py:258
 msgid "Import image file..."
@@ -13446,17 +13449,19 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:482
 msgid "Error Reports"
-msgstr ""
+msgstr "Отчет об ошибках"
 
 #: skytemple/skytemple/skytemple.glade:497
 msgid "Send error reports"
-msgstr ""
+msgstr "Отправлять отчёты об ошибках"
 
 #: skytemple/skytemple/skytemple.glade:509
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>Если включено, отчеты об ошибках отправляются на sentry.io,\n"
+"что позволяет нам улучшить SkyTemple.\n"
+"Подробнее см. в <a href=\"privacy\">информации о конфиденциальности</a>.</i>"
 
 #: skytemple/skytemple/skytemple.glade:547
 msgid "Use Client Side Decorations"
@@ -13554,7 +13559,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1506
 msgid "Allow sending error reports"
-msgstr ""
+msgstr "Разрешить отправку отчётов об ошибках"
 
 #: skytemple/skytemple/skytemple.glade:1533
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
