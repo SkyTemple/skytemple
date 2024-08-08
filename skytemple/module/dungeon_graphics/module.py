@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
@@ -206,7 +205,7 @@ class DungeonGraphicsModule(AbstractModule):
         )
         self._colvec_pos = len(self._tree_level_iter) - 1
 
-    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
+    def handle_request(self, request: OpenRequest) -> ItemTreeEntryRef | None:
         if request.type == REQUEST_TYPE_DUNGEON_TILESET:
             return self._tree_level_iter[request.identifier]
         return None
@@ -307,7 +306,7 @@ class DungeonGraphicsModule(AbstractModule):
         )
         self._item_tree.mark_as_modified(self._root_node, RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StDungeonGraphicsDungeonBgPage):
             pass  # todo
         if isinstance(open_view, StDungeonGraphicsColvecPage):

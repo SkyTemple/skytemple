@@ -16,7 +16,8 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import typing
 from enum import auto, Enum
-from typing import Union, Callable, Optional
+from typing import Union
+from collections.abc import Callable
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -71,7 +72,7 @@ class Drawer:
         self.draw_area = draw_area
 
         self.ssa = ssa
-        self.map_bg: Optional[cairo.Surface] = None
+        self.map_bg: cairo.Surface | None = None
         self.position_marks: list[SourceMapPositionMark] = []
 
         self.draw_tile_grid = False
@@ -87,9 +88,9 @@ class Drawer:
         self._sectors_visible = [True for _ in range(0, len(self.ssa.layer_list))]
         self._sectors_solo = [False for _ in range(0, len(self.ssa.layer_list))]
         self._sector_highlighted = None
-        self._selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]] = None
+        self._selected: SsaActor | SsaObject | SsaPerformer | SsaEvent | SourceMapPositionMark | None = None
         # If not None, drag is active and value is coordinate
-        self._selected__drag: Optional[tuple[int, int]] = None
+        self._selected__drag: tuple[int, int] | None = None
         self._edit_pos_marks = False
 
         self.selection_plugin = SelectionDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM, self.selection_draw_callback)
@@ -218,7 +219,7 @@ class Drawer:
 
         return True
 
-    def selection_draw_callback(self, ctx: cairo.Context, x: Union[int, float], y: Union[int, float]):
+    def selection_draw_callback(self, ctx: cairo.Context, x: int | float, y: int | float):
         if self.interaction_mode == InteractionMode.SELECT:
             if self._selected is not None and self._selected__drag is not None:
                 # Draw dragged:
@@ -255,7 +256,7 @@ class Drawer:
 
     def get_under_mouse(
         self,
-    ) -> tuple[Optional[int], Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]]]:
+    ) -> tuple[int | None, SsaActor | SsaObject | SsaPerformer | SsaEvent | None]:
         """
         Returns the first entity under the mouse position, if any, and it's layer number.
         Not visible layers are not searched.
@@ -285,7 +286,7 @@ class Drawer:
                     return layer_i, actor
         return None, None
 
-    def get_pos_mark_under_mouse(self) -> Optional[SourceMapPositionMark]:
+    def get_pos_mark_under_mouse(self) -> SourceMapPositionMark | None:
         """
         Returns the first position mark under the mouse position, if any.
         Elements are searched in reversed drawing order (so what's drawn on top is also taken).
@@ -463,7 +464,7 @@ class Drawer:
 
     def _is_dragged(
         self,
-        entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark],
+        entity: SsaActor | SsaObject | SsaPerformer | SsaEvent | SourceMapPositionMark,
     ):
         return entity == self._selected and self._selected__drag is not None
 
@@ -770,7 +771,7 @@ class Drawer:
 
     def set_selected(
         self,
-        entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]],
+        entity: SsaActor | SsaObject | SsaPerformer | SsaEvent | SourceMapPositionMark | None,
     ):
         self._selected = entity
         self.draw_area.queue_draw()
@@ -799,7 +800,7 @@ class Drawer:
 
     def get_current_drag_entity_pos(
         self,
-    ) -> tuple[Union[int, float], Union[int, float]]:
+    ) -> tuple[int | float, int | float]:
         assert self._selected__drag is not None
         return self._snap_pos(
             self.mouse_x - self._selected__drag[0],

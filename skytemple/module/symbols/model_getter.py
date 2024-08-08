@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
-from typing import Dict, List
 
 from skytemple_files.data.md.protocol import Gender
 
@@ -46,11 +45,11 @@ class ModelGetter:
 
     project: RomProject
     # Dict that maps C types to their associated model instances
-    models: Dict[str, Gtk.ListStore]
+    models: dict[str, Gtk.ListStore]
 
     def __new__(cls, rom_project: RomProject):
         if cls._instance is None:
-            cls._instance = super(ModelGetter, cls).__new__(cls)
+            cls._instance = super().__new__(cls)
             cls._instance.project = rom_project
             cls._instance.models = {}
         return cls._instance
@@ -87,7 +86,7 @@ class ModelGetter:
                 pass
         return False
 
-    def get_all_supported_types(self) -> List[str]:
+    def get_all_supported_types(self) -> list[str]:
         """
         Returns a list with all the types supported by this class
         """

@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
-from typing import Optional, List
 
 from pmdsky_debug_py.protocol import SectionProtocol
 from skytemple.controller.main import MainController
@@ -59,7 +58,7 @@ class SymbolEntry:
     enable_display_type_overrides: bool
 
     # List of children entries. They will be registered alongside this one when the register() method is called.
-    children: List["SymbolEntry"]
+    children: list[SymbolEntry]
 
     def __init__(
         self,
@@ -72,7 +71,7 @@ class SymbolEntry:
         binary_protocol: SectionProtocol,
         value_type: SymbolEntryValueType,
         enable_display_type_overrides: bool,
-        children: List["SymbolEntry"],
+        children: list[SymbolEntry],
     ):
         """
         Directly creates an instance of the class by providing all its required data. It is recommended to use a
@@ -106,9 +105,9 @@ class SymbolEntry:
 
     def register(
         self,
-        symbol_entry_list: List["SymbolEntry"],
+        symbol_entry_list: list[SymbolEntry],
         tree_store: Gtk.TreeStore,
-        parent_iter: Optional[Gtk.TreeIter] = None,
+        parent_iter: Gtk.TreeIter | None = None,
     ):
         """
         Adds this entry to the specified symbol list and to the specified tree store. This will add the entry to the
@@ -160,7 +159,7 @@ class SymbolEntry:
             raise ValueError("Cannot set the value of a symbol entry that does not contain a simple symbol.")
 
     def _append_to_tree_store(
-        self, tree_store: Gtk.TreeStore, model_getter: ModelGetter, unique_id: int, parent_iter: Optional[Gtk.TreeIter]
+        self, tree_store: Gtk.TreeStore, model_getter: ModelGetter, unique_id: int, parent_iter: Gtk.TreeIter | None
     ):
         """
         Appends this entry to the tree store that contains symbol data

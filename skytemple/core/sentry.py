@@ -22,7 +22,8 @@ import os
 import typing
 from datetime import datetime
 from functools import partial
-from typing import TYPE_CHECKING, TypeVar, Callable
+from typing import TYPE_CHECKING, TypeVar
+from collections.abc import Callable
 import atexit
 import contextlib
 
