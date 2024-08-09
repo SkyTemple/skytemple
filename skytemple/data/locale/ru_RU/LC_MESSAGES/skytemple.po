@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-09 10:13\n"
+"PO-Revision-Date: 2024-08-09 11:24\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3491,23 +3491,23 @@ msgstr "Должен быть <= {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:398
 msgid "config.xml missing in patch package."
-msgstr ""
+msgstr "config.xml отсутствует в пакете патча."
 
 #: skytemple-files/skytemple_files/patch/patches.py:400
 msgid "Syntax error in the config.xml while reading patch package."
-msgstr ""
+msgstr "Синтаксическая ошибка в config.xml при чтении пакета патча."
 
 #: skytemple-files/skytemple_files/patch/patches.py:410
 msgid "patch.py missing in patch package."
-msgstr ""
+msgstr "patch.py отсутствует в пакете патча."
 
 #: skytemple-files/skytemple_files/patch/patches.py:412
 msgid "The patch.py of the patch package contains a syntax error."
-msgstr ""
+msgstr "В файле patch.py пакета патча содержится синтаксическая ошибка."
 
 #: skytemple-files/skytemple_files/patch/patches.py:417
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
-msgstr ""
+msgstr "В файле patch.py пакета патча отсутствует 'PatchHandler'."
 
 #: skytemple-files/skytemple_files/patch/patches.py:423
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
@@ -3541,7 +3541,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/script/ssb/constants.py:96
 #, python-brace-format
 msgid "Invalid DungeonMode: {string}"
-msgstr ""
+msgstr "Неверный режим подземелья: {string}"
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:186
 #, python-brace-format
@@ -4508,7 +4508,7 @@ msgstr "Карта мира"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:62
 msgid "Specific"
-msgstr ""
+msgstr "Особые"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:67
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:176
@@ -4554,7 +4554,7 @@ msgstr "Невозможно загрузить переменные!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:164
 msgid "_File"
-msgstr ""
+msgstr "_Файл"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:172
 msgid "Open ROM"
@@ -4586,7 +4586,7 @@ msgstr "Цветовые схемы"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:365
 msgid "Enable Spellcheck"
-msgstr ""
+msgstr "Включить проверку правописания"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:378
 msgid "_Debugger"
@@ -4594,7 +4594,7 @@ msgstr "_Отладчик"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:388
 msgid "Disable Breakpoints"
-msgstr ""
+msgstr "Отключить точки останова"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:453
 msgid "_Emulator"
@@ -4740,7 +4740,7 @@ msgstr "Загрузить"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1262
 msgid "Reload current variables"
-msgstr ""
+msgstr "Обновить текущие переменные"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1266
 msgid "Sometimes the values get out\n"
@@ -4943,11 +4943,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2367
 msgid "Used"
-msgstr ""
+msgstr "Использовано"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2387
 msgid "Dump Selected Block"
-msgstr ""
+msgstr "Выгрузить выбранный блок"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2401
 #: skytemple/skytemple/data/widget/lists/animations.ui:476
@@ -4985,7 +4985,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/object_list.glade:272
 #: skytemple/skytemple/module/lists/controller/object_list.glade:294
 msgid "Reload"
-msgstr ""
+msgstr "Перезагрузить"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2422
 msgid "Allocated Memory"
@@ -5068,7 +5068,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3168
 msgid "Engine Events"
-msgstr ""
+msgstr "События движка"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3228
 msgid "Debug Log"
@@ -5154,7 +5154,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:41
 msgid "Constants & Variables"
-msgstr ""
+msgstr "Константы и переменные"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/exps_statements.py:34
 msgid "Statements"
@@ -5170,11 +5170,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:250
 msgid "Action not supported"
-msgstr ""
+msgstr "Действие не поддерживается"
 
 #: skytemple/skytemple/_i18n.py:22
 msgid "_About"
-msgstr ""
+msgstr "_О программе"
 
 #: skytemple/skytemple/_i18n.py:23
 msgid "_Add"
@@ -5240,25 +5240,25 @@ msgstr ""
 #: skytemple/skytemple/_i18n.py:39
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2454
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: skytemple/skytemple/_i18n.py:40
 msgid "_Yes"
-msgstr ""
+msgstr "_Да"
 
 #: skytemple/skytemple/_i18n.py:41
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:97
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:83
 msgid "_Open"
-msgstr ""
+msgstr "_Открыть"
 
 #: skytemple/skytemple/_i18n.py:42
 msgid "_Paste"
-msgstr ""
+msgstr "_Вставить"
 
 #: skytemple/skytemple/_i18n.py:43
 msgid "_Preferences"
-msgstr ""
+msgstr "_Параметры"
 
 #: skytemple/skytemple/_i18n.py:44
 msgid "_Print"
