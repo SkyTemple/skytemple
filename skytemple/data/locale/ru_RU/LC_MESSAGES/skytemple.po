@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-10 15:00\n"
+"PO-Revision-Date: 2024-08-10 16:35\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -169,7 +169,7 @@ msgstr ""
 
 #: /dev/fd/63:38 /dev/fd/63:257
 msgid "Music Tracks"
-msgstr ""
+msgstr "Музыкальные треки"
 
 #: /dev/fd/63:39 /dev/fd/63:258
 msgid "Personality Quiz Questions"
@@ -2053,7 +2053,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:141
 msgid "No condition"
-msgstr ""
+msgstr "Нет условия"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:142
 msgid "Based on AI Condition 1 Chance"
@@ -2061,15 +2061,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:143
 msgid "Current HP <= 25%"
-msgstr ""
+msgstr "Текущее ОЗ <= 25%"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:144
 msgid "Has at least one negative status condition"
-msgstr ""
+msgstr "Имеет как минимум одно негативное состояние"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:145
 msgid "Is asleep, in a nightmare or napping"
-msgstr ""
+msgstr "Спит, видит кошмар или дремлет"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:146
 msgid "Is a ghost-type Pokémon and does not have the exposed status"
@@ -2078,7 +2078,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:149
 #, python-format
 msgid "Current HP <= 25% or has at least one negative status condition"
-msgstr ""
+msgstr "Текущий ОЗ <= 25% или имеет хотя бы одно негативное состояние"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:55
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:235
@@ -2339,7 +2339,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:131
 msgid "No darkness"
-msgstr ""
+msgstr "Нет темноты"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:132
 msgid "1-tile vision (Heavy darkness)"
@@ -3463,7 +3463,7 @@ msgstr "Перед применением '{name}' необходимо прим
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr ""
+msgstr "Перед применением '{name}' необходимо применить патч '{patch_name}'. Не удалось найти этот патч."
 
 #: skytemple-files/skytemple_files/patch/patches.py:269
 msgid "No configuration was given."
@@ -5591,7 +5591,7 @@ msgstr "SkyTemple - Значение вне диапазона"
 
 #: skytemple/skytemple/core/widget/user_feedback.py:79
 msgid "Please include a comment in your report. You don't need to submit empty reports, we receive all errors automatically. Your comments help us to understand the issue, but they are not required. If you don't want to submit comments, hit Cancel."
-msgstr ""
+msgstr "Пожалуйста, включите комментарий в свой отчет. Не отправляйте пустые отчеты, мы автоматически получаем все ошибки. Ваши комментарии помогают нам разобраться в проблеме, но они не обязательны. Если вы не хотите оставлять комментарии, нажмите «Отменить»."
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:35
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1094
@@ -5778,7 +5778,7 @@ msgstr "Сброс денег до 0:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:853
 msgid "Reveal traps by attack:"
-msgstr ""
+msgstr "Ловушки раскрываются атакой:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:866
 msgid "Max. items allowed:"
@@ -5871,7 +5871,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:182
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:183
 msgid "Add Tile"
-msgstr ""
+msgstr "Добавить плитку"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:199
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:200
@@ -5917,7 +5917,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:367
 msgid "Show Tile Info"
-msgstr ""
+msgstr "Показать информацию о плитке"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:368
 msgid "Ti"
@@ -5925,7 +5925,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:383
 msgid "Show Item Info"
-msgstr ""
+msgstr "Показать информацию о предмете"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:384
 msgid "I"
@@ -5941,7 +5941,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:415
 msgid "Show Trap Info"
-msgstr ""
+msgstr "Показать информацию о ловушке"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:416
 msgid "Tr"
@@ -5950,7 +5950,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:441
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2986
 msgid "Show full map instead of minimap"
-msgstr ""
+msgstr "Показать полную карту вместо мини-карты"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:486
 msgid "Select a tile \n"
@@ -6002,7 +6002,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:738
 #: skytemple/skytemple/data/widget/script/ssa.ui:855
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:776
 msgid "Selected Entity"
@@ -11479,7 +11479,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:301
 msgid "Error adding the logo."
-msgstr ""
+msgstr "Ошибка при добавлении логотипа."
 
 #: skytemple/skytemple/module/map_bg/module.py:308
 msgid "Logo added successfully. Thank you!"
@@ -11709,7 +11709,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:161
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:139
 msgid "Error importing font."
-msgstr ""
+msgstr "Ошибка при импорте шрифта."
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:231
 #, python-brace-format
@@ -11718,7 +11718,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:241
 msgid "Error adding character."
-msgstr ""
+msgstr "Ошибка при добавлении персонажа."
 
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:102
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
@@ -11771,7 +11771,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:146
 #, python-brace-format
 msgid "Error for '{index}'."
-msgstr ""
+msgstr "Ошибка для '{index}'."
 
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:152
 msgid "Filename not specified."
@@ -12795,7 +12795,7 @@ msgstr ""
 #: skytemple/skytemple/module/portrait/widget/portrait.py:340
 #, python-brace-format
 msgid "Error for '{name}'."
-msgstr ""
+msgstr "Ошибка для '{name}'."
 
 #: skytemple/skytemple/module/portrait/module.py:97
 #, python-brace-format
@@ -13122,11 +13122,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:274
 msgid "Error importing image to object."
-msgstr ""
+msgstr "Ошибка при импорте изображения в объект."
 
 #: skytemple/skytemple/module/sprite/module.py:340
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
-msgstr ""
+msgstr "Ошибка с файлами спрайтов: Они не имеют одинаковой длины. Это будет исправлено путем добавления пустых спрайтов. Вам следует повторно импортировать последний импортированный спрайт."
 
 #: skytemple/skytemple/module/sprite/module.py:365
 msgid "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
@@ -13148,7 +13148,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:211
 msgid "Error exporting the spritesheet."
-msgstr ""
+msgstr "Ошибка при экспорте спрайтового листа."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:220
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:239
@@ -13176,7 +13176,7 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:305
 #: skytemple/skytemple/module/spritecollab/module.py:131
 msgid "Error importing the spritesheet."
-msgstr ""
+msgstr "Ошибка при экспорте спрайтового листа."
 
 #: skytemple/skytemple/module/sprite/widget/object.py:57
 msgid "SkyTemple can not edit sprites. \n"
@@ -13247,7 +13247,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:235
 msgid "Error Updating Sprites"
-msgstr ""
+msgstr "Ошибка обновления спрайтов"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:261
 #, python-brace-format
