@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-09 11:24\n"
+"PO-Revision-Date: 2024-08-10 15:00\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3467,11 +3467,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:269
 msgid "No configuration was given."
-msgstr ""
+msgstr "Конфигурация не была указана."
 
 #: skytemple-files/skytemple_files/patch/patches.py:272
 msgid "Missing configuration value."
-msgstr ""
+msgstr "Отсутствует значение конфигурации."
 
 #: skytemple-files/skytemple_files/patch/patches.py:277
 #: skytemple-files/skytemple_files/patch/patches.py:283
@@ -3479,7 +3479,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:297
 #: skytemple-files/skytemple_files/patch/patches.py:311
 msgid "Invalid configuration value."
-msgstr ""
+msgstr "Неправильное значение конфигурации."
 
 #: skytemple-files/skytemple_files/patch/patches.py:285
 msgid "Must be >= {}."
@@ -3595,7 +3595,7 @@ msgstr "Неизвестный язык для строки: {lang}"
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:377
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
-msgstr ""
+msgstr "Указан неверный параметр для операции: {param}"
 
 #: skytemple-files/skytemple_files/script/ssb/ssb_number.py:94
 msgid "The value '{}' can not be saved. Please use a value between -64.0 and 63.996 for fixed point numbers."
@@ -3620,15 +3620,15 @@ msgstr ""
 
 #: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
-msgstr ""
+msgstr "Ошибка чтения файловой системы из ROM: {}"
 
 #: skytemple-rust/src/st_bma.rs:467
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
-msgstr ""
+msgstr "Невозможно импортировать фон карты: Ширина обоих изображений должна соответствовать текущей ширине карты: {}px"
 
 #: skytemple-rust/src/st_bma.rs:479
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
-msgstr ""
+msgstr "Невозможно импортировать фон карты: Высота обоих изображений должна соответствовать текущей ширине карты: {}px"
 
 #: skytemple-rust/src/st_bpc.rs:541
 msgid "new tilemapping for this chunk must contain {} tiles."
@@ -4005,7 +4005,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/ssa.py:1656
 #: skytemple/skytemple/module/script/widget/ssa.py:1664
 msgid "Kind"
-msgstr ""
+msgstr "Вид"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:91
 #: skytemple/skytemple/data/widget/script/ssa.ui:1765
@@ -4017,7 +4017,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/ssa.py:1671
 #: skytemple/skytemple/module/script/widget/ssa.py:1678
 msgid "Sector"
-msgstr ""
+msgstr "Сектор"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:188
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:192
@@ -4310,7 +4310,7 @@ msgstr "Отмена"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
 msgid "You will not be able to restore it."
-msgstr ""
+msgstr "Вы не сможете восстановить его."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:255
 msgid "Parse error: "
@@ -4610,11 +4610,11 @@ msgstr "Сброс"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:489
 msgid "Keyboard controls..."
-msgstr ""
+msgstr "Управление клавиатурой..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:498
 msgid "Joystick controls..."
-msgstr ""
+msgstr "Управление джойстиком..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:507
 #: skytemple/skytemple/skytemple.glade:309
@@ -4663,7 +4663,7 @@ msgstr "_Справка"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "Wiki"
-msgstr ""
+msgstr "Википедия"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "ExplorerScript documentation"
@@ -4851,7 +4851,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/main.ui:428
 #: skytemple/skytemple/data/widget/script/main.ui:540
 msgid "Dungeon"
-msgstr ""
+msgstr "Подземелье"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1888
 msgid "Ground"
@@ -4872,7 +4872,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1968
 msgid "Sound"
-msgstr ""
+msgstr "Звук"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1984
 msgid "BGM"
@@ -5555,13 +5555,13 @@ msgstr "Вы уверены, что вы предоставили ROM? ROM об�
 #: skytemple/skytemple/core/ssb_debugger/context.py:195
 #: skytemple/skytemple/core/ssb_debugger/context.py:214
 msgid "A scene for this script was not found."
-msgstr ""
+msgstr "Сцена для этого скрипта не найдена."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:196
 #: skytemple/skytemple/core/ssb_debugger/context.py:215
 #: skytemple/skytemple/module/map_bg/widget/bg.py:515
 msgid "No Scenes Found"
-msgstr ""
+msgstr "Не найдено ни одной сцены"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:280
 msgid "SkyTemple Script Engine Debugger - Error!"
@@ -5623,7 +5623,7 @@ msgstr "Преобразовать изображение в PMD2-индекси
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:141
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5500
 msgid "Map Layer Export"
-msgstr ""
+msgstr "Экспорт слоя карты"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:204
 msgid "This will export the background as one image.\n\n"
@@ -5652,12 +5652,12 @@ msgstr "Это экспортирует фон как одно изображе�
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6108
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6334
 msgid "Format Details"
-msgstr ""
+msgstr "Сведения о формате"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:264
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6003
 msgid "Map Layer Import"
-msgstr ""
+msgstr "Импорт слоя карты"
 
 #: skytemple/skytemple/data/widget/bgp/bgp.ui:333
 msgid "This will import the entire background from an image.\n\n"
@@ -5758,7 +5758,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:734
 msgid "Enemies drop Boxes:"
-msgstr ""
+msgstr "Из врагов выпадают ящики:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:747
 msgid "Can switch leader:"
@@ -5770,7 +5770,7 @@ msgstr "Опыт включен:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:827
 msgid "Enemy evolution enabled:"
-msgstr ""
+msgstr "Эволюция врагов включена:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:840
 msgid "Money reset to 0:"
