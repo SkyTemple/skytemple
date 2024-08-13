@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-10 16:35\n"
+"POT-Creation-Date: 2024-08-10 18:01+0000\n"
+"PO-Revision-Date: 2024-08-13 14:52\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3908,7 +3908,7 @@ msgid "The file is still loaded in RAM! Currently you are still able to debug us
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:337
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1659
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1660
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:579
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:342
@@ -4235,21 +4235,21 @@ msgid "Common"
 msgstr "Общие"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:936
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1431
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1432
 #: skytemple/skytemple/module/script/module.py:251
 #: skytemple/skytemple/module/script/module.py:596
 msgid "Enter (sse)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:947
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1434
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
 #: skytemple/skytemple/module/script/module.py:268
 #: skytemple/skytemple/module/script/module.py:541
 msgid "Acting (ssa)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:957
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1438
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1439
 #: skytemple/skytemple/module/script/module.py:300
 #: skytemple/skytemple/module/script/module.py:552
 msgid "Sub (sss)"
@@ -4259,28 +4259,28 @@ msgstr ""
 msgid "Save dumped block..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1230
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1231
 msgid "Unable to save savestate!"
 msgstr "Невозможно создать быстрое сохранение!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1266
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1267
 msgid "Unable to load savestate!"
 msgstr "Невозможно загрузить быстрое сохранение!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1379
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1380
 msgid "The game is stopped."
 msgstr "Игра остановлена."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1388
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1389
 msgid "The game is paused."
 msgstr "Игра приостановлена."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1493
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1494
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr "Отладчик остановлен на {ssb.file_name}."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1655
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1656
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
@@ -4290,12 +4290,12 @@ msgstr "У вас есть несохраненные изменения пер�
 "Вам нужно сохранить переменные и загрузить их после загрузки.\n\n"
 "Вы все еще хотите продолжить?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1718
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1719
 msgid "Delete"
 msgstr "Удалить"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1720
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1731
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1732
 #: skytemple/skytemple/controller/main.py:961
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/widget/main.py:122
@@ -4308,7 +4308,7 @@ msgstr "Удалить"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
 msgid "You will not be able to restore it."
 msgstr "Вы не сможете восстановить его."
 
@@ -9834,7 +9834,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:530
 #: skytemple/skytemple/data/widget/script/ssa.ui:531
 msgid "Add Object"
-msgstr ""
+msgstr "Добавить объект"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:547
 #: skytemple/skytemple/data/widget/script/ssa.ui:548
@@ -10013,12 +10013,12 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/sprite/object.ui:192
 msgid "Import image"
-msgstr ""
+msgstr "Импортировать изображение"
 
 #: skytemple/skytemple/data/widget/sprite/object_main.ui:40
 #: skytemple/skytemple/module/sprite/widget/object_main.py:29
 msgid "Object Sprites"
-msgstr ""
+msgstr "Спрайты объектов"
 
 #: skytemple/skytemple/data/widget/sprite/object_main.ui:56
 msgid "This section lets you import and export object sprites."
@@ -10026,7 +10026,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/sprite/object_main.ui:96
 msgid "New Object Sprite"
-msgstr ""
+msgstr "Новый спрайт объекта"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:55
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:260
@@ -11062,7 +11062,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/object_list.glade:45
 #: skytemple/skytemple/module/lists/controller/object_list.glade:122
 msgid "Object List"
-msgstr ""
+msgstr "Список объектов"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:74
 msgid "<Not available>\n\n"
@@ -11087,7 +11087,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:101
 msgid "Invalid object name"
-msgstr ""
+msgstr "Недопустимое имя объекта"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:43
 #: skytemple/skytemple/module/lists/module.py:168
@@ -13186,11 +13186,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/widget/object_main.py:56
 msgid "Create Object Sprite"
-msgstr ""
+msgstr "Создать спрайт объекта"
 
 #: skytemple/skytemple/module/sprite/widget/object_main.py:56
 msgid "Sprite Name"
-msgstr ""
+msgstr "Имя спрайта"
 
 #: skytemple/skytemple/module/sprite/widget/object_main.py:66
 msgid "The length of the sprite name must be between 1-10 characters."
@@ -13309,7 +13309,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/module.py:40
 msgid "Text Strings"
-msgstr ""
+msgstr "Текстовые строки"
 
 #: skytemple/skytemple/module/strings/module.py:42
 msgid "This section lets you edit the text strings in the game. Please note that some of these strings can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
