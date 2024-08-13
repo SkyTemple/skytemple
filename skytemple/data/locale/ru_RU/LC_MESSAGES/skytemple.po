@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-10 18:01+0000\n"
-"PO-Revision-Date: 2024-08-13 14:52\n"
+"PO-Revision-Date: 2024-08-13 16:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1627,7 +1627,7 @@ msgstr "Сценарий больше или равен"
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:446
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:573
 msgid "Pokémon"
-msgstr ""
+msgstr "Покемоны"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:38
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:72
@@ -5166,7 +5166,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:249
 msgid "Macros have no scenes."
-msgstr ""
+msgstr "Макрос не имеет сцен."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:250
 msgid "Action not supported"
@@ -7684,7 +7684,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:79
 #: skytemple/skytemple/module/lists/module.py:228
 msgid "Dungeon Music"
-msgstr ""
+msgstr "Музыка подземелий"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:95
 msgid "Here you can edit the tracks selectable for dungeon floors. The tracks can either be assigned to single music tracks or to sets of four random tracks."
@@ -9766,7 +9766,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/script/main.ui:337
 msgid "Overworld Text String"
-msgstr ""
+msgstr "Текстовая строка верхнего мира"
 
 #: skytemple/skytemple/data/widget/script/main.ui:369
 msgid "Map Background"
@@ -10072,7 +10072,7 @@ msgstr "(необязательно)"
 
 #: skytemple/skytemple/data/widget/strings/strings.ui:44
 msgid "<LANG> Text Strings"
-msgstr ""
+msgstr "<LANG> Текстовые строки"
 
 #: skytemple/skytemple/data/widget/strings/strings.ui:72
 msgid "Categories:"
@@ -11579,17 +11579,20 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/widget/bg.py:854
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
-msgstr ""
+msgstr "На этой карте есть только один слой.\n"
+"Вы можете добавить второй слой в меню Карта > Настройки."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:873
 msgid "This map has no collision.\n"
 "You can add collision at Map > Settings."
-msgstr ""
+msgstr "На этой карте нет коллизий.\n"
+"Вы можете добавить коллизию в меню Карта > Настройки."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:880
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
-msgstr ""
+msgstr "На этой карте нет второго слоя коллизий.\n"
+"Второй слой коллизий можно добавить в меню Карта > Настройки."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:898
 msgid "This map has no data layer.\n"
@@ -12284,7 +12287,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/module.py:61
 msgid "This section lets you edit settings related to items."
-msgstr ""
+msgstr "В этом разделе можно редактировать настройки, связанные с предметами."
 
 #: skytemple/skytemple/module/moves_items/module.py:67
 msgid "This section lets you edit settings related to moves."
@@ -12578,7 +12581,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:50
 msgid "Settings for the \"{}\" Patch"
-msgstr ""
+msgstr "Настройки для патча \"{}\""
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:53
 msgid "The patch \"{}\" requires additional configuration:"
@@ -12587,12 +12590,12 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:120
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:122
 msgid "Invalid values for some settings provided. Please try again."
-msgstr ""
+msgstr "Неверные значения для некоторых настроек. Пожалуйста, попробуйте еще раз."
 
 #: skytemple/skytemple/module/patch/module.py:46
 #: skytemple/skytemple/module/patch/widget/asm.py:46
 msgid "Patches"
-msgstr ""
+msgstr "Патчи"
 
 #: skytemple/skytemple/module/patch/module.py:48
 msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
@@ -13429,7 +13432,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:191
 msgid "SkyTemple Settings"
-msgstr ""
+msgstr "Настройки SkyTemple"
 
 #: skytemple/skytemple/skytemple.glade:294
 msgid "Advanced"
@@ -13487,15 +13490,15 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:711
 msgid "Settings..."
-msgstr ""
+msgstr "Настройки..."
 
 #: skytemple/skytemple/skytemple.glade:726
 msgid "Open Image Converter..."
-msgstr ""
+msgstr "Открыть конвертер изображений..."
 
 #: skytemple/skytemple/skytemple.glade:741
 msgid "Open SpriteCollab Browser..."
-msgstr ""
+msgstr "Открыть браузер SpriteCollab..."
 
 #: skytemple/skytemple/skytemple.glade:755
 msgid "Open config directory..."
@@ -13531,7 +13534,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1262
 msgid "Open"
-msgstr ""
+msgstr "Открыть"
 
 #: skytemple/skytemple/skytemple.glade:1312
 msgid "Save to ROM"
@@ -13543,7 +13546,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1369
 msgid "Open script editor / debugger"
-msgstr ""
+msgstr "Открыть редактор скриптов/отладчик"
 
 #: skytemple/skytemple/skytemple.glade:1396
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky"
