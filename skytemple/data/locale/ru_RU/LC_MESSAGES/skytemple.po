@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-10 18:01+0000\n"
-"PO-Revision-Date: 2024-08-13 16:13\n"
+"PO-Revision-Date: 2024-08-15 18:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1085,7 +1085,7 @@ msgstr "Неверная операция для if-условия: {op.op_code.
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:91
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
-msgstr "Неивестная операция if в строке {self.ctx.start.line}."
+msgstr "Неизвестная операция if в строке {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:67
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:82
@@ -1118,7 +1118,7 @@ msgstr "Неверное switch-сообщение."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:89
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
-msgstr "switch-сообщение может сожержать лишь case-ы со строками (строка {self.ctx.start.line})."
+msgstr "Switch_сообщение может содержать лишь case-ы со строками (строка {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:80
 #, python-brace-format
@@ -11110,7 +11110,13 @@ msgid "To add them to the team right away:\n"
 "message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
 "The menu returns 1 if the player said yes and 0 if they said no.\n"
 "* Please note that for entry no. 16 the player will not be asked, it will always be added to the team."
-msgstr ""
+msgstr "Чтобы сразу добавить их в команду:\n"
+"ProcessSpecial(PROCESS_SPECIAL_ADD_RECRUITABLE_TO_TEAM, XX, 0);\n\n"
+"Чтобы добавить их в команду, спросив игрока об этом* и предложив ему ввести ник:\n"
+"ProcessSpecial(PROCESS_SPECIAL_PREPARE_MENU_ACCEPT_TEAM_MEMBER, XX, 0);\n"
+"message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
+"Меню возвращает 1, если игрок сказал \"да\", и 0, если сказал \"нет\".\n"
+"* Обратите внимание, что для пункта №16 игрока не будут спрашивать, он всегда будет добавлен в команду."
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:57
 msgid "Special Episode Player Characters"
