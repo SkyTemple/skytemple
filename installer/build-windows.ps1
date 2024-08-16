@@ -27,8 +27,11 @@ unzip -o nsis.zip -d "C:\Program Files (x86)\NSIS"
 python -m venv C:\skytemple-venv
 C:\skytemple-venv\Scripts\activate.ps1
 
+# Update to at least setuptools 71.0.0 due to potential issues with the hooks in PyInstaller 6.10+
+pip install 'setuptools>=71.0.0'
+
 # Install PyInstaller
-pip install setuptools wheel 'pyinstaller~=6.0'
+pip install setuptools wheel 'pyinstaller~=6.10'
 
 # Install certifi for cert handling
 pip3 install -U certifi
