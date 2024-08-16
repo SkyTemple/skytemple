@@ -96,6 +96,8 @@ a = Analysis(
         "packaging.specifiers",
         "packaging.requirements",
         "packaging.markers",
+        "setuptools",
+        "setuptools.version",
         "_sysconfigdata__win32_",
         "win32api",
         "certifi",
