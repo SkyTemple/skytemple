@@ -2,7 +2,7 @@
 # depdendencies for some reason. Add them manually here. `generator.py` will add them.
 [_remove]
 # All of these will already be installed in modules before the main pip modules. Or they are dev dependencies
-modules = ["python3-explorerscript", "python3-skytemple-rust", "python3-skytemple-ssb-emulator", "python3-pycairo"]
+modules = ["python3-explorerscript", "python3-skytemple-rust", "python3-skytemple-ssb-emulator", "python3-pycairo", "python3-setuptools"]
 dependencies = ["igraph", "explorerscript", "skytemple_rust", "skytemple_ssb_emulator"]
 
 [[_group.packaging]]

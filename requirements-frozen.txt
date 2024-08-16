@@ -28,5 +28,6 @@ psutil==6.0.0
 sentry-sdk==2.10.0
 cairocffi>=1.6.1
 packaging
-wheel
+wheel  # setuptools-dso (via tilequant) needs that at runtime
+setuptools  # wheel needs that at runtime
 importlib_metadata>=4.6; python_version < "3.10"
