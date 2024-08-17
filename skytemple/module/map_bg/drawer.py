@@ -17,7 +17,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from enum import Enum, auto
-from typing import Union, Optional
 from collections.abc import Iterable, Sequence
 
 from gi.repository import GLib, Gtk, Gdk
@@ -49,7 +48,7 @@ class Drawer:
     def __init__(
         self,
         draw_area: Widget,
-        bma: Union[BmaProtocol, None],
+        bma: BmaProtocol | None,
         bpa_durations: int,
         pal_ani_durations: int,
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
@@ -105,8 +104,8 @@ class Drawer:
             self.mappings: list[Sequence[int]] = [bma.layer0, bma.layer1]  # type: ignore
             self.width_in_chunks = bma.map_width_chunks
             self.height_in_chunks = bma.map_height_chunks
-            self.width_in_tiles: Optional[u8] = bma.map_width_camera
-            self.height_in_tiles: Optional[u8] = bma.map_height_camera
+            self.width_in_tiles: u8 | None = bma.map_width_camera
+            self.height_in_tiles: u8 | None = bma.map_height_camera
             self.collision1 = bma.collision
             self.collision2 = bma.collision2
             self.data_layer = bma.unknown_data_block
@@ -127,7 +126,7 @@ class Drawer:
         self.reset_bma(bma)
 
         self.animation_context = AnimationContext(chunks_surfaces, bpa_durations, pal_ani_durations)
-        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+        self._tileset_drawer_overlay: MapTilesetOverlay | None = None
 
     def start(self):
         """Start drawing on the DrawingArea"""
@@ -412,7 +411,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
         self.chunkidx = 0
 
-    def do_get_size(self, widget: Widget, cell_area: Optional[Gdk.Rectangle] = None) -> tuple[int, int, int, int]:
+    def do_get_size(self, widget: Widget, cell_area: Gdk.Rectangle | None = None) -> tuple[int, int, int, int]:
         return (
             0,
             0,

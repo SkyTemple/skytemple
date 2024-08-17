@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
-from typing import Optional
 
 from gi.repository import Gtk
 
@@ -33,7 +32,7 @@ class StoreEntryValueSetter:
 
     @staticmethod
     def set_value(
-        store_entry: Gtk.TreeModelRow, value: str, mark_unsaved: bool, model_iter: Optional[Gtk.TreeIter] = None
+        store_entry: Gtk.TreeModelRow, value: str, mark_unsaved: bool, model_iter: Gtk.TreeIter | None = None
     ):
         """
         Sets the value of one of the entries in the TreeStore

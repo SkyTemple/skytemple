@@ -18,7 +18,6 @@ import asyncio
 import os
 import sys
 from tempfile import NamedTemporaryFile
-from typing import Optional
 
 from PIL import Image
 from gi.repository import Gtk, GLib, Pango
@@ -70,7 +69,7 @@ class SpritecollabModule(AbstractModule):
         if not portrait_module.is_idx_supported(prt_idx):
             self._msg_not_supported(window)
             return
-        fname: Optional[str] = None
+        fname: str | None = None
         try:
             with NamedTemporaryFile("w+b", delete=False, suffix=".png") as f:
                 fname = f.name
@@ -130,7 +129,7 @@ class SpritecollabModule(AbstractModule):
         except BaseException as e:
             display_error(sys.exc_info(), str(e), _("Error importing the spritesheet."))
 
-    def _check_opened(self, window: Gtk.Window) -> Optional[int]:
+    def _check_opened(self, window: Gtk.Window) -> int | None:
         project = RomProject.get_current()
         if project is None:
             self._msg_not_opened(window)
@@ -166,7 +165,7 @@ class SpritecollabModule(AbstractModule):
             Gtk.MessageType.ERROR,
         )
 
-    def _show_sprite_diag(self, window: Gtk.Window) -> Optional[tuple[bool, bool]]:
+    def _show_sprite_diag(self, window: Gtk.Window) -> tuple[bool, bool] | None:
         diag: Gtk.Dialog = Gtk.Dialog()
         diag.set_parent(window)
         diag.set_transient_for(window)
@@ -230,7 +229,7 @@ async def get_sprites(
     client: SpriteCollabClient,
     form: tuple[int, str],
     copy_to_event_sleep_if_missing: bool,
-) -> Optional[tuple[WanFile, Pmd2Sprite, int]]:
+) -> tuple[WanFile, Pmd2Sprite, int] | None:
     async with client as session:
         sprites = await session.fetch_sprites(
             [form],

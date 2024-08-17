@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _
@@ -98,7 +97,7 @@ class BgpModule(AbstractModule):
         bgp_filename = self.list_of_bgps[item_id]
         return self.project.open_file_in_rom(bgp_filename, FileType.BGP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StBgpBgpPage):
             return {"models": {self.list_of_bgps[open_view.item_data]: open_view.bgp}}
         return None

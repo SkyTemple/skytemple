@@ -19,7 +19,8 @@ import logging
 import re
 import sys
 from enum import Enum
-from typing import TYPE_CHECKING, Optional, cast, Callable
+from typing import TYPE_CHECKING, Optional, cast
+from collections.abc import Callable
 from xml.etree import ElementTree
 import cairo
 from explorerscript.util import open_utf8

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import cast, Optional
+from typing import cast
 
 from gi.repository import Gtk
 
@@ -38,7 +38,7 @@ IS_SUCCESS = "is_success"
 class SkyTempleMessageDialog(Gtk.MessageDialog):
     def __init__(
         self,
-        parent: Optional[Gtk.Window],
+        parent: Gtk.Window | None,
         dialog_flags: Gtk.DialogFlags,
         message_type: Gtk.MessageType,
         buttons_type: Gtk.ButtonsType,

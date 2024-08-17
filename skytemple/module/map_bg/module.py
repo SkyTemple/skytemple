@@ -16,9 +16,23 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import Union, Optional
 
 from gi.repository import Gtk
+from skytemple_files.common.i18n_util import _
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.container.dungeon_bin.model import DungeonBinPack
+from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaBinProtocol
+from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol
+from skytemple_files.graphics.bma.protocol import BmaProtocol
+from skytemple_files.graphics.bpa.protocol import BpaProtocol
+from skytemple_files.graphics.bpc.protocol import BpcProtocol
+from skytemple_files.graphics.bpl.protocol import BplProtocol
+from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
+from skytemple_files.hardcoded.ground_dungeon_tilesets import (
+    GroundTilesetMapping,
+    HardcodedGroundDungeonTilesets,
+)
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
@@ -35,22 +49,6 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
-from skytemple_files.common.types.file_types import FileType
-from skytemple_files.container.dungeon_bin.model import DungeonBinPack
-from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
-from skytemple_files.dungeon_data.mappa_bin.protocol import MappaBinProtocol
-from skytemple_files.graphics.bma.protocol import BmaProtocol
-from skytemple_files.graphics.bpa.protocol import BpaProtocol
-from skytemple_files.graphics.bpc.protocol import BpcProtocol
-from skytemple_files.graphics.bpl.protocol import BplProtocol
-from skytemple_files.common.i18n_util import _
-from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol
-from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
-from skytemple_files.hardcoded.ground_dungeon_tilesets import (
-    GroundTilesetMapping,
-    HardcodedGroundDungeonTilesets,
-)
-
 from skytemple.module.map_bg.widget.bg import StMapBgBgPage
 from skytemple.module.map_bg.widget.main import MAPBG_NAME, StMapBgMainPage
 
@@ -201,7 +199,7 @@ class MapBgModule(AbstractModule):
                 )
             )
 
-    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
+    def handle_request(self, request: OpenRequest) -> ItemTreeEntryRef | None:
         if request.type == REQUEST_TYPE_MAP_BG:
             if request.identifier > len(self._tree_level_iter) - 1:
                 return None
@@ -231,9 +229,9 @@ class MapBgModule(AbstractModule):
         lst = self.bgs.level[item_id]
         return self.project.open_file_in_rom(f"{MAP_BG_PATH}{lst.bpl_name.lower()}.bpl", FileType.BPL)
 
-    def get_bpas(self, item_id) -> list[Optional[BpaProtocol]]:
+    def get_bpas(self, item_id) -> list[BpaProtocol | None]:
         lst = self.bgs.level[item_id]
-        bpas: list[Optional[BpaProtocol]] = []
+        bpas: list[BpaProtocol | None] = []
         for bpa in lst.bpa_names:
             if bpa is None:
                 bpas.append(None)
@@ -364,14 +362,14 @@ class MapBgModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StMapBgBgPage):
             pass  # todo
         return None
 
 
 # noinspection PyUnusedLocal
-def make_status_page_data_folder(name: Optional[str]) -> StStatusPageData:
+def make_status_page_data_folder(name: str | None) -> StStatusPageData:
     if name is not None:
         title = _('Map Background category "{}"').format(name)
         description = _("This section contains all the map backgrounds, that start with the letter {}.".format(name[0]))

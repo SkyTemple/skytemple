@@ -17,7 +17,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import Union, Optional
 from collections.abc import Iterable
 
 from gi.repository import GLib, Gtk, Gdk
@@ -41,7 +40,7 @@ class Drawer:
     def __init__(
         self,
         draw_area: Widget,
-        dbg: Union[DbgProtocol, None],
+        dbg: DbgProtocol | None,
         pal_ani_durations: int,
         # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
         chunks_surfaces: Iterable[Iterable[list[cairo.Surface]]],
@@ -218,7 +217,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
         self.chunkidx = 0
 
-    def do_get_size(self, widget: Widget, cell_area: Optional[Gdk.Rectangle] = None) -> tuple[int, int, int, int]:
+    def do_get_size(self, widget: Widget, cell_area: Gdk.Rectangle | None = None) -> tuple[int, int, int, int]:
         return (
             0,
             0,
