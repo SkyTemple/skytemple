@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-08-06 17:01+0000\n"
-"PO-Revision-Date: 2024-08-08 18:28\n"
+"POT-Creation-Date: 2024-08-10 18:01+0000\n"
+"PO-Revision-Date: 2024-08-18 23:29\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -25,7 +25,7 @@ msgstr "Inglés"
 
 #: /dev/fd/63:2 /dev/fd/63:221
 msgid "Friend Rescue Set Phrases"
-msgstr ""
+msgstr "Frases de rescate de amigo"
 
 #: /dev/fd/63:3 /dev/fd/63:222
 msgid "Friend Rescue Message Input Strings"
@@ -33,15 +33,15 @@ msgstr ""
 
 #: /dev/fd/63:4 /dev/fd/63:223
 msgid "Debug Strings (Game Init)"
-msgstr ""
+msgstr "Cadenas de depuración (Inicio del juego)"
 
 #: /dev/fd/63:5 /dev/fd/63:224
 msgid "Util Strings"
-msgstr ""
+msgstr "Cadenas útiles"
 
 #: /dev/fd/63:6 /dev/fd/63:225
 msgid "Chapter and Special Episode Strings"
-msgstr ""
+msgstr "Cadenas de capítulos y episodios especiales"
 
 #: /dev/fd/63:7 /dev/fd/63:226
 msgid "Explorer Ranks Names"
@@ -49,15 +49,15 @@ msgstr "Nombres de rangos de explorador"
 
 #: /dev/fd/63:8 /dev/fd/63:227
 msgid "Default Menu Strings 1"
-msgstr ""
+msgstr "Cadena de menú por defecto 1"
 
 #: /dev/fd/63:9 /dev/fd/63:228
 msgid "Default Menu Strings 2"
-msgstr ""
+msgstr "Cadena de menú por defecto 2"
 
 #: /dev/fd/63:10 /dev/fd/63:229
 msgid "Debug Strings (Main Menu)"
-msgstr ""
+msgstr "Cadenas de depuración (Menú principal)"
 
 #: /dev/fd/63:11 /dev/fd/63:230
 msgid "Default Team Names"
@@ -3940,7 +3940,7 @@ msgstr "El archivo sigue cargado en la memoria RAM. Todavía puede depurarse uti
 "¿Quieres cerrar el archivo?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:337
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1659
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1660
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:579
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:342
@@ -4267,21 +4267,21 @@ msgid "Common"
 msgstr "Común"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:936
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1431
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1432
 #: skytemple/skytemple/module/script/module.py:251
 #: skytemple/skytemple/module/script/module.py:596
 msgid "Enter (sse)"
 msgstr "Entrada (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:947
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1434
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
 #: skytemple/skytemple/module/script/module.py:268
 #: skytemple/skytemple/module/script/module.py:541
 msgid "Acting (ssa)"
 msgstr "Acciones (ssa)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:957
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1438
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1439
 #: skytemple/skytemple/module/script/module.py:300
 #: skytemple/skytemple/module/script/module.py:552
 msgid "Sub (sss)"
@@ -4291,28 +4291,28 @@ msgstr "Sub (sss)"
 msgid "Save dumped block..."
 msgstr "Guardar bloque volcado..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1230
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1231
 msgid "Unable to save savestate!"
 msgstr "¡Error al guardar el archivo de guardado!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1266
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1267
 msgid "Unable to load savestate!"
 msgstr "¡Error al cargar el archivo guardado!"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1379
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1380
 msgid "The game is stopped."
 msgstr "El juego está detenido."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1388
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1389
 msgid "The game is paused."
 msgstr "El juego está en pausa."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1493
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1494
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr "El depurador se ha detenido en {ssb.file_name}."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1655
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1656
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
@@ -4322,12 +4322,12 @@ msgstr "Tienes cambios no guardados en las variables.\n"
 "Tienes que guardar las variables y cargarlas después del reinicio.\n\n"
 "¿Quieres continuar?"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1718
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1719
 msgid "Delete"
 msgstr "Eliminar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1720
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1731
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1732
 #: skytemple/skytemple/controller/main.py:961
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/widget/main.py:122
@@ -4340,7 +4340,7 @@ msgstr "Eliminar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
 msgid "You will not be able to restore it."
 msgstr "No podrás restaurarlo."
 
