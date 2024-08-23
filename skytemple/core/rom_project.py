@@ -21,6 +21,8 @@ import os
 import shutil
 import struct
 import sys
+from collections.abc import Iterator
+from datetime import datetime
 from enum import Enum, auto
 from typing import (
     Union,
@@ -31,31 +33,14 @@ from typing import (
     overload,
     Literal,
 )
-from collections.abc import Iterator
-from datetime import datetime
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
-from skytemple_files.user_error import mark_as_user_err, UserValueError
-
-from skytemple.core.item_tree import ItemTreeEntryRef
-from skytemple.core.profiling import record_transaction, record_span, TaggableContext
-from skytemple.core.ui_utils import assert_not_none
-from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
-
-from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.modules import Modules
-from skytemple.core.open_request import OpenRequest
-from skytemple.core.model_context import ModelContext
-from skytemple.core.sprite_provider import SpriteProvider
-from skytemple.core.string_provider import StringProvider, StringType
+from skytemple_files.common.i18n_util import _
 from skytemple_files.common.project_file_manager import ProjectFileManager
-from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import (
     get_files_from_rom_with_extension,
     get_rom_folder,
@@ -67,10 +52,24 @@ from skytemple_files.common.util import (
     get_binary_from_rom,
     set_binary_in_rom,
 )
-from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
-from skytemple_files.patch.patches import Patcher
 from skytemple_files.compression_container.common_at.handler import CommonAtType
+from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
+from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 from skytemple_files.hardcoded.icon_banner import IconBanner
+from skytemple_files.patch.patches import Patcher
+from skytemple_files.user_error import mark_as_user_err, UserValueError
+
+from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
+from skytemple.core.item_tree import ItemTreeEntryRef
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.model_context import ModelContext
+from skytemple.core.modules import Modules
+from skytemple.core.open_request import OpenRequest
+from skytemple.core.profiling import record_transaction, record_span, TaggableContext
+from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.string_provider import StringProvider, StringType
+from skytemple.core.ui_utils import assert_not_none
 
 logger = logging.getLogger(__name__)
 BACKUP_NAME = ".~backup.bin"
@@ -78,7 +77,6 @@ BACKUP_NAME = ".~backup.bin"
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
     from skytemple.module.rom.module import RomModule
-
 
 from contextlib import nullcontext, AbstractContextManager
 
@@ -687,7 +685,7 @@ class RomProject:
             FileType.KAO.properties().kao_image_limit = 808
         else:
             FileType.KAO.properties().kao_image_limit = 800
-        
+
         # Allow ATUPX files if the ProvideATUPXSupport patch is applied
         if self.is_patch_applied("ProvideATUPXSupport"):
             FileType.COMMON_AT.allow(CommonAtType.ATUPX)
