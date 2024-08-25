@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-08-24 17:12\n"
+"PO-Revision-Date: 2024-08-25 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -757,7 +757,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4997
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1765
 msgid "TMs, HMs"
-msgstr ""
+msgstr "TM, HM"
 
 #: /dev/fd/63:183 /dev/fd/63:402
 msgid "Poké (Money)"
@@ -846,7 +846,7 @@ msgstr ""
 
 #: /dev/fd/63:203 /dev/fd/63:422
 msgid "Only interruptions don't heal HP"
-msgstr ""
+msgstr "Только прерывания не восстанавливают ОЗ"
 
 #: /dev/fd/63:204 /dev/fd/63:423
 #, c-format
@@ -936,7 +936,7 @@ msgstr "Целое число недопустимо в этой позиции.
 #: explorerscript/explorerscript/common_syntax.py:103
 #: explorerscript/explorerscript/common_syntax.py:189
 msgid "Decimal not allowed at this position."
-msgstr ""
+msgstr "Десятичные числа недопустимы в этой позиции."
 
 #: explorerscript/explorerscript/common_syntax.py:114
 msgid "Constant not allowed at this position."
@@ -1542,7 +1542,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/md/protocol.py:429
 #: skytemple/skytemple/module/dungeon/widget/floor.py:148
 msgid "Invalid"
-msgstr ""
+msgstr "Недопустимый"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:63
 msgid "WAN File 0"
@@ -1832,11 +1832,11 @@ msgstr ""
 #. TRANSLATORS: Movement Type
 #: skytemple-files/skytemple_files/data/md/protocol.py:522
 msgid "Lava"
-msgstr ""
+msgstr "Лава"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:523
 msgid "Water"
-msgstr ""
+msgstr "Вода"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:546
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:54
@@ -1953,11 +1953,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:60
 msgid "Enemies"
-msgstr ""
+msgstr "Враги"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:61
 msgid "Allies"
-msgstr ""
+msgstr "Союзники"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:62
 msgid "Everyone"
@@ -1966,7 +1966,7 @@ msgstr "Все"
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:63
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:108
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:64
 msgid "Two-turn move"
@@ -2008,7 +2008,7 @@ msgstr "Недопустимый "
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:75
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:116
 msgid "Special / Invalid"
-msgstr ""
+msgstr "Особый / Неверный"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:98
 msgid "In front"
@@ -2025,7 +2025,7 @@ msgstr "8 плиток вокруг пользователя"
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:101
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:690
 msgid "Room"
-msgstr ""
+msgstr "Вся комната"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:104
 msgid "Two tiles away"
@@ -2041,7 +2041,7 @@ msgstr "Прямая линия"
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:278
 #: skytemple/skytemple/module/dungeon/module.py:885
 msgid "Floor"
-msgstr ""
+msgstr "Весь этаж"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:109
 msgid "In front; cuts corners"
@@ -2049,7 +2049,7 @@ msgstr "Спереди, срезая углы"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:110
 msgid "Two tiles away; cuts corners"
-msgstr ""
+msgstr "На расстоянии двух плиток; срезает углы"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:141
 msgid "No condition"
@@ -2254,15 +2254,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:56
 msgid "Ring"
-msgstr ""
+msgstr "Кольцо"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:59
 msgid "Crossroads"
-msgstr ""
+msgstr "Перекресток"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:63
 msgid "Two Rooms, One Monster House"
-msgstr ""
+msgstr "Две комнаты, одна засада монстров"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:65
 msgid "Line"
@@ -2363,7 +2363,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
 msgid "Sticky Trap"
-msgstr ""
+msgstr "Липкая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:161
 msgid "Grimy Trap"
@@ -2375,7 +2375,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:163
 msgid "Pitfall Trap"
-msgstr ""
+msgstr "Яма-ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:164
 msgid "Warp Trap"
@@ -2423,7 +2423,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:175
 msgid "Wonder Tile"
-msgstr ""
+msgstr "Чудо-плитка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:176
 msgid "Pokemon Trap"
@@ -2601,15 +2601,15 @@ msgstr "Только палитра"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:41
 msgid "2 bits per pixel (4 colors)"
-msgstr ""
+msgstr "2 бита на пиксель (4 цвета)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:42
 msgid "4 bits per pixel (16 colors)"
-msgstr ""
+msgstr "4 бита на пиксель (16 цвета)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:43
 msgid "8 bits per pixel (256 colors)"
-msgstr ""
+msgstr "8 бит на пиксель (256 цвета)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:209
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
@@ -3130,7 +3130,7 @@ msgstr "Ошибка при применении патча: {ex}"
 
 #: skytemple-files/skytemple_files/patch/category.py:27
 msgid "Improvements and Tweaks"
-msgstr ""
+msgstr "Улучшения и исправления"
 
 #: skytemple-files/skytemple_files/patch/category.py:31
 msgid "New Mechanics"
@@ -3144,7 +3144,7 @@ msgstr "Исправления ошибок"
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:34
 msgid "Utility"
-msgstr ""
+msgstr "Утилиты"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:35
@@ -3158,11 +3158,12 @@ msgstr "Прочее"
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
 "Extracts both files on applying the patch."
-msgstr ""
+msgstr "Указывает игре загружать списки актеров и уровней из отдельных файлов.\n"
+"Распаковывает оба файла при применении патча."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:98
 msgid "This patch can not be re-applied."
-msgstr ""
+msgstr "Этот патч не может быть применен повторно."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:104
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:112
@@ -3652,12 +3653,12 @@ msgstr ""
 
 #: skytemple-rust/src/st_dpla.rs:111
 msgid "Palette is invalid."
-msgstr ""
+msgstr "Палитра является недопустимой."
 
 #: skytemple-rust/src/st_dpla.rs:116 skytemple-rust/src/st_dpla.rs:173
 #: skytemple-rust/src/st_dpla.rs:209 skytemple-rust/src/st_dpla.rs:217
 msgid "Palette index out of range."
-msgstr ""
+msgstr "Индекс палитры вне диапазона."
 
 #: skytemple-rust/src/st_dpla.rs:267
 msgid "Frame durations out of range while trying to build color."
@@ -5240,7 +5241,7 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:38
 msgid "_No"
-msgstr ""
+msgstr "_Нет"
 
 #: skytemple/skytemple/_i18n.py:39
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2454
@@ -5323,7 +5324,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/level_up_graph.py:101
 #: skytemple/skytemple/module/moves_items/module.py:66
 msgid "Moves"
-msgstr ""
+msgstr "Приемы"
 
 #: skytemple/skytemple/controller/main.py:286
 msgid "Save As..."
@@ -6092,7 +6093,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/move.ui:766
 #: skytemple/skytemple/skytemple.glade:277
 msgid "General"
-msgstr ""
+msgstr "Общее"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1285
 msgid "Overrides"
@@ -6512,7 +6513,7 @@ msgstr "Номер этажа"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1196
 msgid "Tileset"
-msgstr ""
+msgstr "Набор плиток"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1207
 #: skytemple/skytemple/data/widget/music/main.ui:40
@@ -7664,7 +7665,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:189
 msgid "Dungeon: "
-msgstr ""
+msgstr "Подземелье: "
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:251
 msgid "Interruptions: "
@@ -8329,7 +8330,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4701
 msgid "Edit Animation Palette"
-msgstr ""
+msgstr "Редактировать анимацию палитры"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4811
 msgid "Collision 1"
@@ -8689,11 +8690,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:323
 msgid "Export to CSV"
-msgstr ""
+msgstr "Экспортировать в CSV"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:337
 msgid "Import from CSV"
-msgstr ""
+msgstr "Импортировать из CSV"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:360
 msgid "Base Stats can be edited under \"Settings\". They will be applied for level 1."
@@ -8890,7 +8891,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/monster.ui:684
 #: skytemple/skytemple/data/widget/moves_items/move.ui:51
 msgid "Type:"
-msgstr ""
+msgstr "Тип:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:718
 msgid "Gender:"
@@ -9313,7 +9314,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/move.ui:372
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:252
 msgid "Description:"
-msgstr ""
+msgstr "Описание:"
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:577
 #: skytemple/skytemple/module/moves_items/widget/move.py:390
@@ -9696,7 +9697,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/portrait/portrait.ui:306
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:62
 msgid "Open SpriteCollab Browser"
-msgstr ""
+msgstr "Открыть браузер SpriteCollab"
 
 #: skytemple/skytemple/data/widget/portrait/portrait.ui:307
 msgid "Spritecollab Browser"
@@ -10120,7 +10121,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:241
 msgid "Search:"
-msgstr ""
+msgstr "Найти:"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
 msgid "Chunk Editor"
@@ -10144,7 +10145,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:318
 msgid "Palette"
-msgstr ""
+msgstr "Палитра"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:363
 msgid "Tile No."
@@ -10682,7 +10683,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2476
 msgid "Invalid?"
-msgstr ""
+msgstr "Недопустимый?"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2478
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:163
@@ -10907,7 +10908,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:125
 msgid "Import image..."
-msgstr ""
+msgstr "Импортировать изображение..."
 
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:81
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:91
@@ -11689,7 +11690,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:50
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:51
 msgid "Bytes per row"
@@ -13413,7 +13414,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:226
 msgid "Color "
-msgstr ""
+msgstr "Цвет "
 
 #: skytemple/skytemple/skytemple.glade:47
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
@@ -13517,7 +13518,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:769
 msgid "About"
-msgstr ""
+msgstr "О программе"
 
 #: skytemple/skytemple/skytemple.glade:922
 msgid "A new version of SkyTemple is available: "
@@ -13525,7 +13526,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:947
 msgid "Update now!"
-msgstr ""
+msgstr "Обновить сейчас!"
 
 #: skytemple/skytemple/skytemple.glade:981
 msgid "Recent Files:"
