@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-08-24 17:12\n"
+"PO-Revision-Date: 2024-08-25 12:32\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2572,7 +2572,9 @@ msgstr "Kann PIL Bild nicht in KAO umwandeln: Bilddimensionen müssen {img_dim}x
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:459
 msgid "This portrait does not compress well, the result size is greater than {limit} bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.If this still doesn't work, try the 'ExpandPortraitStructs' instead."
-msgstr ""
+msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als {limit} Bytes ({len(new_img_compressed)} Bytes insgesamt).\n"
+" Falls du es noch nicht probiert hast, versuche den Patch 'ProvideATUPXSupport' anzuwenden, um einen optimierten Kompressionsalgorithmus zu installieren, welcher möglicherweise in der Lage ist, dieses Bild besser zu komprimieren.\n"
+"Sollte das immer noch nicht funktionieren, probiere den Patch 'ExpandPortraitStructs'."
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:110
 #, python-brace-format
@@ -3307,7 +3309,7 @@ msgstr "Erweitert die Anzahl der erlaubten Pokémon auf 2048 und macht alle Eint
 
 #: skytemple-files/skytemple_files/patch/handler/expand_portrait.py:48
 msgid "Expands portraits structure by 8 bytes, which is enough to cover all cases."
-msgstr ""
+msgstr "Vergrößert die Porträt-Datenstruktur um 8 Bytes, was ausreicht, um alle Fälle abzudecken."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
@@ -3375,7 +3377,7 @@ msgstr "Sorgt dafür, dass das Spiel die Kamera immer zu deinen Partnern wechsel
 
 #: skytemple-files/skytemple_files/patch/handler/fast_chimecho.py:47
 msgid "Shorten Chimecho Team Assembly menu interactions. Adding, removing and making leader are now fast interactions that immediately go back to the team member selection menu."
-msgstr ""
+msgstr "Verkürzt die Interaktionen im Palimpalim-Treffpunkt Menü. Hinzufügen, Entfernen und Anführer-Wechsel sind jetzt schnelle Aktionen, die nach Auswahl sofort zum Auswahlmenü zurückkehren."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:45
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
@@ -3696,7 +3698,9 @@ msgstr "Beim Versuch, eine Farbtabelle zu generieren, lag die Frame-Dauer außer
 msgid "This portrait does not compress well, the result size is greater than {} bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.\n"
 "If this still doesn't work, try the 'ExpandPortraitStructs' instead."
-msgstr ""
+msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als {} Bytes ({} Bytes insgesamt).\n"
+" Falls du es noch nicht probiert hast, versuche den Patch 'ProvideATUPXSupport' anzuwenden, um einen optimierten Kompressionsalgorithmus zu installieren, welcher möglicherweise in der Lage ist, dieses Bild besser zu komprimieren.\n"
+"Sollte das immer noch nicht funktionieren, probiere den Patch 'ExpandPortraitStructs'."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:172
 msgid "BOOST"
