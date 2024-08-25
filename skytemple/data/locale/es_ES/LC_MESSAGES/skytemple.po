@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-08-24 17:12\n"
+"PO-Revision-Date: 2024-08-25 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -717,11 +717,11 @@ msgstr ""
 
 #: /dev/fd/63:175 /dev/fd/63:394
 msgid "New Pokemon Names"
-msgstr ""
+msgstr "Nuevos nombres de Pokémon"
 
 #: /dev/fd/63:176 /dev/fd/63:395
 msgid "New Pokemon Categories"
-msgstr ""
+msgstr "Nuevas categorías de Pokémon"
 
 #: /dev/fd/63:177 /dev/fd/63:396
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4164
@@ -1422,7 +1422,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/sprite_util.py:98
 #: skytemple/skytemple/module/monster/widget/monster.py:865
 msgid "Body Size"
-msgstr ""
+msgstr "Tamaño del cuerpo"
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:105
 #: skytemple/skytemple/module/monster/widget/monster.py:895
@@ -10394,7 +10394,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:241
 msgid "Search:"
-msgstr ""
+msgstr "Buscar:"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
 msgid "Chunk Editor"
@@ -11194,12 +11194,12 @@ msgstr "- Las imágenes son un PNG indexado de 256 colores.\n"
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:192
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_data} Rules"
-msgstr ""
+msgstr "Reglas del tileset {self.item_data} del territorio"
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:193
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_data}"
-msgstr ""
+msgstr "Tileset {self.item_data} del territorio"
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:225
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
@@ -11867,7 +11867,7 @@ msgstr "Categoría de fondo del mapa \"{}\""
 
 #: skytemple/skytemple/module/map_bg/module.py:377
 msgid "This section contains all the map backgrounds, that start with the letter {}."
-msgstr ""
+msgstr "Esta sección contiene todos los fondos del mapa que comienzan con la letra {}."
 
 #: skytemple/skytemple/module/map_bg/module.py:379
 msgid "Map Backgrounds for other maps"
@@ -13321,7 +13321,7 @@ msgstr "Exportar todos los retratos como PNG..."
 #: skytemple/skytemple/module/portrait/widget/portrait.py:305
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 39."
-msgstr ""
+msgstr "Para importar, selecciona un directorio desde el que importar. Se importarán los archivos con el patrón '{self.item_data + 1}_XX.png', donde XX es un número entre 0 y 39."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:308
 msgid "Import Portraits"
