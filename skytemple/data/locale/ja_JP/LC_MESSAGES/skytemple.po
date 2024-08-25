@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-08-24 17:12\n"
+"PO-Revision-Date: 2024-08-25 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -621,7 +621,7 @@ msgstr "ポートレート名"
 
 #: /dev/fd/63:151 /dev/fd/63:370
 msgid "Debug Strings (Dungeon 2)"
-msgstr ""
+msgstr "デバッグ文字列 (ダンジョン2)"
 
 #: /dev/fd/63:152 /dev/fd/63:371
 msgid "Debug Strings (PKMN Storage)"
@@ -1425,7 +1425,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/sprite_util.py:98
 #: skytemple/skytemple/module/monster/widget/monster.py:865
 msgid "Body Size"
-msgstr ""
+msgstr "からだのおおきさ"
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:105
 #: skytemple/skytemple/module/monster/widget/monster.py:895
@@ -3504,7 +3504,8 @@ msgstr "'{name}' を適用する前に、パッチ '{patch_name}' を適用す�
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr ""
+msgstr "'{name}' を適用する前に、パッチ '{patch_name}' を適用する必要があります。\n"
+"このパッチは見つかりませんでした。"
 
 #: skytemple-files/skytemple_files/patch/patches.py:271
 msgid "No configuration was given."
@@ -8729,11 +8730,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:323
 msgid "Export to CSV"
-msgstr ""
+msgstr "CSV にエクスポート"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:337
 msgid "Import from CSV"
-msgstr ""
+msgstr "CSV からインポート"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:360
 msgid "Base Stats can be edited under \"Settings\". They will be applied for level 1."
@@ -9948,7 +9949,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:1943
 #: skytemple/skytemple/data/widget/script/ssa.ui:2187
 msgid "Direction"
-msgstr ""
+msgstr "方向"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:2023
 #: skytemple/skytemple/data/widget/script/ssa.ui:2212
@@ -10165,7 +10166,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:241
 msgid "Search:"
-msgstr ""
+msgstr "検索:"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
 msgid "Chunk Editor"
@@ -10728,11 +10729,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:147
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:159
 msgid "Random "
-msgstr ""
+msgstr "ランダム "
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2476
 msgid "Invalid?"
-msgstr ""
+msgstr "無効?"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2478
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:163
@@ -10956,7 +10957,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:125
 msgid "Import image..."
-msgstr ""
+msgstr "画像をインポート..."
 
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:81
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:91
@@ -11225,7 +11226,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:434
 msgid "Gender"
-msgstr ""
+msgstr "性別"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:632
 msgid "Please note that after editing the Player Starters, you also need to edit the result text that is shown\n"
@@ -11315,7 +11316,7 @@ msgstr "ずぶとい"
 
 #: skytemple/skytemple/module/lists/module.py:88
 msgid "Lists"
-msgstr ""
+msgstr "リスト"
 
 #: skytemple/skytemple/module/lists/module.py:89
 msgid "This section lets you edit various lists of the game."
@@ -11816,7 +11817,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:146
 #, python-brace-format
 msgid "Error for '{index}'."
-msgstr ""
+msgstr "'{index}' エラー"
 
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:152
 msgid "Filename not specified."
