@@ -20,7 +20,6 @@ from io import StringIO
 from shutil import which
 from tempfile import TemporaryDirectory
 from typing import Iterator, Literal, Required, TypedDict, cast
-from urllib.request import urlretrieve
 
 import requirements
 import yaml
@@ -65,6 +64,7 @@ class FlatpakSourceRef(TypedDict, total=False):
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CACHED_DOWNLOADS_DIR = "tmp-downloads"
 INTERPRETER = sys.executable
 REQUIREMENTS_FILE_NIGHTLY = os.path.join(BASE_DIR, "..", "..", "requirements.txt")
 REQUIREMENTS_FILE_STABLE = os.path.join(BASE_DIR, "..", "..", "requirements-frozen.txt")
@@ -228,8 +228,11 @@ def source_ref_skytemple(git_tag: str | None) -> FlatpakSourceRef:
 
 
 @contextmanager
-def clone_repo_for_generator(req: Requirement, git_url: str) -> Iterator[str]:
+def clone_repo_for_generator(req: Requirement, git_url: str, dirname: str | None = None) -> Iterator[str]:
     with TemporaryDirectory() as tmp_dir:
+        if dirname is not None:
+            tmp_dir = os.path.join(tmp_dir, dirname)
+            os.makedirs(tmp_dir)
         print_t(f"Cloning repo for {req.name} for analysis to tmp dir {tmp_dir}")
         tag = get_git_tag_for_req(req)
         run_git("clone", git_url, tmp_dir)
@@ -245,7 +248,7 @@ def get_pkgname_and_version_from_repo(req: Requirement, git_url: str) -> tuple[s
         return get_pkgname_and_version_from_pyproject_toml(os.path.join(tmp_dir, "pyproject.toml"))
 
 
-def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> None:
+def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict, cache_dir: str) -> None:
     print_t("Fixing up requirements JSON file and adding additional dependencies")
     with open(out_json_path, "r") as f:
         modules = json.load(f)
@@ -277,7 +280,7 @@ def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> No
         ]
         # The pip generator doesn't properly parse the @ part of VCS dependencies, always trying to attribute
         # it as a commit. Sigh.
-        # Also installing Git repos only works for one single depedency, so use download tar.gz instead.
+        # Also installing Git repos only works for one single dependency, so we build a tar.gz with submodules in it.
         for source in module["sources"]:
             if "commit" in source:
                 if source["commit"] is None:
@@ -285,10 +288,9 @@ def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> No
                 else:
                     branch = source["commit"]
                 giturl = source["url"]
+                pseudo_req = Requirement.parse_line(f"{giturl} @ {giturl}@{branch}")
                 if giturl not in version_cache or giturl not in names_cache:
-                    names_cache[giturl], version_cache[giturl] = get_pkgname_and_version_from_repo(
-                        Requirement.parse_line(f"{giturl} @ {giturl}@{branch}"), giturl
-                    )
+                    names_cache[giturl], version_cache[giturl] = get_pkgname_and_version_from_repo(pseudo_req, giturl)
                 # Make sure to install the requirement from the downloaded tar instead
                 if f"python3-{names_cache[giturl]}" == module["name"]:
                     module["build-commands"][0] = (
@@ -296,18 +298,31 @@ def fixup_and_add_extra_pip_dependencies(out_json_path: str, extras: dict) -> No
                     )
                 source["type"] = "file"
                 del source["commit"]
-                source["url"] = source["url"] + f"/archive/refs/heads/{branch}.tar.gz"
+                fname = f"{names_cache[giturl]}-{version_cache[giturl]}.tar.gz"
+                source["url"] = os.path.abspath(os.path.join(cache_dir, fname))
                 if source["url"] not in checksum_cache:
-                    # download to get checksum
-                    with TemporaryDirectory() as tmp_dir:
-                        print_t(f"Fetching {source["url"]} for hashsum.")
-                        fpath = os.path.join(tmp_dir, "file")
-                        urlretrieve(source["url"], fpath)
-                        with open(fpath, "rb", buffering=0) as f9:
+                    # download to generate tarball and to get checksum
+                    with clone_repo_for_generator(
+                        pseudo_req, giturl, f"{names_cache[giturl]}-{version_cache[giturl]}"
+                    ) as tmp_dir:
+                        print_t(f"Fetching {source["url"]} for tar.gz.")
+                        print_cmd(f"generator--download-repo-with-submodules.sh {tmp_dir} {source["url"]}")
+                        subprocess.run(
+                            [
+                                os.path.join(BASE_DIR, "generator--download-repo-with-submodules.sh"),
+                                tmp_dir,
+                                source["url"],
+                            ],
+                            check=True,
+                            capture_output=True,
+                        )
+                        with open(source["url"], "rb", buffering=0) as f9:
                             checksum_cache[source["url"]] = hashlib.file_digest(f9, "sha256").hexdigest()  # type: ignore
 
                 source["sha256"] = checksum_cache[source["url"]]
-                source["dest-filename"] = f"{names_cache[giturl]}-{version_cache[giturl]}.tar.gz"
+                source["dest-filename"] = fname
+                source["path"] = source["url"]
+                del source["url"]
     with open(out_json_path, "w") as f3:
         json.dump(modules, f3, indent=4)
 
@@ -327,6 +342,7 @@ def pip_add_group(extras: dict, value: str, dest: str | None = None) -> str:
 def generate(out_dir: str, reqs_file: str, *, tag: str | None = None) -> None:
     reqs = parse_reqs_with_skytemple_files_reqs(reqs_file)
     print_t(f"Generating to {out_dir}. Tag info: {tag}")
+    os.makedirs(os.path.join(out_dir, CACHED_DOWNLOADS_DIR), exist_ok=True)
     with open(os.path.join(BASE_DIR, MANIFEST_TEMPLATE_FILE), "r") as f:
         jinja_env = Environment(loader=DictLoader({"tmpl": f.read()}))
 
@@ -364,7 +380,11 @@ def generate(out_dir: str, reqs_file: str, *, tag: str | None = None) -> None:
                     os.path.join(path_ssb_emulator, "Cargo.lock"),
                     os.path.join(out_dir, "cargo-sources-ssb-emulator.json"),
                 )
-                fixup_and_add_extra_pip_dependencies(os.path.join(out_dir, "requirements-skytemple.json"), extras)
+                fixup_and_add_extra_pip_dependencies(
+                    os.path.join(out_dir, "requirements-skytemple.json"),
+                    extras,
+                    os.path.join(out_dir, CACHED_DOWNLOADS_DIR),
+                )
 
     print_t("Writing manifest file...")
     with open(os.path.join(out_dir, OUT_MANIFEST_FILE), "w") as f:
