@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-08-25 12:32\n"
+"PO-Revision-Date: 2024-09-14 09:57\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -2359,7 +2359,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:159
 msgid "Mud Trap"
-msgstr ""
+msgstr "Грязевая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
 msgid "Sticky Trap"
@@ -2455,36 +2455,36 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "Invalid Floor List"
-msgstr ""
+msgstr "Недопустимый список этажей"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:43
 msgid "References a dungeon floor list that doesn't exist."
-msgstr ""
+msgstr "Ссылается на несуществующий список этажей подземелья."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:49
 msgid "Invalid Floor"
-msgstr ""
+msgstr "Недопустимый этаж"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:52
 msgid "References floor that is out of bounds in the floor list for this group."
-msgstr ""
+msgstr "Ссылается на этаж, выходящий за границы списка этажей для этой группы."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:68
 msgid "Re-uses Floor"
-msgstr ""
+msgstr "Повторное использование этажа"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:76
 #, python-brace-format
 msgid "Re-uses floors that are already used by {name}."
-msgstr ""
+msgstr "Использует этаж, который уже используется в {name}."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:107
 msgid "Unused Floors"
-msgstr ""
+msgstr "Неиспользованные этажи"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:112
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
-msgstr ""
+msgstr "Имеет {len(self.floors_in_mappa_not_referenced)} этажей в списке этажей, которые не относятся к какому-либо подземелью."
 
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:500
 #, python-brace-format
@@ -2499,7 +2499,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:207
 #: skytemple-rust/src/st_bpa.rs:236
 msgid "The dimensions of all images must be the same."
-msgstr ""
+msgstr "Размеры всех изображений должны быть одинаковыми."
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:77
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
