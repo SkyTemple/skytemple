@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-17 15:49\n"
+"PO-Revision-Date: 2024-09-17 16:56\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -745,7 +745,7 @@ msgstr "Ягоды, семена, витамины"
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4663
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1457
 msgid "Foods, Gummies"
-msgstr "Еда, желе"
+msgstr "Еда, жевательные резинки"
 
 #: /dev/fd/63:181 /dev/fd/63:400
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4830
@@ -1535,7 +1535,7 @@ msgstr "По центру"
 #: skytemple/skytemple/module/script/widget/ssa.py:1706
 #: skytemple/skytemple/module/script/widget/ssa.py:1869
 msgid "None"
-msgstr ""
+msgstr "Отсутствует"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:62
 #: skytemple-files/skytemple_files/data/md/protocol.py:67
@@ -1832,16 +1832,16 @@ msgstr ""
 #. TRANSLATORS: Movement Type
 #: skytemple-files/skytemple_files/data/md/protocol.py:522
 msgid "Lava"
-msgstr "Лава"
+msgstr "Может ходить по лаве"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:523
 msgid "Water"
-msgstr "Вода"
+msgstr "Может ходить по воде"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:546
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:54
 msgid "Small"
-msgstr ""
+msgstr "Малый"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:547
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:73
@@ -1850,7 +1850,7 @@ msgstr "Средний"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:548
 msgid "Large"
-msgstr ""
+msgstr "Большой"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:211
 #, python-brace-format
