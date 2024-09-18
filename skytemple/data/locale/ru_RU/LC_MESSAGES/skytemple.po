@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-18 20:40\n"
+"PO-Revision-Date: 2024-09-18 21:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3629,11 +3629,11 @@ msgstr "Ошибка чтения файловой системы из ROM: {}"
 
 #: skytemple-rust/src/st_bma.rs:467
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
-msgstr "Невозможно импортировать фон карты: Ширина обоих изображений должна соответствовать текущей ширине карты: {}px"
+msgstr "Невозможно импортировать фон локации: Ширина обоих изображений должна соответствовать текущей ширине карты: {}px"
 
 #: skytemple-rust/src/st_bma.rs:479
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
-msgstr "Невозможно импортировать фон карты: Высота обоих изображений должна соответствовать текущей ширине карты: {}px"
+msgstr "Невозможно импортировать фон локации: Высота обоих изображений должна соответствовать текущей ширине карты: {}px"
 
 #: skytemple-rust/src/st_bpc.rs:541
 msgid "new tilemapping for this chunk must contain {} tiles."
@@ -7169,7 +7169,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1389
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:139
 msgid "Toggle Background Color"
-msgstr ""
+msgstr "Изменить цвет фона"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1391
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:141
@@ -7942,7 +7942,7 @@ msgstr "Метки на карте мира"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:343
 msgid "Edit Map Background"
-msgstr ""
+msgstr "Редактирование фона локации"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:364
 msgid "Preview"
@@ -8479,7 +8479,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/main.ui:40
 #: skytemple/skytemple/module/map_bg/widget/main.py:33
 msgid "Map Backgrounds"
-msgstr ""
+msgstr "Фоны Локаций"
 
 #: skytemple/skytemple/data/widget/map_bg/main.ui:56
 msgid "This section lets you edit map backgrounds. \n"
@@ -9776,7 +9776,7 @@ msgstr "Текстовая строка верхнего мира"
 
 #: skytemple/skytemple/data/widget/script/main.ui:369
 msgid "Map Background"
-msgstr ""
+msgstr "Фон Локации"
 
 #: skytemple/skytemple/data/widget/script/main.ui:385
 msgid "Default Weather"
@@ -9854,7 +9854,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:663
 msgid "Edit the currently selected map background"
-msgstr ""
+msgstr "Редактирование фона выбранной локации"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:665
 msgid "Go to BG"
@@ -11630,7 +11630,7 @@ msgstr "Создать фон"
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:61
 msgid "Map Background Name"
-msgstr ""
+msgstr "Название фона локации"
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:72
 msgid "The length of the map background name must be between 1-8 characters."
@@ -11642,7 +11642,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:111
 msgid "Map background added successfully"
-msgstr ""
+msgstr "Фон локации успешно добавлен"
 
 #: skytemple/skytemple/module/misc_graphics/module.py:83
 msgid "Misc. Graphics"
