@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-19 17:01\n"
+"PO-Revision-Date: 2024-09-19 18:01\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -2402,7 +2402,7 @@ msgstr "Замедляющая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:169
 msgid "Seal Trap"
-msgstr ""
+msgstr "Запрещающая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:170
 msgid "Poison Trap"
@@ -2410,11 +2410,11 @@ msgstr "Ядовитая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:171
 msgid "Selfdestruct Trap"
-msgstr ""
+msgstr "Подрывная ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:172
 msgid "Explosion Trap"
-msgstr ""
+msgstr "Взрывная ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:173
 msgid "Pp Zero Trap"
@@ -2422,7 +2422,7 @@ msgstr "Ноль-ОС ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:174
 msgid "Chestnut Trap"
-msgstr ""
+msgstr "Каштановая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:175
 msgid "Wonder Tile"
@@ -2430,23 +2430,23 @@ msgstr "Чудо-плитка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:176
 msgid "Pokemon Trap"
-msgstr ""
+msgstr "Поке-ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:177
 msgid "Spiked Tile"
-msgstr ""
+msgstr "Плитка с шипами"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:178
 msgid "Stealth Rock"
-msgstr ""
+msgstr "Хитрые Скалы"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:179
 msgid "Toxic Spikes"
-msgstr ""
+msgstr "Токсичные шипы"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:180
 msgid "Trip Trap"
-msgstr ""
+msgstr "Скользкая ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:181
 msgid "Random Trap"
@@ -2454,7 +2454,7 @@ msgstr "Случайная ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:182
 msgid "Grudge Trap"
-msgstr ""
+msgstr "Обидная ловушка"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "Invalid Floor List"
@@ -2492,12 +2492,12 @@ msgstr "Имеет {len(self.floors_in_mappa_not_referenced)} этажей в с
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:500
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
-msgstr ""
+msgstr "Невозможно импортировать фон локации: Ширина обоих изображений должна соответствовать текущей ширине фона: {expected_width} пикселей"
 
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:511
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
-msgstr ""
+msgstr "Невозможно импортировать фон локации: Высота обоих изображений должна соответствовать текущей высоте фона: {expected_height} пикселей"
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:207
 #: skytemple-rust/src/st_bpa.rs:236
@@ -2506,32 +2506,32 @@ msgstr "Размеры всех изображений должны быть о�
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:77
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Невозможно преобразовать PIL-изображение в CHR: изображение должно быть индексированным (=использовать палитру)"
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:80
 #, python-brace-format
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
-msgstr ""
+msgstr "Невозможно преобразовать PIL-изображение в CHR: ширина и высота должны быть кратны {CHR_TILE_WIDTH}"
 
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:115
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
-msgstr ""
+msgstr "Невозможно импортировать фон локации: Ширина изображения должна соответствовать ожидаемой ширине: {expected_width} пикселей"
 
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:124
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
-msgstr ""
+msgstr "Невозможно импортировать фон локации: Высота изображения должна соответствовать ожидаемой высоте: {expected_height} пикселей"
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:124
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
-msgstr ""
+msgstr "Импортируемое изображение может использовать только 12 палитр. Данное изображение использует палитру {tm.pal_idx}"
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:161
 #: skytemple-rust/src/st_dpc.rs:221
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr ""
+msgstr "Фон или плиточное строение подземелья не может содержать более 400 фрагментов."
 
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
 #: skytemple-rust/src/st_dpla.rs:130
@@ -2542,61 +2542,62 @@ msgstr "Эта палитра не имеет анимации."
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/model.py:98
 #: skytemple-files/skytemple_files/graphics/fonts/font_sir0/model.py:104
 msgid "This must be a color indexed image!"
-msgstr ""
+msgstr "Это должно быть цветное индексированное изображение!"
 
 #: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:260
 #, python-brace-format
 msgid "Font parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "Анализ шрифта: неожиданный {child.tag}"
 
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/writer.py:45
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is defined multiple times in a font file!"
-msgstr ""
+msgstr "Символ {e.char} в таблице {e.table} определен в файле шрифта несколько раз!"
 
 #: skytemple-files/skytemple_files/graphics/fonts/font_sir0/writer.py:58
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
-msgstr ""
+msgstr "Символ {e.char} в таблице {e.table} определен в файле шрифта несколько раз!"
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:293
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
-msgstr ""
+msgstr "Не удалось загрузить KAO из {old_index},{old_subindex}: {ex}"
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:352
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
-msgstr ""
+msgstr "Не удается преобразовать PIL-изображение в Kao: Размеры изображения должны быть {img_dim}x{img_dim} пикселей."
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:459
 msgid "This portrait does not compress well, the result size is greater than {limit} bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.If this still doesn't work, try the 'ExpandPortraitStructs' instead."
-msgstr ""
+msgstr "Этот портрет плохо сжимается, размер результата превышает {limit} байт ({len(new_img_compressed)} байт всего).\n"
+" Если вы еще не сделали этого, попробуйте применить ASM патч 'ProvideATUPXSupport', чтобы установить оптимизированный алгоритм сжатия, который, возможно, сможет лучше сжать это изображение. Если и это не сработает, попробуйте вместо этого использовать 'ExpandPortraitStructs'."
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:110
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
-msgstr ""
+msgstr "Портрет имеет недопустимый размер {img.size}, не делящийся на {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:116
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
-msgstr ""
+msgstr "Портрет имеет недопустимый размер {img.size}, превышающий максимальный размер {max_size}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:152
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
-msgstr ""
+msgstr "Найдены полупрозрачные пиксели: {rogue_pixels}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:154
 #, python-brace-format
 msgid "The following emotions have transparent pixels: {rogue_tiles}"
-msgstr ""
+msgstr "Следующие эмоции имеет прозрачные пиксели: {rogue_tiles}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:173
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
-msgstr ""
+msgstr "Файл должен содержать оригинальную и перевернутую версии эмоций: {str(flipped_tiles)}"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:40
 msgid "Palette Only"
@@ -2616,42 +2617,42 @@ msgstr "8 бит на пиксель (256 цвета)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:209
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Невозможно преобразовать PIL-изображение в WTE: изображение должно быть индексированным (=использовать палитру)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:215
 msgid "This image is too big to fit into a WTE file."
-msgstr ""
+msgstr "Изображение слишком велико, чтобы поместиться в файл WTE."
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:43
 msgid "Semi-Opaque"
-msgstr ""
+msgstr "Полупрозрачный"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:44
 msgid "Transparent"
-msgstr ""
+msgstr "Прозрачный"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:45
 msgid "Opaque"
-msgstr ""
+msgstr "Непрозрачный"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:191
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:214
 msgid "Tile and masks list must have exactly 3 items"
-msgstr ""
+msgstr "В списке плиток и масок должно быть ровно 3 элемента"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:197
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:220
 msgid "Can not convert PIL image to ZMAPPAT: Must be indexed images (=using a palette)"
-msgstr ""
+msgstr "Невозможно преобразовать PIL-изображение в ZMAPPAT: изображение должно быть индексированным (=использовать палитру)"
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:59
 #, python-brace-format
 msgid "The image must have dimensions {IMG_WIDTH}x{IMG_HEIGHT}."
-msgstr ""
+msgstr "Изображение должно иметь размеры {IMG_WIDTH}x{IMG_HEIGHT}."
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:74
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.address})."
-msgstr ""
+msgstr "Это изображение должно быть лучше сжато, чтобы поместиться в arm9 ({len(data)} > {block.end-block.address})."
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:308
 msgid "White"
@@ -2691,28 +2692,28 @@ msgstr "Розовый"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:320
 msgid "Leaves"
-msgstr ""
+msgstr "Листья"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:321
 msgid "Snowflakes"
-msgstr ""
+msgstr "Снежинки"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:322
 msgid "Flames"
-msgstr ""
+msgstr "Огни"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:323
 msgid "Sand"
-msgstr ""
+msgstr "Песок"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:324
 msgid "Bubbles"
-msgstr ""
+msgstr "Пузыри"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:325
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:355
 msgid "Earthquake"
-msgstr ""
+msgstr "Землетрясение"
 
 #. TRANSLATORS: Effect of a tileset's secret power move
 #. TRANSLATORS: Move name
@@ -2735,95 +2736,95 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:330
 msgid "Sleep"
-msgstr ""
+msgstr "Сон"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:333
 msgid "Speed -1"
-msgstr ""
+msgstr "Скорость -1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:337
 msgid "Attack -1"
-msgstr ""
+msgstr "Атака -1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:342
 msgid "Accuracy -1"
-msgstr ""
+msgstr "Точность -1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:345
 msgid "Cringe"
-msgstr ""
+msgstr "Съеживание"
 
 #. TRANSLATORS: Move name
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:346
 msgid "Freeze"
-msgstr ""
+msgstr "Заморозка"
 
 #. TRANSLATORS: Status
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:347
 msgid "Paralysis"
-msgstr ""
+msgstr "Паралич"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:358
 msgid "Rock Slide"
-msgstr ""
+msgstr "Камнепад"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:360
 msgid "Tri Attack"
-msgstr ""
+msgstr "Три-Атака"
 
 #. TRANSLATORS: Move name
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:361
 msgid "Hydro Pump"
-msgstr ""
+msgstr "Гидронасос"
 
 #. TRANSLATORS: Move name
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:362
 msgid "Blizzard"
-msgstr ""
+msgstr "Метель"
 
 #. TRANSLATORS: Move name
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:363
 msgid "Ice Beam"
-msgstr ""
+msgstr "Луч льда"
 
 #. TRANSLATORS: Move name
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:364
 msgid "Seed Bomb"
-msgstr ""
+msgstr "Семя-Бомба"
 
 #. TRANSLATORS: Move name
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:365
 msgid "Mud Bomb"
-msgstr ""
+msgstr "Грязевая бомба"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:370
 msgid "Foggy 1"
-msgstr ""
+msgstr "Туманная 1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:371
 msgid "Foggy 2"
-msgstr ""
+msgstr "Туманная 2"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:372
 msgid "Foggy 3"
-msgstr ""
+msgstr "Туманная 3"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:373
 msgid "Foggy 4"
-msgstr ""
+msgstr "Туманная 4"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:374
 msgid "Foggy 5"
-msgstr ""
+msgstr "Туманная 5"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:375
 msgid "Foggy 6"
-msgstr ""
+msgstr "Туманная 6"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:116
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:139
 msgid "Normal Enemy"
-msgstr ""
+msgstr "Обычный враг"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:118
 msgid "Outlaw"
@@ -2831,27 +2832,27 @@ msgstr "Преступник"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:120
 msgid "Outlaw Enemy"
-msgstr ""
+msgstr "Враг-преступник"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:122
 msgid "Outlaw Running Away"
-msgstr ""
+msgstr "Убегающий преступник"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:126
 msgid "Rival Team Leader"
-msgstr ""
+msgstr "Лидер команды противника"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:128
 msgid "Rival Team Member"
-msgstr ""
+msgstr "Член команды противника"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:130
 msgid "Strong Enemy"
-msgstr ""
+msgstr "Сильный враг"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:133
 msgid "Waiting for Rescue Ally"
-msgstr ""
+msgstr "Союзник, ожидающий спасения"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:141
 msgid "Helping Ally"
@@ -2859,19 +2860,19 @@ msgstr "Союзник"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:144
 msgid "Other Game Team Leader"
-msgstr ""
+msgstr "Лидер команды из другой игры"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:145
 msgid "Other Game Team Member 2"
-msgstr ""
+msgstr "Член команды из другой игры 2"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:146
 msgid "Other Game Team Member 3"
-msgstr ""
+msgstr "Член команды из другой игры 3"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:147
 msgid "Other Game Team Member 4"
-msgstr ""
+msgstr "Член команды из другой игры 4"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:150
 msgid "Unknown 5"
@@ -2879,83 +2880,83 @@ msgstr "Неизвестно 5"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:155
 msgid "Bazaar Host"
-msgstr ""
+msgstr "Базар: владелец"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:160
 msgid "Bazaar Healer"
-msgstr ""
+msgstr "Базар: лекарь"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:165
 msgid "Bazaar Surprise"
-msgstr ""
+msgstr "Базар: мешки с сюрпризом"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:170
 msgid "Bazaar Clean Sticky Items"
-msgstr ""
+msgstr "Базар: чистильщик предметов"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:175
 msgid "Bazaar Escape"
-msgstr ""
+msgstr "Базар: гид побега"
 
 #: skytemple-files/skytemple_files/hardcoded/guest_pokemon.py:54
 #, python-brace-format
 msgid "'{guest1_index}' is not a valid guest pokémon index"
-msgstr ""
+msgstr "'{guest1_index}' не является действительным индексом покемона-компаньона"
 
 #: skytemple-files/skytemple_files/hardcoded/guest_pokemon.py:58
 #, python-brace-format
 msgid "'{guest2_index}' is not a valid guest pokémon index"
-msgstr ""
+msgstr "'{guest2_index}' не является действительным индексом покемона-компаньона"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:69
 msgid "Game Main Menu"
-msgstr ""
+msgstr "Главное меню игры"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:77
 msgid "Game Sub Menu"
-msgstr ""
+msgstr "Подменю игры"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:85
 msgid "Continue Choice"
-msgstr ""
+msgstr "Выбор эпизода для продолжения"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:93
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
 msgid "Main Debug Menu"
-msgstr ""
+msgstr "Главное меню отладки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:109
 msgid "Quiz Debug Menu"
-msgstr ""
+msgstr "Меню отладки теста"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:117
 msgid "Footprint Debug Menu"
-msgstr ""
+msgstr "Меню отладки следов"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:125
 msgid "Bank Main Menu"
-msgstr ""
+msgstr "Главное меню банка"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:133
 msgid "Evolution Menu Confirm"
-msgstr ""
+msgstr "Меню эволюции: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:141
 msgid "Evolution Sub Menu"
-msgstr ""
+msgstr "Подменю эволюции"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:149
 msgid "Evolution Main Menu"
-msgstr ""
+msgstr "Главное меню эволюции"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:157
 msgid "Assembly Menu Confirm"
-msgstr ""
+msgstr "Меню сборного пункта: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:165
 #: skytemple-files/skytemple_files/hardcoded/menus.py:173
 msgid "Assembly Main Menu"
-msgstr ""
+msgstr "Главное меню сборного пункта"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:181
 #: skytemple-files/skytemple_files/hardcoded/menus.py:189
@@ -2965,11 +2966,11 @@ msgstr ""
 #: skytemple-files/skytemple_files/hardcoded/menus.py:221
 #: skytemple-files/skytemple_files/hardcoded/menus.py:229
 msgid "Assembly Sub Menu"
-msgstr ""
+msgstr "Подменю сборного пункта"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:237
 msgid "Moves Menu Confirm"
-msgstr ""
+msgstr "Меню приемов: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:245
 #: skytemple-files/skytemple_files/hardcoded/menus.py:253
@@ -2979,114 +2980,114 @@ msgstr ""
 #: skytemple-files/skytemple_files/hardcoded/menus.py:293
 #: skytemple-files/skytemple_files/hardcoded/menus.py:301
 msgid "Moves Sub Menu"
-msgstr ""
+msgstr "Подменю приемов"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:261
 msgid "Moves Main Menu"
-msgstr ""
+msgstr "Главное меню приемов"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:309
 #: skytemple-files/skytemple_files/hardcoded/menus.py:317
 msgid "Bar Menu Confirm"
-msgstr ""
+msgstr "Меню бара: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:325
 msgid "Bar Main Menu"
-msgstr ""
+msgstr "Главное меню бара"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:333
 #: skytemple-files/skytemple_files/hardcoded/menus.py:341
 msgid "Bar Sub Menu"
-msgstr ""
+msgstr "Подменю бара"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:349
 #: skytemple-files/skytemple_files/hardcoded/menus.py:357
 msgid "Recycle Menu Confirm"
-msgstr ""
+msgstr "Меню центра переработки: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:365
 #: skytemple-files/skytemple_files/hardcoded/menus.py:373
 msgid "Recycle Sub Menu"
-msgstr ""
+msgstr "Подменю центра переработки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:381
 #: skytemple-files/skytemple_files/hardcoded/menus.py:389
 #: skytemple-files/skytemple_files/hardcoded/menus.py:397
 msgid "Recycle Main Menu"
-msgstr ""
+msgstr "Главное меню центра переработки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:405
 msgid "Synthesis Menu Confirm"
-msgstr ""
+msgstr "Меню обменной лавки: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:413
 #: skytemple-files/skytemple_files/hardcoded/menus.py:421
 #: skytemple-files/skytemple_files/hardcoded/menus.py:445
 msgid "Synthesis Sub Menu"
-msgstr ""
+msgstr "Подменю обменной лавки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:429
 #: skytemple-files/skytemple_files/hardcoded/menus.py:437
 msgid "Synthesis Main Menu"
-msgstr ""
+msgstr "Главное меню обменной лавки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:453
 msgid "Shop Menu Confirm"
-msgstr ""
+msgstr "Меню магазина: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:461
 #: skytemple-files/skytemple_files/hardcoded/menus.py:469
 #: skytemple-files/skytemple_files/hardcoded/menus.py:477
 msgid "Shop Main Menu"
-msgstr ""
+msgstr "Главное меню магазина"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:485
 msgid "Storage Menu Confirm"
-msgstr ""
+msgstr "Меню хранилища: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:493
 #: skytemple-files/skytemple_files/hardcoded/menus.py:501
 #: skytemple-files/skytemple_files/hardcoded/menus.py:509
 #: skytemple-files/skytemple_files/hardcoded/menus.py:517
 msgid "Storage Main Menu"
-msgstr ""
+msgstr "Главное меню хранилища"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:525
 msgid "Hatcher Menu Confirm"
-msgstr ""
+msgstr "Меню дневного ухода: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:533
 msgid "Hatcher Main Menu"
-msgstr ""
+msgstr "Главное меню дневного ухода"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:541
 msgid "Appraiser Menu Confirm"
-msgstr ""
+msgstr "Меню пункта оценки: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:549
 msgid "Appraiser Main Menu"
-msgstr ""
+msgstr "Главное меню пункта оценки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:557
 msgid "Appraiser Sub Menu"
-msgstr ""
+msgstr "Подменю пункта оценки"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:565
 msgid "Discard Items Menu Confirm"
-msgstr ""
+msgstr "Меню отказа от предметов: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:573
 #: skytemple-files/skytemple_files/hardcoded/menus.py:581
 msgid "Discard Items Sub Menu"
-msgstr ""
+msgstr "Подменю отказа от предметов"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:589
 msgid "Discard Items Main Menu"
-msgstr ""
+msgstr "Главное меню отказа от предметов"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:597
 msgid "Dungeon Main Menu"
-msgstr ""
+msgstr "Главное меню подземелья"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:605
 #: skytemple-files/skytemple_files/hardcoded/menus.py:613
@@ -3095,32 +3096,32 @@ msgstr ""
 #: skytemple-files/skytemple_files/hardcoded/menus.py:637
 #: skytemple-files/skytemple_files/hardcoded/menus.py:645
 msgid "Dungeon Sub Menu"
-msgstr ""
+msgstr "Подменю подземелья"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:653
 msgid "Start Menu Confirm"
-msgstr ""
+msgstr "Меню старта: подтверждение"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:661
 msgid "Dungeon Debug Menu"
-msgstr ""
+msgstr "Меню отладки подземелья"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:734
 #, python-brace-format
 msgid "This menu must have {num_entries} entries!"
-msgstr ""
+msgstr "Это меню должно иметь {num_entries} записей!"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:88
 msgid "Standing Animation (loop)"
-msgstr ""
+msgstr "Анимация стоя (цикл)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:89
 msgid "Standing Animation (1st frame)"
-msgstr ""
+msgstr "Анимация стоя (1-й кадр)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:90
 msgid "Special"
-msgstr ""
+msgstr "Особая"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:91
 msgid "Walking Animation (1st frame)"
@@ -3171,89 +3172,96 @@ msgstr "Этот патч не может быть применен повтор
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:104
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:112
 msgid "The source data specification was not found in the configuration."
-msgstr ""
+msgstr "Спецификация исходных данных не найдена в конфигурации."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:127
 msgid "\n\n"
 "The list was extracted anyway.\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
-msgstr ""
+msgstr "\n\n"
+"Лист все равно был извлечен.\n"
+"Вы уже можете редактировать его в SkyTemple, но он не будет использоваться в игре, пока вы не сможете успешно применить патч."
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
-msgstr ""
+msgstr "Добавляет типы в таблицу эффективности типов. Это заменит старую таблицу эффективности на таблицу 6+ поколения, а Волшебный тип будет добавлен в конец."
 
 #: skytemple-files/skytemple_files/patch/handler/allow_unrecruitable_mons.py:48
 msgid "Allows recruiting the other Deoxys forms and the regis inside dungeons."
-msgstr ""
+msgstr "Позволяет рекрутировать другие формы Деоксиса и Реджи- покемонов в подземельях."
 
 #: skytemple-files/skytemple_files/patch/handler/anti_softlock.py:49
 msgid "Allows the player to press A+B+X+Y during cutscenes to force the game to continue past a softlock (this can happen during cutscenes when using custom sprites or the randomizer). Does not work with crashes caused due to internal errors (such as the game running out of memory)."
-msgstr ""
+msgstr "Позволяет игроку нажимать A+B+X+Y во время сюжетных сцен, чтобы заставить игру продолжить после зависания (это может произойти во время сюжетных сцен при использовании пользовательских спрайтов или рандомайзера). Не работает при сбоях, вызванных внутренними ошибками (например, когда в игре закончилась память)."
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
-msgstr ""
+msgstr "Оценить все"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:58
 msgid " And to appraise all your items, \n"
 "you will pay [CS:G][gold_left:0][CR][M:S0]?"
-msgstr ""
+msgstr " И для оценки всех ваших предметов,\n"
+"вы заплатите [CS:G][gold_left:0][CR][M:S0]?"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:62
 msgid " And so...[K]it is revealed...[C] Within the boxes...[K]\n"
 "were..."
-msgstr ""
+msgstr " И вот...[K]оно было раскрыто[С]... Внутри сундуков...[K]\n"
+"были..."
 
 #. TRANSLATORS: Appraise All Reveal Before
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:65
 msgid " ...a [me_play:1][string0]!"
-msgstr ""
+msgstr " ...[me_play:1][string0]!"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:75
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
-msgstr ""
+msgstr "Добавляет дополнительное меню при оценке коробок, чтобы оценить все коробки сразу. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:118
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
 "This supposedly removes most of the particular cases the game handles for evolutions. "
-msgstr ""
+msgstr "Меняет систему эволюции.\n"
+"После применения патча, у каждого покемона будет два списка - для эволюции и детей, которые могут быть у покемона, а также разные бонусы к статистикам при эволюции.\n"
+"Предполагается, что это устранит большинство особых случаев, которые игра использует для эволюций. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:209
 #, python-brace-format
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
-msgstr ""
+msgstr "Обнаружена бесконечная рекурсия в предэволюциях для md-записи {i}. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:216
 #, python-brace-format
 msgid "One of the monsters in the pre-evolution chain of monster ${i:04} has an invalid pre evolution configured: ${pre_evo:04}. Can not apply patch."
-msgstr ""
+msgstr "Один из монстров в цепочке предэволюции монстра ${i:04} имеет недопустимую конфигурацию предэволюции: ${pre_evo:04}. Невозможно применить патч."
 
 #: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:52
 msgid "Changes and adds some properties for fixed floors.\n"
 "Removes restrictions. "
-msgstr ""
+msgstr "Изменяет и добавляет некоторые свойства для фиксированных комнат.\n"
+"Снимает ограничения. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:48
 msgid "Provides support for editing textbox background color."
-msgstr ""
+msgstr "Обеспечивает поддержку редактирования цвета фона текстового поля."
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:55
 msgid "Then, who would you like to be?"
-msgstr ""
+msgstr "Тогда кем бы вы хотели стать?"
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:65
 msgid "Adds an extra menu during the personality test to choose the starter."
-msgstr ""
+msgstr "Добавляет дополнительное меню во время теста на личность для выбора стартового покемона."
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:104
 msgid "[CS:S]Control mode set to[CR] [CS:C]automatic[CR][CS:S].[CR]"
-msgstr ""
+msgstr "[CS:S]Режим управления изменен на[CR] [CS:C]автоматический[CR][CS:S].[CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:107
 msgid "[CS:S]Control mode set to[CR] [CS:E]manual[CR][CS:S].[CR]"
-msgstr ""
+msgstr "[CS:S]Режим управления изменен на[CR] [CS:E]ручной[CR][CS:S].[CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:119
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by Frostbyte before applying this patch."
@@ -3261,23 +3269,23 @@ msgstr "При нажатии кнопки \"Старт\" в подземель�
 
 #: skytemple-files/skytemple_files/patch/handler/compress_iq_data.py:50
 msgid "Optimizes the way the list of IQ skills learnt by each IQ group is stored, removing the limit of max 25 skills per group."
-msgstr ""
+msgstr "Оптимизирует способ хранения списка IQ-навыков, изученных каждой IQ-группой, убирая ограничение на максимум 25 навыков на группу."
 
 #: skytemple-files/skytemple_files/patch/handler/disable_tips.py:48
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
-msgstr ""
+msgstr "Отключает подсказки, отображаемые в подземельях в начале игры."
 
 #: skytemple-files/skytemple_files/patch/handler/disarm_one_room_mh.py:44
 msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
-msgstr ""
+msgstr "Обезвреживает этажи, содержащие только Засаду Монстров, которые могут появиться в таких случаях, как сбой генерации подземелья. Эти этажи по-прежнему будут представлять собой одну огромную комнату, но больше не будут являться Засадой Монстров."
 
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:50
 msgid "Implements dungeon interruptions. "
-msgstr ""
+msgstr "Реализует прерывания подземелий. "
 
 #: skytemple-files/skytemple_files/patch/handler/dynamic_bosses_everywhere.py:49
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
-msgstr ""
+msgstr "Позволяет поместить особых сущностей фиксированных комнат #124-127 (враги Лабиринта Исследователей) в любую фиксированную комнату, не вызывая сбоев в игре."
 
 #: skytemple-files/skytemple_files/patch/handler/edit_guest_pokemon.py:49
 msgid "Changes the way the game determines when to add guest pokémon to the team so it can be edited more easily"
@@ -3287,88 +3295,99 @@ msgstr "Изменяет способ, которым игра определя�
 msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
-msgstr ""
+msgstr "Вводит в игру разделение очков опыта для всех участников (в стиле GtI). \n"
+"Отключается в специальных эпизодах, подземельях, сбрасывающие уровень до 1 и подземельях, где нельзя набирать опыт. \n"
+"Перед применением, требуется применить патч ExtractDungeonData, чтобы освободить место, используемое этим патчем."
 
 #: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:115
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
-msgstr ""
+msgstr "Расширяет число допустимых слотов для покемонов до 2048 и делает все слоты независимыми.\n"
+"Для работы необходимы патчи ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData.\n"
+"Настоятельно рекомендуется исправить все ошибки подземелий перед применением этого патча,\n"
+"и сохранить резервную копию вашего ROM перед применением этого патча."
 
 #: skytemple-files/skytemple_files/patch/handler/expand_portrait.py:48
 msgid "Expands portraits structure by 8 bytes, which is enough to cover all cases."
-msgstr ""
+msgstr "Расширяет структуру портретов на 8 байт, что достаточно для всех случаев."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
 "This patch is useless on its own, unless you have a too big mappa file."
-msgstr ""
+msgstr "Используйте файловые потоки для доступа к данным из mappa_t/mappa_y/mappa_s вместо того, чтобы загружать их целиком.\n"
+"Сам по себе этот патч бесполезен, если только у вас не слишком большой mappa-файл."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_waza.py:49
 msgid "Use filestreams to access waza_p/waza_p2 data instead of loading them entirely.\n"
 "This patch is useless on its own.\n"
 "Depends on the ActorAndLevelLoader patch, as it needs some space provided by this one."
-msgstr ""
+msgstr "Использует файловые потоки для доступа к данным из waza_p/waza_p2 вместо того, чтобы загружать их целиком.\n"
+"Сам по себе этот патч бесполезен.\n"
+"Зависит от патча ActorAndLevelLoader, так как ему нужно место, предоставляемое этим патчем."
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:50
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
-msgstr ""
+msgstr "Этот патч добавляет в игру overlay 36, который загружается по адресу 0x023A7080 и предоставляет дополнительное пространство для патчей для размещения кода и данных."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_anims.py:55
 msgid "Extracts animation data and put it in files. \n"
 "Needs ActorAndLevelLoader patch to free some space. "
-msgstr ""
+msgstr "Извлекает данные анимации и помещает их в файлы. \n"
+"Требуется патч ActorAndLevelLoader, чтобы освободить немного места. "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:66
 msgid "Extracts Spinda bar's item list."
-msgstr ""
+msgstr "Извлекает список предметов бара Спинды."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:177
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
-msgstr ""
+msgstr "Извлекает таблицы рангов этажей, этажей на которых запрещены миссии, предметов, доступных в подземельях, и помещает их в файлы. Обеспечивает поддержку чтения из файловой системы ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:77
 msgid "Extracts item effects code and put it in files."
-msgstr ""
+msgstr "Извлекает код эффектов предметов и помещает его в файлы."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:65
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
-msgstr ""
+msgstr "Извлекает списки предметов, используемые при определении вознаграждений за миссии, содержимого сундуков с сокровищами, а также содержимого магазина Кеклеона, и помещает их в файлы. Обеспечивает поддержку чтения их из файловой системы ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:139
 msgid "Don't have enough space to put filenames! "
-msgstr ""
+msgstr "Недостаточно места для размещения имен файлов! "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:80
 msgid "Extracts move effects code and put it in files."
-msgstr ""
+msgstr "Извлекает код эффектов приемов и помещает его в файлы."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_sp_code.py:72
 msgid "Extracts special processes code and put it in files."
-msgstr ""
+msgstr "Извлекает код особых процессов и помещает его в файлы."
 
 #: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:113
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
 "Needs ExtractItemCode, ExtractBarItemList and AddTypes patches to be applied for this patch to work.\n"
 "Also, you'll need to reapply this if you apply AddTypes again. "
-msgstr ""
+msgstr "Реализует жевательные резинки для Волшебного типа покемонов. Использует неиспользованный предмет 138.\n"
+"Для работы этого патча необходимо применить патчи ExtractItemCode, ExtractBarItemList и AddTypes.\n"
+"Кроме того, если вы снова примените AddTypes, вам нужно будет применить этот патч заново. "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:50
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
-msgstr ""
+msgstr "Заставляет игру всегда перемещать PoV к вашим партнерам, когда они используют ходы или подвергаются атаке, даже если партнер находится всего в одной плитке от вас, если включена функция \"Группа вдалеке\". Рекомендуется для CTC, поскольку без этого PoV остается на вашем последнем покемоне в конце хода в ручном управлении, а CTC уже сокращает время паузы между сменой PoV."
 
 #: skytemple-files/skytemple_files/patch/handler/fast_chimecho.py:47
 msgid "Shorten Chimecho Team Assembly menu interactions. Adding, removing and making leader are now fast interactions that immediately go back to the team member selection menu."
-msgstr ""
+msgstr "Укорачивает взаимодействие с меню сборного пункта Чаймеко. Добавление, удаление и назначение лидера теперь являются быстрыми операциями, которые сразу же возвращают в меню выбора члена команды."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:45
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr ""
+msgstr "Исправлена ошибка эволюции, из-за которого игра зависает при попытке эволюционировать покемона, имя которого состоит из 10 символов."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:47
 msgid "If the game runs out of memory trying to load a sprite, a default one will be used instead, preventing the crash."
-msgstr ""
+msgstr "Если во время игры закончится оперативная память при попытке загрузить спрайт, вместо него будет использован спрайт по умолчанию, что предотвратит сбой игры."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:49
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator. Warning: Causes saving to fail on the MelonDS emulator instead."
@@ -3381,44 +3400,50 @@ msgid "Implements move growth (PoC/Unfinished). \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
+msgstr "Реализует прокачку приемов (Проверка концепции/незавершен). \n"
+"Требуются патчи ActorAndLevelLoader, ExtractAnimData и ChangeMoveStatsDisplay. \n"
+"Патч MoveGrowth должен быть (повторно) применен после MoveShortcuts, чтобы объединить оба эффекта. \n"
+"Последняя версия ChangeMoveStatsDisplay должна быть использована с этим патчем.\n"
+"Может быть несовместим, если markfont.dat был изменен (кроме ChangeMoveStatsDisplay)\n"
+"Делает несовместимыми все предыдущие файлы сохранения. "
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:49
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
-msgstr ""
+msgstr "Заменяет фиксированный прием (L+A) на функцию быстрый вызов приема как в GtI и Super (L+A/B/X/Y). Патч ExtraSpace должен быть применен до этого патча."
 
 #: skytemple-files/skytemple_files/patch/handler/negative_enemy_density.py:49
 msgid "Makes negative enemy density values work as intended (the absolute value of the density is used, without adding a random variation)."
-msgstr ""
+msgstr "Заставляет отрицательные значения плотности врагов работать как положено (используется абсолютное значение плотности, без добавления случайной вариации)."
 
 #: skytemple-files/skytemple_files/patch/handler/no_weather_stop.py:50
 msgid "Changes weather damage messages so they don't make the player stop running."
-msgstr ""
+msgstr "Изменяет сообщения об уроне от погоды, чтобы они не останавливали игрока."
 
 #: skytemple-files/skytemple_files/patch/handler/obj_table.py:68
 msgid "Extracts the object table to a separate file in the ROM."
-msgstr ""
+msgstr "Извлекает таблицу объектов в отдельный файл в ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:50
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
-msgstr ""
+msgstr "Рекомендуется для CTC. Без этого патча напарники не могут активировать скрытые ловушки - это уравновешивает игру, так как заставить напарников уворачиваться от ловушек с помощью ручного движения очень просто, но этот патч не рекомендуется для модов, использующих ямы-ловушки, так как они немедленно убивают наступивших на них напарников."
 
 #: skytemple-files/skytemple_files/patch/handler/pkmn_ground_anim.py:62
 msgid "Changes implementation of idle animation to an editable table."
-msgstr ""
+msgstr "Меняют реализацию анимации простоя на редактируемую таблицу."
 
 #: skytemple-files/skytemple_files/patch/handler/push_allies.py:44
 msgid "[string:0] pushed [string:1]!"
-msgstr ""
+msgstr "[string:0] толкнул [string:1]!"
 
 #: skytemple-files/skytemple_files/patch/handler/push_allies.py:55
 msgid "Implements pushing allies in dungeons.\n"
 "Uses the same command style as PSMD"
-msgstr ""
+msgstr "Реализует подталкивание союзников в подземельях.\n"
+"Использует тот же стиль управления, что и в PSMD"
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:50
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Уменьшает время паузы в игре перед сменой PoV, например, при включении функции \"Группа вдалеке\", с 60 кадров до 12. Уже применяется в патче CTC."
 
 #: skytemple-files/skytemple_files/patch/handler/remove_body_size_check.py:48
 msgid "Removes the total body size check before entering a dungeon."
@@ -3426,11 +3451,11 @@ msgstr "Убирает проверку общего размера покемо
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:48
 msgid "Allows the partner to be of the same type as the player in the personality test."
-msgstr ""
+msgstr "Позволяет партнеру быть того же типа, что и игрок в тесте личности."
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:47
 msgid "Who would you like to be?"
-msgstr ""
+msgstr "Кем бы вы хотели стать?"
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:58
 msgid "Skips the quiz, only leaving the gender question.\n"
@@ -3440,21 +3465,23 @@ msgstr "Пропускает викторину, оставляя только �
 
 #: skytemple-files/skytemple_files/patch/handler/sprite_size.py:49
 msgid "Changes Sprite Size and Sprite File Size values to be in each Pokémon's data."
-msgstr ""
+msgstr "Помещает Размер спрайта и Размер файла спрайта в данные каждого покемона."
 
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:68
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
-msgstr ""
+msgstr "Заменяет старое отображение статистик полосами.\n"
+"Этот патч может быть несовместим если файл markfont.dat был изменён."
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:51
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
-msgstr ""
+msgstr "Обеспечивает поддержку контейнеров ATUPX, которые используют алгоритм, отличный от PX-сжатия.\n"
+"Требует ActorAndLevelLoader, так как он освобождает место, необходимое для реализации этой функции."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
-msgstr ""
+msgstr "Исправлен неиспользованный шанс для подземелий. Теперь он определяет шанс появления комнаты-лабиринта на этаже."
 
 #: skytemple-files/skytemple_files/patch/patches.py:238
 #: skytemple-files/skytemple_files/patch/patches.py:248
@@ -3519,12 +3546,12 @@ msgstr "В файле patch.py пакета патча отсутствует 'P
 
 #: skytemple-files/skytemple_files/patch/patches.py:425
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
-msgstr ""
+msgstr "Пакет патча не содержит записи об имени патча обработчика в файле config.xml."
 
 #: skytemple-files/skytemple_files/patch/patches.py:432
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
-msgstr ""
+msgstr "В конфигурации не найдено патча для обработчика '{handler.name}'."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:109
 msgid "Unknown or extra XML element '{}' in scene data."
@@ -3536,7 +3563,7 @@ msgstr "'{}' отсутствует в данных сцены."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:458
 msgid "The event ID {} is out of bounds for one of the triggers."
-msgstr ""
+msgstr "ID события {} находится вне границ для одного из триггеров."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:542
 msgid "Unknown direction value."
@@ -3544,7 +3571,7 @@ msgstr "Неизвестное значение направления."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/writer.py:57
 msgid "Can not save a scene event without a defined triggered script."
-msgstr ""
+msgstr "Невозможно сохранить событие сцены без определенного запускаемого сценария."
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:96
 #, python-brace-format
@@ -3607,7 +3634,7 @@ msgstr "Указан неверный параметр для операции: 
 
 #: skytemple-files/skytemple_files/script/ssb/ssb_number.py:94
 msgid "The value '{}' can not be saved. Please use a value between -64.0 and 63.996 for fixed point numbers."
-msgstr ""
+msgstr "Значение {} не может быть сохранено. Пожалуйста, используйте значение между -64.0 и 63.996 для чисел с фиксированной запятой."
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:169
 msgid "Could not compile script: All languages must have the same amount of strings."
@@ -3616,15 +3643,16 @@ msgstr "Не удалось скомпилировать скрипт: Все я
 #: skytemple-rust/src/image/tiled.rs:232
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
-msgstr ""
+msgstr "Изображение, выбранное для импорта, слишком сложное. В нем слишком много уникальных плиток ({}, максимально допустимое количество — 1024).\n"
+"Постарайтесь, чтобы уникальных плиток было меньше. Уникальные плитки — это фрагменты изображений размером 8x8, которые больше нигде не встречаются на изображении (в том числе в перевернутом виде или в другой субпалитре)."
 
 #: skytemple-rust/src/python_image.rs:54
 msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
-msgstr ""
+msgstr "Предоставленное вами изображение не является индексированным (в нем нет палитры). Пожалуйста, преобразуйте его в индексированное изображение (содержащее не более {} цветов) и попробуйте снова."
 
 #: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
-msgstr ""
+msgstr "Контрольная сумма заголовка ROM не соответствует содержимому."
 
 #: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
@@ -3640,19 +3668,19 @@ msgstr "Невозможно импортировать фон локации: �
 
 #: skytemple-rust/src/st_bpc.rs:541
 msgid "new tilemapping for this chunk must contain {} tiles."
-msgstr ""
+msgstr "новое плиточное строение для этого фрагмента должен содержать {} плиток."
 
 #: skytemple-rust/src/st_dbg.rs:123
 msgid "Can not import map background: Width of image must match the expected width: {}px"
-msgstr ""
+msgstr "Невозможно импортировать фон локации: Ширина изображения должна соответствовать ожидаемой ширине: {} пикселей"
 
 #: skytemple-rust/src/st_dbg.rs:129
 msgid "Can not import map background: Height of image must match the expected height: {}px"
-msgstr ""
+msgstr "Невозможно импортировать фон локации: Высота изображения должна соответствовать ожидаемой высоте: {} пикселей"
 
 #: skytemple-rust/src/st_dpc.rs:149
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
-msgstr ""
+msgstr "Импортируемое изображение может использовать только 12 палитр. Данное изображение использует палитру {}"
 
 #: skytemple-rust/src/st_dpla.rs:111
 msgid "Palette is invalid."
@@ -3665,13 +3693,15 @@ msgstr "Индекс палитры вне диапазона."
 
 #: skytemple-rust/src/st_dpla.rs:267
 msgid "Frame durations out of range while trying to build color."
-msgstr ""
+msgstr "Длительность кадров выходит за пределы диапазона при попытке построить цвет."
 
 #: skytemple-rust/src/st_kao.rs:137
 msgid "This portrait does not compress well, the result size is greater than {} bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.\n"
 "If this still doesn't work, try the 'ExpandPortraitStructs' instead."
-msgstr ""
+msgstr "Этот портрет плохо сжимается, размер результата превышает {} байт ({} байт всего).\n"
+" Если вы еще не сделали этого, попробуйте применить ASM патч 'ProvideATUPXSupport', чтобы установить оптимизированный алгоритм сжатия, который, возможно, сможет лучше сжать это изображение. \n"
+"Если и это не сработает, попробуйте вместо этого использовать 'ExpandPortraitStructs'."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:172
 msgid "BOOST"
@@ -3689,68 +3719,68 @@ msgstr "Настройка джойстика"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:111
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:796
 msgid "Y : "
-msgstr ""
+msgstr "Y : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:129
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:814
 msgid "X : "
-msgstr ""
+msgstr "X : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:147
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:832
 msgid "A : "
-msgstr ""
+msgstr "A : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:165
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:904
 msgid "Select : "
-msgstr ""
+msgstr "Select : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:183
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:886
 msgid "Lid : "
-msgstr ""
+msgstr "Крышка : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:201
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:922
 msgid "L : "
-msgstr ""
+msgstr "L : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:216
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:972
 msgid "R : "
-msgstr ""
+msgstr "R : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:232
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1056
 msgid "Debug : "
-msgstr ""
+msgstr "Отладка : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:248
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1107
 msgid "Start : "
-msgstr ""
+msgstr "Start : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:264
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1158
 msgid "Boost : "
-msgstr ""
+msgstr "Ускорение : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:280
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:298
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:316
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:332
 msgid "Axis :"
-msgstr ""
+msgstr "Оси :"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:350
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:868
 msgid "B : "
-msgstr ""
+msgstr "B : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:425
 msgid "Press a button..."
-msgstr ""
+msgstr "Нажмите кнопку..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:441
 msgid "Key definition"
@@ -3762,19 +3792,19 @@ msgstr "Нажмите любую клавишу..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:744
 msgid "Left : "
-msgstr ""
+msgstr "Влево : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:760
 msgid "Up : "
-msgstr ""
+msgstr "Вверх : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:778
 msgid "Right : "
-msgstr ""
+msgstr "Вправо : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:850
 msgid "Down : "
-msgstr ""
+msgstr "Вниз : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1232
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1244
@@ -3806,33 +3836,33 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:22
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:23
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:24
 msgid "Select"
-msgstr ""
+msgstr "Select"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:25
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2345
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:30
 msgid "R"
-msgstr ""
+msgstr "R"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:31
 msgid "L"
-msgstr ""
+msgstr "L"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:32
@@ -3841,36 +3871,36 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:268
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:282
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:33
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:90
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:34
 msgid "Debug"
-msgstr ""
+msgstr "Отладка"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:35
 msgid "Boost"
-msgstr ""
+msgstr "Ускорение"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:36
 msgid "Lid"
-msgstr ""
+msgstr "Крышка"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:62
 msgid "You don't have any joypads!"
-msgstr ""
+msgstr "У вас нет контроллеров!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:64
 msgid "Can't configure joystick while the game is running!"
-msgstr ""
+msgstr "Невозможно настроить контроллер, пока игра запущена!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:317
 #, python-brace-format
@@ -4440,7 +4470,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:260
 msgid "ExplorerScript"
-msgstr ""
+msgstr "ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:315
 msgid "..."
@@ -5918,7 +5948,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:333
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:353
 msgid "Hide Info Layer"
@@ -5930,7 +5960,7 @@ msgstr "Показать информацию о плитке"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:368
 msgid "Ti"
-msgstr ""
+msgstr "Пл"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:383
 msgid "Show Item Info"
@@ -5938,7 +5968,7 @@ msgstr "Показать информацию о предмете"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:384
 msgid "I"
-msgstr ""
+msgstr "Пр"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:399
 msgid "Show Pokémon Info"
@@ -5946,7 +5976,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:400
 msgid "P"
-msgstr ""
+msgstr "По"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:415
 msgid "Show Trap Info"
@@ -5954,7 +5984,7 @@ msgstr "Показать информацию о ловушке"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:416
 msgid "Tr"
-msgstr ""
+msgstr "Ло"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:441
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2986
@@ -6825,7 +6855,7 @@ msgstr "Категории"
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5052
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5219
 msgid "Guaranteed"
-msgstr ""
+msgstr "Гарантирован"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5347
 msgid "Items<span size=\"small\"> - Only Items with IDs smaller than 363 can be added.</span>"
@@ -6955,7 +6985,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:80
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:173
 msgid "Enable Palette Animations for Palette 10"
-msgstr ""
+msgstr "Включить анимацию палитры для палитры 10"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:131
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:624
@@ -7079,7 +7109,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:573
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:666
 msgid "Enable Palette Animations for Palette 11"
-msgstr ""
+msgstr "Включить анимацию палитры для палитры 11"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1103
 msgid "Export Background to Image..."
@@ -7098,14 +7128,14 @@ msgstr "Импортировать фон из изображения..."
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4446
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:145
 msgid "Chunks"
-msgstr ""
+msgstr "Фрагменты"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1134
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1513
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4465
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4512
 msgid "Edit Chunks"
-msgstr ""
+msgstr "Редактировать фрагменты"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1149
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1528
@@ -7542,21 +7572,21 @@ msgstr "ID файла"
 #: skytemple/skytemple/data/widget/lists/animations.ui:347
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
 msgid "Unk 1"
-msgstr ""
+msgstr "Неизв 1"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:361
 msgid "Unk 2"
-msgstr ""
+msgstr "Неизв 2"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:375
 #: skytemple/skytemple/data/widget/lists/animations.ui:749
 #: skytemple/skytemple/data/widget/lists/animations.ui:993
 msgid "SFX"
-msgstr ""
+msgstr "Звуки"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:389
 msgid "Unk 3"
-msgstr ""
+msgstr "Неизв 3"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:403
 msgid "Unk 4"
@@ -9491,7 +9521,7 @@ msgstr "Статус"
 
 #: skytemple/skytemple/data/widget/patch/cot.ui:25
 msgid "c-of-time & Rust of Darkness"
-msgstr ""
+msgstr "c-of-time & Rust of Darkness"
 
 #: skytemple/skytemple/data/widget/patch/cot.ui:41
 msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for writing custom patches for the game in C.\n\n"
@@ -9727,7 +9757,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/rom/main.ui:274
 msgid "Japanese:"
-msgstr ""
+msgstr "Японский:"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:286
 msgid "English:"
@@ -9735,23 +9765,23 @@ msgstr "Английский:"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:298
 msgid "French:"
-msgstr ""
+msgstr "Французский:"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:310
 msgid "German:"
-msgstr ""
+msgstr "Германский:"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:322
 msgid "Italian:"
-msgstr ""
+msgstr "Итальянский:"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:334
 msgid "Spanish:"
-msgstr ""
+msgstr "Испанский:"
 
 #: skytemple/skytemple/data/widget/rom/main.ui:347
 msgid "Title:"
-msgstr ""
+msgstr "Название:"
 
 #: skytemple/skytemple/data/widget/script/main.ui:200
 #: skytemple/skytemple/module/script/widget/main.py:46
@@ -10109,15 +10139,18 @@ msgid "<b>Warning!</b>\n\n"
 "This is an advanced feature.\n"
 "The game needs these values to work properly. If you make reckless changes, you could break it!\n"
 " Proceed with caution, and remember to make backups!"
-msgstr ""
+msgstr "<b>Внимание!</b>\n\n"
+"Это функция для продвинутых пользователей!\n"
+"Игре необходимы эти значения для исправной работы. Если вы сделаете необдуманные изменения, вы можете сломать ее!\n"
+" Действуйте с осторожностью и не забывайте делать резервные копии!"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:109
 msgid "Show this warning when trying to access this screen"
-msgstr ""
+msgstr "Показать это предупреждение при попытке получить доступ к этому экрану"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:126
 msgid "Proceed"
-msgstr ""
+msgstr "Продолжить"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:205
 msgid "Select binary:"
@@ -10314,7 +10347,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/module.py:913
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
-msgstr ""
+msgstr "{i} - Ур: {entry.level}, Атк: {entry.attack}, Защ: {entry.defense}, Сп. Атк: {entry.special_attack}, Сп. Защ: {entry.special_defense}, ОЗ: {entry.hp}"
 
 #: skytemple/skytemple/module/dungeon/module.py:990
 msgid "Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n"
@@ -11457,19 +11490,19 @@ msgstr ""
 #: skytemple/skytemple/module/script/module.py:155
 #: skytemple/skytemple/module/script/module.py:158
 msgid "T - Town"
-msgstr ""
+msgstr "T - Город"
 
 #: skytemple/skytemple/module/map_bg/module.py:117
 #: skytemple/skytemple/module/script/module.py:165
 #: skytemple/skytemple/module/script/module.py:168
 msgid "D - Dungeon"
-msgstr ""
+msgstr "D - Подземелья"
 
 #: skytemple/skytemple/module/map_bg/module.py:127
 #: skytemple/skytemple/module/script/module.py:175
 #: skytemple/skytemple/module/script/module.py:178
 msgid "G - Guild"
-msgstr ""
+msgstr "G - Гильдия"
 
 #: skytemple/skytemple/module/map_bg/module.py:137
 #: skytemple/skytemple/module/script/module.py:185
@@ -11481,7 +11514,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/module.py:195
 #: skytemple/skytemple/module/script/module.py:198
 msgid "P - Places"
-msgstr ""
+msgstr "P - Места"
 
 #: skytemple/skytemple/module/map_bg/module.py:157
 #: skytemple/skytemple/module/script/module.py:205
@@ -11491,7 +11524,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:167
 msgid "W - Weather"
-msgstr ""
+msgstr "W - Погода"
 
 #: skytemple/skytemple/module/map_bg/module.py:301
 msgid "Error adding the logo."
@@ -11499,7 +11532,7 @@ msgstr "Ошибка при добавлении логотипа."
 
 #: skytemple/skytemple/module/map_bg/module.py:308
 msgid "Logo added successfully. Thank you!"
-msgstr ""
+msgstr "Логотип успешно добавлен. Спасибо!"
 
 #: skytemple/skytemple/module/map_bg/module.py:376
 msgid "Map Background category \"{}\""
