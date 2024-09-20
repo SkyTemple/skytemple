@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-19 22:09\n"
+"PO-Revision-Date: 2024-09-20 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -6916,7 +6916,12 @@ msgid "This dungeon is currently invalid. \n"
 "fast-travel dungeons which are only used to be able to select locations like \n"
 "\"Shaymin Village\" from the crossroads dungeon selection menu.\n\n"
 "After fixing the dungeon, you will be able to edit it."
-msgstr ""
+msgstr "Это подземелье в настоящее время недействительно. \n"
+"Вы можете исправить это, перейдя в раздел \"Подземелья\" и выбрав \"Исправить ошибки подземелий\".\n\n"
+"Обратите внимание, что некоторые подземелья в игре не работают по умолчанию, например, подземелья быстрого перемещения, \n"
+"которые используются только для того, чтобы можно было выбрать локации вроде \n"
+"\"Деревня Шеймин\" из меню выбора подземелья в Перекрестке.\n\n"
+"После исправления подземелья вы сможете его редактировать."
 
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:106
 msgid "Go To \"Dungeons\""
@@ -7331,7 +7336,9 @@ msgstr ""
 msgid "This will import the tiles.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Эта функция импортирует плитки.\n\n"
+"Возможно, вам потребуется сначала преобразовать входное изображение,\n"
+"прежде чем вы сможете его использовать. См. раздел \"Детали формата\"."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2472
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2658
@@ -7347,7 +7354,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:54
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged. \n"
 "It also lets you edit backgrounds used for boss fights and other dungeon maps."
-msgstr ""
+msgstr "В этом разделе вы можете редактировать графику плиток подземелья и их расположение. \n"
+"Здесь также можно редактировать фоны, используемые для боев с боссами и других карт подземелий."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:123
 msgid "Minimap Color"
