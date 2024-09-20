@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-20 21:53\n"
+"PO-Revision-Date: 2024-09-20 23:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -5125,7 +5125,9 @@ msgstr "Журнал отладки"
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
 "Originally licensed under GPLv2. See https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS for a list of authors!\n"
 "Thanks for making this great emulator!"
-msgstr ""
+msgstr "Работает на DeSmuME, эмуляторе Nintendo DS:\n"
+"Первоначально лицензировался под GPLv2. Список авторов смотрите на https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS!\n"
+"Спасибо за создание этого замечательного эмулятора!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3258
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
@@ -5197,7 +5199,8 @@ msgstr ""
 #, python-brace-format
 msgid "The script contains a syntax error, please fix it before editing the Position Mark.\n"
 "Parse error: {err}"
-msgstr ""
+msgstr "Скрипт содержит синтаксическую ошибку, пожалуйста, исправьте ее перед редактированием маркера позиции.\n"
+"Ошибка анализа: {err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:41
 msgid "Constants & Variables"
@@ -6250,7 +6253,7 @@ msgstr "В этом разделе вы можете редактировать 
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:251
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
-msgstr ""
+msgstr "Здесь вы можете редактировать сущностей, которые могут быть размещены в фиксированных комнатах. Сущности - это комбинация свойств плитки (+ловушки), покемонов и предметов."
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:299
 msgid "Tile"
@@ -7230,7 +7233,7 @@ msgstr "Масштаб -"
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1345
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:58
 msgid "Show Chunks Grid"
-msgstr ""
+msgstr "Показать сетку фрагментов"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1389
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:139
@@ -7254,7 +7257,11 @@ msgid "This will export all tiles.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Это экспортирует фон все плитки.\n\n"
+"Вы можете редактировать и импортировать плитки снова.\n"
+"Обратите внимание, что вам может понадобиться преобразовать их, \n"
+"чтобы их можно было использовать. \n"
+"Дополнительную информацию смотрите в диалоге импорта."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1653
 msgid "Background Export"
@@ -7276,7 +7283,7 @@ msgstr "Это экспортирует фон как одно изображе�
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:6
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5385
 msgid "Chunks Export"
-msgstr ""
+msgstr "Экспортировать фрагменты"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1831
 msgid "This will export all chunks.\n\n"
@@ -7284,47 +7291,56 @@ msgid "This will export all chunks.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Это экспортирует фон все фрагменты.\n\n"
+"Вы можете редактировать и импортировать фрагменты снова.\n"
+"Обратите внимание, что вам может понадобиться преобразовать их, \n"
+"чтобы их можно было использовать. \n"
+"Дополнительную информацию смотрите в диалоге импорта."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1913
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2394
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5775
 msgid "Chunks Import"
-msgstr ""
+msgstr "Импортировать фрагменты"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1983
 msgid "This will import the chunks.\n"
 "The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Это позволит импортировать фрагменты.\n"
+"Существующие плиточные строения будут заменены.\n\n"
+"Перед использованием входного изображения\n"
+"может потребоваться его преобразование. Смотрите раздел \"Детали формата\"."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2059
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2488
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5920
 msgid "Chunks Image"
-msgstr ""
+msgstr "Изображение фрагментов"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2098
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2527
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5959
 msgid "Replace palettes"
-msgstr ""
+msgstr "Заменить палитры"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2142
 msgid "Background Import"
-msgstr ""
+msgstr "Импорт фона"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2211
 msgid "This will import the entire background.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Эта функция импортирует весь фон.\n\n"
+"Возможно, вам потребуется сначала преобразовать входное изображение,\n"
+"прежде чем вы сможете его использовать. См. раздел \"Детали формата\"."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2285
 #: skytemple/skytemple/skytemple.glade:2214
 msgid "Input Image"
-msgstr ""
+msgstr "Входное изображение"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2329
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2571
@@ -7344,12 +7360,12 @@ msgstr "Эта функция импортирует плитки.\n\n"
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2658
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6373
 msgid "Tiles Image"
-msgstr ""
+msgstr "Изображение плиток"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:39
 #: skytemple/skytemple/module/dungeon_graphics/widget/main.py:38
 msgid "Dungeon Graphics"
-msgstr ""
+msgstr "Графика подземелий"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:54
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged. \n"
@@ -7493,7 +7509,7 @@ msgstr "Стена"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1722
 msgid "Water / Lava"
-msgstr ""
+msgstr "Вода / Лава"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1749
 msgid "Has Liquid / Wall"
@@ -7607,7 +7623,7 @@ msgstr "Импортировать палитры?\n"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:105
 msgid "Insert as NEW image instead of replacing current."
-msgstr ""
+msgstr "Вставить как НОВОЕ изображение, вместо замены текущего."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:116
 msgid "Import settings:"
@@ -7616,12 +7632,12 @@ msgstr "Параметры импортирования:"
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:211
 #: skytemple/skytemple/data/widget/misc_graphics/graphic_font.ui:154
 msgid "This entry is empty."
-msgstr ""
+msgstr "Эта запись пуста."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:277
 #: skytemple/skytemple/data/widget/misc_graphics/graphic_font.ui:220
 msgid "Entry: "
-msgstr ""
+msgstr "Запись: "
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/trp_itm_img.ui:301
 msgid "Palette: "
@@ -7629,7 +7645,7 @@ msgstr "Палитра: "
 
 #: skytemple/skytemple/data/widget/gfxcrunch/gfxcrunch.ui:6
 msgid "gfxcrunch"
-msgstr ""
+msgstr "gfxcrunch"
 
 #: skytemple/skytemple/data/widget/gfxcrunch/gfxcrunch.ui:83
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
@@ -7642,7 +7658,7 @@ msgstr "Анимации"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:194
 msgid "Edits the animation tables used by the game."
-msgstr ""
+msgstr "Редактирует таблицы анимации, используемые игрой."
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:207
 msgid "<Not available>\n\n"
@@ -7654,7 +7670,7 @@ msgstr "<Недоступно>\n\n"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:255
 msgid "Animation Tables"
-msgstr ""
+msgstr "Таблицы анимации"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:271
 msgid "Edits the animation attributes."
@@ -7782,12 +7798,12 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:149
 #: skytemple/skytemple/module/lists/module.py:208
 msgid "Dungeon Interruptions"
-msgstr ""
+msgstr "Прерывания подземелий"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:88
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:165
 msgid "Edits all dungeon interruptions defined in the game."
-msgstr ""
+msgstr "Редактирует все прерывания подземелий, определенные в игре."
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:101
 msgid "<Not available>\n\n"
@@ -7803,7 +7819,7 @@ msgstr "Подземелье: "
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:251
 msgid "Interruptions: "
-msgstr ""
+msgstr "Прерывания: "
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:308
 msgid "Game Variable"
@@ -9433,15 +9449,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1032
 msgid "AI Flag: Throw at enemies"
-msgstr ""
+msgstr "ИИ флаг: бросать во врагов"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1044
 msgid "AI Flag: Throw at allies"
-msgstr ""
+msgstr "ИИ флаг: бросать в союзников"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1056
 msgid "AI Flag: Use on self"
-msgstr ""
+msgstr "ИИ флаг: использовать на себе"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1100
 msgid "Flags"
@@ -10050,7 +10066,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:267
 #: skytemple/skytemple/data/widget/script/ssa.ui:796
 msgid "This level uses mode #10 or #11. It is using dungeon tiles for rendering (and if mode #11 a fixed room assigned). Changing the map background may result in unexpected results because of this."
-msgstr ""
+msgstr "Этот уровень использует режим #10 или #11. Для рендеринга используются плитки подземелья (а в режиме #11 - фиксированная комната). Из-за этого изменение фона локации может привести к неожиданным результатам."
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:72
 #: skytemple/skytemple/module/script/widget/ssa.py:1620
@@ -10286,7 +10302,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:148
 msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
 "Choose a Pokémon in the list on the left."
-msgstr ""
+msgstr "<span size=\"x-large\">Браузер SpriteCollab</span>\n\n"
+"Выберите покемона в списке слева."
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:259
 msgid "SpriteCollab Browser"
@@ -10575,7 +10592,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:112
 msgid "\n"
 "Since this is a Dojo Dungeon, the floor count can not be changed."
-msgstr ""
+msgstr "\n"
+"Поскольку это додзе-подземелье, количество этажей не может быть изменено."
 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:118
 #, python-brace-format
@@ -10590,7 +10608,8 @@ msgstr "В настоящее время это подземелье имеет 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:443
 msgid "Chance of setting the random movement flag on an enemy when spawning it.\n"
 "Enemies with this flag set will move randomly inside rooms, instead of heading towards one of the exits."
-msgstr ""
+msgstr "Шанс установить флаг случайного движения у врага при его появлении.\n"
+"Враги с этим флагом будут беспорядочно перемещаться внутри комнат, а не направляться к одному из выходов."
 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:451
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
@@ -10602,11 +10621,11 @@ msgstr "Если эта функция включена, враги будут �
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:566
 msgid "Width and height must be numbers >= 0."
-msgstr ""
+msgstr "Ширина и высота должны быть числами >= 0."
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:567
 msgid "Invalid values."
-msgstr ""
+msgstr "Недопустимые значения."
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:578
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
@@ -10614,7 +10633,7 @@ msgstr "Вы собираетесь уменьшить размер комнат
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:592
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
-msgstr ""
+msgstr "Если значение не установлено, вместо него будет использоваться ID трека, указанный на этаже, к которому приписан этот фиксированная комната."
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:599
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
@@ -10655,7 +10674,8 @@ msgstr "Если эта опция включена, игра будет рас�
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:651
 msgid "Enables boss fight conditions.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
-msgstr ""
+msgstr "Включает условия боя с боссом.\n"
+"Если ChangeFixedFloorProperties не применен, это будет включено только в том случае, если ID фиксированной комнаты находится в диапазоне от 1 до 80. "
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:659
 msgid "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
@@ -10666,7 +10686,8 @@ msgstr "Позволяет создавать свободные планиро�
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:667
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
-msgstr ""
+msgstr "Если режим подземелья - REQUEST (= подземелье отмечено как пройденное один раз), вместо него будет использоваться эта фиксированная комната.\n"
+"Это используется в подземельях, где содержимое фиксированной комнаты меняется в зависимости от прогресса сюжета, например в большинстве подземелий с легендарным покемоном в конце (первое посещение против реванша)."
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:684
 #, python-brace-format
@@ -10804,16 +10825,17 @@ msgstr "Конечное значение рандомизируется меж�
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:790
 msgid "The value stored in the ROM is actually what you write here divided by 5. Because of this, your input will be rounded to the next multiple of 5."
-msgstr ""
+msgstr "Значение, хранящееся в ROM, это то, что вы записали здесь, деленное на 5. Поэтому ваши входные данные будут округлены до следующего числа, кратного 5."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:796
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
-msgstr ""
+msgstr "Эти ползунки регулируют вероятность (в %) генерации определенных вещей на этом этаже."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:802
 msgid "Every Kecleon shop has a minimum amount of guaranteed items.\n"
 "This value controls where in the shop they will be placed."
-msgstr ""
+msgstr "В каждом магазине Кеклеона есть минимальное количество гарантированных предметов.\n"
+"Это значение определяет, где в магазине они будут размещены."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:810
 #, python-format
@@ -10821,7 +10843,10 @@ msgid "0 --> 100% secret bazaar\n"
 "1 --> 100% secret room\n"
 "255 --> 50% secret bazaar, 50% secret room\n"
 "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs)."
-msgstr ""
+msgstr "0 --> 100% секретный базар\n"
+"1 --> 100% секретная комната\n"
+"255 --> 50% секретный базар, 50% секретная комната\n"
+"Другие значения: 0% секретный базар, 0% секретная комната (вы просто поднимаетесь на следующий этаж, как по обычной лестнице)."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:833
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
@@ -10837,7 +10862,7 @@ msgstr "Это было добавлено в Explorers of Sky, так что с
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:898
 msgid "If more than 0, the IQ booster increases IQ on this floor by this amount."
-msgstr ""
+msgstr "Если больше 0, то Усилитель IQ увеличит IQ на этом этаже на эту величину."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:949
 msgid "You can not spawn Kecleons or the Decoy Pokémon."
@@ -10856,35 +10881,35 @@ msgstr "Не найдено Покемонов с таким ID."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1116
 msgid "All categories are already in the list."
-msgstr ""
+msgstr "Все категории уже есть в списке."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1117
 msgid "Can not add category"
-msgstr ""
+msgstr "Невозможно добавить категорию"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1138
 msgid "The last category can not be removed."
-msgstr ""
+msgstr "Последняя категория не может быть удалена."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1139
 msgid "Can't remove category."
-msgstr ""
+msgstr "Невозможно удалить категорию."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1355
 msgid "This item does not belong in this category. Please chose another item."
-msgstr ""
+msgstr "Этот предмет не относится к данной категории. Пожалуйста, выберите другой предмет."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1356
 msgid "Invalid item id"
-msgstr ""
+msgstr "Неверный ID предмета"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1363
 msgid "This item is already in the list."
-msgstr ""
+msgstr "Этот предмет уже в списке."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1364
 msgid "Can not use this item"
-msgstr ""
+msgstr "Невозможно использовать этот предмет"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1437
 msgid "All items are already in the list"
@@ -12039,7 +12064,9 @@ msgstr ""
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
 "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
 "It is recommended to only edit this to change the text color/content."
-msgstr ""
+msgstr "Вот что показывает игра, когда картридж извлекается во время игры.\n"
+"ВАЖНО! Игра хранит это изображение в сжатом виде в ARM9, поэтому она занимает мало места.\n"
+"Рекомендуется редактировать его только для изменения цвета/содержания текста."
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:69
 msgid "Cartridge Removed Image Info"
@@ -13843,7 +13870,7 @@ msgstr "Цвета стали уникальными."
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:170
 msgid "You can not remove the last palette."
-msgstr ""
+msgstr "Вы не можете удалить последнюю палитру."
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:226
 msgid "Color "
