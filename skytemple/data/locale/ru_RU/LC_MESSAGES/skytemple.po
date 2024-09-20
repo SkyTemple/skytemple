@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-20 20:54\n"
+"PO-Revision-Date: 2024-09-20 21:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -6413,7 +6413,7 @@ msgstr "Сп. защ."
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1187
 msgid "UnkA"
-msgstr ""
+msgstr "НеизвA"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1210
 msgid "Pokémon Stats"
@@ -7689,7 +7689,7 @@ msgstr "Неизв 3"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:403
 msgid "Unk 4"
-msgstr ""
+msgstr "Неизв 4"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:416
 #: skytemple/skytemple/data/widget/lists/animations.ui:733
@@ -7699,7 +7699,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:432
 msgid "Unk 5"
-msgstr ""
+msgstr "Неизв 5"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:445
 msgid "Loop"
@@ -8253,7 +8253,8 @@ msgstr "Число слоев "
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2512
 msgid "Decreasing the number of layers will remove\n"
 "all tiles and chunks of the upper layer."
-msgstr ""
+msgstr "Уменьшение количества слоев приведет к удалению\n"
+"всех плиток и фрагментов верхнего слоя."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2526
 msgid "NOTE: The number of layers for the level that uses this\n"
@@ -8275,7 +8276,7 @@ msgstr "Импорт/экспорт анимированных плиток "
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2690
 msgid "This will export or import the selected set of animated tiles."
-msgstr ""
+msgstr "Это позволит экспортировать или импортировать выбранный набор анимированных плиток."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2711
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2751
@@ -8373,7 +8374,7 @@ msgstr "Включено"
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3813
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3936
 msgid "Durations per Frame:"
-msgstr ""
+msgstr "Длительность одного кадра:"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:3133
 msgid "BPA 1"
@@ -8729,12 +8730,13 @@ msgstr "Файл изображения: "
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:164
 msgid "The image file must be a color-indexed PNG to be imported\n"
 "as a WTE file."
-msgstr ""
+msgstr "Файл изображения должен быть PNG с цветовой индексацией, чтобы его можно было импортировать\n"
+"как файл WTE."
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:203
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:530
 msgid "WTE Image Type: "
-msgstr ""
+msgstr "Тип изображения WTE: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:231
 msgid "Discard Palette"
@@ -8766,7 +8768,7 @@ msgstr "Размер изображения: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:595
 msgid "WTE"
-msgstr ""
+msgstr "WTE"
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:624
 msgid "This image does\n"
@@ -8842,7 +8844,7 @@ msgstr "Открыть в браузере"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:159
 msgid "This opens the graph in a browser. You can use the \"refresh\" button (F5) in your browser to update it."
-msgstr ""
+msgstr "Это откроет график в браузере. Для его обновления можно использовать кнопку \"обновить\" (F5) в браузере."
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:181
 msgid "Graph"
@@ -8893,7 +8895,7 @@ msgstr "Импортировать из CSV"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:360
 msgid "Base Stats can be edited under \"Settings\". They will be applied for level 1."
-msgstr ""
+msgstr "Базовые статистики можно редактировать в разделе \"Настройки\". Они будут применены для первого уровня."
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:515
 msgid "Level Up Moves"
@@ -8931,17 +8933,17 @@ msgstr "Это позволит экспортировать данные все
 #: skytemple/skytemple/data/widget/monster/main.ui:175
 #: skytemple/skytemple/data/widget/monster/monster.ui:231
 msgid "Moveset EoS"
-msgstr ""
+msgstr "Набор приемов EoS"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:189
 #: skytemple/skytemple/data/widget/monster/monster.ui:245
 msgid "Moveset EoT / EoD**"
-msgstr ""
+msgstr "Набор приемов EoT / EoD**"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:201
 #: skytemple/skytemple/data/widget/monster/monster.ui:273
 msgid "** This data is not editable in SkyTemple, but you can export and import it."
-msgstr ""
+msgstr "** Эти данные нельзя редактировать в SkyTemple, но вы можете экспортировать и импортировать их."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:219
 #: skytemple/skytemple/data/widget/monster/monster.ui:305
@@ -9292,11 +9294,11 @@ msgstr "Информация о спрайте"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3018
 msgid "Unk 1.0:"
-msgstr ""
+msgstr "Неизв 1.0:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3030
 msgid "Unk 31:"
-msgstr ""
+msgstr "Неизв 31:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3055
 msgid "Spawn Threshold:"
@@ -9304,15 +9306,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3079
 msgid "Unk 1.1:"
-msgstr ""
+msgstr "Неизв 1.1:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3091
 msgid "Unk 1.2:"
-msgstr ""
+msgstr "Неизв 1.2:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3103
 msgid "Unk 1.3:"
-msgstr ""
+msgstr "Неизв 1.3:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3115
 msgid "Can move:"
@@ -10383,11 +10385,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:241
 msgid "Flip X"
-msgstr ""
+msgstr "Отразить по X"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:279
 msgid "Flip Y"
-msgstr ""
+msgstr "Отразить по Y"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:318
 msgid "Palette"
@@ -10395,11 +10397,11 @@ msgstr "Палитра"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:363
 msgid "Tile No."
-msgstr ""
+msgstr "Номер плитки"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:405
 msgid "Selected Tile"
-msgstr ""
+msgstr "Выбранная плитка"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:437
 msgid "Palette for Tile Preview"
@@ -10411,19 +10413,19 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:556
 msgid "Animated Tiles Slot 1"
-msgstr ""
+msgstr "Анимированные плитки, слот 1"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:597
 msgid "Animated Tiles Slot 2"
-msgstr ""
+msgstr "Анимированные плитки, слот 2"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:638
 msgid "Animated Tiles Slot 3"
-msgstr ""
+msgstr "Анимированные плитки, слот 3"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:679
 msgid "Animated Tiles Slot 4"
-msgstr ""
+msgstr "Анимированные плитки, слот 4"
 
 #: skytemple/skytemple/data/widget/tiled_img/palette_editor.ui:17
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:138
@@ -10894,19 +10896,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1572
 msgid "Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."
-msgstr ""
+msgstr "Предупреждение: Некоторые покемоны в списке врагов могут быть недопустимыми. Вместо них будут появляться Кеклеоны."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1605
 msgid "Warning: Some Item spawns may be invalid. Poké will been spawned instead."
-msgstr ""
+msgstr "Предупреждение: Некоторые предметы в списке предметов могут быть недопустимыми. Вместо них будут появляться монеты."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1618
 msgid "Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."
-msgstr ""
+msgstr "Предупреждение: Некоторые ловушки в списке ловушек могут быть недопустимыми. Вместо них будут появляться неиспользованные ловушки."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1627
 msgid "Note: Floor uses a fixed room, the preview doesn't take this into account.\n"
-msgstr ""
+msgstr "Примечание: Этаж использует фиксированную комнату, предварительный просмотр не учитывает этого.\n"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1680
 msgid "This seed is used as the base to randomly generate the actual seeds used by the dungeon generation engine. Note that generated previews might not be 100% accurate."
@@ -10918,7 +10920,11 @@ msgid "Change the chances of Pokémon, traps or items spawning.\n"
 "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries without having their items) will be added to the next Pokémon entry in the list when the game decides what to spawn.\n"
 "Please note for items, that the game first decides what category to spawn for an item and then chooses an entry for that category.\n"
 "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."
-msgstr ""
+msgstr "Измените вероятность появления покемонов, ловушек или предметов.\n"
+"Вероятность появления зависит от веса. Чем больше вес, тем выше вероятность его появления.\n"
+"Обратите внимание, что вес покемонов, которые не могут быть появиться (например, легендарные покемоны без предметов), будет добавлен к следующей записи в списке, когда игра решит, что должно появиться.\n"
+"Обратите внимание, что для предметов игра сначала решает, предмет какой категории должен появиться, а затем выбирает запись из этой категории.\n"
+"Все записи из списков всегда сохраняются в игре, отсортированные по ID (покемона, предмета, ловушки)."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1694
 msgid "If 'Use same spawn weights for Monster Houses' is checked, the same spawn weights are used for regular spawns and spawns in Monster Houses.\n"
@@ -10932,7 +10938,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1783
 #: skytemple/skytemple/module/script/widget/ssa.py:529
 msgid "Export was canceled."
-msgstr ""
+msgstr "Экспорт был отменен."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1807
 msgid "Import floor from..."
@@ -11693,11 +11699,11 @@ msgstr "Неправильные значения.\n"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:232
 msgid "Save GIF of map..."
-msgstr "Сохранить GIF-изображение карты..."
+msgstr "Сохранить GIF-изображение фона..."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:272
 msgid "Export PNGs of map..."
-msgstr "Экспортировать PNG-файлы карты..."
+msgstr "Экспортировать PNG-файлы фона..."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:331
 msgid "The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
@@ -11723,40 +11729,40 @@ msgstr "Нет анимированных плиток"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:615
 msgid "Export animated tiles (BPA)"
-msgstr ""
+msgstr "Экспортировать анимированные плитки (BPA)"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:650
 msgid "The animated tiles were successfully exported."
-msgstr ""
+msgstr "Анимированные плитки были успешно экспортированы."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:651
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:716
 msgid "SkyTemple - Success!"
-msgstr ""
+msgstr "SkyTemple - Успех!"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:657
 msgid "Error during BPA export"
-msgstr ""
+msgstr "Ошибка при экспорте BPA"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:669
 msgid "Import animated tiles (BPA)"
-msgstr ""
+msgstr "Импортировать анимированные плитки (BPA)"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:713
 msgid "The animated tiles were successfully imported, using the files: "
-msgstr ""
+msgstr "Анимированные плитки были успешно импортированы из файлов: "
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:722
 msgid "Error during BPA import"
-msgstr ""
+msgstr "Ошибка при импорте BPA"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:804
 msgid "All \"number of frames\" values were invalid or 0. No values were saved."
-msgstr ""
+msgstr "Все значения \"Количество кадров\" недействительны или равны 0. Значения не были сохранены."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:819
 msgid "All \"frame time\" values were invalid or 0. No values were saved."
-msgstr ""
+msgstr "Все значения \"Время кадра\" недействительны или равны 0. Значения не были сохранены."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:866
 msgid "Palette Animation is not enabled."
@@ -11822,19 +11828,19 @@ msgstr "Логотип успешно добавлен. Спасибо!"
 
 #: skytemple/skytemple/module/map_bg/module.py:376
 msgid "Map Background category \"{}\""
-msgstr ""
+msgstr "Категория фона локации \"{}\""
 
 #: skytemple/skytemple/module/map_bg/module.py:377
 msgid "This section contains all the map backgrounds, that start with the letter {}."
-msgstr ""
+msgstr "В этом разделе собраны все фоны локаций, начинающихся с буквы {}."
 
 #: skytemple/skytemple/module/map_bg/module.py:379
 msgid "Map Backgrounds for other maps"
-msgstr ""
+msgstr "Фоны локаций для других локаций"
 
 #: skytemple/skytemple/module/map_bg/module.py:380
 msgid "This section contains all the map backgrounds, that don't fit in any of the other categories."
-msgstr ""
+msgstr "В этом разделе собраны все фоны локаций, не помещающихся ни в какую категорию."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:47
 msgid "- The image consists of 8x8 tiles.\n"
@@ -12472,7 +12478,13 @@ msgid "Value depends on Main Requirement:\n"
 "- Items: ID of the item required\n"
 "- Recruited: ID of the Pokémon you have to recruit\n"
 "- No Main Requirement: Unused"
-msgstr ""
+msgstr "Значение зависит от основного требования:\n"
+"- Не эволюционирует: Не используется\n"
+"- Уровень: Уровень, необходимый для эволюции\n"
+"- IQ: Какой IQ требуется\n"
+"- Предметы: ID требуемого предмета\n"
+"- Рекрутирован: ID покемона, которого нужно рекрутировать\n"
+"- Нет основного требования: Не используется"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:678
 msgid "Evolution Parameters"
@@ -12609,7 +12621,9 @@ msgstr "Действует только при применении SpriteSizeIn
 msgid "Effective only when SpriteSizeInMonsterData is applied.\n"
 "Sprite File Size describes the actual size of the sprite file, and deals with enemies and NPCs in dungeons (all Pokemon not on the player's party). The Sprite File Size is expressed in blocks of 512 bytes. The limit for all enemies and allied NPCs on a dungeon floor is 352 kB (704 Sprite File Size) in total, counting by species present on the floor.\n"
 "This is computed automatically and cannot be changed."
-msgstr ""
+msgstr "Действует только при применении параметра SpriteSizeInMonsterData.\n"
+"Размер файла спрайта описывает фактический размер файла спрайта и относится к врагам и NPC в подземельях (все покемоны, не входящие в команду игрока). Размер файла спрайта выражается в блоках по 512 байт. Лимит для всех врагов и союзных NPC на этаже подземелья составляет 352 кБ (704 единиц Размера файла спрайта) в целом, считая по видам, присутствующим на этаже.\n"
+"Это значение вычисляется автоматически и не может быть изменено."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1264
 msgid "Export Pokémon as..."
@@ -12629,7 +12643,7 @@ msgstr "Спрайты"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1645
 msgid "??? Enter a valid parameter (#)"
-msgstr ""
+msgstr "??? Введите допустимый параметр (#)"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1664
 msgid "??? Enter a valid Base ID (#)"
@@ -12648,7 +12662,9 @@ msgstr ""
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
-msgstr ""
+msgstr "Если патч 'ExpandPokeList' не применен, этот параметр не используется. Однако обратите внимание, что он используется для создания групп при применении патчей.\n"
+"После применения патча это значение определяет базовый ID и, соответственно, способ группировки покемонов.\n"
+"Перезагрузите проект после внесения изменений в это значение, чтобы они отразились в дереве слева."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1788
 msgid "Entity ID"
@@ -12829,63 +12845,63 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:55
 msgid "E Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга E"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:56
 msgid "D Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга D"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:57
 msgid "C Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга C"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:58
 msgid "B Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга B"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:59
 msgid "A Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга A"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:60
 msgid "S Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга S"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:61
 msgid "★1 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★1"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:62
 msgid "★2 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★2"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:63
 msgid "★3 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★3"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:64
 msgid "★4 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★4"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:65
 msgid "★5 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★5"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:66
 msgid "★6 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★6"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:67
 msgid "★7 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★7"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:68
 msgid "★8 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★8"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:69
 msgid "★9 Floors Rewards"
-msgstr ""
+msgstr "Награды за миссии ранга ★9"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:70
 msgid "Kecleon Shop 1"
@@ -13819,11 +13835,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:122
 msgid "Make Colors Unique"
-msgstr ""
+msgstr "Сделать цвета уникальными"
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:137
 msgid "Made colors unique."
-msgstr ""
+msgstr "Цвета стали уникальными."
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:170
 msgid "You can not remove the last palette."
