@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-20 12:44\n"
+"PO-Revision-Date: 2024-09-20 14:57\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -7330,7 +7330,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2571
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:6229
 msgid "Tiles Import"
-msgstr ""
+msgstr "Импортировать плитки"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2398
 msgid "This will import the tiles.\n\n"
@@ -11783,7 +11783,18 @@ msgid "- The image consists of 8x8 tiles.\n"
 "- Each import must result in a maximum of 1024 unique 8x8 tiles \n"
 "  (=not existing with another palette or flipped or rotated).\n\n"
 "Animated tiles are not imported."
-msgstr ""
+msgstr "- Изображение состоит из плиток размером 8x8 пикселей.\n"
+"- Изображение представляет собой 256-цветный индексированный PNG.\n"
+"- 256 цветов разделены на 16 палитр.\n"
+"- Каждая плитка(8x8) в изображении ДОЛЖНА использовать только цвета из\n"
+"  одной из этих 16 палитр.\n"
+"- Первый цвет в каждой палитре - прозрачный.\n"
+"- Экспортируемые палитры предназначены только для вашего удобства.\n"
+"  Они основаны на первом использовании плитки для отображении фрагментов \n"
+"  (фрагментов > Редактировать фрагменты).\n"
+"- В результате импорта должно получиться не более 1024 уникальных плиток (8x8) \n"
+"  (= не существующих в другой палитре, не перевернутых и не повернутых).\n\n"
+"Анимированные плитки не импортируются."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:50
 msgid "- The image consists of 8x8 tiles.\n"
@@ -11809,7 +11820,29 @@ msgid "- The image consists of 8x8 tiles.\n"
 "transparency.\n\n"
 "Static tiles, chunks and palettes are replaced on import. \n"
 "Animated tiles and palette animation settings are not changed.\n"
-msgstr ""
+msgstr "- Изображение состоит из плиток размером 8x8 пикселей.\n"
+"- Изображение представляет собой 256-цветный индексированный PNG.\n"
+"- 256 цветов разделены на 16 палитр.\n"
+"- Каждая плитка(8x8) в изображении ДОЛЖНА использовать только цвета из\n"
+"  одной из этих 16 палитр.\n"
+"- Первый цвет в каждой палитре - прозрачный.\n"
+"- Анимированные плитки НЕ экспортируются и не импортируются. При экспорте они\n"
+"  заменяются пустыми плитками. При импорте, плиточные строения \n"
+"  анимированных плиток будут потеряны, поэтому обязательно запишите их, \n"
+"  чтобы вручную переназначить их при импорте. Чтобы изменить анимированные плитки, \n"
+"  перейдите в меню Плитки > Анимированные плитки.\n"
+"- В результате каждого импорта должно получиться не более 1024 уникальных плиток(8x8) \n"
+"  (=не существующих в другой палитре, не перевернутых и не повернутых).\n\n"
+"Некоторые редакторы изображений испытывают проблемы при работе с индексированными\n"
+"изображениями, которые содержат один и тот же цвет несколько раз. Вы можете\n"
+"сделать все цвета у фона уникальными перед экспортом в\n"
+"Палитры > Редактировать палитры. В качестве альтернативы можно воспользоваться конвертером.\n\n"
+"Обратите внимание, что фрагменты не могут использовать цвета из \n"
+"двух последних палитр. Они не должны использоваться ни одной плиткой.\n\n"
+"Цвета, находящиеся в неправильной палитре, заменяются\n"
+"прозрачностью.\n\n"
+"Статические плитки, фрагменты и палитры заменяются при импорте. \n"
+"Анимированные плитки и настройки анимации палитр не изменяются.\n"
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:53
 msgid "- The image is a 256-color indexed PNG.\n"
@@ -11830,7 +11863,24 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "Animated tiles and palette animation settings are not changed.\n\n"
 "Since no animated tiles are imported, they need\n"
 "to be (re-)assigned to chunks after the import."
-msgstr ""
+msgstr "- Изображение представляет собой 256-цветный индексированный PNG.\n"
+"- 256 цветов разделены на 16 палитр.\n"
+"- Каждая плитка (8x8 пикселей) в изображении ДОЛЖНА использовать только цвета из\n"
+"  одной из этих 16 палитр.\n"
+"- Первый цвет в каждой палитре - прозрачный.\n"
+"- Анимированные плитки экспортируются как статичные плитки.\n"
+"- В результате каждого импорта должно получиться не более 1024 уникальных плиток (8x8) \n"
+"  (=не существующих в другой палитре, не перевернутых или повернутых).\n\n"
+"Некоторые редакторы изображений испытывают проблемы при работе с индексированными\n"
+"изображениями, которые содержат один и тот же цвет несколько раз. Вы можете\n"
+"сделать все цвета у фона уникальными перед экспортом в\n"
+"Палитры > Редактировать палитры.\n\n"
+"Цвета, находящиеся в неправильной палитре, заменяются\n"
+"прозрачностью.\n\n"
+"Статические плитки заменяются при импорте.\n"
+"Анимированные плитки и настройки анимации палитры не изменяются.\n\n"
+"Поскольку анимированные плитки не импортируются, после импорта их нужно\n"
+"(повторно) назначить фрагментам."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:297
 msgid "This map background shared some asset files with other map backgrounds.\n"
@@ -11839,7 +11889,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:299
 msgid "SkyTemple - Notice"
-msgstr ""
+msgstr "SkyTemple - Уведомление"
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:514
 msgid "A script map with the same name as this background does not exist."
@@ -11875,7 +11925,11 @@ msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
 "It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
 "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"
-msgstr ""
+msgstr "Фон локации может быть основным или дополнительным.\n"
+"Если фон используется как основной, он может иметь до 14 палитр, используя слоты от 0 до 13.\n"
+"При вторичном использовании фон может иметь только 1 палитру, используя слот 14, и каждое значение палитры будет иметь новое значение (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+"Использовать значения палитры, превышающие эти пределы, возможно, но это только в тех случаях, когда фон должен ссылаться на палитру другого фона.\n"
+"Примечание: в оригинальной игре почти все фоны используются как основные, исключение составляют только фоны погоды (W).\n"
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:1049
 msgid "Background Palettes"
@@ -11891,11 +11945,11 @@ msgstr "Название фона локации"
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:72
 msgid "The length of the map background name must be between 1-8 characters."
-msgstr ""
+msgstr "Длина имени фона локации должна быть в пределах 1-8 символов."
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:90
 msgid "A map background with this name already exists."
-msgstr ""
+msgstr "Фон локации с этим именем уже существует."
 
 #: skytemple/skytemple/module/map_bg/widget/main.py:111
 msgid "Map background added successfully"
@@ -12871,23 +12925,26 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "item-, move- and special process effects written in Assembler.\n\n"
 "You will also find information on how to write your own\n"
 "patches and effects in the C and Rust programming languages."
-msgstr ""
+msgstr "В этом разделе вы можете применить встроенные ASM-патчи, собственные ASM-патчи и пользовательские\n"
+"эффекты элементов, приемов и особых процессов, написанные на ассемблере.\n\n"
+"Вы также найдете информацию о том, как написать собственные\n"
+"патчи и эффекты на языках программирования C и Rust."
 
 #: skytemple/skytemple/module/patch/module.py:91
 msgid "ASM"
-msgstr ""
+msgstr "ASM"
 
 #: skytemple/skytemple/module/patch/module.py:135
 msgid "C / Rust"
-msgstr ""
+msgstr "C / Rust"
 
 #: skytemple/skytemple/module/patch/widget/asm.py:117
 msgid "This patch has had no issues loading."
-msgstr ""
+msgstr "При загрузке этого патча не возникло проблем."
 
 #: skytemple/skytemple/module/patch/widget/asm.py:133
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
-msgstr ""
+msgstr "Этот патч уже применен. Некоторые патчи поддерживают повторное применение, но с некоторыми могут возникнуть проблемы. Действуйте осторожно."
 
 #: skytemple/skytemple/module/patch/widget/asm.py:142
 msgid "The current ROM is not supported by this patch."
@@ -12899,7 +12956,7 @@ msgstr "Пожалуйста, сохраните ROM перед применен
 
 #: skytemple/skytemple/module/patch/widget/asm.py:154
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
-msgstr ""
+msgstr "Этот патч расширяет список покемонов. Он очень экспериментальный и сломает некоторые вещи. После применения вы не сможете удалить его снова. Хотите продолжить?"
 
 #: skytemple/skytemple/module/patch/widget/asm.py:173
 msgid "This patch requires some other patches to be applied first:\n"
@@ -13198,15 +13255,15 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/main.py:119
 #: skytemple/skytemple/module/script/widget/main.py:184
 msgid "The length of the level name must be between 1-8 characters."
-msgstr ""
+msgstr "Длина имени уровня должна быть в пределах 1-8 символов."
 
 #: skytemple/skytemple/module/script/widget/main.py:169
 msgid "Level Name"
-msgstr ""
+msgstr "Имя уровня"
 
 #: skytemple/skytemple/module/script/widget/main.py:170
 msgid "Create Level"
-msgstr ""
+msgstr "Создать уровень"
 
 #: skytemple/skytemple/module/script/widget/main.py:172
 msgid "If you also need a new background for this level, you can create one under \"Map Backgrounds\" and assign it to this level afterwards."
@@ -13256,7 +13313,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/map.py:113
 #: skytemple/skytemple/module/script/widget/map.py:154
 msgid "The length of the scene name must be between 1-8 characters."
-msgstr ""
+msgstr "Длина имени сцены должна быть в пределах 1-8 символов."
 
 #: skytemple/skytemple/module/script/widget/pos_mark_editor.py:97
 msgid "Edit Position Marks"
@@ -13419,7 +13476,9 @@ msgstr ""
 msgid "Alternatively you can export the sprite files \n"
 "in the gfxcrunch format and edit them manually.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "Также, вы можете экспортировать файлы спрайтов \n"
+"в формат gfxcrunch и отредактировать их вручную.\n"
+"Внимание: SkyTemple не проверяет файлы, которые вы импортируете."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:170
 msgid "Export spritesheet..."
@@ -13465,7 +13524,9 @@ msgstr "Ошибка при экспорте спрайтового листа."
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite in the gfxcrunch format and import it back again.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTemple не может редактировать спрайты. \n"
+"Однако вы можете экспортировать спрайт в формат gfxcrunch и импортировать его обратно.\n"
+"Внимание: SkyTemple не проверяет файлы, которые вы импортируете."
 
 #: skytemple/skytemple/module/sprite/widget/object_main.py:56
 msgid "Create Object Sprite"
@@ -13514,7 +13575,12 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "animations (if they aren't available for this Pokémon otherwise).\n"
 "This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
 "when choosing them as a starter or partner."
-msgstr ""
+msgstr "Это заменит спрайт этого покемона на спрайт из репозитория.\n"
+"Вы также можете создать новый спрайт, и он будет назначен покемону.\n\n"
+"Кроме того, вы можете скопировать анимацию сна в анимации EventSleep/Laying/Waking\n"
+"(если они недоступны для данного покемона).\n"
+"Это позволит исправить ситуацию, когда покемон не спит в сюжетных сценах, а использует странные анимации, \n"
+"при выборе его в качестве стартового покемона или партнера."
 
 #: skytemple/skytemple/module/spritecollab/module.py:195
 msgid "Create a new sprite instead of replacing the existing one."
@@ -13535,7 +13601,7 @@ msgstr "Ошибка обновления спрайтов"
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:261
 #, python-brace-format
 msgid "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
-msgstr ""
+msgstr "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:269
 #, python-brace-format
@@ -13544,7 +13610,7 @@ msgstr "NotSpriteCollab ({NOT_SC_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:275
 msgid "Custom Server"
-msgstr ""
+msgstr "Пользовательский сервер"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:426
 msgid "Failed loading this Pokémon."
@@ -13556,39 +13622,39 @@ msgstr "Ошибка загрузки покемона"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:444
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:458
 msgid "<b>Portraits:</b>"
-msgstr ""
+msgstr "<b>Портреты:</b>"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:474
 msgid "Apply Portraits"
-msgstr ""
+msgstr "Применить портреты"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:482
 msgid "<b>Sprites:</b>"
-msgstr ""
+msgstr "<b>Спрайты:</b>"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:500
 msgid "Apply Sprites"
-msgstr ""
+msgstr "Применить спрайты"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:514
 msgid "<b><i>Make sure to credit artists:</i></b>"
-msgstr ""
+msgstr "<b><i>Не забудьте указать художников:</i></b>"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:519
 msgid "<b>Portrait Credits:</b>"
-msgstr ""
+msgstr "<b>Автор(ы) портретов:</b>"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:532
 msgid "<b>Sprite Credits:</b>"
-msgstr ""
+msgstr "<b>Автор(ы) спрайты:</b>"
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:544
 msgid "Open Details on Website..."
-msgstr ""
+msgstr "Открыть подробности на сайте..."
 
 #: skytemple/skytemple/module/strings/module.py:40
 msgid "Text Strings"
@@ -13694,7 +13760,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can also access help from the wiki for\n"
 "the section you are currently in with the \"?\"\n"
 "icon at the top of the app."
-msgstr ""
+msgstr "<span size=\"large\">Добро пожаловать в SkyTemple!</span>\n\n"
+"С помощью этого инструмента вы можете редактировать различные вещи в ROM\n"
+"игры Pokémon Mystery Dungeon Explorers of Sky.\n\n"
+"Более подробную информацию о том, как пользоваться этим приложением, \n"
+"вы найдете в <a href=\"wiki\">вики SkyTemple</a>.\n"
+"Вы также можете получить справку из вики по\n"
+"разделу, в котором вы сейчас находитесь, с помощью значка \"?\"\n"
+"в верхней части приложения."
 
 #: skytemple/skytemple/skytemple.glade:103
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -13705,11 +13778,18 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project,\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
-msgstr ""
+msgstr "Можно ли добавить сообщение \"Created with SkyTemple\"\n"
+" к логотипам, которые появляются при запуске игры?\n\n"
+"Это сообщение будет размещено на втором слое\n"
+"фона локации S05P01A. Если оно вам не нравится, вы можете\n"
+"легко удалить его или настроить.\n\n"
+"Если вы захотите сделать это позже или для другого проекта,\n"
+"вы можете снова открыть этот диалог, используя меню на\n"
+"в правом верхнем углу главного окна."
 
 #: skytemple/skytemple/skytemple.glade:123
 msgid "Add \"Created with SkyTemple\""
-msgstr ""
+msgstr "Добавить \"Created with SkyTemple\""
 
 #: skytemple/skytemple/skytemple.glade:191
 msgid "SkyTemple Settings"
