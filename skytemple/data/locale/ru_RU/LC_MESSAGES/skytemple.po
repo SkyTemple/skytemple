@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-20 14:57\n"
+"PO-Revision-Date: 2024-09-20 16:17\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -12020,7 +12020,9 @@ msgstr ""
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs!\n"
 "For banner fonts, all images must have the same palette."
-msgstr ""
+msgstr "Для импорта выберите папку, содержащую все файлы, которые были созданы при экспорте шрифта.\n"
+"ВАЖНО: Все файлы изображений должны быть индексированными PNG!\n"
+"Для шрифтов для баннера, все изображения должны иметь одинаковую палитру."
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:135
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:104
@@ -12049,7 +12051,8 @@ msgstr "Ошибка при добавлении персонажа."
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:102
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Для импорта выберите папку, содержащую все файлы, которые были созданы при экспорте шрифта.\n"
+"ВАЖНО: Все файлы изображений должны быть индексированными PNG и иметь одинаковую палитру!"
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:74
 msgid "Export all images as PNGs..."
@@ -12058,7 +12061,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:97
 msgid "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
 "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."
-msgstr ""
+msgstr "Для импорта выберите каталог, из которого будет производиться импорт. Будут импортированы файлы с шаблоном 'XX.png', \n"
+"где XX - число от 0 до 99. Размеры изображения должны быть кратны 8."
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:99
 msgid "Import Images"
@@ -12122,7 +12126,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:124
 msgid "To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Для импорта выберите папку, содержащую все изображения, которые были созданы при экспорте свернутой версии.\n"
+"ВАЖНО: Все файлы изображений должны быть индексированными PNG и иметь одинаковую палитру!"
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:126
 msgid "Import Minimized Version"
@@ -12244,7 +12249,9 @@ msgstr ""
 msgid "Warning: The stats view might be corrupted now,\n"
 "but the data in ROM is still unchanged,\n"
 "simply reload this view!\n"
-msgstr ""
+msgstr "Внимание: Просмотр статистик может быть поврежден,\n"
+"но данные в ROM остаются неизменными,\n"
+"просто перезагрузите этот просмотр!\n"
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:443
 msgid "No move with this ID found."
@@ -12435,7 +12442,12 @@ msgid "The values are actually percentages.\n"
 "1000 -> 100%, etc.\n\n"
 "If you answered yes to the question asking if you played EoT or EoD in the personality test and you haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
-msgstr ""
+msgstr "Значения на самом деле являются процентами.\n"
+"10 -> 1,0%,\n"
+"100 -> 10,0%,\n"
+"1000 -> 100% и т. д.\n\n"
+"Если вы ответили \"да\" на вопрос о том, играли ли вы в EoT или EoD в тесте личности, и вы еще не рекрутировали этого покемона, вместо этого используется второй шанс рекрутирования.\n"
+"Если вы уже рекрутировали этого покемона, шанс его рекрутирования уменьшается вдвое (только если он положительный)."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:723
 msgid "Recruit Rate"
@@ -12445,11 +12457,12 @@ msgstr ""
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
-msgstr ""
+msgstr "% ОЗ, который этот покемон восстанавливает в конце каждого хода, равен 1/(значение * 2), без применения каких-либо модификаторов.\n"
+"Итоговое значение ограничено между 1/30 и 1/500"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:738
 msgid "HP Regeneration"
-msgstr ""
+msgstr "Регенерация ОЗ"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:750
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
@@ -12494,7 +12507,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:822
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
-msgstr ""
+msgstr "Если текущее значение $SCENARIO_BALANCE_FLAG меньше этого числа, покемон не будет появляться в подземельях."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:824
 msgid "Spawn Threshold"
@@ -12515,7 +12528,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/widget/monster.py:863
 msgid "Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\n"
 "The minimal body size needed for a Pokémon is the smallest value such that Body Size x 6 is equal to or higher than Sprite VRAM Size."
-msgstr ""
+msgstr "Размер определяет размер покемона в команде. Игра ограничивает общий размер всех членов команды до 6.\n"
+"Минимальный размер, необходимый для покемона - это наименьшее значение, при котором Размер x 6 равен или больше Размеру спрайта в VRAM."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:878
 msgid "Effective only when SpriteSizeInMonsterData is applied.\n"
