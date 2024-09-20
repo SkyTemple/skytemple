@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-20 11:06\n"
+"PO-Revision-Date: 2024-09-20 12:44\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -7649,7 +7649,7 @@ msgid "<Not available>\n\n"
 "To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr "<Недоступно>\n\n"
-"Для просмотра и редактирования таблиц анимации примените ASM-патч «ExtractAnimData»\n"
+"Для просмотра и редактирования таблиц анимации, примените ASM-патч «ExtractAnimData»\n"
 "из меню «Патчи» > «ASM»."
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:255
@@ -9377,7 +9377,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/monster.ui:3698
 msgid "This Pokémon has no stats and/or level up moves. It can only be used in cutscenes. \n"
 "Trying to use it in dungeons will not work."
-msgstr ""
+msgstr "У этого покемона нет статистик и/или приемов при повышении уровня. Его можно использовать только в сюжетных сценах. \n"
+"Попытка использовать его в подземельях не сработает."
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:51
 msgid "Item ID:"
@@ -9497,13 +9498,15 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:525
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:602
 msgid "Edits the lists used for mission rewards, treasure boxes and Treasure Town Kecleon shops."
-msgstr ""
+msgstr "Редактирует списки предметов, используемые при определении вознаграждений за миссии, содержимого сундуков с сокровищами, а также содержимого магазина Кеклеона."
 
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:538
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Недоступно>\n\n"
+"Для просмотра и редактирования этих списков, примените ASM-патч «ExtractHardcodedItemLists»\n"
+"из меню «Патчи» > «ASM»."
 
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:620
 msgid "Lists: "
@@ -9620,7 +9623,9 @@ msgstr ""
 msgid "SkyTemple can not edit music.\n"
 "However you can use the tool SkySongBuilder to insert your custom music into the game.\n\n"
 "Warning: Make sure to close SkyTemple before modifying the ROM with any other tool."
-msgstr ""
+msgstr "SkyTemple не может редактировать музыку.\n"
+"Однако вы можете использовать инструмент SkySongBuilder, чтобы вставить в игру свою собственную музыку.\n\n"
+"Внимание: Не забудьте закрыть SkyTemple, прежде чем изменять ROM с помощью любого другого инструмента."
 
 #: skytemple/skytemple/data/widget/music/main.ui:74
 msgid "More information about SkySongBuilder"
@@ -9700,15 +9705,18 @@ msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for wri
 "<b>Rust of Darkness</b> (RoD) is an extension of cot to write custom patches in Rust.\n\n"
 "To get started with cot and/or RoD, watch the tutorial below and read the READMEs.\n\n"
 "<b>Important</b>: Before writing cot or RoD patches to the ROM make sure to close SkyTemple. Otherwise SkyTemple may override changes you made."
-msgstr ""
+msgstr "<b>c-of-time</b> (cot) - это среда выполнения и разработки на языке C для написания пользовательских патчей для игры на языке C.\n\n"
+"<b>Rust of Darkness</b> (RoD) - это расширение cot для написания пользовательских патчей на языке Rust.\n\n"
+"Чтобы начать работу с cot и/или RoD, посмотрите учебник ниже и прочитайте README.\n\n"
+"<b>Важно</b>: Перед записью cot/RoD патчей в ROM обязательно закройте SkyTemple. В противном случае, SkyTemple может отменить сделанные вами изменения."
 
 #: skytemple/skytemple/data/widget/patch/cot.ui:128
 msgid "c-of-time README"
-msgstr ""
+msgstr "c-of-time README"
 
 #: skytemple/skytemple/data/widget/patch/cot.ui:174
 msgid "Rust of Darkness README"
-msgstr ""
+msgstr "Rust of Darkness README"
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:57
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:137
@@ -9720,19 +9728,23 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:73
 msgid "Edits the item effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Редактирует эффекты предметов, используемые в игре.\n"
+"Здесь не перечислены эффекты, добавленные кодом на C или Rust."
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:88
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Недоступно>\n\n"
+"Для просмотра и редактирования эффектов предметов, примените ASM-патч «ExtractItemCode»\n"
+"из меню «Патчи» > «ASM»."
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:154
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:163
 msgid "Edits the effects used by each move.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Редактирует эффекты, используемые каждым приемом.\n"
+"Здесь не перечислены эффекты, добавленные кодом на C или Rust."
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:212
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:221
@@ -9746,7 +9758,9 @@ msgstr ""
 msgid "This section allows you to insert custom ASM code for effects.\n"
 "Please note that C and Rust effects are not listed here.\n"
 "See the \"C/Rust\" section for more information."
-msgstr ""
+msgstr "Этот раздел позволяет вставлять пользовательский ASM-код для эффектов.\n"
+"Обратите внимание, что эффекты C и Rust здесь не перечислены.\n"
+"Дополнительную информацию смотрите в разделе \"C/Rust\"."
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:324
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:365
@@ -9806,14 +9820,18 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:81
 msgid "Edits the move effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Редактирует эффекты приемов, используемые в игре.\n"
+"Здесь не перечислены эффекты, добавленные кодом на C или Rust."
 
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:96
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<Недоступно>\n\n"
+"Чтобы просматривать и редактировать эффекты приемов, примените ASM-патч \"ExtractMoveCode\" \n"
+"из меню \"Патчи\" > \"ASM\".\n"
+"Если вы уже применяли этот патч, примените его снова, чтобы убедиться, что используется последняя версия. "
 
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:302
 msgid "Fix # of Moves"
@@ -9822,15 +9840,16 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:855
 msgid "Here you can edit Metronome's movepool.\n"
 "Each move in this list has the same chance of being used by Metronome."
-msgstr ""
+msgstr "Здесь вы можете редактировать список приемов у Метронома.\n"
+"Каждое движение из этого списка имеет одинаковый шанс быть использованным Метрономом."
 
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:980
 msgid "Metronome"
-msgstr ""
+msgstr "Метроном"
 
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:37
 msgid "pmdsky-debug Symbols"
-msgstr ""
+msgstr "Символы pmdsky-debug"
 
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:53
 msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
@@ -9839,23 +9858,28 @@ msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
 "However you will probably find newer symbols in the repository, which you can open with the button below. The repository also contains instructions on how to contribute or use the symbols with debuggers like Ghidra.\n\n"
 "The symbols below are shown for the region of the currently loaded ROM.\n"
 "The \"Address\" column shows the first address. Addresses are absolute."
-msgstr ""
+msgstr "SkyTemple работает на <b>pmdsky-debug</b>.\n"
+"pmdsky-debug - это публичное хранилище символов и функций игры. \n"
+"Ниже вы можете найти список символов, поставляемых с этой версией SkyTemple. \n"
+"Однако вы наверняка найдете в репозитории и более новые символы, которые можно открыть с помощью кнопки ниже. В репозитории также содержатся инструкции по использованию символов в отладчиках типа Ghidra.\n\n"
+"Символы ниже показаны для региона текущего загруженного ROM.\n"
+"В колонке \"Адрес\" указан первый адрес. Адреса являются абсолютными."
 
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:87
 msgid "pmdsky-debug version:"
-msgstr ""
+msgstr "Версия pmdsky-debug:"
 
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:183
 msgid "Open pmdsky-debug"
-msgstr ""
+msgstr "Открыть pmdsky-debug"
 
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:356
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:370
 msgid "Length"
-msgstr ""
+msgstr "Длина"
 
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:53
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:133
@@ -9867,18 +9891,22 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:69
 msgid "Edits the special process effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Редактирует эффекты особых процессов, используемые в игре.\n"
+"Здесь не перечислены эффекты, добавленные кодом на C или Rust."
 
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:84
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Недоступно>\n\n"
+"Для просмотра и редактирования эффектов особых процессов, примените ASM-патч «ExtractSPCode»\n"
+"из меню «Патчи» > «ASM»."
 
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:150
 msgid "Edits the effects used by each special process.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Редактирует эффекты, используемые каждым особым процессом.\n"
+"Здесь не перечислены эффекты, добавленные кодом на C или Rust."
 
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:265
 msgid "Add Special Process"
@@ -9913,7 +9941,9 @@ msgstr ""
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
-msgstr ""
+msgstr "Если портрет отсутствует, игра пытается загрузить портрет первой формы покемона.\n"
+"Если он также отсутствует, поведение не определено.\n"
+"Если перевернутые версии пусты, игра автоматически перевернет изображение."
 
 #: skytemple/skytemple/data/widget/rom/main.ui:39
 msgid "Rom Settings"
@@ -9970,7 +10000,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Недоступно>\n\n"
+"Для просмотра и редактирования этого списка, примените ASM-патч «ActorAndLevelLoader»\n"
+"из меню «Патчи» > «ASM»."
 
 #: skytemple/skytemple/data/widget/script/main.ui:323
 msgid "Internal Name"
@@ -10456,7 +10488,13 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "- The first color in each palette is transparency.\n"
 "- Each import must result in a maximum of 1024 unique 8x8 tiles \n"
 "  (=not existing with another palette or flipped or rotated)."
-msgstr ""
+msgstr "- Изображение представляет собой 256-цветный индексированный PNG.\n"
+"- 256 цветов разделены на 16 палитр по 16 цветов.\n"
+"- Каждая плитка (8x8 пикселей) в изображении ДОЛЖНА использовать только цвета из\n"
+"  одной из этих 16 палитр.\n"
+"- Первый цвет в каждой палитре является прозрачным.\n"
+"- В результате каждого импорта должно получиться не более 1024 уникальных плиток (8x8) \n"
+"  (=не существующих в другой палитре, не перевернутых или повернутых)."
 
 #: skytemple/skytemple/module/bgp/widget/bgp.py:122
 msgid "Error importing the image."
@@ -10474,7 +10512,8 @@ msgstr "(Особое?)"
 #: skytemple/skytemple/module/dungeon/module.py:130
 msgid "Dojo Dungeons are the dungeons used in the Marowak Dojo.\n"
 "You can not change the number of floors for Dojo Dungeons."
-msgstr ""
+msgstr "Додзе-подземелья - это подземелья, используемые в Додзе Маровака.\n"
+"Вы не можете изменить количество этажей в Додзе-подземельях."
 
 #: skytemple/skytemple/module/dungeon/module.py:194
 msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try to open it, but dungeon editing will not be available. Expect other bugs. Please fix your ROM."
@@ -10484,12 +10523,12 @@ msgstr "Данные подземелья этого ROM повреждены. S
 #: skytemple/skytemple/skytemple.glade:891
 #: skytemple/skytemple/skytemple.glade:1245
 msgid "SkyTemple"
-msgstr ""
+msgstr "SkyTemple"
 
 #: skytemple/skytemple/module/dungeon/module.py:241
 #, python-brace-format
 msgid "Fixed Room {i}"
-msgstr ""
+msgstr "Фиксированная комната {i}"
 
 #: skytemple/skytemple/module/dungeon/module.py:541
 msgid "Some dungeons were missing in the new group list. This is a bug."
@@ -10550,7 +10589,9 @@ msgstr ""
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
 "The evolution will not happen if the target is revived, if the evolved form of the enemy cannot spawn in the current floor or if the sprite of the evolved form is bigger than the sprite of the enemy.\n"
 "Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."
-msgstr ""
+msgstr "Если эта функция включена, враги будут эволюционировать после победы над членом команды.\n"
+"Эволюция не произойдет, если цель будет возрождена, если эволюционировавшая форма врага не может появиться на текущем этаже или если спрайт эволюционировавшей формы больше спрайта врага.\n"
+"Частично это поведение можно изменить, применив ASM-патч BetterEnemyEvolution."
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:566
 msgid "Width and height must be numbers >= 0."
@@ -10562,7 +10603,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:578
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
-msgstr ""
+msgstr "Вы собираетесь уменьшить размер комнаты. При этом будут удалены плитки. Вы хотите продолжить?"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:592
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
@@ -10703,12 +10744,15 @@ msgstr "Ранг ★9"
 msgid "This attribute is the base rank of this floor. \n"
 "The floor rank determines the item list used for mission rewards and treasure boxes content. \n"
 "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."
-msgstr ""
+msgstr "Этот атрибут - базовый ранг этажа. \n"
+"Ранг этажа определяет список предметов, используемых в наградах за выполнение миссий и содержимом ящиков с сокровищами. \n"
+"Для редактирования этого атрибута необходимо применить патч 'ExtractDungeonData'."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:562
 msgid "If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
 "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."
-msgstr ""
+msgstr "Если для этого атрибута установлено значение «Да», задания на этом этаже создаваться не будут, а коды Wonder Mail S, предназначенные для этого этажа, будут считаться недействительными. \n"
+"Для редактирования этого атрибута необходимо применить патч «ExtractDungeonData»."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:601
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value. If the room density is negative, its absolute value is used without adding a random variation."
@@ -10726,7 +10770,9 @@ msgstr ""
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
 "This is the amount of connections between cells that will be generated when the map is first created. More will be added later to ensure that all the rooms can be accessed.\n"
 "A cell is a point in the initial grid used to generate the map. It will end up being a room or a crossroad once the full map is generated."
-msgstr ""
+msgstr "Связность этажей (минимум 1, если значение равно 0, то карта не будет сгенерирована и вы получите стандартную однокомнатную карту, которая также является засадой монстров).\n\n"
+"Это количество связей между клетками, которое будет сгенерировано при первом создании карты. Позже будет добавлено больше, чтобы обеспечить доступ ко всем комнатам.\n"
+"Ячейка - это точка в начальной сетке, используемой для создания карты. В итоге она станет комнатой или перекрестком, когда будет создана полная карта."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:675
 msgid "Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple entrances to the same room, room exits connected to the same room, those dead ends that come out of a room, make a couple of twists and also lead to nowhere)"
@@ -10768,12 +10814,14 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/floor.py:833
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
-msgstr ""
+msgstr "Не работает в игре. Чтобы заставить его работать, примените \"UnusedDungeonChance\" из раздела \"Патчи\" > \"ASM\".\n"
+"Если патч применен, игра превратит случайную комнату в комнату-лабиринт, состоящую из плиток стен вместо обычной воды (хотя впоследствии вода может заменить некоторые стены, когда произойдет генерация воды)."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:863
 msgid "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
 "If a monster house spawns in the floor, this is the chance of it being empty (no items will be generated inside)."
-msgstr ""
+msgstr "Это было добавлено в Explorers of Sky, так что сейчас он используется только в подземельях, эксклюзивных в EoS.\n"
+"Если на этаже появляется Засада Монстров, то есть шанс, что он будет пуст (внутри не будет генерироваться никаких предметов)."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:898
 msgid "If more than 0, the IQ booster increases IQ on this floor by this amount."
