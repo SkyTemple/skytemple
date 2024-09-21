@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 07:04\n"
+"PO-Revision-Date: 2024-09-21 08:27\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4110,11 +4110,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:1669
 #: skytemple/skytemple/data/widget/script/ssa.ui:1697
 msgid "Triggers"
-msgstr ""
+msgstr "Триггеры"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:302
 msgid "Pos. Marks"
-msgstr ""
+msgstr "Маркеры поз."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:50
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:54
@@ -4145,7 +4145,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/ssa.py:1640
 #: skytemple/skytemple/module/script/widget/ssa.py:1761
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:51
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:55
@@ -4923,11 +4923,11 @@ msgstr "Звук"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1984
 msgid "BGM"
-msgstr ""
+msgstr "Фоновая музыка"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2000
 msgid "SE"
-msgstr ""
+msgstr "Звуковые эффекты"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2016
 #: skytemple/skytemple/module/lists/controller/object_list.glade:241
@@ -4940,7 +4940,7 @@ msgstr "Файл"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2048
 msgid "Memory"
-msgstr ""
+msgstr "Память"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2080
 msgid "Thread"
@@ -4952,7 +4952,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2112
 msgid "Performance"
-msgstr ""
+msgstr "Производительность"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2164
 #: skytemple/skytemple/data/widget/misc_graphics/font.ui:302
@@ -6506,27 +6506,27 @@ msgstr "Появление ловушек"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:638
 msgid "Floor Item Spawns"
-msgstr ""
+msgstr "Список предметов на полу"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:652
 msgid "Shop Item Spawns"
-msgstr ""
+msgstr "Список предметов в магазине"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:666
 msgid "Monster House Item Spawns"
-msgstr ""
+msgstr "Список предметов в Засаде Монстров"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:680
 msgid "Buried Item Spawns"
-msgstr ""
+msgstr "Список зарытых предметов"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:694
 msgid "Grab Bag Item Spawns"
-msgstr ""
+msgstr "Список предметов в мешке с сюрпризом"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:708
 msgid "Secret Room Item Spawns"
-msgstr ""
+msgstr "Список предметов в секретной комнате"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:731
 #: skytemple/skytemple/data/widget/monster/monster.ui:375
@@ -6763,7 +6763,7 @@ msgstr "IQ врагов:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2651
 msgid "IQ Booster boost:"
-msgstr ""
+msgstr "Повышение от Ускорителя IQ:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2663
 msgid "Shop item positions:"
@@ -7406,7 +7406,7 @@ msgstr "Под водой?"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:238
 msgid "Tileset and Background Properties:"
-msgstr ""
+msgstr "Свойства набора плиток и фона:"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:59
 msgid "This will export all chunks. \n"
@@ -7500,7 +7500,7 @@ msgstr "Вы можете экспортировать и импортирова
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1485
 msgid "Simple Mode (DTEF)"
-msgstr ""
+msgstr "Простой режим (DTEF)"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1707
 msgid "Active Type"
@@ -7548,7 +7548,7 @@ msgstr "Дополнительные правила"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2192
 msgid "Dungeon Tileset X Rules"
-msgstr ""
+msgstr "Правила набора плиток подземелья X"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2242
 msgid "Chunk Picker"
@@ -7556,15 +7556,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2278
 msgid "Advanced Mode (Manual)"
-msgstr ""
+msgstr "Расширенный режим (ручной)"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2332
 msgid "Secondary Terrain Type"
-msgstr ""
+msgstr "Тип вторичной местности"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2373
 msgid "Tileset Settings"
-msgstr ""
+msgstr "Настройки набора плиток"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:2453
 msgid "This will import the chunks. \n"
@@ -8259,11 +8259,12 @@ msgstr "Палитра 16"
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2369
 msgid "Please note, that setting the number of frames of animations higher than the number of frames\n"
 "specified in the \"Edit Palette Animation\" section can lead to undefined behavior or crashes."
-msgstr ""
+msgstr "Обратите внимание, что установка количества кадров анимации больше, чем количество кадров, \n"
+"указанное в разделе \"Редактировать анимацию палитры\", может привести к неопределенному поведению или сбоям игры."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2399
 msgid "Map Settings"
-msgstr ""
+msgstr "Настройки фона"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2477
 msgid "Number of Layers "
@@ -8429,27 +8430,27 @@ msgstr "BPA 8"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4023
 msgid "Map Dimensions"
-msgstr ""
+msgstr "Размеры фона"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4095
 msgid "Map Width in Chunks"
-msgstr ""
+msgstr "Ширина фона в фрагментах"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4139
 msgid "Map Height in Chunks"
-msgstr ""
+msgstr "Высота фона в фрагментах"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4200
 msgid "Link Tile Width and Height"
-msgstr ""
+msgstr "Связать с шириной и высотой в плитках"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4239
 msgid "Map Width in Tiles"
-msgstr ""
+msgstr "Ширина фона в плитках"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4284
 msgid "Map Height in Tiles"
-msgstr ""
+msgstr "Высота фона в плитках"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4320
 msgid "Usually the width and height in tiles should be linked\n"
@@ -8465,19 +8466,19 @@ msgstr "Обычно ширина и высота в плитках должны
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4380
 msgid "Width and Height"
-msgstr ""
+msgstr "Ширина и высота"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4395
 msgid "Export Map as GIF..."
-msgstr ""
+msgstr "Экспорт фона в формате GIF..."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4410
 msgid "Export Layers to Image..."
-msgstr ""
+msgstr "Экспортировать слои в изображение..."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4419
 msgid "Import Layers from Image..."
-msgstr ""
+msgstr "Импортировать слои из изображения..."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4434
 msgid "Go to Scripts..."
@@ -8498,20 +8499,20 @@ msgstr "Слой 2"
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4572
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4604
 msgid "Export Static Tiles to Image..."
-msgstr ""
+msgstr "Экспортировать статичные плитки в изображение..."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4581
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4613
 msgid "Import Static Tiles from Image..."
-msgstr ""
+msgstr "Импортировать статичные плитки из изображения..."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4626
 msgid "Animated Tiles"
-msgstr ""
+msgstr "Анимированные плитки"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4651
 msgid "Import and Export..."
-msgstr ""
+msgstr "Импорт и экспорт..."
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4701
 msgid "Edit Animation Palette"
@@ -8527,7 +8528,7 @@ msgstr "Коллизии 2"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4859
 msgid "Data Layer"
-msgstr ""
+msgstr "Слой данных"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4882
 msgid "BMA Filename:"
@@ -8585,11 +8586,11 @@ msgstr "Имя файла BPA8:"
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5122
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5134
 msgid "<>"
-msgstr ""
+msgstr "<>"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5187
 msgid "Metadata"
-msgstr ""
+msgstr "Метаданные"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:5239
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:233
@@ -10948,7 +10949,7 @@ msgid "Change the chances of Pokémon, traps or items spawning.\n"
 "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries without having their items) will be added to the next Pokémon entry in the list when the game decides what to spawn.\n"
 "Please note for items, that the game first decides what category to spawn for an item and then chooses an entry for that category.\n"
 "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."
-msgstr "Измените вероятность появления покемонов, ловушек или предметов.\n"
+msgstr "Позволяет изменить вероятность появления покемонов, ловушек или предметов.\n"
 "Вероятность появления зависит от веса. Чем больше вес, тем выше вероятность его появления.\n"
 "Обратите внимание, что вес покемонов, которые не могут быть появиться (например, легендарные покемоны без предметов), будет добавлен к следующей записи в списке, когда игра решит, что должно появиться.\n"
 "Обратите внимание, что для предметов игра сначала решает, предмет какой категории должен появиться, а затем выбирает запись из этой категории.\n"
@@ -14130,7 +14131,7 @@ msgstr "Количество проходов кластеризации цве�
 
 #: skytemple/skytemple/skytemple.glade:2187
 msgid "Advanced Options"
-msgstr "Продвинутые настройки"
+msgstr "Расширенные настройки"
 
 #: skytemple/skytemple/skytemple.glade:2266
 msgid "Additional Input Image (optional)"
