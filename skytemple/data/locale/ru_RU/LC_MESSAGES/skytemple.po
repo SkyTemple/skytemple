@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 17:34\n"
+"PO-Revision-Date: 2024-09-21 18:38\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4104,7 +4104,7 @@ msgstr "Объекты"
 #: skytemple/skytemple/data/widget/script/ssa.ui:1560
 #: skytemple/skytemple/data/widget/script/ssa.ui:1588
 msgid "Performers"
-msgstr ""
+msgstr "Исполнители"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:293
 #: skytemple/skytemple/data/widget/script/ssa.ui:1669
@@ -4417,11 +4417,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
-msgstr ""
+msgstr "Возобновить."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:45
 msgid "Resume"
-msgstr ""
+msgstr "Возобновить"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:60
 msgid "Step over the current instruction."
@@ -6488,12 +6488,12 @@ msgstr "Вероятность"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:399
 msgid "Export Dungeon Floor"
-msgstr ""
+msgstr "Экспортировать этаж подземелья"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:596
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3280
 msgid "Layout"
-msgstr ""
+msgstr "Структура"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:610
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3636
@@ -6651,7 +6651,7 @@ msgstr "Тип структуры:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1614
 msgid "Floor connectivity:"
-msgstr ""
+msgstr "Связность этажа:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1626
 msgid "Extra Hallway density:"
@@ -7021,7 +7021,7 @@ msgstr "Цветовая карта"
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:105
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:417
 msgid "Palette Animation Settings"
-msgstr ""
+msgstr "Настройки анимации палитры"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:80
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:173
@@ -7388,15 +7388,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:153
 msgid "Secret Power"
-msgstr ""
+msgstr "Скрытая сила"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:168
 msgid "Camouflage"
-msgstr ""
+msgstr "Камуфляж"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:183
 msgid "Nature Power"
-msgstr ""
+msgstr "Сила природы"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/main.ui:198
 msgid "Weather"
@@ -7744,7 +7744,7 @@ msgstr "ID Анимации 4"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:639
 msgid "Dir"
-msgstr ""
+msgstr "Напр"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:653
 msgid "Flag 1"
@@ -7773,15 +7773,15 @@ msgstr "Анимация"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:763
 msgid "First Spec. Entry"
-msgstr ""
+msgstr "Первая особая запись"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:777
 msgid "# of Spec. Entries"
-msgstr ""
+msgstr "# особых записей"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:884
 msgid "Filter by move: "
-msgstr ""
+msgstr "Фильтр по приему: "
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1080
 msgid "Move Special"
@@ -7991,7 +7991,8 @@ msgstr "Обычная задержка появления врагов (ход�
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:334
 msgid "Spawn delay (turns) after stealing \n"
 "from shop:"
-msgstr ""
+msgstr "Задержка появления врагов (в ходах) после кражи \n"
+"из магазина:"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:348
 msgid "Main menu music track:"
@@ -10207,7 +10208,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:47
 msgid "<span size=\"large\">Spritesheet</span>"
-msgstr ""
+msgstr "<span size=\"large\">Спрайтовый лист</span>"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:89
 msgid "Alternatively you can export the raw WAN sprite files \n"
@@ -10219,7 +10220,7 @@ msgstr "Также вы можете экспортировать необраб
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:107
 msgid "<span size=\"large\">Manual Im-/Export</span>"
-msgstr ""
+msgstr "<span size=\"large\">Ручной им-/экспорт</span>"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:157
 msgid "Export\n"
@@ -10474,7 +10475,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/tiled_img/palette_editor.ui:187
 msgid "Remove current Frame"
-msgstr ""
+msgstr "Удалить текущий кадр"
 
 #: skytemple/skytemple/data/widget/user_feedback.ui:22
 msgid "We are very sorry you ran into an issue while using SkyTemple!\n"
@@ -10814,7 +10815,7 @@ msgstr "Это количество озер, которое будет созд
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
 "This is the amount of connections between cells that will be generated when the map is first created. More will be added later to ensure that all the rooms can be accessed.\n"
 "A cell is a point in the initial grid used to generate the map. It will end up being a room or a crossroad once the full map is generated."
-msgstr "Связность этажей (минимум 1, если значение равно 0, то карта не будет сгенерирована и вы получите стандартную однокомнатную карту, которая также является засадой монстров).\n\n"
+msgstr "Связность этажа (минимум 1, если значение равно 0, то карта не будет сгенерирована и вы получите стандартную однокомнатную карту, которая также является засадой монстров).\n\n"
 "Это количество связей между клетками, которое будет сгенерировано при первом создании карты. Позже будет добавлено больше, чтобы обеспечить доступ ко всем комнатам.\n"
 "Ячейка - это точка в начальной сетке, используемой для создания карты. В итоге она станет комнатой или перекрестком, когда будет создана полная карта."
 
