@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 12:34\n"
+"PO-Revision-Date: 2024-09-21 13:59\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3230,12 +3230,12 @@ msgstr "Меняет систему эволюции.\n"
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:209
 #, python-brace-format
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
-msgstr "Обнаружена бесконечная рекурсия в предэволюциях для md-записи {i}. "
+msgstr "Обнаружена бесконечная рекурсия в пре-эволюциях для md-записи {i}. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:216
 #, python-brace-format
 msgid "One of the monsters in the pre-evolution chain of monster ${i:04} has an invalid pre evolution configured: ${pre_evo:04}. Can not apply patch."
-msgstr "Один из монстров в цепочке предэволюции монстра ${i:04} имеет недопустимую конфигурацию предэволюции: ${pre_evo:04}. Невозможно применить патч."
+msgstr "Один из монстров в цепочке пре-эволюции монстра ${i:04} имеет недопустимую конфигурацию предэволюции: ${pre_evo:04}. Невозможно применить патч."
 
 #: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:52
 msgid "Changes and adds some properties for fixed floors.\n"
@@ -4471,7 +4471,7 @@ msgstr "Перейти к сцене"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:738
 msgid "Textbox Preview Tool"
-msgstr ""
+msgstr "Инструмент предварительного просмотра текстового поля"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:260
 msgid "ExplorerScript"
@@ -4871,7 +4871,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1748
 msgid "No Cheat Check (does nothing)"
-msgstr ""
+msgstr "Нет проверки читов (ничего не делает)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1773
 msgid "No Plunge Check (does nothing)"
@@ -4879,11 +4879,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1798
 msgid "Reuse Dungeon Quicksaves"
-msgstr ""
+msgstr "Повторно использовать быстрые сохранения подземелья"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1813
 msgid "Enable Debug Menus (does nothing)"
-msgstr ""
+msgstr "Включить меню отладки (ничего не делает)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1829
 msgid "Override Dungeon Result"
@@ -4891,7 +4891,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1857
 msgid "Debug Log Flags"
-msgstr ""
+msgstr "Журнал отладки флагов"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1872
 #: skytemple/skytemple/data/widget/dungeon/main.ui:248
@@ -5057,7 +5057,7 @@ msgstr "Добро пожаловать в \n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2558
 msgid "The Script Engine is currently not running."
-msgstr ""
+msgstr "Скрипт-движок в настоящее время не запущен."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Run the game from the start or stop the emulator."
@@ -5212,7 +5212,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:34
 msgid "Functions"
-msgstr ""
+msgstr "Функции"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:249
 msgid "Macros have no scenes."
@@ -5530,7 +5530,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:71
 msgid "Using Gbulb event loop"
-msgstr ""
+msgstr "Использование цикла событий Gbulb"
 
 #: skytemple/skytemple/core/error_handler.py:66
 msgid "Trying to display the error failed. Wow!"
@@ -7677,7 +7677,7 @@ msgstr "Таблицы анимации"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:271
 msgid "Edits the animation attributes."
-msgstr ""
+msgstr "Редактирует атрибуты анимации."
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:317
 msgid "File Type"
@@ -7830,15 +7830,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:324
 msgid "Param 1"
-msgstr ""
+msgstr "Параметр 1"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:338
 msgid "Param 2"
-msgstr ""
+msgstr "Параметр 2"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:352
 msgid "Continue Music"
-msgstr ""
+msgstr "Продолжить музыку"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:79
 #: skytemple/skytemple/module/lists/module.py:228
@@ -7847,7 +7847,7 @@ msgstr "Музыка подземелий"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:95
 msgid "Here you can edit the tracks selectable for dungeon floors. The tracks can either be assigned to single music tracks or to sets of four random tracks."
-msgstr ""
+msgstr "Здесь вы можете редактировать треки, выбираемые для этажей подземелий. Треки можно отнести к отдельным музыкальным трекам или к наборам из четырех случайных треков."
 
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:142
 msgid "Track"
@@ -7906,7 +7906,7 @@ msgstr "Если требуется 9999 очков IQ, навык не испо
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:313
 msgid "IQ Skills"
-msgstr ""
+msgstr "IQ навыки"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:338
 msgid "Min. IQ required by enemies to learn \n"
@@ -8148,7 +8148,7 @@ msgstr "Стена"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:317
 msgid "Data Value"
-msgstr ""
+msgstr "Значение данных"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:483
 msgid "Enable Palette Animations"
@@ -8190,7 +8190,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2182
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2295
 msgid "# of Frames"
-msgstr ""
+msgstr "Количество кадров"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:625
 msgid "Palette 1"
@@ -8849,15 +8849,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:272
 msgid "This will show the true form of the file if disabled."
-msgstr ""
+msgstr "Если отключить эту функцию, она покажет истинную форму файла."
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:345
 msgid "ZMappaT"
-msgstr ""
+msgstr "ZMappaT"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:90
 msgid "Interactive tooltips are not supported on your platform. To see them, click \"Open in browser\"."
-msgstr ""
+msgstr "Интерактивные подсказки не поддерживаются на вашей платформе. Чтобы увидеть их, нажмите «Открыть в браузере»."
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:142
 msgid "Open in browser"
@@ -8869,7 +8869,7 @@ msgstr "Это откроет график в браузере. Для его о
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:181
 msgid "Graph"
-msgstr ""
+msgstr "График"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:225
 #: skytemple/skytemple/module/monster/widget/level_up.py:53
@@ -8933,7 +8933,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/main.ui:23
 #: skytemple/skytemple/data/widget/monster/monster.ui:41
 msgid "Export Pokémon"
-msgstr ""
+msgstr "Экспортировать Покемона"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:92
 msgid "This will export the data of all Pokémon to XML files into a directory \n"
@@ -9028,11 +9028,11 @@ msgstr "Добавить Группу"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:863
 msgid "Personality Groups"
-msgstr ""
+msgstr "Группы личности"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:886
 msgid "Here you can edit special personalities, used by unique actors."
-msgstr ""
+msgstr "Здесь вы можете редактировать особые личности, используемые уникальными актерами."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:914
 msgid "Actor"
@@ -9040,7 +9040,7 @@ msgstr "Актер"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:925
 msgid "Personality"
-msgstr ""
+msgstr "Личность"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:955
 msgid "Special Personalities"
@@ -9111,7 +9111,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:659
 msgid "#<Base ID>"
-msgstr ""
+msgstr "#<Base ID>"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:672
 msgid "Base ID:"
@@ -9219,7 +9219,7 @@ msgstr "Пре-эволюция:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1895
 msgid "Main Requirement:"
-msgstr ""
+msgstr "Основные требования:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1907
 msgid "Parameter:"
@@ -9239,11 +9239,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2035
 msgid "Additional Requirement:"
-msgstr ""
+msgstr "Дополнительные требования:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2246
 msgid "Evolves Into: "
-msgstr ""
+msgstr "Эволюционирует в: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2385
 msgid "Children: "
@@ -9251,7 +9251,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2421
 msgid "Evolution Bonus: "
-msgstr ""
+msgstr "Бонус эволюции: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2457
 msgid "HP: "
@@ -9295,15 +9295,15 @@ msgstr "Предмет 4:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2843
 msgid "Sprite File Size:"
-msgstr ""
+msgstr "Размер файла спрайта:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2868
 msgid "Sprite VRAM Size:"
-msgstr ""
+msgstr "Размер VRAM спрайта:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2880
 msgid "Body Size:"
-msgstr ""
+msgstr "Размер тела:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2964
 msgid "Shadow Size:"
@@ -10119,7 +10119,7 @@ msgstr "Редактирование фона выбранной локации"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:665
 msgid "Go to BG"
-msgstr ""
+msgstr "Перейти к фону"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:835
 #: skytemple/skytemple/data/widget/script/ssa.ui:1189
@@ -10240,12 +10240,12 @@ msgstr ""
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:341
 msgid "Export\n"
 "Dungeon"
-msgstr ""
+msgstr "Экспортировать подземелье"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:387
 msgid "Import\n"
 "Dungeon"
-msgstr ""
+msgstr "Импортировать Подземелье"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:435
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
@@ -10258,7 +10258,7 @@ msgstr "Добавить новый спрайт"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:574
 msgid "Use a ZIP archive instead of a folder."
-msgstr ""
+msgstr "Используйте ZIP-архив вместо папки."
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:597
 msgid "-- or --"
@@ -10266,7 +10266,7 @@ msgstr "-- или --"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:645
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
-msgstr ""
+msgstr "Внимание: Это изменит спрайт с ID, присвоенным этому покемону. Другие покемоны, использующие этот спрайт, также будут затронуты."
 
 #: skytemple/skytemple/data/widget/sprite/object.ui:58
 msgid "SkyTemple can not edit sprites. \n"
@@ -10295,7 +10295,7 @@ msgstr "Спрайты объектов"
 
 #: skytemple/skytemple/data/widget/sprite/object_main.ui:56
 msgid "This section lets you import and export object sprites."
-msgstr ""
+msgstr "В этом разделе вы можете импортировать и экспортировать спрайты объектов."
 
 #: skytemple/skytemple/data/widget/sprite/object_main.ui:96
 msgid "New Object Sprite"
@@ -10326,7 +10326,7 @@ msgstr "Настройки браузера SpriteCollab"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:371
 msgid "Apply / Refresh"
-msgstr ""
+msgstr "Применить / Обновить"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:404
 msgid "Server Preset:"
@@ -10924,7 +10924,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1438
 msgid "Can not add item."
-msgstr ""
+msgstr "Невозможно добавить предмет."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1572
 msgid "Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."
@@ -10965,7 +10965,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1762
 msgid "Export floor as..."
-msgstr ""
+msgstr "Экспортировать этаж как..."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1783
 #: skytemple/skytemple/module/script/widget/ssa.py:529
@@ -10974,7 +10974,7 @@ msgstr "Экспорт был отменен."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1807
 msgid "Import floor from..."
-msgstr ""
+msgstr "Импортировать этаж из..."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1826
 msgid "Error importing the floor."
@@ -11802,7 +11802,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:1017
 msgid "This map has no second layer."
-msgstr ""
+msgstr "У этой карты нет второго слоя."
 
 #: skytemple/skytemple/module/map_bg/module.py:97
 #: skytemple/skytemple/module/script/module.py:145
@@ -12096,7 +12096,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:80
 msgid "Import image as indexed PNG..."
-msgstr ""
+msgstr "Импортировать изображение как индексированный PNG..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:97
 msgid "Error importing chr image."
@@ -12121,7 +12121,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:108
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:77
 msgid "Export font in folder..."
-msgstr ""
+msgstr "Экспортировать шрифт в папку..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:133
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
@@ -12139,7 +12139,7 @@ msgstr "Импортировать шрифт"
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:140
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:109
 msgid "Import font from folder..."
-msgstr ""
+msgstr "Импортировать шрифт из папки..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:161
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:139
@@ -12188,7 +12188,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:125
 #, python-brace-format
 msgid "Image for number {i} missing."
-msgstr ""
+msgstr "Отсутствует изображение для числа {i}."
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:130
 msgid "No images found."
@@ -12268,15 +12268,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:180
 msgid "Import Full Tileset"
-msgstr ""
+msgstr "Импортировать полный набор плиток"
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:185
 msgid "Import full zmappat from folder..."
-msgstr ""
+msgstr "Импортировать полный zmappat из папки..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:206
 msgid "Error importing full zmappat."
-msgstr ""
+msgstr "Ошибка импортирования полного zmappat."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:95
 msgid "Exp."
@@ -13377,7 +13377,9 @@ msgstr ""
 msgid "This section contains all sub scenes for the map {}.\n\n"
 "These scenes can be loaded on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "В этом разделе содержатся все подсцены для локации {}.\n\n"
+"Эти сцены могут быть загружены поверх сцены \"Открытый мир\", \n"
+"в зависимости от текущего хода сюжета."
 
 #: skytemple/skytemple/module/script/module.py:760
 msgid "Acting Scenes for \"{}\""
@@ -13423,7 +13425,13 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "The player can usually not move the character in these scenes.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "В этом разделе содержатся все сцены для локации {self.name}.\n\n"
+"\"Открытый мир (sse)\" содержит сцену, которая загружается, когда игрок входит на локацию, \n"
+"\"шагая в нее\" (если применимо).\n\n"
+"\"Сюжетные сцены (ssa)\" содержит сцены, используемые для сюжетных сцен.\n"
+"В этих сценах игрок обычно не может перемещать персонажа.\n\n"
+"\"Подсцены (sss)\" содержит сцены, которые могут быть загружены поверх сцены \"Открытый мир\",\n"
+"в зависимости от текущего хода сюжета."
 
 #: skytemple/skytemple/module/script/widget/map.py:84
 #: skytemple/skytemple/module/script/widget/map.py:126
@@ -13516,11 +13524,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1755
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1755
 msgid "Visible"
-msgstr ""
+msgstr "Виден"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1760
 msgid "Solo"
@@ -13529,12 +13537,12 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/ssa.py:1783
 #, python-brace-format
 msgid "Sector {i}"
-msgstr ""
+msgstr "Сектор {i}"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1874
 #, python-brace-format
 msgid "?INVALID? {script_id}"
-msgstr ""
+msgstr "?НЕВЕРНО? {script_id}"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1897
 #, python-brace-format
@@ -13563,7 +13571,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:118
 msgid "Invalid Sprite ID."
-msgstr ""
+msgstr "Неверный ID спрайта."
 
 #: skytemple/skytemple/module/sprite/module.py:167
 msgid "Import WAN sprite..."
@@ -13595,7 +13603,7 @@ msgstr "Ошибка при экспорте спрайта."
 
 #: skytemple/skytemple/module/sprite/module.py:258
 msgid "Import image file..."
-msgstr ""
+msgstr "Импортировать файл изображения..."
 
 #: skytemple/skytemple/module/sprite/module.py:274
 msgid "Error importing image to object."
@@ -13619,11 +13627,11 @@ msgstr "Также, вы можете экспортировать файлы с
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:170
 msgid "Export spritesheet..."
-msgstr ""
+msgstr "Экспортировать спрайтовый лист..."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:204
 msgid "The spritesheet was successfully exported."
-msgstr ""
+msgstr "Спрайтовый лист успешно экспортирован."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:211
 msgid "Error exporting the spritesheet."
@@ -13632,7 +13640,7 @@ msgstr "Ошибка при экспорте спрайтового листа."
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:220
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:239
 msgid "To import select the archive that contains the spritesheets."
-msgstr ""
+msgstr "Для импорта выберите архив, содержащий спрайтовый лист."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:222
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:241
@@ -13647,11 +13655,11 @@ msgstr "Это позволит вставить совершенно новый
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:254
 msgid "Import spritesheet..."
-msgstr ""
+msgstr "Импортировать спрайтовый лист..."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:278
 msgid "The spritesheet was successfully imported."
-msgstr ""
+msgstr "Спрайтовый лист успешно импортирован."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:305
 #: skytemple/skytemple/module/spritecollab/module.py:131
@@ -13825,7 +13833,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:154
 msgid "Import strings from..."
-msgstr ""
+msgstr "Импортировать строки из..."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:176
 msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}."
@@ -13833,7 +13841,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:184
 msgid "Error importing the strings."
-msgstr ""
+msgstr "Ошибка при импорте строк."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:194
 msgid "Export is done to a CSV file with the following specifications:\n"
@@ -13843,11 +13851,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/widget/strings.py:200
 msgid "Export strings as..."
-msgstr ""
+msgstr "Экспортировать строки как..."
 
 #: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:153
 msgid "The value could not be saved: "
-msgstr ""
+msgstr "Значение не может быть сохранено: "
 
 #: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:154
 msgid "Invalid value"
