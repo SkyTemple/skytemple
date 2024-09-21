@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 16:25\n"
+"PO-Revision-Date: 2024-09-21 17:34\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3979,11 +3979,11 @@ msgstr "Блок"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:38
 msgid "Temporary"
-msgstr ""
+msgstr "Временный"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:39
 msgid "Sub Table"
-msgstr ""
+msgstr "Подтаблица"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:33
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:92
@@ -4084,7 +4084,7 @@ msgstr "3 (Сюжетная сцена)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:236
 msgid "<Global>"
-msgstr ""
+msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:242
 #: skytemple/skytemple/data/widget/script/ssa.ui:1342
@@ -7986,7 +7986,7 @@ msgstr "Скорость текста (в режиме отладки испол
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:322
 msgid "Normal spawn delay (turns):"
-msgstr ""
+msgstr "Обычная задержка появления врагов (ходов):"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:334
 msgid "Spawn delay (turns) after stealing \n"
@@ -9093,7 +9093,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/monster.ui:257
 msgid "<i>*If you choose to export only one gender, the data of this gender will be used when importing again.\n"
 "If you choose to export both genders, upon import the matching gender entry will be used (second gender will be imported using the second gender entry).</i>"
-msgstr ""
+msgstr "<i>*Если вы решили экспортировать только одну форму, при повторном импортировании будут использоваться данные этой формы.\n"
+"Если вы решили экспортировать данные обоих форм, при импорте будет использоваться запись, соответствующая форме (вторая форма будет импортирована с использованием записи второй формы).</i>"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:291
 msgid "Portraits of other Gender Form*"
@@ -9105,7 +9106,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:527
 msgid "(and/or) <b>2b. Copy to other Pokémon</b>"
-msgstr ""
+msgstr "(и/или) <b>2b. Копировать другому покемону</b>"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:646
 msgid "$<ID Number>: <Eng. Name>"
@@ -9385,19 +9386,19 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3569
 msgid "No drop:"
-msgstr ""
+msgstr "Ничего:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3581
 msgid "Chest with normal items:"
-msgstr ""
+msgstr "Сундук с обычными предметами:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3593
 msgid "Chest with type 1 exclusive items:"
-msgstr ""
+msgstr "Сундук с эксклюзивными предметами редкости 1:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3605
 msgid "Chest with type 2 exclusive items:"
-msgstr ""
+msgstr "Сундук с эксклюзивными предметами редкости 2:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3698
 msgid "This Pokémon has no stats and/or level up moves. It can only be used in cutscenes. \n"
@@ -9436,11 +9437,11 @@ msgstr "ID приема:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:760
 msgid "Min Amount:"
-msgstr ""
+msgstr "Мин. количество:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:818
 msgid "Max Amount:"
-msgstr ""
+msgstr "Макс. количество:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:863
 msgid "Action Name:"
@@ -9492,11 +9493,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:139
 msgid "Item Keys"
-msgstr ""
+msgstr "Ключи предметов"
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:213
 msgid "Sort Key"
-msgstr ""
+msgstr "Ключи сортировки"
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:228
 msgid "Item Name"
@@ -9504,15 +9505,15 @@ msgstr "Название предмета"
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:253
 msgid "Insert Key..."
-msgstr ""
+msgstr "Вставить ключ..."
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:270
 msgid "Remove Key..."
-msgstr ""
+msgstr "Удалить ключ..."
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:287
 msgid "Add Missing Keys"
-msgstr ""
+msgstr "Добавить недостающие ключи"
 
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:509
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:586
@@ -10044,11 +10045,11 @@ msgstr "Фон Локации"
 
 #: skytemple/skytemple/data/widget/script/main.ui:385
 msgid "Default Weather"
-msgstr ""
+msgstr "Погода по умолчанию"
 
 #: skytemple/skytemple/data/widget/script/main.ui:473
 msgid "Level List"
-msgstr ""
+msgstr "Список уровней"
 
 #: skytemple/skytemple/data/widget/script/main.ui:591
 msgid "This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. \n"
@@ -10583,7 +10584,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/module.py:890
 msgid "Vis."
-msgstr "Видно"
+msgstr "Видима"
 
 #: skytemple/skytemple/module/dungeon/module.py:892
 msgid "Unb."
@@ -10717,7 +10718,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2491
 #, python-brace-format
 msgid "No. {i}"
-msgstr ""
+msgstr "Номер {i}"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:713
 msgid "n/a"
@@ -11014,7 +11015,7 @@ msgstr "Ошибки подземелий успешно исправлены."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:180
 msgid "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
-msgstr ""
+msgstr "В настоящее время игра содержит недопустимые подземелья. Пожалуйста, сначала нажмите \"Исправить ошибки подземелий\"."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:201
 msgid "Dungeons were missing in the list. This is a bug in SkyTemple! Please try again and report this!"
@@ -11023,7 +11024,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/main.py:203
 #: skytemple/skytemple/module/dungeon/widget/main.py:211
 msgid "Failed regrouping the dungeons."
-msgstr ""
+msgstr "Не удалось перегруппировать подземелья."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:210
 msgid "An internal error occurred: "
@@ -11032,19 +11033,19 @@ msgstr "Произошла внутренняя ошибка: "
 #: skytemple/skytemple/module/dungeon/widget/main.py:462
 #: skytemple/skytemple/module/dungeon/widget/main.py:466
 msgid "Create a new floor list with one empty floor for this dungeon."
-msgstr ""
+msgstr "Создать новый список этажей с одним пустым этажом для этого подземелья."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:464
 msgid "Correct the floor count for this dungeon. If no floor exists, generate one."
-msgstr ""
+msgstr "Исправить количество этажей в этом подземелье. Если этажа не существует, создать его."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:470
 msgid "Remove the unused floor."
-msgstr ""
+msgstr "Удалить неиспользуемый этаж."
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:471
 msgid "Add the remaining floors to the dungeon."
-msgstr ""
+msgstr "Добавить оставшиеся этажи в подземелье."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:75
 msgid "Export PNG of map..."
@@ -11083,7 +11084,7 @@ msgstr "Экспорт PNG плиток..."
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:836
 msgid "Some values were invalid (not a number). They were replaced with 0."
-msgstr ""
+msgstr "Некоторые значения были недействительны (не являлись числом). Они были заменены на 0."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:358
 msgid "Palette Animation is not enabled for this palette."
@@ -11217,7 +11218,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:263
 msgid "The tileset was successfully imported."
-msgstr ""
+msgstr "Набор плиток был успешно импортирован."
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:264
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:306
@@ -11228,11 +11229,11 @@ msgstr "Успешно!"
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:277
 msgid "Export dungeon tileset..."
-msgstr ""
+msgstr "Экспорт набора плиток подземелий..."
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:305
 msgid "The tileset was successfully exported."
-msgstr ""
+msgstr "Набор плиток был успешно экспортирован."
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:102
 msgid "This will export the currently selected image with the currently selected palette. The image file itself contains all palettes, you can choose to import the edited palettes on import."
@@ -11270,7 +11271,7 @@ msgstr "Список актеров"
 #: skytemple/skytemple/module/lists/controller/object_list.glade:61
 #: skytemple/skytemple/module/lists/controller/object_list.glade:138
 msgid "The entries in this list can be placed on maps and used in scripts."
-msgstr ""
+msgstr "Записи из этого списка можно помещать в локациях и использовать в сценариях."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:238
 msgid "Text String for Name"
@@ -11423,7 +11424,9 @@ msgstr "Список объектов"
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Недоступно>\n\n"
+"Для просмотра и редактирования этого списка, примените ASM-патч «ExtractObjectTable»\n"
+"из меню «Патчи» > «ASM»."
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:209
 msgid "Unk2_1"
@@ -12186,7 +12189,8 @@ msgstr "Импортировать изображения из PNG..."
 #, python-brace-format
 msgid "Failed importing image \"{i}\":\n"
 "Image for number {i} missing."
-msgstr ""
+msgstr "Не удалось импортировать изображение \"{i}\":\n"
+"Изображение для номера {i} отсутствует."
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:125
 #, python-brace-format
@@ -12283,7 +12287,7 @@ msgstr "Ошибка импортирования полного zmappat."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:95
 msgid "Exp."
-msgstr ""
+msgstr "Опыт."
 
 #. TRANSLATORS: Health Points
 #: skytemple/skytemple/module/monster/level_up_graph.py:97
@@ -12333,11 +12337,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:295
 msgid "Import CSV..."
-msgstr ""
+msgstr "Импортировать CSV..."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:308
 msgid "is missing in the CSV"
-msgstr ""
+msgstr "отсутствует в CSV"
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:334
 msgid "All values must be numbers."
@@ -12354,7 +12358,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/widget/level_up.py:343
 #: skytemple/skytemple/module/monster/widget/level_up.py:368
 msgid "Error reading the CSV."
-msgstr ""
+msgstr "Ошибка чтения CSV."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:365
 msgid "Warning: The stats view might be corrupted now,\n"
@@ -12381,19 +12385,19 @@ msgstr "У этого покемона нет приемов."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:610
 msgid "CSV (*.csv)"
-msgstr ""
+msgstr "CSV (*.csv)"
 
 #: skytemple/skytemple/module/monster/widget/main.py:57
 msgid "Partner 1"
-msgstr ""
+msgstr "Спутник 1"
 
 #: skytemple/skytemple/module/monster/widget/main.py:58
 msgid "Partner 2"
-msgstr ""
+msgstr "Спутник 2"
 
 #: skytemple/skytemple/module/monster/widget/main.py:59
 msgid "Partner 3"
-msgstr ""
+msgstr "Спутник 3"
 
 #: skytemple/skytemple/module/monster/widget/main.py:60
 msgid "Grovyle"
@@ -12474,11 +12478,11 @@ msgstr "Неизвестный актер 35"
 
 #: skytemple/skytemple/module/monster/widget/main.py:329
 msgid "ERROR: Body Size is {}, must be at least {}."
-msgstr ""
+msgstr "ERROR: Размер {}, должен быть не менее {}."
 
 #: skytemple/skytemple/module/monster/widget/main.py:336
 msgid "Body Size is {}, this could be lowered to {}."
-msgstr ""
+msgstr "Размер - {}, его можно уменьшить до {}."
 
 #: skytemple/skytemple/module/monster/widget/main.py:372
 msgid "Export Pokémon at..."
