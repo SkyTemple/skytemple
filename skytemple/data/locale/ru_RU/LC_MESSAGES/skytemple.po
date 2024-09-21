@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 08:27\n"
+"PO-Revision-Date: 2024-09-21 11:25\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4072,15 +4072,15 @@ msgstr "<Пусто>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:196
 msgid "1 (Enter)"
-msgstr ""
+msgstr "1 (Открытый мир)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:199
 msgid "2 (Sub)"
-msgstr ""
+msgstr "2 (Подсцена)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:202
 msgid "3 (Acting)"
-msgstr ""
+msgstr "3 (Сюжетная сцена)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:236
 msgid "<Global>"
@@ -8719,7 +8719,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/misc_graphics/font.ui:56
 msgid "Choose which character\n"
 "you want to add in the table: "
-msgstr ""
+msgstr "Выберите, какой символ\n"
+"вы хотите добавить в таблицу: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/font.ui:361
 #: skytemple/skytemple/data/widget/misc_graphics/graphic_font.ui:275
@@ -9429,7 +9430,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item.ui:748
 #: skytemple/skytemple/data/widget/moves_items/move.ui:75
 msgid "Move ID:"
-msgstr ""
+msgstr "ID приема:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:760
 msgid "Min Amount:"
@@ -9445,7 +9446,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1008
 msgid "Is Valid:"
-msgstr ""
+msgstr "Верно:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1020
 msgid "Is in T/D:"
@@ -9515,7 +9516,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:586
 #: skytemple/skytemple/module/moves_items/module.py:116
 msgid "Item Lists"
-msgstr ""
+msgstr "Списки предметов"
 
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:525
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:602
@@ -9605,7 +9606,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1056
 msgid "Range"
-msgstr ""
+msgstr "Дальность"
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1081
 #: skytemple/skytemple/module/moves_items/widget/move.py:475
@@ -9794,7 +9795,7 @@ msgstr "ID эффекта: "
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:462
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:420
 msgid "Used by: "
-msgstr ""
+msgstr "Используется: "
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:516
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:557
@@ -10057,11 +10058,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/script/map.ui:102
 msgid "Add \"Enter\" scene"
-msgstr ""
+msgstr "Добавить сцену «Открытый мир»"
 
 #: skytemple/skytemple/data/widget/script/map.ui:147
 msgid "Add \"Acting\" scene"
-msgstr ""
+msgstr "Добавить сцену «Сюжетная сцена»"
 
 #: skytemple/skytemple/data/widget/script/map.ui:192
 msgid "Add \"Sub\" scene"
@@ -10208,7 +10209,9 @@ msgstr ""
 msgid "Alternatively you can export the raw WAN sprite files \n"
 "and edit them with a tool like PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "Также вы можете экспортировать необработанные WAN-файлы спрайтов,\n"
+"и отредактировать их с помощью такого инструмента, как <a href=\"gfxcrunch\">gfxcrunch</a> от PsyCommando.\n"
+"Внимание: SkyTemple не проверяет файлы, которые вы импортируете."
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:107
 msgid "<span size=\"large\">Manual Im-/Export</span>"
@@ -10301,7 +10304,7 @@ msgstr "Новый спрайт объекта"
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:55
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:260
 msgid "Loading..."
-msgstr ""
+msgstr "Загрузка..."
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:148
 msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
@@ -10311,15 +10314,15 @@ msgstr "<span size=\"x-large\">Браузер SpriteCollab</span>\n\n"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:259
 msgid "SpriteCollab Browser"
-msgstr ""
+msgstr "Браузер SpriteCollab"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:278
 msgid "Open in Webbrowser"
-msgstr ""
+msgstr "Открыть в веб-браузере"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:338
 msgid "SpriteCollab Browser Settings"
-msgstr ""
+msgstr "Настройки браузера SpriteCollab"
 
 #: skytemple/skytemple/data/widget/spritecollab/browser.ui:371
 msgid "Apply / Refresh"
@@ -10394,15 +10397,15 @@ msgstr "Найти:"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
 msgid "Chunk Editor"
-msgstr ""
+msgstr "Редактор чанков"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:116
 msgid "Add Chunk"
-msgstr ""
+msgstr "Добавить чанк"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:187
 msgid "Selected Chunk"
-msgstr ""
+msgstr "Выбранный чанк"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:241
 msgid "Flip X"
@@ -10451,15 +10454,15 @@ msgstr "Анимированные плитки, слот 4"
 #: skytemple/skytemple/data/widget/tiled_img/palette_editor.ui:17
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:138
 msgid "Palette Editor"
-msgstr ""
+msgstr "Редактор палитры"
 
 #: skytemple/skytemple/data/widget/tiled_img/palette_editor.ui:103
 msgid "Make all colors unique"
-msgstr ""
+msgstr "Сделать все цвета уникальными"
 
 #: skytemple/skytemple/data/widget/tiled_img/palette_editor.ui:170
 msgid "Add Frame (after current)"
-msgstr ""
+msgstr "Добавить кадр (после текущего)"
 
 #: skytemple/skytemple/data/widget/tiled_img/palette_editor.ui:174
 msgid "CTRL + Click to add before current"
@@ -10990,7 +10993,7 @@ msgstr "Недопустимый?"
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2478
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:163
 msgid "INVALID!!!"
-msgstr ""
+msgstr "НЕВЕРНО!!!"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2489
 msgid "No fixed room"
@@ -12080,11 +12083,11 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:63
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:112
 msgid "Export image as PNG..."
-msgstr ""
+msgstr "Экспортировать изображение как PNG..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:94
 msgid "Import image as PNG..."
-msgstr ""
+msgstr "Импортировать изображение как PNG..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:109
 msgid "Error importing cart removed image."
@@ -12169,7 +12172,7 @@ msgstr "Для импорта выберите каталог, из которо
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:99
 msgid "Import Images"
-msgstr ""
+msgstr "Импортировать изображения"
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:104
 msgid "Import images from PNGs..."
@@ -12188,18 +12191,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:130
 msgid "No images found."
-msgstr ""
+msgstr "Изображения не найдены."
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:142
 #, python-brace-format
 msgid "Failed importing image '{index}'."
-msgstr ""
+msgstr "Не удалось импортировать изображение '{index}'."
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:145
 #, python-brace-format
 msgid "Failed importing image \"{index}\":\n"
 "{err}"
-msgstr ""
+msgstr "Не удалось импортировать изображение \"{index}\":\n"
+"{err}"
 
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:146
 #, python-brace-format
@@ -12208,11 +12212,11 @@ msgstr "Ошибка для '{index}'."
 
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:152
 msgid "Filename not specified."
-msgstr ""
+msgstr "Имя файла не указано."
 
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:161
 msgid "Imported image size too big."
-msgstr ""
+msgstr "Размер импортированного изображения слишком велик."
 
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:163
 msgid "Not an indexed image."
@@ -12358,18 +12362,18 @@ msgstr "Внимание: Просмотр статистик может быт�
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:443
 msgid "No move with this ID found."
-msgstr ""
+msgstr "Не найдено приемов с таким ID."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:476
 #: skytemple/skytemple/module/monster/widget/level_up.py:554
 msgid "This Pokémon has no stats."
-msgstr ""
+msgstr "У этого покемона нет статистики."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:509
 #: skytemple/skytemple/module/monster/widget/level_up.py:510
 #: skytemple/skytemple/module/monster/widget/level_up.py:511
 msgid "This Pokémon has no moves."
-msgstr ""
+msgstr "У этого покемона нет приемов."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:610
 msgid "CSV (*.csv)"
@@ -12587,7 +12591,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:764
 msgid "Can Throw Items?"
-msgstr ""
+msgstr "Может бросать предметы?"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:777
 msgid "Controls the drop rates of different types of chests.\n"
@@ -12604,7 +12608,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:794
 msgid "Can Evolve?"
-msgstr ""
+msgstr "Может эволюционировать?"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:807
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
@@ -12632,7 +12636,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:850
 msgid "Size"
-msgstr ""
+msgstr "Размер"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:863
 msgid "Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\n"
@@ -12658,15 +12662,15 @@ msgstr "Действует только при применении параме
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1264
 msgid "Export Pokémon as..."
-msgstr ""
+msgstr "Экспортировать Покемона как..."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1307
 msgid "Import Pokémon from..."
-msgstr ""
+msgstr "Импортировать Покемона из..."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1592
 msgid "Stats and Moves"
-msgstr ""
+msgstr "Статистика и приемы"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1607
 msgid "Sprites"
@@ -12722,11 +12726,11 @@ msgstr ""
 #: skytemple/skytemple/module/monster/widget/monster.py:1926
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
-msgstr ""
+msgstr "Покемон не может эволюционировать в более чем {MAX_EVOS} эволюций."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1930
 msgid "Too much evolutions."
-msgstr ""
+msgstr "Слишком много эволюций."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1936
 #, python-brace-format
@@ -12758,7 +12762,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/widget/item.py:52
 #: skytemple/skytemple/module/moves_items/widget/item.py:53
 msgid "Use"
-msgstr ""
+msgstr "Использовать"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:39
 msgid "Hurl"
@@ -12766,17 +12770,17 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:40
 msgid "Throw"
-msgstr ""
+msgstr "Бросить"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:41
 #: skytemple/skytemple/module/moves_items/widget/item.py:49
 #: skytemple/skytemple/module/moves_items/widget/item.py:50
 msgid "Equip"
-msgstr ""
+msgstr "Экипировать"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:42
 msgid "Eat"
-msgstr ""
+msgstr "Съесть"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:43
 msgid "Ingest"
@@ -12936,7 +12940,7 @@ msgstr "Награды за миссии ранга ★9"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:70
 msgid "Kecleon Shop 1"
-msgstr ""
+msgstr "Магазин Кеклеона 1"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:71
 msgid "Kecleon Orbs/TMs 1"
@@ -12944,7 +12948,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:72
 msgid "Kecleon Shop 2"
-msgstr ""
+msgstr "Магазин Кеклеона 2"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:73
 msgid "Kecleon Orbs/TMs 2"
@@ -12952,7 +12956,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:74
 msgid "Kecleon Shop 3"
-msgstr ""
+msgstr "Магазин Кеклеона 3"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:75
 msgid "Kecleon Orbs/TMs 3"
@@ -12960,7 +12964,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:76
 msgid "Kecleon Shop 4"
-msgstr ""
+msgstr "Магазин Кеклеона 4"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:77
 msgid "Kecleon Orbs/TMs 4"
@@ -13094,7 +13098,8 @@ msgstr ""
 #: skytemple/skytemple/module/patch/widget/asm.py:175
 msgid "\n"
 "Do you want to apply these first?"
-msgstr ""
+msgstr "\n"
+"Хотите применить это в первую очередь?"
 
 #: skytemple/skytemple/module/patch/widget/asm.py:197
 msgid "\n"
@@ -13106,7 +13111,8 @@ msgstr ""
 #, python-brace-format
 msgid "Error applying the patch:\n"
 "{err}"
-msgstr ""
+msgstr "Ошибка при применении патча:\n"
+" {err}"
 
 #: skytemple/skytemple/module/patch/widget/asm.py:209
 #, python-brace-format
@@ -13268,12 +13274,13 @@ msgstr "Ошибка для '{name}'."
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
-msgstr ""
+msgstr "Не удалось импортировать лист портретов:\n"
+"{err}"
 
 #: skytemple/skytemple/module/portrait/module.py:98
 #: skytemple/skytemple/module/rom/widget/main.py:135
 msgid "Could not import."
-msgstr ""
+msgstr "Не удалось импортировать."
 
 #: skytemple/skytemple/module/portrait/module.py:112
 msgid " (flip)"
@@ -13290,27 +13297,27 @@ msgstr ""
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:308
 msgid "Import Portraits"
-msgstr ""
+msgstr "Импортировать портреты"
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:313
 msgid "Import portraits from PNGs..."
-msgstr ""
+msgstr "Импортировать портреты из PNG..."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:350
 msgid "Export portrait as PNG sheet..."
-msgstr ""
+msgstr "Экспортировать портрет как PNG..."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:367
 msgid "Import portraits from PNG sheet..."
-msgstr ""
+msgstr "Импорт портретов из листа PNG..."
 
 #: skytemple/skytemple/module/rom/widget/main.py:101
 msgid "Export game icon as PNG..."
-msgstr ""
+msgstr "Экспортировать иконку игры в формате PNG..."
 
 #: skytemple/skytemple/module/rom/widget/main.py:118
 msgid "Import game icon from PNG..."
-msgstr ""
+msgstr "Импортировать иконку игры из PNG..."
 
 #: skytemple/skytemple/module/rom/widget/main.py:134
 msgid "Failed importing game icon:\n"
@@ -13421,18 +13428,18 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/map.py:126
 #: skytemple/skytemple/module/script/widget/map.py:167
 msgid "Could not add the scene: "
-msgstr ""
+msgstr "Не удалось добавить сцену: "
 
 #: skytemple/skytemple/module/script/widget/map.py:94
 #: skytemple/skytemple/module/script/widget/map.py:136
 #: skytemple/skytemple/module/script/widget/map.py:177
 msgid "Scene added successfully"
-msgstr ""
+msgstr "Сцена успешно добавлена"
 
 #: skytemple/skytemple/module/script/widget/map.py:103
 #: skytemple/skytemple/module/script/widget/map.py:144
 msgid "Create Scene"
-msgstr ""
+msgstr "Создать сцену"
 
 #: skytemple/skytemple/module/script/widget/map.py:103
 #: skytemple/skytemple/module/script/widget/map.py:144
@@ -13450,7 +13457,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/widget/ssa.py:477
 msgid "Import scene from..."
-msgstr ""
+msgstr "Импортировать сцену из..."
 
 #: skytemple/skytemple/module/script/widget/ssa.py:501
 msgid "Error importing the scene."
@@ -13458,7 +13465,7 @@ msgstr "Ошибка при импорте сцены."
 
 #: skytemple/skytemple/module/script/widget/ssa.py:508
 msgid "Export scene as..."
-msgstr ""
+msgstr "Экспортировать сцену как..."
 
 #: skytemple/skytemple/module/script/widget/ssa.py:703
 #, python-brace-format
@@ -13559,15 +13566,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:167
 msgid "Import WAN sprite..."
-msgstr ""
+msgstr "Импортировать WAN спрайт..."
 
 #: skytemple/skytemple/module/sprite/module.py:186
 msgid "Export WAN sprite..."
-msgstr ""
+msgstr "Экспортировать WAN спрайт..."
 
 #: skytemple/skytemple/module/sprite/module.py:193
 msgid "WAN sprite (*.wan)"
-msgstr ""
+msgstr "WAN-спрайт (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:213
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
@@ -13575,7 +13582,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:219
 msgid "Import gfxcrunch sprite..."
-msgstr ""
+msgstr "Импортировать спрайт gfxcrunch..."
 
 #: skytemple/skytemple/module/sprite/module.py:234
 msgid "Error importing the sprite."
@@ -13634,7 +13641,8 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:237
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
-msgstr ""
+msgstr "Это позволит вставить совершенно новый спрайт в файл спрайтов игры и присвоит покемону новый ID.\n"
+"Если вы хотите заменить текущий назначенный спрайт, выберите \"Импорт\".\n"
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:254
 msgid "Import spritesheet..."
@@ -13842,17 +13850,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:154
 msgid "Invalid value"
-msgstr ""
+msgstr "Недопустимое значение"
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:83
 msgid "Only 1x1 or 3x3 supported."
-msgstr ""
+msgstr "Поддерживаются только 1x1 или 3x3."
 
 #: skytemple/skytemple/module/tiled_img/widget/chunk_editor.py:427
 msgid "BPA slot is empty.\n\n"
 "Go to Tiles > Animated Tiles to\n"
 "manage animated tiles."
-msgstr ""
+msgstr "Слот BPA пуст.\n\n"
+"Перейдите в раздел Плитки > Анимированные плитки, чтобы\n"
+"управлять анимированными плитками."
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:114
 msgid "Some images editors have problems when editing indexed images that contain\n"
@@ -13862,7 +13872,13 @@ msgid "Some images editors have problems when editing indexed images that contai
 "To solve this, you can make all colors in the palettes unique. This is done by\n"
 "slightly shifting the color values of duplicate colors (not visible for the\n"
 "human eye)."
-msgstr ""
+msgstr "Некоторые редакторы изображений сталкиваются с проблемами при редактировании индексированных изображений, которые содержат\n"
+"один и тот же цвет несколько раз (они неправильно определяют индекс цвета).\n"
+"Поскольку при импорте ожидается, что все плитки (8x8 пикселей) будут использовать только одну 16-цветную палитру, это\n"
+"может привести к проблемам.\n\n"
+"Чтобы решить эту проблему, можно сделать все цвета в палитрах уникальными. Это делается путем\n"
+"небольшого смещения цветовых значений дублирующихся цветов (незаметного для\n"
+"человеческого глаза)."
 
 #: skytemple/skytemple/module/tiled_img/widget/palette_editor.py:122
 msgid "Make Colors Unique"
