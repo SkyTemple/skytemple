@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 15:21\n"
+"PO-Revision-Date: 2024-09-21 16:25\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -5131,7 +5131,7 @@ msgstr "Работает на DeSmuME, эмуляторе Nintendo DS:\n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3258
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
-msgstr ""
+msgstr "Интерактивный отладчик для скрипт-движка игры Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3260
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
@@ -6984,7 +6984,9 @@ msgstr "Редактирование групп подземелий"
 msgid "Drag and Drop dungeons to build groups.\n"
 "Dungeons that are in groups build \"real\" full dungeons,\n"
 "you can seperate dungeons in a group with overworld maps (eg. rest rooms)."
-msgstr ""
+msgstr "Перетащите подземелья для создания групп.\n"
+"Подземелья, объединенные в группы, создают \"настоящие\" полноценные подземелья,\n"
+"вы можете разделить подземелья в группе с помощью локаций мира игры (например, комнаты отдыха)."
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:90
 msgid "Tileset: "
@@ -9652,7 +9654,7 @@ msgstr "SkyTemple не может редактировать музыку.\n"
 
 #: skytemple/skytemple/data/widget/music/main.ui:74
 msgid "More information about SkySongBuilder"
-msgstr ""
+msgstr "Больше информации о SkySongBuilder"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:25
 msgid "ASM Patches"
@@ -9660,7 +9662,7 @@ msgstr "Патчи ASM"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "Применить патчи ASM (assembler) к игре."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:76
 msgid "Open Patch Directory..."
@@ -10016,7 +10018,8 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/main.ui:215
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
 "This also includes cutscene visuals and some system related scenes like credits or the title screen logos."
-msgstr ""
+msgstr "В этом разделе вы можете редактировать сцены мира игры, то есть все, что происходит за пределами подземелий.\n"
+"Сюда также входят визуальные эффекты в сценах и некоторые сцены, связанные с системой, например титры или логотипы на титульном экране."
 
 #: skytemple/skytemple/data/widget/script/main.ui:253
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:80
@@ -10580,11 +10583,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/module.py:890
 msgid "Vis."
-msgstr ""
+msgstr "Видно"
 
 #: skytemple/skytemple/module/dungeon/module.py:892
 msgid "Unb."
-msgstr ""
+msgstr "Нелом."
 
 #: skytemple/skytemple/module/dungeon/module.py:913
 #, python-brace-format
@@ -10699,12 +10702,12 @@ msgstr "Если режим подземелья - REQUEST (= подземель
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:684
 #, python-brace-format
 msgid "Background {i}"
-msgstr ""
+msgstr "Фон {i}"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:686
 #, python-brace-format
 msgid "Tileset {i}"
-msgstr ""
+msgstr "Набор плиток {i}"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:691
 msgid "No override"
@@ -10920,7 +10923,7 @@ msgstr "Невозможно использовать этот предмет"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1437
 msgid "All items are already in the list"
-msgstr ""
+msgstr "Все предметы уже находятся в списке"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1438
 msgid "Can not add item."
@@ -11045,7 +11048,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:75
 msgid "Export PNG of map..."
-msgstr ""
+msgstr "Экспорт PNG локации..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:153
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:896
@@ -11063,7 +11066,7 @@ msgstr "Ошибка при экспорте набора плиток."
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:936
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:998
 msgid "An image must be selected."
-msgstr ""
+msgstr "Необходимо выбрать изображение."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:207
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:271
@@ -11074,7 +11077,7 @@ msgstr "Ошибка при импорте набора плиток."
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:220
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:960
 msgid "Export PNG of tiles..."
-msgstr ""
+msgstr "Экспорт PNG плиток..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:341
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
@@ -12847,7 +12850,7 @@ msgid "Sort keys are used to sort items in your inventory when using the sort fe
 "The game sorts items starting from the one with the lowest key to the highest.\n"
 "Several items can have the same key; this means they will be mixed together while sorting (e.g. Lookalike items).\n"
 "Only keys from 0 to 2047 should be used."
-msgstr "Клавиши сортировки используются для сортировки предметов в инвентаре при использовании функции сортировки в игре.\n"
+msgstr "Ключи сортировки используются для сортировки предметов в инвентаре при использовании функции сортировки в игре.\n"
 "Игра сортирует предметы, начиная с того, у которого самый низкий ключ, и заканчивая самым высоким.\n"
 "Несколько предметов могут иметь одинаковый ключ; это означает, что они будут смешаны вместе при сортировке (например, ложные предметы).\n"
 "Следует использовать только ключи от 0 до 2047."
@@ -12863,25 +12866,28 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:173
 msgid "Insert an item key id before the one selected.\n"
 "This means all keys with id >= that one will be incremented by 1. "
-msgstr ""
+msgstr "Вставляет ID-ключ предмета перед выбранным.\n"
+"Это означает, что все ключи с ID >= этого ключа будут увеличены на 1. "
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:195
 msgid "Remove Key: "
-msgstr ""
+msgstr "Удалить ключ: "
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:198
 msgid "Remove the item key id selected.\n"
 "This means all keys with id > that one will be decremented by 1.\n"
 "A key can't be removed if it's still used by one item. "
-msgstr ""
+msgstr "Удаляет ID-ключ предмета перед выбранным.\n"
+"Это означает, что все ключи с ID > этого ключа будут уменьшены на 1.\n"
+"Ключ не может быть удален если он все еще используется одним предметом. "
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:213
 msgid "This key is still used by these items: {', '.join(no_key)}."
-msgstr ""
+msgstr "Этот ключ по-прежнему используется этими предметами: {', '.join(no_key)}."
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:214
 msgid "Error removing key."
-msgstr ""
+msgstr "Ошибка удаления ключа."
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:55
 msgid "E Floors Rewards"
@@ -12949,7 +12955,7 @@ msgstr "Магазин Кеклеона 1"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:71
 msgid "Kecleon Orbs/TMs 1"
-msgstr ""
+msgstr "Орбы/TM Кеклеона 1"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:72
 msgid "Kecleon Shop 2"
@@ -12957,7 +12963,7 @@ msgstr "Магазин Кеклеона 2"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:73
 msgid "Kecleon Orbs/TMs 2"
-msgstr ""
+msgstr "Орбы/TM Кеклеона 2"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:74
 msgid "Kecleon Shop 3"
@@ -12965,7 +12971,7 @@ msgstr "Магазин Кеклеона 3"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:75
 msgid "Kecleon Orbs/TMs 3"
-msgstr ""
+msgstr "Орбы/TM Кеклеона 3"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:76
 msgid "Kecleon Shop 4"
@@ -12973,7 +12979,7 @@ msgstr "Магазин Кеклеона 4"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:77
 msgid "Kecleon Orbs/TMs 4"
-msgstr ""
+msgstr "Орбы/TM Кеклеона 4"
 
 #: skytemple/skytemple/module/moves_items/widget/item_lists.py:78
 msgid "Unknown 1"
@@ -13026,11 +13032,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:527
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
-msgstr ""
+msgstr "Смещение ID сообщения, которое отображается для приема. 0 использует текстовую строку 3860. Более высокие значения выбирают строки после этого (смещения)."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:529
 msgid "Message ID:"
-msgstr ""
+msgstr "ID сообщения:"
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:541
 msgid "Whether the AI with Status Checker can select this move when the target is frozen."
@@ -13046,7 +13052,7 @@ msgstr "Настройки для патча \"{}\""
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:53
 msgid "The patch \"{}\" requires additional configuration:"
-msgstr ""
+msgstr "Патч \"{}\" требует дополнительной настройки:"
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:120
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:122
@@ -13293,7 +13299,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:278
 msgid "Export all portraits as PNGs..."
-msgstr ""
+msgstr "Экспортировать все портреты в формате PNG..."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:305
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\n"
@@ -13331,7 +13337,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:59
 #, python-brace-format
 msgid "Edit {script_name}"
-msgstr ""
+msgstr "Редактировать {script_name}"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:63
 msgid "Edit Event"
@@ -13468,7 +13474,7 @@ msgstr "Длина имени сцены должна быть в предела
 
 #: skytemple/skytemple/module/script/widget/pos_mark_editor.py:97
 msgid "Edit Position Marks"
-msgstr ""
+msgstr "Редактировать маркеры позиции"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:477
 msgid "Import scene from..."
@@ -13485,7 +13491,7 @@ msgstr "Экспортировать сцену как..."
 #: skytemple/skytemple/module/script/widget/ssa.py:703
 #, python-brace-format
 msgid "Sector {new_index}"
-msgstr ""
+msgstr "Сектор {new_index}"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:719
 msgid "Are you sure you want to remove this sector?\n"
