@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-20 23:18\n"
+"PO-Revision-Date: 2024-09-21 07:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4280,21 +4280,21 @@ msgstr "Общие"
 #: skytemple/skytemple/module/script/module.py:251
 #: skytemple/skytemple/module/script/module.py:596
 msgid "Enter (sse)"
-msgstr ""
+msgstr "Открытый мир (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:947
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
 #: skytemple/skytemple/module/script/module.py:268
 #: skytemple/skytemple/module/script/module.py:541
 msgid "Acting (ssa)"
-msgstr ""
+msgstr "Сюжетные сцены (ssa)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:957
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1439
 #: skytemple/skytemple/module/script/module.py:300
 #: skytemple/skytemple/module/script/module.py:552
 msgid "Sub (sss)"
-msgstr ""
+msgstr "Подсцены (sss)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:994
 msgid "Save dumped block..."
@@ -5565,7 +5565,10 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Do you want to continue with these plugins? These plugins contain code which will run on your computer once you accept this dialog with 'Yes'.\n"
 "Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
-msgstr ""
+msgstr "SkyTemple обнаружил следующие плагины в вашем каталоге плагинов ({plugin_dir}).\n\n"
+"Хотите ли вы продолжить работу с этими плагинами? Эти плагины содержат код, который будет запущен на вашем компьютере после того, как вы нажмете \"Да\" в этом диалоговом окне.\n"
+"Продолжайте только в том случае, если вы доверяете авторам патчей. В противном случае злоумышленники могут взломать ваш компьютер и/или украсть информацию.\n\n"
+"Нажав \"Да\", SkyTemple запомнит конфигурацию плагинов и не будет спрашивать об этом в следующий раз."
 
 #: skytemple/skytemple/core/rom_project.py:158
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
@@ -5752,7 +5755,7 @@ msgstr "Основное имя"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:139
 msgid "Selection Name"
-msgstr ""
+msgstr "Имя при выборе подземелья"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:150
 msgid "back_SetDungeonBanner"
@@ -5760,7 +5763,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:161
 msgid "Banner"
-msgstr ""
+msgstr "Баннер"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:420
 #: skytemple/skytemple/data/widget/monster/main.ui:161
@@ -5802,11 +5805,11 @@ msgstr "Принудительное сохранение игры:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:655
 msgid "Recruiting enabled:"
-msgstr ""
+msgstr "Рекрутинг включен:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:721
 msgid "Max. party members:"
-msgstr ""
+msgstr "Макс. количество членов команды:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:734
 msgid "Enemies drop Boxes:"
@@ -5814,7 +5817,7 @@ msgstr "Из врагов выпадают ящики:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:747
 msgid "Can switch leader:"
-msgstr ""
+msgstr "Возможно сменить лидера:"
 
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:760
 msgid "Exp. enabled:"
@@ -5897,19 +5900,19 @@ msgstr "Масштаб -"
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:99
 #: skytemple/skytemple/data/widget/script/ssa.ui:471
 msgid "Show Tiles Grid"
-msgstr ""
+msgstr "Показать плиточную сетку"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:141
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2961
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:100
 #: skytemple/skytemple/data/widget/script/ssa.ui:472
 msgid "Tile Grid"
-msgstr ""
+msgstr "Плиточная сетка"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:166
 #: skytemple/skytemple/data/widget/script/ssa.ui:497
 msgid "Move / Select"
-msgstr ""
+msgstr "Двигать / выбрать"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:167
 #: skytemple/skytemple/data/widget/lists/animations.ui:864
@@ -5918,7 +5921,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/level_up.ui:669
 #: skytemple/skytemple/data/widget/script/ssa.ui:498
 msgid "Move"
-msgstr ""
+msgstr "Переместить"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:182
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:183
@@ -5928,16 +5931,16 @@ msgstr "Добавить плитку"
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:199
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:200
 msgid "Add Entity"
-msgstr ""
+msgstr "Добавить сущность"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:226
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:227
 msgid "Copy Tile / Entity"
-msgstr ""
+msgstr "Копировать плитку / сущность"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:253
 msgid "Change the tileset or dungeon background (editor preview only)"
-msgstr ""
+msgstr "Изменить набор плиток или фон подземелья (только для предварительного просмотра в редакторе)"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:262
 #: skytemple/skytemple/data/widget/script/pos_mark_editor.ui:125
@@ -5945,11 +5948,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:631
 #: skytemple/skytemple/data/widget/script/ssa.ui:640
 msgid "Change the map background (editor preview only)"
-msgstr ""
+msgstr "Изменить фон локации (только для предварительного просмотра в редакторе)"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:285
 msgid "Edit the currently selected tileset or background"
-msgstr ""
+msgstr "Редактирование выбранного набора плиток или фона"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:287
 msgid "Go to Tileset"
@@ -6039,7 +6042,7 @@ msgstr "Тип плитки:"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:614
 msgid "The direction is only relevant for the leader spawn tile."
-msgstr ""
+msgstr "Направление имеет значение только для места появления лидера."
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:644
 msgid "Add new tile"
@@ -6938,7 +6941,7 @@ msgstr "Подземелья"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:69
 msgid "This section lets you edit the layouts of dungeons in the game."
-msgstr ""
+msgstr "Этот раздел позволяет редактировать структуру подземелий в игре."
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:87
 #: skytemple/skytemple/data/widget/dungeon/main.ui:158
