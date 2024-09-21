@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 19:48\n"
+"PO-Revision-Date: 2024-09-21 21:03\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4452,7 +4452,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:118
 msgid "Halt at the next instruction, even if in another script context."
-msgstr ""
+msgstr "Остановиться на следующей инструкции, даже если она находится в контексте другого сценария."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:439
@@ -6823,7 +6823,7 @@ msgstr "Шансы в ЗМ"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3451
 msgid "Use same spawn weights for Monster Houses"
-msgstr ""
+msgstr "Использовать те же шансы появления для Засады Монстров"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3501
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3757
@@ -9003,7 +9003,7 @@ msgstr "Массовый экспорт"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:547
 msgid "Pokémon Data"
-msgstr ""
+msgstr "Данные о Покемонах"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:570
 msgid "Here you can edit the different personality groups."
@@ -9637,16 +9637,16 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1141
 #: skytemple/skytemple/module/moves_items/widget/move.py:514
 msgid "Ignores Taunted:"
-msgstr ""
+msgstr "Игнорирует статус-эффект \"Спровоцирован\":"
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1317
 msgid "Message ID for Use:"
-msgstr ""
+msgstr "ID сообщения о применении:"
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1369
 #: skytemple/skytemple/module/moves_items/widget/move.py:542
 msgid "AI - Don't use on Frozen:"
-msgstr ""
+msgstr "ИИ - не использовать на замороженных:"
 
 #: skytemple/skytemple/data/widget/music/main.ui:59
 msgid "SkyTemple can not edit music.\n"
@@ -9670,7 +9670,7 @@ msgstr "Применить патчи ASM (assembler) к игре."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:76
 msgid "Open Patch Directory..."
-msgstr ""
+msgstr "Открыть папку с патчами..."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:127
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:45
@@ -9813,7 +9813,7 @@ msgstr "Импортировать код"
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:605
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:552
 msgid "Clipboard Import"
-msgstr ""
+msgstr "Импорт из буфера обмена"
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:607
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:648
@@ -9939,7 +9939,7 @@ msgstr "Редактирует эффекты, используемые кажд
 
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:265
 msgid "Add Special Process"
-msgstr ""
+msgstr "Добавить особый процесс"
 
 #: skytemple/skytemple/data/widget/portrait/portrait.ui:231
 msgid "... from separate images"
@@ -10113,7 +10113,7 @@ msgstr "Добавить объект"
 #: skytemple/skytemple/data/widget/script/ssa.ui:547
 #: skytemple/skytemple/data/widget/script/ssa.ui:548
 msgid "Add Performer"
-msgstr ""
+msgstr "Добавить исполнителя"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:564
 #: skytemple/skytemple/data/widget/script/ssa.ui:565
@@ -10969,7 +10969,8 @@ msgstr "Позволяет изменить вероятность появле�
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1694
 msgid "If 'Use same spawn weights for Monster Houses' is checked, the same spawn weights are used for regular spawns and spawns in Monster Houses.\n"
 "If it is not checked, you can edit these weights separately."
-msgstr ""
+msgstr "Если отмечена опция \"Использовать те же шансы появления для Засады Монстров\", то для обычных появлений и появлений в Засаде Монстров будут использоваться одинаковые шансы.\n"
+"Если флажок не установлен, вы можете редактировать эти шансы отдельно."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1762
 msgid "Export floor as..."
@@ -11005,7 +11006,7 @@ msgstr "НЕВЕРНО!!!"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2489
 msgid "No fixed room"
-msgstr ""
+msgstr "Нет фиксированной комнаты"
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:149
 msgid "Dungeon Errors were fixed.\n"
@@ -11023,7 +11024,7 @@ msgstr "В настоящее время игра содержит недопу�
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:201
 msgid "Dungeons were missing in the list. This is a bug in SkyTemple! Please try again and report this!"
-msgstr ""
+msgstr "Подземелья отсутствовали в списке. Это ошибка в SkyTemple! Пожалуйста, попробуйте еще раз и сообщите об этом!"
 
 #: skytemple/skytemple/module/dungeon/widget/main.py:203
 #: skytemple/skytemple/module/dungeon/widget/main.py:211
@@ -11092,7 +11093,7 @@ msgstr "Некоторые значения были недействитель�
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:358
 msgid "Palette Animation is not enabled for this palette."
-msgstr ""
+msgstr "Анимация палитры не включена для этой палитры."
 
 #: skytemple/skytemple/module/dungeon_graphics/module.py:74
 msgid "This section lets you edit the background images that are used for some special dungeon floors."
@@ -11214,7 +11215,7 @@ msgstr "Для импорта выберите XML-файл в пакете с �
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:231
 msgid "Import dungeon tileset..."
-msgstr ""
+msgstr "Импортировать набор плиток для подземелья..."
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:238
 msgid "DTEF XML document (*.dtef.xml)"
@@ -12008,7 +12009,7 @@ msgstr "SkyTemple - Уведомление"
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:514
 msgid "A script map with the same name as this background does not exist."
-msgstr ""
+msgstr "Скрипт-сцены с тем же именем, как этот фон, не существует."
 
 #: skytemple/skytemple/module/map_bg/widget/bg.py:854
 msgid "This map only has one layer.\n"
@@ -12072,7 +12073,7 @@ msgstr "Фон локации успешно добавлен"
 
 #: skytemple/skytemple/module/misc_graphics/module.py:83
 msgid "Misc. Graphics"
-msgstr ""
+msgstr "Разная графика"
 
 #: skytemple/skytemple/module/misc_graphics/module.py:84
 msgid "This section lets you edit miscellaneous graphics."
@@ -12102,7 +12103,7 @@ msgstr "Импортировать изображение как PNG..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:109
 msgid "Error importing cart removed image."
-msgstr ""
+msgstr "Ошибка при импорте изображения об извлеченном картридже."
 
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:80
 msgid "Import image as indexed PNG..."
@@ -12122,7 +12123,7 @@ msgstr "Ширина"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:51
 msgid "Bytes per row"
-msgstr ""
+msgstr "Байтов на ряд"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:53
 msgid "Padding"
@@ -12240,7 +12241,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:100
 msgid "Export full zmappat in folder..."
-msgstr ""
+msgstr "Экспортировать полный zmappat в папку..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:124
 msgid "To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
@@ -12329,7 +12330,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/module.py:576
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
-msgstr ""
+msgstr "У каждого покемона есть две формы (даже если у него только один пол).\n"
+"Эта запись содержит обе эти формы. Первая форма является основной, она используется в случаях, когда данных для второй формы не существует."
 
 #: skytemple/skytemple/module/monster/widget/level_up.py:250
 msgid "Save CSV..."
@@ -12490,7 +12492,7 @@ msgstr "Размер - {}, его можно уменьшить до {}."
 
 #: skytemple/skytemple/module/monster/widget/main.py:372
 msgid "Export Pokémon at..."
-msgstr ""
+msgstr "Экспортировать Покемона в..."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:278
 msgid "Spinda Egg"
@@ -12502,20 +12504,21 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:280
 msgid "Don't appear in Missions"
-msgstr ""
+msgstr "Не появляются в миссиях"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:281
 msgid "Don't appear in Missions during story"
-msgstr ""
+msgstr "Не появляются в миссиях во время прохождения сюжета"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:661
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
-msgstr ""
+msgstr "Это значение можно изменить только с помощью патча ChangePokemonGroundAnim. \n"
+"Это указывает, как обрабатывать анимации бездействия для каждого покемона. "
 
 #: skytemple/skytemple/module/monster/widget/monster.py:663
 msgid "Idle Animation Types"
-msgstr ""
+msgstr "Типы Анимации Бездействия"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:676
 msgid "Value depends on Main Requirement:\n"
@@ -12535,7 +12538,7 @@ msgstr "Значение зависит от основного требован
 
 #: skytemple/skytemple/module/monster/widget/monster.py:678
 msgid "Evolution Parameters"
-msgstr ""
+msgstr "Параметры эволюции"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:691
 msgid "This value indicates the family of a pokemon.\n"
@@ -12995,7 +12998,7 @@ msgstr "Неизвестно 1"
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:388
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
-msgstr ""
+msgstr "Процент, показывающий вероятность того, что прием будет успешным. 100 - идеальная точность. Все, что выше 100, означает, что прием никогда не мажет."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:403
 msgid "Seems to be a second sort of accuracy check. A different message will be shown if this accuracy test fails."
@@ -13343,7 +13346,7 @@ msgstr "Импортировать иконку игры из PNG..."
 
 #: skytemple/skytemple/module/rom/widget/main.py:134
 msgid "Failed importing game icon:\n"
-msgstr ""
+msgstr "Не удалось импортировать иконку игры:\n"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:59
 #, python-brace-format
@@ -13364,7 +13367,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:470
 msgid "Map not found."
-msgstr ""
+msgstr "Локация не найдена."
 
 #: skytemple/skytemple/module/script/module.py:659
 msgid "The file name provided must not have a file extension."
@@ -13543,7 +13546,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/widget/ssa.py:1733
 #, python-brace-format
 msgid "Type {performer_type}"
-msgstr ""
+msgstr "Тип {performer_type}"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1755
 msgid "V"
@@ -13974,7 +13977,7 @@ msgstr "Настройки SkyTemple"
 
 #: skytemple/skytemple/skytemple.glade:294
 msgid "Advanced"
-msgstr ""
+msgstr "Расширенные настройки"
 
 #: skytemple/skytemple/skytemple.glade:337
 msgid "Use Native File Handlers"
