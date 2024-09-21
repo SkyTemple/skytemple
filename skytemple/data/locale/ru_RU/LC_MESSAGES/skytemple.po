@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-21 13:59\n"
+"PO-Revision-Date: 2024-09-21 15:21\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -12805,32 +12805,33 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:406
 msgid "Max Amount"
-msgstr ""
+msgstr "Максимальное количество"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:418
 msgid "The ID of a move, that is associated with this item."
-msgstr ""
+msgstr "ID приема, связанного с этим предметом."
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:419
 msgid "Move ID"
-msgstr ""
+msgstr "ID приема"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:427
 msgid "Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n\n"
 "IDs for Types:\n"
-msgstr ""
+msgstr "Либо ID типа, либо покемона, в зависимости от типа эксклюзивного предмета.\n\n"
+"ID типов:\n"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:437
 msgid "Exclusive Item Parameter"
-msgstr ""
+msgstr "Параметр эксклюзивного предмета"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:450
 msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
-msgstr ""
+msgstr "Некоторые эксклюзивные предметы привязаны к покемонам, другие - к типам. Возможные варианты значений смотрите в выпадающем списке."
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:452
 msgid "Exclusive Item Type"
-msgstr ""
+msgstr "Тип эксклюзивного предмета"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:465
 msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
@@ -12846,11 +12847,14 @@ msgid "Sort keys are used to sort items in your inventory when using the sort fe
 "The game sorts items starting from the one with the lowest key to the highest.\n"
 "Several items can have the same key; this means they will be mixed together while sorting (e.g. Lookalike items).\n"
 "Only keys from 0 to 2047 should be used."
-msgstr ""
+msgstr "Клавиши сортировки используются для сортировки предметов в инвентаре при использовании функции сортировки в игре.\n"
+"Игра сортирует предметы, начиная с того, у которого самый низкий ключ, и заканчивая самым высоким.\n"
+"Несколько предметов могут иметь одинаковый ключ; это означает, что они будут смешаны вместе при сортировке (например, ложные предметы).\n"
+"Следует использовать только ключи от 0 до 2047."
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:161
 msgid "Keys have now been added for all the 1400 items."
-msgstr ""
+msgstr "Добавлены ключи для всех 1400 предметов."
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:170
 msgid "Insert Key Before: "
@@ -13347,11 +13351,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:659
 msgid "The file name provided must not have a file extension."
-msgstr ""
+msgstr "Имя файла не должно иметь расширения."
 
 #: skytemple/skytemple/module/script/module.py:661
 msgid "The file name provided is too long (max 8 characters)."
-msgstr ""
+msgstr "Указанное имя файла слишком длинное (максимум 8 символов)."
 
 #: skytemple/skytemple/module/script/module.py:730
 msgid "Script Scenes for maps in category \"{}\""
@@ -13371,7 +13375,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:747
 msgid "Sub Scenes for \"{}\""
-msgstr ""
+msgstr "Подсцены для \"{}\""
 
 #: skytemple/skytemple/module/script/module.py:749
 msgid "This section contains all sub scenes for the map {}.\n\n"
@@ -13383,13 +13387,15 @@ msgstr "В этом разделе содержатся все подсцены 
 
 #: skytemple/skytemple/module/script/module.py:760
 msgid "Acting Scenes for \"{}\""
-msgstr ""
+msgstr "Сюжетные сцены для \"{}\""
 
 #: skytemple/skytemple/module/script/module.py:762
 msgid "This section contains all acting scenes for the map {}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
-msgstr ""
+msgstr "В этом разделе собраны все сюжетные сцены для локации {}.\n\n"
+"Эти сцены используются для сюжетных сцен.\n"
+"Обычно игрок не может перемещать персонажа в них."
 
 #: skytemple/skytemple/module/script/widget/main.py:119
 #: skytemple/skytemple/module/script/widget/main.py:184
@@ -13615,7 +13621,7 @@ msgstr "Ошибка с файлами спрайтов: Они не имеют 
 
 #: skytemple/skytemple/module/sprite/module.py:365
 msgid "The sprite ID currently configured for this Pokémon is invalid. Choose the option to add a new sprite instead or correct the Pokémon's sprite ID."
-msgstr ""
+msgstr "ID спрайта, установленный для этого покемона, недопустим. Выберите опцию, чтобы добавить новый спрайт, или исправьте ID спрайта покемона."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:99
 msgid "Alternatively you can export the sprite files \n"
@@ -13730,7 +13736,7 @@ msgstr "Это заменит спрайт этого покемона на сп
 
 #: skytemple/skytemple/module/spritecollab/module.py:195
 msgid "Create a new sprite instead of replacing the existing one."
-msgstr ""
+msgstr "Создать новый спрайт вместо замены существующего."
 
 #: skytemple/skytemple/module/spritecollab/module.py:200
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
@@ -13738,7 +13744,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:234
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
-msgstr ""
+msgstr "Не удалось загрузить список покемонов с настроенного сервера SpriteCollab."
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:235
 msgid "Error Updating Sprites"
@@ -13837,7 +13843,7 @@ msgstr "Импортировать строки из..."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:176
 msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}."
-msgstr ""
+msgstr "CSV-файл должен содержать ровно {len(self._str.strings)} строк, файл имеет {len(strings)}."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:184
 msgid "Error importing the strings."
