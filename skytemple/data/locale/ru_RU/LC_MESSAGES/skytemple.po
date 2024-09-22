@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 21:17\n"
+"PO-Revision-Date: 2024-09-22 22:21\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -11854,7 +11854,7 @@ msgstr "G - Гильдия"
 #: skytemple/skytemple/module/script/module.py:185
 #: skytemple/skytemple/module/script/module.py:188
 msgid "H - Habitat"
-msgstr ""
+msgstr "H - Обитель"
 
 #: skytemple/skytemple/module/map_bg/module.py:147
 #: skytemple/skytemple/module/script/module.py:195
@@ -13884,7 +13884,9 @@ msgstr "Строка"
 msgid "Import is done from a CSV file with the following specifications:\n"
 "- Has to contain all strings in order, one per row\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
-msgstr ""
+msgstr "Импорт осуществляется из CSV-файла со следующими характеристиками:\n"
+"- Должен содержать все строки по порядку, по одной на строку\n"
+"- Строки могут быть заключены в кавычки. Для использования кавычек в самой строке, используйте Escape-символ в виде еще одной пары кавычки."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:154
 msgid "Import strings from..."
@@ -13902,7 +13904,9 @@ msgstr "Ошибка при импорте строк."
 msgid "Export is done to a CSV file with the following specifications:\n"
 "- Contains all strings in order, one per row\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
-msgstr ""
+msgstr "Экспорт осуществляется из CSV-файла со следующими характеристиками:\n"
+"- Должен содержать все строки по порядку, по одной на строку\n"
+"- Строки могут быть заключены в кавычки. Для использования кавычек в самой строке, используйте Escape-символ в виде еще одной пары кавычки."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:200
 msgid "Export strings as..."
