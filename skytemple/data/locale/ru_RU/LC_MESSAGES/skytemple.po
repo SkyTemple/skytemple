@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 10:26\n"
+"PO-Revision-Date: 2024-09-22 11:33\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -12587,7 +12587,7 @@ msgstr "Значения на самом деле являются процен�
 
 #: skytemple/skytemple/module/monster/widget/monster.py:723
 msgid "Recruit Rate"
-msgstr ""
+msgstr "Шанс рекрутирования"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:736
 #, python-format
@@ -12714,7 +12714,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/widget/monster.py:1746
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "Размер спрайта этого покемона не соответствовал назначенному спрайту этого покемона.\n"
+"SkyTemple автоматически исправил это."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1786
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
@@ -12726,7 +12727,7 @@ msgstr "Если патч 'ExpandPokeList' не применен, этот па�
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1788
 msgid "Entity ID"
-msgstr ""
+msgstr "ID сущности"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1801
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
@@ -12789,7 +12790,7 @@ msgstr "Использовать"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:39
 msgid "Hurl"
-msgstr ""
+msgstr "Метнуть"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:40
 msgid "Throw"
@@ -12807,11 +12808,11 @@ msgstr "Съесть"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:43
 msgid "Ingest"
-msgstr ""
+msgstr "Проглотить"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:44
 msgid "Peel"
-msgstr ""
+msgstr "Очистить"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:392
 msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
@@ -12858,7 +12859,8 @@ msgstr "Тип эксклюзивного предмета"
 #: skytemple/skytemple/module/moves_items/widget/item.py:465
 msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
 "See 'Text Strings' for actual values."
-msgstr ""
+msgstr "Название действия, отображаемое в меню подземелий (Использовать, Съесть, Проглотить, Экипировать...).\n"
+"Значения смотрите в разделе \"Текстовые строки\"."
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:467
 msgid "Action Name"
@@ -13036,19 +13038,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:474
 msgid "Whether the move is affected by magic coat."
-msgstr ""
+msgstr "Определяет, влияет ли на этот прием статус-эффект \"Чудо-плащ\"."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:487
 msgid "Whether the move is affected by snatch."
-msgstr ""
+msgstr "Определяет, влияет ли на этот прием статус-эффект \"Перехват\"."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:500
 msgid "Whether the move is disabled by the \"muzzled\" status."
-msgstr ""
+msgstr "Определяет, отключается ли этот прием статус эффектом \"Немота\"."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:513
 msgid "Whether the move can be used while taunted."
-msgstr ""
+msgstr "Определяет, можно ли использовать этот прием при статус-эффекте \"Спровоцирован\"."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:527
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
@@ -13060,11 +13062,11 @@ msgstr "ID сообщения:"
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:541
 msgid "Whether the AI with Status Checker can select this move when the target is frozen."
-msgstr ""
+msgstr "Может ли ИИ с IQ-навыком Проверка Статуса выбрать этот прием, когда цель заморожена."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:555
 msgid "Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select the strings after that (offsets)."
-msgstr ""
+msgstr "Текстовая строка для отображения радиуса приема. 0 использует текстовую строку 10095/10097 (US/EU). Более высокие значения выбирают строки после этого (смещения)."
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:50
 msgid "Settings for the \"{}\" Patch"
