@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 22:21\n"
+"PO-Revision-Date: 2024-09-22 23:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4728,7 +4728,8 @@ msgstr "Сценарии"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:967
 msgid "Ground Engine\n"
 "not running."
-msgstr ""
+msgstr "Ground Engine\n"
+"не работает."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:947
 msgid "Active Files"
@@ -4741,11 +4742,11 @@ msgstr "Сущности"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:999
 msgid "Ground Engine State"
-msgstr ""
+msgstr "Состояние Ground Engine"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1019
 msgid "Ground State"
-msgstr ""
+msgstr "Состояние Ground Engine"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1098
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2807
@@ -4902,7 +4903,7 @@ msgstr "Подземелье"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1888
 msgid "Ground"
-msgstr ""
+msgstr "Ground"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1920
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3152
@@ -10230,12 +10231,14 @@ msgstr "<span size=\"large\">Ручной им-/экспорт</span>"
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:157
 msgid "Export\n"
 "Ground"
-msgstr ""
+msgstr "Экспортировать\n"
+"Ground-спрайты"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:203
 msgid "Import\n"
 "Ground"
-msgstr ""
+msgstr "Импортировать\n"
+"Ground-спрайты"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:249
 msgid "Import\n"
@@ -13886,7 +13889,7 @@ msgid "Import is done from a CSV file with the following specifications:\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
 msgstr "Импорт осуществляется из CSV-файла со следующими характеристиками:\n"
 "- Должен содержать все строки по порядку, по одной на строку\n"
-"- Строки могут быть заключены в кавычки. Для использования кавычек в самой строке, используйте Escape-символ в виде еще одной пары кавычки."
+"- Строки могут быть заключены в кавычки. Для использования кавычек в самой строке, используйте Escape-символ в виде еще одной пары кавычек."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:154
 msgid "Import strings from..."
@@ -13906,7 +13909,7 @@ msgid "Export is done to a CSV file with the following specifications:\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
 msgstr "Экспорт осуществляется из CSV-файла со следующими характеристиками:\n"
 "- Должен содержать все строки по порядку, по одной на строку\n"
-"- Строки могут быть заключены в кавычки. Для использования кавычек в самой строке, используйте Escape-символ в виде еще одной пары кавычки."
+"- Строки могут быть заключены в кавычки. Для использования кавычек в самой строке, используйте Escape-символ в виде еще одной пары кавычек."
 
 #: skytemple/skytemple/module/strings/widget/strings.py:200
 msgid "Export strings as..."
