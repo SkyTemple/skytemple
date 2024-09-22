@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 13:34\n"
+"PO-Revision-Date: 2024-09-22 14:33\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3784,7 +3784,7 @@ msgstr "Нажмите кнопку..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:441
 msgid "Key definition"
-msgstr ""
+msgstr "Определение клавиш"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:503
 msgid "Press a key..."
@@ -3998,7 +3998,7 @@ msgstr "Путь"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:71
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:88
 msgid "Hanger"
-msgstr ""
+msgstr "Загруженный сценарий"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:79
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:288
@@ -9490,11 +9490,11 @@ msgstr "Эксклюзивные настройки предмета"
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:66
 msgid "Item/Remove Key Placeholder Title"
-msgstr ""
+msgstr "Предмет/Удалить ключ: заголовок"
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:93
 msgid "Item/Remove Key Placeholder Description"
-msgstr ""
+msgstr "Предмет/Удалить ключ: описание"
 
 #: skytemple/skytemple/data/widget/moves_items/item_keys.ui:139
 msgid "Item Keys"
@@ -10059,7 +10059,8 @@ msgstr "Список уровней"
 #: skytemple/skytemple/data/widget/script/main.ui:591
 msgid "This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. \n"
 "If a selected floor number is bigger than the floor count for this dungeon, the last floor is used."
-msgstr ""
+msgstr "Эта функция привязывает уровни мира игры с типом #10 или #11 к подземельям и фиксированным комнатам. \n"
+"Если номер выбранного этажа больше, чем количество этажей для данного подземелья, используется последний этаж."
 
 #: skytemple/skytemple/data/widget/script/main.ui:610
 msgid "Level - Dungeon Mappings"
@@ -10399,7 +10400,7 @@ msgstr "Продолжить"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:205
 msgid "Select binary:"
-msgstr ""
+msgstr "Выберите двоичный файл:"
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:241
 msgid "Search:"
@@ -10586,7 +10587,7 @@ msgstr "Этаж {floor_i + 1}"
 
 #: skytemple/skytemple/module/dungeon/module.py:885
 msgid "Secondary"
-msgstr ""
+msgstr "Вторичная"
 
 #: skytemple/skytemple/module/dungeon/module.py:890
 msgid "Vis."
@@ -10719,7 +10720,7 @@ msgstr "Набор плиток {i}"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:691
 msgid "No override"
-msgstr ""
+msgstr "Без изменения"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:693
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2491
@@ -10729,7 +10730,7 @@ msgstr "Номер {i}"
 
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:713
 msgid "n/a"
-msgstr ""
+msgstr "н/д"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:149
 msgid "E Rank"
@@ -10884,7 +10885,7 @@ msgstr "Если больше 0, то Усилитель IQ увеличит IQ 
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:949
 msgid "You can not spawn Kecleons or the Decoy Pokémon."
-msgstr ""
+msgstr "В списке врагов не может быть Кеклеон или покемон-приманка."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:950
 msgid "SkyTemple: Invalid Pokémon"
@@ -10955,7 +10956,7 @@ msgstr "Примечание: Этаж использует фиксирован
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1680
 msgid "This seed is used as the base to randomly generate the actual seeds used by the dungeon generation engine. Note that generated previews might not be 100% accurate."
-msgstr ""
+msgstr "Это семя используется в качестве основы для случайной генерации семян, используемых движком для создания подземелий. Обратите внимание, что сгенерированные подземелья, показанные здесь, могут быть не на 100% точными."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1690
 msgid "Change the chances of Pokémon, traps or items spawning.\n"
@@ -13604,7 +13605,7 @@ msgstr "{len_triggers} триг"
 #: skytemple/skytemple/module/script/widget/ssa.py:1915
 #, python-brace-format
 msgid "Type {performer.type}"
-msgstr ""
+msgstr "Тип {performer.type}"
 
 #: skytemple/skytemple/module/sprite/module.py:118
 msgid "Invalid Sprite ID."
@@ -13771,7 +13772,7 @@ msgstr "Создать новый спрайт вместо замены сущ�
 
 #: skytemple/skytemple/module/spritecollab/module.py:200
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
-msgstr ""
+msgstr "Скопировать анимацию сна в EventSleep/Laying/Waking."
 
 #: skytemple/skytemple/module/spritecollab/widget/browser.py:234
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
