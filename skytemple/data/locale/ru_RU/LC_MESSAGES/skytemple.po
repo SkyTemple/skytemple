@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 20:19\n"
+"PO-Revision-Date: 2024-09-22 21:17\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4298,7 +4298,7 @@ msgstr "Подсцены (sss)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:994
 msgid "Save dumped block..."
-msgstr ""
+msgstr "Сохранить дамп блока памяти..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1231
 msgid "Unable to save savestate!"
@@ -4817,7 +4817,7 @@ msgstr "Переменные Макроса"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1527
 msgid "General Debug"
-msgstr ""
+msgstr "Общая отладка"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1542
 msgid "Draw Entity Debug Overlay"
@@ -5208,7 +5208,7 @@ msgstr "Константы и переменные"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/exps_statements.py:34
 msgid "Statements"
-msgstr ""
+msgstr "Операторы"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:34
 msgid "Functions"
@@ -6395,7 +6395,7 @@ msgstr "ОЗ"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1117
 msgid "Exp. Yield"
-msgstr ""
+msgstr "Доля опыта"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1131
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:598
@@ -7785,7 +7785,7 @@ msgstr "Фильтр по приему: "
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1080
 msgid "Move Special"
-msgstr ""
+msgstr "Особые аним. для приемов"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1114
 msgid "Anim ID"
@@ -9167,7 +9167,7 @@ msgstr "Способность:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1425
 msgid "Exp. Yield:"
-msgstr ""
+msgstr "Доля опыта:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1450
 msgid "Recruit Rate:"
@@ -9175,7 +9175,7 @@ msgstr "Шанс рекрутирования:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1506
 msgid "Talk Group:"
-msgstr ""
+msgstr "Разговорная группа:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1531
 msgid "Idle Animation Type:"
@@ -10240,22 +10240,26 @@ msgstr ""
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:249
 msgid "Import\n"
 "Attack"
-msgstr ""
+msgstr "Импортировать\n"
+"спрайт атаки"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:295
 msgid "Export\n"
 "Attack"
-msgstr ""
+msgstr "Экспортировать\n"
+"спрайт атаки"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:341
 msgid "Export\n"
 "Dungeon"
-msgstr "Экспортировать подземелье"
+msgstr "Экспортировать \n"
+"спрайты для подземелий"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:387
 msgid "Import\n"
 "Dungeon"
-msgstr "Импортировать Подземелье"
+msgstr "Импортировать \n"
+"спрайты для подземелий"
 
 #: skytemple/skytemple/data/widget/sprite/monster_sprite.ui:435
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
@@ -11862,7 +11866,7 @@ msgstr "P - Места"
 #: skytemple/skytemple/module/script/module.py:205
 #: skytemple/skytemple/module/script/module.py:208
 msgid "V - Visual"
-msgstr ""
+msgstr "V - Визуал"
 
 #: skytemple/skytemple/module/map_bg/module.py:167
 msgid "W - Weather"
@@ -12134,7 +12138,7 @@ msgstr "Байтов на ряд"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:53
 msgid "Padding"
-msgstr ""
+msgstr "Внутренний отступ"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:108
 #: skytemple/skytemple/module/misc_graphics/widget/graphic_font.py:77
@@ -13583,7 +13587,7 @@ msgstr "Виден"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1760
 msgid "Solo"
-msgstr ""
+msgstr "Соло"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1783
 #, python-brace-format
