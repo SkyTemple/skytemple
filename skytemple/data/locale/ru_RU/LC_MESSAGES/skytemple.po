@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 17:53\n"
+"PO-Revision-Date: 2024-09-22 19:21\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -9255,7 +9255,7 @@ msgstr "Эволюционирует в: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2385
 msgid "Children: "
-msgstr ""
+msgstr "Дети: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2421
 msgid "Evolution Bonus: "
@@ -12084,7 +12084,7 @@ msgstr "Разная графика"
 
 #: skytemple/skytemple/module/misc_graphics/module.py:84
 msgid "This section lets you edit miscellaneous graphics."
-msgstr ""
+msgstr "В этом разделе можно редактировать различные графические элементы."
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:67
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
@@ -12555,7 +12555,8 @@ msgstr "Параметры эволюции"
 #: skytemple/skytemple/module/monster/widget/monster.py:691
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
-msgstr ""
+msgstr "Это значение указывает эволюционную линию покемона.\n"
+"Это значение используется для определенного типа эксклюзивных предметов, которые работают для определенной эволюционной линии."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:693
 msgid "Base Form Info"
@@ -12569,7 +12570,13 @@ msgid "This value indicates the previous evolution of the pokémon.\n"
 "3 - For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "Child Pokémon are computed using the pre evolution value and going recursively until one pokémon without a pre evolution is found.\n"
 "If the ChangeEvoSystem patch is applied, only point 2 applies, the other points are handled with other data."
-msgstr ""
+msgstr "Это значение указывает на предыдущую эволюцию покемона.\n"
+"В игре это значение используется в нескольких случаях: \n"
+"1 - Для целей эволюции.\n"
+"2 - При запоминании приемов в связь-лавке Эльтивайра, вы также можете вспомнить приемы из предыдущих эволюций до 2 поколений.\n"
+"3 - В миссиях с яйцом в качестве награды, яйцо содержит случайного покемона, который выбирается среди детей покемонов из списка врагов на этаже миссии.\n"
+"Дети покемонов вычисляются с помощью значения предварительной эволюции и рекурсивно, пока не будет найден покемон без пре-эволюции.\n"
+"Если примен патч ChangeEvoSystem, то применяется только пункт 2, остальные пункты обрабатываются с помощью других данных."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:708
 msgid "Pre Evolution Info"
@@ -12623,7 +12630,8 @@ msgstr "Может бросать предметы?"
 #: skytemple/skytemple/module/monster/widget/monster.py:777
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
-msgstr ""
+msgstr "Управляет частотой выпадения различных типов сундуков.\n"
+"Каждый тип выпадания x имеет шанс (x шанс)/(сумма всех шансов) быть выбранным."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:779
 msgid "Chests drop rates"
@@ -12655,7 +12663,7 @@ msgstr "Порог появления"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:836
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
-msgstr ""
+msgstr "Влияет на урон, получаемый покемоном при атаке приемом Узел Травы."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:849
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
@@ -12740,7 +12748,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1803
 msgid "Children Info"
-msgstr ""
+msgstr "Информация о детях"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1816
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
@@ -12764,11 +12772,11 @@ msgstr "Слишком много эволюций."
 #: skytemple/skytemple/module/monster/widget/monster.py:1936
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
-msgstr ""
+msgstr "У покемона не может быть больше {MAX_EGGS} детей."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1940
 msgid "Too much children."
-msgstr ""
+msgstr "Слишком много детей."
 
 #: skytemple/skytemple/module/moves_items/module.py:61
 msgid "This section lets you edit settings related to items."
