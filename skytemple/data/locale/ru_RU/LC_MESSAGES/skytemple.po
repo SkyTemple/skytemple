@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 09:13\n"
+"PO-Revision-Date: 2024-09-22 10:26\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -7913,16 +7913,18 @@ msgstr "IQ навыки"
 #: skytemple/skytemple/data/widget/lists/iq.ui:338
 msgid "Min. IQ required by enemies to learn \n"
 "Exclusive Move-User:"
-msgstr ""
+msgstr "Мин. IQ, необходимый врагам для изучения \n"
+"IQ-навыка Использующий Приемы:"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:352
 msgid "Min. IQ required by enemies to learn \n"
 "Item Master:"
-msgstr ""
+msgstr "Мин. IQ, необходимый врагам для изучения \n"
+"IQ-навыка Мастер Предметов:"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:366
 msgid "Intimidator activation chance (%):"
-msgstr ""
+msgstr "Шанс активации IQ-навыка Устрашитель (%):"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:419
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:33
@@ -10017,7 +10019,7 @@ msgstr "Название:"
 #: skytemple/skytemple/data/widget/script/main.ui:200
 #: skytemple/skytemple/module/script/widget/main.py:46
 msgid "Script Scenes"
-msgstr ""
+msgstr "Скрипт-сцены"
 
 #: skytemple/skytemple/data/widget/script/main.ui:215
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
@@ -10061,7 +10063,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/script/main.ui:610
 msgid "Level - Dungeon Mappings"
-msgstr ""
+msgstr "Уровень - привязка к подземельям"
 
 #: skytemple/skytemple/data/widget/script/map.ui:102
 msgid "Add \"Enter\" scene"
@@ -10602,7 +10604,8 @@ msgstr "{i} - Ур: {entry.level}, Атк: {entry.attack}, Защ: {entry.defens
 #: skytemple/skytemple/module/dungeon/module.py:990
 msgid "Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n"
 "You can edit groups under \"Dungeons\"."
-msgstr ""
+msgstr "Группы подземелий содержат несколько подземелий, чтобы создать одно большое продолжительное подземелье.\n"
+"Вы можете редактировать группы в разделе \"Подземелья\"."
 
 #: skytemple/skytemple/module/dungeon/widget/dungeon.py:112
 msgid "\n"
@@ -12089,7 +12092,7 @@ msgstr "Вот что показывает игра, когда картридж
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:69
 msgid "Cartridge Removed Image Info"
-msgstr ""
+msgstr "Информация об изображении об извлеченном картридже"
 
 #: skytemple/skytemple/module/misc_graphics/widget/cart_removed.py:77
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:63
@@ -12111,11 +12114,11 @@ msgstr "Импортировать изображение как индекси�
 
 #: skytemple/skytemple/module/misc_graphics/widget/chr.py:97
 msgid "Error importing chr image."
-msgstr ""
+msgstr "Ошибка при импорте chr-изображения."
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:49
 msgid "Char ID"
-msgstr ""
+msgstr "ID символа"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:50
 msgid "Width"
@@ -12251,15 +12254,15 @@ msgstr "Для импорта выберите папку, содержащую 
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:126
 msgid "Import Minimized Version"
-msgstr ""
+msgstr "Импорт минимизированной версии"
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:131
 msgid "Import zmappat minimized from folder..."
-msgstr ""
+msgstr "Импортировать минимизированного zmappat из папки..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:152
 msgid "Error importing minimized zmappat."
-msgstr ""
+msgstr "Ошибка импортирования минимизированного zmappat."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:163
 msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
@@ -12268,15 +12271,20 @@ msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
 "The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
 "The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
 "But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed."
-msgstr ""
+msgstr "Для рендеринга карты игра использует 'мини-плитки' (плитки 4x4).\n"
+"Однако, поскольку система использует только плитки 8x8, игра рендерит каждую плитку 8x8, применяя 4 мини-плитки с их соответствующими масками.\n"
+"Для этого все мини-плитки были продублированы, чтобы покрыть 4 возможные размещения мини-плитки в плитка 8x8 (верхний левый, верхний правый, нижний левый, нижний правый).\n"
+"Затем маска используется для нанесения мини-плитки только на нужную часть итоговой плитки 8x8.\n"
+"Минимизированная версия уменьшает набор плиток только до мини-плиток 4x4 и обрабатывает дублирование при импорте.\n"
+"Но помните, что полный набор плиток позволяет больше эксплойтов, так как вы можете рендерить плитки по-разному в зависимости от того, где они расположены."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:165
 msgid "Minimized Version Info"
-msgstr ""
+msgstr "Информация о минимизированной версии"
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:178
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
-msgstr ""
+msgstr "Для импортирования выберите папку, содержащую все файлы изображений, которые были созданы при экспортировании полного набора плиток."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:180
 msgid "Import Full Tileset"
@@ -12561,7 +12569,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:708
 msgid "Pre Evolution Info"
-msgstr ""
+msgstr "Инормация о пре-эволюции"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:721
 msgid "The values are actually percentages.\n"
@@ -13671,7 +13679,7 @@ msgstr "Для импорта выберите архив, содержащий 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:222
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:241
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Для импорта выберите папку со спрайтовыми листами. Если она все еще заархивирована, сначала распакуйте ее."
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:237
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
