@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 11:33\n"
+"PO-Revision-Date: 2024-09-22 12:36\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -8133,7 +8133,7 @@ msgstr "Скрыть остальное"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:117
 msgid "Draw filled rectangles when holding down the left mouse button"
-msgstr ""
+msgstr "Рисовать выбранными фрагментами, удерживая левую кнопку мыши"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:167
 msgid "Go to Scenes"
@@ -8719,7 +8719,7 @@ msgstr "Вариант палитры: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/chr.ui:139
 msgid "Chr"
-msgstr ""
+msgstr "Chr"
 
 #: skytemple/skytemple/data/widget/misc_graphics/font.ui:56
 msgid "Choose which character\n"
@@ -8766,7 +8766,7 @@ msgstr "Тип изображения WTE: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:231
 msgid "Discard Palette"
-msgstr ""
+msgstr "Не импортировать палитру"
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:250
 msgid "If ticked, the WTE file will not contain the palette data.\n"
@@ -8831,7 +8831,7 @@ msgstr "WTU"
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:53
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:90
 msgid "... minimized"
-msgstr ""
+msgstr "... минимизированную версию"
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:61
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:98
@@ -8844,15 +8844,15 @@ msgstr "Плитки:"
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:140
 msgid "Masks:"
-msgstr ""
+msgstr "Маски:"
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:231
 msgid "Variation: "
-msgstr ""
+msgstr "Вариант: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:261
 msgid "Minimized: "
-msgstr ""
+msgstr "Минимизирован: "
 
 #: skytemple/skytemple/data/widget/misc_graphics/zmappat.ui:272
 msgid "This will show the true form of the file if disabled."
@@ -9458,7 +9458,7 @@ msgstr "Верно:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1020
 msgid "Is in T/D:"
-msgstr ""
+msgstr "Существует в EoT/EoD:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1032
 msgid "AI Flag: Throw at enemies"
@@ -12741,7 +12741,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/widget/monster.py:1816
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
-msgstr ""
+msgstr "Это бонусы, применяемые к статистикам при эволюции покемона в данный вид.\n"
+"Допускаются отрицательные значения."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1818
 msgid "Evolution Bonus Info"
@@ -13024,7 +13025,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:444
 msgid "When deciding what move to use, the AI will treat the move like it actually has the range settings configured here."
-msgstr ""
+msgstr "Решая, какой прием использовать, ИИ будет относиться к этому приему так, будто у него действительно есть настройки радиуса, заданные здесь."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:447
 msgid "\n"
@@ -13034,7 +13035,7 @@ msgstr "\n"
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:461
 msgid "The Pokémon must be in this condition in order for this move to be used."
-msgstr ""
+msgstr "Чтобы использовать этот прием, покемон должен находиться в таком состоянии."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:474
 msgid "Whether the move is affected by magic coat."
@@ -13126,7 +13127,7 @@ msgstr "Этот патч расширяет список покемонов. О
 
 #: skytemple/skytemple/module/patch/widget/asm.py:173
 msgid "This patch requires some other patches to be applied first:\n"
-msgstr ""
+msgstr "Этот патч требует предварительного применения других патчей:\n"
 
 #: skytemple/skytemple/module/patch/widget/asm.py:175
 msgid "\n"
