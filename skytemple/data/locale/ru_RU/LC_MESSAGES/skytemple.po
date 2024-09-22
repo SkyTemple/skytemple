@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 16:50\n"
+"PO-Revision-Date: 2024-09-22 17:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -5522,11 +5522,11 @@ msgstr "Изображение было преобразовано."
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:53
 msgid "Thread-based"
-msgstr ""
+msgstr "На основе потоков"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
-msgstr ""
+msgstr "Синхронный"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:71
 msgid "Using Gbulb event loop"
@@ -6163,7 +6163,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1344
 msgid "Dimensions"
-msgstr ""
+msgstr "Размеры"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1504
 msgid "Apply new size"
@@ -6427,7 +6427,7 @@ msgstr "Статистика покемонов"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1232
 msgid "Spawn Lists"
-msgstr ""
+msgstr "Списки появлений"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:43
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:14
@@ -7506,7 +7506,7 @@ msgstr "Простой режим (DTEF)"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1707
 msgid "Active Type"
-msgstr ""
+msgstr "Текущий тип"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1721
 msgid "Wall"
@@ -7716,7 +7716,7 @@ msgstr "Неизв 4"
 #: skytemple/skytemple/data/widget/lists/animations.ui:733
 #: skytemple/skytemple/data/widget/lists/animations.ui:977
 msgid "Point"
-msgstr ""
+msgstr "Точка"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:432
 msgid "Unk 5"
@@ -7793,11 +7793,11 @@ msgstr "ID Анимации"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1171
 msgid "Use Anim ID"
-msgstr ""
+msgstr "ID анимации использования"
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:1185
 msgid "Throw Anim ID"
-msgstr ""
+msgstr "ID анимации броска"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:72
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:149
@@ -7828,7 +7828,7 @@ msgstr "Прерывания: "
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:308
 msgid "Game Variable"
-msgstr ""
+msgstr "Игровая переменная"
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:324
 msgid "Param 1"
@@ -7886,7 +7886,7 @@ msgstr "Прирост IQ"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:196
 msgid "Belly Heal"
-msgstr ""
+msgstr "Восстановление сытости"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:249
 msgid "IQ Points"
@@ -7894,7 +7894,7 @@ msgstr "Очки IQ"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:264
 msgid "Restriction Group"
-msgstr ""
+msgstr "Группа ограничения"
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:291
 msgid "If 9999 IQ Points are required, the skill is unused.\n"
@@ -7964,7 +7964,7 @@ msgstr "Строка Описания"
 
 #: skytemple/skytemple/data/widget/lists/menu_list.ui:216
 msgid "Action"
-msgstr ""
+msgstr "Действие"
 
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:70
 msgid "General:"
@@ -8084,7 +8084,7 @@ msgstr "Карта:"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:107
 msgid "Reference / Use another marker"
-msgstr ""
+msgstr "Ссылка / Использовать другой маркер"
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:133
 msgid "Select the position on the map"
@@ -8176,7 +8176,7 @@ msgstr "Включить анимацию палитры"
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2143
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:2256
 msgid "Frame Time"
-msgstr ""
+msgstr "Время кадра"
 
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:587
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:700
@@ -8927,7 +8927,7 @@ msgstr "Базовые статистики можно редактироват�
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:515
 msgid "Level Up Moves"
-msgstr ""
+msgstr "Приемы при повышении уровня"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:635
 msgid "HM/TM Moves"
@@ -8935,7 +8935,7 @@ msgstr "Приемы HM/TM"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:755
 msgid "Egg Moves"
-msgstr ""
+msgstr "Приемы при вылуплении"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:23
 #: skytemple/skytemple/data/widget/monster/monster.ui:41
@@ -9009,7 +9009,7 @@ msgstr "Данные о Покемонах"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:570
 msgid "Here you can edit the different personality groups."
-msgstr ""
+msgstr "Здесь вы можете редактировать различные группы личностей."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:593
 msgid "Group: "
@@ -9051,7 +9051,7 @@ msgstr "Личность"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:955
 msgid "Special Personalities"
-msgstr ""
+msgstr "Особые личности"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:980
 msgid "Here you can run automatic checks and fixes on the Sprite Info values for all Pokémon.\n"
@@ -12167,7 +12167,7 @@ msgstr "Ошибка при импорте шрифта."
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:231
 #, python-brace-format
 msgid "Character {char} already exists in the table!"
-msgstr ""
+msgstr "Символ {char} уже существует в таблице!"
 
 #: skytemple/skytemple/module/misc_graphics/widget/font.py:241
 msgid "Error adding character."
@@ -12244,7 +12244,7 @@ msgstr "Не индексированное изображение."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:81
 msgid "Export zmappat minimized in folder..."
-msgstr ""
+msgstr "Экспортировать минимизированный zmappat в папку..."
 
 #: skytemple/skytemple/module/misc_graphics/widget/zmappat.py:100
 msgid "Export full zmappat in folder..."
@@ -12337,7 +12337,7 @@ msgstr "У этой записи нет портретов."
 
 #: skytemple/skytemple/module/monster/module.py:286
 msgid "Stats and moves are only editable for base forms."
-msgstr ""
+msgstr "Статистики и приемы можно редактировать только для базовых форм."
 
 #: skytemple/skytemple/module/monster/module.py:576
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
@@ -12559,7 +12559,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/widget/monster.py:693
 msgid "Base Form Info"
-msgstr ""
+msgstr "Информация о базовой форме"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:706
 msgid "This value indicates the previous evolution of the pokémon.\n"
@@ -12869,7 +12869,7 @@ msgstr "Название действия, отображаемое в меню 
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:467
 msgid "Action Name"
-msgstr ""
+msgstr "Имя действия"
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:97
 msgid "Sort keys are used to sort items in your inventory when using the sort feature in game.\n"
@@ -12887,7 +12887,7 @@ msgstr "Добавлены ключи для всех 1400 предметов."
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:170
 msgid "Insert Key Before: "
-msgstr ""
+msgstr "Вставить ключ перед: "
 
 #: skytemple/skytemple/module/moves_items/widget/item_keys.py:173
 msgid "Insert an item key id before the one selected.\n"
@@ -13379,7 +13379,7 @@ msgstr "Новое событие"
 
 #: skytemple/skytemple/module/script/module.py:430
 msgid "The XML file contained some invalid references (eg. actor, object or script IDs). These have been replaced with default values."
-msgstr ""
+msgstr "XML-файл содержал несколько некорректных ссылок (например, ID актеров, объектов или сценариев). Они были заменены на значения по умолчанию."
 
 #: skytemple/skytemple/module/script/module.py:470
 msgid "Map not found."
