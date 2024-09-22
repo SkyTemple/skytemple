@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-22 14:33\n"
+"PO-Revision-Date: 2024-09-22 16:50\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -8822,7 +8822,7 @@ msgstr "высота"
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:784
 msgid "The WTU data likely affects either how the image is assembled or how animations are run. "
-msgstr ""
+msgstr "Данные WTU, вероятно, влияют либо на сборку изображения, либо на то, как работают анимации. "
 
 #: skytemple/skytemple/data/widget/misc_graphics/wte_wtu.ui:806
 msgid "WTU"
@@ -9331,7 +9331,7 @@ msgstr "Неизв 31:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3055
 msgid "Spawn Threshold:"
-msgstr ""
+msgstr "Порог появления:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3079
 msgid "Unk 1.1:"
@@ -9359,7 +9359,7 @@ msgstr "Может эволюционировать:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3151
 msgid "Item req. for spawn:"
-msgstr ""
+msgstr "Предмет, необходимый для появления:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3367
 msgid "Chance to spawn asleep:"
@@ -9450,7 +9450,7 @@ msgstr "Макс. количество:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:863
 msgid "Action Name:"
-msgstr ""
+msgstr "Имя команды:"
 
 #: skytemple/skytemple/data/widget/moves_items/item.ui:1008
 msgid "Is Valid:"
@@ -9592,12 +9592,12 @@ msgstr "Дальность:"
 #: skytemple/skytemple/data/widget/moves_items/move.ui:815
 #: skytemple/skytemple/module/moves_items/widget/move.py:431
 msgid "Actual values:"
-msgstr ""
+msgstr "Истинные значения:"
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:875
 #: skytemple/skytemple/module/moves_items/widget/move.py:449
 msgid "Values used for AI calculation:"
-msgstr ""
+msgstr "Значения, используемые ИИ для расчетов:"
 
 #: skytemple/skytemple/data/widget/moves_items/move.ui:935
 #: skytemple/skytemple/module/moves_items/widget/move.py:462
@@ -11450,7 +11450,10 @@ msgid "The Name is used by the game to determine if a ground sprite should be us
 "An object with Name 'x' will use the sprite named 'x.wan' in the Object Sprites section.\n"
 "A 'NULL' or empty string means there is no sprite attached.\n"
 "To create a new object sprite, go to the Object Sprites section."
-msgstr ""
+msgstr "Имя используется игрой, чтобы определить, следует ли использовать спрайт. \n"
+"Объект с именем 'x' будет использовать спрайт с именем 'x.wan' в разделе Спрайты Объектов.\n"
+"Значение 'NULL' или пустая строка означает, что спрайт не привязан.\n"
+"Чтобы создать новый спрайт объекта, перейдите в раздел Спрайты Объектов."
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:101
 msgid "Invalid object name"
@@ -12505,11 +12508,11 @@ msgstr "Экспортировать Покемона в..."
 
 #: skytemple/skytemple/module/monster/widget/monster.py:278
 msgid "Spinda Egg"
-msgstr ""
+msgstr "Может быть в яйце, переданном в кафе Спинды"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:279
 msgid "Spinda Recruit"
-msgstr ""
+msgstr "Может быть рекрутирован в кафе Спинды"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:280
 msgid "Don't appear in Missions"
@@ -12648,7 +12651,7 @@ msgstr "Если текущее значение $SCENARIO_BALANCE_FLAG мень
 
 #: skytemple/skytemple/module/monster/widget/monster.py:824
 msgid "Spawn Threshold"
-msgstr ""
+msgstr "Порог появления"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:836
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
@@ -12706,11 +12709,11 @@ msgstr "??? Введите допустимый параметр (#)"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1664
 msgid "??? Enter a valid Base ID (#)"
-msgstr ""
+msgstr "??? Введите допустимый базовый ID (#)"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1681
 msgid "??? Enter a valid Entry ID ($)"
-msgstr ""
+msgstr "??? Введите допустимый ID записи ($)"
 
 #: skytemple/skytemple/module/monster/widget/monster.py:1746
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
@@ -12773,11 +12776,11 @@ msgstr "В этом разделе можно редактировать нас�
 
 #: skytemple/skytemple/module/moves_items/module.py:67
 msgid "This section lets you edit settings related to moves."
-msgstr ""
+msgstr "В этом разделе можно редактировать настройки, связанные с приемами."
 
 #: skytemple/skytemple/module/moves_items/module.py:126
 msgid "Item Sort Keys"
-msgstr ""
+msgstr "Ключи сортировки предметов"
 
 #: skytemple/skytemple/module/moves_items/widget/item.py:38
 #: skytemple/skytemple/module/moves_items/widget/item.py:45
@@ -13022,7 +13025,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:430
 msgid "These are the range settings that the game uses for processing the actual move."
-msgstr ""
+msgstr "Это настройки радиуса, которые игра использует для обработки приема."
 
 #: skytemple/skytemple/module/moves_items/widget/move.py:444
 msgid "When deciding what move to use, the AI will treat the move like it actually has the range settings configured here."
@@ -13215,7 +13218,7 @@ msgstr "armips ASM патчи (*.asm)"
 #: skytemple/skytemple/module/patch/widget/move_effects.py:165
 #: skytemple/skytemple/module/patch/widget/sp_effects.py:139
 msgid "Raw code (*.bin)"
-msgstr ""
+msgstr "Необработанный код (*.bin)"
 
 #: skytemple/skytemple/module/patch/widget/item_effects.py:168
 #: skytemple/skytemple/module/patch/widget/item_effects.py:188
@@ -13330,7 +13333,8 @@ msgstr "Экспортировать все портреты в формате P
 #: skytemple/skytemple/module/portrait/widget/portrait.py:305
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 39."
-msgstr ""
+msgstr "Для импорта выберите папку, из которой будет производиться импорт. Будут импортированы файлы с шаблоном \n"
+"'{self.item_data + 1}_XX.png', где XX - число от 0 до 39."
 
 #: skytemple/skytemple/module/portrait/widget/portrait.py:308
 msgid "Import Portraits"
@@ -13367,11 +13371,11 @@ msgstr "Редактировать {script_name}"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:63
 msgid "Edit Event"
-msgstr ""
+msgstr "Редактировать событие"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:65
 msgid "New Event"
-msgstr ""
+msgstr "Новое событие"
 
 #: skytemple/skytemple/module/script/module.py:430
 msgid "The XML file contained some invalid references (eg. actor, object or script IDs). These have been replaced with default values."
@@ -13553,7 +13557,7 @@ msgstr "Сюжетные сцены должны иметь ровно один 
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1680
 msgid "Event Script"
-msgstr ""
+msgstr "Сценарий события"
 
 #: skytemple/skytemple/module/script/widget/ssa.py:1733
 #, python-brace-format
