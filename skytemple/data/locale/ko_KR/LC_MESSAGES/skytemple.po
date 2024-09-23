@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-23 21:31\n"
+"PO-Revision-Date: 2024-09-23 22:32\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -1703,11 +1703,11 @@ msgstr "무성"
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:158
 #: skytemple/skytemple/module/monster/widget/monster.py:1520
 msgid "Unused"
-msgstr ""
+msgstr "미사용"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:452
 msgid "Not an Evolved Form."
-msgstr ""
+msgstr "진화형이 아님"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:453
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1089
@@ -1721,7 +1721,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:135
 #: skytemple/skytemple/module/monster/widget/level_up.py:52
 msgid "Level"
-msgstr ""
+msgstr "레벨"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:454
 #: skytemple/skytemple/data/widget/lists/iq.ui:47
@@ -1729,7 +1729,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:238
 #: skytemple/skytemple/module/lists/module.py:268
 msgid "IQ"
-msgstr ""
+msgstr "지능"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:455
 #: skytemple/skytemple/controller/main.py:258
@@ -1741,7 +1741,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:82
 #: skytemple/skytemple/module/moves_items/module.py:60
 msgid "Items"
-msgstr ""
+msgstr "도구"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:456
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:150
@@ -1758,15 +1758,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:482
 msgid "Attack > Defense"
-msgstr ""
+msgstr "공격 > 방어"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:483
 msgid "Attack < Defense"
-msgstr ""
+msgstr "공격 < 방어"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:484
 msgid "Attack = Defense"
-msgstr ""
+msgstr "공격 = 방어"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:485
 msgid "Sun Ribbon"
@@ -1782,11 +1782,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:488
 msgid "Internal Value 0x1 = 1"
-msgstr ""
+msgstr "내부 값 0x1 = 1"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:489
 msgid "Internal Value 0x1 = 0"
-msgstr ""
+msgstr "내부 값 0x1 = 0"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:490
 msgid "Male (1st form)"
@@ -1814,7 +1814,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:518
 msgid "Standard"
-msgstr ""
+msgstr "일반"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:519
 msgid "Unknown"
@@ -3129,7 +3129,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/category.py:27
 msgid "Improvements and Tweaks"
-msgstr ""
+msgstr "개선 및 변경"
 
 #: skytemple-files/skytemple_files/patch/category.py:31
 msgid "New Mechanics"
@@ -3138,12 +3138,12 @@ msgstr ""
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:33
 msgid "Bugfixes"
-msgstr ""
+msgstr "버그 수정"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:34
 msgid "Utility"
-msgstr ""
+msgstr "유틸리티"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:35
@@ -3152,7 +3152,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/module.py:179
 #: skytemple/skytemple/module/script/module.py:217
 msgid "Others"
-msgstr ""
+msgstr "기타"
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
@@ -3176,11 +3176,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
-msgstr ""
+msgstr "타입 상성표에 타입을 추가합니다. 기존 상성표를 6세대 이후의 상성표로 변경하며, 테이블의 마지막에 페어리 타입을 츄가합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/allow_unrecruitable_mons.py:48
 msgid "Allows recruiting the other Deoxys forms and the regis inside dungeons."
-msgstr ""
+msgstr "던전 내에서 다른 폼의 테오키스와 레지 시리즈를 동료로 만들 수 있게 됩니다."
 
 #: skytemple-files/skytemple_files/patch/handler/anti_softlock.py:49
 msgid "Allows the player to press A+B+X+Y during cutscenes to force the game to continue past a softlock (this can happen during cutscenes when using custom sprites or the randomizer). Does not work with crashes caused due to internal errors (such as the game running out of memory)."
