@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-24 01:38\n"
+"PO-Revision-Date: 2024-09-24 03:51\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -3439,7 +3439,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:68
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
-msgstr ""
+msgstr "기존 기술의 별 수치 표기를 막대 표기로 대체합니다.\n"
+"markfont.dat 파일을 변경한 경우 호환되지 않을 수 있습니다."
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:51
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
@@ -3448,24 +3449,24 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
-msgstr ""
+msgstr "던전의 '미사용' 확률을 변경합니다. 해당 값은 벽 미로 방의 생성 확률을 결정하는 값이 됩니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:238
 #: skytemple-files/skytemple_files/patch/patches.py:248
 #, python-brace-format
 msgid "The patch '{name}' was not found."
-msgstr ""
+msgstr "패치 '{name}'을 찾을 수 없습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:255
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
-msgstr ""
+msgstr "'{name}'을 적용하기 위해서는 '{patch_name}'패치를 먼저 적용해야 합니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:261
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr ""
+msgstr "'{name}'을 적용하기 위해서는 '{patch_name}'패치를 먼저 적용해야 합니다. 해당 패치를 찾을 수 없습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:271
 msgid "No configuration was given."
@@ -3678,7 +3679,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:7
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:383
 msgid "Joystick Config"
-msgstr ""
+msgstr "조이스틱 설정"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:111
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:796
@@ -3921,7 +3922,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:867
 #: skytemple/skytemple/module/script/widget/ssa.py:721
 msgid "Warning!"
-msgstr ""
+msgstr "경고!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:358
 msgid "Close"
@@ -6590,15 +6591,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1945
 msgid "Darkness Level:"
-msgstr ""
+msgstr "어두운 정도:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:1957
 msgid "Weather:"
-msgstr ""
+msgstr "날씨:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2003
 msgid "(no. of rooms)"
-msgstr ""
+msgstr "(방 갯수)"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2023
 msgid "Terrain Settings"
@@ -6606,51 +6607,51 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2058
 msgid "Floor item density:"
-msgstr ""
+msgstr "도구 밀도"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2070
 msgid "Buried item density:"
-msgstr ""
+msgstr "벽 속 도구 밀도"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2082
 msgid "Trap density:"
-msgstr ""
+msgstr "함정 밀도:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2094
 msgid "Max coin amount:"
-msgstr ""
+msgstr "최대 포케 값:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2106
 msgid "Initial enemy density:"
-msgstr ""
+msgstr "최초 생성 적 밀도:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2275
 msgid "Items, Traps & Enemies"
-msgstr ""
+msgstr "도구, 함정 및 적"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2332
 msgid "Kecleon Shop:"
-msgstr ""
+msgstr "켈리몬 상점:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2344
 msgid "Hidden Stairs:"
-msgstr ""
+msgstr "숨겨진 계단:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2356
 msgid "Monster House:"
-msgstr ""
+msgstr "몬스터 소굴:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2368
 msgid "Empty Monster House:"
-msgstr ""
+msgstr "빈 몬스터 소굴:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2380
 msgid "Unused:"
-msgstr ""
+msgstr "미사용:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2392
 msgid "Sticky Items:"
-msgstr ""
+msgstr "끈적한 도구"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2592
 msgid "Chances"
@@ -6658,15 +6659,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2627
 msgid "Unknown E:"
-msgstr ""
+msgstr "불명 E:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2639
 msgid "Enemy IQ:"
-msgstr ""
+msgstr "적 지능:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2651
 msgid "IQ Booster boost:"
-msgstr ""
+msgstr "IQ부스터 상승량:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2663
 msgid "Shop item positions:"
@@ -6674,7 +6675,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2675
 msgid "Hidden Stairs Type:"
-msgstr ""
+msgstr "숨겨진 계단 종류:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2687
 msgid "Floor Rank:"
@@ -6682,15 +6683,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2699
 msgid "No Missions: "
-msgstr ""
+msgstr "의뢰 없음: "
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:2903
 msgid "IQ and Misc."
-msgstr ""
+msgstr "지능 및 기타"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3018
 msgid "Seed:"
-msgstr ""
+msgstr "시드:"
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3073
 msgid "Refresh"
@@ -6852,11 +6853,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:259
 msgid "Error"
-msgstr ""
+msgstr "에러"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:270
 msgid "Details"
-msgstr ""
+msgstr "상세"
 
 #: skytemple/skytemple/data/widget/dungeon/main.ui:281
 msgid "Solution"
@@ -7073,7 +7074,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4480
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4527
 msgid "Export to Image..."
-msgstr ""
+msgstr "이미지로 내보내기"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1158
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1537
@@ -7081,21 +7082,21 @@ msgstr ""
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4489
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4536
 msgid "Import from Image..."
-msgstr ""
+msgstr "이미지로부터 가져오기"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1180
 msgid "Export Tiles to Image..."
-msgstr ""
+msgstr "타일을 이미지로 내보내기"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1189
 msgid "Import Tiles from Image..."
-msgstr ""
+msgstr "타일을 이미지로부터 가져오기"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1202
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1581
 #: skytemple/skytemple/data/widget/map_bg/bg.ui:4668
 msgid "Palettes"
-msgstr ""
+msgstr "팔레트"
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:1211
 #: skytemple/skytemple/data/widget/dungeon_graphics/tileset.ui:1590
@@ -8590,66 +8591,66 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:90
 msgid "Interactive tooltips are not supported on your platform. To see them, click \"Open in browser\"."
-msgstr ""
+msgstr "사용중인 플랫폼에서는 대화형 툴팁이 지원되지 않습니다. 이를 보려면, \"브라우저에서 열기\"를 클릭하세요."
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:142
 msgid "Open in browser"
-msgstr ""
+msgstr "브라우저에서 열기"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:159
 msgid "This opens the graph in a browser. You can use the \"refresh\" button (F5) in your browser to update it."
-msgstr ""
+msgstr "브라우저에서 그래프를 엽니다. 브라우저에서 새로고침 버튼(F5)을 눌러 그래프를 업데이트 할 수 있습니다."
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:181
 msgid "Graph"
-msgstr ""
+msgstr "그래프"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:225
 #: skytemple/skytemple/module/monster/widget/level_up.py:53
 msgid "Exp. Points"
-msgstr ""
+msgstr "경험치"
 
 #. TRANSLATORS: Experience Points
 #: skytemple/skytemple/data/widget/monster/level_up.ui:239
 #: skytemple/skytemple/module/monster/widget/level_up.py:54
 msgid "HP+"
-msgstr ""
+msgstr "HP+"
 
 #. TRANSLATORS: Health Points+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:253
 #: skytemple/skytemple/module/monster/widget/level_up.py:55
 msgid "ATK+"
-msgstr ""
+msgstr "공격+"
 
 #. TRANSLATORS: Attack+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:267
 #: skytemple/skytemple/module/monster/widget/level_up.py:56
 msgid "Sp. ATK+"
-msgstr ""
+msgstr "특수공격+"
 
 #. TRANSLATORS: Special Attack+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:281
 #: skytemple/skytemple/module/monster/widget/level_up.py:57
 msgid "DEF+"
-msgstr ""
+msgstr "방어+"
 
 #. TRANSLATORS: Defense+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:295
 #: skytemple/skytemple/module/monster/widget/level_up.py:58
 msgid "Sp. DEF+"
-msgstr ""
+msgstr "특수방어+"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:323
 msgid "Export to CSV"
-msgstr ""
+msgstr "CSV로 내보내기"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:337
 msgid "Import from CSV"
-msgstr ""
+msgstr "CSV로부터 가져오기"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:360
 msgid "Base Stats can be edited under \"Settings\". They will be applied for level 1."
-msgstr ""
+msgstr "기초 능력치는 \"설정\"에서 변경할 수 있습니다. 해당 값은 레벨1에 적용됩니다."
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:515
 msgid "Level Up Moves"
@@ -8666,7 +8667,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/main.ui:23
 #: skytemple/skytemple/data/widget/monster/monster.ui:41
 msgid "Export Pokémon"
-msgstr ""
+msgstr "포켓몬 내보내기"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:92
 msgid "This will export the data of all Pokémon to XML files into a directory \n"
@@ -8691,7 +8692,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/main.ui:201
 #: skytemple/skytemple/data/widget/monster/monster.ui:273
 msgid "** This data is not editable in SkyTemple, but you can export and import it."
-msgstr ""
+msgstr "** 이 데이터는 SkyTemple에서 편집할 수 없지만 내보내기 및 가져오기는 가능합니다."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:219
 #: skytemple/skytemple/data/widget/monster/monster.ui:305
@@ -8837,47 +8838,47 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:672
 msgid "Base ID:"
-msgstr ""
+msgstr "베이스 ID"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:684
 #: skytemple/skytemple/data/widget/moves_items/move.ui:51
 msgid "Type:"
-msgstr ""
+msgstr "타입:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:718
 msgid "Gender:"
-msgstr ""
+msgstr "성별:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:730
 msgid "Pokédex:"
-msgstr ""
+msgstr "도감번호:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:793
 msgid "Entity ID:"
-msgstr ""
+msgstr "엔티티 ID:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:805
 #: skytemple/skytemple/data/widget/moves_items/item.ui:121
 msgid "Sprite ID:"
-msgstr ""
+msgstr "스프라이트 ID:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1129
 #: skytemple/skytemple/data/widget/moves_items/item.ui:391
 #: skytemple/skytemple/data/widget/moves_items/move.ui:356
 msgid "Name:"
-msgstr ""
+msgstr "이름:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1342
 msgid "Movement:"
-msgstr ""
+msgstr "이동 타입:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1366
 msgid "IQ Group:"
-msgstr ""
+msgstr "지능 그룹:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1390
 msgid "Ability:"
-msgstr ""
+msgstr "특성:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1425
 msgid "Exp. Yield:"
@@ -8885,11 +8886,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1450
 msgid "Recruit Rate:"
-msgstr ""
+msgstr "동료 확률:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1506
 msgid "Talk Group:"
-msgstr ""
+msgstr "대화 그룹:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1531
 msgid "Idle Animation Type:"
@@ -8897,39 +8898,39 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1604
 msgid "Base HP:"
-msgstr ""
+msgstr "기초 HP:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1616
 msgid "Weight:"
-msgstr ""
+msgstr "무게:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1628
 msgid "Base Atk:"
-msgstr ""
+msgstr "기초 공격:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1640
 msgid "Base Sp. Atk:"
-msgstr ""
+msgstr "기초 특수공격:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1652
 msgid "Base Def:"
-msgstr ""
+msgstr "기초 방어:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1664
 msgid "Base Sp. Def:"
-msgstr ""
+msgstr "기초 특수방어:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1676
 msgid "Size:"
-msgstr ""
+msgstr "크기:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1688
 msgid "Movement Speed:"
-msgstr ""
+msgstr "이동 속도:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1846
 msgid "Base Stats"
-msgstr ""
+msgstr "기초 스탯"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1871
 msgid "Base Form Index:"
@@ -8937,15 +8938,15 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1883
 msgid "Pre Evolution:"
-msgstr ""
+msgstr "진화 전 포켓몬:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1895
 msgid "Main Requirement:"
-msgstr ""
+msgstr "주 조건:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1907
 msgid "Parameter:"
-msgstr ""
+msgstr "변수:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1963
 msgid "label_base_form_index"
@@ -8961,7 +8962,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2035
 msgid "Additional Requirement:"
-msgstr ""
+msgstr "추가 조건:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2246
 msgid "Evolves Into: "
@@ -8973,67 +8974,67 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2421
 msgid "Evolution Bonus: "
-msgstr ""
+msgstr "진화 보너스: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2457
 msgid "HP: "
-msgstr ""
+msgstr "HP: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2481
 msgid "Atk: "
-msgstr ""
+msgstr "공격: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2493
 msgid "Sp. Atk: "
-msgstr ""
+msgstr "특수공격: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2505
 msgid "Def: "
-msgstr ""
+msgstr "방어: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2517
 msgid "Sp. Def: "
-msgstr ""
+msgstr "특수방어: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2666
 msgid "Evolution"
-msgstr ""
+msgstr "진화"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2691
 msgid "Item 1:"
-msgstr ""
+msgstr "도구 1:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2703
 msgid "Item 2:"
-msgstr ""
+msgstr "도구 2:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2715
 msgid "Item 3:"
-msgstr ""
+msgstr "도구 3:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2727
 msgid "Item 4:"
-msgstr ""
+msgstr "도구 4:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2843
 msgid "Sprite File Size:"
-msgstr ""
+msgstr "스프라이트 파일 크기:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2868
 msgid "Sprite VRAM Size:"
-msgstr ""
+msgstr "스프라이트 VRAM 크기:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2880
 msgid "Body Size:"
-msgstr ""
+msgstr "몸 크기:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2964
 msgid "Shadow Size:"
-msgstr ""
+msgstr "그림자 크기:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2995
 msgid "Sprite Info"
-msgstr ""
+msgstr "스프라이트 정보"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3018
 msgid "Unk 1.0:"
@@ -9045,7 +9046,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3055
 msgid "Spawn Threshold:"
-msgstr ""
+msgstr "스폰 임계값:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3079
 msgid "Unk 1.1:"
@@ -9061,31 +9062,31 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3115
 msgid "Can move:"
-msgstr ""
+msgstr "이동 가능"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3127
 msgid "Can throw items:"
-msgstr ""
+msgstr "도구 투척 가능:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3139
 msgid "Can evolve:"
-msgstr ""
+msgstr "진화 가능:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3151
 msgid "Item req. for spawn:"
-msgstr ""
+msgstr "스폰에 도구 필요:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3367
 msgid "Chance to spawn asleep:"
-msgstr ""
+msgstr "자는 채로 스폰될 확률:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3392
 msgid "HP Regeneration:"
-msgstr ""
+msgstr "HP 자연회복:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3437
 msgid "Chest Drop Rates:"
-msgstr ""
+msgstr "상자 드롭률:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:3473
 msgid "label_chance_no_drop"
