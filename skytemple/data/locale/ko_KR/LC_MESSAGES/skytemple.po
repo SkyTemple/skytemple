@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-24 11:24\n"
+"PO-Revision-Date: 2024-09-24 13:39\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -3486,11 +3486,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:287
 msgid "Must be >= {}."
-msgstr ""
+msgstr "{} 이상이어야 합니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:293
 msgid "Must be <= {}."
-msgstr ""
+msgstr "{} 이하여야 합니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:400
 msgid "config.xml missing in patch package."
@@ -8711,50 +8711,52 @@ msgstr ""
 #: skytemple/skytemple/data/widget/monster/main.ui:446
 msgid "This section lets you edit data for Pokémon in the game.\n"
 "This includes stats and the portrait images."
-msgstr ""
+msgstr "이 섹션에서는 게임 내 포켓몬의 데이터를 수정할 수 있습니다. \n"
+"이는 능력치와 초상화 이미지를 포함합니다."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:475
 msgid "Choose a Pokémon form on the left to edit it's data.\n"
 "You can use the button below to export data of multiple Pokémon forms at once."
-msgstr ""
+msgstr "왼쪽에서 수정하려는 포켓몬을 선택하세요. \n"
+"아래의 버튼을 눌러 여러 포켓몬의 데이터를 한 번에 내보낼 수 있습니다."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:517
 msgid "Bulk Export"
-msgstr ""
+msgstr "한꺼번에 내보내기"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:547
 msgid "Pokémon Data"
-msgstr ""
+msgstr "포켓몬 데이터"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:570
 msgid "Here you can edit the different personality groups."
-msgstr ""
+msgstr "여기에서 다양한 성격 그룹을 편집할 수 있습니다."
 
 #: skytemple/skytemple/data/widget/monster/main.ui:593
 msgid "Group: "
-msgstr ""
+msgstr "그룹: "
 
 #: skytemple/skytemple/data/widget/monster/main.ui:657
 #: skytemple/skytemple/data/widget/moves_items/item.ui:724
 #: skytemple/skytemple/data/widget/moves_items/move.ui:553
 msgid "Text"
-msgstr ""
+msgstr "텍스트"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:731
 msgid "Type: "
-msgstr ""
+msgstr "타입: "
 
 #: skytemple/skytemple/data/widget/monster/main.ui:749
 msgid "Remove Group"
-msgstr ""
+msgstr "그룹 삭제"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:770
 msgid "Add Group"
-msgstr ""
+msgstr "그룹 추가"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:863
 msgid "Personality Groups"
-msgstr ""
+msgstr "성격 그룹"
 
 #: skytemple/skytemple/data/widget/monster/main.ui:886
 msgid "Here you can edit special personalities, used by unique actors."
@@ -8934,7 +8936,7 @@ msgstr "기초 스탯"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1871
 msgid "Base Form Index:"
-msgstr ""
+msgstr "기본 폼 인덱스:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:1883
 msgid "Pre Evolution:"
@@ -8966,7 +8968,7 @@ msgstr "추가 조건:"
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2246
 msgid "Evolves Into: "
-msgstr ""
+msgstr "진화체 포켓몬: "
 
 #: skytemple/skytemple/data/widget/monster/monster.ui:2385
 msgid "Children: "
@@ -9375,11 +9377,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:25
 msgid "ASM Patches"
-msgstr ""
+msgstr "ASM 패치"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "게임에 ASM (어셈블러) 패치를 적용합니다."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:76
 msgid "Open Patch Directory..."
@@ -9394,11 +9396,11 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/asm.ui:177
 msgctxt "Issues as in problems"
 msgid "Show Issues"
-msgstr ""
+msgstr "발생한 문제 보기"
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:250
 msgid "A compatibility issue was detected while loading one or more patches."
-msgstr ""
+msgstr "하나 이상의 패치를 로딩하던 중 호환성 문제가 발견되었습니다."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:263
 msgid "A compatibility issue was detected while applying this patch. \n"
@@ -9407,7 +9409,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:277
 msgid "One or more patches failed to be loaded."
-msgstr ""
+msgstr "하나 이상의 패치를 로드에 실패했습니다."
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:290
 msgid "There was an error while applying the patch."
@@ -9445,7 +9447,10 @@ msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for wri
 "<b>Rust of Darkness</b> (RoD) is an extension of cot to write custom patches in Rust.\n\n"
 "To get started with cot and/or RoD, watch the tutorial below and read the READMEs.\n\n"
 "<b>Important</b>: Before writing cot or RoD patches to the ROM make sure to close SkyTemple. Otherwise SkyTemple may override changes you made."
-msgstr ""
+msgstr "<b>c-of-time</b> (cot)는 게임에 사용할 커스텀 패치를 c언어로 작성하기 위한 런타임 및 개발환경입니다.\n\n"
+"<b>Rust of Darkness</b> (RoD)는 커스텀 패치를 Rust로 작성하기 위한 cot의 확장 프로그램입니다.\n\n"
+"cot나 RoD를 처음 사용하려면, 아래의 튜토리얼을 시청하고 README를 읽으세요.\n\n"
+"<b>중요</b>: cot나 RoD 패치를 롬파일에 적용하려면 반드시 SkyTemple을 종료하세요. 그렇지 않으면 변경된 사항들을 SkyTemple이 덮어쓸 것입니다."
 
 #: skytemple/skytemple/data/widget/patch/cot.ui:128
 msgid "c-of-time README"
@@ -9465,13 +9470,15 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:73
 msgid "Edits the item effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "게임에서 사용하눈 아이템 효과를 수정합니다.\n"
+"C나 Rust 코드로 추가된 효과는 표시돠지 않습니다."
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:88
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<사용할 수 없음>\n\n"
+"아이템 효과를 보거나 수정하려면 \"패치\" > \"ASM\" 메뉴에 있는 \"ExtractItemCode\" 패치를 적용하세요."
 
 #: skytemple/skytemple/data/widget/patch/item_effects.ui:154
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:163
@@ -9558,7 +9565,9 @@ msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<사용할 수 없음>\n\n"
+"기술 효과를 보거나 수정하려면 \"패치\" > \"ASM\" 메뉴에 있는 \"ExtractMoveCode\" 패치를 적용하세요. \n"
+"이미 적용하였다면, 최신 버전인지 확인을 위해 패치를 다시 적용하세요. "
 
 #: skytemple/skytemple/data/widget/patch/move_effects.ui:302
 msgid "Fix # of Moves"
@@ -9618,7 +9627,8 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<사용할 수 없음>\n\n"
+"특수 프로세스 효과를 보거나 수정하려면 \"패치\" > \"ASM\" 메뉴에 있는 \"ExtractSPCode\" 패치를 적용하세요."
 
 #: skytemple/skytemple/data/widget/patch/sp_effects.ui:150
 msgid "Edits the effects used by each special process.\n"
@@ -9715,7 +9725,8 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<사용할 수 없음>\n\n"
+"이 리스트를 보거나 수정하려면 \"패치\" > \"ASM\" 메뉴에 있는 \"ActorAndLevelLoader\" 패치를 적용하세요."
 
 #: skytemple/skytemple/data/widget/script/main.ui:323
 msgid "Internal Name"
@@ -10503,7 +10514,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/widget/floor.py:833
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
-msgstr ""
+msgstr "게임 내에서 작동하지 않습니다. 작동하게 하려면 \"패치\" > \"ASM\" 메뉴에 있는 \"UnusedDungeonChance\" 패치를 적용하세요. 패치를 적용하면 게임은 임의의 방을 일반적인 물 타일 대신 벽 타일을 사용(물 생성에 의해 벽이 물로 바뀌기도 하지만)한 미로 방으로 바꿀 것입니다."
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:863
 msgid "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
@@ -11017,7 +11028,8 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<사용할 수 없음>\n\n"
+"이 리스트를 보거나 수정하려면 \"패치\" > \"ASM\" 메뉴에 있는 \"ExtractObjectTable\" 패치를 적용하세요."
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:209
 msgid "Unk2_1"
@@ -12529,14 +12541,15 @@ msgstr ""
 #: skytemple/skytemple/module/patch/module.py:46
 #: skytemple/skytemple/module/patch/widget/asm.py:46
 msgid "Patches"
-msgstr ""
+msgstr "패치"
 
 #: skytemple/skytemple/module/patch/module.py:48
 msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
 "item-, move- and special process effects written in Assembler.\n\n"
 "You will also find information on how to write your own\n"
 "patches and effects in the C and Rust programming languages."
-msgstr ""
+msgstr "이 색션에서는 기본 제공 ASM 패치, 본인의 ASM 패치, 그리고 어셈블러로 작성한 커스텀 도구, 기술 및 특수 프로세스 효과를 적용할 수 있습니다.\n\n"
+"또한 자신만의 패치화 효과를 C와 Rust 프로그래밍으로 작성하는 방법에 대한 정보를 찾아볼 수 있습니다."
 
 #: skytemple/skytemple/module/patch/module.py:91
 msgid "ASM"
@@ -12552,7 +12565,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/asm.py:133
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
-msgstr ""
+msgstr "이 패치는 이미 적용되었습니다. 어떤 패치는 재적용을 지원하지만, 재적용 시 문제가 발생할 가능성이 있습니다. 신중히 진행하세요."
 
 #: skytemple/skytemple/module/patch/widget/asm.py:142
 msgid "The current ROM is not supported by this patch."
@@ -12568,7 +12581,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/asm.py:173
 msgid "This patch requires some other patches to be applied first:\n"
-msgstr ""
+msgstr "이 패치를 적용하려면 다음의 패치를 먼저 적용해야합니다:\n"
 
 #: skytemple/skytemple/module/patch/widget/asm.py:175
 msgid "\n"
@@ -12598,7 +12611,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/asm.py:225
 msgid "Not all patches were applied successfully. The ROM will now be reloaded."
-msgstr ""
+msgstr "성공적으로 적용되지 않은 패치가 있습니다. 롬파일을 다시 로드합니다."
 
 #: skytemple/skytemple/module/patch/widget/asm.py:294
 msgid "Error loading patch package {os.path.basename(fname)}."
@@ -12623,12 +12636,13 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/widget/asm.py:482
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
-msgstr ""
+msgstr "일부 로드된 패치에 호환성 문제가 있었습니다. 일단 제대로 로드되기는 했지만 이후 버전의 SkyTemple에서는 동작하지 않을 수 있습니다. 이 패치들을 패치 리스트에 주황색으로 표시했습니다. 더 많은 정보를 확인하려면 패치들 중 하나를 선택해 '발생한 문제 보기' 버튼을 누르세요."
 
 #: skytemple/skytemple/module/patch/widget/asm.py:495
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Do you want to continue loading these patches? By selecting 'No', only the built-in patches will be loaded."
-msgstr ""
+msgstr "경고! 이 롬파일의 프로젝트 디렉토리는 커스텀 패치를 포함하고 있습니다. 이러한 패치에는 이 대화 상자에서 '예'를 눌러 수락할 시 실행되는 코드가 들어있을 수 있습니다. 패치 제작자를 신뢰할 수 있는 경우에만 계속하세요. 그렇지 않다면 악의적인 사람이 당신의 컴퓨터를 해킹하거나 개인정보를 훔칠 수 있습니다.\n\n"
+"이러한 패치들을 계속해서 로딩하시겠습니까? '아니오'를 선택하면 SkyTemple에서 기본 제공되는 패치만을 로드할 것입니다."
 
 #: skytemple/skytemple/module/patch/widget/item_effects.py:133
 msgid "Import Item Effect ASM Code..."
@@ -12644,7 +12658,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/widget/move_effects.py:161
 #: skytemple/skytemple/module/patch/widget/sp_effects.py:135
 msgid "armips ASM patches (*.asm)"
-msgstr ""
+msgstr "armips ASM 패치 (*.asm)"
 
 #: skytemple/skytemple/module/patch/widget/item_effects.py:148
 #: skytemple/skytemple/module/patch/widget/move_effects.py:165
