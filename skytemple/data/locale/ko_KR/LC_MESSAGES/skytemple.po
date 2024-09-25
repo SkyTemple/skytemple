@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-25 13:34\n"
+"PO-Revision-Date: 2024-09-25 14:47\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -137,7 +137,7 @@ msgstr ""
 
 #: /dev/fd/63:30 /dev/fd/63:249
 msgid "Chimecho Assembly Strings"
-msgstr ""
+msgstr "치렁 편성소 문자열"
 
 #: /dev/fd/63:31 /dev/fd/63:250
 msgid "Luminous Spring Strings"
@@ -357,7 +357,7 @@ msgstr ""
 
 #: /dev/fd/63:85 /dev/fd/63:304
 msgid "Mission Feedback"
-msgstr ""
+msgstr "의뢰 관련 메시지"
 
 #: /dev/fd/63:86 /dev/fd/63:305
 msgid "Dungeon General Feedback 6"
@@ -3282,7 +3282,9 @@ msgstr "게임에서 게스트 포켓몬을 팀에 추가하는 시기를 결정
 msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
-msgstr ""
+msgstr "모든 탐험대원 간 경험치 공유를 구현합니다. (마그나게이트 방식) \n"
+"이 기능은 스페셜 에피소드와 1레벨 던전, 경험치를 주지 않는 던전에서는 비활성화됩니다. \n"
+"이 기능 추가에 필요한 공간 확보를 위해 ExtractDungeonData 패치를 적용해야 합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:115
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
