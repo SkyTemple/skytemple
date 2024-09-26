@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-26 05:22\n"
+"PO-Revision-Date: 2024-09-26 13:54\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -879,23 +879,23 @@ msgstr ""
 
 #: /dev/fd/63:211 /dev/fd/63:430
 msgid "Update the level and stats of evolved enemies"
-msgstr ""
+msgstr "진화한 적의 레벨 및 스탯을 업데이트함"
 
 #: /dev/fd/63:212 /dev/fd/63:431
 msgid "Fully heal enemies after evolving"
-msgstr ""
+msgstr "진화한 적의 체력을 완전히 회복시킴"
 
 #: /dev/fd/63:213 /dev/fd/63:432
 msgid "Update the moves of evolved enemies"
-msgstr ""
+msgstr "진화한 적의 기술을 업데이트함"
 
 #: /dev/fd/63:214 /dev/fd/63:433
 msgid "Increase Atk/SpAtk/Def/SpDef of evolved enemies by"
-msgstr ""
+msgstr "진화한 적의 공격, 특수공격, 방어, 특수방어를 증가시킴"
 
 #: /dev/fd/63:215 /dev/fd/63:434
 msgid "Let enemies evolve even if the defeated pokémon is revived"
-msgstr ""
+msgstr "쓰러뜨린 포켓몬이 부활해도 적을 진화시킴"
 
 #: /dev/fd/63:217
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -922,11 +922,11 @@ msgstr "스페인어"
 
 #: /dev/fd/63:274
 msgid "Dungeon Defeated Dialog Strings"
-msgstr ""
+msgstr "던전 실패 시 대화 문자열"
 
 #: /dev/fd/63:275
 msgid "Dungeon Cleared Dialog Strings"
-msgstr ""
+msgstr "던전 클리어 시 대화 문자열"
 
 #: explorerscript/explorerscript/common_syntax.py:99
 #: explorerscript/explorerscript/common_syntax.py:187
@@ -1302,11 +1302,11 @@ msgstr ""
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:280
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
-msgstr ""
+msgstr "XML 오류: 애니메이션 프레임 중 하나가 16가지 색상을 가지지 않습니다. 각 프레임에는 반드시 각 색상에 대한 값이 있어야 합니다."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:288
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
-msgstr ""
+msgstr "XML 오류: 팔레트 또는 팔레트의 색상에 대한 지속 시간이 올바르게 정의되지 않았습니다."
 
 #: skytemple-dtef/skytemple_dtef/rules.py:119
 #, python-brace-format
@@ -1494,12 +1494,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/xml_util.py:34
 #, python-brace-format
 msgid "Invalid XML. Expected tag {tag}, got tag {ele.tag}."
-msgstr ""
+msgstr "잘못된 XML입니다. {tag} 태그가 필요하지만, 해당 위치에 {ele.tag} 태그가 있습니다."
 
 #: skytemple-files/skytemple_files/common/xml_util.py:40
 #, python-brace-format
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
-msgstr ""
+msgstr "잘못된 XML입니다. {ele.tag}의 속성 {attrib}이(가) 필요합니다."
 
 #: skytemple-files/skytemple_files/data/anim/model.py:45
 msgid "Head"
