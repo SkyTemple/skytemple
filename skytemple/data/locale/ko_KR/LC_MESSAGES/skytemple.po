@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-26 00:30\n"
+"PO-Revision-Date: 2024-09-26 03:54\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -409,7 +409,7 @@ msgstr "'내룸벨트의 가게' 문자열"
 
 #: /dev/fd/63:98 /dev/fd/63:317
 msgid "Team Tactics Menu Strings"
-msgstr ""
+msgstr "팀 작전 메뉴 스트링"
 
 #: /dev/fd/63:99 /dev/fd/63:318
 msgid "Item Became Sticky String"
@@ -585,7 +585,7 @@ msgstr "디버그 문자열 (데이터)"
 
 #: /dev/fd/63:142 /dev/fd/63:361
 msgid "Debug Strings (Checks)"
-msgstr ""
+msgstr "디저그 문자열 ("
 
 #: /dev/fd/63:143 /dev/fd/63:362
 msgid "Debug Strings (General)"
@@ -657,7 +657,7 @@ msgstr "디버그 문자열 (패러미터)"
 
 #: /dev/fd/63:160 /dev/fd/63:379
 msgid "Debug Strings (Counter)"
-msgstr ""
+msgstr "디버그 문자열 (카운터)"
 
 #: /dev/fd/63:161 /dev/fd/63:380
 msgid "Game and Dungeon Hints"
@@ -669,23 +669,23 @@ msgstr ""
 
 #: /dev/fd/63:163 /dev/fd/63:382
 msgid "Ground Map Names"
-msgstr ""
+msgstr "그라운드 맵 이름"
 
 #: /dev/fd/63:164 /dev/fd/63:383
 msgid "Dungeon Names (Main)"
-msgstr ""
+msgstr "던전 이름 (메인)"
 
 #: /dev/fd/63:165 /dev/fd/63:384
 msgid "Dungeon Names (Selection)"
-msgstr ""
+msgstr "던전 이름 (선택화면)"
 
 #: /dev/fd/63:166 /dev/fd/63:385
 msgid "Dungeon Names (SetDungeonBanner)"
-msgstr ""
+msgstr "던전 이름 (SetDungeonBanner)"
 
 #: /dev/fd/63:167 /dev/fd/63:386
 msgid "Dungeon Names (Banner)"
-msgstr ""
+msgstr "던전 이름 (배너)"
 
 #: /dev/fd/63:168 /dev/fd/63:387
 msgid "Staff Roll 1"
@@ -727,13 +727,13 @@ msgstr "새 포켓몬 분류"
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4164
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:997
 msgid "Thrown - Pierce"
-msgstr ""
+msgstr "투척 도구 - 가시류"
 
 #: /dev/fd/63:178 /dev/fd/63:397
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4329
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1149
 msgid "Thrown - Rock"
-msgstr ""
+msgstr "투척 도구 - 돌멩이류"
 
 #: /dev/fd/63:179 /dev/fd/63:398
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4496
@@ -751,7 +751,7 @@ msgstr "음식, 구미"
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4830
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1611
 msgid "Hold"
-msgstr ""
+msgstr "지니는 도구"
 
 #: /dev/fd/63:182 /dev/fd/63:401
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:4997
@@ -765,13 +765,13 @@ msgstr "포켓 (돈)"
 
 #: /dev/fd/63:184 /dev/fd/63:403
 msgid "Unknown 7"
-msgstr ""
+msgstr "불명7"
 
 #: /dev/fd/63:185 /dev/fd/63:404
 #: skytemple/skytemple/data/widget/monster/monster.ui:3633
 #: skytemple/skytemple/data/widget/moves_items/move.ui:1398
 msgid "Other"
-msgstr ""
+msgstr "기타 도구"
 
 #: /dev/fd/63:186 /dev/fd/63:405
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5164
@@ -822,11 +822,11 @@ msgstr ""
 
 #: /dev/fd/63:197 /dev/fd/63:416
 msgid "Conversion 2 Type when hit by a Fairy move"
-msgstr ""
+msgstr "페어리 타입 기술에 맞고 '텍스처2' 기술 사용시 변경되는 타입"
 
 #: /dev/fd/63:198 /dev/fd/63:417
 msgid "ID of the first icon in markfont.dat (23 entries used)"
-msgstr ""
+msgstr "markfont.dat 파일 내 첫 아이콘의 ID (23개의 엔트리 사용됨)"
 
 #: /dev/fd/63:199 /dev/fd/63:418
 msgid "Display accuracy and power values"
@@ -2512,12 +2512,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:115
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
-msgstr ""
+msgstr "맵 배경을 불러올 수 없습니다: 이미지의 너비가 {expected_width}px여야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:124
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
-msgstr ""
+msgstr "맵 배경을 불러올 수 없습니다: 이미지의 높이가 {expected_height}px여야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:124
 #, python-brace-format
