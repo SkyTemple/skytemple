@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-26 13:54\n"
+"PO-Revision-Date: 2024-09-26 15:55\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -85,7 +85,7 @@ msgstr ""
 
 #: /dev/fd/63:17 /dev/fd/63:236
 msgid "Gummi Feedback"
-msgstr "구미 섭취 시 메시지"
+msgstr ""
 
 #: /dev/fd/63:18 /dev/fd/63:237
 msgid "Dungeon Item Pickup Menu Strings"
@@ -209,11 +209,11 @@ msgstr ""
 
 #: /dev/fd/63:48 /dev/fd/63:267
 msgid "Sentry Duty Strings"
-msgstr ""
+msgstr "망보기 당번 문자열"
 
 #: /dev/fd/63:49 /dev/fd/63:268
 msgid "Sentry Duty Hints"
-msgstr ""
+msgstr "망보기 당번 힌트"
 
 #: /dev/fd/63:50 /dev/fd/63:269
 msgid "Dungeon Item Usage (Basic)"
@@ -249,11 +249,11 @@ msgstr ""
 
 #: /dev/fd/63:58 /dev/fd/63:277
 msgid "Weather Change Feedback"
-msgstr "날씨 변경 시 메시지"
+msgstr ""
 
 #: /dev/fd/63:59 /dev/fd/63:278
 msgid "Weather Names"
-msgstr "닐씨명"
+msgstr "날씨 이름"
 
 #: /dev/fd/63:60 /dev/fd/63:279
 msgid "Floor-Wide Status"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: /dev/fd/63:63 /dev/fd/63:282
 msgid "Speed Change Feedback"
-msgstr "속도 변경 시 메시지"
+msgstr ""
 
 #: /dev/fd/63:64 /dev/fd/63:283
 msgid "Dungeon Potential Recruit Strings"
@@ -277,7 +277,7 @@ msgstr ""
 
 #: /dev/fd/63:65 /dev/fd/63:284
 msgid "Dungeon Gummi Feedback"
-msgstr "던전 내 구미 섭취 시 메시지"
+msgstr ""
 
 #: /dev/fd/63:66 /dev/fd/63:285
 msgid "Traps Feedback (Primary)"
@@ -357,7 +357,7 @@ msgstr ""
 
 #: /dev/fd/63:85 /dev/fd/63:304
 msgid "Mission Feedback"
-msgstr "의뢰 관련 메시지"
+msgstr "의뢰 피드백"
 
 #: /dev/fd/63:86 /dev/fd/63:305
 msgid "Dungeon General Feedback 6"
@@ -365,7 +365,7 @@ msgstr ""
 
 #: /dev/fd/63:87 /dev/fd/63:306
 msgid "Kecleon Dungeon Shop Strings"
-msgstr "던전 내 캘리몬 상점 메시지"
+msgstr "던전 내 캘리몬 상점 문자열"
 
 #: /dev/fd/63:88 /dev/fd/63:307
 msgid "Anchored Feedback"
@@ -585,7 +585,7 @@ msgstr "디버그 문자열 (데이터)"
 
 #: /dev/fd/63:142 /dev/fd/63:361
 msgid "Debug Strings (Checks)"
-msgstr "디저그 문자열 ("
+msgstr ""
 
 #: /dev/fd/63:143 /dev/fd/63:362
 msgid "Debug Strings (General)"
@@ -1874,16 +1874,16 @@ msgstr "잘못된 XML입니다. {b}에 '{a}' 가 누락되었습니다."
 #: skytemple-files/skytemple_files/data/monster_xml.py:481
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
-msgstr ""
+msgstr "잘못된 XML입니다. 레벨 업 기술 엔트리에 '{XML_MOVESET_LEVEL_UP__LEVEL}'가 없습니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:485
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
-msgstr ""
+msgstr "잘못된 XML입니다. 레벨 업 기술 엔트리에 '{XML_MOVESET__MOVE_ID}'가 없습니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:523
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
-msgstr ""
+msgstr "잘못된 XML입니다. 'StatsGrowth'에는 정확히 100레벨에 대응하는 항목이 있어야 합니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:547
 #: skytemple-files/skytemple_files/data/monster_xml.py:550
@@ -1893,26 +1893,26 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/monster_xml.py:562
 #, python-brace-format
 msgid "Invalid XML. '{x}' missing for a stats growth level entry."
-msgstr ""
+msgstr "잘못된 XML입니다. 능력치 성장 엔트리에 '{x}'가 없습니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:587
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
-msgstr ""
+msgstr "호환되지 않는 XML. 초상화 수가 {len (value_to_update)} 의 예상 값과 일치하지 않습니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:603
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__IMAGE}' missing for a portrait."
-msgstr ""
+msgstr "잘못된 XML입니다. 초상화에 대한 '{XML_PORTRAITS_PORTRAIT__IMAGE}'가 누락되었습니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:607
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__PALETTE}' missing for a portrait."
-msgstr ""
+msgstr "잘못된 XML입니다. 초상화에 대한 '{XML_PORTRAITS_PORTRAIT__PALETTE}'가 누락되었습니다."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:618
 #, python-brace-format
 msgid "Invalid XML. The portrait data of one of the portraits is invalid: {err}"
-msgstr ""
+msgstr "잘못된 XML입니다. 초상화 중 하나의 초상화 데이터가 유효하지 않습니다: {err}"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:29
 msgid "Healthy"
@@ -2237,11 +2237,11 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:610
 #, python-brace-format
 msgid "Unknown trap {name}."
-msgstr ""
+msgstr "알 수 없는 함정 '{name}'."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:617
 msgid "Trap lists need an entry for all of the 25 traps"
-msgstr ""
+msgstr "트랩 목록에는 25개 트랩 전체에 대한 항목이 필요합니다"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:53
 msgid "Medium Large"
@@ -3496,11 +3496,11 @@ msgstr "{} 이하여야 합니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:400
 msgid "config.xml missing in patch package."
-msgstr ""
+msgstr "패치 패키지에 config.xml이 누락되어 있습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:402
 msgid "Syntax error in the config.xml while reading patch package."
-msgstr ""
+msgstr "패치 패키지를 읽는 중 config.xml에 구문 오류가 발생했습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:412
 msgid "patch.py missing in patch package."
@@ -3529,7 +3529,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:110
 msgid "'{}' missing in scene data."
-msgstr ""
+msgstr "장면 데이터에 '{}'이(가) 누락되어 있습니다."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:458
 msgid "The event ID {} is out of bounds for one of the triggers."
@@ -13414,7 +13414,9 @@ msgstr ""
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>이 기능을 활성화하면 오류 보고서가 sentry.io로 전송되어 \n"
+"SkyTemple을 개선하는데 활용될 수 있습니다.\n"
+"자세한 내용은 <a href=\"privacy\">개인정보 처리방침</a>을 참조하세요.</i>"
 
 #: skytemple/skytemple/skytemple.glade:547
 msgid "Use Client Side Decorations"
