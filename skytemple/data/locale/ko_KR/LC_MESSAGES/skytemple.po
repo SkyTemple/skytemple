@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-10-01 03:09\n"
+"PO-Revision-Date: 2024-10-01 04:17\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -3510,24 +3510,24 @@ msgstr "패치 패키지를 읽는 중 config.xml에 구문 오류가 발생했�
 
 #: skytemple-files/skytemple_files/patch/patches.py:412
 msgid "patch.py missing in patch package."
-msgstr ""
+msgstr "패치 패키지에 patch.py가 누락되어 있습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:414
 msgid "The patch.py of the patch package contains a syntax error."
-msgstr ""
+msgstr "패치 패키지의 patch.py에 구문 오류가 있습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:419
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
-msgstr ""
+msgstr "패치 패키지의 patch.py에 'PatchHandler'가 없습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:425
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
-msgstr ""
+msgstr "패치 패키지에 config.xml에 핸들러의 패치 이름에 대한 엔트리가 존재하지 않습니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:432
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
-msgstr ""
+msgstr "패치 설정에서 핸들러 '{handler.name}'에 대한 패치를 찾을 수 없습니다."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/ssa_xml.py:109
 msgid "Unknown or extra XML element '{}' in scene data."
@@ -3659,12 +3659,12 @@ msgstr ""
 
 #: skytemple-rust/src/st_dpla.rs:111
 msgid "Palette is invalid."
-msgstr ""
+msgstr "팔레트가 유효하지 않습니다."
 
 #: skytemple-rust/src/st_dpla.rs:116 skytemple-rust/src/st_dpla.rs:173
 #: skytemple-rust/src/st_dpla.rs:209 skytemple-rust/src/st_dpla.rs:217
 msgid "Palette index out of range."
-msgstr ""
+msgstr "팔레트 인덱스가 범위를 벗어났습니다."
 
 #: skytemple-rust/src/st_dpla.rs:267
 msgid "Frame durations out of range while trying to build color."
@@ -3682,7 +3682,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "Debugging disabled."
-msgstr ""
+msgstr "디버깅이 비활성화되었습니다."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:7
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:383
@@ -3692,92 +3692,92 @@ msgstr "조이스틱 설정"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:111
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:796
 msgid "Y : "
-msgstr ""
+msgstr "Y : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:129
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:814
 msgid "X : "
-msgstr ""
+msgstr "X : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:147
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:832
 msgid "A : "
-msgstr ""
+msgstr "A : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:165
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:904
 msgid "Select : "
-msgstr ""
+msgstr "SELECT : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:183
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:886
 msgid "Lid : "
-msgstr ""
+msgstr "슬립 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:201
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:922
 msgid "L : "
-msgstr ""
+msgstr "L : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:216
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:972
 msgid "R : "
-msgstr ""
+msgstr "R : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:232
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1056
 msgid "Debug : "
-msgstr ""
+msgstr "디버그 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:248
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1107
 msgid "Start : "
-msgstr ""
+msgstr "START : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:264
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1158
 msgid "Boost : "
-msgstr ""
+msgstr "가속 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:280
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:298
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:316
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:332
 msgid "Axis :"
-msgstr ""
+msgstr "축 :"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:350
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:868
 msgid "B : "
-msgstr ""
+msgstr "B : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:425
 msgid "Press a button..."
-msgstr ""
+msgstr "버튼을 누르세요..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:441
 msgid "Key definition"
-msgstr ""
+msgstr "키 설정"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:503
 msgid "Press a key..."
-msgstr ""
+msgstr "키를 누르세요..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:744
 msgid "Left : "
-msgstr ""
+msgstr "왼쪽 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:760
 msgid "Up : "
-msgstr ""
+msgstr "위 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:778
 msgid "Right : "
-msgstr ""
+msgstr "오른쪽 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:850
 msgid "Down : "
-msgstr ""
+msgstr "아래 : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1232
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1244
@@ -3809,33 +3809,33 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:22
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:23
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:24
 msgid "Select"
-msgstr ""
+msgstr "Select"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:25
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2345
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:30
 msgid "R"
-msgstr ""
+msgstr "R"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:31
 msgid "L"
-msgstr ""
+msgstr "L"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:32
@@ -3844,51 +3844,51 @@ msgstr ""
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:268
 #: skytemple/skytemple/data/widget/patch/pmdsky_debug.ui:282
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:33
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:90
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:34
 msgid "Debug"
-msgstr ""
+msgstr "디버그"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:35
 msgid "Boost"
-msgstr ""
+msgstr "가속"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:36
 msgid "Lid"
-msgstr ""
+msgstr "슬립"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:62
 msgid "You don't have any joypads!"
-msgstr ""
+msgstr "게임패드가 없습니다!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:64
 msgid "Can't configure joystick while the game is running!"
-msgstr ""
+msgstr "게임이 실행중일 때는 조이스틱을 설정할 수 없습니다!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:317
 #, python-brace-format
 msgid "Do you want to save changes to {filename}?"
-msgstr ""
+msgstr "변경 사항을 {filename}에 저장하시겠습니까?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:319
 #: skytemple/skytemple/controller/main.py:959
 msgid "Don't Save"
-msgstr ""
+msgstr "저장하지 않음"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:321
 #: skytemple/skytemple/_i18n.py:25
 msgid "_Cancel"
-msgstr ""
+msgstr "_취소"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:997
@@ -3906,12 +3906,12 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/module.py:242
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:173
 msgid "_Save"
-msgstr ""
+msgstr "_저장"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:323
 #: skytemple/skytemple/controller/main.py:963
 msgid "If you don't save, your changes will be lost."
-msgstr ""
+msgstr "저장하지 않으면 변경 내용이 손실됩니다."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:334
 msgid "The file is still loaded in RAM! Currently you are still able to debug using the old cached information stored in the editor.\n"
@@ -5482,26 +5482,26 @@ msgstr ""
 
 #: skytemple/skytemple/core/error_handler.py:91 skytemple/skytemple/main.py:106
 msgid "SkyTemple - Error!"
-msgstr ""
+msgstr "SkyTemple - 오류!"
 
 #: skytemple/skytemple/core/error_handler.py:119
 msgid "Error Details"
-msgstr ""
+msgstr "오류 세부 정보"
 
 #: skytemple/skytemple/core/error_handler.py:123
 #: skytemple/skytemple/core/widget/user_feedback.py:53
 #: skytemple/skytemple/core/widget/user_feedback.py:81
 #: skytemple/skytemple/skytemple.glade:1163
 msgid "Report Error"
-msgstr ""
+msgstr "오류 보고"
 
 #: skytemple/skytemple/core/logger.py:89
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
-msgstr ""
+msgstr "발견되지 않은 예외가 발생했습니다! 발생하면 안 되는 일이니 예외 사항을 보고해주세요!"
 
 #: skytemple/skytemple/core/logger.py:92
 msgid "SkyTemple - Uncaught error!"
-msgstr ""
+msgstr "SkyTemple - 발견되지 않은 오류!"
 
 #: skytemple/skytemple/core/modules.py:99
 #, python-brace-format
@@ -5509,7 +5509,10 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Do you want to continue with these plugins? These plugins contain code which will run on your computer once you accept this dialog with 'Yes'.\n"
 "Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
-msgstr ""
+msgstr "스카이템플이 플러그인 디렉토리({plugin_dir})에서 다음 플러그인을 찾았습니다.\n\n"
+"이 플러그인을 계속 사용하시겠습니까? 이 플러그인에는 '예'로 이 대화 상자를 수락하면 컴퓨터에서 실행되는 코드가 포함되어 있습니다.\n"
+"패치 제작자를 신뢰할 수 있는 경우에만 계속하세요. 그렇지 않다면 악의적인 사람이 당신의 컴퓨터를 해킹하거나 개인정보를 훔칠 수 있습니다.\n\n"
+"'예'를 클릭하면 이 플러그인 구성을 기억하여 이후 다시 묻지 않습니다."
 
 #: skytemple/skytemple/core/rom_project.py:158
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
@@ -6303,7 +6306,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:556
 #: skytemple/skytemple/module/monster/level_up_graph.py:96
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1117
 msgid "Exp. Yield"
@@ -6312,22 +6315,22 @@ msgstr ""
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1131
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:598
 msgid "Atk."
-msgstr ""
+msgstr "공격"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1145
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:612
 msgid "Sp. Atk."
-msgstr ""
+msgstr "특수공격"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1159
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:626
 msgid "Def."
-msgstr ""
+msgstr "방어"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1173
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:640
 msgid "Sp. Def."
-msgstr ""
+msgstr "특수방어"
 
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:1187
 msgid "UnkA"
