@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-09-26 15:55\n"
+"PO-Revision-Date: 2024-10-01 03:09\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -3268,7 +3268,7 @@ msgstr "던전 레이아웃 생성 실패로 발생할 수 있는 층 전체가 
 
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:50
 msgid "Implements dungeon interruptions. "
-msgstr ""
+msgstr "던전 중단점을 구현할 수 있게 합니다. "
 
 #: skytemple-files/skytemple_files/patch/handler/dynamic_bosses_everywhere.py:49
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
@@ -3291,11 +3291,13 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
-msgstr ""
+msgstr "포켓몬 엔트리를 2048개로 확장하고 모든 엔트리를 독립적으로 동작하도록 만듭니다.\n"
+"사용하려면 ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData 패치를 먼저 적용해야 합니다.\n"
+"이 패치를 적용하기 전에 던전 에러를 먼저 수정하고, ROM의 백업을 저장한 후 적용하기를 강력히 권고드립니다."
 
 #: skytemple-files/skytemple_files/patch/handler/expand_portrait.py:48
 msgid "Expands portraits structure by 8 bytes, which is enough to cover all cases."
-msgstr ""
+msgstr "초상화 파일 구조를 항목당 8바이트 확장시켜 모든 케이스를 사용할 수 있도록 만듭니다."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
@@ -3310,12 +3312,13 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:50
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
-msgstr ""
+msgstr "이 패치는 게임에 새로운 overlay_0036. bin을 추가합니다. 이 오버레이는 주소 0x023A7080에 로드되며 추가 코드와 데이터를 넣을 수 있는 여유 공간을 제공합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_anims.py:55
 msgid "Extracts animation data and put it in files. \n"
 "Needs ActorAndLevelLoader patch to free some space. "
-msgstr ""
+msgstr "애니메이션 데이터를 추출하여 파일에 넣습니다. \n"
+"공간을 확보하려면 ActorAndLevelLoader 패치가 필요합니다. "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:66
 msgid "Extracts Spinda bar's item list."
@@ -3327,11 +3330,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:77
 msgid "Extracts item effects code and put it in files."
-msgstr ""
+msgstr "아이템 효과 코드를 추출하여 파일에 넣습니다."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:65
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
-msgstr ""
+msgstr "미션 보상/보물상자 내용물와 캘리몬 상점 아이템에 사용되는 하드코딩된 아이템 목록을 추출하여 파일에 저장합니다. 롬 파일 시스템에서 이 파일을 읽을 수 있도록 지원합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:139
 msgid "Don't have enough space to put filenames! "
@@ -3349,7 +3352,9 @@ msgstr ""
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
 "Needs ExtractItemCode, ExtractBarItemList and AddTypes patches to be applied for this patch to work.\n"
 "Also, you'll need to reapply this if you apply AddTypes again. "
-msgstr ""
+msgstr "페어리타입 특화 구미를 추가합니다. 사용하지 않는 아이템 138을 대체합니다.\n"
+"이 패치를 적용하려면 ExtractItemCode, ExtractBarItemList, AddTypes 패치를 먼저 적용해야 합니다.\n"
+"AddTypes 패치를 재 적용하였으면 이 패치도 재 적용이 필요합니다. "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:50
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
@@ -3382,7 +3387,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:49
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
-msgstr ""
+msgstr "기술 단축키를 기존의 고정된 기술 사용(L+A)에서 마그나게이트나 초불던 스타일 기술 단축키(L+A/B/X/Y)로 변경합니다. 이 패치를 적용하려면 ExtraSpace 패치를 먼저 적용해야 합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/negative_enemy_density.py:49
 msgid "Makes negative enemy density values work as intended (the absolute value of the density is used, without adding a random variation)."
@@ -3419,11 +3424,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/remove_body_size_check.py:48
 msgid "Removes the total body size check before entering a dungeon."
-msgstr ""
+msgstr "던전 입장 시의 포켓몬 크기 제한 검사를 제거합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:48
 msgid "Allows the partner to be of the same type as the player in the personality test."
-msgstr ""
+msgstr "성격 테스트에서 파트너가 플레이어와 같은 타입이어도 선택 가능하도록 변경합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:47
 msgid "Who would you like to be?"
@@ -3447,7 +3452,8 @@ msgstr "기존 기술의 별 수치 표기를 막대 표기로 대체합니다.\
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:51
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
-msgstr ""
+msgstr "PX 압축과는 다른 알고리즘을 사용하는 ATUPX 컨테이너에 대한 지원을 제공합니다.\n"
+"이를 구현하는 데 필요한 공간을 확보하기 위해 ActorAndLevelLoader가 필요합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
