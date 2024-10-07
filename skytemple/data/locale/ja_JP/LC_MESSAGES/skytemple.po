@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-08-24 16:59+0000\n"
-"PO-Revision-Date: 2024-08-25 12:32\n"
+"POT-Creation-Date: 2024-10-07 19:02+0000\n"
+"PO-Revision-Date: 2024-10-07 19:15\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -3183,6 +3183,10 @@ msgstr "\n\n"
 "リストを抽出しました。\n"
 "SkyTempleで編集することができますが、パッチを正しく適用するまでゲーム上では使用されません。"
 
+#: skytemple-files/skytemple_files/patch/handler/add_key_check.py:48
+msgid "Prevents Keys from being used on party members that are not below a Key Door!"
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
 msgstr "タイプ相性テーブルにタイプを追加します。これにより、古いタイプ相性テーブルが第6世代以降のテーブルに置き換わり、フェアリータイプが追加されます。"
@@ -3222,6 +3226,14 @@ msgstr "[me_play:1][string0]だ。"
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
 msgstr "「ネイティオかんていじょ」にて、一度にすべての宝箱を鑑定できる機能を追加します。"
 
+#: skytemple-files/skytemple_files/patch/handler/better_enemy_evolution.py:49
+msgid "Allows changing how enemy evolution works. In particular, it allows you to choose if the evolved enemy will get the stats and/or moves from its new species, add extra stats after evolving, heal the enemy after evolving or choosing if the evolution will take place even if the target is revived."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/bold_text.py:48
+msgid "Adds new text tags that allow for bold text in strings. Encase the desired text with [BS] and [BR]."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:118
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
@@ -3243,9 +3255,18 @@ msgid "Changes and adds some properties for fixed floors.\n"
 "Removes restrictions. "
 msgstr "固定フロアのいくつかのプロパティを変更および追加し、制限を解除します。 "
 
+#: skytemple-files/skytemple_files/patch/handler/change_portrait.py:49
+msgid "Implements the text tag [FACE:X], which sets the current portrait to use the Xth portrait emotion (e.g. 0 = FACE_NORMAL).\n"
+"This allows for changing portrait emotions during dialogue!"
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:48
 msgid "Provides support for editing textbox background color."
 msgstr "テキストボックスの背景色の編集に対応させます。"
+
+#: skytemple-files/skytemple_files/patch/handler/change_text_sound.py:51
+msgid "Adds new text tags that allow for the textbox sound to be changed. [TS:X:Y] will use the Xth sound effect ID in textboxes with a volume of Y. [TR] will revert the sound and volume to their default states, sound effect 16133 and volume 256."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:55
 msgid "Then, who would you like to be?"
@@ -3280,6 +3301,10 @@ msgstr "ゲーム開始時にダンジョンに表示されるヒントメッセ
 #: skytemple-files/skytemple_files/patch/handler/disarm_one_room_mh.py:44
 msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
 msgstr "レイアウト生成の失敗などの場合に現れる大部屋モンスターハウスを無効化します。これらのフロアは大部屋のままですが、モンスターハウスではなくなります。"
+
+#: skytemple-files/skytemple_files/patch/handler/display_script_var.py:49
+msgid "Displays a script variable in a string with the text tag [var:x:y], where \"x\" is the variable ID and \"y\" is the index!"
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:50
 msgid "Implements dungeon interruptions. "
@@ -3431,6 +3456,10 @@ msgstr "オブジェクトテーブルを ROM 内の別のファイルに抽出�
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:50
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
 msgstr "'CompleteTeamControl' パッチ使用時に推奨。パートナー操作時、正しく罠が発動するようにします。これはゲームバランスを改善するためのものですが「おとしあな」の罠を踏んでしまうとそのまま倒れてしまうため、これを使用するMODには推奨されません。"
+
+#: skytemple-files/skytemple_files/patch/handler/pitfall_trap_tweak.py:49
+msgid "Makes Pitfall Traps send the leader back by one floor in ascending dungeons. If the leader activates a Pitfall Trap on 1F, they will restart 1F with a different seed."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/pkmn_ground_anim.py:62
 msgid "Changes implementation of idle animation to an editable table."
