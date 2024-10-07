@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-07 21:53\n"
+"PO-Revision-Date: 2024-10-07 23:03\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3267,7 +3267,7 @@ msgstr "Обеспечивает поддержку редактирования
 
 #: skytemple-files/skytemple_files/patch/handler/change_text_sound.py:51
 msgid "Adds new text tags that allow for the textbox sound to be changed. [TS:X:Y] will use the Xth sound effect ID in textboxes with a volume of Y. [TR] will revert the sound and volume to their default states, sound effect 16133 and volume 256."
-msgstr ""
+msgstr "Добавляет новые текстовые теги, позволяющие изменять звук текстового поля. [TS:X:Y] будет использовать звуковой эффект X в текстовых полях с громкостью Y. [TR] вернет звук и громкость к значениям по умолчанию (звуковой эффект 16133 и громкость 256)."
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:55
 msgid "Then, who would you like to be?"
@@ -3303,7 +3303,7 @@ msgstr "Обезвреживает этажи, содержащие только
 
 #: skytemple-files/skytemple_files/patch/handler/display_script_var.py:49
 msgid "Displays a script variable in a string with the text tag [var:x:y], where \"x\" is the variable ID and \"y\" is the index!"
-msgstr ""
+msgstr "Отображает переменную в строке с текстовым тегом [var:x:y], где \"x\" - ID переменной, а \"y\" - индекс!"
 
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:50
 msgid "Implements dungeon interruptions. "
@@ -3455,7 +3455,7 @@ msgstr "Рекомендуется для CTC. Без этого патча на
 
 #: skytemple-files/skytemple_files/patch/handler/pitfall_trap_tweak.py:49
 msgid "Makes Pitfall Traps send the leader back by one floor in ascending dungeons. If the leader activates a Pitfall Trap on 1F, they will restart 1F with a different seed."
-msgstr ""
+msgstr "Заставляет ямы-ловушки отбрасывать лидера на один этаж назад в восходящих подземельях. Если лидер активирует ловушку на 1 этаже, он вернется на 1 этаж с другим зерном генерации."
 
 #: skytemple-files/skytemple_files/patch/handler/pkmn_ground_anim.py:62
 msgid "Changes implementation of idle animation to an editable table."
