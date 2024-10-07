@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-07 19:15\n"
+"PO-Revision-Date: 2024-10-07 21:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3184,7 +3184,7 @@ msgstr "\n\n"
 
 #: skytemple-files/skytemple_files/patch/handler/add_key_check.py:48
 msgid "Prevents Keys from being used on party members that are not below a Key Door!"
-msgstr ""
+msgstr "Не даёт использовать Ключи членам команды, не находящимся под дверью с замком!"
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
@@ -3225,11 +3225,11 @@ msgstr "Добавляет дополнительное меню при оцен
 
 #: skytemple-files/skytemple_files/patch/handler/better_enemy_evolution.py:49
 msgid "Allows changing how enemy evolution works. In particular, it allows you to choose if the evolved enemy will get the stats and/or moves from its new species, add extra stats after evolving, heal the enemy after evolving or choosing if the evolution will take place even if the target is revived."
-msgstr ""
+msgstr "Позволяет менять то, как работает эволюция врага. В частности, это позволит вам выбрать, должен ли эволюционировавший враг получить статистики и/или приёмы своей новой формы, а также позволит повысить статистики после эволюции, вылечить врага при эволюции и выбрать, должен ли враг эволюционировать, даже если цель была воскрешена."
 
 #: skytemple-files/skytemple_files/patch/handler/bold_text.py:48
 msgid "Adds new text tags that allow for bold text in strings. Encase the desired text with [BS] and [BR]."
-msgstr ""
+msgstr "Добавляет новые текстовые теги, позволяющие сделать текст жирным. Заключите необходимый текст в [BS] и [BR]."
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:118
 msgid "Change the evolution system.\n"
@@ -3258,7 +3258,8 @@ msgstr "Изменяет и добавляет некоторые свойств
 #: skytemple-files/skytemple_files/patch/handler/change_portrait.py:49
 msgid "Implements the text tag [FACE:X], which sets the current portrait to use the Xth portrait emotion (e.g. 0 = FACE_NORMAL).\n"
 "This allows for changing portrait emotions during dialogue!"
-msgstr ""
+msgstr "Добавляет текстовый тег [FACE:X], меняющий текущий портрет так, чтобы он отображал эмоцию X (например, 0 = FACE_NORMAL). \n"
+"Это позволяет менять портреты во время диалога!"
 
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:48
 msgid "Provides support for editing textbox background color."
