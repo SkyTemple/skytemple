@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-10 08:17\n"
+"PO-Revision-Date: 2024-10-10 10:01\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -2358,91 +2358,91 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:159
 msgid "Mud Trap"
-msgstr ""
+msgstr "진흙 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
 msgid "Sticky Trap"
-msgstr ""
+msgstr "끈적끈적 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:161
 msgid "Grimy Trap"
-msgstr ""
+msgstr "질퍽 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:162
 msgid "Summon Trap"
-msgstr ""
+msgstr "불러내기 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:163
 msgid "Pitfall Trap"
-msgstr ""
+msgstr "빠뜨리기 구멍"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:164
 msgid "Warp Trap"
-msgstr ""
+msgstr "워프 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:165
 msgid "Gust Trap"
-msgstr ""
+msgstr "돌풍 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:166
 msgid "Spin Trap"
-msgstr ""
+msgstr "빙글빙글 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:167
 msgid "Slumber Trap"
-msgstr ""
+msgstr "잠들기 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:168
 msgid "Slow Trap"
-msgstr ""
+msgstr "야돈 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:169
 msgid "Seal Trap"
-msgstr ""
+msgstr "봉인 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:170
 msgid "Poison Trap"
-msgstr ""
+msgstr "독침 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:171
 msgid "Selfdestruct Trap"
-msgstr ""
+msgstr "자폭 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:172
 msgid "Explosion Trap"
-msgstr ""
+msgstr "폭파 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:173
 msgid "Pp Zero Trap"
-msgstr ""
+msgstr "기술줄임 함정"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:174
 msgid "Chestnut Trap"
-msgstr ""
+msgstr "밤송이 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:175
 msgid "Wonder Tile"
-msgstr ""
+msgstr "이상한 마루"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:176
 msgid "Pokemon Trap"
-msgstr ""
+msgstr "포켓몬 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:177
 msgid "Spiked Tile"
-msgstr ""
+msgstr "압정"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:178
 msgid "Stealth Rock"
-msgstr ""
+msgstr "스텔스록"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:179
 msgid "Toxic Spikes"
-msgstr ""
+msgstr "독압정"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:180
 msgid "Trip Trap"
-msgstr ""
+msgstr "데굴데굴 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:181
 msgid "Random Trap"
@@ -2450,7 +2450,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:182
 msgid "Grudge Trap"
-msgstr ""
+msgstr "원념 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "Invalid Floor List"
@@ -3157,7 +3157,8 @@ msgstr "기타"
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
 "Extracts both files on applying the patch."
-msgstr ""
+msgstr "별도의 파일에서 액터와 레벨 목록을 로드하도록 게임에 지시합니다.\n"
+"패치 적용 시 두 파일을 모두 추출합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:98
 msgid "This patch can not be re-applied."
@@ -3166,13 +3167,15 @@ msgstr "이 패치는 다시 적용할 수 없습니다."
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:104
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:112
 msgid "The source data specification was not found in the configuration."
-msgstr ""
+msgstr "설정에서 소스 데이터 사양을 찾을 수 없습니다."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:127
 msgid "\n\n"
 "The list was extracted anyway.\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
-msgstr ""
+msgstr "\n\n"
+"리스트 추출은 되었습니다.\n"
+"추출된 리스트는 SkyTemple을 통해서 수정 할 수 있지만, 정상적으로 패치를 적용하기 전에는 게임에서 사용되지 않을 것입니다."
 
 #: skytemple-files/skytemple_files/patch/handler/add_key_check.py:48
 msgid "Prevents Keys from being used on party members that are not below a Key Door!"
@@ -3180,7 +3183,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
-msgstr "타입 상성표에 타입을 추가합니다. 기존 상성표를 6세대 이후의 상성표로 변경하며, 테이블의 마지막에 페어리 타입을 츄가합니다."
+msgstr "타입 상성표에 타입을 추가합니다. 기존 상성표를 6세대 이후의 상성표로 변경하며, 테이블의 마지막에 페어리 타입을 추가합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/allow_unrecruitable_mons.py:48
 msgid "Allows recruiting the other Deoxys forms and the regis inside dungeons."
@@ -3211,7 +3214,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:75
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
-msgstr ""
+msgstr "상자 감정 메뉴에 모든 상자를 한 번에 감정할 수 있는 메뉴를 추가합니다. "
 
 #: skytemple-files/skytemple_files/patch/handler/better_enemy_evolution.py:49
 msgid "Allows changing how enemy evolution works. In particular, it allows you to choose if the evolved enemy will get the stats and/or moves from its new species, add extra stats after evolving, heal the enemy after evolving or choosing if the evolution will take place even if the target is revived."
@@ -3225,7 +3228,9 @@ msgstr ""
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
 "This supposedly removes most of the particular cases the game handles for evolutions. "
-msgstr ""
+msgstr "진화 시스템을 변경합니다.\n"
+"적용 시, 모든 포켓몬은 진화 전과 후에 대한 두 개의 리스트를 가지며, 포켓몬이 진화할 때 다른 능력치 보너스를 받게 됩니다.\n"
+"패치를 적용하면 게임에서 진화를 처리하는 대부분의 특수한 케이스가 사라질 것입니다. 아마도요. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:209
 #, python-brace-format
@@ -3351,7 +3356,7 @@ msgstr "얼루기의 드링크 스탠드 아이템 리스트를 추출합니다.
 
 #: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:177
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
-msgstr ""
+msgstr "던전 테이블 내의 층별 랭크, 의뢰 금지 층, 사용 가능 아이템을 추출하여 파일에 넣습니다. 롬 파일 시스템에서 이 파일들을 읽어들일 수 있도록 지원합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:77
 msgid "Extracts item effects code and put it in files."
@@ -3363,15 +3368,15 @@ msgstr "미션 보상/보물상자 내용물와 캘리몬 상점 아이템에 �
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:139
 msgid "Don't have enough space to put filenames! "
-msgstr ""
+msgstr "파일명을 넣기애 공간이 충분하지 않습니다! "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:80
 msgid "Extracts move effects code and put it in files."
-msgstr ""
+msgstr "기술 효과 코드를 추출하여 파일에 넣습니다."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_sp_code.py:72
 msgid "Extracts special processes code and put it in files."
-msgstr ""
+msgstr "특수 프로세스 코드를 추출하여 파일에 넣습니다."
 
 #: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:113
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
@@ -3391,15 +3396,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:45
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr ""
+msgstr "이름이 10자인 포켓몬을 진화시키려 할 때 게임이 멈추는 버그를 수정합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:47
 msgid "If the game runs out of memory trying to load a sprite, a default one will be used instead, preventing the crash."
-msgstr ""
+msgstr "게임이 스프라이트를 로드할 때 메모리가 부족하면, 기본 스프라이트를 대신 사용하여 게임이 뻗지 않도록 합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:49
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator. Warning: Causes saving to fail on the MelonDS emulator instead."
-msgstr ""
+msgstr "No$GBA 에뮬레이터에서 저장이 실패하는 문제를 수정합니다. 주의: 대신 MelonDS 에뮬레이터에서 저장이 실패합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:176
 msgid "Implements move growth (PoC/Unfinished). \n"
@@ -3420,11 +3425,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/no_weather_stop.py:50
 msgid "Changes weather damage messages so they don't make the player stop running."
-msgstr ""
+msgstr "날씨에 의한 피해 메시지에 의해 플레이어가 달리기를 멈추지 않도록 변경합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/obj_table.py:68
 msgid "Extracts the object table to a separate file in the ROM."
-msgstr ""
+msgstr "오브젝트 테이블을 ROM 내 별도 파일로 추출합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:50
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -3445,7 +3450,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/handler/push_allies.py:55
 msgid "Implements pushing allies in dungeons.\n"
 "Uses the same command style as PSMD"
-msgstr ""
+msgstr "던전에서 동료를 밀 수 있는 기능을 추가합니다.\n"
+"초불던과 동일한 조작을 사용합니다."
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:50
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
