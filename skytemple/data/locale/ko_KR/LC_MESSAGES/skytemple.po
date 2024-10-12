@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-12 14:00\n"
+"PO-Revision-Date: 2024-10-12 14:56\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -2011,28 +2011,28 @@ msgstr "특수 / 유효하지 않음"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:98
 msgid "In front"
-msgstr ""
+msgstr "정면"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:99
 msgid "In front + adjacent (like Wide Slash)"
-msgstr ""
+msgstr "정면 3칸 (수평베기)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:100
 msgid "8 tiles around user"
-msgstr ""
+msgstr "주변 8칸"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:101
 #: skytemple/skytemple/data/widget/dungeon/fixed_rooms.ui:690
 msgid "Room"
-msgstr ""
+msgstr "방 전체"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:104
 msgid "Two tiles away"
-msgstr ""
+msgstr "2타일 앞"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:106
 msgid "Straight line"
-msgstr ""
+msgstr "직선상"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:107
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:1154
@@ -2040,23 +2040,23 @@ msgstr ""
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:278
 #: skytemple/skytemple/module/dungeon/module.py:885
 msgid "Floor"
-msgstr ""
+msgstr "층 전체"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:109
 msgid "In front; cuts corners"
-msgstr ""
+msgstr "정면; 모퉁이 관통"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:110
 msgid "Two tiles away; cuts corners"
-msgstr ""
+msgstr "2타일 앞; 모퉁이 관통"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:141
 msgid "No condition"
-msgstr ""
+msgstr "조건 없음"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:142
 msgid "Based on AI Condition 1 Chance"
-msgstr ""
+msgstr "AI 조건 1 확률에 기반"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:143
 msgid "Current HP <= 25%"
@@ -2064,20 +2064,20 @@ msgstr "현재 HP가 25% 이하"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:144
 msgid "Has at least one negative status condition"
-msgstr ""
+msgstr "한 개 이상의 부정적인 상태이상에 걸림"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:145
 msgid "Is asleep, in a nightmare or napping"
-msgstr ""
+msgstr "수면, 악몽, 잠자는 상태 중 하나인 경우"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:146
 msgid "Is a ghost-type Pokémon and does not have the exposed status"
-msgstr ""
+msgstr "고스트타입 포켓몬이며, 꿰뚫어보기를 당한 상태가 아니어야 함"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:149
 #, python-format
 msgid "Current HP <= 25% or has at least one negative status condition"
-msgstr ""
+msgstr "현재 HP가 25% 이하이거나 한 개 이상의 부정적인 상태이상에 걸림"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:55
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:235
@@ -2249,27 +2249,27 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:55
 msgid "Single Monster House"
-msgstr ""
+msgstr "큰 방 몬스터 소굴"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:56
 msgid "Ring"
-msgstr ""
+msgstr "고리 모양 (복도)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:59
 msgid "Crossroads"
-msgstr ""
+msgstr "교차형"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:63
 msgid "Two Rooms, One Monster House"
-msgstr ""
+msgstr "두 개의 방 (하나는 반드시 몬스터 소굴)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:65
 msgid "Line"
-msgstr ""
+msgstr "직선형"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:66
 msgid "Cross"
-msgstr ""
+msgstr "십자 모양"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:67
 msgid "Small Medium"
@@ -2277,11 +2277,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:68
 msgid "Beetle"
-msgstr ""
+msgstr "벌레 모양"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:71
 msgid "Outer Rooms"
-msgstr ""
+msgstr "고리 모양 (방)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:74
 msgid "Medium Large (12)"
@@ -2302,59 +2302,59 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:100
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:369
 msgid "Clear"
-msgstr ""
+msgstr "맑음"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:101
 msgid "Sunny"
-msgstr ""
+msgstr "강한 햇빛"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:102
 msgid "Sandstorm"
-msgstr ""
+msgstr "모래바람"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:103
 msgid "Cloudy"
-msgstr ""
+msgstr "구름"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:104
 msgid "Rainy"
-msgstr ""
+msgstr "비"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:105
 msgid "Hail"
-msgstr ""
+msgstr "싸라기눈"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:106
 msgid "Fog"
-msgstr ""
+msgstr "안개"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:107
 msgid "Snow"
-msgstr ""
+msgstr "눈"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:108
 msgid "Random"
-msgstr ""
+msgstr "무작위"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:131
 msgid "No darkness"
-msgstr ""
+msgstr "어둡지 않음"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:132
 msgid "1-tile vision (Heavy darkness)"
-msgstr ""
+msgstr "1타일 시야 (짙은 어둠)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:133
 msgid "2-tile vision (Light darkness)"
-msgstr ""
+msgstr "2타일 시야 (약간 어두움)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:134
 msgid "3-tile vision"
-msgstr ""
+msgstr "3타일 시야"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:135
 msgid "4-tile vision"
-msgstr ""
+msgstr "4타일 시야"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:159
 msgid "Mud Trap"
