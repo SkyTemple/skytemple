@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-12 14:56\n"
+"PO-Revision-Date: 2024-10-12 15:54\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -2454,196 +2454,197 @@ msgstr "원념 스위치"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "Invalid Floor List"
-msgstr ""
+msgstr "유효하지 않은 층 목록"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:43
 msgid "References a dungeon floor list that doesn't exist."
-msgstr ""
+msgstr "존재하지 않는 던전 층 목록을 참조합니다."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:49
 msgid "Invalid Floor"
-msgstr ""
+msgstr "유효하지 않은 층"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:52
 msgid "References floor that is out of bounds in the floor list for this group."
-msgstr ""
+msgstr "이 던전 그룹의 층 목록 범위를 벗어난 층을 참조합니다."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:68
 msgid "Re-uses Floor"
-msgstr ""
+msgstr "층의 재사용"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:76
 #, python-brace-format
 msgid "Re-uses floors that are already used by {name}."
-msgstr ""
+msgstr "{name} 이 사용하는 층을 재사용합니다."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:107
 msgid "Unused Floors"
-msgstr ""
+msgstr "미사용 층"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:112
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
-msgstr ""
+msgstr "층 목록에 어떠한 던전에도 할당되지 않은 여분의 층이 {len(self.floors_in_mappa_not_referenced)} 개 있습니다."
 
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:500
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
-msgstr ""
+msgstr "맵 배경을 불러올 수 없습니다: 두 이미지 모두 너비가 현재 맵 너비 {expected_width} 픽셀과 같아야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:511
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
-msgstr ""
+msgstr "맵 배경을 불러올 수 없습니다: 두 이미지 모두 높이가 현재 맵 높이 {expected_height} 픽셀과 같아야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:207
 #: skytemple-rust/src/st_bpa.rs:236
 msgid "The dimensions of all images must be the same."
-msgstr ""
+msgstr "모든 이미지의 크기는 동일해야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:77
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "PIL 이미지를 CHR로 변환할 수 없습니다. 팔레트를 사용하는 인덱스된 이미지여야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:80
 #, python-brace-format
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
-msgstr ""
+msgstr "PIL 이미지를 CHR로 변환할 수 없습니다. 너비와 높이 모두 {CHR_TILE_WIDTH} 의 배수여야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:115
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
-msgstr "맵 배경을 불러올 수 없습니다: 이미지의 너비가 {expected_width}px여야 합니다."
+msgstr "맵 배경을 불러올 수 없습니다: 이미지의 너비가 {expected_width} 픽셀이어야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/dbg/_model.py:124
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
-msgstr "맵 배경을 불러올 수 없습니다: 이미지의 높이가 {expected_height}px여야 합니다."
+msgstr "맵 배경을 불러올 수 없습니다: 이미지의 높이가 {expected_height} 픽셀이어야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:124
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
-msgstr ""
+msgstr "가져올 이미지는 첫 12개의 팔레트만 사용할 수 있습니다. 팔레트 {tm.pal_idx} 사용을 시도했습니다."
 
 #: skytemple-files/skytemple_files/graphics/dpc/_model.py:161
 #: skytemple-rust/src/st_dpc.rs:221
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr ""
+msgstr "던전 배경이나 타일맵은 400개 이상의 청크를 가질 수 없습니다."
 
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
 #: skytemple-rust/src/st_dpla.rs:130
 msgid "This palette has no animation."
-msgstr ""
+msgstr "이 팔레트에는 애니메이션이 없습니다."
 
 #: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:96
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/model.py:98
 #: skytemple-files/skytemple_files/graphics/fonts/font_sir0/model.py:104
 msgid "This must be a color indexed image!"
-msgstr ""
+msgstr "컬러 인덱스 이미지여야 합니다!"
 
 #: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:260
 #, python-brace-format
 msgid "Font parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "폰트 파싱: 예기치 않은 {child.tag}"
 
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/writer.py:45
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is defined multiple times in a font file!"
-msgstr ""
+msgstr "표 {e.table} 의 문자 {e.char} 이(가) 폰트 파일에 여러 번 정의되어 있습니다!"
 
 #: skytemple-files/skytemple_files/graphics/fonts/font_sir0/writer.py:58
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
-msgstr ""
+msgstr "표 {e.table} 의 문자 {e.char} 이(가) 폰트 파일에 여러 번 정의되어 있습니다!"
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:293
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
-msgstr ""
+msgstr "{old_index},{old_subindex}: {ex} 에 KAO를 로드할 수 없습니다."
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:352
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
-msgstr ""
+msgstr "PIL 이미지를 KAO로 변환할 수 없습니다. 이미지 크지는 {img_dim}x{img_dim} 픽셀이어야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:459
 msgid "This portrait does not compress well, the result size is greater than {limit} bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.If this still doesn't work, try the 'ExpandPortraitStructs' instead."
-msgstr ""
+msgstr "이 초상화는 잘 압축되지 않았으며, 결과 크기가 {limit} 바이트보다 큽니다. (총 {len(new_img_compressed)} 바이트)\n"
+"'ProvideATUPXSupport' ASM 패치를 아직 적용하지 않았다면, 최적화된 압축 알고리즘 설치를 위해 이 패치를 적용해 보십시오. 그래도 문제가 해결되지 않으면 'ExpandPortraitStructs' 패치를 적용해 보십시오."
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:110
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
-msgstr ""
+msgstr "초상화 크기가 {img.size}로 유효하지 않습니다. {PORTRAIT_SIZE}x{PORTRAIT_SIZE}로 나눌 수 없습니다."
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:116
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
-msgstr ""
+msgstr "초상화 크기가 {img.size}로 유효하지 않습니다. 최대값 {max_size}를 초과합니다."
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:152
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
-msgstr ""
+msgstr "다음 위치에 반투명 픽셀이 있습니다: {rogue_pixels}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:154
 #, python-brace-format
 msgid "The following emotions have transparent pixels: {rogue_tiles}"
-msgstr ""
+msgstr "다음 감정표현이 투명한 픽셀을 가지고 있습니다: {rogue_tiles}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:173
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
-msgstr ""
+msgstr "파일에는 원본과 뒤집힌 버전의 감정표현이 있어야 합니다: {str(flipped_tiles)}"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:40
 msgid "Palette Only"
-msgstr ""
+msgstr "팔레트만"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:41
 msgid "2 bits per pixel (4 colors)"
-msgstr ""
+msgstr "픽셀 당 2비트 (4색)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:42
 msgid "4 bits per pixel (16 colors)"
-msgstr ""
+msgstr "픽셀 당 4비트 (16색)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:43
 msgid "8 bits per pixel (256 colors)"
-msgstr ""
+msgstr "픽셀 당 8비트 (256색)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:209
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "PIL 이미지를 WTE로 변환할 수 없습니다. 팔레트를 사용하는 인덱스된 이미지여야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:215
 msgid "This image is too big to fit into a WTE file."
-msgstr ""
+msgstr "이 이미지는 너무 커서 WTE 파일에 담을 수 없습니다."
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:43
 msgid "Semi-Opaque"
-msgstr ""
+msgstr "반투명"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:44
 msgid "Transparent"
-msgstr ""
+msgstr "투명"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:45
 msgid "Opaque"
-msgstr ""
+msgstr "불투명"
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:191
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:214
 msgid "Tile and masks list must have exactly 3 items"
-msgstr ""
+msgstr "타일 및 마스크 목록에는 정확히 3개의 항목이 있어야 합니다."
 
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:197
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:220
 msgid "Can not convert PIL image to ZMAPPAT: Must be indexed images (=using a palette)"
-msgstr ""
+msgstr "PIL 이미지를 ZMAPPAT로 변환할 수 없습니다. 팔레트를 사용하는 인덱스된 이미지여야 합니다."
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:59
 #, python-brace-format
 msgid "The image must have dimensions {IMG_WIDTH}x{IMG_HEIGHT}."
-msgstr ""
+msgstr "이미지 크기는 {IMG_WIDTH}x{IMG_HEIGHT}여야 합니다."
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:74
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.address})."
