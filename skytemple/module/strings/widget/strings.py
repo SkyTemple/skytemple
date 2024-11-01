@@ -168,7 +168,7 @@ class StStringsStringsPage(Gtk.Box):
                     strings = []
                     for row in csv_reader:
                         if len(row) > 0:
-                            strings.append(row[0])
+                            strings.append(row[0].replace("\\n", "\n"))
                     if len(self._str.strings) != len(strings):
                         raise ValueError(
                             f(
