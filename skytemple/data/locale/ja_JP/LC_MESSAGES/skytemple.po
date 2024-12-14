@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-08-04 10:11+0000\n"
-"PO-Revision-Date: 2024-08-04 11:04\n"
+"POT-Creation-Date: 2024-12-14 01:18+0000\n"
+"PO-Revision-Date: 2024-12-14 01:57\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -621,7 +621,7 @@ msgstr "ポートレート名"
 
 #: /dev/fd/63:151 /dev/fd/63:370
 msgid "Debug Strings (Dungeon 2)"
-msgstr ""
+msgstr "デバッグ文字列 (ダンジョン2)"
 
 #: /dev/fd/63:152 /dev/fd/63:371
 msgid "Debug Strings (PKMN Storage)"
@@ -1425,7 +1425,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/sprite_util.py:98
 #: skytemple/skytemple/module/monster/widget/monster.py:865
 msgid "Body Size"
-msgstr ""
+msgstr "からだのおおきさ"
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:105
 #: skytemple/skytemple/module/monster/widget/monster.py:895
@@ -2536,7 +2536,7 @@ msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr "ダンジョンの背景やタイルマップには、400を超えるチャンクを含めることはできません。"
 
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
-#: skytemple-rust/src/st_dpla.rs:130
+#: skytemple-rust/src/st_dpla.rs:131
 msgid "This palette has no animation."
 msgstr "このパレットにはアニメーションがありません。"
 
@@ -2561,21 +2561,20 @@ msgstr "テーブル {e.table} の文字 {e.char} がフォントファイル内
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr "テーブル {e.table} の文字 {e.char} がフォントファイル内で複数回定義されています。"
 
-#: skytemple-files/skytemple_files/graphics/kao/_model.py:274
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:293
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr "{old_index},{old_subindex}: {ex} で KAO をロードできませんでした"
 
-#: skytemple-files/skytemple_files/graphics/kao/_model.py:333
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:352
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "PILイメージをKaoファイルに変換できません。画像のサイズは {img_dim}x{img_dim}pxである必要があります。"
 
-#: skytemple-files/skytemple_files/graphics/kao/_model.py:439
-msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
-"If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr "この顔グラフィックは圧縮されておらず、結果のサイズが 800 バイト ({len(new_img_compressed)} バイト合計) を超えています。\n"
-"最適化された圧縮アルゴリズム「ProvideATUPXSupport」を適用することで、より適切に圧縮できる可能性があります。"
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:459
+msgid "This portrait does not compress well, the result size is greater than {limit} bytes ({len(new_img_compressed)} bytes total).\n"
+"If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.If this still doesn't work, try the 'ExpandPortraitStructs' instead."
+msgstr ""
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:110
 #, python-brace-format
@@ -3184,6 +3183,10 @@ msgstr "\n\n"
 "リストを抽出しました。\n"
 "SkyTempleで編集することができますが、パッチを正しく適用するまでゲーム上では使用されません。"
 
+#: skytemple-files/skytemple_files/patch/handler/add_key_check.py:48
+msgid "Prevents Keys from being used on party members that are not below a Key Door!"
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:1386
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
 msgstr "タイプ相性テーブルにタイプを追加します。これにより、古いタイプ相性テーブルが第6世代以降のテーブルに置き換わり、フェアリータイプが追加されます。"
@@ -3223,6 +3226,14 @@ msgstr "[me_play:1][string0]だ。"
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
 msgstr "「ネイティオかんていじょ」にて、一度にすべての宝箱を鑑定できる機能を追加します。"
 
+#: skytemple-files/skytemple_files/patch/handler/better_enemy_evolution.py:49
+msgid "Allows changing how enemy evolution works. In particular, it allows you to choose if the evolved enemy will get the stats and/or moves from its new species, add extra stats after evolving, heal the enemy after evolving or choosing if the evolution will take place even if the target is revived."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/bold_text.py:48
+msgid "Adds new text tags that allow for bold text in strings. Encase the desired text with [BS] and [BR]."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:118
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
@@ -3244,9 +3255,18 @@ msgid "Changes and adds some properties for fixed floors.\n"
 "Removes restrictions. "
 msgstr "固定フロアのいくつかのプロパティを変更および追加し、制限を解除します。 "
 
+#: skytemple-files/skytemple_files/patch/handler/change_portrait.py:49
+msgid "Implements the text tag [FACE:X], which sets the current portrait to use the Xth portrait emotion (e.g. 0 = FACE_NORMAL).\n"
+"This allows for changing portrait emotions during dialogue!"
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:48
 msgid "Provides support for editing textbox background color."
 msgstr "テキストボックスの背景色の編集に対応させます。"
+
+#: skytemple-files/skytemple_files/patch/handler/change_text_sound.py:51
+msgid "Adds new text tags that allow for the textbox sound to be changed. [TS:X:Y] will use the Xth sound effect ID in textboxes with a volume of Y. [TR] will revert the sound and volume to their default states, sound effect 16133 and volume 256."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:55
 msgid "Then, who would you like to be?"
@@ -3282,6 +3302,10 @@ msgstr "ゲーム開始時にダンジョンに表示されるヒントメッセ
 msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
 msgstr "レイアウト生成の失敗などの場合に現れる大部屋モンスターハウスを無効化します。これらのフロアは大部屋のままですが、モンスターハウスではなくなります。"
 
+#: skytemple-files/skytemple_files/patch/handler/display_script_var.py:49
+msgid "Displays a script variable in a string with the text tag [var:x:y], where \"x\" is the variable ID and \"y\" is the index!"
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:50
 msgid "Implements dungeon interruptions. "
 msgstr "ダンジョンの中断を実装します。 "
@@ -3310,6 +3334,10 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 msgstr "ポケモンエントリを 2048 に拡張し、すべてのエントリを独立させます。\n"
 "ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile, SpriteSizeInMonsterData パッチが必要です。\n"
 "このパッチの適用前にダンジョンエラーを修正し、ROM のバックアップを行うことを強く推奨します。"
+
+#: skytemple-files/skytemple_files/patch/handler/expand_portrait.py:48
+msgid "Expands portraits structure by 8 bytes, which is enough to cover all cases."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:49
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
@@ -3376,6 +3404,10 @@ msgstr "フェアリータイプの専用グミを追加します。未使用道
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/fast_chimecho.py:47
+msgid "Shorten Chimecho Team Assembly menu interactions. Adding, removing and making leader are now fast interactions that immediately go back to the team member selection menu."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:45
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr "名前が10文字のポケモンを進化させようとするとゲームがフリーズするバグを修正します。"
@@ -3424,6 +3456,10 @@ msgstr "オブジェクトテーブルを ROM 内の別のファイルに抽出�
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:50
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
 msgstr "'CompleteTeamControl' パッチ使用時に推奨。パートナー操作時、正しく罠が発動するようにします。これはゲームバランスを改善するためのものですが「おとしあな」の罠を踏んでしまうとそのまま倒れてしまうため、これを使用するMODには推奨されません。"
+
+#: skytemple-files/skytemple_files/patch/handler/pitfall_trap_tweak.py:49
+msgid "Makes Pitfall Traps send the leader back by one floor in ascending dungeons. If the leader activates a Pitfall Trap on 1F, they will restart 1F with a different seed."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/pkmn_ground_anim.py:62
 msgid "Changes implementation of idle animation to an editable table."
@@ -3478,76 +3514,81 @@ msgid "Provide support for ATUPX containers, which use a different algorithm tha
 msgstr "PX 圧縮とは異なるアルゴリズムを使用する ATUPX コンテナのサポートを提供します。\n"
 "これを実装するのに必要なスペースを解放するため、パッチ ActorAndLevelLoader を適用する必要があります。"
 
+#: skytemple-files/skytemple_files/patch/handler/team_stats_pain.py:51
+msgid "If available, change a team member's portrait in the Team Stats menu to pain when in critical condition."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr "ダンジョンの未使用の確率を修正します。これにより、フロアに壁の迷路部屋が出現する確率が決まるようになります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:234
-#: skytemple-files/skytemple_files/patch/patches.py:244
+#: skytemple-files/skytemple_files/patch/patches.py:240
+#: skytemple-files/skytemple_files/patch/patches.py:250
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "パッチ '{name}' が見つかりません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:251
+#: skytemple-files/skytemple_files/patch/patches.py:257
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "'{name}' を適用する前に、パッチ '{patch_name}' を適用する必要があります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:257
+#: skytemple-files/skytemple_files/patch/patches.py:263
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr ""
+msgstr "'{name}' を適用する前に、パッチ '{patch_name}' を適用する必要があります。\n"
+"このパッチは見つかりませんでした。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:267
+#: skytemple-files/skytemple_files/patch/patches.py:273
 msgid "No configuration was given."
 msgstr "設定は行われませんでした。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:270
+#: skytemple-files/skytemple_files/patch/patches.py:276
 msgid "Missing configuration value."
 msgstr "設定値がありません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:275
 #: skytemple-files/skytemple_files/patch/patches.py:281
 #: skytemple-files/skytemple_files/patch/patches.py:287
-#: skytemple-files/skytemple_files/patch/patches.py:295
-#: skytemple-files/skytemple_files/patch/patches.py:309
+#: skytemple-files/skytemple_files/patch/patches.py:293
+#: skytemple-files/skytemple_files/patch/patches.py:301
+#: skytemple-files/skytemple_files/patch/patches.py:315
 msgid "Invalid configuration value."
 msgstr "無効な設定値です。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:283
+#: skytemple-files/skytemple_files/patch/patches.py:289
 msgid "Must be >= {}."
 msgstr "値は {} 以上である必要があります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:289
+#: skytemple-files/skytemple_files/patch/patches.py:295
 msgid "Must be <= {}."
 msgstr "値は {} 以下である必要があります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:396
+#: skytemple-files/skytemple_files/patch/patches.py:402
 msgid "config.xml missing in patch package."
 msgstr "パッチパッケージに config.xml が見つかりません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:398
+#: skytemple-files/skytemple_files/patch/patches.py:404
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "パッチパッケージの読み込み中に config.xml の構文エラーが発生しました。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:408
+#: skytemple-files/skytemple_files/patch/patches.py:414
 msgid "patch.py missing in patch package."
 msgstr "パッチパッケージに patch.py が見つかりません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:410
+#: skytemple-files/skytemple_files/patch/patches.py:416
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "パッチパッケージの patch.py に構文エラーがあります。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:415
+#: skytemple-files/skytemple_files/patch/patches.py:421
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "パッチパッケージの patch.py に 'PatchHandler' が含まれていません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:421
+#: skytemple-files/skytemple_files/patch/patches.py:427
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "パッチパッケージの config.xml にハンドラーのパッチ名のエントリが含まれていません。"
 
-#: skytemple-files/skytemple_files/patch/patches.py:428
+#: skytemple-files/skytemple_files/patch/patches.py:434
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "設定にハンドラ '{handler.name}' のパッチが見つかりません。"
@@ -3646,7 +3687,7 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "インポートした画像が複雑すぎます。ユニークタイルが多すぎます ({}、最大 1024) 。\n"
 "ユニークタイルを少なくしてください。ユニークタイルとは、画像の 8 x 8 のセクションで、画像内の他の場所に存在しないタイルのことです (反転したタイルや、別のサブパレットを使ったタイルを含む) 。"
 
-#: skytemple-rust/src/python_image.rs:54
+#: skytemple-rust/src/python_image.rs:53
 msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
 msgstr "入力された画像はインデックス付き画像ではありません (パレットはありません)。インデックス付きの画像 (最大 {} 色) に変換して、もう一度試してください。"
 
@@ -3659,25 +3700,25 @@ msgid "Error reading the filesystem from ROM: {}"
 msgstr "ROM からのファイルシステムの読み取り中にエラーが発生しました。\n"
 "{}"
 
-#: skytemple-rust/src/st_bma.rs:467
+#: skytemple-rust/src/st_bma.rs:462
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
 msgstr "マップの背景をインポートできません。\n"
 "両方の画像の幅は現在のマップの幅 ({} px) と一致する必要があります。"
 
-#: skytemple-rust/src/st_bma.rs:479
+#: skytemple-rust/src/st_bma.rs:474
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
 msgstr "マップの背景をインポートできません。\n"
 "両方の画像の高さは現在のマップの幅 ({} px) と一致する必要があります。"
 
-#: skytemple-rust/src/st_bpc.rs:541
+#: skytemple-rust/src/st_bpc.rs:548
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr "このチャンクの新しいタイルマッピングには {} タイルが含まれている必要があります。"
 
-#: skytemple-rust/src/st_dbg.rs:123
+#: skytemple-rust/src/st_dbg.rs:127
 msgid "Can not import map background: Width of image must match the expected width: {}px"
 msgstr "マップの背景をインポートできません。画像の幅は {}px である必要があります。"
 
-#: skytemple-rust/src/st_dbg.rs:129
+#: skytemple-rust/src/st_dbg.rs:133
 msgid "Can not import map background: Height of image must match the expected height: {}px"
 msgstr "マップの背景をインポートできません。画像の高さは {}px である必要があります。"
 
@@ -3685,30 +3726,30 @@ msgstr "マップの背景をインポートできません。画像の高さは
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
 msgstr "インポートする画像は最初の 12 パレットのみ使用できます。パレット {} を使用することはできません。"
 
-#: skytemple-rust/src/st_dpla.rs:111
+#: skytemple-rust/src/st_dpla.rs:112
 msgid "Palette is invalid."
 msgstr "無効なパレットです。"
 
-#: skytemple-rust/src/st_dpla.rs:116 skytemple-rust/src/st_dpla.rs:173
-#: skytemple-rust/src/st_dpla.rs:209 skytemple-rust/src/st_dpla.rs:217
+#: skytemple-rust/src/st_dpla.rs:117 skytemple-rust/src/st_dpla.rs:174
+#: skytemple-rust/src/st_dpla.rs:210 skytemple-rust/src/st_dpla.rs:218
 msgid "Palette index out of range."
 msgstr "パレットインデックスが範囲外です。"
 
-#: skytemple-rust/src/st_dpla.rs:267
+#: skytemple-rust/src/st_dpla.rs:268
 msgid "Frame durations out of range while trying to build color."
 msgstr ""
 
-#: skytemple-rust/src/st_kao.rs:100
-msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
-" If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr "この顔グラフィックは圧縮できません。結果のサイズが 800 バイト (合計 {} バイト) を超えています。\n"
-"最適化された圧縮アルゴリズム 'ProvideATUPXSupport' を適用することで、より適切に圧縮できる可能性があります。"
+#: skytemple-rust/src/st_kao.rs:137
+msgid "This portrait does not compress well, the result size is greater than {} bytes ({} bytes total).\n"
+" If you haven't done already, try applying the 'ProvideATUPXSupport' ASM patch to install an optimized compression algorithm, which might be able to better compress this image.\n"
+"If this still doesn't work, try the 'ExpandPortraitStructs' instead."
+msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:169
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:172
 msgid "BOOST"
 msgstr "ブースト"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:172
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "Debugging disabled."
 msgstr ""
 
@@ -3950,7 +3991,7 @@ msgstr "ファイルはメモリ上にロードされています。現在、エ
 "このファイルを閉じますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:337
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1659
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1660
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/widget/fixed.py:579
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:342
@@ -4157,7 +4198,7 @@ msgstr "値"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
 #: skytemple/skytemple/core/ui_utils.py:80
 msgid "Nintendo DS ROMs (*.nds)"
-msgstr ""
+msgstr "ニンテンドー DS ROM (*.nds)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:157
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
@@ -4186,7 +4227,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:338
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:344
 msgid "Emulator Error"
-msgstr ""
+msgstr "エミュレーターエラー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:343
 msgid "The emulator reported an internal error:\n\n"
@@ -4274,21 +4315,21 @@ msgid "Common"
 msgstr "共通"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:936
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1431
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1432
 #: skytemple/skytemple/module/script/module.py:251
 #: skytemple/skytemple/module/script/module.py:596
 msgid "Enter (sse)"
 msgstr "エンター (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:947
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1434
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
 #: skytemple/skytemple/module/script/module.py:268
 #: skytemple/skytemple/module/script/module.py:541
 msgid "Acting (ssa)"
 msgstr "アクション (ssa)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:957
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1438
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1439
 #: skytemple/skytemple/module/script/module.py:300
 #: skytemple/skytemple/module/script/module.py:552
 msgid "Sub (sss)"
@@ -4298,28 +4339,28 @@ msgstr "サブ (sss)"
 msgid "Save dumped block..."
 msgstr "ダンプしたブロックを保存..."
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1230
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1231
 msgid "Unable to save savestate!"
 msgstr "ステートをセーブできません！"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1266
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1267
 msgid "Unable to load savestate!"
 msgstr "ステートをロードできません！"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1379
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1380
 msgid "The game is stopped."
 msgstr "ゲームを停止しました。"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1388
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1389
 msgid "The game is paused."
 msgstr "ゲームを一時停止中。"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1493
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1494
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr "デバッガーは {ssb.file_name} で停止します。"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1655
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1656
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
@@ -4329,12 +4370,12 @@ msgstr "変数への変更が保存されていません。\n"
 "再度同じ変数を使用する場合、変数を保存して起動後に読み込む必要があります。\n\n"
 "続行しますか？"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1718
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1719
 msgid "Delete"
 msgstr "削除"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1720
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1731
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1732
 #: skytemple/skytemple/controller/main.py:961
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/widget/main.py:122
@@ -4347,7 +4388,7 @@ msgstr "削除"
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1721
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
 msgid "You will not be able to restore it."
 msgstr "復元できません。"
 
@@ -4377,7 +4418,7 @@ msgstr "ExplorerScript のソースコードの読み込み中にエラーが発
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:399
 msgid "An old version of this script is still loaded in RAM. Debugging is disabled for this file, until it is reloaded."
-msgstr ""
+msgstr "このスクリプトの古いバージョンはメモリ上に保存されています。このファイルのデバッグは再読み込みされるまで無効になります。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:646
 #, python-brace-format
@@ -5374,20 +5415,20 @@ msgstr "ROMを開く..."
 
 #: skytemple/skytemple/controller/main.py:415
 msgid "Error opening the ROM"
-msgstr ""
+msgstr "ROM 読み込みエラー"
 
 #: skytemple/skytemple/controller/main.py:437
 msgid "Error saving the ROM"
-msgstr ""
+msgstr "ROM 保存エラー"
 
 #: skytemple/skytemple/controller/main.py:602
 #: skytemple/skytemple/controller/main.py:661
 msgid "A project must be opened to use this."
-msgstr ""
+msgstr "これを使用するには、プロジェクトを開く必要があります。"
 
 #: skytemple/skytemple/controller/main.py:675
 msgid "'spritecollab' module must be installed to use this."
-msgstr ""
+msgstr "これを使用するには、'spritecollab' モジュールをインストールする必要があります。"
 
 #: skytemple/skytemple/controller/main.py:733
 #: skytemple/skytemple/controller/main.py:734
@@ -5417,7 +5458,7 @@ msgstr "{rom.filename} を保存中"
 #: skytemple/skytemple/controller/main.py:957
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
-msgstr ""
+msgstr "{rom_name} への変更を保存しますか？"
 
 #: skytemple/skytemple/controller/settings.py:35
 msgid "Detect automatically"
@@ -5563,24 +5604,24 @@ msgstr "plugins ディレクトリ({plugin_dir}) から以下のプラグイン�
 "このプラグインを信頼しますか？\n\n"
 "「はい」をクリックすると、次回以降このダイアログは再度表示されません。"
 
-#: skytemple/skytemple/core/rom_project.py:160
+#: skytemple/skytemple/core/rom_project.py:158
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
 msgstr "この ROM のバックアップファイルが見つかりました。これは SkyTemple によって保存が行われた際に ROM が破損したことを示しています。"
 
-#: skytemple/skytemple/core/rom_project.py:163
+#: skytemple/skytemple/core/rom_project.py:161
 msgid "No, load ROM as-is"
 msgstr "ROM をそのまま読み込む"
 
-#: skytemple/skytemple/core/rom_project.py:165
+#: skytemple/skytemple/core/rom_project.py:163
 msgid "Yes, load backup"
 msgstr "バックアップを読み込む"
 
-#: skytemple/skytemple/core/rom_project.py:167
-#: skytemple/skytemple/core/rom_project.py:171
+#: skytemple/skytemple/core/rom_project.py:165
+#: skytemple/skytemple/core/rom_project.py:169
 msgid "Last modified: {} - Size: {}"
 msgstr "最終更新日: {} - サイズ: {}"
 
-#: skytemple/skytemple/core/rom_project.py:178
+#: skytemple/skytemple/core/rom_project.py:176
 msgid "Do you want to restore the backup?\n"
 "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
@@ -5592,11 +5633,11 @@ msgstr "バックアップを復元しますか？\n"
 "元のROM: {}\n"
 "バックアップROM: {}"
 
-#: skytemple/skytemple/core/rom_project.py:231
+#: skytemple/skytemple/core/rom_project.py:229
 msgid "There was an error trying to read the ROM file."
 msgstr "ROM ファイルの読み込み中にエラーが発生しました。"
 
-#: skytemple/skytemple/core/rom_project.py:233
+#: skytemple/skytemple/core/rom_project.py:231
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
 msgstr "正しい ROM を選択しましたか？ROM には通常、ファイル拡張子「.nds」が付いています。"
 
@@ -8722,11 +8763,11 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:323
 msgid "Export to CSV"
-msgstr ""
+msgstr "CSV にエクスポート"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:337
 msgid "Import from CSV"
-msgstr ""
+msgstr "CSV からインポート"
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:360
 msgid "Base Stats can be edited under \"Settings\". They will be applied for level 1."
@@ -9941,7 +9982,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:1943
 #: skytemple/skytemple/data/widget/script/ssa.ui:2187
 msgid "Direction"
-msgstr ""
+msgstr "方向"
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:2023
 #: skytemple/skytemple/data/widget/script/ssa.ui:2212
@@ -10158,7 +10199,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:241
 msgid "Search:"
-msgstr ""
+msgstr "検索:"
 
 #: skytemple/skytemple/data/widget/tiled_img/chunk_editor.ui:12
 msgid "Chunk Editor"
@@ -10721,11 +10762,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:147
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:159
 msgid "Random "
-msgstr ""
+msgstr "ランダム "
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2476
 msgid "Invalid?"
-msgstr ""
+msgstr "無効?"
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2478
 #: skytemple/skytemple/module/lists/widget/dungeon_music.py:163
@@ -10949,7 +10990,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:125
 msgid "Import image..."
-msgstr ""
+msgstr "画像をインポート..."
 
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:81
 #: skytemple/skytemple/module/gfxcrunch/widget/gfxcrunch.py:91
@@ -11218,7 +11259,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:434
 msgid "Gender"
-msgstr ""
+msgstr "性別"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:632
 msgid "Please note that after editing the Player Starters, you also need to edit the result text that is shown\n"
@@ -11308,7 +11349,7 @@ msgstr "ずぶとい"
 
 #: skytemple/skytemple/module/lists/module.py:88
 msgid "Lists"
-msgstr ""
+msgstr "リスト"
 
 #: skytemple/skytemple/module/lists/module.py:89
 msgid "This section lets you edit various lists of the game."
@@ -11809,7 +11850,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/widget/w16.py:146
 #, python-brace-format
 msgid "Error for '{index}'."
-msgstr ""
+msgstr "'{index}' エラー"
 
 #: skytemple/skytemple/module/misc_graphics/widget/wte_wtu.py:152
 msgid "Filename not specified."
