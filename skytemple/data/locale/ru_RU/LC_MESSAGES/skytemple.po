@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-15 12:27\n"
+"POT-Creation-Date: 2024-12-14 01:18+0000\n"
+"PO-Revision-Date: 2024-12-14 01:57\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -2534,7 +2534,7 @@ msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr "Фон или плиточное строение подземелья не может содержать более 400 фрагментов."
 
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
-#: skytemple-rust/src/st_dpla.rs:130
+#: skytemple-rust/src/st_dpla.rs:131
 msgid "This palette has no animation."
 msgstr "Эта палитра не имеет анимации."
 
@@ -3509,76 +3509,80 @@ msgid "Provide support for ATUPX containers, which use a different algorithm tha
 msgstr "Обеспечивает поддержку контейнеров ATUPX, которые используют алгоритм, отличный от PX-сжатия.\n"
 "Требует ActorAndLevelLoader, так как он освобождает место, необходимое для реализации этой функции."
 
+#: skytemple-files/skytemple_files/patch/handler/team_stats_pain.py:51
+msgid "If available, change a team member's portrait in the Team Stats menu to pain when in critical condition."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr "Исправлен неиспользованный шанс для подземелий. Теперь он определяет шанс появления комнаты-лабиринта на этаже."
 
-#: skytemple-files/skytemple_files/patch/patches.py:238
-#: skytemple-files/skytemple_files/patch/patches.py:248
+#: skytemple-files/skytemple_files/patch/patches.py:240
+#: skytemple-files/skytemple_files/patch/patches.py:250
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Патч '{name}' не найден."
 
-#: skytemple-files/skytemple_files/patch/patches.py:255
+#: skytemple-files/skytemple_files/patch/patches.py:257
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Перед применением '{name}' необходимо применить патч '{patch_name}'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:261
+#: skytemple-files/skytemple_files/patch/patches.py:263
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Перед применением '{name}' необходимо применить патч '{patch_name}'. Не удалось найти этот патч."
 
-#: skytemple-files/skytemple_files/patch/patches.py:271
+#: skytemple-files/skytemple_files/patch/patches.py:273
 msgid "No configuration was given."
 msgstr "Конфигурация не была указана."
 
-#: skytemple-files/skytemple_files/patch/patches.py:274
+#: skytemple-files/skytemple_files/patch/patches.py:276
 msgid "Missing configuration value."
 msgstr "Отсутствует значение конфигурации."
 
-#: skytemple-files/skytemple_files/patch/patches.py:279
-#: skytemple-files/skytemple_files/patch/patches.py:285
-#: skytemple-files/skytemple_files/patch/patches.py:291
-#: skytemple-files/skytemple_files/patch/patches.py:299
-#: skytemple-files/skytemple_files/patch/patches.py:313
+#: skytemple-files/skytemple_files/patch/patches.py:281
+#: skytemple-files/skytemple_files/patch/patches.py:287
+#: skytemple-files/skytemple_files/patch/patches.py:293
+#: skytemple-files/skytemple_files/patch/patches.py:301
+#: skytemple-files/skytemple_files/patch/patches.py:315
 msgid "Invalid configuration value."
 msgstr "Неправильное значение конфигурации."
 
-#: skytemple-files/skytemple_files/patch/patches.py:287
+#: skytemple-files/skytemple_files/patch/patches.py:289
 msgid "Must be >= {}."
 msgstr "Должен быть >= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:293
+#: skytemple-files/skytemple_files/patch/patches.py:295
 msgid "Must be <= {}."
 msgstr "Должен быть <= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:400
+#: skytemple-files/skytemple_files/patch/patches.py:402
 msgid "config.xml missing in patch package."
 msgstr "config.xml отсутствует в пакете патча."
 
-#: skytemple-files/skytemple_files/patch/patches.py:402
+#: skytemple-files/skytemple_files/patch/patches.py:404
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Синтаксическая ошибка в config.xml при чтении пакета патча."
 
-#: skytemple-files/skytemple_files/patch/patches.py:412
+#: skytemple-files/skytemple_files/patch/patches.py:414
 msgid "patch.py missing in patch package."
 msgstr "patch.py отсутствует в пакете патча."
 
-#: skytemple-files/skytemple_files/patch/patches.py:414
+#: skytemple-files/skytemple_files/patch/patches.py:416
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "В файле patch.py пакета патча содержится синтаксическая ошибка."
 
-#: skytemple-files/skytemple_files/patch/patches.py:419
+#: skytemple-files/skytemple_files/patch/patches.py:421
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "В файле patch.py пакета патча отсутствует 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:425
+#: skytemple-files/skytemple_files/patch/patches.py:427
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Пакет патча не содержит записи об имени патча обработчика в файле config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:432
+#: skytemple-files/skytemple_files/patch/patches.py:434
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "В конфигурации не найдено патча для обработчика '{handler.name}'."
@@ -3676,7 +3680,7 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "Изображение, выбранное для импорта, слишком сложное. В нем слишком много уникальных плиток ({}, максимально допустимое количество — 1024).\n"
 "Постарайтесь, чтобы уникальных плиток было меньше. Уникальные плитки — это фрагменты изображений размером 8x8, которые больше нигде не встречаются на изображении (в том числе в перевернутом виде или в другой субпалитре)."
 
-#: skytemple-rust/src/python_image.rs:54
+#: skytemple-rust/src/python_image.rs:53
 msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
 msgstr "Предоставленное вами изображение не является индексированным (в нем нет палитры). Пожалуйста, преобразуйте его в индексированное изображение (содержащее не более {} цветов) и попробуйте снова."
 
@@ -3688,23 +3692,23 @@ msgstr "Контрольная сумма заголовка ROM не соотв
 msgid "Error reading the filesystem from ROM: {}"
 msgstr "Ошибка чтения файловой системы из ROM: {}"
 
-#: skytemple-rust/src/st_bma.rs:467
+#: skytemple-rust/src/st_bma.rs:462
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
 msgstr "Невозможно импортировать фон локации: Ширина обоих изображений должна соответствовать текущей ширине карты: {}px"
 
-#: skytemple-rust/src/st_bma.rs:479
+#: skytemple-rust/src/st_bma.rs:474
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
 msgstr "Невозможно импортировать фон локации: Высота обоих изображений должна соответствовать текущей ширине карты: {}px"
 
-#: skytemple-rust/src/st_bpc.rs:541
+#: skytemple-rust/src/st_bpc.rs:548
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr "новое плиточное строение для этого фрагмента должен содержать {} плиток."
 
-#: skytemple-rust/src/st_dbg.rs:123
+#: skytemple-rust/src/st_dbg.rs:127
 msgid "Can not import map background: Width of image must match the expected width: {}px"
 msgstr "Невозможно импортировать фон локации: Ширина изображения должна соответствовать ожидаемой ширине: {} пикселей"
 
-#: skytemple-rust/src/st_dbg.rs:129
+#: skytemple-rust/src/st_dbg.rs:133
 msgid "Can not import map background: Height of image must match the expected height: {}px"
 msgstr "Невозможно импортировать фон локации: Высота изображения должна соответствовать ожидаемой высоте: {} пикселей"
 
@@ -3712,16 +3716,16 @@ msgstr "Невозможно импортировать фон локации: �
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
 msgstr "Импортируемое изображение может использовать только 12 палитр. Данное изображение использует палитру {}"
 
-#: skytemple-rust/src/st_dpla.rs:111
+#: skytemple-rust/src/st_dpla.rs:112
 msgid "Palette is invalid."
 msgstr "Палитра является недопустимой."
 
-#: skytemple-rust/src/st_dpla.rs:116 skytemple-rust/src/st_dpla.rs:173
-#: skytemple-rust/src/st_dpla.rs:209 skytemple-rust/src/st_dpla.rs:217
+#: skytemple-rust/src/st_dpla.rs:117 skytemple-rust/src/st_dpla.rs:174
+#: skytemple-rust/src/st_dpla.rs:210 skytemple-rust/src/st_dpla.rs:218
 msgid "Palette index out of range."
 msgstr "Индекс палитры вне диапазона."
 
-#: skytemple-rust/src/st_dpla.rs:267
+#: skytemple-rust/src/st_dpla.rs:268
 msgid "Frame durations out of range while trying to build color."
 msgstr "Длительность кадров выходит за пределы диапазона при попытке построить цвет."
 
