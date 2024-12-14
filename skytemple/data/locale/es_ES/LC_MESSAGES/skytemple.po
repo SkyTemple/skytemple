@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-10-07 19:02+0000\n"
-"PO-Revision-Date: 2024-10-07 19:15\n"
+"POT-Creation-Date: 2024-12-14 01:18+0000\n"
+"PO-Revision-Date: 2024-12-14 01:57\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2534,7 +2534,7 @@ msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr "Un fondo de un territorio o tilemap no puede tener más de 400 chunks."
 
 #: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
-#: skytemple-rust/src/st_dpla.rs:130
+#: skytemple-rust/src/st_dpla.rs:131
 msgid "This palette has no animation."
 msgstr "Esta paleta no tiene animación."
 
@@ -3504,76 +3504,80 @@ msgid "Provide support for ATUPX containers, which use a different algorithm tha
 msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo diferente al de la compresión PX.\n"
 "Necesita el parche \"ActorAndLevelLoader\" para funcionar, ya que libera el espacio necesario para implementarlo."
 
+#: skytemple-files/skytemple_files/patch/handler/team_stats_pain.py:51
+msgid "If available, change a team member's portrait in the Team Stats menu to pain when in critical condition."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
 msgstr "Corrige la probabilidad de que los territorios no se usen. Ahora determina la probabilidad de que aparezca una sala laberinto en el piso."
 
-#: skytemple-files/skytemple_files/patch/patches.py:238
-#: skytemple-files/skytemple_files/patch/patches.py:248
+#: skytemple-files/skytemple_files/patch/patches.py:240
+#: skytemple-files/skytemple_files/patch/patches.py:250
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "El parche '{name}' no se ha encontrado."
 
-#: skytemple-files/skytemple_files/patch/patches.py:255
+#: skytemple-files/skytemple_files/patch/patches.py:257
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:261
+#: skytemple-files/skytemple_files/patch/patches.py:263
 #: skytemple/skytemple/module/patch/widget/asm.py:376
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'. No se ha encontrado el parche."
 
-#: skytemple-files/skytemple_files/patch/patches.py:271
+#: skytemple-files/skytemple_files/patch/patches.py:273
 msgid "No configuration was given."
 msgstr "No se ha dado ninguna configuración."
 
-#: skytemple-files/skytemple_files/patch/patches.py:274
+#: skytemple-files/skytemple_files/patch/patches.py:276
 msgid "Missing configuration value."
 msgstr "Falta el valor de configuración."
 
-#: skytemple-files/skytemple_files/patch/patches.py:279
-#: skytemple-files/skytemple_files/patch/patches.py:285
-#: skytemple-files/skytemple_files/patch/patches.py:291
-#: skytemple-files/skytemple_files/patch/patches.py:299
-#: skytemple-files/skytemple_files/patch/patches.py:313
+#: skytemple-files/skytemple_files/patch/patches.py:281
+#: skytemple-files/skytemple_files/patch/patches.py:287
+#: skytemple-files/skytemple_files/patch/patches.py:293
+#: skytemple-files/skytemple_files/patch/patches.py:301
+#: skytemple-files/skytemple_files/patch/patches.py:315
 msgid "Invalid configuration value."
 msgstr "Valor de configuración inválido."
 
-#: skytemple-files/skytemple_files/patch/patches.py:287
+#: skytemple-files/skytemple_files/patch/patches.py:289
 msgid "Must be >= {}."
 msgstr "Debe ser >= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:293
+#: skytemple-files/skytemple_files/patch/patches.py:295
 msgid "Must be <= {}."
 msgstr "Debe ser <= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:400
+#: skytemple-files/skytemple_files/patch/patches.py:402
 msgid "config.xml missing in patch package."
 msgstr "falta el archivo config.xml en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:402
+#: skytemple-files/skytemple_files/patch/patches.py:404
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Error de sintaxis en el archivo config.xml al leer el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:412
+#: skytemple-files/skytemple_files/patch/patches.py:414
 msgid "patch.py missing in patch package."
 msgstr "Falta el archivo patch.py en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:414
+#: skytemple-files/skytemple_files/patch/patches.py:416
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
 
-#: skytemple-files/skytemple_files/patch/patches.py:419
+#: skytemple-files/skytemple_files/patch/patches.py:421
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Patch.py del paquete de parches no contiene 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:425
+#: skytemple-files/skytemple_files/patch/patches.py:427
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "El paquete de parches no contiene una entrada para el nombre del parche del manipulador en config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:432
+#: skytemple-files/skytemple_files/patch/patches.py:434
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "No se ha encontrado ningún parche para el manipulador '{handler.name}' en la configuración."
@@ -3671,7 +3675,7 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({} tiles, pero el máximo permitido es 1024).\n"
 "Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
-#: skytemple-rust/src/python_image.rs:54
+#: skytemple-rust/src/python_image.rs:53
 msgid "The image you provided is not an indexed image (it has no palette). Please convert it to an indexed image (with a maximum of {} colors) and try again."
 msgstr ""
 
@@ -3683,23 +3687,23 @@ msgstr "La suma de comprobación de encabezado de la ROM no coincide con el cont
 msgid "Error reading the filesystem from ROM: {}"
 msgstr "Error al leer el sistema de archivos de la ROM: {}"
 
-#: skytemple-rust/src/st_bma.rs:467
+#: skytemple-rust/src/st_bma.rs:462
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
 msgstr "No se puede importar el fondo del mapa: la anchura de ambas imágenes debe coincidir con la anchura actual del mapa: {}px"
 
-#: skytemple-rust/src/st_bma.rs:479
+#: skytemple-rust/src/st_bma.rs:474
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
 msgstr "No se puede importar el fondo del mapa: la altura de ambas imágenes debe coincidir con la anchura actual del mapa: {}px"
 
-#: skytemple-rust/src/st_bpc.rs:541
+#: skytemple-rust/src/st_bpc.rs:548
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr "el nuevo mapeo de tiles para este chunk debe contener {} tiles."
 
-#: skytemple-rust/src/st_dbg.rs:123
+#: skytemple-rust/src/st_dbg.rs:127
 msgid "Can not import map background: Width of image must match the expected width: {}px"
 msgstr "No se puede importar el fondo del mapa: la anchura de la imagen debe coincidir con el ancho esperado: {}px"
 
-#: skytemple-rust/src/st_dbg.rs:129
+#: skytemple-rust/src/st_dbg.rs:133
 msgid "Can not import map background: Height of image must match the expected height: {}px"
 msgstr "No se puede importar el fondo del mapa: la altura de la imagen debe coincidir con la altura esperada: {}px"
 
@@ -3707,16 +3711,16 @@ msgstr "No se puede importar el fondo del mapa: la altura de la imagen debe coin
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
 msgstr "La imagen a importar solo puede usar las 12 primeras paletas. Se ha intentado usar la paleta {}"
 
-#: skytemple-rust/src/st_dpla.rs:111
+#: skytemple-rust/src/st_dpla.rs:112
 msgid "Palette is invalid."
 msgstr "La paleta no es válida."
 
-#: skytemple-rust/src/st_dpla.rs:116 skytemple-rust/src/st_dpla.rs:173
-#: skytemple-rust/src/st_dpla.rs:209 skytemple-rust/src/st_dpla.rs:217
+#: skytemple-rust/src/st_dpla.rs:117 skytemple-rust/src/st_dpla.rs:174
+#: skytemple-rust/src/st_dpla.rs:210 skytemple-rust/src/st_dpla.rs:218
 msgid "Palette index out of range."
 msgstr "Índice de paleta fuera de rango."
 
-#: skytemple-rust/src/st_dpla.rs:267
+#: skytemple-rust/src/st_dpla.rs:268
 msgid "Frame durations out of range while trying to build color."
 msgstr "La duración de los fotogramas está fuera del rango al intentar crear color."
 
