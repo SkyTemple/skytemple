@@ -7,14 +7,14 @@ graphql-core >= 3.2.0
 aiohttp[speedups]
 lru-dict >= 1.1.8
 # Actual dependencies of SkyTemple itself:
-skytemple-rust==1.8.2
-skytemple-files[spritecollab]==1.8.3
-skytemple-ssb-debugger==1.8.2
-skytemple-ssb-emulator==1.8.0
+skytemple-rust==1.8.4
+skytemple-files[spritecollab]==1.8.4
+skytemple-ssb-debugger==1.8.3
+skytemple-ssb-emulator==1.8.1
 skytemple-eventserver==1.6.0
-skytemple-dtef==1.6.1
+skytemple-dtef==1.8.0
 skytemple-icons==1.3.2
-explorerscript==0.2.1.post2
+explorerscript==0.2.2
 tilequant==1.1.0
 pmdsky-debug-py
 ndspy==4.1.0
