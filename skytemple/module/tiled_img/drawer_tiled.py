@@ -20,8 +20,6 @@ Tile based instead of chunk based.
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import Optional
-
 from gi.repository import GLib, Gtk, Gdk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
@@ -42,7 +40,7 @@ class DrawerTiled:
     def __init__(
         self,
         draw_area: Widget,
-        tile_mappings: Optional[list[TilemapEntry]],
+        tile_mappings: list[TilemapEntry] | None,
         bpa_durations: int,
         pal_ani_durations: int,
         # Format: tile_surfaces[pal][tile_idx][pal_frame][frame]
@@ -169,7 +167,7 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         self.all_mappings = all_mappings
         self.tileidx = 0
 
-    def do_get_size(self, widget: Widget, cell_area: Optional[Gdk.Rectangle] = None) -> tuple[int, int, int, int]:
+    def do_get_size(self, widget: Widget, cell_area: Gdk.Rectangle | None = None) -> tuple[int, int, int, int]:
         return (
             0,
             0,

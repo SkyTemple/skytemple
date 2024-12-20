@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC
-from typing import Union
 from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
@@ -52,7 +51,7 @@ class AbstractListener(ABC):
     def on_view_switch(
         self,
         module: AbstractModule,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         """

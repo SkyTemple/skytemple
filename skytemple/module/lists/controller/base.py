@@ -17,7 +17,7 @@
 import re
 import typing
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -40,8 +40,8 @@ class ListBaseController(AbstractController, ABC):
         self.builder: Gtk.Builder = None  # type: ignore
         self._sprite_provider = self.module.project.get_sprite_provider()
         self._ent_names: dict[int, str] = {}
-        self._list_store: Optional[Gtk.ListStore] = None
-        self.icon_renderer: Optional[ListIconRenderer] = None
+        self._list_store: Gtk.ListStore | None = None
+        self.icon_renderer: ListIconRenderer | None = None
         self._loading = False
 
     def load(self):

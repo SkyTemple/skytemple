@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _
@@ -86,7 +85,7 @@ MAIN_VIEW_DATA = StStatusPageData(
 
 
 class FontOpenSpec:
-    def __init__(self, font_filename: str, pal_filename: Optional[str], font_type: FontType):
+    def __init__(self, font_filename: str, pal_filename: str | None, font_type: FontType):
         self.font_filename = font_filename
         self.pal_filename = pal_filename
         self.font_type = font_type
@@ -102,7 +101,7 @@ class WteOpenSpec:
     def __init__(
         self,
         wte_filename: str,
-        wtu_filename: Optional[str] = None,
+        wtu_filename: str | None = None,
         in_dungeon_bin=False,
     ):
         self.wte_filename = wte_filename
@@ -340,7 +339,7 @@ class MiscGraphicsModule(AbstractModule):
     def get_wtu(self, fn) -> Wtu:
         return self.project.open_file_in_rom(fn, FileType.WTU)
 
-    def get_font(self, spec: FontOpenSpec) -> Optional[AbstractFont]:
+    def get_font(self, spec: FontOpenSpec) -> AbstractFont | None:
         if spec.font_type == FontType.FONT_DAT:
             return self.project.open_file_in_rom(spec.font_filename, FileType.FONT_DAT)
         elif spec.font_type == FontType.FONT_SIR0:
@@ -353,7 +352,7 @@ class MiscGraphicsModule(AbstractModule):
         else:
             return None
 
-    def get_graphic_font(self, spec: FontOpenSpec) -> Optional[GraphicFont]:
+    def get_graphic_font(self, spec: FontOpenSpec) -> GraphicFont | None:
         if spec.font_type == FontType.GRAPHIC_FONT:
             font = self.project.open_file_in_rom(spec.font_filename, FileType.GRAPHIC_FONT)
             if spec.pal_filename:
@@ -439,7 +438,7 @@ class MiscGraphicsModule(AbstractModule):
             # Mark as modified in tree
             self._item_tree.mark_as_modified(self._tree_level_iter[item.wte_filename], RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StMiscGraphicsCartRemovedPage):
             pass  # todo
         if isinstance(open_view, StMiscGraphicsChrPage):

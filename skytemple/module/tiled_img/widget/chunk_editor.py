@@ -17,7 +17,7 @@
 from __future__ import annotations
 import itertools
 import os
-from typing import Optional, cast, TYPE_CHECKING
+from typing import cast, TYPE_CHECKING
 from collections.abc import Sequence
 
 import cairo
@@ -76,7 +76,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         tile_graphics: AbstractTileGraphicsProvider,
         palettes: AbstractTilePalettesProvider,
         pal_ani_durations: int,
-        animated_tile_graphics: Optional[Sequence[Optional[AbstractTileGraphicsProvider]]] = None,
+        animated_tile_graphics: Sequence[AbstractTileGraphicsProvider | None] | None = None,
         animated_tile_durations=0,
     ):
         super().__init__()
@@ -91,7 +91,7 @@ class StChunkEditorDialog(Gtk.Dialog):
         self.pal_ani_durations = pal_ani_durations
 
         self.current_tile_id = 0
-        self.current_tile_drawer: Optional[DrawerTiled] = None
+        self.current_tile_drawer: DrawerTiled | None = None
 
         self.switching_tile = False
 
@@ -190,7 +190,7 @@ class StChunkEditorDialog(Gtk.Dialog):
 
             if self.animated_tile_graphics:
                 self.bpa_starts_cursor = len(self.dummy_tile_map)
-                self.bpa_starts: list[Optional[int]] = [None, None, None, None]
+                self.bpa_starts: list[int | None] = [None, None, None, None]
                 for i, ani_tile_g in enumerate(self.animated_tile_graphics):
                     if ani_tile_g is not None:
                         self.bpa_starts[i] = self.bpa_starts_cursor

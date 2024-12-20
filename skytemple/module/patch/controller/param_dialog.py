@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Union
 
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.ppmdu_config.data import (
@@ -45,7 +44,7 @@ class ParamDialogController:
         self.window.add_buttons(_("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY)
         self.window.get_action_area().show_all()
 
-    def run(self, name: str, parameters: dict[str, Pmd2PatchParameter]) -> dict[str, Union[str, int]]:
+    def run(self, name: str, parameters: dict[str, Pmd2PatchParameter]) -> dict[str, str | int]:
         content: Gtk.Box = self.window.get_content_area()
         self.window.set_title(_('Settings for the "{}" Patch').format(name))
 
@@ -95,7 +94,7 @@ class ParamDialogController:
             return combobox_text
         raise TypeError(f"Unknown parameter type {param.type}")
 
-    def _process_control(self, control: Gtk.Widget, param: Pmd2PatchParameter) -> Union[int, str]:
+    def _process_control(self, control: Gtk.Widget, param: Pmd2PatchParameter) -> int | str:
         try:
             if param.type == Pmd2PatchParameterType.INTEGER or param.type == Pmd2PatchParameterType.STRING:
                 assert isinstance(control, Gtk.Entry)

@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import Optional, Union
 from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
@@ -324,7 +323,7 @@ class ScriptModule(AbstractModule):
                     ),
                 )
 
-    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
+    def handle_request(self, request: OpenRequest) -> ItemTreeEntryRef | None:
         if request.type == REQUEST_TYPE_SCENE:
             # if we have an enter scene, open it directly.
             if request.identifier in self._map_sse:
@@ -560,9 +559,9 @@ class ScriptModule(AbstractModule):
     def get_subnodes(
         self, name: str
     ) -> tuple[
-        Optional[ItemTreeEntryRef],
-        Optional[ItemTreeEntryRef],
-        Optional[ItemTreeEntryRef],
+        ItemTreeEntryRef | None,
+        ItemTreeEntryRef | None,
+        ItemTreeEntryRef | None,
     ]:
         enter = None
         acting = None
@@ -710,7 +709,7 @@ class ScriptModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StScriptSsaPage):
             pass  # todo
         return None
@@ -725,7 +724,7 @@ class StStatusPageDataSub(StStatusPageData):
 
 
 # noinspection PyUnusedLocal
-def make_status_page_data_folder(name: Optional[str]) -> StStatusPageData:
+def make_status_page_data_folder(name: str | None) -> StStatusPageData:
     if name is not None:
         title = _('Script Scenes for maps in category "{}"').format(name)
         description = _("This section contains all the script scenes of maps, that start with the letter {}.").format(

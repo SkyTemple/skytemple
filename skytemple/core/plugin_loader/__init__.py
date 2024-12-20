@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import logging
 import sys
-from typing import Callable
+from collections.abc import Callable
 from collections.abc import Sequence
 
 from skytemple.core.plugin_loader.finder import SkyTemplePluginFinder

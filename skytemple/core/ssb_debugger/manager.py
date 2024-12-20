@@ -17,7 +17,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import Optional
 
 from gi.repository import Gtk
 from skytemple_ssb_debugger.controller.main import (
@@ -33,9 +32,9 @@ from skytemple.init_locale import make_builder
 
 class DebuggerManager:
     def __init__(self):
-        self._context: Optional[SkyTempleMainDebuggerControlContext] = None
-        self._opened_main_window: Optional[Gtk.Window] = None
-        self._opened_main_controller: Optional[DebuggerMainController] = None
+        self._context: SkyTempleMainDebuggerControlContext | None = None
+        self._opened_main_window: Gtk.Window | None = None
+        self._opened_main_controller: DebuggerMainController | None = None
         self._was_opened_once = False
         self.main_window = None
 
@@ -103,7 +102,7 @@ class DebuggerManager:
         assert self._opened_main_controller is not None
         self._opened_main_controller.editor_notebook.open_ssb(ssb_filename)
 
-    def get_context(self) -> Optional[SkyTempleMainDebuggerControlContext]:
+    def get_context(self) -> SkyTempleMainDebuggerControlContext | None:
         """Returns the managing context for the debugger. Returns None if the debugger is not opened!"""
         return self._context
 
@@ -127,8 +126,8 @@ class DebuggerManager:
         self._opened_main_window = None
         self._opened_main_controller = None
 
-    def get_controller(self) -> Optional[DebuggerMainController]:
+    def get_controller(self) -> DebuggerMainController | None:
         return self._opened_main_controller
 
-    def get_window(self) -> Optional[Gtk.Window]:
+    def get_window(self) -> Gtk.Window | None:
         return self._opened_main_window
