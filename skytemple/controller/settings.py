@@ -22,12 +22,11 @@ from glob import glob
 from typing import Optional
 
 from gi.repository import Gtk, GLib
-
-from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.impl_cfg import ImplementationType
 
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ui_utils import builder_get_assert
 
 logger = logging.getLogger(__name__)
@@ -37,6 +36,7 @@ LANGS = [
     ("fr_FR.utf8", _("French")),
     ("de_DE.utf8", _("German")),
     ("pt_BR.utf8", _("Portuguese, Brazilian")),
+    ("ru_RU.utf8", _("Russian")),
     ("es_ES.utf8", _("Spanish")),
     ("ja_JP.utf8", _("Japanese")),
 ]
