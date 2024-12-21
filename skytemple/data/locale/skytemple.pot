@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-12-20 20:43+0000\n"
+"POT-Creation-Date: 2024-12-21 11:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1311,6 +1311,15 @@ msgstr ""
 #: skytemple-dtef/skytemple_dtef/rules.py:119
 #, python-brace-format
 msgid "No match found for rule {orig_rule}. Input set correct?"
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:20
+#, python-brace-format
+msgid "The patch {self.patch_name} cannot be applied because the following patches it depends on "
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
+msgid "Please reapply these patches first."
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
@@ -3517,7 +3526,7 @@ msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:263
-#: skytemple/skytemple/module/patch/widget/asm.py:376
+#: skytemple/skytemple/module/patch/widget/asm.py:386
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
@@ -12878,7 +12887,7 @@ msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
 #: skytemple/skytemple/module/patch/module.py:46
-#: skytemple/skytemple/module/patch/widget/asm.py:46
+#: skytemple/skytemple/module/patch/widget/asm.py:48
 msgid "Patches"
 msgstr ""
 
@@ -12899,89 +12908,89 @@ msgstr ""
 msgid "C / Rust"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:117
+#: skytemple/skytemple/module/patch/widget/asm.py:119
 msgid "This patch has had no issues loading."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:133
+#: skytemple/skytemple/module/patch/widget/asm.py:135
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:142
+#: skytemple/skytemple/module/patch/widget/asm.py:144
 msgid "The current ROM is not supported by this patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:145
+#: skytemple/skytemple/module/patch/widget/asm.py:147
 msgid "Please save the ROM before applying the patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:154
+#: skytemple/skytemple/module/patch/widget/asm.py:156
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:173
+#: skytemple/skytemple/module/patch/widget/asm.py:176
 msgid "This patch requires some other patches to be applied first:\n"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:175
+#: skytemple/skytemple/module/patch/widget/asm.py:178
 msgid ""
 "\n"
 "Do you want to apply these first?"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:197
+#: skytemple/skytemple/module/patch/widget/asm.py:200
 msgid ""
 "\n"
 "Configuration field with errors: \"{}\"\n"
 "Error: {}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:199
+#: skytemple/skytemple/module/patch/widget/asm.py:202
 #, python-brace-format
 msgid ""
 "Error applying the patch:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:209
+#: skytemple/skytemple/module/patch/widget/asm.py:217
 #, python-brace-format
 msgid "Failed applying patch '{patch}'. The ROM may be corrupted now."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:219
+#: skytemple/skytemple/module/patch/widget/asm.py:227
 msgid "Patch was successfully applied. The ROM will now be reloaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:225
-msgid "Not all patches were applied successfully. The ROM will now be reloaded."
+#: skytemple/skytemple/module/patch/widget/asm.py:234
+msgid "Not all patches were applied successfully."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:294
+#: skytemple/skytemple/module/patch/widget/asm.py:304
 msgid "Error loading patch package {os.path.basename(fname)}."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:305
+#: skytemple/skytemple/module/patch/widget/asm.py:315
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:307
+#: skytemple/skytemple/module/patch/widget/asm.py:317
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:307
+#: skytemple/skytemple/module/patch/widget/asm.py:317
 msgid "Compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:324
+#: skytemple/skytemple/module/patch/widget/asm.py:334
 #, python-brace-format
 msgid "Error loading patch package {patch.name}."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:482
+#: skytemple/skytemple/module/patch/widget/asm.py:492
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:495
+#: skytemple/skytemple/module/patch/widget/asm.py:505
 msgid ""
 "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n"
 "\n"
