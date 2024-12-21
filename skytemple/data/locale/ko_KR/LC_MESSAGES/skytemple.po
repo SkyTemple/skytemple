@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-12-14 01:18+0000\n"
-"PO-Revision-Date: 2024-12-14 01:57\n"
+"POT-Creation-Date: 2024-12-21 11:36+0000\n"
+"PO-Revision-Date: 2024-12-21 11:58\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: /dev/fd/63:1 /dev/fd/63:216
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:527
-#: skytemple/skytemple/controller/settings.py:36
+#: skytemple/skytemple/controller/settings.py:35
 msgid "English"
 msgstr "영어"
 
@@ -899,13 +899,13 @@ msgstr "쓰러뜨린 포켓몬이 부활해도 적을 진화시킴"
 
 #: /dev/fd/63:217
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
-#: skytemple/skytemple/controller/settings.py:37
+#: skytemple/skytemple/controller/settings.py:36
 msgid "French"
 msgstr "프랑스어"
 
 #: /dev/fd/63:218
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
-#: skytemple/skytemple/controller/settings.py:38
+#: skytemple/skytemple/controller/settings.py:37
 msgid "German"
 msgstr "독일어"
 
@@ -928,35 +928,35 @@ msgstr "던전 실패 시 대화 문자열"
 msgid "Dungeon Cleared Dialog Strings"
 msgstr "던전 클리어 시 대화 문자열"
 
-#: explorerscript/explorerscript/common_syntax.py:99
-#: explorerscript/explorerscript/common_syntax.py:187
+#: explorerscript/explorerscript/common_syntax.py:100
+#: explorerscript/explorerscript/common_syntax.py:188
 msgid "Integer not allowed at this position."
 msgstr "이 위치에는 정수를 사용할 수 없습니다."
 
-#: explorerscript/explorerscript/common_syntax.py:103
-#: explorerscript/explorerscript/common_syntax.py:189
+#: explorerscript/explorerscript/common_syntax.py:104
+#: explorerscript/explorerscript/common_syntax.py:190
 msgid "Decimal not allowed at this position."
 msgstr "이 위치에는 십진수를 사용할 수 없습니다."
 
-#: explorerscript/explorerscript/common_syntax.py:114
+#: explorerscript/explorerscript/common_syntax.py:115
 msgid "Constant not allowed at this position."
 msgstr "이 위치에는 상수를 사용할 수 없습니다."
 
-#: explorerscript/explorerscript/common_syntax.py:125
-#: explorerscript/explorerscript/common_syntax.py:191
+#: explorerscript/explorerscript/common_syntax.py:126
+#: explorerscript/explorerscript/common_syntax.py:192
 msgid "Variable or constant not allowed at this position."
 msgstr "이 위치에는 변수 또는 상수를 사용할 수 없습니다."
 
-#: explorerscript/explorerscript/common_syntax.py:129
-#: explorerscript/explorerscript/common_syntax.py:194
+#: explorerscript/explorerscript/common_syntax.py:130
+#: explorerscript/explorerscript/common_syntax.py:195
 msgid "String not allowed at this position."
 msgstr "이 위치에는 문자열이 허용되지 않습니다."
 
-#: explorerscript/explorerscript/common_syntax.py:227
+#: explorerscript/explorerscript/common_syntax.py:228
 msgid "Invalid target for routine."
 msgstr "루틴의 대상이 잘못되었습니다."
 
-#: explorerscript/explorerscript/common_syntax.py:256
+#: explorerscript/explorerscript/common_syntax.py:257
 msgid "Position Marker arguments need to be an integer or a decimal with '.5' as the decimal places."
 msgstr ""
 
@@ -986,7 +986,7 @@ msgid "No variable for init."
 msgstr "init 에 대한 변수가 없습니다."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:60
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:63
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:59
 msgid "No variable for assignment."
 msgstr "할당할 변수가 없습니다."
 
@@ -1019,29 +1019,29 @@ msgstr ""
 msgid "value() without a variable."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:83
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:79
 msgid "No target ID set for with(){} block."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:86
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:82
 msgid "A with(){} block needs at least one statement."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:94
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/operation.py:75
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:108
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:104
 msgid "Operations inside with(){} blocks cannot contain an inline `actor`, `object` or `performer` context."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:117
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:113
 msgid "Each statement inside a with(){} block needs to contain exactly one binary operation. The handler for it generated multiple operations."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:138
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:134
 msgid "A with(){} block can not contain labels."
 msgstr ""
 
@@ -1054,35 +1054,35 @@ msgstr ""
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:59
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:55
 msgid "No variable for if condition."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:61
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:58
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:57
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:54
 msgid "No operator set for if condition."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:63
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:60
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:59
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:56
 msgid "No value set for if condition."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:68
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:64
 #, python-brace-format
 msgid "The only supported operators for scn if conditions are ==,<,<=,>,>= (line {self.ctx.start.line})"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:76
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:72
 msgid "Invalid content for an if-header"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:80
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:76
 #, python-brace-format
 msgid "Invalid operation for if condition: {op.op_code.name} (line {self.ctx.start.line})"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:91
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:87
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
 msgstr ""
@@ -1094,38 +1094,38 @@ msgstr ""
 msgid "Invalid message switch case call."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:74
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:70
 msgid "Unknown case operation."
 msgstr "알려지지 않은 case 동작입니다."
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:54
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:48
 msgid "No value set for case menu condition."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:59
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:53
 msgid "Value for case menu condition must be a string."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:62
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:56
 msgid "Value for case menu2 condition must not be a string."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:71
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:67
 msgid "Invalid message switch."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:76
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:89
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:85
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:80
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:76
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:109
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:105
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
 msgstr ""
@@ -1145,11 +1145,11 @@ msgstr ""
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:80
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:76
 msgid "Invalid content for a switch-header"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:87
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:83
 msgid "Unknown switch operation."
 msgstr ""
 
@@ -1201,17 +1201,17 @@ msgstr ""
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:193
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:194
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:199
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:200
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:205
+#: explorerscript/explorerscript/ssb_converting/compiler/utils.py:206
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
 msgstr ""
@@ -1313,103 +1313,112 @@ msgstr "XML 오류: 팔레트 또는 팔레트의 색상에 대한 지속 시간
 msgid "No match found for rule {orig_rule}. Input set correct?"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:142
-msgid "One Layer (#00)"
+#: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:20
+#, python-brace-format
+msgid "The patch {self.patch_name} cannot be applied because the following patches it depends on "
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
+msgid "Please reapply these patches first."
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
-msgid "One Layer (#01)"
+msgid "One Layer (#00)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:144
-msgid "One Layer (#02)"
+msgid "One Layer (#01)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:145
-msgid "One Layer (#03)"
+msgid "One Layer (#02)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:146
-msgid "One Layer (#04)"
+msgid "One Layer (#03)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:147
-msgid "Two Layers (#05)"
+msgid "One Layer (#04)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:148
-msgid "Two Layers (#06)"
+msgid "Two Layers (#05)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:149
-msgid "Two Layers (#07)"
+msgid "Two Layers (#06)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:150
-msgid "Two Layers (#08)"
+msgid "Two Layers (#07)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:151
-msgid "Two Layers (#09)"
+msgid "Two Layers (#08)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:152
-msgid "Dungeon Tileset (#10)"
+msgid "Two Layers (#09)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:153
+msgid "Dungeon Tileset (#10)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:154
 msgid "Use Fixed Room (#11)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:274
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:275
 msgid "This function has no description."
 msgstr ""
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:316
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:317
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:29
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:14
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:14
 msgid "Down"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:318
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:319
 msgid "Down Right"
 msgstr ""
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:320
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:321
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:26
 msgid "Right"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:322
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:323
 msgid "Up Right"
 msgstr ""
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:324
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:325
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:28
 #: skytemple/skytemple/data/widget/dungeon/dungeon.ui:18
 #: skytemple/skytemple/data/widget/dungeon/invalid.ui:18
 msgid "Up"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:326
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:327
 msgid "Up Left"
 msgstr ""
 
 #. TRANSLATORS: DS Key name
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:328
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:329
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:27
 msgid "Left"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:330
+#: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:331
 msgid "Down Left"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/rw_value.py:440
+#: skytemple-files/skytemple_files/common/rw_value.py:439
 msgid "'{str(value)}' cannot be encoded as a shifted immediate."
 msgstr ""
 
@@ -3269,15 +3278,15 @@ msgstr ""
 msgid "Adds an extra menu during the personality test to choose the starter."
 msgstr "성격 테스트 중 스타팅 포켓몬을 선택할 수 있는 메뉴를 추가합니다."
 
-#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:104
+#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:105
 msgid "[CS:S]Control mode set to[CR] [CS:C]automatic[CR][CS:S].[CR]"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:107
+#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:108
 msgid "[CS:S]Control mode set to[CR] [CS:E]manual[CR][CS:S].[CR]"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:119
+#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:120
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by Frostbyte before applying this patch."
 msgstr "던전에서 start 버튼을 눌러 컨트롤 모드를 자동 모드와 수동 모드로 변경할 수 있습니다. 수동 모드에서는 동료의 턴에 동료를 직접 컨트롤 할 수 있습니다. 이 패치를 적용하려면 Frostbyte가 만든 추가 코드 오버레이 패치를 적용해야 합니다."
 
@@ -3407,7 +3416,7 @@ msgstr "게임이 스프라이트를 로드할 때 메모리가 부족하면, �
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator. Warning: Causes saving to fail on the MelonDS emulator instead."
 msgstr "No$GBA 에뮬레이터에서 저장이 실패하는 문제를 수정합니다. 주의: 대신 MelonDS 에뮬레이터에서 저장이 실패합니다."
 
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:176
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:177
 msgid "Implements move growth (PoC/Unfinished). \n"
 "Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
 "MoveGrowth patch must be (re-)applied after MoveShortcuts to combine both effects. \n"
@@ -3479,7 +3488,7 @@ msgstr "성격 테스트를 건너뛰고 성별 선택만 남깁니다. ChooseSt
 msgid "Changes Sprite Size and Sprite File Size values to be in each Pokémon's data."
 msgstr "스프라이트 크기와 파일 사이즈 값이 각 포켓몬 데이터 내에 포함되도록 변경합니다."
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:68
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:69
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
 msgstr "기존 기술의 별 수치 표기를 막대 표기로 대체합니다.\n"
@@ -3511,7 +3520,7 @@ msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}
 msgstr "'{name}'을 적용하기 위해서는 '{patch_name}'패치를 먼저 적용해야 합니다."
 
 #: skytemple-files/skytemple_files/patch/patches.py:263
-#: skytemple/skytemple/module/patch/widget/asm.py:376
+#: skytemple/skytemple/module/patch/widget/asm.py:386
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "'{name}'을 적용하기 위해서는 '{patch_name}'패치를 먼저 적용해야 합니다. 해당 패치를 찾을 수 없습니다."
@@ -3599,51 +3608,51 @@ msgstr ""
 msgid "Unknown constant {constant_as_string}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:163
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:164
 msgid "The routine data lists for the decompiler must have the same lengths."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:176
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:177
 #, python-brace-format
 msgid "Routine {i} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:196
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:197
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:203
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:204
 msgid "The script must not contain any duplicate coroutines."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:211
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:212
 #, python-brace-format
 msgid "Unknown coroutine {err}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:225
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:226
 msgid "Coroutines and regular routines can not be mixed in a script file."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:238
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:239
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:255
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:256
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:276
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:277
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:373
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:374
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:377
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:378
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr ""
@@ -5411,12 +5420,16 @@ msgstr ""
 msgid "Do you want to save changes to {rom_name}?"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:35
+#: skytemple/skytemple/controller/settings.py:34
 msgid "Detect automatically"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:39
+#: skytemple/skytemple/controller/settings.py:38
 msgid "Portuguese, Brazilian"
+msgstr ""
+
+#: skytemple/skytemple/controller/settings.py:39
+msgid "Russian"
 msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:100
@@ -12592,7 +12605,7 @@ msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
 #: skytemple/skytemple/module/patch/module.py:46
-#: skytemple/skytemple/module/patch/widget/asm.py:46
+#: skytemple/skytemple/module/patch/widget/asm.py:48
 msgid "Patches"
 msgstr "패치"
 
@@ -12612,86 +12625,86 @@ msgstr ""
 msgid "C / Rust"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:117
+#: skytemple/skytemple/module/patch/widget/asm.py:119
 msgid "This patch has had no issues loading."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:133
+#: skytemple/skytemple/module/patch/widget/asm.py:135
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
 msgstr "이 패치는 이미 적용되었습니다. 어떤 패치는 재적용을 지원하지만, 재적용 시 문제가 발생할 가능성이 있습니다. 신중히 진행하세요."
 
-#: skytemple/skytemple/module/patch/widget/asm.py:142
+#: skytemple/skytemple/module/patch/widget/asm.py:144
 msgid "The current ROM is not supported by this patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:145
+#: skytemple/skytemple/module/patch/widget/asm.py:147
 msgid "Please save the ROM before applying the patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:154
+#: skytemple/skytemple/module/patch/widget/asm.py:156
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:173
+#: skytemple/skytemple/module/patch/widget/asm.py:176
 msgid "This patch requires some other patches to be applied first:\n"
 msgstr "이 패치를 적용하려면 다음의 패치를 먼저 적용해야합니다:\n"
 
-#: skytemple/skytemple/module/patch/widget/asm.py:175
+#: skytemple/skytemple/module/patch/widget/asm.py:178
 msgid "\n"
 "Do you want to apply these first?"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:197
+#: skytemple/skytemple/module/patch/widget/asm.py:200
 msgid "\n"
 "Configuration field with errors: \"{}\"\n"
 "Error: {}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:199
+#: skytemple/skytemple/module/patch/widget/asm.py:202
 #, python-brace-format
 msgid "Error applying the patch:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:209
+#: skytemple/skytemple/module/patch/widget/asm.py:217
 #, python-brace-format
 msgid "Failed applying patch '{patch}'. The ROM may be corrupted now."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:219
+#: skytemple/skytemple/module/patch/widget/asm.py:227
 msgid "Patch was successfully applied. The ROM will now be reloaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:225
-msgid "Not all patches were applied successfully. The ROM will now be reloaded."
-msgstr "성공적으로 적용되지 않은 패치가 있습니다. 롬파일을 다시 로드합니다."
+#: skytemple/skytemple/module/patch/widget/asm.py:234
+msgid "Not all patches were applied successfully."
+msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:294
+#: skytemple/skytemple/module/patch/widget/asm.py:304
 msgid "Error loading patch package {os.path.basename(fname)}."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:305
+#: skytemple/skytemple/module/patch/widget/asm.py:315
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:307
+#: skytemple/skytemple/module/patch/widget/asm.py:317
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:307
+#: skytemple/skytemple/module/patch/widget/asm.py:317
 msgid "Compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:324
+#: skytemple/skytemple/module/patch/widget/asm.py:334
 #, python-brace-format
 msgid "Error loading patch package {patch.name}."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/widget/asm.py:482
+#: skytemple/skytemple/module/patch/widget/asm.py:492
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
 msgstr "일부 로드된 패치에 호환성 문제가 있었습니다. 일단 제대로 로드되기는 했지만 이후 버전의 SkyTemple에서는 동작하지 않을 수 있습니다. 이 패치들을 패치 리스트에 주황색으로 표시했습니다. 더 많은 정보를 확인하려면 패치들 중 하나를 선택해 '발생한 문제 보기' 버튼을 누르세요."
 
-#: skytemple/skytemple/module/patch/widget/asm.py:495
+#: skytemple/skytemple/module/patch/widget/asm.py:505
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Do you want to continue loading these patches? By selecting 'No', only the built-in patches will be loaded."
 msgstr "경고! 이 롬파일의 프로젝트 디렉토리는 커스텀 패치를 포함하고 있습니다. 이러한 패치에는 이 대화 상자에서 '예'를 눌러 수락할 시 실행되는 코드가 들어있을 수 있습니다. 패치 제작자를 신뢰할 수 있는 경우에만 계속하세요. 그렇지 않다면 악의적인 사람이 당신의 컴퓨터를 해킹하거나 개인정보를 훔칠 수 있습니다.\n\n"
