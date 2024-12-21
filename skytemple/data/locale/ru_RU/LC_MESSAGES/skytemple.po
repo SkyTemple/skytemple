@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-12-21 11:36+0000\n"
-"PO-Revision-Date: 2024-12-21 11:58\n"
+"PO-Revision-Date: 2024-12-21 13:19\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1317,11 +1317,11 @@ msgstr "Не найдено совпадений для правила {orig_rul
 #: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:20
 #, python-brace-format
 msgid "The patch {self.patch_name} cannot be applied because the following patches it depends on "
-msgstr ""
+msgstr "Патч {self.patch_name} не может быть применён из-за следующих патчей, от которых он зависит "
 
 #: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
 msgid "Please reapply these patches first."
-msgstr ""
+msgstr "Пожалуйста, примените данные патчи снова."
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
 msgid "One Layer (#00)"
@@ -5479,7 +5479,7 @@ msgstr "Португальский (Бразилия)"
 
 #: skytemple/skytemple/controller/settings.py:39
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: skytemple/skytemple/controller/settings.py:100
 msgid "<i>Use System Settings to set this under Linux.</i>"
@@ -13228,7 +13228,7 @@ msgstr "Патч был успешно применен. ROM будет пере
 
 #: skytemple/skytemple/module/patch/widget/asm.py:234
 msgid "Not all patches were applied successfully."
-msgstr ""
+msgstr "Не все патчи были успешно применены."
 
 #: skytemple/skytemple/module/patch/widget/asm.py:304
 msgid "Error loading patch package {os.path.basename(fname)}."
