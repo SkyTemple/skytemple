@@ -25,6 +25,8 @@ from glob import glob
 from types import TracebackType
 from typing import TYPE_CHECKING, Optional, overload, Union, Literal, cast
 from gi.repository import Gtk, Gdk
+
+from skytemple_files.common.exceptions.outdated_patch_dependency import OutdatedPatchDependencyError
 from skytemple_files.common.warnings import DeprecatedToBeRemovedWarning
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog, IMG_SAD
@@ -162,6 +164,7 @@ class StPatchAsmPage(Gtk.Box):
             some_skipped = False
             patch = "???"
             issues: dict[str, list[warnings.WarningMessage]] = {}
+            should_reload = False
             try:
                 dependencies = self._get_dependencies(name)
                 if len(dependencies) > 0:
@@ -200,6 +203,11 @@ class StPatchAsmPage(Gtk.Box):
                     exc_info=sys.exc_info(),
                     should_report=False,
                 )
+            except OutdatedPatchDependencyError as err:
+                self._msg(
+                    err,
+                    should_report=False,
+                )
             except BaseException as err:
                 self._error_or_issue(
                     False,
@@ -220,15 +228,17 @@ class StPatchAsmPage(Gtk.Box):
                         Gtk.MessageType.INFO,
                         is_success=True,
                     )
+                    should_reload = True
                 else:
                     self._msg(
-                        _("Not all patches were applied successfully. The ROM will now be reloaded."),
+                        _("Not all patches were applied successfully."),
                         Gtk.MessageType.INFO,
                     )
             finally:
                 self.module.mark_asm_patches_as_modified()
-                self.refresh(self._current_tab)
-                MainSkyTempleController.save(lambda: MainSkyTempleController.reload_project())
+                if should_reload:
+                    self.refresh(self._current_tab)
+                    MainSkyTempleController.save(lambda: MainSkyTempleController.reload_project())
 
     @Gtk.Template.Callback()
     def on_btn_refresh_clicked(self, *args):
