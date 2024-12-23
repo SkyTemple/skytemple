@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import sys
 from collections.abc import Callable
-from typing import TYPE_CHECKING, cast, Any
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u32_checked, u32, u8
@@ -248,7 +248,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                             "utility_tile_direction",
                             lambda row: row[0] == action_to_copy.direction.ssa_id
                             if action_to_copy.direction is not None
-                            else 0,
+                            else False,
                         )
                     else:
                         self.tool_scene_add_entity.set_active(True)
@@ -260,7 +260,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                             "utility_entity_direction",
                             lambda row: row[0] == action_to_copy.direction.ssa_id
                             if action_to_copy.direction is not None
-                            else 0,
+                            else False,
                         )
             # SELECT
             elif self.drawer.interaction_mode == InteractionMode.SELECT:
@@ -885,9 +885,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             f"<b>{tile_rule.explanation}</b>\n{_('Type')}: {tile_rule.floor_type.name.capitalize()}\n{tile_rule.room_type.name.capitalize()}\n{_('Impassable')}: {(_('Yes') if tile_rule.impassable else _('No'))}\nAffected by Absolute Mover: {(_('Yes') if tile_rule.absolute_mover else _('No'))}\n\n{tile_rule.notes}"
         )
 
-    # TODO: Can't use Gtk.TreeModelRow as callable argument type, due to it not being marked as indexable
-    #       doesn't need to be fixed until GTK 4 migration where we switch away from TreeModel...
-    def _select_combobox(self, cb_name: str, callback: Callable[[Any], bool]):
+    def _select_combobox(self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]):
         cb = getattr(self, cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
