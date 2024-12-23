@@ -15,13 +15,26 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import sys
-from typing import TYPE_CHECKING, cast
 from collections.abc import Callable
+from typing import TYPE_CHECKING, cast, Any
+
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u32_checked, u32, u8
+from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.protocol import Gender
+from skytemple_files.dungeon_data.fixed_bin.model import (
+    FixedFloor,
+    TileRuleType,
+    TileRule,
+    EntityRule,
+)
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
+
 from skytemple.controller.main import MainController
 from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.error_handler import display_error
@@ -61,16 +74,6 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import (
     FixedFloorDrawerTileset,
 )
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
-from skytemple_files.dungeon_data.fixed_bin.model import (
-    FixedFloor,
-    TileRuleType,
-    TileRule,
-    EntityRule,
-)
-from skytemple_files.graphics.dpc import DPC_TILING_DIM
-from skytemple_files.graphics.dpci import DPCI_TILE_DIM
-from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
-from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
@@ -882,7 +885,9 @@ class StDungeonFixedPage(Gtk.Notebook):
             f"<b>{tile_rule.explanation}</b>\n{_('Type')}: {tile_rule.floor_type.name.capitalize()}\n{tile_rule.room_type.name.capitalize()}\n{_('Impassable')}: {(_('Yes') if tile_rule.impassable else _('No'))}\nAffected by Absolute Mover: {(_('Yes') if tile_rule.absolute_mover else _('No'))}\n\n{tile_rule.notes}"
         )
 
-    def _select_combobox(self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]):
+    # TODO: Can't use Gtk.TreeModelRow as callable argument type, due to it not being marked as indexable
+    #       doesn't need to be fixed until GTK 4 migration where we switch away from TreeModel...
+    def _select_combobox(self, cb_name: str, callback: Callable[[Any], bool]):
         cb = getattr(self, cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
