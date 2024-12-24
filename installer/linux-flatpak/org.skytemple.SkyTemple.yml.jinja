@@ -116,7 +116,7 @@ modules:
   - name: python3-wheel
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --exists-action=i --no-index --ignore-installed --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wheel==0.43.0 "
+      - pip3 install --verbose --exists-action=i --no-index --ignore-installed --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wheel==0.45.1 "
     sources:
       {{ "setuptools"|pip_add_group }}
       {{ "flit"|pip_add_group }}
