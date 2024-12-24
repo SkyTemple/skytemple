@@ -1,6 +1,6 @@
 app-id: org.skytemple.SkyTemple
 runtime: org.gnome.Platform
-runtime-version: '46'
+runtime-version: '47'
 sdk: org.gnome.Sdk
 command: run.sh
 finish-args:
@@ -71,6 +71,7 @@ modules:
     build-commands:
       - . /usr/lib/sdk/rust-stable/enable.sh && CARGO_NET_OFFLINE=1 pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "./ssb-emulator"
     build-options:
+      cflags: -Wno-implicit-function-declaration -Wno-int-conversion
       env:
         CARGO_HOME: /run/build/python3-skytemple-ssb-emulator/cargo
     sources:
