@@ -229,7 +229,7 @@ jobs:
     name: Linux Flatpak Nightly
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-46
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
       options: --privileged
     steps:
       # Most of these are needed because of a bug in pip download, which causes pip download to attempt to build all build dependencies..
