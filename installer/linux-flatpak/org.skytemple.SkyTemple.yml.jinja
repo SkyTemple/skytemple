@@ -31,11 +31,9 @@ modules:
     post-install:
       - install -Dm755 armips /app/bin/armips
     sources:
-      - type: archive
-        url: https://github.com/Kingcom/armips/archive/v0.11.0.tar.gz
-        sha256: c94e29dfda3bdf853590d825562b9c73a3d8e8e995555e021c6b2a6451572681
-      - type: patch
-        path: patches/armips.patch
+      - type: git
+        url: https://github.com/Kingcom/armips.git
+        commit: 0febea0aecee2e2186529f0bbd180b06ce7e275c
 
   # This needs to be done separately due to some Cargo packages required.
   - name: python3-skytemple-rust
