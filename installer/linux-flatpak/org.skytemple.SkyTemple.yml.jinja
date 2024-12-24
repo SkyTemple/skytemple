@@ -47,6 +47,7 @@ modules:
         CARGO_HOME: /run/build/python3-skytemple-rust/cargo
     sources:
       - cargo-sources-skytemple-rust.json
+      {{ "packaging"|pip_add_group }}
       {{ "setuptools"|pip_add_group }}
       {{ "setuptools-rust"|pip_add_group }}
       {{ "flit"|pip_add_group }}
