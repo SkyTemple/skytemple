@@ -101,12 +101,6 @@ modules:
       {{ "hatchling"|pip_add_group }}
       {{ "flit"|pip_add_group }}
       - {{ explorerscript_ref }}
-      - type: file
-        url: https://files.pythonhosted.org/packages/5f/a0/1f70c34a96dcb0acf428319e83655e92ab2955d73a33f711852a5fb79681/igraph-0.11.6.tar.gz
-        sha256: 837f233256c3319f2a35a6a80d94eafe47b43791ef4c6f9e9871061341ac8e28
-      - type: file
-        url: https://files.pythonhosted.org/packages/24/99/4772b8e00a136f3e01236de33b0efda31ee7077203ba5967fcc76da94d65/texttable-1.7.0-py2.py3-none-any.whl
-        sha256: 72227d592c82b3d7f672731ae73e4d1f88cd8e2ef5b075a7a7f01a23a3743917
       - type: patch
         path: patches/explorerscript_antlr_offline.patch
 
