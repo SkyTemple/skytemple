@@ -16,14 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os.path
 from importlib.abc import SourceLoader
-from typing import Union
 
 
 class SkyTemplePluginLoader(SourceLoader):
     def __init__(self, path: str):
         self.__path = path
 
-    def get_data(self, path: Union[str, bytes]) -> bytes:
+    def get_data(self, path: str | bytes) -> bytes:
         with open(path, "rb") as f:
             return f.read()
 

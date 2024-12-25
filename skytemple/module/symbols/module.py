@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
-from typing import Optional
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.item_tree import (
@@ -32,9 +31,9 @@ from skytemple_files.common.i18n_util import _
 class SymbolsModule(AbstractModule):
     # A reference to the item tree where this module's option is listed, or None if load_tree_items hasn't
     # been called yet.
-    item_tree: Optional[ItemTree]
+    item_tree: ItemTree | None
     # Current item tree entry, or None if load_tree_items hasn't been called yet.
-    item_tree_entry: Optional[ItemTreeEntryRef]
+    item_tree_entry: ItemTreeEntryRef | None
 
     @classmethod
     def depends_on(cls):

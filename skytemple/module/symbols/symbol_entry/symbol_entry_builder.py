@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
-from typing import Optional, List
 
 from pmdsky_debug_py.protocol import SectionProtocol, Symbol
 from skytemple.core.rom_project import RomProject
@@ -33,13 +32,13 @@ class SymbolEntryBuilder:
     pre-creation operations that will affect the data that goes into the final object.
     """
 
-    _rom_project: Optional[RomProject]
+    _rom_project: RomProject | None
     _name: str
-    _c_type: Optional[CType]
+    _c_type: CType | None
     _description: str
-    _rw_symbol: Optional[RWSymbol]
+    _rw_symbol: RWSymbol | None
     _binary_id: str
-    _binary_protocol: Optional[SectionProtocol]
+    _binary_protocol: SectionProtocol | None
     _enable_display_type_overrides: bool
 
     # Index in rw_symbol.elements that corresponds to this instance. Only needed for multi-dimensional arrays.
@@ -171,7 +170,7 @@ class SymbolEntryBuilder:
             # Array and struct types don't have a visible value column
             return SymbolEntryValueType.EMPTY
 
-    def _get_children(self) -> List[SymbolEntry]:
+    def _get_children(self) -> list[SymbolEntry]:
         """
         Creates all children for the current symbol entry. The resulting list will be empty if the entry is not
         an array or struct entry.

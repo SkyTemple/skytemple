@@ -11,11 +11,11 @@ url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/
 if [ -n "$IS_MACOS" ]; then
   # Check if we're running on Apple Silicon
   if [ "$(uname -m)" = "arm64" ]; then
-    wheel_name="skytemple_rust-*-cp312-cp312-macosx_11_0_arm64.whl"
-    url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-macos-12-arm64.zip"
+    wheel_name="skytemple_rust-*-cp312-cp312-macosx_*_arm64.whl"
+    url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-macos-13-arm64.zip"
   else
-    wheel_name="skytemple_rust-*-cp312-cp312-macosx_10_9_x86_64.whl"
-    url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-macos-12-x86_64.zip"
+    wheel_name="skytemple_rust-*-cp312-cp312-macosx_*_x86_64.whl"
+    url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-macos-13-x86_64.zip"
   fi
 fi
 

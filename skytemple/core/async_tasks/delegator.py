@@ -19,7 +19,6 @@ import sys
 from asyncio import AbstractEventLoop
 from collections.abc import Coroutine
 from enum import Enum, auto
-from typing import Optional
 
 from gi.repository import GLib, Gio
 from skytemple_files.common.i18n_util import _
@@ -82,9 +81,9 @@ class AsyncConfiguration(Enum):
     def __init__(
         self,
         _: str,
-        name_localized: Optional[str] = None,
-        event_loop_type: Optional[AsyncEventLoopType] = None,
-        async_task_runner_type: Optional[AsyncTaskRunnerType] = None,
+        name_localized: str | None = None,
+        event_loop_type: AsyncEventLoopType | None = None,
+        async_task_runner_type: AsyncTaskRunnerType | None = None,
     ):
         self.name_localized = name_localized
         self.event_loop_type = event_loop_type
@@ -194,6 +193,6 @@ class AsyncTaskDelegator:
         return cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT
 
     @classmethod
-    def event_loop(cls) -> Optional[AbstractEventLoop]:
+    def event_loop(cls) -> AbstractEventLoop | None:
         """Returns the current event loop."""
         return asyncio.get_event_loop()

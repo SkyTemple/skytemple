@@ -21,7 +21,8 @@ import os
 import shutil
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Callable, Optional, cast
+from typing import TYPE_CHECKING, Optional, cast
+from collections.abc import Callable
 from collections.abc import Iterable, MutableSequence
 import cairo
 from skytemple_files.user_error import mark_as_user_err

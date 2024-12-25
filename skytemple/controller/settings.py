@@ -19,7 +19,6 @@ import os
 import sys
 import webbrowser
 from glob import glob
-from typing import Optional
 
 from gi.repository import Gtk, GLib
 from skytemple_files.common.i18n_util import _
@@ -105,7 +104,7 @@ class SettingsController:
         cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_language")
         store = builder_get_assert(self.builder, Gtk.ListStore, "lang_store")
         store.clear()
-        active_i: Optional[int] = None
+        active_i: int | None = None
         for idx, (code, name) in enumerate(LANGS):
             store.append([code, name])
             if code == self.settings.get_locale():

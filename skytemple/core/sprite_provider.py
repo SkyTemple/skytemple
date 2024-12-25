@@ -20,7 +20,7 @@ import json
 import logging
 import os
 import threading
-from typing import TYPE_CHECKING, Union, Optional
+from typing import TYPE_CHECKING, Union
 
 import cairo
 
@@ -160,8 +160,8 @@ class SpriteProvider:
 
     def __init__(self, project: "RomProject"):
         self._project = project
-        self._loader_surface_dims: Optional[tuple[int, int]] = None
-        self._loader_surface: Optional[cairo.ImageSurface] = None
+        self._loader_surface_dims: tuple[int, int] | None = None
+        self._loader_surface: cairo.ImageSurface | None = None
 
         self._loaded__monsters: dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
         self._loaded__monsters_outlines: dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
@@ -183,10 +183,10 @@ class SpriteProvider:
         self._monster_bin: ModelContext[BinPack] = self._project.open_file_in_rom(
             MONSTER_BIN, FileType.BIN_PACK, threadsafe=True
         )
-        self._dungeon_bin: Optional[ModelContext[DungeonBinPack]] = None
+        self._dungeon_bin: ModelContext[DungeonBinPack] | None = None
 
         self._stripes = Image.open(os.path.join(data_dir(), "stripes.png"))
-        self._loaded_standins: Optional[dict[int, int]] = None
+        self._loaded_standins: dict[int, int] | None = None
 
         # init_loader MUST be called next!
 
@@ -289,7 +289,7 @@ class SpriteProvider:
                 self._load_object(name, after_load_cb)
         return self.get_loader()
 
-    def get_for_trap(self, trp: Union[MappaTrapType, int], after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_for_trap(self, trp: MappaTrapType | int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
         Returns a trap sprite.
         As long as the sprite is being loaded, the loader sprite is returned instead.

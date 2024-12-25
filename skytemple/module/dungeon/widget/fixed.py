@@ -15,12 +15,26 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
+
 import sys
-from typing import TYPE_CHECKING, Callable, cast
+from collections.abc import Callable
+from typing import TYPE_CHECKING, cast
+
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u32_checked, u32, u8
+from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.protocol import Gender
+from skytemple_files.dungeon_data.fixed_bin.model import (
+    FixedFloor,
+    TileRuleType,
+    TileRule,
+    EntityRule,
+)
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
+
 from skytemple.controller.main import MainController
 from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.error_handler import display_error
@@ -60,16 +74,6 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import (
     FixedFloorDrawerTileset,
 )
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
-from skytemple_files.dungeon_data.fixed_bin.model import (
-    FixedFloor,
-    TileRuleType,
-    TileRule,
-    EntityRule,
-)
-from skytemple_files.graphics.dpc import DPC_TILING_DIM
-from skytemple_files.graphics.dpci import DPCI_TILE_DIM
-from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
-from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
@@ -244,7 +248,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                             "utility_tile_direction",
                             lambda row: row[0] == action_to_copy.direction.ssa_id
                             if action_to_copy.direction is not None
-                            else 0,
+                            else False,
                         )
                     else:
                         self.tool_scene_add_entity.set_active(True)
@@ -256,7 +260,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                             "utility_entity_direction",
                             lambda row: row[0] == action_to_copy.direction.ssa_id
                             if action_to_copy.direction is not None
-                            else 0,
+                            else False,
                         )
             # SELECT
             elif self.drawer.interaction_mode == InteractionMode.SELECT:

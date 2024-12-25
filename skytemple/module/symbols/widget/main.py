@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import os
 import re
-from typing import TYPE_CHECKING, cast, List, Tuple, Optional
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk
 
@@ -104,9 +104,9 @@ class StSymbolsMainPage(Gtk.Stack):
     project: RomProject
     symbol_data_getter: BinaryDataGetter
     # IDs of all the binaries that have at least one data symbol
-    binaries: List[str]
+    binaries: list[str]
     # List used to create and store SymbolEntry instances
-    entry_list: List[SymbolEntry]
+    entry_list: list[SymbolEntry]
 
     # UI elements
     content_box: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
@@ -174,7 +174,7 @@ class StSymbolsMainPage(Gtk.Stack):
         # Get all relevant symbols
 
         # List of symbols. Each entry is a tuple of two elements: The symbol and the ID of its corresponding binary
-        symbols: List[Tuple[Symbol, str]] = []
+        symbols: list[tuple[Symbol, str]] = []
         for binary_id in self.binaries:
             symbols += [(s, binary_id) for s in self.symbol_data_getter.get_data_symbols(binary_id)]
         symbols.sort(key=lambda _entry: _entry[0].name)
@@ -258,7 +258,7 @@ class StSymbolsMainPage(Gtk.Stack):
             new_value_final = str(int(_id))
             self.on_value_changed(path, new_value_final)
 
-    def on_value_changed(self, path: str, new_value: str, model_iter: Optional[Gtk.TreeIter] = None):
+    def on_value_changed(self, path: str, new_value: str, model_iter: Gtk.TreeIter | None = None):
         """
         Common value change callback function. Run when the value of one of the simple symbols in the UI is changed.
         Sets the corresponding internal value, both in the SimpleSymbolEntry (which in turn sets it in the corresponding

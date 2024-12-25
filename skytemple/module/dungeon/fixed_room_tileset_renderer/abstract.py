@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC, abstractmethod
-from typing import Optional
 
 import cairo
 
@@ -25,7 +24,7 @@ from skytemple_files.graphics.dpci import DPCI_TILE_DIM
 
 class AbstractTilesetRenderer(ABC):
     @abstractmethod
-    def get_background(self) -> Optional[cairo.Surface]:
+    def get_background(self) -> cairo.Surface | None:
         """Returns the background as a surface"""
 
     @abstractmethod

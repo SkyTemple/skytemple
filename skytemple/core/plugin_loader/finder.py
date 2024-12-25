@@ -17,23 +17,18 @@
 import atexit
 import contextlib
 import os
-import sys
 from importlib.machinery import ModuleSpec
 from importlib.util import spec_from_loader
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import ModuleType
-from typing import Optional, Union
 from collections.abc import Sequence, Iterable
 from wheel.wheelfile import WheelFile
 
 from skytemple.core.plugin_loader.loader import SkyTemplePluginLoader
 from skytemple.core.settings import SkyTempleSettingsStore
 
-if sys.version_info >= (3, 10):
-    import importlib.metadata as importlib_metadata
-else:
-    import importlib_metadata
+import importlib.metadata as importlib_metadata
 
 
 class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
@@ -60,9 +55,9 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
     def find_spec(
         self,
         fullname: str,
-        path: Optional[Sequence[Union[bytes, str]]],
-        target: Optional[ModuleType] = None,
-    ) -> Optional[ModuleSpec]:
+        path: Sequence[bytes | str] | None,
+        target: ModuleType | None = None,
+    ) -> ModuleSpec | None:
         """
         From the docs:
         An abstract method for finding a spec for the specified module.

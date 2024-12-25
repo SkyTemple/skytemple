@@ -1,6 +1,6 @@
 app-id: org.skytemple.SkyTemple
 runtime: org.gnome.Platform
-runtime-version: '46'
+runtime-version: '47'
 sdk: org.gnome.Sdk
 command: run.sh
 finish-args:
@@ -31,11 +31,9 @@ modules:
     post-install:
       - install -Dm755 armips /app/bin/armips
     sources:
-      - type: archive
-        url: https://github.com/Kingcom/armips/archive/v0.11.0.tar.gz
-        sha256: c94e29dfda3bdf853590d825562b9c73a3d8e8e995555e021c6b2a6451572681
-      - type: patch
-        path: patches/armips.patch
+      - type: git
+        url: https://github.com/Kingcom/armips.git
+        commit: 0febea0aecee2e2186529f0bbd180b06ce7e275c
 
   # This needs to be done separately due to some Cargo packages required.
   - name: python3-skytemple-rust
@@ -47,6 +45,7 @@ modules:
         CARGO_HOME: /run/build/python3-skytemple-rust/cargo
     sources:
       - cargo-sources-skytemple-rust.json
+      {{ "packaging"|pip_add_group }}
       {{ "setuptools"|pip_add_group }}
       {{ "setuptools-rust"|pip_add_group }}
       {{ "flit"|pip_add_group }}
@@ -72,10 +71,12 @@ modules:
     build-commands:
       - . /usr/lib/sdk/rust-stable/enable.sh && CARGO_NET_OFFLINE=1 pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "./ssb-emulator"
     build-options:
+      cflags: -Wno-implicit-function-declaration -Wno-int-conversion
       env:
         CARGO_HOME: /run/build/python3-skytemple-ssb-emulator/cargo
     sources:
       - cargo-sources-ssb-emulator.json
+      {{ "packaging"|pip_add_group }}
       {{ "setuptools"|pip_add_group }}
       {{ "setuptools-rust"|pip_add_group }}
       {{ "flit"|pip_add_group }}
@@ -101,8 +102,8 @@ modules:
       {{ "flit"|pip_add_group }}
       - {{ explorerscript_ref }}
       - type: file
-        url: https://files.pythonhosted.org/packages/5f/a0/1f70c34a96dcb0acf428319e83655e92ab2955d73a33f711852a5fb79681/igraph-0.11.6.tar.gz
-        sha256: 837f233256c3319f2a35a6a80d94eafe47b43791ef4c6f9e9871061341ac8e28
+        url: https://files.pythonhosted.org/packages/b8/8e/8810c9ccdef97c614423ca82fca693608db9546a1a9716671035e3630499/igraph-0.11.8.tar.gz
+        sha256: d7dc1404567ba3b0ea1bf8b5fa6e101617915c8ad11ea5a9f925a40bf4adad7d
       - type: file
         url: https://files.pythonhosted.org/packages/24/99/4772b8e00a136f3e01236de33b0efda31ee7077203ba5967fcc76da94d65/texttable-1.7.0-py2.py3-none-any.whl
         sha256: 72227d592c82b3d7f672731ae73e4d1f88cd8e2ef5b075a7a7f01a23a3743917
@@ -115,7 +116,7 @@ modules:
   - name: python3-wheel
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --exists-action=i --no-index --ignore-installed --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wheel==0.43.0 "
+      - pip3 install --verbose --exists-action=i --no-index --ignore-installed --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wheel==0.45.1 "
     sources:
       {{ "setuptools"|pip_add_group }}
       {{ "flit"|pip_add_group }}

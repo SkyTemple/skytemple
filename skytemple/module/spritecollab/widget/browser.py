@@ -19,7 +19,8 @@ import asyncio
 import platform
 import webbrowser
 from threading import Thread
-from typing import Optional, Callable, TYPE_CHECKING, Any, cast
+from typing import Optional, TYPE_CHECKING, Any, cast
+from collections.abc import Callable
 from PIL import Image
 from gi.repository import Gtk, GLib, GdkPixbuf
 from skytemple.core.ui_utils import (

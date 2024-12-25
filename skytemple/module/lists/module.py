@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Union
 
 from range_typed_integers import i16, u16, u8
 
@@ -283,7 +282,7 @@ class ListsModule(AbstractModule):
         )
         self._item_tree = item_tree
 
-    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
+    def handle_request(self, request: OpenRequest) -> ItemTreeEntryRef | None:
         if request.type == REQUEST_TYPE_DUNGEON_MUSIC:
             return self._dungeon_music_tree_iter
         return None
@@ -580,7 +579,7 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._guest_pokemon_root_iter, RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, ActorListController):
             pass  # todo
         if isinstance(open_view, StartersListController):

@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Union
 
 from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _
@@ -60,7 +59,7 @@ class StringsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._item_tree: Optional[ItemTree] = None
+        self._item_tree: ItemTree | None = None
         self._tree_iters: dict[str, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
@@ -98,7 +97,7 @@ class StringsModule(AbstractModule):
         if self._item_tree is not None:
             self._item_tree.mark_as_modified(self._tree_iters[filename], RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StStringsStringsPage):
             pass  # todo
         return None

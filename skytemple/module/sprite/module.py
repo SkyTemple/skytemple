@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Union, Optional, overload, Literal
+from typing import TYPE_CHECKING, overload, Literal
 
 from gi.repository import Gtk
 from PIL import Image
@@ -152,7 +152,7 @@ class SpriteModule(AbstractModule):
             ),
         )
 
-    def import_a_sprite(self) -> Optional[bytes]:
+    def import_a_sprite(self) -> bytes | None:
         if self.get_gfxcrunch().is_available():
             return self.import_a_sprite__gfxcrunch()
         return self.import_a_sprite__wan()
@@ -162,7 +162,7 @@ class SpriteModule(AbstractModule):
             return self.export_a_sprite__gfxcrunch(sprite)
         return self.export_a_sprite__wan(sprite)
 
-    def import_a_sprite__wan(self) -> Optional[bytes]:
+    def import_a_sprite__wan(self) -> bytes | None:
         dialog = Gtk.FileChooserNative.new(
             _("Import WAN sprite..."),
             MainController.window(),
@@ -204,7 +204,7 @@ class SpriteModule(AbstractModule):
             with open(fn, "wb") as f:
                 f.write(sprite)
 
-    def import_a_sprite__gfxcrunch(self) -> Optional[bytes]:
+    def import_a_sprite__gfxcrunch(self) -> bytes | None:
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -253,7 +253,7 @@ class SpriteModule(AbstractModule):
             except BaseException as e:
                 display_error(sys.exc_info(), str(e), _("Error exporting the sprite."))
 
-    def import_an_image(self) -> Optional[bytes]:
+    def import_an_image(self) -> bytes | None:
         dialog = Gtk.FileChooserNative.new(
             _("Import image file..."),
             MainController.window(),
@@ -295,7 +295,7 @@ class SpriteModule(AbstractModule):
     @overload
     def get_monster_monster_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
 
-    def get_monster_monster_sprite_chara(self, id, raw: bool = False) -> Union[bytes, WanFile]:
+    def get_monster_monster_sprite_chara(self, id, raw: bool = False) -> bytes | WanFile:
         with self.get_monster_bin_ctx() as bin_pack:
             decompressed = FileType.PKDPX.deserialize(bin_pack[id]).decompress()
             if raw:
@@ -308,7 +308,7 @@ class SpriteModule(AbstractModule):
     @overload
     def get_monster_ground_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
 
-    def get_monster_ground_sprite_chara(self, id, raw: bool = False) -> Union[bytes, WanFile]:
+    def get_monster_ground_sprite_chara(self, id, raw: bool = False) -> bytes | WanFile:
         with self.get_ground_bin_ctx() as bin_pack:
             if raw:
                 return bin_pack[id]
@@ -320,7 +320,7 @@ class SpriteModule(AbstractModule):
     @overload
     def get_monster_attack_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
 
-    def get_monster_attack_sprite_chara(self, id, raw: bool = False) -> Union[bytes, WanFile]:
+    def get_monster_attack_sprite_chara(self, id, raw: bool = False) -> bytes | WanFile:
         with self.get_attack_bin_ctx() as bin_pack:
             decompressed = FileType.PKDPX.deserialize(bin_pack[id]).decompress()
             if raw:
@@ -376,14 +376,14 @@ class SpriteModule(AbstractModule):
         self.save_monster_monster_sprite_prepared(id, monster_prepared)
         self.save_monster_attack_sprite_prepared(id, attack_prepared)
 
-    def prepare_monster_sprite(self, data: Union[bytes, WanFile], compress: bool) -> bytes:
+    def prepare_monster_sprite(self, data: bytes | WanFile, compress: bool) -> bytes:
         if isinstance(data, WanFile):
             data = FileType.WAN.CHARA.serialize(data)
         if compress:
             data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
         return data
 
-    def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):
+    def save_monster_ground_sprite(self, id, data: bytes | WanFile, raw=False):
         self.save_monster_ground_sprite_prepared(id, self.prepare_monster_sprite(data, False))
 
     def save_monster_ground_sprite_prepared(self, id, data: bytes):
@@ -394,7 +394,7 @@ class SpriteModule(AbstractModule):
                 bin_pack[id] = data
         self.project.mark_as_modified(GROUND_BIN)
 
-    def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
+    def save_monster_monster_sprite(self, id, data: bytes | WanFile, raw=False):
         self.save_monster_monster_sprite_prepared(id, self.prepare_monster_sprite(data, True))
 
     def save_monster_monster_sprite_prepared(self, id, data: bytes):
@@ -405,7 +405,7 @@ class SpriteModule(AbstractModule):
                 bin_pack[id] = data
         self.project.mark_as_modified(MONSTER_BIN)
 
-    def save_monster_attack_sprite(self, id, data: Union[bytes, WanFile], raw=False):
+    def save_monster_attack_sprite(self, id, data: bytes | WanFile, raw=False):
         self.save_monster_attack_sprite_prepared(id, self.prepare_monster_sprite(data, True))
 
     def save_monster_attack_sprite_prepared(self, id, data: bytes):
@@ -422,7 +422,7 @@ class SpriteModule(AbstractModule):
         self.project.mark_as_modified(SPRCONF_FILENAME)
         self.project.get_rom_module().get_static_data().animation_names[sprite.id] = sprite
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StSpriteObjectPage):
             pass  # todo
         return None

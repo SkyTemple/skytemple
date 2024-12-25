@@ -18,7 +18,6 @@ import configparser
 import logging
 import os
 import uuid
-from typing import Optional
 from collections.abc import Sequence
 
 from skytemple.core.async_tasks.delegator import AsyncConfiguration
@@ -140,7 +139,7 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_GENERAL][KEY_LOCALE] = value
         self._save()
 
-    def get_window_size(self) -> Optional[tuple[int, int]]:
+    def get_window_size(self) -> tuple[int, int] | None:
         if SECT_WINDOW in self.loaded_config:
             if (
                 KEY_WINDOW_SIZE_X in self.loaded_config[SECT_WINDOW]
@@ -158,7 +157,7 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_Y] = str(dim[1])
         self._save()
 
-    def get_window_position(self) -> Optional[tuple[int, int]]:
+    def get_window_position(self) -> tuple[int, int] | None:
         if SECT_WINDOW in self.loaded_config:
             if (
                 KEY_WINDOW_POS_X in self.loaded_config[SECT_WINDOW]

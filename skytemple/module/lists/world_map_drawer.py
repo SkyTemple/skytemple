@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Union, Callable, Optional
+from typing import Union
+from collections.abc import Callable
 
 import cairo
 from gi.repository import Gtk
@@ -55,10 +56,10 @@ class WorldMapDrawer:
         # Interaction
         self.mouse_x = 99999
         self.mouse_y = 99999
-        self._selected: Optional[MapMarkerPlacement] = None
-        self._editing: Optional[MapMarkerPlacement] = None
-        self._editing_pos: Optional[tuple[int, int]] = None
-        self._hide: Optional[MapMarkerPlacement] = None
+        self._selected: MapMarkerPlacement | None = None
+        self._editing: MapMarkerPlacement | None = None
+        self._editing_pos: tuple[int, int] | None = None
+        self._hide: MapMarkerPlacement | None = None
 
         self.tile_grid_plugin = GridDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM, color=(0.2, 0.2, 0.2, 0.1))
 
@@ -123,7 +124,7 @@ class WorldMapDrawer:
         #    self._draw_name(ctx, ms, x, y)
         return True
 
-    def get_under_mouse(self) -> Optional[MapMarkerPlacement]:
+    def get_under_mouse(self) -> MapMarkerPlacement | None:
         """
         Returns the first marker under the mouse position, if any.
         """
@@ -193,15 +194,15 @@ class WorldMapDrawer:
                 label += f"{dlabel}, "
         ctx.show_text(label.strip(", "))
 
-    def set_selected(self, entity: Optional[MapMarkerPlacement]):
+    def set_selected(self, entity: MapMarkerPlacement | None):
         self._selected = entity
         self.draw_area.queue_draw()
 
     def set_editing(
         self,
-        entity: Optional[MapMarkerPlacement],
-        editing_pos: Optional[tuple[int, int]] = None,
-        hide: Optional[MapMarkerPlacement] = None,
+        entity: MapMarkerPlacement | None,
+        editing_pos: tuple[int, int] | None = None,
+        hide: MapMarkerPlacement | None = None,
     ):
         self._editing = entity
         if editing_pos is None:

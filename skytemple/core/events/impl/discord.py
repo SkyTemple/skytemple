@@ -23,7 +23,7 @@ import asyncio
 import inspect
 import logging
 import os
-from typing import Optional, Callable, Union
+from collections.abc import Callable
 
 from gi.repository import GLib, Gtk
 from skytemple_files.common.i18n_util import _
@@ -68,7 +68,7 @@ class DiscordPresence(AbstractListener):
         self.module_state = None
         self.rom_name = None
         self.debugger_script_name = None
-        self.project: Optional[RomProject] = None
+        self.project: RomProject | None = None
 
     async def on_event_loop_started(self):
         await self.rpc.connect()
@@ -111,7 +111,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch(
         self,
         module: AbstractModule,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         mod_handler = getattr(self, f"on_view_switch__{module.__class__.__name__}", None)
@@ -125,7 +125,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MiscGraphicsModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.misc_graphics.widget.w16 import StMiscGraphicsW16Page
@@ -143,7 +143,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__DungeonGraphicsModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.dungeon_graphics.module import (
@@ -166,7 +166,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__BgpModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.bgp.widget.bgp import StBgpBgpPage
@@ -179,7 +179,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__RomModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         self.module_info = "Editing the ROM"
@@ -188,7 +188,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__ListsModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.lists.controller.actor_list import ActorListController
@@ -214,7 +214,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__PatchModule(
         self,
         module: AbstractModule,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.patch.widget.item_effects import StPatchItemEffectsPage
@@ -237,7 +237,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MapBgModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.map_bg.widget.bg import StMapBgBgPage
@@ -250,7 +250,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__ScriptModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.script.widget.ssa import StScriptSsaPage
@@ -266,7 +266,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__DungeonModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.dungeon.widget.dungeon import StDungeonDungeonPage
@@ -293,7 +293,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MonsterModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.monster.widget.monster import StMonsterMonsterPage
@@ -309,7 +309,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__StringsModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.strings.widget.strings import StStringsStringsPage
@@ -322,7 +322,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__SpriteModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.sprite.widget.object import StSpriteObjectPage
@@ -335,7 +335,7 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MovesItemsModule(
         self,
         module,
-        view: Union[AbstractController, Gtk.Widget],
+        view: AbstractController | Gtk.Widget,
         breadcrumbs: list[str],
     ):
         from skytemple.module.moves_items.widget.item import StMovesItemsItemPage

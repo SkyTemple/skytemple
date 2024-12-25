@@ -20,7 +20,7 @@ import sys
 import webbrowser
 from enum import Enum
 from functools import partial
-from typing import Optional, cast
+from typing import cast
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -131,8 +131,8 @@ class TilequantController:
         builder_get_assert(builder, Gtk.Button, "tq_convert").connect("clicked", self.convert)
         builder_get_assert(builder, Gtk.Button, "tq_help").connect("clicked", self.show_wiki_help)
         self.builder = builder
-        self._previous_output_image: Optional[str] = None
-        self._previous_second_output_image: Optional[str] = None
+        self._previous_output_image: str | None = None
+        self._previous_second_output_image: str | None = None
 
     def run(self, num_pals=16, num_colors=16):
         """

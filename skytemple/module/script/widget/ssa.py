@@ -19,7 +19,8 @@ import math
 import sys
 import os
 from functools import partial
-from typing import TYPE_CHECKING, Optional, Callable, cast, ClassVar
+from typing import TYPE_CHECKING, Optional, cast, ClassVar
+from collections.abc import Callable
 from xml.etree import ElementTree
 import cairo
 import typing

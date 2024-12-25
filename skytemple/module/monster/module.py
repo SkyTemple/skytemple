@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional, Union
 from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
@@ -95,7 +94,7 @@ class MonsterModule(AbstractModule):
         self.m_attack_bin = self.project.open_file_in_rom(M_ATTACK_BIN, FileType.BIN_PACK, threadsafe=True)
         logger.debug("Done preloading.")
 
-        self._tbl_talk: Optional[TblTalk] = None
+        self._tbl_talk: TblTalk | None = None
 
         self._item_tree: ItemTree
         self._tree_iter__entity_roots: dict[int, ItemTreeEntryRef] = {}
@@ -147,7 +146,7 @@ class MonsterModule(AbstractModule):
                     ),
                 )
 
-    def get_opened_id(self) -> Optional[int]:
+    def get_opened_id(self) -> int | None:
         """Returns the ID of the currently opened monster in SkyTemple. None if no view for a monster is opened."""
         module, controller, item_id = SkyTempleMainController.view_info()
         if isinstance(module, MonsterModule) and controller == StMonsterMonsterPage:
@@ -186,7 +185,7 @@ class MonsterModule(AbstractModule):
             item_data=i,
         )
 
-    def get_entry_both(self, item_id) -> tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
+    def get_entry_both(self, item_id) -> tuple[MdEntryProtocol, MdEntryProtocol | None]:
         num_entites = FileType.MD.properties().num_entities
         if item_id + num_entites < len(self.monster_md):
             return self.monster_md[item_id], self.monster_md[item_id + num_entites]
@@ -205,7 +204,7 @@ class MonsterModule(AbstractModule):
             )
         return names
 
-    def get_m_level_bin_entry(self, idx) -> Optional[LevelBinEntry]:
+    def get_m_level_bin_entry(self, idx) -> LevelBinEntry | None:
         if idx > -1 and idx < len(self.m_level_bin):
             raw = self.m_level_bin[idx]
             return FileType.LEVEL_BIN_ENTRY.deserialize(
@@ -260,12 +259,12 @@ class MonsterModule(AbstractModule):
     def get_portraits_for_export(
         self, item_id
     ) -> tuple[
-        Optional[list[Optional[KaoImageProtocol]]],
-        Optional[list[Optional[KaoImageProtocol]]],
+        list[KaoImageProtocol | None] | None,
+        list[KaoImageProtocol | None] | None,
     ]:
         num_entities = FileType.MD.properties().num_entities
-        portraits: Optional[list[Optional[KaoImageProtocol]]] = None
-        portraits2: Optional[list[Optional[KaoImageProtocol]]] = None
+        portraits: list[KaoImageProtocol | None] | None = None
+        portraits2: list[KaoImageProtocol | None] | None = None
         portrait_module = self.project.get_module("portrait")
         kao: KaoProtocol = portrait_module.kao
         if -1 < item_id < kao.n_entries():
@@ -562,7 +561,7 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(MEVO_FILE)
         self._mark_as_modified_in_tree(item_id)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: AbstractController | Gtk.Widget) -> DebuggingInfo | None:
         if isinstance(open_view, StMonsterMonsterPage):
             pass  # todo
         return None

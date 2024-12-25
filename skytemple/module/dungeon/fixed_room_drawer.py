@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import typing
 from enum import auto, Enum
-from typing import Union, Optional, TYPE_CHECKING
+from typing import Union, TYPE_CHECKING
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -81,9 +81,9 @@ class FixedRoomDrawer:
     def __init__(
         self,
         draw_area: Gtk.Widget,
-        fixed_floor: Optional[FixedFloor],
+        fixed_floor: FixedFloor | None,
         sprite_provider: SpriteProvider,
-        entity_rule_container: Optional[EntityRuleContainer],
+        entity_rule_container: EntityRuleContainer | None,
         string_provider: StringProvider,
         module: "DungeonModule",
         add_fixed_room_padding=True,
@@ -92,11 +92,11 @@ class FixedRoomDrawer:
         self.module = module
 
         self.fixed_floor = fixed_floor
-        self.tileset_renderer: Optional[AbstractTilesetRenderer] = None
-        self.entity_renderer: Optional[AbstractEntityRenderer] = None
+        self.tileset_renderer: AbstractTilesetRenderer | None = None
+        self.entity_renderer: AbstractEntityRenderer | None = None
 
         self.draw_tile_grid = False
-        self.info_layer_active: Optional[InfoLayer] = None
+        self.info_layer_active: InfoLayer | None = None
         self.entity_rule_container = entity_rule_container
         self.add_fixed_room_padding = add_fixed_room_padding
 
@@ -109,11 +109,11 @@ class FixedRoomDrawer:
         self.string_provider = string_provider
 
         # Depending on the mode this is either a coordinate tuple or a FixedFloorActionRule to place.
-        self._selected: Optional[Union[tuple[int, int], FixedFloorActionRule]] = None
-        self._selected__drag: Optional[tuple[int, int]] = None
+        self._selected: tuple[int, int] | FixedFloorActionRule | None = None
+        self._selected__drag: tuple[int, int] | None = None
 
-        self.selection_plugin: Optional[SelectionDrawerPlugin] = None
-        self.tile_grid_plugin: Optional[GridDrawerPlugin] = None
+        self.selection_plugin: SelectionDrawerPlugin | None = None
+        self.tile_grid_plugin: GridDrawerPlugin | None = None
 
         self.scale = 1
 
@@ -342,7 +342,7 @@ class FixedRoomDrawer:
         self.draw_tile_grid = v
         self.redraw()
 
-    def set_info_layer(self, v: Optional[InfoLayer]):
+    def set_info_layer(self, v: InfoLayer | None):
         self.info_layer_active = v
         self.draw_area.queue_draw()
 
