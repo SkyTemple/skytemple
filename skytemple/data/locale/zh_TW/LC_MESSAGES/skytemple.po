@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-12-21 11:36+0000\n"
-"PO-Revision-Date: 2024-12-21 11:58\n"
+"POT-Creation-Date: 2024-12-25 10:39+0000\n"
+"PO-Revision-Date: 2024-12-25 10:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: /dev/fd/63:1 /dev/fd/63:216
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:527
-#: skytemple/skytemple/controller/settings.py:35
+#: skytemple/skytemple/controller/settings.py:34
 msgid "English"
 msgstr "英語"
 
@@ -899,13 +899,13 @@ msgstr ""
 
 #: /dev/fd/63:217
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
-#: skytemple/skytemple/controller/settings.py:36
+#: skytemple/skytemple/controller/settings.py:35
 msgid "French"
 msgstr "法語"
 
 #: /dev/fd/63:218
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
-#: skytemple/skytemple/controller/settings.py:37
+#: skytemple/skytemple/controller/settings.py:36
 msgid "German"
 msgstr "德語"
 
@@ -916,7 +916,7 @@ msgstr "意大利语"
 
 #: /dev/fd/63:220
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
-#: skytemple/skytemple/controller/settings.py:40
+#: skytemple/skytemple/controller/settings.py:39
 msgid "Spanish"
 msgstr "西班牙語"
 
@@ -1319,7 +1319,8 @@ msgid "The patch {self.patch_name} cannot be applied because the following patch
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
-msgid "Please reapply these patches first."
+msgid "\n"
+"Please reapply these patches first."
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
@@ -1423,17 +1424,17 @@ msgid "'{str(value)}' cannot be encoded as a shifted immediate."
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:94
-#: skytemple/skytemple/module/monster/widget/monster.py:880
+#: skytemple/skytemple/module/monster/widget/monster.py:881
 msgid "Sprite VRAM Size"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:98
-#: skytemple/skytemple/module/monster/widget/monster.py:865
+#: skytemple/skytemple/module/monster/widget/monster.py:866
 msgid "Body Size"
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/sprite_util.py:105
-#: skytemple/skytemple/module/monster/widget/monster.py:895
+#: skytemple/skytemple/module/monster/widget/monster.py:896
 msgid "Sprite File Size"
 msgstr ""
 
@@ -1530,18 +1531,18 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:36
 #: skytemple-files/skytemple_files/data/md/protocol.py:480
 #: skytemple/skytemple/data/widget/dungeon/fixed.ui:354
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:719
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:720
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:723
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:724
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:617
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:626
 #: skytemple/skytemple/module/map_bg/widget/bg.py:827
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:72
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:73
 #: skytemple/skytemple/module/script/widget/main.py:309
 #: skytemple/skytemple/module/script/widget/main.py:310
 #: skytemple/skytemple/module/script/widget/pos_mark_editor.py:231
-#: skytemple/skytemple/module/script/widget/ssa.py:1608
-#: skytemple/skytemple/module/script/widget/ssa.py:1706
-#: skytemple/skytemple/module/script/widget/ssa.py:1869
+#: skytemple/skytemple/module/script/widget/ssa.py:1609
+#: skytemple/skytemple/module/script/widget/ssa.py:1707
+#: skytemple/skytemple/module/script/widget/ssa.py:1870
 msgid "None"
 msgstr ""
 
@@ -1647,7 +1648,7 @@ msgstr "寶可夢"
 #: skytemple/skytemple/data/widget/symbols/main.ui:302
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:199
 #: skytemple/skytemple/module/lists/controller/object_list.glade:193
-#: skytemple/skytemple/module/script/widget/ssa.py:1672
+#: skytemple/skytemple/module/script/widget/ssa.py:1673
 msgid "Type"
 msgstr ""
 
@@ -1710,7 +1711,7 @@ msgstr "無性"
 #: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/data/md/protocol.py:428
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:158
-#: skytemple/skytemple/module/monster/widget/monster.py:1520
+#: skytemple/skytemple/module/monster/widget/monster.py:1521
 msgid "Unused"
 msgstr "未使用"
 
@@ -1728,7 +1729,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:570
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:119
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:135
-#: skytemple/skytemple/module/monster/widget/level_up.py:52
+#: skytemple/skytemple/module/monster/widget/level_up.py:53
 msgid "Level"
 msgstr "等級"
 
@@ -1736,7 +1737,7 @@ msgstr "等級"
 #: skytemple/skytemple/data/widget/lists/iq.ui:47
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:238
-#: skytemple/skytemple/module/lists/module.py:268
+#: skytemple/skytemple/module/lists/module.py:267
 msgid "IQ"
 msgstr "IQ"
 
@@ -1748,7 +1749,7 @@ msgstr "IQ"
 #: skytemple/skytemple/data/widget/lists/animations.ui:1208
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:2089
 #: skytemple/skytemple/module/dungeon_graphics/widget/trp_itm_img.py:82
-#: skytemple/skytemple/module/moves_items/module.py:60
+#: skytemple/skytemple/module/moves_items/module.py:59
 msgid "Items"
 msgstr "道具"
 
@@ -2731,10 +2732,10 @@ msgstr ""
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:356
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:357
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:359
-#: skytemple/skytemple/module/monster/widget/monster.py:1707
 #: skytemple/skytemple/module/monster/widget/monster.py:1708
 #: skytemple/skytemple/module/monster/widget/monster.py:1709
 #: skytemple/skytemple/module/monster/widget/monster.py:1710
+#: skytemple/skytemple/module/monster/widget/monster.py:1711
 msgid "???"
 msgstr ""
 
@@ -3158,8 +3159,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/category.py:35
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:5331
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:2073
-#: skytemple/skytemple/module/map_bg/module.py:179
-#: skytemple/skytemple/module/script/module.py:217
+#: skytemple/skytemple/module/map_bg/module.py:177
+#: skytemple/skytemple/module/script/module.py:216
 msgid "Others"
 msgstr ""
 
@@ -3399,8 +3400,8 @@ msgstr ""
 msgid "If the game runs out of memory trying to load a sprite, a default one will be used instead, preventing the crash."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:49
-msgid "Fixes an issue that causes saving to fail on the No$GBA emulator. Warning: Causes saving to fail on the MelonDS emulator instead."
+#: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:52
+msgid "Fixes an issue that causes saving to fail on the No$GBA emulator."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:177
@@ -3900,11 +3901,11 @@ msgstr ""
 msgid "Lid"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:62
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:63
 msgid "You don't have any joypads!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:64
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:65
 msgid "Can't configure joystick while the game is running!"
 msgstr ""
 
@@ -3955,13 +3956,13 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:337
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1660
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:579
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:583
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:342
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:359
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:561
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:837
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:867
-#: skytemple/skytemple/module/script/widget/ssa.py:721
+#: skytemple/skytemple/module/script/widget/ssa.py:722
 msgid "Warning!"
 msgstr ""
 
@@ -3969,23 +3970,23 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:35
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:36
 msgid "Free"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:36
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:37
 msgid "Static"
 msgstr "靜電"
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:37
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:38
 msgid "Block"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:38
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:39
 msgid "Temporary"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:39
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:40
 msgid "Sub Table"
 msgstr ""
 
@@ -4047,8 +4048,8 @@ msgstr "ID"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:87
 #: skytemple/skytemple/data/widget/script/ssa.ui:1752
 #: skytemple/skytemple/data/widget/script/ssa.ui:1904
-#: skytemple/skytemple/module/script/widget/ssa.py:1656
-#: skytemple/skytemple/module/script/widget/ssa.py:1664
+#: skytemple/skytemple/module/script/widget/ssa.py:1657
+#: skytemple/skytemple/module/script/widget/ssa.py:1665
 msgid "Kind"
 msgstr ""
 
@@ -4057,10 +4058,10 @@ msgstr ""
 #: skytemple/skytemple/data/widget/script/ssa.ui:1917
 #: skytemple/skytemple/data/widget/script/ssa.ui:2131
 #: skytemple/skytemple/data/widget/script/ssa.ui:2320
-#: skytemple/skytemple/module/script/widget/ssa.py:1655
-#: skytemple/skytemple/module/script/widget/ssa.py:1663
-#: skytemple/skytemple/module/script/widget/ssa.py:1671
-#: skytemple/skytemple/module/script/widget/ssa.py:1678
+#: skytemple/skytemple/module/script/widget/ssa.py:1656
+#: skytemple/skytemple/module/script/widget/ssa.py:1664
+#: skytemple/skytemple/module/script/widget/ssa.py:1672
+#: skytemple/skytemple/module/script/widget/ssa.py:1679
 msgid "Sector"
 msgstr ""
 
@@ -4093,14 +4094,14 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:242
 #: skytemple/skytemple/data/widget/script/ssa.ui:1342
 #: skytemple/skytemple/data/widget/script/ssa.ui:1370
-#: skytemple/skytemple/module/lists/module.py:138
+#: skytemple/skytemple/module/lists/module.py:137
 msgid "Actors"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:258
 #: skytemple/skytemple/data/widget/script/ssa.ui:1451
 #: skytemple/skytemple/data/widget/script/ssa.ui:1479
-#: skytemple/skytemple/module/lists/module.py:158
+#: skytemple/skytemple/module/lists/module.py:157
 msgid "Objects"
 msgstr ""
 
@@ -4145,9 +4146,9 @@ msgstr ""
 #: skytemple/skytemple/data/widget/symbols/main.ui:290
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:183
 #: skytemple/skytemple/module/lists/controller/object_list.glade:177
-#: skytemple/skytemple/module/script/widget/ssa.py:1632
-#: skytemple/skytemple/module/script/widget/ssa.py:1640
-#: skytemple/skytemple/module/script/widget/ssa.py:1761
+#: skytemple/skytemple/module/script/widget/ssa.py:1633
+#: skytemple/skytemple/module/script/widget/ssa.py:1641
+#: skytemple/skytemple/module/script/widget/ssa.py:1762
 msgid "Name"
 msgstr ""
 
@@ -4278,22 +4279,22 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:936
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1432
-#: skytemple/skytemple/module/script/module.py:251
-#: skytemple/skytemple/module/script/module.py:596
+#: skytemple/skytemple/module/script/module.py:250
+#: skytemple/skytemple/module/script/module.py:595
 msgid "Enter (sse)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:947
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1435
-#: skytemple/skytemple/module/script/module.py:268
-#: skytemple/skytemple/module/script/module.py:541
+#: skytemple/skytemple/module/script/module.py:267
+#: skytemple/skytemple/module/script/module.py:540
 msgid "Acting (ssa)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:957
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1439
-#: skytemple/skytemple/module/script/module.py:300
-#: skytemple/skytemple/module/script/module.py:552
+#: skytemple/skytemple/module/script/module.py:299
+#: skytemple/skytemple/module/script/module.py:551
 msgid "Sub (sss)"
 msgstr ""
 
@@ -4338,12 +4339,12 @@ msgstr "刪除"
 #: skytemple/skytemple/controller/main.py:961
 #: skytemple/skytemple/data/widget/user_feedback.ui:40
 #: skytemple/skytemple/module/map_bg/widget/main.py:122
-#: skytemple/skytemple/module/patch/controller/param_dialog.py:45
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:44
 #: skytemple/skytemple/module/script/widget/main.py:253
 #: skytemple/skytemple/module/script/widget/map.py:188
-#: skytemple/skytemple/module/script/widget/ssa.py:1980
+#: skytemple/skytemple/module/script/widget/ssa.py:1981
 #: skytemple/skytemple/module/sprite/widget/object_main.py:104
-#: skytemple/skytemple/module/spritecollab/module.py:174
+#: skytemple/skytemple/module/spritecollab/module.py:173
 msgid "Cancel"
 msgstr "取消"
 
@@ -4351,51 +4352,51 @@ msgstr "取消"
 msgid "You will not be able to restore it."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:255
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:256
 msgid "Parse error: "
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:258
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:259
 #, python-brace-format
 msgid "The script file {self.filename} could not be saved.\n"
 "{prefix}{err}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:260
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:261
 msgid "Error saving the script."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:325
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:326
 #, python-brace-format
 msgid "There was an error while loading the ExplorerScript source code. The source will not be available.\n"
 "Please close and reopen the tab.\n\n"
 "{exception}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:399
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:400
 msgid "An old version of this script is still loaded in RAM. Debugging is disabled for this file, until it is reloaded."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:646
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:647
 #, python-brace-format
 msgid "Search and Replace in {self.filename}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:794
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:795
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:797
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:798
 msgid "ExplorerScript Inconsistency"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:799
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:800
 msgid "Reload from ROM"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:800
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:801
 msgid "Keep ExplorerScript source code"
 msgstr ""
 
@@ -4656,7 +4657,7 @@ msgid "Language"
 msgstr "語言"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:517
-#: skytemple/skytemple/controller/settings.py:41
+#: skytemple/skytemple/controller/settings.py:40
 msgid "Japanese"
 msgstr "日語"
 
@@ -4710,7 +4711,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:875
 #: skytemple/skytemple/data/widget/script/ssa.ui:1171
 #: skytemple/skytemple/data/widget/script/ssb.ui:40
-#: skytemple/skytemple/module/script/module.py:133
+#: skytemple/skytemple/module/script/module.py:132
 msgid "Scripts"
 msgstr ""
 
@@ -4967,7 +4968,7 @@ msgid "Unk1"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2334
-#: skytemple/skytemple/module/script/widget/ssa.py:1623
+#: skytemple/skytemple/module/script/widget/ssa.py:1624
 msgid "Unk2"
 msgstr ""
 
@@ -5200,11 +5201,11 @@ msgstr ""
 msgid "Functions"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:249
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:250
 msgid "Macros have no scenes."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:250
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:251
 msgid "Action not supported"
 msgstr ""
 
@@ -5352,7 +5353,7 @@ msgstr ""
 #. TRANSLATORS: Special Defense
 #: skytemple/skytemple/controller/main.py:260
 #: skytemple/skytemple/module/monster/level_up_graph.py:101
-#: skytemple/skytemple/module/moves_items/module.py:66
+#: skytemple/skytemple/module/moves_items/module.py:65
 msgid "Moves"
 msgstr ""
 
@@ -5411,27 +5412,27 @@ msgstr ""
 msgid "Do you want to save changes to {rom_name}?"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:34
+#: skytemple/skytemple/controller/settings.py:33
 msgid "Detect automatically"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:38
+#: skytemple/skytemple/controller/settings.py:37
 msgid "Portuguese, Brazilian"
 msgstr "葡萄牙語（巴西）"
 
-#: skytemple/skytemple/controller/settings.py:39
+#: skytemple/skytemple/controller/settings.py:38
 msgid "Russian"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:100
+#: skytemple/skytemple/controller/settings.py:99
 msgid "<i>Use System Settings to set this under Linux.</i>"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:194
+#: skytemple/skytemple/controller/settings.py:193
 msgid "You need to restart SkyTemple to apply some of the settings."
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:207
+#: skytemple/skytemple/controller/settings.py:206
 msgid "If this is enabled a new and faster (but slightly experimental) codebase is used to load and manipulate game files. Try to disable this if you run into crashes or other issues."
 msgstr ""
 
@@ -5446,7 +5447,7 @@ msgstr "JPEG 圖片 (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:66
 #: skytemple/skytemple/core/ui_utils.py:86
-#: skytemple/skytemple/module/monster/widget/level_up.py:615
+#: skytemple/skytemple/module/monster/widget/level_up.py:616
 msgid "Any files"
 msgstr "所有文件"
 
@@ -5508,15 +5509,15 @@ msgstr ""
 msgid "Image was converted."
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:53
+#: skytemple/skytemple/core/async_tasks/delegator.py:52
 msgid "Thread-based"
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:59
+#: skytemple/skytemple/core/async_tasks/delegator.py:58
 msgid "Synchronous"
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:71
+#: skytemple/skytemple/core/async_tasks/delegator.py:70
 msgid "Using Gbulb event loop"
 msgstr ""
 
@@ -5547,7 +5548,7 @@ msgstr ""
 msgid "SkyTemple - Uncaught error!"
 msgstr ""
 
-#: skytemple/skytemple/core/modules.py:99
+#: skytemple/skytemple/core/modules.py:95
 #, python-brace-format
 msgid "SkyTemple found the following plugins in your plugins directory ({plugin_dir}).\n\n"
 "Do you want to continue with these plugins? These plugins contain code which will run on your computer once you accept this dialog with 'Yes'.\n"
@@ -5555,24 +5556,24 @@ msgid "SkyTemple found the following plugins in your plugins directory ({plugin_
 "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:158
+#: skytemple/skytemple/core/rom_project.py:156
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:161
+#: skytemple/skytemple/core/rom_project.py:159
 msgid "No, load ROM as-is"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:163
+#: skytemple/skytemple/core/rom_project.py:161
 msgid "Yes, load backup"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:165
-#: skytemple/skytemple/core/rom_project.py:169
+#: skytemple/skytemple/core/rom_project.py:163
+#: skytemple/skytemple/core/rom_project.py:167
 msgid "Last modified: {} - Size: {}"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:176
+#: skytemple/skytemple/core/rom_project.py:174
 msgid "Do you want to restore the backup?\n"
 "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
@@ -5580,11 +5581,11 @@ msgid "Do you want to restore the backup?\n"
 "Backup ROM: {}"
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:229
+#: skytemple/skytemple/core/rom_project.py:227
 msgid "There was an error trying to read the ROM file."
 msgstr ""
 
-#: skytemple/skytemple/core/rom_project.py:231
+#: skytemple/skytemple/core/rom_project.py:229
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
 msgstr ""
 
@@ -6501,7 +6502,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:841
 #: skytemple/skytemple/data/widget/monster/monster.ui:486
-#: skytemple/skytemple/module/script/widget/ssa.py:1760
+#: skytemple/skytemple/module/script/widget/ssa.py:1761
 msgid "S"
 msgstr "S"
 
@@ -6809,7 +6810,7 @@ msgstr ""
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1666
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1820
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:1974
-#: skytemple/skytemple/module/monster/widget/monster.py:837
+#: skytemple/skytemple/module/monster/widget/monster.py:838
 msgid "Weight"
 msgstr ""
 
@@ -6955,7 +6956,7 @@ msgid "More Info: "
 msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/colvec.ui:328
-#: skytemple/skytemple/module/dungeon_graphics/module.py:200
+#: skytemple/skytemple/module/dungeon_graphics/module.py:199
 msgid "Color Map"
 msgstr ""
 
@@ -7517,7 +7518,7 @@ msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>.
 msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/animations.ui:178
-#: skytemple/skytemple/module/lists/module.py:218
+#: skytemple/skytemple/module/lists/module.py:217
 msgid "Animations"
 msgstr ""
 
@@ -7659,7 +7660,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:72
 #: skytemple/skytemple/data/widget/lists/dungeon_interrupt.ui:149
-#: skytemple/skytemple/module/lists/module.py:208
+#: skytemple/skytemple/module/lists/module.py:207
 msgid "Dungeon Interruptions"
 msgstr ""
 
@@ -7699,7 +7700,7 @@ msgid "Continue Music"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/dungeon_music.ui:79
-#: skytemple/skytemple/module/lists/module.py:228
+#: skytemple/skytemple/module/lists/module.py:227
 msgid "Dungeon Music"
 msgstr ""
 
@@ -7779,7 +7780,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/iq.ui:419
 #: skytemple/skytemple/data/widget/lists/misc_settings.ui:33
-#: skytemple/skytemple/module/lists/module.py:278
+#: skytemple/skytemple/module/lists/module.py:277
 msgid "Misc. Settings"
 msgstr ""
 
@@ -7894,7 +7895,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/rank_list.ui:59
-#: skytemple/skytemple/module/lists/module.py:188
+#: skytemple/skytemple/module/lists/module.py:187
 msgid "Rank List"
 msgstr ""
 
@@ -7911,7 +7912,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/tactics.ui:35
-#: skytemple/skytemple/module/lists/module.py:258
+#: skytemple/skytemple/module/lists/module.py:257
 msgid "Tactics"
 msgstr ""
 
@@ -7942,7 +7943,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/lists/world_map.ui:281
-#: skytemple/skytemple/module/lists/module.py:178
+#: skytemple/skytemple/module/lists/module.py:177
 msgid "World Map Markers"
 msgstr ""
 
@@ -8658,37 +8659,37 @@ msgid "Graph"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/level_up.ui:225
-#: skytemple/skytemple/module/monster/widget/level_up.py:53
+#: skytemple/skytemple/module/monster/widget/level_up.py:54
 msgid "Exp. Points"
 msgstr ""
 
 #. TRANSLATORS: Experience Points
 #: skytemple/skytemple/data/widget/monster/level_up.ui:239
-#: skytemple/skytemple/module/monster/widget/level_up.py:54
+#: skytemple/skytemple/module/monster/widget/level_up.py:55
 msgid "HP+"
 msgstr ""
 
 #. TRANSLATORS: Health Points+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:253
-#: skytemple/skytemple/module/monster/widget/level_up.py:55
+#: skytemple/skytemple/module/monster/widget/level_up.py:56
 msgid "ATK+"
 msgstr ""
 
 #. TRANSLATORS: Attack+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:267
-#: skytemple/skytemple/module/monster/widget/level_up.py:56
+#: skytemple/skytemple/module/monster/widget/level_up.py:57
 msgid "Sp. ATK+"
 msgstr ""
 
 #. TRANSLATORS: Special Attack+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:281
-#: skytemple/skytemple/module/monster/widget/level_up.py:57
+#: skytemple/skytemple/module/monster/widget/level_up.py:58
 msgid "DEF+"
 msgstr ""
 
 #. TRANSLATORS: Defense+
 #: skytemple/skytemple/data/widget/monster/level_up.ui:295
-#: skytemple/skytemple/module/monster/widget/level_up.py:58
+#: skytemple/skytemple/module/monster/widget/level_up.py:59
 msgid "Sp. DEF+"
 msgstr ""
 
@@ -8752,7 +8753,7 @@ msgid "Stat Growth"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/monster/main.ui:246
-#: skytemple/skytemple/module/monster/widget/monster.py:1595
+#: skytemple/skytemple/module/monster/widget/monster.py:1596
 msgid "Portraits"
 msgstr ""
 
@@ -9288,7 +9289,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:509
 #: skytemple/skytemple/data/widget/moves_items/item_lists.ui:586
-#: skytemple/skytemple/module/moves_items/module.py:116
+#: skytemple/skytemple/module/moves_items/module.py:115
 msgid "Item Lists"
 msgstr ""
 
@@ -9437,8 +9438,8 @@ msgid "Open Patch Directory..."
 msgstr ""
 
 #: skytemple/skytemple/data/widget/patch/asm.ui:127
-#: skytemple/skytemple/module/patch/controller/param_dialog.py:45
-#: skytemple/skytemple/module/spritecollab/module.py:174
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:44
+#: skytemple/skytemple/module/spritecollab/module.py:173
 msgid "Apply"
 msgstr ""
 
@@ -9815,12 +9816,12 @@ msgid "This level uses mode #10 or #11. It is using dungeon tiles for rendering 
 msgstr ""
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:72
-#: skytemple/skytemple/module/script/widget/ssa.py:1620
+#: skytemple/skytemple/module/script/widget/ssa.py:1621
 msgid "Triggered Script"
 msgstr ""
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:83
-#: skytemple/skytemple/module/script/widget/ssa.py:1622
+#: skytemple/skytemple/module/script/widget/ssa.py:1623
 msgid "Coroutine"
 msgstr ""
 
@@ -9897,8 +9898,8 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/script/ssa.ui:1778
 #: skytemple/skytemple/data/widget/script/ssa.ui:1930
-#: skytemple/skytemple/module/script/widget/ssa.py:1657
-#: skytemple/skytemple/module/script/widget/ssa.py:1665
+#: skytemple/skytemple/module/script/widget/ssa.py:1658
+#: skytemple/skytemple/module/script/widget/ssa.py:1666
 msgid "Talk Script"
 msgstr ""
 
@@ -10090,7 +10091,7 @@ msgstr ""
 
 #: skytemple/skytemple/data/widget/symbols/main.ui:63
 #: skytemple/skytemple/data/widget/symbols/main.ui:163
-#: skytemple/skytemple/module/symbols/module.py:58
+#: skytemple/skytemple/module/symbols/module.py:57
 msgid "Symbols"
 msgstr ""
 
@@ -10225,12 +10226,12 @@ msgstr ""
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr ""
 
-#: skytemple/skytemple/module/bgp/module.py:41
-#: skytemple/skytemple/module/dungeon_graphics/module.py:73
+#: skytemple/skytemple/module/bgp/module.py:40
+#: skytemple/skytemple/module/dungeon_graphics/module.py:72
 msgid "Backgrounds"
 msgstr ""
 
-#: skytemple/skytemple/module/bgp/module.py:42
+#: skytemple/skytemple/module/bgp/module.py:41
 msgid "This section lets you edit static backgrounds used in various places of the game."
 msgstr ""
 
@@ -10250,8 +10251,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:455
 #: skytemple/skytemple/module/dungeon/module.py:899
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:190
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:191
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:194
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:195
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:140
 #: skytemple/skytemple/module/dungeon/widget/fixed_rooms.py:146
 msgid "(Special?)"
@@ -10338,84 +10339,84 @@ msgid "If enabled, enemies will evolve after defeating a team member.\n"
 "Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:566
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:570
 msgid "Width and height must be numbers >= 0."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:567
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:571
 msgid "Invalid values."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:578
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:582
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:592
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:596
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:599
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:603
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:607
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:611
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:613
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:617
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:619
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:623
 msgid "If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:627
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:631
 msgid "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:635
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:639
 msgid "If disabled, prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:643
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:647
 msgid "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:651
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:655
 msgid "Enables boss fight conditions.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:659
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:663
 msgid "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:667
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:671
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:684
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:688
 #, python-brace-format
 msgid "Background {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:686
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:690
 #, python-brace-format
 msgid "Tileset {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:691
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:695
 msgid "No override"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/widget/fixed.py:693
+#: skytemple/skytemple/module/dungeon/widget/fixed.py:697
 #: skytemple/skytemple/module/dungeon/widget/floor.py:2491
 #, python-brace-format
 msgid "No. {i}"
@@ -10658,7 +10659,7 @@ msgid "Export floor as..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/widget/floor.py:1783
-#: skytemple/skytemple/module/script/widget/ssa.py:529
+#: skytemple/skytemple/module/script/widget/ssa.py:530
 msgid "Export was canceled."
 msgstr ""
 
@@ -10743,7 +10744,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:171
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:239
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:312
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:313
 msgid "Error exporting the tileset."
 msgstr ""
 
@@ -10756,7 +10757,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:207
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:271
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:272
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:273
 msgid "Error importing the tileset."
 msgstr ""
 
@@ -10775,15 +10776,15 @@ msgstr ""
 msgid "Palette Animation is not enabled for this palette."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/module.py:74
+#: skytemple/skytemple/module/dungeon_graphics/module.py:73
 msgid "This section lets you edit the background images that are used for some special dungeon floors."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/module.py:80
+#: skytemple/skytemple/module/dungeon_graphics/module.py:79
 msgid "Tilesets"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/module.py:81
+#: skytemple/skytemple/module/dungeon_graphics/module.py:80
 msgid "This section lets you edit the tilesets that are used for dungeons."
 msgstr ""
 
@@ -10847,44 +10848,44 @@ msgid "- The images is a 256-color indexed PNG.\n"
 "Palettes > Edit Palettes."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:192
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:193
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_data} Rules"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:193
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:194
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_data}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:225
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:226
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:231
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:232
 msgid "Import dungeon tileset..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:238
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:239
 msgid "DTEF XML document (*.dtef.xml)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:263
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:264
 msgid "The tileset was successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:264
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:306
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:265
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:307
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:205
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:279
 msgid "Success!"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:277
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:278
 msgid "Export dungeon tileset..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:305
+#: skytemple/skytemple/module/dungeon_graphics/widget/tileset.py:306
 msgid "The tileset was successfully exported."
 msgstr ""
 
@@ -10953,7 +10954,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.py:69
 #: skytemple/skytemple/module/lists/controller/object_list.py:75
-#: skytemple/skytemple/module/script/widget/ssa.py:934
+#: skytemple/skytemple/module/script/widget/ssa.py:935
 msgid "Not implemented."
 msgstr ""
 
@@ -11033,7 +11034,7 @@ msgid "Move 4"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
-#: skytemple/skytemple/module/script/widget/ssa.py:1624
+#: skytemple/skytemple/module/script/widget/ssa.py:1625
 msgid "Unk3"
 msgstr ""
 
@@ -11046,7 +11047,7 @@ msgid "Free entries left: XX"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
-#: skytemple/skytemple/module/lists/module.py:238
+#: skytemple/skytemple/module/lists/module.py:237
 msgid "Guest Pokémon"
 msgstr ""
 
@@ -11090,7 +11091,7 @@ msgid "Invalid object name"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:43
-#: skytemple/skytemple/module/lists/module.py:168
+#: skytemple/skytemple/module/lists/module.py:167
 msgid "Recruitment List"
 msgstr ""
 
@@ -11256,23 +11257,23 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:88
+#: skytemple/skytemple/module/lists/module.py:87
 msgid "Lists"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:89
+#: skytemple/skytemple/module/lists/module.py:88
 msgid "This section lets you edit various lists of the game."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:148
+#: skytemple/skytemple/module/lists/module.py:147
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:198
+#: skytemple/skytemple/module/lists/module.py:197
 msgid "Menu List"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:248
+#: skytemple/skytemple/module/lists/module.py:247
 msgid "Special Episode PCs"
 msgstr ""
 
@@ -11420,73 +11421,73 @@ msgstr ""
 msgid "This map has no second layer."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:97
-#: skytemple/skytemple/module/script/module.py:145
-#: skytemple/skytemple/module/script/module.py:148
+#: skytemple/skytemple/module/map_bg/module.py:95
+#: skytemple/skytemple/module/script/module.py:144
+#: skytemple/skytemple/module/script/module.py:147
 msgid "S - System"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:107
-#: skytemple/skytemple/module/script/module.py:155
-#: skytemple/skytemple/module/script/module.py:158
+#: skytemple/skytemple/module/map_bg/module.py:105
+#: skytemple/skytemple/module/script/module.py:154
+#: skytemple/skytemple/module/script/module.py:157
 msgid "T - Town"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:117
-#: skytemple/skytemple/module/script/module.py:165
-#: skytemple/skytemple/module/script/module.py:168
+#: skytemple/skytemple/module/map_bg/module.py:115
+#: skytemple/skytemple/module/script/module.py:164
+#: skytemple/skytemple/module/script/module.py:167
 msgid "D - Dungeon"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:127
-#: skytemple/skytemple/module/script/module.py:175
-#: skytemple/skytemple/module/script/module.py:178
+#: skytemple/skytemple/module/map_bg/module.py:125
+#: skytemple/skytemple/module/script/module.py:174
+#: skytemple/skytemple/module/script/module.py:177
 msgid "G - Guild"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:137
-#: skytemple/skytemple/module/script/module.py:185
-#: skytemple/skytemple/module/script/module.py:188
+#: skytemple/skytemple/module/map_bg/module.py:135
+#: skytemple/skytemple/module/script/module.py:184
+#: skytemple/skytemple/module/script/module.py:187
 msgid "H - Habitat"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:147
-#: skytemple/skytemple/module/script/module.py:195
-#: skytemple/skytemple/module/script/module.py:198
+#: skytemple/skytemple/module/map_bg/module.py:145
+#: skytemple/skytemple/module/script/module.py:194
+#: skytemple/skytemple/module/script/module.py:197
 msgid "P - Places"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:157
-#: skytemple/skytemple/module/script/module.py:205
-#: skytemple/skytemple/module/script/module.py:208
+#: skytemple/skytemple/module/map_bg/module.py:155
+#: skytemple/skytemple/module/script/module.py:204
+#: skytemple/skytemple/module/script/module.py:207
 msgid "V - Visual"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:167
+#: skytemple/skytemple/module/map_bg/module.py:165
 msgid "W - Weather"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:301
+#: skytemple/skytemple/module/map_bg/module.py:299
 msgid "Error adding the logo."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:308
+#: skytemple/skytemple/module/map_bg/module.py:306
 msgid "Logo added successfully. Thank you!"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:376
+#: skytemple/skytemple/module/map_bg/module.py:374
 msgid "Map Background category \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:377
+#: skytemple/skytemple/module/map_bg/module.py:375
 msgid "This section contains all the map backgrounds, that start with the letter {}."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:379
+#: skytemple/skytemple/module/map_bg/module.py:377
 msgid "Map Backgrounds for other maps"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:380
+#: skytemple/skytemple/module/map_bg/module.py:378
 msgid "This section contains all the map backgrounds, that don't fit in any of the other categories."
 msgstr ""
 
@@ -11617,11 +11618,11 @@ msgstr ""
 msgid "Map background added successfully"
 msgstr ""
 
-#: skytemple/skytemple/module/misc_graphics/module.py:83
+#: skytemple/skytemple/module/misc_graphics/module.py:82
 msgid "Misc. Graphics"
 msgstr ""
 
-#: skytemple/skytemple/module/misc_graphics/module.py:84
+#: skytemple/skytemple/module/misc_graphics/module.py:83
 msgid "This section lets you edit miscellaneous graphics."
 msgstr ""
 
@@ -11856,74 +11857,74 @@ msgstr "特防"
 msgid "at level {x[0]}"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/module.py:237
+#: skytemple/skytemple/module/monster/module.py:236
 msgid "This entry has no portraits."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/module.py:286
+#: skytemple/skytemple/module/monster/module.py:285
 msgid "Stats and moves are only editable for base forms."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/module.py:576
+#: skytemple/skytemple/module/monster/module.py:575
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:250
+#: skytemple/skytemple/module/monster/widget/level_up.py:251
 msgid "Save CSV..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:290
+#: skytemple/skytemple/module/monster/widget/level_up.py:291
 msgid "Error saving the CSV."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:295
+#: skytemple/skytemple/module/monster/widget/level_up.py:296
 msgid "Import CSV..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:308
+#: skytemple/skytemple/module/monster/widget/level_up.py:309
 msgid "is missing in the CSV"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:334
+#: skytemple/skytemple/module/monster/widget/level_up.py:335
 msgid "All values must be numbers."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:337
+#: skytemple/skytemple/module/monster/widget/level_up.py:338
 msgid "The CSV must contain one entry per level."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:342
+#: skytemple/skytemple/module/monster/widget/level_up.py:343
 msgid "Invalid CSV file:\n"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:343
-#: skytemple/skytemple/module/monster/widget/level_up.py:368
+#: skytemple/skytemple/module/monster/widget/level_up.py:344
+#: skytemple/skytemple/module/monster/widget/level_up.py:369
 msgid "Error reading the CSV."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:365
+#: skytemple/skytemple/module/monster/widget/level_up.py:366
 msgid "Warning: The stats view might be corrupted now,\n"
 "but the data in ROM is still unchanged,\n"
 "simply reload this view!\n"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:443
+#: skytemple/skytemple/module/monster/widget/level_up.py:444
 msgid "No move with this ID found."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:476
-#: skytemple/skytemple/module/monster/widget/level_up.py:554
+#: skytemple/skytemple/module/monster/widget/level_up.py:477
+#: skytemple/skytemple/module/monster/widget/level_up.py:555
 msgid "This Pokémon has no stats."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:509
 #: skytemple/skytemple/module/monster/widget/level_up.py:510
 #: skytemple/skytemple/module/monster/widget/level_up.py:511
+#: skytemple/skytemple/module/monster/widget/level_up.py:512
 msgid "This Pokémon has no moves."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/level_up.py:610
+#: skytemple/skytemple/module/monster/widget/level_up.py:611
 msgid "CSV (*.csv)"
 msgstr ""
 
@@ -12028,32 +12029,32 @@ msgstr ""
 msgid "Export Pokémon at..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:278
+#: skytemple/skytemple/module/monster/widget/monster.py:279
 msgid "Spinda Egg"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:279
+#: skytemple/skytemple/module/monster/widget/monster.py:280
 msgid "Spinda Recruit"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:280
+#: skytemple/skytemple/module/monster/widget/monster.py:281
 msgid "Don't appear in Missions"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:281
+#: skytemple/skytemple/module/monster/widget/monster.py:282
 msgid "Don't appear in Missions during story"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:661
+#: skytemple/skytemple/module/monster/widget/monster.py:662
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:663
+#: skytemple/skytemple/module/monster/widget/monster.py:664
 msgid "Idle Animation Types"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:676
+#: skytemple/skytemple/module/monster/widget/monster.py:677
 msgid "Value depends on Main Requirement:\n"
 "- Not an Evolved Form: Unused\n"
 "- Level: Level required to evolve\n"
@@ -12063,20 +12064,20 @@ msgid "Value depends on Main Requirement:\n"
 "- No Main Requirement: Unused"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:678
+#: skytemple/skytemple/module/monster/widget/monster.py:679
 msgid "Evolution Parameters"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:691
+#: skytemple/skytemple/module/monster/widget/monster.py:692
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:693
+#: skytemple/skytemple/module/monster/widget/monster.py:694
 msgid "Base Form Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:706
+#: skytemple/skytemple/module/monster/widget/monster.py:707
 msgid "This value indicates the previous evolution of the pokémon.\n"
 "The game use this in several cases: \n"
 "1 - For evolution purposes.\n"
@@ -12086,11 +12087,11 @@ msgid "This value indicates the previous evolution of the pokémon.\n"
 "If the ChangeEvoSystem patch is applied, only point 2 applies, the other points are handled with other data."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:708
+#: skytemple/skytemple/module/monster/widget/monster.py:709
 msgid "Pre Evolution Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:721
+#: skytemple/skytemple/module/monster/widget/monster.py:722
 msgid "The values are actually percentages.\n"
 "10 -> 1.0%,\n"
 "100 -> 10.0%,\n"
@@ -12099,186 +12100,186 @@ msgid "The values are actually percentages.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:723
+#: skytemple/skytemple/module/monster/widget/monster.py:724
 msgid "Recruit Rate"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:736
+#: skytemple/skytemple/module/monster/widget/monster.py:737
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:738
+#: skytemple/skytemple/module/monster/widget/monster.py:739
 msgid "HP Regeneration"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:750
+#: skytemple/skytemple/module/monster/widget/monster.py:751
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:751
+#: skytemple/skytemple/module/monster/widget/monster.py:752
 msgid "Can Move?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:763
+#: skytemple/skytemple/module/monster/widget/monster.py:764
 msgid "Whether or not the Pokémon can throw any items."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:764
+#: skytemple/skytemple/module/monster/widget/monster.py:765
 msgid "Can Throw Items?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:777
+#: skytemple/skytemple/module/monster/widget/monster.py:778
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:779
+#: skytemple/skytemple/module/monster/widget/monster.py:780
 msgid "Chests drop rates"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:792
+#: skytemple/skytemple/module/monster/widget/monster.py:793
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:794
+#: skytemple/skytemple/module/monster/widget/monster.py:795
 msgid "Can Evolve?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:807
+#: skytemple/skytemple/module/monster/widget/monster.py:808
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:809
+#: skytemple/skytemple/module/monster/widget/monster.py:810
 msgid "Item Required for spawning?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:822
+#: skytemple/skytemple/module/monster/widget/monster.py:823
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:824
+#: skytemple/skytemple/module/monster/widget/monster.py:825
 msgid "Spawn Threshold"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:836
+#: skytemple/skytemple/module/monster/widget/monster.py:837
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:849
+#: skytemple/skytemple/module/monster/widget/monster.py:850
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:850
+#: skytemple/skytemple/module/monster/widget/monster.py:851
 msgid "Size"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:863
+#: skytemple/skytemple/module/monster/widget/monster.py:864
 msgid "Body Size determines the party size of the Pokémon. The game limits total Body Size of all party members to 6.\n"
 "The minimal body size needed for a Pokémon is the smallest value such that Body Size x 6 is equal to or higher than Sprite VRAM Size."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:878
+#: skytemple/skytemple/module/monster/widget/monster.py:879
 msgid "Effective only when SpriteSizeInMonsterData is applied.\n"
 "Sprite VRAM Size deals with Pokemon fitting onto the party in dungeons. The limit is 36 units of Sprite VRAM Size in total for the whole party. If this is exceeded, Pokemon from the party are cut off from spawning on the dungeon floor one by one until the sum of Sprite VRAM Size is 36 or less (but will still be counted as being on the party in the team menu).\n"
 "This is computed automatically and cannot be changed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:893
+#: skytemple/skytemple/module/monster/widget/monster.py:894
 msgid "Effective only when SpriteSizeInMonsterData is applied.\n"
 "Sprite File Size describes the actual size of the sprite file, and deals with enemies and NPCs in dungeons (all Pokemon not on the player's party). The Sprite File Size is expressed in blocks of 512 bytes. The limit for all enemies and allied NPCs on a dungeon floor is 352 kB (704 Sprite File Size) in total, counting by species present on the floor.\n"
 "This is computed automatically and cannot be changed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1264
+#: skytemple/skytemple/module/monster/widget/monster.py:1265
 msgid "Export Pokémon as..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1307
+#: skytemple/skytemple/module/monster/widget/monster.py:1308
 msgid "Import Pokémon from..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1592
+#: skytemple/skytemple/module/monster/widget/monster.py:1593
 msgid "Stats and Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1607
+#: skytemple/skytemple/module/monster/widget/monster.py:1608
 msgid "Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1645
+#: skytemple/skytemple/module/monster/widget/monster.py:1646
 msgid "??? Enter a valid parameter (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1664
+#: skytemple/skytemple/module/monster/widget/monster.py:1665
 msgid "??? Enter a valid Base ID (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1681
+#: skytemple/skytemple/module/monster/widget/monster.py:1682
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1746
+#: skytemple/skytemple/module/monster/widget/monster.py:1747
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1786
+#: skytemple/skytemple/module/monster/widget/monster.py:1787
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1788
+#: skytemple/skytemple/module/monster/widget/monster.py:1789
 msgid "Entity ID"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1801
+#: skytemple/skytemple/module/monster/widget/monster.py:1802
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1803
+#: skytemple/skytemple/module/monster/widget/monster.py:1804
 msgid "Children Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1816
+#: skytemple/skytemple/module/monster/widget/monster.py:1817
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1818
+#: skytemple/skytemple/module/monster/widget/monster.py:1819
 msgid "Evolution Bonus Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1926
+#: skytemple/skytemple/module/monster/widget/monster.py:1927
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1930
+#: skytemple/skytemple/module/monster/widget/monster.py:1931
 msgid "Too much evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1936
+#: skytemple/skytemple/module/monster/widget/monster.py:1937
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/widget/monster.py:1940
+#: skytemple/skytemple/module/monster/widget/monster.py:1941
 msgid "Too much children."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/module.py:61
+#: skytemple/skytemple/module/moves_items/module.py:60
 msgid "This section lets you edit settings related to items."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/module.py:67
+#: skytemple/skytemple/module/moves_items/module.py:66
 msgid "This section lets you edit settings related to moves."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/module.py:126
+#: skytemple/skytemple/module/moves_items/module.py:125
 msgid "Item Sort Keys"
 msgstr ""
 
@@ -12564,16 +12565,16 @@ msgstr ""
 msgid "Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select the strings after that (offsets)."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/param_dialog.py:50
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:49
 msgid "Settings for the \"{}\" Patch"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/param_dialog.py:53
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:52
 msgid "The patch \"{}\" requires additional configuration:"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/param_dialog.py:120
-#: skytemple/skytemple/module/patch/controller/param_dialog.py:122
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:119
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:121
 msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
@@ -12837,66 +12838,66 @@ msgstr ""
 msgid "Failed importing game icon:\n"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:59
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:60
 #, python-brace-format
 msgid "Edit {script_name}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:63
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:64
 msgid "Edit Event"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:65
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:66
 msgid "New Event"
 msgstr "新事件"
 
-#: skytemple/skytemple/module/script/module.py:430
+#: skytemple/skytemple/module/script/module.py:429
 msgid "The XML file contained some invalid references (eg. actor, object or script IDs). These have been replaced with default values."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:470
+#: skytemple/skytemple/module/script/module.py:469
 msgid "Map not found."
 msgstr "未找到地圖。"
 
-#: skytemple/skytemple/module/script/module.py:659
+#: skytemple/skytemple/module/script/module.py:658
 msgid "The file name provided must not have a file extension."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:661
+#: skytemple/skytemple/module/script/module.py:660
 msgid "The file name provided is too long (max 8 characters)."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:730
+#: skytemple/skytemple/module/script/module.py:729
 msgid "Script Scenes for maps in category \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:731
+#: skytemple/skytemple/module/script/module.py:730
 msgid "This section contains all the script scenes of maps, that start with the letter {}."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:735
+#: skytemple/skytemple/module/script/module.py:734
 msgid "Script Scenes for other maps"
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:737
+#: skytemple/skytemple/module/script/module.py:736
 msgid "This section contains all the script scenes of maps, that don't fit in any of the other categories."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:747
+#: skytemple/skytemple/module/script/module.py:746
 msgid "Sub Scenes for \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:749
+#: skytemple/skytemple/module/script/module.py:748
 msgid "This section contains all sub scenes for the map {}.\n\n"
 "These scenes can be loaded on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:760
+#: skytemple/skytemple/module/script/module.py:759
 msgid "Acting Scenes for \"{}\""
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:762
+#: skytemple/skytemple/module/script/module.py:761
 msgid "This section contains all acting scenes for the map {}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
@@ -12969,105 +12970,105 @@ msgstr ""
 msgid "Edit Position Marks"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:477
+#: skytemple/skytemple/module/script/widget/ssa.py:478
 msgid "Import scene from..."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:501
+#: skytemple/skytemple/module/script/widget/ssa.py:502
 msgid "Error importing the scene."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:508
+#: skytemple/skytemple/module/script/widget/ssa.py:509
 msgid "Export scene as..."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:703
+#: skytemple/skytemple/module/script/widget/ssa.py:704
 #, python-brace-format
 msgid "Sector {new_index}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:719
+#: skytemple/skytemple/module/script/widget/ssa.py:720
 msgid "Are you sure you want to remove this sector?\n"
 "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
 "Removing a sector may cause serious issues when the game tries to load the scene."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:844
+#: skytemple/skytemple/module/script/widget/ssa.py:845
 msgid "Create Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:844
+#: skytemple/skytemple/module/script/widget/ssa.py:845
 msgid "Script Number"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:855
+#: skytemple/skytemple/module/script/widget/ssa.py:856
 msgid "Please enter a valid number."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:866
+#: skytemple/skytemple/module/script/widget/ssa.py:867
 msgid "Please enter a valid number between 1 and 99."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:880
+#: skytemple/skytemple/module/script/widget/ssa.py:881
 msgid "This script already exists."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:923
+#: skytemple/skytemple/module/script/widget/ssa.py:924
 msgid "Acting scenes must have exactly one script assigned to them."
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1680
+#: skytemple/skytemple/module/script/widget/ssa.py:1681
 msgid "Event Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1733
+#: skytemple/skytemple/module/script/widget/ssa.py:1734
 #, python-brace-format
 msgid "Type {performer_type}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1755
+#: skytemple/skytemple/module/script/widget/ssa.py:1756
 msgid "V"
 msgstr "V"
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1755
+#: skytemple/skytemple/module/script/widget/ssa.py:1756
 msgid "Visible"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1760
+#: skytemple/skytemple/module/script/widget/ssa.py:1761
 msgid "Solo"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1783
+#: skytemple/skytemple/module/script/widget/ssa.py:1784
 #, python-brace-format
 msgid "Sector {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1874
+#: skytemple/skytemple/module/script/widget/ssa.py:1875
 #, python-brace-format
 msgid "?INVALID? {script_id}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1897
+#: skytemple/skytemple/module/script/widget/ssa.py:1898
 #, python-brace-format
 msgid "{len_actors} acts, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1899
+#: skytemple/skytemple/module/script/widget/ssa.py:1900
 #, python-brace-format
 msgid "{len_objects} objs, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1901
+#: skytemple/skytemple/module/script/widget/ssa.py:1902
 #, python-brace-format
 msgid "{len_performers} prfs, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1903
+#: skytemple/skytemple/module/script/widget/ssa.py:1904
 #, python-brace-format
 msgid "{len_triggers} trgs"
 msgstr ""
 
-#: skytemple/skytemple/module/script/widget/ssa.py:1915
+#: skytemple/skytemple/module/script/widget/ssa.py:1916
 #, python-brace-format
 msgid "Type {performer.type}"
 msgstr ""
@@ -13162,7 +13163,7 @@ msgid "The spritesheet was successfully imported."
 msgstr ""
 
 #: skytemple/skytemple/module/sprite/widget/monster_sprite.py:305
-#: skytemple/skytemple/module/spritecollab/module.py:131
+#: skytemple/skytemple/module/spritecollab/module.py:130
 msgid "Error importing the spritesheet."
 msgstr ""
 
@@ -13192,27 +13193,27 @@ msgstr ""
 msgid "Object sprite added successfully"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:80
+#: skytemple/skytemple/module/spritecollab/module.py:79
 msgid "Portraits successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:129
+#: skytemple/skytemple/module/spritecollab/module.py:128
 msgid "Sprites successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:150
+#: skytemple/skytemple/module/spritecollab/module.py:149
 msgid "Open a Pokémon in the main window to apply the assets to."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:157
+#: skytemple/skytemple/module/spritecollab/module.py:156
 msgid "Could not apply the sprites, since no sprite data is available."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:164
+#: skytemple/skytemple/module/spritecollab/module.py:163
 msgid "This Pokémon does not support portraits and/or sprites."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:183
+#: skytemple/skytemple/module/spritecollab/module.py:182
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
 "You can also choose to create a new sprite instead, it will be assigned to the Pokémon.\n\n"
 "Additionally you can choose to copy the Sleep animation to the EventSleep/Laying/Waking\n"
@@ -13221,85 +13222,85 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "when choosing them as a starter or partner."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:195
+#: skytemple/skytemple/module/spritecollab/module.py:194
 msgid "Create a new sprite instead of replacing the existing one."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/module.py:200
+#: skytemple/skytemple/module/spritecollab/module.py:199
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:234
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:235
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:235
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:236
 msgid "Error Updating Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:261
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:262
 #, python-brace-format
 msgid "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:269
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:270
 #, python-brace-format
 msgid "NotSpriteCollab ({NOT_SC_SERVER})"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:275
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:276
 msgid "Custom Server"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:426
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:427
 msgid "Failed loading this Pokémon."
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:427
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:428
 msgid "Error Loading Pokémon"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:444
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:445
 msgid "Normal"
 msgstr "一般"
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:458
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:459
 msgid "<b>Portraits:</b>"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:474
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:475
 msgid "Apply Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:482
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:483
 msgid "<b>Sprites:</b>"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:500
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:501
 msgid "Apply Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:514
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:515
 msgid "<b><i>Make sure to credit artists:</i></b>"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:519
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:520
 msgid "<b>Portrait Credits:</b>"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:532
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:533
 msgid "<b>Sprite Credits:</b>"
 msgstr ""
 
-#: skytemple/skytemple/module/spritecollab/widget/browser.py:544
+#: skytemple/skytemple/module/spritecollab/widget/browser.py:545
 msgid "Open Details on Website..."
 msgstr ""
 
-#: skytemple/skytemple/module/strings/module.py:40
+#: skytemple/skytemple/module/strings/module.py:39
 msgid "Text Strings"
 msgstr ""
 
-#: skytemple/skytemple/module/strings/module.py:42
+#: skytemple/skytemple/module/strings/module.py:41
 msgid "This section lets you edit the text strings in the game. Please note that some of these strings can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
 "Not included are the strings of the game's scripts."
 msgstr ""
@@ -13345,15 +13346,15 @@ msgstr ""
 msgid "Export strings as..."
 msgstr ""
 
-#: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:153
+#: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:152
 msgid "The value could not be saved: "
 msgstr ""
 
-#: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:154
+#: skytemple/skytemple/module/symbols/symbol_entry/symbol_entry.py:153
 msgid "Invalid value"
 msgstr ""
 
-#: skytemple/skytemple/module/tiled_img/drawer_tiled.py:83
+#: skytemple/skytemple/module/tiled_img/drawer_tiled.py:81
 msgid "Only 1x1 or 3x3 supported."
 msgstr ""
 
