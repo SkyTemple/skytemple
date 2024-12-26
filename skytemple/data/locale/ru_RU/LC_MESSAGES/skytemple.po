@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-12-25 10:39+0000\n"
-"PO-Revision-Date: 2024-12-25 10:45\n"
+"PO-Revision-Date: 2024-12-26 12:23\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1322,7 +1322,8 @@ msgstr "Патч {self.patch_name} не может быть применён и�
 #: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
 msgid "\n"
 "Please reapply these patches first."
-msgstr ""
+msgstr "\n"
+"Пожалуйста, сначала примените данные патчи снова."
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
 msgid "One Layer (#00)"
@@ -3427,7 +3428,7 @@ msgstr "Если во время игры закончится оператив�
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:52
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator."
-msgstr ""
+msgstr "Устранена проблема, из-за которой сохранение не происходило на эмуляторе No$GBA."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:177
 msgid "Implements move growth (PoC/Unfinished). \n"
