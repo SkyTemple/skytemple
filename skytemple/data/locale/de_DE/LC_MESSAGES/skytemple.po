@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-12-25 10:39+0000\n"
-"PO-Revision-Date: 2024-12-25 10:45\n"
+"PO-Revision-Date: 2024-12-28 12:18\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1322,7 +1322,8 @@ msgstr "Der Patch {self.patch_name} kann nicht angewendet werden, da er von den 
 #: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
 msgid "\n"
 "Please reapply these patches first."
-msgstr ""
+msgstr "\n"
+"Bitte wende diese Patches zuerst erneut an."
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
 msgid "One Layer (#00)"
