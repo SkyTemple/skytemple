@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-12-25 10:39+0000\n"
-"PO-Revision-Date: 2025-07-11 10:52\n"
+"PO-Revision-Date: 2025-07-11 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -3503,7 +3503,7 @@ msgstr "PX 압축과는 다른 알고리즘을 사용하는 ATUPX 컨테이너�
 
 #: skytemple-files/skytemple_files/patch/handler/team_stats_pain.py:51
 msgid "If available, change a team member's portrait in the Team Stats menu to pain when in critical condition."
-msgstr ""
+msgstr "빈사 상태인 팀 멤버의 스탯창에 보여지는 초상화를 고통스러워하는 표정으로 보이게 합니다. ('Pain' 상태의 초상화가 있는 경우)"
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:49
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance of spawning a wall maze room in the floor."
@@ -3677,11 +3677,11 @@ msgstr ""
 
 #: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
-msgstr ""
+msgstr "ROM 헤더 체크섬이 콘텐츠와 일치하지 않습니다."
 
 #: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
-msgstr ""
+msgstr "ROM에서 파일 시스템을 읽는 중 오류가 발생했습니다. {}"
 
 #: skytemple-rust/src/st_bma.rs:462
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
@@ -4177,62 +4177,65 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
 #: skytemple/skytemple/core/ui_utils.py:80
 msgid "Nintendo DS ROMs (*.nds)"
-msgstr ""
+msgstr "닌텐도 DS 롬파일 (*.nds)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:157
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
-msgstr ""
+msgstr "바이너리 로더가 있는 닌텐도 DS 롬파일 (*.ds.gba)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:161
 msgid "All files"
-msgstr ""
+msgstr "모든 파일"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:312
 #, python-brace-format
 msgid "The emulator couldn't be loaded. Debugging functionality will not be available:\n\n"
 "{ex}"
-msgstr ""
+msgstr "에뮬레이터를 로드할 수 없습니다. 디버깅 기능을 사용할 수 없습니다:\n\n"
+"{ex}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:315
 msgid "Error loading the emulator!"
-msgstr ""
+msgstr "에뮬레이터를 로드하는 중 오류가 발생했습니다!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:337
 #, python-brace-format
 msgid "The emulator reported an error:\n\n"
 "{errs_as_str}"
-msgstr ""
+msgstr "에뮬레이터에서 오류를 보고했습니다:\n\n"
+"{errs_as_str}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:338
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:344
 msgid "Emulator Error"
-msgstr ""
+msgstr "에뮬레이터 오류"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:343
 msgid "The emulator reported an internal error:\n\n"
-msgstr ""
+msgstr "에뮬레이터가 내부 오류를 보고했습니다:\n\n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:488
 msgid "Open..."
-msgstr ""
+msgstr "열기..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:496
 #, python-brace-format
 msgid "Unable to load: {fn}\n"
 "{ex}"
-msgstr ""
+msgstr "로드할 수 없습니다: {fn}\n"
+"{ex}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:595
 msgid "Joypads are not supported on macOS. Sorry!"
-msgstr ""
+msgstr "macOS에서는 게임패드를 지원하지 않습니다. 죄송합니다!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:654
 msgid "PNG Image (*.png)"
-msgstr ""
+msgstr "PNG 이미지 (*.png)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:657
 msgid "Save Screenshot..."
-msgstr ""
+msgstr "스크린샷 저장..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:816
 msgid "Open Scenes..."
@@ -4257,27 +4260,27 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:842
 msgid "Delete directory..."
-msgstr ""
+msgstr "디렉토리 삭제..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:850
 msgid "Delete script file..."
-msgstr ""
+msgstr "스크립트 파일 삭제..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:859
 msgid "Create Directory"
-msgstr ""
+msgstr "디렉토리 생성"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:859
 msgid "Name of the directory:"
-msgstr ""
+msgstr "디렉토리 이름:"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:867
 msgid "Create File"
-msgstr ""
+msgstr "파일 생성"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:867
 msgid "Name of the new script file:"
-msgstr ""
+msgstr "새 스크립트 파일 이름:"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:879
 #, python-brace-format
@@ -5516,11 +5519,11 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant_dialog.py:320
 msgid "Image was converted."
-msgstr ""
+msgstr "이미지가 변환되었습니다."
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:52
 msgid "Thread-based"
-msgstr ""
+msgstr "스레드 기반"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:58
 msgid "Synchronous"
@@ -5570,20 +5573,20 @@ msgstr "스카이템플이 플러그인 디렉토리({plugin_dir})에서 다음 
 
 #: skytemple/skytemple/core/rom_project.py:156
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
-msgstr ""
+msgstr "이 롬파일의 백업 파일이 감지되었습니다. 이는 마지막으로 SkyTemple이 저장을 시도했을 때 롬파일이 손상되었음을 나타냅니다."
 
 #: skytemple/skytemple/core/rom_project.py:159
 msgid "No, load ROM as-is"
-msgstr ""
+msgstr "아니요, ROM을 그대로 로드합니다"
 
 #: skytemple/skytemple/core/rom_project.py:161
 msgid "Yes, load backup"
-msgstr ""
+msgstr "네, 백업을 로드합니다"
 
 #: skytemple/skytemple/core/rom_project.py:163
 #: skytemple/skytemple/core/rom_project.py:167
 msgid "Last modified: {} - Size: {}"
-msgstr ""
+msgstr "최종 수정 날짜: {} - 크기: {}"
 
 #: skytemple/skytemple/core/rom_project.py:174
 msgid "Do you want to restore the backup?\n"
