@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2024-12-25 10:39+0000\n"
-"PO-Revision-Date: 2025-07-11 12:57\n"
+"PO-Revision-Date: 2025-07-11 15:16\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -5577,7 +5577,7 @@ msgstr "이 롬파일의 백업 파일이 감지되었습니다. 이는 마지�
 
 #: skytemple/skytemple/core/rom_project.py:159
 msgid "No, load ROM as-is"
-msgstr "아니요, ROM을 그대로 로드합니다"
+msgstr "아니요, 롬파일을 그대로 로드합니다"
 
 #: skytemple/skytemple/core/rom_project.py:161
 msgid "Yes, load backup"
@@ -5594,20 +5594,24 @@ msgid "Do you want to restore the backup?\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
 "Original ROM: {}\n"
 "Backup ROM: {}"
-msgstr ""
+msgstr "백업 파일로 복구하시겠습니까?\n"
+"'예, 백업을 로드합니다'를 선택하시면 백업이 롬파일울 대체하여 로드될 것입니다.\n"
+"'아니오, 롬파일을 그대로 로드합니다'를 선택하시면 백업은 삭제될 것이며, SkyTemple은 잠재적으로 손상된 롬파일을 로드하려 시도할 것입니다.\n\n"
+"원본 롬파일: {}\n"
+"백업 롬파일: {}"
 
 #: skytemple/skytemple/core/rom_project.py:227
 msgid "There was an error trying to read the ROM file."
-msgstr ""
+msgstr "ROM 파일을 읽는 중 오류가 발생했습니다."
 
 #: skytemple/skytemple/core/rom_project.py:229
 msgid "Are you sure you provided a ROM? A ROM usually has the file extension \".nds\"."
-msgstr ""
+msgstr "롬파일을 선택한 것이 맞습니까? 대부분의 롬파일 확장자는 \".nds\"입니다."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:195
 #: skytemple/skytemple/core/ssb_debugger/context.py:214
 msgid "A scene for this script was not found."
-msgstr ""
+msgstr "이 스크립트의 장면을 찾을 수 없습니다."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:196
 #: skytemple/skytemple/core/ssb_debugger/context.py:215
