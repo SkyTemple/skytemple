@@ -245,7 +245,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK,
-                "SkyTemple is missing the 'script' " "module to handle this request.",
+                "SkyTemple is missing the 'script' module to handle this request.",
             )
             md.run()
             md.destroy()

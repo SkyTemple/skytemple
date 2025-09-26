@@ -210,7 +210,7 @@ class SpriteModule(AbstractModule):
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("To import select the directory of the sprite export. If it " "is still zipped, unzip it first."),
+            _("To import select the directory of the sprite export. If it is still zipped, unzip it first."),
         )
         md.run()
         md.destroy()

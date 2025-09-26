@@ -485,7 +485,7 @@ class BgMenuController:
                 bpa_duration_box.remove(child)
             if bpa is None or len(bpa.frame_info) < 1:
                 labl = Gtk.Label.new(
-                    _("This BPA has no frames.\n" "Enable the BPA and import images for a BPA to add frames.")
+                    _("This BPA has no frames.\nEnable the BPA and import images for a BPA to add frames.")
                 )
                 labl.show()
                 bpa_duration_box.add(labl)
@@ -557,7 +557,7 @@ class BgMenuController:
                     Gtk.DialogFlags.DESTROY_WITH_PARENT,
                     Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK,
-                    _("Some values were invalid (not a number). " "They were replaced with 0."),
+                    _("Some values were invalid (not a number). They were replaced with 0."),
                     title=_("Warning!"),
                 )
                 md.set_position(Gtk.WindowPosition.CENTER)
@@ -833,7 +833,7 @@ class BgMenuController:
                     Gtk.DialogFlags.DESTROY_WITH_PARENT,
                     Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK,
-                    _("Some values were invalid (not a number). " "They were replaced with 0."),
+                    _("Some values were invalid (not a number). They were replaced with 0."),
                     title=_("Warning!"),
                 )
                 md.set_position(Gtk.WindowPosition.CENTER)
