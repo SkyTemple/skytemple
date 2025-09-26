@@ -185,7 +185,7 @@ class FloorRanks(Enum):
 
 @dataclasses.dataclass
 class SpawnEntry:
-    entid: int
+    entid: u16
     level: u8
     relative_weight_main: int
     relative_weight_mh: int
@@ -2306,8 +2306,8 @@ class StDungeonFloorPage(Gtk.Box):
                     relative_weight_mh=int(row[7]),
                 )
             )
-        rows.append(SpawnEntry(original_kecleon_index, original_kecleon_level, 0, 0))
-        rows.append(SpawnEntry(DUMMY_MD_INDEX, u8(1), 0, 0))
+        rows.append(SpawnEntry(u16(original_kecleon_index), original_kecleon_level, 0, 0))
+        rows.append(SpawnEntry(u16(DUMMY_MD_INDEX), u8(1), 0, 0))
         rows.sort(key=lambda e: e.entid)
         sum_of_weights_main = sum(row.relative_weight_main for row in rows)
         sum_of_weights_mh = sum(row.relative_weight_mh for row in rows)

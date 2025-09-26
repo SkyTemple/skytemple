@@ -176,9 +176,9 @@ class ActorListController(ListBaseController):
         # TODO: it's a bit weird doing this over the color
         if color != ORANGE:
             actor.entid = entid
-        actor.type = int(a_type)
-        actor.unk3 = int(unk3)
-        actor.unk4 = int(unk4)
+        actor.type = u16(a_type)
+        actor.unk3 = u16(unk3)
+        actor.unk4 = u16(unk4)
         logger.debug(f"Updated actor {a_id}: {actor}")
 
         if (
