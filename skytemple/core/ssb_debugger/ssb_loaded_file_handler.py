@@ -1,6 +1,6 @@
 """skytemple-files data handler that wraps skytemple-files Ssb models in skytemple-ssb-debugger's LoadedSsbFile"""
 
-#  Copyright 2020-2024 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2025 SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #

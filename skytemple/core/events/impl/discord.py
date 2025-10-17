@@ -3,7 +3,7 @@ Discord presence module.
 If the extra dependencies are not installed, importing this module will raise an ImportError.
 """
 
-#  Copyright 2020-2024 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2025 SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
