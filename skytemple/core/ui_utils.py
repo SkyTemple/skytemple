@@ -39,7 +39,7 @@ from skytemple_files.common.i18n_util import _
 import importlib.metadata as importlib_metadata
 
 APP = "skytemple"
-REPO_MOVE_EFFECTS = "https://github.com/theCapypara/eos_move_effects"
+REPO_MOVE_EFFECTS = "https://github.com/SkyTemple/eos_move_effects"
 
 T = TypeVar("T", bound=GObject.Object)
 X = TypeVar("X")
