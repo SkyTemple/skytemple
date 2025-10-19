@@ -1,6 +1,6 @@
 """Module that contains GTK stock strings, just for source detection for i18n strings."""
 
-#  Copyright 2020-2024 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2025 SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
