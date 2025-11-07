@@ -361,7 +361,7 @@ jobs:
           
           python -m pip install --user pipx
           python -m pipx ensurepath
-          pipx install "git+https://github.com/wingtk/gvsbuild@main"
+          pipx install "git+https://github.com/theCapypara/gvsbuild@pango-patch"
       - name: Build GTK and other libs
         run: |
           $env:path = "C:\pipx_bin;" + $env:path
