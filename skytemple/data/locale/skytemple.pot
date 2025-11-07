@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2024-12-25 10:39+0000\n"
+"POT-Creation-Date: 2025-10-19 10:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1067,7 +1067,7 @@ msgstr ""
 msgid "No value set for if condition."
 msgstr ""
 
-#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:64
+#: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:62
 #, python-brace-format
 msgid "The only supported operators for scn if conditions are ==,<,<=,>,>= (line {self.ctx.start.line})"
 msgstr ""
@@ -1315,10 +1315,10 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:20
 #, python-brace-format
-msgid "The patch {self.patch_name} cannot be applied because the following patches it depends on "
+msgid "The patch {self.patch_name} cannot be applied because the following patches it depends on are outdated:"
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:25
+#: skytemple-files/skytemple_files/common/exceptions/outdated_patch_dependency.py:24
 msgid ""
 "\n"
 "Please reapply these patches first."
@@ -1456,17 +1456,17 @@ msgstr ""
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:268
+#: skytemple-files/skytemple_files/common/tiled_image.py:266
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:334
-#: skytemple-files/skytemple_files/common/tiled_image.py:348
+#: skytemple-files/skytemple_files/common/tiled_image.py:329
+#: skytemple-files/skytemple_files/common/tiled_image.py:343
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:394
+#: skytemple-files/skytemple_files/common/tiled_image.py:389
 #, python-brace-format
 msgid ""
 "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
@@ -1487,18 +1487,30 @@ msgstr ""
 msgid "Binary {binary.name} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:613
-#: skytemple-files/skytemple_files/common/util.py:644
+#: skytemple-files/skytemple_files/common/util.py:618
+#: skytemple-files/skytemple_files/common/util.py:641
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:616
+#: skytemple-files/skytemple_files/common/util.py:644
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:639
+#: skytemple-files/skytemple_files/common/util.py:666
+#: skytemple-files/skytemple_files/common/util.py:681
+#, python-brace-format
+msgid "Folder {path} does not exist."
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/util.py:678
+#: skytemple-files/skytemple_files/common/util.py:703
+#, python-brace-format
+msgid "Folder {par_dir_name} does not exist."
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/util.py:698
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr ""
@@ -2522,12 +2534,12 @@ msgstr ""
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dbg/_model.py:115
+#: skytemple-files/skytemple_files/graphics/dbg/_model.py:113
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dbg/_model.py:124
+#: skytemple-files/skytemple_files/graphics/dbg/_model.py:119
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
 msgstr ""
@@ -3655,12 +3667,12 @@ msgstr ""
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:374
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:377
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:378
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:381
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr ""
@@ -4594,7 +4606,7 @@ msgid "Player"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:71
-#: skytemple/skytemple/skytemple.glade:1918
+#: skytemple/skytemple/skytemple.glade:1916
 msgid "Mode"
 msgstr ""
 
@@ -5167,12 +5179,12 @@ msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
 msgstr ""
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3297
-#: skytemple/skytemple/skytemple.glade:1439
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3295
+#: skytemple/skytemple/skytemple.glade:1437
 msgid "translator-credits"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3369
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3367
 #: skytemple/skytemple/data/widget/dungeon/floor.ui:3105
 #: skytemple/skytemple/data/widget/map_bg/main.ui:163
 #: skytemple/skytemple/data/widget/portrait/portrait.ui:391
@@ -7356,7 +7368,7 @@ msgid ""
 msgstr ""
 
 #: skytemple/skytemple/data/widget/dungeon_graphics/dungeon_bg.ui:2285
-#: skytemple/skytemple/skytemple.glade:2214
+#: skytemple/skytemple/skytemple.glade:2212
 msgid "Input Image"
 msgstr ""
 
@@ -13892,19 +13904,19 @@ msgstr ""
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1473
+#: skytemple/skytemple/skytemple.glade:1471
 msgid "Privacy Information"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1493
+#: skytemple/skytemple/skytemple.glade:1491
 msgid "Don't allow"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1506
+#: skytemple/skytemple/skytemple.glade:1504
 msgid "Allow sending error reports"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1533
+#: skytemple/skytemple/skytemple.glade:1531
 msgid ""
 "<span size=\"large\">Welcome to SkyTemple!</span>\n"
 "\n"
@@ -13916,31 +13928,31 @@ msgid ""
 "This is used so we can improve SkyTemple."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1599
+#: skytemple/skytemple/skytemple.glade:1597
 msgid "Loading ROM \"NAME\"..."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1655
+#: skytemple/skytemple/skytemple.glade:1653
 msgid "Dither: Ordered"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1659
+#: skytemple/skytemple/skytemple.glade:1657
 msgid "Dither: Floyd Steinberg"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1663
+#: skytemple/skytemple/skytemple.glade:1661
 msgid "No Dithering"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1667
+#: skytemple/skytemple/skytemple.glade:1665
 msgid "Reorganize colors only"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1673
+#: skytemple/skytemple/skytemple.glade:1671
 msgid "Tilequant"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1738
+#: skytemple/skytemple/skytemple.glade:1736
 msgid ""
 "This tool converts any image into the image format required by Explorers of Sky.\n"
 "Please note that the game has pretty strict color restrictions.\n"
@@ -13950,42 +13962,42 @@ msgid ""
 "The images created by this tool can be imported for backgrounds."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1767
+#: skytemple/skytemple/skytemple.glade:1765
 msgid "Number of Palettes"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1810
+#: skytemple/skytemple/skytemple.glade:1808
 msgid "16"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1842
+#: skytemple/skytemple/skytemple.glade:1840
 msgid "Transparent Color"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1885
+#: skytemple/skytemple/skytemple.glade:1883
 msgid "Color"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1997
+#: skytemple/skytemple/skytemple.glade:1995
 msgid "Dithering Level"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2085
+#: skytemple/skytemple/skytemple.glade:2083
 msgid "No. of tile clustering passes"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2141
+#: skytemple/skytemple/skytemple.glade:2139
 msgid "No. of color clustering passes"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2187
+#: skytemple/skytemple/skytemple.glade:2185
 msgid "Advanced Options"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2266
+#: skytemple/skytemple/skytemple.glade:2264
 msgid "Additional Input Image (optional)"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2360
+#: skytemple/skytemple/skytemple.glade:2358
 msgid "Convert"
 msgstr ""
