@@ -338,7 +338,7 @@ class BgMenuController:
                     Gtk.DialogFlags.DESTROY_WITH_PARENT,
                     Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK,
-                    _("Some values were invalid (not a number). " "They were replaced with 0."),
+                    _("Some values were invalid (not a number). They were replaced with 0."),
                     title=_("Warning!"),
                 )
                 md.set_position(Gtk.WindowPosition.CENTER)

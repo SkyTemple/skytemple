@@ -37,7 +37,6 @@ from skytemple_files.graphics.fonts import FontType
 from skytemple_files.graphics.fonts.abstract import AbstractFont
 from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
 from skytemple_files.graphics.chr.model import Chr
-from skytemple_files.graphics.zmappat.model import ZMappaT
 from skytemple_files.hardcoded.cart_removed import HardcodedCartRemoved
 
 from PIL import Image
@@ -136,9 +135,9 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_chrs = self.project.get_files_with_ext(CHR_FILE_EXT)
         self.list_of_banner_fonts = sorted(list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES))
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
-        self.list_of_wtes_dungeon_bin: list[Wte]
-        self.list_of_wtus_dungeon_bin: list[Wtu]
-        self.list_of_zmappats_dungeon_bin: list[ZMappaT]
+        self.list_of_wtes_dungeon_bin: list[str]
+        self.list_of_wtus_dungeon_bin: list[str]
+        self.list_of_zmappats_dungeon_bin: list[str]
 
         self._item_tree: ItemTree
         self._tree_level_iter: dict[str, ItemTreeEntryRef] = {}

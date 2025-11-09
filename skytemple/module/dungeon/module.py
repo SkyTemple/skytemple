@@ -538,7 +538,7 @@ class DungeonModule(AbstractModule):
                 new_floor_list += new_floors
             new_floor_lists.append(new_floor_list)
 
-        assert len(dungeons_not_visited) == 0, _("Some dungeons were missing in the new group list. " "This is a bug.")
+        assert len(dungeons_not_visited) == 0, _("Some dungeons were missing in the new group list. This is a bug.")
 
         # If we haven't inserted the dojo dungeon floor list yet, do it now and pad with empty lists.
         if len(new_floor_lists) < DOJO_MAPPA_ENTRY:

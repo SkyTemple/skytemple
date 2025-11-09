@@ -190,7 +190,7 @@ class SettingsController:
                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK,
-                _("You need to restart SkyTemple to " "apply some of the settings."),
+                _("You need to restart SkyTemple to apply some of the settings."),
                 title="SkyTemple",
             )
             md.run()

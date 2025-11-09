@@ -167,10 +167,7 @@ class TilequantController:
                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK,
-                _(
-                    "Since you selected two images to convert, you will be "
-                    "asked for both images where to save them to."
-                ),
+                _("Since you selected two images to convert, you will be asked for both images where to save them to."),
             )
             md.run()
             md.destroy()
