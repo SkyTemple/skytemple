@@ -381,6 +381,7 @@ class StMovesItemsItemPage(Gtk.Box):
             return
         assert self.item_sp is not None
         self.item_sp.parameter = val
+        self.mark_as_modified()
 
     @Gtk.Template.Callback()
     def on_btn_help_range_min_clicked(self, w, *args):
