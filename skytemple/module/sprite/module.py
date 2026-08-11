@@ -151,6 +151,8 @@ class SpriteModule(AbstractModule):
                 item_data=obj_name,
             ),
         )
+        # Manually reload list of object sprites
+        self.list_of_obj_sprites = self.project.get_files_with_ext(WAN_FILE_EXT, GROUND_DIR)
 
     def import_a_sprite(self) -> bytes | None:
         if self.get_gfxcrunch().is_available():
