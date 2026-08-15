@@ -367,19 +367,32 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     def _load_frames(self):
         with self._monster_bin as monster_bin:
-            sprite = self._load_sprite_from_bin_pack(monster_bin, self.item_data)
-            ani_group = sprite.anim_groups[0]
+            wan = self._load_sprite_from_bin_pack(monster_bin, self.item_data)
+            ani_group = wan.animGroupData[0]
             frame_id = 2
-            for frame in ani_group[frame_id].frames:
-                mfg_id = frame.frame_id
-                sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
+            max_frame_bounds = wan.get_max_bounds()
+            current_info = []
+            image_box = (10000, 10000, -10000, -10000)
+            for frame in ani_group[frame_id]:
+                mfg_id = frame.frameIndex
+                sprite_img = wan.draw_meta_frame(max_frame_bounds, mfg_id)
+                current_info.append((frame.duration, sprite_img))
+                ib = sprite_img.getbbox()
+                image_box = (
+                    min(image_box[0], ib[0]),
+                    min(image_box[1], ib[1]),
+                    max(image_box[2], ib[2]),
+                    max(image_box[3], ib[3]),
+                )
+            for duration, sprite_img in current_info:
+                sprite_img = sprite_img.crop(image_box)
                 self._rendered_frame_info.append(
                     (
-                        frame.duration,
+                        duration,
                         (
                             pil_to_cairo_surface(sprite_img),
-                            cx,
-                            cy,
+                            -max_frame_bounds[0] - image_box[0],
+                            -max_frame_bounds[1] - image_box[1],
                             sprite_img.width,
                             sprite_img.height,
                         ),
@@ -388,4 +401,4 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
-        return FileType.WAN.deserialize(FileType.PKDPX.deserialize(bin_pack[file_id]).decompress())
+        return FileType.WAN.CHARA.deserialize(FileType.PKDPX.deserialize(bin_pack[file_id]).decompress())

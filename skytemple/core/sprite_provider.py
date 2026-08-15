@@ -423,13 +423,17 @@ class SpriteProvider:
             if actor_sprite_id < 0:
                 raise ValueError("Invalid Sprite index")
             with self._monster_bin as monster_bin:
-                sprite = self._load_sprite_from_bin_pack(monster_bin, actor_sprite_id)
+                wan = self._load_sprite_from_bin_pack(monster_bin, actor_sprite_id)
 
-                ani_group = sprite.anim_groups[0]
+                ani_group = wan.animGroupData[0]
                 frame_id = direction_id - 1 if direction_id > 0 else 0
-                mfg_id = ani_group[frame_id].frames[0].frame_id
+                mfg_id = ani_group[frame_id][0].frameIndex
 
-                sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
+                max_frame_bounds = wan.get_max_bounds()
+                sprite_img = wan.draw_meta_frame(max_frame_bounds, mfg_id)
+                image_box = sprite_img.getbbox()
+                sprite_img = sprite_img.crop(image_box)
+                cx, cy = -max_frame_bounds[0] - image_box[0], -max_frame_bounds[1] - image_box[1]
             return sprite_img, cx, cy, sprite_img.width, sprite_img.height
         except BaseException as e:
             # Error :(
@@ -524,7 +528,7 @@ class SpriteProvider:
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
-        return FileType.WAN.deserialize(FileType.COMMON_AT.deserialize(bin_pack[file_id]).decompress())
+        return FileType.WAN.CHARA.deserialize(FileType.COMMON_AT.deserialize(bin_pack[file_id]).decompress())
 
     def _load_sprite_from_rom(self, path: str) -> ModelContext[Wan]:
         return self._project.open_file_in_rom(path, FileType.WAN, threadsafe=True)
