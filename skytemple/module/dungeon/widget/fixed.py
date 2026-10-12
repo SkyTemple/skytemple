@@ -177,11 +177,11 @@ class StDungeonFixedPage(Gtk.Notebook):
         self.properties = self.module.get_fixed_floor_properties()[self.item_data]
         self.override_id = self.module.get_fixed_floor_overrides()[self.item_data]
         # TODO: Duplicated code
-        self.enemy_settings_name = [f"{i}" for i in range(0, 256)]
-        self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
+        self.behaviors_name = [f"{i}" for i in range(0, 256)]
+        self.long_behaviors_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
-            self.enemy_settings_name[spawn_type.value] = f"{spawn_type.description}"
-            self.long_enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
+            self.behaviors_name[spawn_type.value] = f"{spawn_type.description}"
+            self.long_behaviors_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
         self.monster_names = {}
         self.long_monster_names = {}
         length = len(self.module.get_monster_md().entries)
@@ -739,9 +739,9 @@ class StDungeonFixedPage(Gtk.Notebook):
         if monster_spawn.md_idx > 0:
             desc += ", " + self.module.desc_fixed_floor_monster(
                 monster_spawn.md_idx,
-                monster_spawn.enemy_settings.value,
+                monster_spawn.behavior_id,
                 self.monster_names,
-                self.enemy_settings_name,
+                self.behaviors_name,
                 short=True,
             )
         return desc
@@ -867,7 +867,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         entity = self.entity_rule_container.entities[entity_id]
         item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(entity_id)
         self.utility_entity_frame_desc_label.set_markup(
-            f"<b>Pokémon ({entity.monster_id})</b>:\n{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.long_monster_names, self.long_enemy_settings_name)}\n\n<b>{_('Stats')} ({monster_spawn.stats_entry})</b>:\n{self.module.desc_fixed_floor_stats(monster_spawn.stats_entry, stats)}\n\n<b>{_('Item')} ({entity.item_id})</b>:\n{self.module.desc_fixed_floor_item(item_spawn.item_id)}\n\n<b>{_('Tile Properties')} ({entity.tile_id})</b>:\n{self.module.desc_fixed_floor_tile(tile_spawn)}"
+            f"<b>Pokémon ({entity.monster_id})</b>:\n{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.behavior_id, self.long_monster_names, self.long_behaviors_name)}\n\n<b>{_('Stats')} ({monster_spawn.stats_entry})</b>:\n{self.module.desc_fixed_floor_stats(monster_spawn.stats_entry, stats)}\n\n<b>{_('Item')} ({entity.item_id})</b>:\n{self.module.desc_fixed_floor_item(item_spawn.item_id)}\n\n<b>{_('Tile Properties')} ({entity.tile_id})</b>:\n{self.module.desc_fixed_floor_tile(tile_spawn)}"
         )
 
     def _reapply_selected_tile(self):

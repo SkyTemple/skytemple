@@ -287,7 +287,7 @@ class FixedRoomDrawer:
                             self._draw_info_item(sx, sy, ctx, self._item_name(item.item_id))
                         # Has Pokémon?
                         if monster.md_idx > 0 and self.info_layer_active == InfoLayer.MONSTER:
-                            self._draw_info_monster(sx, sy, ctx, monster.enemy_settings)
+                            self._draw_info_monster(sx, sy, ctx, monster.get_spawn_type())
                         if self.info_layer_active == InfoLayer.TILE:
                             self._draw_info_tile(sx, sy, ctx, tile.room_id, False, False)
                     elif self.info_layer_active == InfoLayer.TILE:
@@ -431,10 +431,10 @@ class FixedRoomDrawer:
     def _draw_info_item(self, sx, sy, ctx, name):
         self._draw_name(ctx, sx, sy, name, COLOR_WHITE)
 
-    def _draw_info_monster(self, sx, sy, ctx, enemy_settings):
-        if enemy_settings == MonsterSpawnType.ALLY_HELP:
+    def _draw_info_monster(self, sx, sy, ctx, spawn_type: MonsterSpawnType | None):
+        if spawn_type == MonsterSpawnType.ALLY_HELP:
             self._draw_bottom_left(ctx, sx, sy, COLOR_GREEN, "A")
-        elif enemy_settings == MonsterSpawnType.ENEMY_STRONG:
+        elif spawn_type == MonsterSpawnType.ENEMY_STRONG:
             self._draw_bottom_left(ctx, sx, sy, COLOR_RED, "E")
         else:
             self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, "O")

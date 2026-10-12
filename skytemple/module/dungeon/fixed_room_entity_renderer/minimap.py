@@ -55,13 +55,13 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
             # Has Pokémon?
             if monster.md_idx > 0:
                 if (
-                    monster.enemy_settings == MonsterSpawnType.ENEMY_STRONG
-                    or monster.enemy_settings == MonsterSpawnType.ENEMY_NORMAL
-                    or monster.enemy_settings == MonsterSpawnType.ENEMY_OUTLAW
-                    or monster.enemy_settings == MonsterSpawnType.ENEMY_NORMAL_2
-                    or monster.enemy_settings == MonsterSpawnType.OUTLAW
-                    or monster.enemy_settings == MonsterSpawnType.OUTLAW_RUN
-                    or monster.enemy_settings == MonsterSpawnType.UNKNOWN_F
+                    monster.get_spawn_type() == MonsterSpawnType.ENEMY_STRONG
+                    or monster.get_spawn_type() == MonsterSpawnType.ENEMY_NORMAL
+                    or monster.get_spawn_type() == MonsterSpawnType.ENEMY_OUTLAW
+                    or monster.get_spawn_type() == MonsterSpawnType.ENEMY_NORMAL_2
+                    or monster.get_spawn_type() == MonsterSpawnType.OUTLAW
+                    or monster.get_spawn_type() == MonsterSpawnType.OUTLAW_RUN
+                    or monster.get_spawn_type() == MonsterSpawnType.UNKNOWN_F
                 ):
                     self.paint(ctx, self.minimap_provider.get_minimap_tile(2), x, y)
                 else:
