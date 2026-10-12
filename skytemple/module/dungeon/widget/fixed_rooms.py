@@ -126,9 +126,9 @@ class StDungeonFixedRoomsPage(Gtk.Box):
             self.lst_tile,
             self.lst_stats,
         ) = module.get_fixed_floor_entity_lists()
-        self.enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
+        self.behaviors_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
-            self.enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
+            self.behaviors_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
         self.monster_names = {}
         length = len(self.module.get_monster_md().entries)
         for i, entry in enumerate(self.module.get_monster_md().entries):
@@ -199,9 +199,9 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         monster = self.lst_monster[cb_store[new_iter][0]]
         store[path][6] = self.module.desc_fixed_floor_monster(
             monster.md_idx,
-            monster.enemy_settings.value,
+            monster.behavior_id,
             self.monster_names,
-            self.enemy_settings_name,
+            self.behaviors_name,
         )
         self._save()
 
@@ -441,7 +441,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
         cb_store = self.model_monsters__type
         store[path][3] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
-        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])  # type: ignore
+        self.lst_monster[int(store[path][0])].behavior_id = cb_store[new_iter][0]
         self._save()
 
     @Gtk.Template.Callback()
@@ -568,9 +568,9 @@ class StDungeonFixedRoomsPage(Gtk.Box):
             monster = self.lst_monster[i]
             monster_desc = self.module.desc_fixed_floor_monster(
                 monster.md_idx,
-                monster.enemy_settings.value,
+                monster.behavior_id,
                 self.monster_names,
-                self.enemy_settings_name,
+                self.behaviors_name,
             )
             store.append([i, f"Pokémon {i} ({monster_desc})"])
         # Init Items Store
@@ -603,9 +603,9 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                     "("
                     + self.module.desc_fixed_floor_monster(
                         monster.md_idx,
-                        monster.enemy_settings.value,
+                        monster.behavior_id,
                         self.monster_names,
-                        self.enemy_settings_name,
+                        self.behaviors_name,
                     )
                     + ")",
                 ]
@@ -657,7 +657,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
             store.append([item])
         # Init Monsters Types
         store = self.model_monsters__type
-        for i, entry in enumerate(self.enemy_settings_name):
+        for i, entry in enumerate(self.behaviors_name):
             store.append([i, entry])
 
     def _fill_monsters(self):
@@ -675,8 +675,8 @@ class StDungeonFixedRoomsPage(Gtk.Box):
                     str(idx),
                     monster.md_idx,
                     self.monster_names[monster.md_idx],
-                    monster.enemy_settings.value,
-                    self.enemy_settings_name[monster.enemy_settings.value],
+                    monster.behavior_id,
+                    self.behaviors_name[monster.behavior_id],
                     *self._generate_stats_store_entry(monster),
                 ]
             )
@@ -702,8 +702,8 @@ class StDungeonFixedRoomsPage(Gtk.Box):
 
     def _generate_stats_store_entry(self, monster):
         if (
-            monster.enemy_settings == MonsterSpawnType.ENEMY_STRONG
-            or monster.enemy_settings == MonsterSpawnType.ALLY_HELP
+            monster.get_spawn_type() == MonsterSpawnType.ENEMY_STRONG
+            or monster.get_spawn_type() == MonsterSpawnType.ALLY_HELP
         ):
             return (
                 monster.stats_entry,

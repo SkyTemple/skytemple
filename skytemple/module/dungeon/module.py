@@ -900,12 +900,12 @@ class DungeonModule(AbstractModule):
         )
 
     @staticmethod
-    def desc_fixed_floor_monster(monster_id, enemy_settings, monster_names, enemy_settings_names, short=False):
+    def desc_fixed_floor_monster(monster_id, behavior_id: u8, monster_names, behavior_names: list[str], short=False):
         if monster_id == 0:
             return _("Nothing")
         if short:
             return monster_names[monster_id]
-        return monster_names[monster_id] + " (" + enemy_settings_names[enemy_settings] + ")"
+        return monster_names[monster_id] + " (" + behavior_names[behavior_id] + ")"
 
     def desc_fixed_floor_stats(self, i, entry):
         return f(
