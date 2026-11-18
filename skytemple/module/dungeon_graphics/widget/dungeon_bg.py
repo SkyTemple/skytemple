@@ -390,7 +390,7 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
                     pal_for_frame = itertools.chain.from_iterable(
                         self.dpla.apply_palette_animations(self.dpl.palettes, pal_ani)
                     )
-                    chunk_image.putpalette(pal_for_frame)
+                    chunk_image.putpalette(list(pal_for_frame))
                 ani_frames.append(pil_to_cairo_surface(chunk_image.convert("RGBA")))
         # TODO: No DPLA animations at different speeds supported at the moment
         ani_pal11 = 9999
