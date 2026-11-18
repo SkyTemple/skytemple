@@ -126,7 +126,7 @@ class StChunkEditorDialog(Gtk.Dialog):
                     # Switch out the palette with that from the palette animation
                     if has_pal_ani:
                         pal_for_frame = itertools.chain.from_iterable(self.palettes.apply_palette_animations(pal_ani))
-                        all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
+                        all_bpc_tiles_for_current_pal.putpalette(list(pal_for_frame))
                     pal_ani_tile.append(
                         [
                             pil_to_cairo_surface(
@@ -162,7 +162,7 @@ class StChunkEditorDialog(Gtk.Dialog):
                                         pal_for_frame = itertools.chain.from_iterable(
                                             self.palettes.apply_palette_animations(pal_ani)
                                         )
-                                        all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
+                                        all_bpc_tiles_for_current_pal.putpalette(list(pal_for_frame))
                                     bpa_ani_tile.append(
                                         pil_to_cairo_surface(
                                             frame.crop(

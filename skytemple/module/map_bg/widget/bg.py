@@ -702,7 +702,7 @@ class StMapBgBgPage(Gtk.Box):
                         # Switch out the palette with that from the palette animation
                         if has_pal_ani:
                             pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
-                            img.putpalette(pal_for_frame)
+                            img.putpalette(list(pal_for_frame))
                         # Remove alpha first
                         img_mask = img.copy()
                         img_mask.putpalette(MASK_PAL)
